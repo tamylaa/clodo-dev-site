@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Clodo Framework</title>
+    <meta name="description" content="Complete documentation for Clodo Framework - getting started, core concepts, and API reference.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Clodo Framework</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#concepts">Core Concepts</a></li>
+                <li><a href="#api">API Reference</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Documentation</h1>
+
+        <section id="getting-started">
+            <h2>Getting Started</h2>
+            <h3>Installation</h3>
+            <pre><code>npm install -g @tamyla/clodo-framework</code></pre>
+
+            <h3>First Service Creation</h3>
+            <pre><code>npx @tamyla/clodo-framework clodo-service create my-first-service --type data-service</code></pre>
+
+            <h3>Deployment</h3>
+            <pre><code>cd my-first-service
+npm run deploy</code></pre>
+        </section>
+
+        <section id="concepts">
+            <h2>Core Concepts</h2>
+            <h3>Service Types</h3>
+            <ul>
+                <li><strong>data-service</strong>: Database CRUD operations</li>
+                <li><strong>auth-service</strong>: Authentication and authorization</li>
+                <li><strong>api-gateway</strong>: Routing and API management</li>
+                <li><strong>content-service</strong>: Content management</li>
+                <li><strong>generic</strong>: Custom service template</li>
+            </ul>
+
+            <h3>Multi-Domain Configuration</h3>
+            <p>Configure multiple domains for your services...</p>
+
+            <h3>Security Validation</h3>
+            <p>Built-in security checks before deployment...</p>
+        </section>
+
+        <section id="api">
+            <h2>API Reference</h2>
+            <h3>CLI Commands</h3>
+            <pre><code>clodo-service create <name> --type <type>  # Create new service
+clodo-service deploy <service>            # Deploy service
+clodo-service test <service>              # Run tests</code></pre>
+
+            <h3>Configuration Options</h3>
+            <p>Service configuration options...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Clodo Framework. <a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

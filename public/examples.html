@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Clodo Framework</title>
+    <meta name="description" content="Code examples and real-world projects built with Clodo Framework.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Clodo Framework</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="#code-examples">Code Examples</a></li>
+                <li><a href="#projects">Real-World Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Examples</h1>
+
+        <section id="code-examples">
+            <h2>Code Examples</h2>
+
+            <h3>Create Data Service</h3>
+            <pre><code>npx @tamyla/clodo-framework clodo-service create user-service --type data-service</code></pre>
+
+            <h3>Multi-Domain Setup</h3>
+            <pre><code>// Configure domains in src/config/domains.js
+export const domains = {
+  api: 'api.myapp.com',
+  admin: 'admin.myapp.com',
+  public: 'myapp.com'
+};</code></pre>
+
+            <h3>Contact Form API</h3>
+            <pre><code>npx @tamyla/clodo-framework clodo-service create contact-api --type api-gateway</code></pre>
+
+            <h3>Blog/CMS</h3>
+            <pre><code>npx @tamyla/clodo-framework clodo-service create blog --type content-service</code></pre>
+
+            <h3>Authentication Service</h3>
+            <pre><code>npx @tamyla/clodo-framework clodo-service create auth --type auth-service</code></pre>
+        </section>
+
+        <section id="projects">
+            <h2>Real-World Projects</h2>
+            <p>Coming soon: Showcase of projects built with Clodo Framework.</p>
+            <ul>
+                <li><strong>clodo.dev</strong> - This marketing site (self-reference)</li>
+                <li>Example e-commerce site</li>
+                <li>Example SaaS backend</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Clodo Framework. <a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
