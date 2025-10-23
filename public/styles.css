@@ -384,6 +384,40 @@ body {
     color: #3b82f6;
 }
 
+/* Key Benefits Section */
+#key-benefits {
+    padding: 60px 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.benefits-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    min-width: 200px;
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.benefit-item span:last-child {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 /* Cloudflare Edge Section */
 #cloudflare-edge {
     padding: 100px 0;
