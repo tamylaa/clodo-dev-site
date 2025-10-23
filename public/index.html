@@ -79,16 +79,15 @@
     </header>
 
     <main>
-        <section id="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        The Ruby on Rails of <span class="highlight">Cloudflare Workers</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        Quickly Build Full Stack SaaS with High Performance Framework Designed for Enterprise Architects delivering 10X impact with 1X Effort
-                    </p>
-                    <div class="hero-actions">
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1>
+                    The Ruby on Rails of <span class="highlight">Cloudflare Workers</span>
+                </h1>
+                <p>
+                    Quickly Build Full Stack SaaS with High Performance Framework Designed for Enterprise Architects delivering 10X impact with 1X Effort
+                </p>
+                <div class="hero-actions">
                         <a href="docs.html" class="btn btn-primary">
                             <span>Get Started</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -193,9 +192,9 @@
             </div>
         </section>
 
-        <section id="features">
+        <section id="features" class="features-section">
             <div class="container">
-                <div class="section-header">
+                <div class="features-content">
                     <h2>Everything You Need for Production SaaS</h2>
                     <p>The most comprehensive framework for Cloudflare Workers - what Rails did for web development, Clodo does for the edge</p>
                 </div>
@@ -286,43 +285,55 @@
             </div>
         </section>
 
-        <section id="social-proof">
+        <section id="social-proof" class="testimonials-section">
             <div class="container">
-                <div class="social-proof-content">
+                <div class="testimonials-content">
                     <h2>Trusted by Developers</h2>
-                    <div class="testimonials">
-                        <div class="testimonial">
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
                             <p>"Clodo Framework transformed our development process. What would have taken 6 months and $180K in custom development shipped in 3 weeks for $15K. The multi-tenant architecture and built-in security gave us enterprise-grade reliability from day one."</p>
+                        </div>
+                        <div class="testimonial-author">
                             <cite>- SaaS Startup Founder</cite>
                         </div>
-                        <div class="testimonial">
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
                             <p>"Finally, a framework that treats Cloudflare Workers like a serious platform. The integrated D1, auth, and orchestration layer eliminated months of infrastructure work. Our deployment velocity increased 5x."</p>
+                        </div>
+                        <div class="testimonial-author">
                             <cite>- Senior Full-Stack Developer</cite>
                         </div>
-                        <div class="testimonial">
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
                             <p>"The intelligent orchestration caught configuration issues that would have cost us days in production debugging. The pre-deployment validation and gap analysis is like having an expert DevOps engineer built into the framework."</p>
+                        </div>
+                        <div class="testimonial-author">
                             <cite>- Enterprise Platform Architect</cite>
                         </div>
                     </div>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">Companies Using</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="github-stars">0</span>
-                            <span class="stat-label">GitHub Stars</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">Services Deployed</span>
-                        </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Companies Using</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="github-stars">0</span>
+                        <span class="stat-label">GitHub Stars</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Services Deployed</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="cta">
+        <section id="cta" class="cta-section">
             <div class="container">
                 <div class="cta-content">
                     <h2>Ready to Transform Your Development Workflow?</h2>
