@@ -5,8 +5,9 @@
   "main": "index.html",
   "scripts": {
     "build": "node build.js",
-    "serve": "cd public && python -m http.server 8000",
+    "serve": "node dev-server.js",
     "dev": "npm run serve",
+    "build:serve": "npm run build && npm run serve",
     "clean": "rm -rf dist",
     "test": "cd tests && npm test",
     "test:unit": "cd tests && npm run test:unit",
