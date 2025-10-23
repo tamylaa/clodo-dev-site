@@ -12,7 +12,7 @@
     <meta name="twitter:title" content="Clodo Framework - Enterprise Services on Cloudflare Edge">
     <meta name="twitter:description" content="Build enterprise-grade SaaS applications 10x faster on Cloudflare Workers. Security-by-default architecture with automated deployment, multi-tenant support, and comprehensive validation.">
     <meta name="twitter:image" content="https://clodo.dev/og-image.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-organized.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <script type="application/ld+json">
     {
@@ -78,44 +78,47 @@
     </header>
 
     <main>
-        <section id="hero" class="hero-container">
-            <div class="hero-content">
-                <h1>
-                    The Ruby on Rails of <span class="highlight">Cloudflare Workers</span>
-                </h1>
-                <p>
-                    Quickly Build Full Stack SaaS with High Performance Framework Designed for Enterprise Architects delivering 10X impact with 1X Effort
-                </p>
-                <div class="hero-actions">
-                        <a href="docs.html" class="btn btn-primary">
-                            <span>Get Started</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <a href="examples.html" class="btn btn-secondary">
-                            <span>View Examples</span>
-                        </a>
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            The Ruby on Rails of <span class="highlight">Cloudflare Workers</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Quickly Build Full Stack SaaS with High Performance Framework Designed for Enterprise Architects delivering 10X impact with 1X Effort
+                        </p>
+                        <div class="hero-actions">
+                                <a href="docs.html" class="btn btn-primary">
+                                    <span>Get Started</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                                <a href="examples.html" class="btn btn-secondary">
+                                    <span>View Examples</span>
+                                </a>
+                            </div>
                     </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="code-preview">
-                    <div class="code-header">
-                        <div class="code-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="code-title">clodo-service create</span>
-                    </div>
-                    <pre class="code-content"><code><span class="code-comment"># Create a new service in seconds</span>
-<span class="code-command">npx create-clodo-service my-new-service --type data-service</span>
+                    <div class="hero-visual">
+                        <div class="code-preview">
+                            <div class="code-preview__header">
+                                <div class="code-preview__dots">
+                                    <span class="code-preview__dot code-preview__dot--red"></span>
+                                    <span class="code-preview__dot code-preview__dot--yellow"></span>
+                                    <span class="code-preview__dot code-preview__dot--green"></span>
+                                </div>
+                                <span class="code-preview__title">clodo-service create</span>
+                            </div>
+                            <pre class="code-preview__content"><code><span class="code-preview__comment"># Create a new service in seconds</span>
+<span class="code-preview__command">npx create-clodo-service my-new-service --type data-service</span>
 
-<span class="code-output">✅ Service created successfully!
+<span class="code-preview__output">✅ Service created successfully!
 📁 Generated complete service structure
 🔒 Security validation passed
 🚀 Ready for deployment</span></code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -284,37 +287,41 @@
             </div>
         </section>
 
-        <section id="social-proof">
+        <section id="social-proof" class="social-proof">
             <div class="container">
-                <div class="social-proof-content">
-                    <h2>Trusted by Developers</h2>
+                <div class="social-proof__container">
+                    <div class="social-proof__header">
+                        <h2 class="social-proof__title">Trusted by Developers</h2>
+                    </div>
+                    <div class="social-proof__grid">
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Clodo Framework transformed our development process. What would have taken 6 months and $180K in custom development shipped in 3 weeks for $15K. The multi-tenant architecture and built-in security gave us enterprise-grade reliability from day one."</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <cite>- SaaS Startup Founder</cite>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Finally, a framework that treats Cloudflare Workers like a serious platform. The integrated D1, auth, and orchestration layer eliminated months of infrastructure work. Our deployment velocity increased 5x."</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <cite>- Senior Full-Stack Developer</cite>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"The intelligent orchestration caught configuration issues that would have cost us days in production debugging. The pre-deployment validation and gap analysis is like having an expert DevOps engineer built into the framework."</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <cite>- Enterprise Platform Architect</cite>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonials">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Clodo Framework transformed our development process. What would have taken 6 months and $180K in custom development shipped in 3 weeks for $15K. The multi-tenant architecture and built-in security gave us enterprise-grade reliability from day one."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <cite>- SaaS Startup Founder</cite>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Finally, a framework that treats Cloudflare Workers like a serious platform. The integrated D1, auth, and orchestration layer eliminated months of infrastructure work. Our deployment velocity increased 5x."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <cite>- Senior Full-Stack Developer</cite>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"The intelligent orchestration caught configuration issues that would have cost us days in production debugging. The pre-deployment validation and gap analysis is like having an expert DevOps engineer built into the framework."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <cite>- Enterprise Platform Architect</cite>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </section>
                 <div class="stats">
                     <div class="stat-item">
                         <span class="stat-number">0</span>

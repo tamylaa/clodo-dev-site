@@ -1,6 +1,39 @@
-/* Professional Clodo Framework Styles */
+/* ===========================================
+   CLOUDO FRAMEWORK - UNIFIED CSS ARCHITECTURE
+   ===========================================
+
+   ARCHITECTURE:
+   - Single CSS file for all pages
+   - Organized sections with clear comments
+   - Consistent naming and structure
+   - Mobile-first responsive design
+   =========================================== */
+
+/* ===== FONTS & RESET ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
     --primary-color: #0066cc;
     --primary-dark: #004d99;
@@ -25,29 +58,26 @@
     --radius-xl: 1rem;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
+/* ===== UTILITY CLASSES ===== */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
 }
 
-/* Navigation */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== NAVIGATION ===== */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -153,7 +183,7 @@ body {
     border-color: var(--text-primary);
 }
 
-/* Hero Section */
+/* ===== HERO SECTION ===== */
 #hero {
     padding: 120px 0 80px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -265,13 +295,13 @@ body {
 }
 
 .btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     border-color: white;
 }
 
@@ -292,31 +322,7 @@ body {
     border-color: var(--text-primary);
 }
 
-.hero-stats {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #ffd700;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-}
-
-/* Code Preview */
+/* ===== CODE PREVIEW ===== */
 .hero-visual {
     display: flex;
     justify-content: center;
@@ -384,7 +390,7 @@ body {
     color: #3b82f6;
 }
 
-/* Key Benefits Section */
+/* ===== KEY BENEFITS SECTION ===== */
 #key-benefits {
     padding: 60px 0;
     background: var(--bg-primary);
@@ -418,7 +424,7 @@ body {
     color: var(--text-primary);
 }
 
-/* Cloudflare Edge Section */
+/* ===== CLOUDFLARE EDGE SECTION ===== */
 #cloudflare-edge {
     padding: 100px 0;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -463,7 +469,7 @@ body {
     line-height: 1.6;
 }
 
-/* Features Section */
+/* ===== FEATURES SECTION ===== */
 #features {
     padding: 100px 0;
     background: var(--bg-primary);
@@ -534,7 +540,7 @@ body {
     line-height: 1.6;
 }
 
-/* Social Proof Section */
+/* ===== SOCIAL PROOF SECTION ===== */
 #social-proof {
     padding: 80px 0;
     background: var(--bg-secondary);
@@ -604,7 +610,7 @@ body {
     font-weight: 500;
 }
 
-/* CTA Section */
+/* ===== CTA SECTION ===== */
 #cta {
     padding: 80px 0;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -634,7 +640,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer {
     background: var(--text-primary);
     color: white;
@@ -697,129 +703,9 @@ footer {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .hero-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: center;
-    }
+/* ===== PAGE SPECIFIC STYLES ===== */
 
-    .hero-visual {
-        order: -1;
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 1rem;
-        height: auto;
-    }
-
-    .nav-menu {
-        display: none; /* Would need mobile menu implementation */
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.125rem;
-    }
-
-    .hero-stats {
-        justify-content: center;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .testimonials {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
-        gap: 2rem;
-    }
-
-    .cta-actions {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-content {
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn {
-        justify-content: center;
-    }
-
-    .stat-number {
-        font-size: 2rem;
-    }
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-/* Code syntax highlighting */
-pre code {
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    font-size: inherit;
-}
-
-/* Focus states */
-.btn:focus,
-.github-btn:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Loading states */
-.loading {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-/* Service Types Grid (Docs Page) */
+/* Docs Page */
 .service-types-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -854,7 +740,6 @@ pre code {
     line-height: 1.5;
 }
 
-/* API Commands and Items (Docs Page) */
 .api-commands {
     margin: 2rem 0;
 }
@@ -908,7 +793,7 @@ pre code {
     font-size: 0.9rem;
 }
 
-/* Pricing Subtitle */
+/* Pricing Page */
 .pricing-subtitle {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -918,7 +803,6 @@ pre code {
     letter-spacing: 0.05em;
 }
 
-/* Pricing Section */
 #pricing {
     padding: 4rem 0;
     background: var(--bg-secondary);
@@ -986,14 +870,6 @@ pre code {
     line-height: 1;
 }
 
-.price {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin: 1rem 0;
-    line-height: 1;
-}
-
 .pricing-card ul {
     list-style: none;
     padding: 0;
@@ -1021,7 +897,7 @@ pre code {
     font-weight: 600;
 }
 
-/* Contact Form Styling */
+/* Contact Form */
 #contact {
     padding: 4rem 0;
     background: var(--bg-primary);
@@ -1080,82 +956,7 @@ pre code {
     box-shadow: var(--shadow-md);
 }
 
-/* Pricing Highlights */
-.pricing-highlights {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-.highlight {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--bg-primary);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-}
-
-.highlight-icon {
-    font-size: 1.5rem;
-}
-
-/* Responsive Pricing */
-@media (max-width: 768px) {
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .pricing-card.featured {
-        transform: none;
-        order: -1;
-    }
-
-    .pricing-highlights {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .highlight {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-
-    .price {
-        font-size: 2.5rem;
-    }
-
-    .pricing-card {
-        padding: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .pricing-card {
-        padding: 1.5rem;
-    }
-
-    .pricing-card h2 {
-        font-size: 1.3rem;
-    }
-
-    .price {
-        font-size: 2rem;
-    }
-
-    .pricing-card li {
-        font-size: 0.9rem;
-        padding: 0.5rem 0;
-    }
-}
-
-/* Code Examples Grid (Examples Page) */
+/* Examples Page */
 .code-examples-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1199,4 +1000,145 @@ pre code {
     margin: 0.5rem 0;
     overflow-x: auto;
     font-size: 0.85rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem;
+        height: auto;
+    }
+
+    .nav-menu {
+        display: none; /* Would need mobile menu implementation */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        gap: 2rem;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-content {
+        text-align: center;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .pricing-card.featured {
+        transform: none;
+        order: -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        justify-content: center;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .pricing-card {
+        padding: 1.5rem;
+    }
+
+    .pricing-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .price {
+        font-size: 2rem;
+    }
+
+    .pricing-card li {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===== FOCUS STATES ===== */
+.btn:focus,
+.github-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
 }
