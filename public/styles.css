@@ -211,6 +211,26 @@ body {
     line-height: 1.6;
 }
 
+.hero-benefits {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.benefit-icon {
+    font-size: 1.5rem;
+}
+
 .hero-actions {
     display: flex;
     gap: 1rem;
@@ -362,6 +382,51 @@ body {
 
 .code-output {
     color: #3b82f6;
+}
+
+/* Cloudflare Edge Section */
+#cloudflare-edge {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.edge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.edge-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.edge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.edge-icon {
+    margin: 0 auto 1.5rem;
+    color: var(--primary-color);
+}
+
+.edge-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.edge-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 /* Features Section */
