@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Clodo Framework</title>
+    <meta name="description" content="Complete documentation for Clodo Framework - the Ruby on Rails of Cloudflare Workers. Build production SaaS applications with enterprise-grade features.">
+    <link rel="stylesheet" href="styles-organized.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Clodo</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#concepts">Core Concepts</a></li>
+                    <li><a href="#api">API Reference</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span id="star-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>The Complete Guide to Clodo Framework</h1>
+                    <p>Build production-ready, multi-tenant SaaS applications with enterprise-grade security, database integration, and intelligent orchestration. What once took months and $200K now deploys in weeks for a fraction of the cost.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="getting-started">
+            <div class="container">
+                <h2>🚀 Getting Started in 5 Minutes</h2>
+
+                <h3>Installation</h3>
+                <pre><code>npm install @tamyla/clodo-framework</code></pre>
+
+                <h3>Create Your First Service</h3>
+                <pre><code>npx create-clodo-service my-new-service --type data-service</code></pre>
+
+                <h3>Development Setup</h3>
+                <pre><code>cd my-new-service
+npm install
+npm run dev</code></pre>
+
+                <h3>Deploy to Production</h3>
+                <pre><code>npm run deploy</code></pre>
+
+                <p><strong>That's it!</strong> Your service is now running on Cloudflare Workers with enterprise-grade security, database integration, and automated deployment.</p>
+            </div>
+        </section>
+
+        <section id="concepts">
+            <div class="container">
+                <h2>Core Concepts</h2>
+
+                <h3>Service Types</h3>
+                <div class="service-types-grid">
+                    <div class="service-type">
+                        <h4>🗄️ Data Service</h4>
+                        <p>Database CRUD operations with Cloudflare D1 integration, schema management, and query optimization.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>🔐 Authentication Service</h4>
+                        <p>User authentication, authorization, JWT token management, and session handling.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>🌐 API Gateway</h4>
+                        <p>Request routing, rate limiting, API orchestration, and cross-service communication.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>📝 Content Service</h4>
+                        <p>Content management, CMS functionality, and dynamic content delivery.</p>
+                    </div>
+                </div>
+
+                <h3>🔒 Security-by-Default Architecture</h3>
+                <p>Clodo Framework implements comprehensive security validation:</p>
+                <ul>
+                    <li><strong>API Token Security</strong>: AES-256-CBC encrypted storage with automatic prompting</li>
+                    <li><strong>Dummy Key Prevention</strong>: Blocks deployment of development/test keys to production</li>
+                    <li><strong>Weak Secret Detection</strong>: Validates password strength and entropy</li>
+                    <li><strong>URL Security</strong>: Enforces HTTPS in production, blocks localhost in live environments</li>
+                    <li><strong>JWT Validation</strong>: Ensures proper JWT secret strength and configuration</li>
+                </ul>
+
+                <h3>🏗️ Domain Configuration Management</h3>
+                <p>Centralized configuration system with runtime discovery:</p>
+                <ul>
+                    <li><strong>JSON-based Configuration</strong>: Environment-specific settings with validation</li>
+                    <li><strong>Runtime Discovery</strong>: Services automatically discover and configure themselves</li>
+                    <li><strong>Feature Flags</strong>: Declarative feature management with domain-specific overrides</li>
+                    <li><strong>Multi-tenant Support</strong>: Customer isolation and configuration management</li>
+                </ul>
+
+                <h3>⚡ Performance & Caching</h3>
+                <p>Optimized for Cloudflare's edge network:</p>
+                <ul>
+                    <li><strong>Schema Caching</strong>: Database schema caching for improved performance</li>
+                    <li><strong>SQL Query Caching</strong>: Intelligent query result caching</li>
+                    <li><strong>Validation Caching</strong>: Security validation result caching</li>
+                    <li><strong>Global Replication</strong>: Edge-optimized data distribution</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="api">
+            <div class="container">
+                <h2>API Reference</h2>
+
+                <h3>🔧 CLI Commands</h3>
+                <div class="api-commands">
+                    <div class="command-group">
+                        <h4>Service Management</h4>
+                        <pre><code>npx create-clodo-service <name> --type <type>  # Create new service
+npx @tamyla/clodo-framework --help              # Show all commands</code></pre>
+                    </div>
+
+                    <div class="command-group">
+                        <h4>Available Service Types</h4>
+                        <pre><code>--type data-service      # Database operations
+--type auth-service      # Authentication & authorization
+--type api-gateway       # API routing & orchestration
+--type content-service   # Content management & CMS</code></pre>
+                    </div>
+                </div>
+
+                <h3>📚 Core Classes & Functions</h3>
+                <div class="api-reference">
+                    <div class="api-item">
+                        <h4>FeatureFlagManager</h4>
+                        <pre><code>import { FeatureFlagManager } from '@tamyla/clodo-framework';
+
+const featureManager = new FeatureFlagManager();
+await featureManager.setDomain(domainConfig);
+const isEnabled = featureManager.isEnabled('featureName');</code></pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h4>Domain Configuration</h4>
+                        <pre><code>import { initializeService } from '@tamyla/clodo-framework';
+
+export default {
+  async fetch(request, env, ctx) {
+    const service = initializeService(env);
+    // Service automatically discovers domain configuration
+  }
+};</code></pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h4>Security Validation</h4>
+                        <pre><code>import { createFeatureGuard } from '@tamyla/clodo-framework';
+
+const guardedHandler = createFeatureGuard('premiumFeature')(
+  premiumHandler
+);</code></pre>
+                    </div>
+                </div>
+
+                <h3>🔗 Additional Resources</h3>
+                <ul>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">Complete Documentation on GitHub</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/docs/api" target="_blank">Full API Reference</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/i-docs" target="_blank">Internal Documentation</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Clodo</span>
+                    </div>
+                    <p>Building the future of edge computing, one service at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html#roadmap">Roadmap</a></li>
+                        <li><a href="pricing.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">Discord</a></li>
+                        <li><a href="https://twitter.com/clodoframework" target="_blank">Twitter</a></li>
+                        <li><a href="about.html#contact">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Clodo Framework. Open source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

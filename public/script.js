@@ -1,40 +1,77 @@
 // Enhanced JavaScript for clodo.dev
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch GitHub stars count
-    fetchGitHubStars();
+    try {
+        // Fetch GitHub stars count
+        fetchGitHubStars();
 
-    // Handle contact form submission
-    setupContactForm();
+        // Handle contact form submission
+        setupContactForm();
 
-    // Smooth scrolling for anchor links
-    setupSmoothScrolling();
+        // Smooth scrolling for anchor links
+        setupSmoothScrolling();
 
-    // Add fade-in animations on scroll
-    setupScrollAnimations();
+        // Add fade-in animations on scroll
+        setupScrollAnimations();
 
-    // Update stats dynamically (placeholder for future API integration)
-    updateDynamicStats();
+        // Update stats dynamically (placeholder for future API integration)
+        updateDynamicStats();
+    } catch (error) {
+        console.error('Error initializing application:', error);
+        showNotification('Application failed to load properly. Please refresh the page.', 'error');
+    }
+});
+
+// Global error handler
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.error);
+    // Don't show notification for every error to avoid spam
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('Unhandled promise rejection:', e.reason);
+    showNotification('An unexpected error occurred. Please try again.', 'error');
 });
 
 async function fetchGitHubStars() {
     const starElements = document.querySelectorAll('#star-count, #github-stars');
 
     try {
-        const response = await fetch('https://api.github.com/repos/tamylaa/clodo-framework');
+        // Add loading state
+        starElements.forEach(element => {
+            element.setAttribute('aria-live', 'polite');
+            element.textContent = '...';
+        });
+
+        const response = await fetch('https://api.github.com/repos/tamylaa/clodo-framework', {
+            timeout: 5000 // 5 second timeout
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
         const data = await response.json();
 
-        if (data.stargazers_count !== undefined) {
+        if (data.stargazers_count !== undefined && data.stargazers_count >= 0) {
+            const formattedCount = data.stargazers_count.toLocaleString();
             starElements.forEach(element => {
-                element.textContent = data.stargazers_count.toLocaleString();
+                element.textContent = formattedCount;
             });
         } else {
-            throw new Error('Stars count not available');
+            throw new Error('Invalid star count data');
         }
     } catch (error) {
-        console.log('Could not fetch GitHub stars:', error);
+        console.warn('Could not fetch GitHub stars:', error.message);
+        // Fallback to cached or default value
+        const fallbackValue = localStorage.getItem('github-stars-cache') || '0';
         starElements.forEach(element => {
-            element.textContent = '0';
+            element.textContent = fallbackValue;
         });
+
+        // Cache the fallback for future use
+        if (fallbackValue !== '0') {
+            localStorage.setItem('github-stars-cache', fallbackValue);
+        }
     }
 }
 
@@ -183,9 +220,11 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Navbar scroll effect
+// Navbar scroll effect with throttling
 let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
+let scrollThrottleTimer = null;
+
+function handleScroll() {
     const navbar = document.querySelector('.navbar');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -207,6 +246,15 @@ window.addEventListener('scroll', () => {
     }
 
     lastScrollTop = scrollTop;
+}
+
+window.addEventListener('scroll', () => {
+    if (!scrollThrottleTimer) {
+        scrollThrottleTimer = setTimeout(() => {
+            handleScroll();
+            scrollThrottleTimer = null;
+        }, 16); // ~60fps
+    }
 });
 
 // Performance optimization: Lazy load images (if any)

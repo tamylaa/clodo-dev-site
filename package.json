@@ -1,0 +1,39 @@
+{
+  "name": "clodo-dev-site",
+  "version": "1.0.0",
+  "description": "Clodo Framework website - Enterprise Services on Cloudflare Edge",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "cd public && python -m http.server 8000",
+    "dev": "npm run serve",
+    "clean": "rm -rf dist",
+    "test": "cd tests && npm test",
+    "test:unit": "cd tests && npm run test:unit",
+    "test:accessibility": "cd tests && npm run test:accessibility",
+    "test:performance": "cd tests && npm run test:performance",
+    "test:coverage": "cd tests && npm run test:coverage",
+    "lint": "echo 'Linting: Add ESLint and Stylelint for code quality checks'",
+    "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "framework",
+    "saas",
+    "edge-computing",
+    "enterprise"
+  ],
+  "author": "Clodo Framework",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamylaa/clodo-framework.git"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
