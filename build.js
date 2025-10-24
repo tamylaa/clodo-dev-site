@@ -22,7 +22,7 @@ function cleanDist() {
 // Copy HTML files
 function copyHtml() {
     console.log('📄 Copying HTML files...');
-    const htmlFiles = ['index.html', 'about.html', 'docs.html', 'examples.html', 'pricing.html'];
+    const htmlFiles = ['index.html', 'about.html', 'docs.html', 'examples.html', 'pricing.html', 'components.html'];
     htmlFiles.forEach(file => {
         const srcPath = path.join('public', file);
         if (fs.existsSync(srcPath)) {
@@ -87,12 +87,46 @@ function minifyJs() {
 // Copy other assets
 function copyAssets() {
     console.log('📦 Copying assets...');
-    // Copy styles-organized.css
+    // Copy bundled stylesheet
+    if (fs.existsSync(path.join('public', 'styles.css'))) {
+        fs.copyFileSync(
+            path.join('public', 'styles.css'),
+            path.join('dist', 'styles.css')
+        );
+    }
+    // Copy legacy stylesheet for any pages that may still reference it
     if (fs.existsSync(path.join('public', 'styles-organized.css'))) {
         fs.copyFileSync(
             path.join('public', 'styles-organized.css'),
             path.join('dist', 'styles-organized.css')
         );
+    }
+    // Copy root assets like sitemap and robots if present
+    ['robots.txt', 'sitemap.xml', 'site.webmanifest'].forEach(file => {
+        const src = path.join('public', file);
+        if (fs.existsSync(src)) {
+            fs.copyFileSync(src, path.join('dist', file));
+        }
+    });
+
+    // Copy icons directory if present
+    const iconsSrc = path.join('public', 'icons');
+    const iconsDest = path.join('dist', 'icons');
+    if (fs.existsSync(iconsSrc)) {
+        fs.mkdirSync(iconsDest, { recursive: true });
+        for (const entry of fs.readdirSync(iconsSrc)) {
+            const srcPath = path.join(iconsSrc, entry);
+            const destPath = path.join(iconsDest, entry);
+            const stat = fs.statSync(srcPath);
+            if (stat.isDirectory()) {
+                fs.mkdirSync(destPath, { recursive: true });
+                for (const sub of fs.readdirSync(srcPath)) {
+                    fs.copyFileSync(path.join(srcPath, sub), path.join(destPath, sub));
+                }
+            } else {
+                fs.copyFileSync(srcPath, destPath);
+            }
+        }
     }
 }
 

@@ -10,7 +10,7 @@
    =========================================== */
 
 /* ===== FONT IMPORTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Moved Google Fonts import to HTML <head> link to avoid CSS @import waterfall */
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 * {
@@ -313,3 +313,34 @@ select:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
+
+/* ===== NOSCRIPT OVERLAY (replaces inline styles) ===== */
+.noscript-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+}
+
+.noscript-link {
+    color: #0066cc;
+}
+
+/* ===== UTILITY: HEART TEXT COLOR (replaces inline style) ===== */
+.text-heart {
+    color: #e25555;
+}
+
+/* ===== THEME ICON VISIBILITY (remove inline display) ===== */
+.theme-icon--dark { display: none; }
+[data-theme="dark"] .theme-icon--dark { display: inline; }
+[data-theme="dark"] .theme-icon--light { display: none; }

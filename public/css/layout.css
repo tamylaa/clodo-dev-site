@@ -329,7 +329,7 @@ footer::before {
 }
 
 .footer-section p {
-    color: #d1d5db;
+    color: #cbd5e1;
     font-size: 1.125rem;
     line-height: 1.6;
     margin-bottom: var(--spacing-xl);
@@ -366,7 +366,7 @@ footer::before {
 }
 
 .footer-section a {
-    color: #9ca3af;
+    color: #bfc6cf;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
@@ -387,7 +387,7 @@ footer::before {
 }
 
 .footer-section a:hover {
-    color: #ffffff;
+    color: #f5f7fa;
     transform: none; /* Keep alignment stable */
 }
 

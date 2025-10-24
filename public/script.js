@@ -375,6 +375,10 @@ function updateActiveNavLink(sectionId) {
 }
 
 function setupScrollAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        return; // Skip adding observers for animations
+    }
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -473,6 +477,20 @@ let scrollThrottleTimer = null;
 function handleScroll() {
     const navbar = document.querySelector('.navbar');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        navbar.style.transform = 'none';
+        if (scrollTop > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.backdropFilter = 'blur(20px)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        }
+        lastScrollTop = scrollTop;
+        return;
+    }
 
     if (scrollTop > lastScrollTop && scrollTop > 100) {
         // Scrolling down

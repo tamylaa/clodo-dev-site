@@ -4,7 +4,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clodo Framework - Enterprise Services on Cloudflare Edge</title>
@@ -26,9 +26,10 @@
     <meta name="twitter:site" content="@clodoframework">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://api.github.com">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
-        <script type="application/ld+json">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
@@ -40,7 +41,7 @@
             ]
         }
         </script>
-        <script type="application/ld+json">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
         {
             "@context": "https://schema.org",
             "@type": "SubscribeAction",
@@ -53,9 +54,11 @@
             "description": "Product updates, engineering posts, and launch notes. 1–2 emails/month. Unsubscribe anytime."
         }
         </script>
-    <link rel="stylesheet" href="styles-organized.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    <script type="application/ld+json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -116,13 +119,14 @@
     </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <noscript>
-        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); color: white; display: flex; align-items: center; justify-content: center; z-index: 9999; text-align: center; padding: 20px;">
+        <div class="noscript-overlay">
             <div>
                 <h2>JavaScript Required</h2>
                 <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page.</p>
-                <p>Alternatively, you can visit our <a href="https://github.com/tamylaa/clodo-framework" style="color: #0066cc;">GitHub repository</a> for documentation.</p>
+                <p>Alternatively, you can visit our <a class="noscript-link" href="https://github.com/tamylaa/clodo-framework">GitHub repository</a> for documentation.</p>
             </div>
         </div>
     </noscript>
@@ -159,7 +163,7 @@
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                        <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display: none;">
+                        <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
@@ -582,7 +586,7 @@
                 <span aria-hidden="true">•</span>
                 <a href="about.html#terms">Terms of Service</a>
                 <span aria-hidden="true">•</span>
-                Made with <span style="color: #e25555;">♥</span> for developers
+                Made with <span class="text-heart">♥</span> for developers
             </p>
         </div>
     </footer>

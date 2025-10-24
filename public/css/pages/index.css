@@ -49,6 +49,11 @@
     100% { background-position: 0% 50%; }
 }
 
+/* Respect reduced motion: disable hero background animation */
+@media (prefers-reduced-motion: reduce) {
+    #hero::before { animation: none !important; }
+}
+
 /* Overlay layer with radial gradients */
 #hero::after {
     content: '';

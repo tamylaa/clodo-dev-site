@@ -88,3 +88,25 @@ server.listen(PORT, () => {
     console.log(`📁 Serving files from: ${publicDir}`);
     console.log(`🏠 Home page: http://localhost:${PORT}/`);
 });
+
+// Graceful shutdown and better Windows behavior: exit 0 on Ctrl+C
+function shutdown(signal) {
+    console.log(`\n${signal} received. Shutting down dev server...`);
+    server.close(() => {
+        console.log('✅ Server closed. Bye!');
+        process.exit(0);
+    });
+}
+
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+
+// Helpful error messages (e.g., port already in use)
+server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${PORT} is already in use. Close the other process or change the PORT.`);
+    } else {
+        console.error('❌ Server error:', err);
+    }
+    process.exit(1);
+});
