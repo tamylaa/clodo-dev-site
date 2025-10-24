@@ -593,3 +593,13 @@ function setupMobileMenu() {
         }
     });
 }
+
+// Exports for unit tests (Node/CommonJS environment)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        fetchGitHubStars,
+        setupSmoothScrolling,
+        setupScrollAnimations,
+        showNotification
+    };
+}

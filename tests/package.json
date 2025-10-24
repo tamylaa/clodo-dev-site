@@ -26,11 +26,11 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "setupFilesAfterEnv": ["<rootDir>/setup.js"],
     "collectCoverageFrom": [
-      "public/script.js",
-      "public/**/*.js",
-      "!public/**/*.min.js"
+      "../public/script.js",
+      "../public/**/*.js",
+      "!../public/**/*.min.js"
     ],
     "coverageThreshold": {
       "global": {
@@ -41,8 +41,8 @@
       }
     },
     "testMatch": [
-      "<rootDir>/tests/**/*.test.js",
-      "<rootDir>/tests/**/*.spec.js"
+      "<rootDir>/**/*.test.js",
+      "<rootDir>/**/*.spec.js"
     ]
   }
 }

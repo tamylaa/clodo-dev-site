@@ -1,25 +1,31 @@
 // Test setup and global configurations
-import 'jest-dom/extend-expect';
+// Extend Jest with DOM matchers
+require('@testing-library/jest-dom');
 
 // Mock fetch for API calls
 global.fetch = jest.fn();
 
-// Mock localStorage
+// Mock localStorage (override jsdom Storage)
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
   removeItem: jest.fn(),
   clear: jest.fn(),
 };
-global.localStorage = localStorageMock;
+Object.defineProperty(global, 'localStorage', { value: localStorageMock, writable: true });
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'localStorage', { value: localStorageMock, writable: true });
+}
 
-// Mock IntersectionObserver
-global.IntersectionObserver = class IntersectionObserver {
-  constructor() {}
-  observe() {}
-  disconnect() {}
-  unobserve() {}
-};
+// Mock IntersectionObserver with jest.fn so tests can mockImplementation
+global.IntersectionObserver = jest.fn(function() {
+  return {
+    observe: jest.fn(),
+    disconnect: jest.fn(),
+    unobserve: jest.fn(),
+    takeRecords: jest.fn(),
+  };
+});
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
@@ -37,6 +43,11 @@ global.WebSocket = class WebSocket {
   send() {}
   close() {}
 };
+
+// Stub canvas getContext used by axe-core
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}));
+}
 
 // Mock performance API
 global.performance = {
