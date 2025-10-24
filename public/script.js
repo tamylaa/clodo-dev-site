@@ -597,16 +597,13 @@ function setupMobileMenu() {
 }
 
 // Exports for unit tests (Node/CommonJS environment)
-// Use globalThis to avoid referencing undeclared identifiers in browser linting
-if (typeof globalThis !== 'undefined' &&
-    globalThis &&
-    typeof globalThis.module !== 'undefined' &&
-    globalThis.module &&
-    globalThis.module.exports) {
-    globalThis.module.exports = {
+/* eslint-disable no-undef */
+if (typeof module === 'object' && module && typeof module.exports === 'object') {
+    module.exports = {
         fetchGitHubStars,
         setupSmoothScrolling,
         setupScrollAnimations,
         showNotification
     };
 }
+/* eslint-enable no-undef */
