@@ -2450,14 +2450,15 @@ pre {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    font-weight: 800;
     line-height: 1.05;
     margin-bottom: clamp(1rem, 3vw, 2rem);
     text-shadow: 
         0 2px 8px rgba(0, 0, 0, 0.4),
         0 4px 16px rgba(0, 0, 0, 0.3);
     letter-spacing: -0.02em;
+    text-wrap: balance;
 }
 
 .hero-title span:not(.highlight) {
@@ -3273,6 +3274,13 @@ pre {
     .edge-grid,
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Widen hero text container on very large screens to encourage 2–3 line wrap */
+@media (min-width: 1280px) {
+    .hero-content {
+        max-width: 720px;
     }
 }
 
