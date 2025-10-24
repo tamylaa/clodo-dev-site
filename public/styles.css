@@ -534,6 +534,7 @@ select:focus {
     position: sticky;
     top: 0;
     z-index: 100;
+    will-change: transform;
 }
 
 .nav-container {
@@ -543,6 +544,7 @@ select:focus {
     padding: var(--spacing-md) 0;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 64px;
 }
 
 .logo {
@@ -1669,7 +1671,7 @@ footer::before {
     padding: var(--spacing-xl);
     margin-top: var(--spacing-xl);
     border: 1px solid rgba(102, 126, 234, 0.2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     grid-column: 1 / -1; /* span full width of footer grid */
 }
@@ -2243,8 +2245,11 @@ footer::before {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200% 200%;
-    animation: goldShimmer 3s ease-in-out infinite;
     text-shadow: none;
+}
+/* Animate shimmer only on hover to reduce constant GPU work */
+.hero-title .highlight:hover {
+    animation: goldShimmer 1.5s ease-in-out;
 }
 
 @keyframes goldShimmer {
@@ -2334,7 +2339,7 @@ footer::before {
     border: 2px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
     transition: all var(--transition-normal);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     position: relative;
     overflow: hidden;
 }
@@ -2395,7 +2400,7 @@ footer::before {
     box-shadow:
         0 25px 50px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: min(clamp(300px, 40vw, 450px), 400px);
     width: 100%;
@@ -2441,7 +2446,7 @@ footer::before {
     padding: 1.25rem 1.5rem;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
 }
 
 .code-preview__dots {

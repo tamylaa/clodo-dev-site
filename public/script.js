@@ -257,9 +257,20 @@ function setupNewsletterForm() {
         const emailInput = newsletterForm.querySelector('input[type="email"]');
         const submitBtn = newsletterForm.querySelector('button[type="submit"]');
         const messageEl = newsletterForm.querySelector('.form-message');
+        // Ensure message element has an id for aria-describedby linkage
+        if (messageEl && !messageEl.id) {
+            messageEl.id = 'newsletter-message';
+        }
         
         if (!emailInput.value) {
             showFormMessage(messageEl, 'Please enter your email address.', 'error');
+            emailInput.setAttribute('aria-invalid', 'true');
+            if (messageEl) {
+                const helperId = emailInput.getAttribute('aria-describedby') || '';
+                const ids = new Set(helperId.split(' ').filter(Boolean));
+                ids.add(messageEl.id);
+                emailInput.setAttribute('aria-describedby', Array.from(ids).join(' '));
+            }
             return;
         }
 
@@ -267,6 +278,13 @@ function setupNewsletterForm() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput.value)) {
             showFormMessage(messageEl, 'Please enter a valid email address.', 'error');
+            emailInput.setAttribute('aria-invalid', 'true');
+            if (messageEl) {
+                const helperId = emailInput.getAttribute('aria-describedby') || '';
+                const ids = new Set(helperId.split(' ').filter(Boolean));
+                ids.add(messageEl.id);
+                emailInput.setAttribute('aria-describedby', Array.from(ids).join(' '));
+            }
             return;
         }
 
@@ -282,12 +300,14 @@ function setupNewsletterForm() {
             // Success
             showFormMessage(messageEl, '✓ Successfully subscribed! Check your email for confirmation.', 'success');
             emailInput.value = '';
+            emailInput.removeAttribute('aria-invalid');
             
             // Store email preference
             localStorage.setItem('newsletter-subscribed', 'true');
             
         } catch (error) {
             showFormMessage(messageEl, 'Failed to subscribe. Please try again.', 'error');
+            emailInput.setAttribute('aria-invalid', 'true');
         } finally {
             submitBtn.setAttribute('aria-busy', 'false');
             submitBtn.textContent = originalText;
@@ -470,12 +490,16 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Navbar scroll effect with throttling
+// Navbar scroll effect with requestAnimationFrame + hysteresis
 let lastScrollTop = 0;
-let scrollThrottleTimer = null;
+let scheduled = false;
+const HIDE_THRESHOLD = 10; // px to hide when scrolling down
+const SHOW_THRESHOLD = 4;  // px to show when scrolling up
 
 function handleScroll() {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -492,15 +516,17 @@ function handleScroll() {
         return;
     }
 
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling down
+    const delta = scrollTop - lastScrollTop;
+
+    if (delta > HIDE_THRESHOLD && scrollTop > 100) {
+        // Scrolling down sufficiently
         navbar.style.transform = 'translateY(-100%)';
-    } else {
+    } else if (delta < -SHOW_THRESHOLD) {
         // Scrolling up
         navbar.style.transform = 'translateY(0)';
     }
 
-    // Add background blur on scroll
+    // Background blur based on position (no layout shift)
     if (scrollTop > 50) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.backdropFilter = 'blur(20px)';
@@ -513,11 +539,12 @@ function handleScroll() {
 }
 
 window.addEventListener('scroll', () => {
-    if (!scrollThrottleTimer) {
-        scrollThrottleTimer = setTimeout(() => {
+    if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(() => {
             handleScroll();
-            scrollThrottleTimer = null;
-        }, 16); // ~60fps
+            scheduled = false;
+        });
     }
 });
 

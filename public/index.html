@@ -54,6 +54,19 @@
             "description": "Product updates, engineering posts, and launch notes. 1–2 emails/month. Unsubscribe anytime."
         }
         </script>
+        <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Clodo Framework",
+                    "url": "https://clodo.dev",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "https://clodo.dev/?q={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
+                }
+        </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
@@ -130,7 +143,7 @@
             </div>
         </div>
     </noscript>
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar" aria-label="Main navigation">
             <div class="nav-container">
                 <div class="logo">
                     <span class="logo-icon" aria-hidden="true">⚡</span>
@@ -143,12 +156,12 @@
                         <span class="hamburger__line hamburger__line--bottom"></span>
                     </span>
                 </button>
-                <ul class="nav-menu" id="mobile-menu" role="menubar">
-                    <li role="none"><a href="#features" role="menuitem" class="nav-link" data-section="features">Features</a></li>
-                    <li role="none"><a href="docs.html" role="menuitem" class="nav-link">Docs</a></li>
-                    <li role="none"><a href="examples.html" role="menuitem" class="nav-link">Examples</a></li>
-                    <li role="none"><a href="pricing.html" role="menuitem" class="nav-link">Pricing</a></li>
-                    <li role="none"><a href="about.html" role="menuitem" class="nav-link">About</a></li>
+                <ul class="nav-menu" id="mobile-menu">
+                    <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                    <li><a href="docs.html" class="nav-link">Docs</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
                 </ul>
                 <div class="nav-actions">
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -178,7 +191,7 @@
         </nav>
     </header>
 
-        <main id="main-content" role="main">
+    <main id="main-content">
         <section id="hero" aria-labelledby="hero-title">
             <div class="hero-container">
                 <div class="hero-content">
@@ -186,7 +199,7 @@
                             The Ruby on Rails of <span class="highlight">Cloudflare Workers</span>
                         </h1>
                         <p class="hero-subtitle">
-                            Quickly Build Full Stack SaaS with High Performance Framework Designed for Enterprise Architects delivering 10X impact with 1X Effort
+                            Build Enterprise SaaS on Cloudflare Workers 10× faster, cheaper, secure with simple prompt orchestration.
                         </p>
                         <div class="hero-actions">
                                 <a href="docs.html" class="btn btn-primary" aria-label="Get started with Clodo Framework documentation">
@@ -454,17 +467,17 @@
                 </div>
             </div>
         </section>
-                <div class="stats" role="region" aria-labelledby="stats-heading">
+                <div class="stats" aria-labelledby="stats-heading">
                     <h3 id="stats-heading" class="sr-only">Framework Statistics</h3>
-                    <div class="stat-item" role="listitem" aria-label="Development time reduction from 6 months to 3 weeks">
-                        <span class="stat-number">12x</span>
+                    <div class="stat-item" aria-label="Development time reduction from 6 months to 3 weeks">
+                        <span class="stat-number">10x</span>
                         <span class="stat-label">Faster Development</span>
                     </div>
-                    <div class="stat-item" role="listitem" aria-label="Cost reduction from $180K to $15K">
-                        <span class="stat-number">92%</span>
+                    <div class="stat-item" aria-label="Cost reduction from $180K to $15K">
+                        <span class="stat-number">90%</span>
                         <span class="stat-label">Cost Reduction</span>
                     </div>
-                    <div class="stat-item" role="listitem" aria-label="Deployment velocity increase">
+                    <div class="stat-item" aria-label="Deployment velocity increase">
                         <span class="stat-number">5x</span>
                         <span class="stat-label">Faster Deployment</span>
                     </div>
@@ -477,15 +490,15 @@
                 <div class="cta-content">
                     <h2 id="cta-title">Ready to Transform Your Development Workflow?</h2>
                     <p>Join the developers building the next generation of SaaS applications on Cloudflare Edge. Stop assembling frameworks - start building businesses.</p>
-                    <div class="cta-actions" role="group" aria-label="Call to action buttons">
-                        <a href="docs.html" class="btn btn-primary btn-large" role="button" aria-describedby="cta-primary-desc">
+                    <div class="cta-actions" aria-label="Call to action buttons">
+                        <a href="docs.html" class="btn btn-primary btn-large" aria-describedby="cta-primary-desc">
                             <span>Start Building</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </a>
                         <span id="cta-primary-desc" class="sr-only">Navigate to documentation to start building with Clodo Framework</span>
-                        <a href="https://github.com/tamylaa/clodo-framework" class="btn btn-outline btn-large" target="_blank" rel="noopener" role="button" aria-describedby="cta-secondary-desc">
+                        <a href="https://github.com/tamylaa/clodo-framework" class="btn btn-outline btn-large" target="_blank" rel="noopener" aria-describedby="cta-secondary-desc">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
@@ -498,7 +511,7 @@
         </section>
     </main>
 
-    <footer role="contentinfo">
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
@@ -524,13 +537,16 @@
                             <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="about.html#privacy">Privacy Policy</a>.</label>
                         </div>
                         <p class="form-message" aria-live="polite" role="status"></p>
+                        <noscript>
+                            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
+                        </noscript>
                     </form>
                 </div>
             </div>
 
             <nav class="footer-section" aria-labelledby="footer-product">
                 <h4 id="footer-product">Product</h4>
-                <ul role="list">
+                <ul>
                     <li><a href="docs.html">Documentation</a></li>
                     <li><a href="examples.html">Examples</a></li>
                     <li><a href="pricing.html">Pricing</a></li>
@@ -541,7 +557,7 @@
 
             <nav class="footer-section" aria-labelledby="footer-company">
                 <h4 id="footer-company">Company</h4>
-                <ul role="list">
+                <ul>
                     <li><a href="about.html">About</a></li>
                     <li><a href="about.html#roadmap">Roadmap</a></li>
                     <li><a href="pricing.html#contact">Contact</a></li>
@@ -552,7 +568,7 @@
 
             <nav class="footer-section" aria-labelledby="footer-community">
                 <h4 id="footer-community">Community</h4>
-                <ul role="list">
+                <ul>
                     <li><a href="#" target="_blank">Discord</a></li>
                     <li><a href="https://twitter.com/clodoframework" target="_blank" rel="noopener">Twitter</a></li>
                     <li><a href="about.html#contact">Email</a></li>
