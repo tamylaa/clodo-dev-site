@@ -447,7 +447,9 @@ function animateNumber(element, target) {
 function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    const validTypes = ['success', 'error', 'info'];
+    const normalizedType = validTypes.includes(type) ? type : 'info';
+    notification.className = `notification notification-${normalizedType}`;
     notification.textContent = message;
 
     // Add styles

@@ -49,6 +49,36 @@ if (typeof HTMLCanvasElement !== 'undefined') {
   HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}));
 }
 
+// Stub window.matchMedia for tests
+if (typeof window !== 'undefined' && !window.matchMedia) {
+  window.matchMedia = jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  }));
+}
+
+// Stub window.scrollTo to avoid jsdom not-implemented errors
+if (typeof window !== 'undefined' && !window.scrollTo) {
+  window.scrollTo = jest.fn();
+}
+
+// Polyfill PromiseRejectionEvent for jsdom
+if (typeof global.PromiseRejectionEvent === 'undefined') {
+  class JSDOMPromiseRejectionEvent extends Event {
+    constructor(type, init) {
+      super(type);
+      this.reason = init && init.reason;
+    }
+  }
+  global.PromiseRejectionEvent = JSDOMPromiseRejectionEvent;
+}
+
 // Mock performance API
 global.performance = {
   now: () => Date.now(),

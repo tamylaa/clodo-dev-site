@@ -2,6 +2,8 @@
  * Performance tests and monitoring
  */
 
+const { fetchGitHubStars } = require('../public/script.js');
+
 describe('Performance Tests', () => {
   beforeEach(() => {
     // Reset performance marks

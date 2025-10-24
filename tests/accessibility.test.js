@@ -6,6 +6,9 @@ const axe = require('axe-core');
 
 describe('Accessibility Tests', () => {
   beforeEach(() => {
+    // Ensure lang attribute is present on document element in jsdom
+    document.documentElement.setAttribute('lang', 'en');
+
     // Load the HTML content
     document.body.innerHTML = `
       <!DOCTYPE html>
