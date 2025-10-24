@@ -94,7 +94,7 @@
                             <li>✅ Community Support via GitHub</li>
                             <li>✅ Self-hosted on Cloudflare Workers</li>
                         </ul>
-                        <a href="docs.html" class="btn primary">Get Started</a>
+                        <a href="docs.html" class="btn btn--primary">Get Started</a>
                     </div>
 
                     <div class="pricing-card featured">
@@ -111,7 +111,7 @@
                             <li>🚧 Enterprise security monitoring</li>
                             <li>🚧 White-glove onboarding</li>
                         </ul>
-                        <a href="#contact" class="btn primary">Join Waitlist</a>
+                        <a href="#contact" class="btn btn--primary">Join Waitlist</a>
                     </div>
 
                     <div class="pricing-card">
@@ -130,7 +130,7 @@
                             <li>📈 Scaling guidance</li>
                             <li>🤝 SLA guarantees</li>
                         </ul>
-                        <a href="#contact" class="btn secondary">Contact Sales</a>
+                        <a href="#contact" class="btn btn--secondary">Contact Sales</a>
                     </div>
                 </div>
             </div>
@@ -139,11 +139,23 @@
         <section id="contact">
             <div class="container">
                 <h2>Contact Us</h2>
-                <form id="contact-form">
-                    <input type="email" name="email" placeholder="your@email.com" required>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <textarea name="message" placeholder="Your message" required></textarea>
-                    <button type="submit">Send Message</button>
+                <form id="contact-form" action="#" method="post">
+                    <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="contact-email">Email</label>
+                            <input id="contact-email" class="form-input" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contact-subject">Subject</label>
+                            <input id="contact-subject" class="form-input" type="text" name="subject" placeholder="How can we help?" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="contact-message">Message</label>
+                        <textarea id="contact-message" class="form-input form-textarea" name="message" placeholder="Your message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
                 </form>
             </div>
         </section>

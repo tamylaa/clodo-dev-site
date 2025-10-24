@@ -2120,6 +2120,187 @@ footer::before {
    Contains: Hero, Benefits, Features, Testimonials
    =========================================== */
 
+/* ===== COMMON SUBPAGE STYLES (about, docs, examples, pricing) ===== */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.breadcrumb-separator {
+    color: var(--text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--text-secondary);
+}
+
+.breadcrumbs a:hover {
+    color: var(--primary-color);
+}
+
+.hero-section {
+    padding: 3rem 0 2rem;
+    background: linear-gradient(135deg, var(--bg-accent), var(--bg-primary));
+}
+
+.hero-section .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-section .hero-content h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.hero-section .hero-content p {
+    font-size: clamp(1rem, 2.1vw, 1.25rem);
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* ===== PRICING ===== */
+.pricing-highlights {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.pricing-highlights .highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.pricing-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.pricing-card .price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0.25rem 0 0.25rem;
+}
+
+.pricing-card .pricing-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.pricing-card li {
+    color: var(--text-secondary);
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 12px 24px rgba(0, 102, 204, 0.12);
+    position: relative;
+}
+
+.pricing-card.featured::before {
+    content: 'Recommended';
+    position: absolute;
+    top: -12px;
+    left: 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Contact form on pricing */
+#contact .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    #contact .form-row { grid-template-columns: 1fr; }
+}
+
+#contact form {
+    max-width: 720px;
+}
+
+#contact button[type="submit"] {
+    margin-top: 0.5rem;
+}
+
+/* ===== DOCS ===== */
+pre, code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+pre {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    overflow: auto;
+}
+
+.service-types-grid,
+.code-examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.service-type,
+.code-example {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.api-commands, .api-reference {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
 /* ===== HERO SECTION ===== */
 #hero {
     position: relative;
