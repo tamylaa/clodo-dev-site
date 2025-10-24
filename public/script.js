@@ -597,8 +597,13 @@ function setupMobileMenu() {
 }
 
 // Exports for unit tests (Node/CommonJS environment)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
+// Use globalThis to avoid referencing undeclared identifiers in browser linting
+if (typeof globalThis !== 'undefined' &&
+    globalThis &&
+    typeof globalThis.module !== 'undefined' &&
+    globalThis.module &&
+    globalThis.module.exports) {
+    globalThis.module.exports = {
         fetchGitHubStars,
         setupSmoothScrolling,
         setupScrollAnimations,

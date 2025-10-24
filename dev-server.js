@@ -2,8 +2,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-// Serve from public directory
-const publicDir = path.join(__dirname, 'public');
+// Serve root: public by default, or dist if --dist flag provided
+const useDist = process.argv.includes('--dist');
+const publicDir = path.join(__dirname, useDist ? 'dist' : 'public');
 
 let server = http.createServer((req, res) => {
     let filePath = path.join(publicDir, req.url === '/' ? 'index.html' : req.url);
@@ -83,6 +84,7 @@ let server = http.createServer((req, res) => {
 });
 
 let PORT = parseInt(process.env.PORT, 10) || 8000;
+let isShuttingDown = false;
 
 function startServer(startPort, attemptsLeft = 20) {
     PORT = startPort;
@@ -93,14 +95,16 @@ function startServer(startPort, attemptsLeft = 20) {
     });
 
     server.on('error', (err) => {
-        if (err && err.code === 'EADDRINUSE') {
+        /** @type {any} */
+        const e = err;
+        if (e && e.code === 'EADDRINUSE') {
             if (attemptsLeft > 0) {
                 const nextPort = PORT + 1;
                 console.warn(`⚠️  Port ${PORT} in use. Trying ${nextPort}...`);
                 // Remove current error listener to avoid stacking
                 server.removeAllListeners('error');
                 // Create a new server instance and retry
-                const newServer = http.createServer(server.listeners('request')[0]);
+                const newServer = http.createServer(/** @type {any} */ (server.listeners('request')[0]));
                 // Replace server reference
                 server.close(() => {
                     // no-op
@@ -124,6 +128,8 @@ function startServer(startPort, attemptsLeft = 20) {
 
 function bindShutdown(srv) {
     function shutdown(signal) {
+        if (isShuttingDown) return;
+        isShuttingDown = true;
         console.log(`\n${signal} received. Shutting down dev server...`);
         srv.close(() => {
             console.log('✅ Server closed. Bye!');
@@ -139,18 +145,5 @@ function bindShutdown(srv) {
 // Initial bind and start
 bindShutdown(server);
 startServer(PORT);
-
-// Graceful shutdown and better Windows behavior: exit 0 on Ctrl+C
-function shutdown(signal) {
-    console.log(`\n${signal} received. Shutting down dev server...`);
-    server.close(() => {
-        console.log('✅ Server closed. Bye!');
-        process.exit(0);
-    });
-}
-
-process.on('SIGINT', () => shutdown('SIGINT'));
-process.on('SIGTERM', () => shutdown('SIGTERM'));
-
 // Helpful error messages (e.g., port already in use)
 // Note: error handling now lives inside startServer for retry logic

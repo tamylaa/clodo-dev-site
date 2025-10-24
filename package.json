@@ -4,19 +4,23 @@
   "description": "Clodo Framework website - Enterprise Services on Cloudflare Edge",
   "main": "index.html",
   "scripts": {
+    "prebuild": "npm run lint && npm run type-check",
     "build": "node build.js",
     "serve": "node dev-server.js",
+  "serve:dist": "node dev-server.js --dist",
     "dev": "npm run serve",
     "build:serve": "npm run build && npm run serve",
     "clean": "node scripts/clean.js",
+    "pretest": "npm run lint && npm run type-check",
     "test": "cd tests && npm test",
     "test:unit": "cd tests && npm run test:unit",
     "test:accessibility": "cd tests && npm run test:accessibility",
     "test:performance": "cd tests && npm run test:performance",
-  "test:coverage": "cd tests && npm run test:coverage",
-  "lint:js": "eslint . --ext .js --max-warnings=0",
-  "lint:css": "stylelint \"public/**/*.css\"",
-  "lint": "npm run lint:js && npm run lint:css",
+    "test:coverage": "cd tests && npm run test:coverage",
+    "lint:js": "eslint . --ext .js --max-warnings=0",
+    "lint:css": "stylelint \"public/**/*.css\"",
+    "lint": "npm run lint:js && npm run lint:css",
+    "type-check": "tsc --noEmit",
     "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'"
   },
   "keywords": [
@@ -34,11 +38,13 @@
     "url": "https://github.com/tamylaa/clodo-framework.git"
   },
   "devDependencies": {
+    "@types/node": "^24.9.1",
     "eslint": "^8.57.0",
     "eslint-plugin-html": "^8.1.3",
     "http-server": "^14.1.1",
     "stylelint": "^16.25.0",
-    "stylelint-config-standard": "^39.0.1"
+    "stylelint-config-standard": "^39.0.1",
+    "typescript": "^5.6.3"
   },
   "engines": {
     "node": ">=14.0.0"
