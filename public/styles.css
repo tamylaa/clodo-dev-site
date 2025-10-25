@@ -2436,6 +2436,8 @@ pre {
     max-width: 600px;
     animation: slideInLeft 1s ease-out;
     justify-self: start;
+    /* Allow content to shrink inside CSS grid to prevent horizontal overflow on small screens */
+    min-width: 0;
 }
 
 @keyframes slideInLeft {
@@ -2459,6 +2461,10 @@ pre {
         0 4px 16px rgba(0, 0, 0, 0.3);
     letter-spacing: -0.02em;
     text-wrap: balance;
+    /* Improve resilience of long tokens on narrow viewports */
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .hero-title span:not(.highlight) {
@@ -2497,6 +2503,10 @@ pre {
         0 2px 6px rgba(0, 0, 0, 0.4),
         0 4px 12px rgba(0, 0, 0, 0.3);
     max-width: 600px;
+    /* Prevent rare horizontal overflow from long tokens */
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .hero-actions {
@@ -2610,6 +2620,8 @@ pre {
     align-items: center;
     animation: slideInRight 1s ease-out 0.5s both;
     justify-self: end;
+    /* Allow code preview to shrink within grid on very small screens */
+    min-width: 0;
 }
 
 @keyframes slideInRight {
