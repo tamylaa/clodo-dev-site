@@ -64,6 +64,19 @@ This is the **INDEX** - your guide to all audit materials. Start by choosing you
 
 ---
 
+## 🚚 Migration Documents (New)
+
+If you're exploring platform migration to Cloudflare, start here:
+
+- VERCEL_TO_CLOUDFLARE_MIGRATION_PLAYBOOK.md — Detailed steps, mappings, CLI flow, and edge cases
+- CAPABILITY_ARCHITECTURE.md — Platform-agnostic importer architecture (adapters, rules, transformers)
+- RAILWAY_TO_CLOUDFLARE_NOTES.md — Early notes for a Railway adapter
+
+Path:
+docs/migration/
+
+---
+
 ## 🎯 By Role
 
 ### 👔 Executive / Business
