@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add fade-in animations on scroll
         setupScrollAnimations();
 
+    // Setup announcement bar for migration
+    setupAnnouncementBar();
+
         // Update stats dynamically (placeholder for future API integration)
         updateDynamicStats();
     } catch (error) {
@@ -392,6 +395,43 @@ function updateActiveNavLink(sectionId) {
             link.classList.remove('active');
         }
     });
+}
+
+// Lightweight site-wide announcement bar promoting migration
+function setupAnnouncementBar() {
+    try {
+        const isMigratePage = /migrate\.html$/.test(window.location.pathname);
+        if (isMigratePage) return; // don't show on migrate page itself
+        if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') return;
+
+        const bar = document.createElement('div');
+        bar.className = 'announcement-bar';
+        bar.setAttribute('role', 'region');
+        bar.setAttribute('aria-label', 'Announcement');
+        bar.innerHTML = `
+            <span>New: Migrate from Vercel/Railway to Cloudflare with Clodo</span>
+            <a href="migrate.html">Learn more</a>
+            <button type="button" class="announcement-dismiss" aria-label="Dismiss announcement">✕</button>
+        `;
+
+        const dismissBtn = bar.querySelector('.announcement-dismiss');
+        dismissBtn.addEventListener('click', () => {
+            localStorage.setItem('cf-migrate-announcement-dismissed', 'true');
+            bar.remove();
+        });
+
+        // Insert before header so it sits above sticky navbar
+        const body = document.body;
+        const firstChild = body.firstElementChild;
+        if (firstChild) {
+            body.insertBefore(bar, firstChild);
+        } else {
+            body.appendChild(bar);
+        }
+    } catch (e) {
+        // Non-fatal
+        console.warn('Announcement bar failed:', e);
+    }
 }
 
 function setupScrollAnimations() {

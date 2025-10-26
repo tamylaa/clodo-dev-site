@@ -16,6 +16,47 @@
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#0b1220">
+  <meta property="og:title" content="Migrate to Cloudflare - Clodo Framework">
+  <meta property="og:description" content="Automate migrations from Vercel and Railway to Cloudflare Pages & Workers with mappings, scaffolding, validation, and data sync.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clodo.dev/migrate.html">
+  <meta property="og:image" content="https://clodo.dev/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Migrate to Cloudflare - Clodo Framework">
+  <meta name="twitter:description" content="Automate migrations from Vercel and Railway to Cloudflare Pages & Workers with mappings, scaffolding, validation, and data sync.">
+  <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+  <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I keep my existing Postgres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Keeping external PG (e.g., Neon) via HTTP/Prisma is recommended for parity. You can migrate to D1 when your data model and traffic patterns fit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my app uses Node-only APIs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We flag Node built-ins and native modules. Often there are web-compatible alternatives or Cloudflare primitives; otherwise isolate behind HTTP microservices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you validate parity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We generate route snapshots, SSR smoke tests, and edge middleware tests. A parity report summarizes coverage, warnings, and blockers with code pointers."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>

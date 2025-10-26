@@ -2057,6 +2057,33 @@ main section ul li { line-height: 1.7; }
     border-color: var(--warning-color);
 }
 
+/* Announcement bar (site-wide) */
+.announcement-bar {
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: #fff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+.announcement-bar a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.announcement-dismiss {
+    margin-left: 1rem;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius-md);
+    padding: 0.25rem 0.5rem;
+}
+
 /* ===== NEW FOOTER RESPONSIVE STYLES ===== */
 /* Large Desktop */
 @media (max-width: 1200px) {
