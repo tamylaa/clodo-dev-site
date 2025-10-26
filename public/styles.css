@@ -1968,6 +1968,95 @@ footer::before {
     }
 }
 
+/* ===== MIGRATION PAGE HELPERS ===== */
+.toc {
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 1.25rem;
+    position: sticky;
+    top: 84px; /* below sticky navbar */
+    z-index: 10;
+}
+
+.toc h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 1.5rem;
+}
+
+.toc li { break-inside: avoid; margin-bottom: 0.35rem; }
+
+.toc a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.toc a:hover { color: var(--primary-color); }
+
+@media (max-width: 768px) {
+    .toc { position: static; }
+    .toc ul { columns: 1; }
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1rem 0 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.75rem 1rem;
+    margin: 0.75rem 0 1.5rem;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.feature-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* Improve long-form readability */
+main section h2 { margin-top: 2rem; }
+main section h3 { margin-top: 1.25rem; }
+main section ul li { line-height: 1.7; }
+
+/* Callout emphasis variants */
+.callout--info {
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-accent));
+    border-color: var(--info-color);
+}
+
+.callout--warn {
+    background: linear-gradient(135deg, var(--bg-primary), rgba(245, 158, 11, 0.08));
+    border-color: var(--warning-color);
+}
+
 /* ===== NEW FOOTER RESPONSIVE STYLES ===== */
 /* Large Desktop */
 @media (max-width: 1200px) {
