@@ -185,6 +185,13 @@
     color: var(--error-color);
 }
 
+.form-helper {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: var(--spacing-md);
+}
+
 /* ===== NAVIGATION ===== */
 .navbar {
     background-color: var(--bg-primary);
