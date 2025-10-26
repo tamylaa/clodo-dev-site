@@ -32,8 +32,39 @@ function copyHtml() {
 }
 
 // Minify CSS (simple minification)
+function bundleCss() {
+    console.log('🎨 Bundling CSS...');
+    const cssFiles = [
+        'base.css',
+        'utilities.css',
+        'components.css',
+        'layout.css',
+        'pages/index.css'
+    ];
+    let bundled = '';
+
+    cssFiles.forEach(file => {
+        const filePath = path.join('public', 'css', file);
+        if (fs.existsSync(filePath)) {
+            bundled += fs.readFileSync(filePath, 'utf8') + '\n';
+        }
+    });
+
+    // Simple minification
+    let minified = bundled
+        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+        .replace(/\s+/g, ' ') // Collapse whitespace
+        .replace(/\s*{\s*/g, '{') // Remove spaces around braces
+        .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
+        .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
+        .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
+        .trim();
+
+    fs.writeFileSync(path.join('dist', 'styles.css'), minified);
+}
+
 function minifyCss() {
-    console.log('🎨 Minifying CSS...');
+    console.log('🎨 Minifying individual CSS...');
     const cssDir = path.join('public', 'css');
     const distCssDir = path.join('dist', 'css');
 
@@ -149,6 +180,7 @@ function generateBuildInfo() {
 try {
     cleanDist();
     copyHtml();
+    bundleCss();
     minifyCss();
     minifyJs();
     copyAssets();
