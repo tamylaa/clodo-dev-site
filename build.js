@@ -61,6 +61,7 @@ function bundleCss() {
         .trim();
 
     fs.writeFileSync(path.join('dist', 'styles.css'), minified);
+    fs.writeFileSync(path.join('public', 'styles.css'), minified);
 }
 
 function minifyCss() {
