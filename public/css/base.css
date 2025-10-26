@@ -59,6 +59,8 @@ img {
     --bg-secondary: rgb(249 250 251);
     --bg-tertiary: rgb(243 244 246);
     --bg-accent: rgb(240 249 255);
+    --bg-dark: rgb(26 26 26);
+    --bg-darker: rgb(45 45 45);
 
     /* Status Colors */
     --success-color: rgb(16 185 129);
@@ -76,6 +78,8 @@ img {
     /* Additional Colors */
     --color-white: rgb(255 255 255);
     --text-muted-darker: rgb(156 163 175);
+    --text-muted-light: rgb(203 213 225);
+    --bg-secondary-light: rgb(245 247 250);
     --text-comment: rgb(100 116 139);
     --text-command: rgb(6 214 160);
     --text-output: rgb(59 130 246);
