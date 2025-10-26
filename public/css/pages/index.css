@@ -6,6 +6,11 @@
    Contains: Hero, Benefits, Features, Testimonials
    =========================================== */
 
+/* Page-specific CSS vars */
+:root {
+    --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+}
+
 /* ===== HERO SECTION ===== */
 #hero {
     position: relative;
@@ -32,12 +37,7 @@
     transform: translateX(-50%);
     width: 100vw;
     height: 100%;
-    background: linear-gradient(135deg,
-        #667eea 0%,
-        #764ba2 25%,
-        #f093fb 50%,
-        #f5576c 75%,
-        #4facfe 100%);
+    background: var(--hero-gradient);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     z-index: -1;

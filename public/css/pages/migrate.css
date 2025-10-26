@@ -1,5 +1,10 @@
 /* Migration page specific styles extracted from styles.css to keep global stylesheet lean */
 
+/* Page-specific CSS vars */
+:root {
+    --toc-sticky-top: 84px;
+}
+
 /* Table of Contents widget */
 .toc {
   border: 1px solid var(--border-color);
@@ -8,7 +13,7 @@
   box-shadow: var(--shadow-sm);
   padding: 1rem 1.25rem;
   position: sticky;
-  top: 84px; /* below sticky navbar */
+  top: var(--toc-sticky-top); /* below sticky navbar */
   z-index: 10;
 }
 
