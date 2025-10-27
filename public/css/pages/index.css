@@ -630,6 +630,55 @@
     line-height: 1.6;
 }
 
+/* ===== COMPARISON SECTION ===== */
+#comparison {
+    padding: 80px 0;
+    background: var(--bg-primary);
+}
+
+.comparison-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.comparison-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.comparison-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.comparison-item .traditional {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-decoration: line-through;
+}
+
+.comparison-item .clodo {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* ===== TESTIMONIALS SECTION ===== */
 #testimonials {
     padding: 80px 0;
@@ -1255,3 +1304,38 @@
         font-size: 1rem;
     }
 }
+
+/* ===== CODE BLOCKS ===== */
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+code {
+    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+}
+
+/* Syntax highlighting for JavaScript */
+.language-javascript .token.keyword { color: rgb(86 156 214); }
+.language-javascript .token.string { color: rgb(206 145 120); }
+.language-javascript .token.comment { color: rgb(106 153 85); }
+.language-javascript .token.function { color: rgb(220 220 170); }
+.language-javascript .token.punctuation { color: rgb(212 212 212); }

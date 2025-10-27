@@ -201,7 +201,7 @@
                             Powerful Platform Toolkit for <span class="highlight">Cloudflare Engineers</span>
                         </h1>
                         <p class="hero-subtitle">
-                            Build Enterprise SaaS Products using Cloudflare Capabilities 10× faster, cheaper, secure with simple prompts.
+                            Craft Secure, Reusable Enterprise SaaS on Edge – Lightning Fast with a Reliable Framework
                         </p>
                         <div class="hero-actions">
                                 <a href="docs.html" class="btn btn-primary" aria-label="Get started with Clodo Framework documentation">
@@ -332,6 +332,12 @@
                         </div>
                         <h3>Enterprise Deployment System</h3>
                         <p>Multi-domain deployment orchestration with comprehensive validation. Deploy complex enterprise applications with automated security checks and production readiness validation.</p>
+                        <pre><code class="language-javascript">// Deploy multi-domain SaaS app
+const deployment = await clodo.deploy({
+  domains: ['tenant1.app.com', 'tenant2.app.com'],
+  config: { security: 'AES-256', validation: true }
+});
+console.log('Deployed securely across domains');</code></pre>
                     </article>
                     <article class="feature-card" role="listitem">
                         <div class="feature-icon" aria-hidden="true">
@@ -341,6 +347,12 @@
                         </div>
                         <h3>Security-by-Default Architecture</h3>
                         <p>AES-256-CBC encrypted API tokens, automatic detection of insecure configurations, and comprehensive security validation that prevents deployment of vulnerable code.</p>
+                        <pre><code class="language-javascript">// Secure token generation
+const token = clodo.generateToken({
+  encryption: 'AES-256-CBC',
+  autoValidate: true
+});
+// Automatically validates security on deploy</code></pre>
                     </article>
                     <article class="feature-card" role="listitem">
                         <div class="feature-icon" aria-hidden="true">
@@ -402,6 +414,29 @@
                         </div>
                         <h3>Multi-Tenant Customer Management</h3>
                         <p>Automated customer isolation and management with template-driven onboarding. Reusable configuration templates for rapid customer setup and enterprise-grade tenant separation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="comparison-section" aria-labelledby="comparison-title">
+            <div class="container">
+                <h2 id="comparison-title">Clodo vs Traditional Stacks</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h3>Deployment Time</h3>
+                        <p class="traditional">Traditional: 2-6 months custom setup</p>
+                        <p class="clodo">Clodo: Deploy in hours with multi-tenant ready</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h3>Security</h3>
+                        <p class="traditional">Traditional: Manual security audits</p>
+                        <p class="clodo">Clodo: Built-in AES-256 encryption & validation</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h3>Scalability</h3>
+                        <p class="traditional">Traditional: Complex scaling configs</p>
+                        <p class="clodo">Clodo: Edge-native with global CDN</p>
                     </div>
                 </div>
             </div>
