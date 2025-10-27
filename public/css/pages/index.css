@@ -412,8 +412,9 @@
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 2rem;
+    width: 100%;
 }
 
 .benefit-item {
@@ -435,12 +436,10 @@
 }
 
 .benefit-item--primary {
-    grid-column: auto / span 1;
     padding: 2rem;
     background: linear-gradient(135deg, rgb(102 126 234 / 8%), rgb(240 147 251 / 8%));
     box-shadow: 0 8px 20px rgb(102 126 234 / 15%);
     border-color: var(--primary-color);
-    scale: 1.02;
 }
 
 .benefit-item--primary:hover {
@@ -450,7 +449,7 @@
 
 @media (width >= 768px) {
     .benefit-item--primary {
-        grid-column: span 2;
+        grid-column: auto;
     }
 }
 
@@ -479,11 +478,19 @@
     font-weight: 600;
     color: var(--text-primary);
     font-size: 1rem;
+    flex: 1;
+    min-width: 0; /* allow flex item to shrink */
+    white-space: normal; /* enable wrapping */
+    overflow-wrap: anywhere; /* break long tokens if needed */
 }
 
 .benefit-item--primary span:last-child {
     font-size: 1.125rem;
     font-weight: 700;
+    flex: 1;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 /* ===== CLOUDFLARE EDGE SECTION ===== */
