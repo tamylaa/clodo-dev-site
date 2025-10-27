@@ -414,9 +414,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .benefit-item {
@@ -1166,7 +1163,6 @@
     }
 
     .benefits-grid {
-        padding: 0 1rem;
         grid-template-columns: 1fr;
     }
 
