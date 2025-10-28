@@ -263,15 +263,15 @@ footer::before {
     margin: 0 auto;
     padding: var(--spacing-3xl) 2rem 0;
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
-    gap: var(--spacing-2xl);
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 0.9fr 0.9fr;
+    gap: var(--spacing-md);
     align-items: start;
 }
 
 .footer-section a {
     color: var(--text-muted-darker);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     transition: all var(--transition-fast);
     position: relative;
@@ -377,7 +377,7 @@ footer::before {
     color: var(--bg-primary);
     font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     position: relative;
 }
 
@@ -399,7 +399,7 @@ footer::before {
 }
 
 .footer-section li {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 /* Social Links Special Styling */
