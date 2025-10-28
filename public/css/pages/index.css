@@ -1339,3 +1339,77 @@ pre code {
 .language-javascript .token.comment { color: rgb(106 153 85); }
 .language-javascript .token.function { color: rgb(220 220 170); }
 .language-javascript .token.punctuation { color: rgb(212 212 212); }
+
+/* ===== ARCHITECTURE DIAGRAM STYLES ===== */
+
+.architecture-section {
+  padding: 4rem 0;
+  background: var(--color-bg-primary);
+}
+
+.architecture-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.diagram-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+}
+
+.architecture-svg {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+
+.diagram-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  fill: var(--color-text-primary);
+}
+
+.diagram-subtext {
+  font-size: 0.9rem;
+  fill: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.diagram-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.feature-highlight {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.highlight-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-highlight h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.feature-highlight p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
