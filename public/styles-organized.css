@@ -20,3 +20,7 @@
 
 /* ===== PAGE-SPECIFIC STYLES ===== */
 @import url('./css/pages/index.css');
+
+@import url('./css/pages/product.css');
+
+@import url('./css/pages/about.css');
