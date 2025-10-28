@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - Clodo Framework</title>
-    <meta name="description" content="Complete documentation for Clodo Framework - the Ruby on Rails of Cloudflare Workers. Build production SaaS applications with enterprise-grade features.">
+    <title>Privacy Policy & Terms - Clodo Framework</title>
+    <meta name="description" content="Privacy policy and terms of service for Clodo Framework.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
     <meta name="theme-color" content="#0b1220">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -29,9 +30,10 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="product.html">Product</a></li>
                     <li><a href="migrate.html">Migrate</a></li>
-                    <li><a href="#getting-started">Getting Started</a></li>
-                    <li><a href="#concepts">Core Concepts</a></li>
-                    <li><a href="#api">API Reference</a></li>
+                    <li><a href="docs.html">Docs</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener">
@@ -45,162 +47,65 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <div class="breadcrumb-item">
-                <a href="index.html">Home</a>
-            </div>
+            <div class="breadcrumb-item"><a href="index.html">Home</a></div>
             <span class="breadcrumb-separator">/</span>
-            <div class="breadcrumb-item">
-                <span>Documentation</span>
-            </div>
+            <div class="breadcrumb-item"><span>Privacy & Terms</span></div>
         </nav>
 
-        <section class="hero-section">
+        <section id="privacy">
             <div class="container">
-                <div class="hero-content">
-                    <h1>The Complete Guide to Clodo Framework</h1>
-                    <p>Build production-ready, multi-tenant SaaS applications with enterprise-grade security, database integration, and intelligent orchestration. What once took months and $200K now deploys in weeks for a fraction of the cost.</p>
-                </div>
+                <h1>Privacy Policy</h1>
+                <p><em>Last updated: October 2025</em></p>
+
+                <h2>Overview</h2>
+                <p>We take privacy seriously. We aim to collect the minimum data necessary to operate our website and communicate with you when you ask us to. We do not sell your data and we do not use invasive tracking.</p>
+
+                <h2>What we collect</h2>
+                <ul>
+                    <li><strong>Newsletter signups:</strong> If you subscribe, we collect your email address and your consent. You can unsubscribe at any time using the link in our emails or by contacting us.</li>
+                    <li><strong>Support/contact:</strong> If you email us, we receive the information you provide (e.g., your email address and message contents).</li>
+                    <li><strong>Basic server logs:</strong> Our hosting may log standard request information (IP address, user agent, referrer, timestamps) for security and reliability. These logs are retained briefly and used for troubleshooting and abuse prevention.</li>
+                </ul>
+
+                <h2>Cookies and tracking</h2>
+                <p>We do not use advertising cookies or cross-site tracking. We currently do <strong>not</strong> use any analytics on this website. If analytics is enabled in the future, we will use a privacy-first, cookie-less solution and update this policy accordingly.</p>
+
+                <h2>How we use your data</h2>
+                <ul>
+                    <li>To send optional product updates and announcements if you opted in.</li>
+                    <li>To respond to your inquiries and provide support.</li>
+                    <li>To maintain the security and reliability of our services.</li>
+                </ul>
+
+                <h2>Data sharing</h2>
+                <p>We do not sell your data. Limited data may be processed by vendors that help us operate the site (for example, hosting and email delivery). These providers are chosen for strong privacy and security practices.</p>
+
+                <h2>Data retention</h2>
+                <p>We retain personal data only as long as necessary for the purpose it was collected, or as required by law. You may request deletion at any time.</p>
+
+                <h2>Your rights</h2>
+                <ul>
+                    <li>Access the personal data we hold about you.</li>
+                    <li>Request correction or deletion of your data.</li>
+                    <li>Withdraw consent for communications at any time.</li>
+                </ul>
+
+                <h2>Contact</h2>
+                <p>For privacy questions or requests, email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
+
+                <h2>Changes to this policy</h2>
+                <p>We may update this policy to reflect improvements or legal requirements. We will revise the "Last updated" date above and note material changes.</p>
             </div>
         </section>
 
-        <section id="getting-started">
+        <section id="terms">
             <div class="container">
-                <h2>🚀 Getting Started in 5 Minutes</h2>
-
-                <h3>Installation</h3>
-                <pre><code>npm install @tamyla/clodo-framework</code></pre>
-
-                <h3>Create Your First Service</h3>
-                <pre><code>npx create-clodo-service my-new-service --type data-service</code></pre>
-
-                <h3>Development Setup</h3>
-                <pre><code>cd my-new-service
-npm install
-npm run dev</code></pre>
-
-                <h3>Deploy to Production</h3>
-                <pre><code>npm run deploy</code></pre>
-
-                <p><strong>That's it!</strong> Your service is now running on Cloudflare Workers with enterprise-grade security, database integration, and automated deployment.</p>
-            </div>
-        </section>
-
-        <section id="concepts">
-            <div class="container">
-                <h2>Core Concepts</h2>
-
-                <h3>Service Types</h3>
-                <div class="service-types-grid">
-                    <div class="service-type">
-                        <h4>🗄️ Data Service</h4>
-                        <p>Database CRUD operations with Cloudflare D1 integration, schema management, and query optimization.</p>
-                    </div>
-                    <div class="service-type">
-                        <h4>🔐 Authentication Service</h4>
-                        <p>User authentication, authorization, JWT token management, and session handling.</p>
-                    </div>
-                    <div class="service-type">
-                        <h4>🌐 API Gateway</h4>
-                        <p>Request routing, rate limiting, API orchestration, and cross-service communication.</p>
-                    </div>
-                    <div class="service-type">
-                        <h4>📝 Content Service</h4>
-                        <p>Content management, CMS functionality, and dynamic content delivery.</p>
-                    </div>
-                </div>
-
-                <h3>🔒 Security-by-Default Architecture</h3>
-                <p>Clodo Framework implements comprehensive security validation:</p>
-                <ul>
-                    <li><strong>API Token Security</strong>: AES-256-CBC encrypted storage with automatic prompting</li>
-                    <li><strong>Dummy Key Prevention</strong>: Blocks deployment of development/test keys to production</li>
-                    <li><strong>Weak Secret Detection</strong>: Validates password strength and entropy</li>
-                    <li><strong>URL Security</strong>: Enforces HTTPS in production, blocks localhost in live environments</li>
-                    <li><strong>JWT Validation</strong>: Ensures proper JWT secret strength and configuration</li>
-                </ul>
-
-                <h3>🏗️ Domain Configuration Management</h3>
-                <p>Centralized configuration system with runtime discovery:</p>
-                <ul>
-                    <li><strong>JSON-based Configuration</strong>: Environment-specific settings with validation</li>
-                    <li><strong>Runtime Discovery</strong>: Services automatically discover and configure themselves</li>
-                    <li><strong>Feature Flags</strong>: Declarative feature management with domain-specific overrides</li>
-                    <li><strong>Multi-tenant Support</strong>: Customer isolation and configuration management</li>
-                </ul>
-
-                <h3>⚡ Performance & Caching</h3>
-                <p>Optimized for Cloudflare's edge network:</p>
-                <ul>
-                    <li><strong>Schema Caching</strong>: Database schema caching for improved performance</li>
-                    <li><strong>SQL Query Caching</strong>: Intelligent query result caching</li>
-                    <li><strong>Validation Caching</strong>: Security validation result caching</li>
-                    <li><strong>Global Replication</strong>: Edge-optimized data distribution</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="api">
-            <div class="container">
-                <h2>API Reference</h2>
-
-                <h3>🔧 CLI Commands</h3>
-                <div class="api-commands">
-                    <div class="command-group">
-                        <h4>Service Management</h4>
-                        <pre><code>npx create-clodo-service <name> --type <type>  # Create new service
-npx @tamyla/clodo-framework --help              # Show all commands</code></pre>
-                    </div>
-
-                    <div class="command-group">
-                        <h4>Available Service Types</h4>
-                        <pre><code>--type data-service      # Database operations
---type auth-service      # Authentication & authorization
---type api-gateway       # API routing & orchestration
---type content-service   # Content management & CMS</code></pre>
-                    </div>
-                </div>
-
-                <h3>📚 Core Classes & Functions</h3>
-                <div class="api-reference">
-                    <div class="api-item">
-                        <h4>FeatureFlagManager</h4>
-                        <pre><code>import { FeatureFlagManager } from '@tamyla/clodo-framework';
-
-const featureManager = new FeatureFlagManager();
-await featureManager.setDomain(domainConfig);
-const isEnabled = featureManager.isEnabled('featureName');</code></pre>
-                    </div>
-
-                    <div class="api-item">
-                        <h4>Domain Configuration</h4>
-                        <pre><code>import { initializeService } from '@tamyla/clodo-framework';
-
-export default {
-  async fetch(request, env, ctx) {
-    const service = initializeService(env);
-    // Service automatically discovers domain configuration
-  }
-};</code></pre>
-                    </div>
-
-                    <div class="api-item">
-                        <h4>Security Validation</h4>
-                        <pre><code>import { createFeatureGuard } from '@tamyla/clodo-framework';
-
-const guardedHandler = createFeatureGuard('premiumFeature')(
-  premiumHandler
-);</code></pre>
-                    </div>
-                </div>
-
-                <h3>🔗 Additional Resources</h3>
-                <ul>
-                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">Complete Documentation on GitHub</a></li>
-                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/docs/api" target="_blank">Full API Reference</a></li>
-                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/i-docs" target="_blank">Internal Documentation</a></li>
-                </ul>
+                <h1>Terms of Service</h1>
+                <p>By using this website, you agree to these terms. This site and any referenced software are provided "as is" without warranties of any kind. To the fullest extent permitted by law, we disclaim all liability for damages arising from your use of the site.</p>
+                <p>Open source components are licensed under their respective licenses (e.g., MIT for the Clodo Framework). Use of any third-party services referenced on this site is subject to their own terms.</p>
+                <p>If you have questions about these terms, contact us at <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
             </div>
         </section>
     </main>
@@ -228,7 +133,7 @@ const guardedHandler = createFeatureGuard('premiumFeature')(
                         <div class="reassurance">No spam. Unsubscribe anytime.</div>
                         <div class="consent">
                             <input type="checkbox" id="newsletter-consent" name="consent" required>
-                            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html">Privacy Policy</a>.</label>
+                            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html#privacy">Privacy Policy</a>.</label>
                         </div>
                         <p class="form-message" aria-live="polite" role="status"></p>
                         <noscript>
@@ -293,7 +198,7 @@ const guardedHandler = createFeatureGuard('premiumFeature')(
             <p>
                 &copy; 2025 Clodo Framework. Open source under MIT License.
                 <span aria-hidden="true">•</span>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="privacy.html#privacy">Privacy Policy</a>
                 <span aria-hidden="true">•</span>
                 <a href="privacy.html#terms">Terms of Service</a>
                 <span aria-hidden="true">•</span>
