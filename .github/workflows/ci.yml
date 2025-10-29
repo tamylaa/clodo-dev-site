@@ -51,8 +51,8 @@ jobs:
           if [ -f tests/package.json ]; then
             echo "Installing test dependencies..."
             npm --prefix tests ci
-            echo "Running unit tests only..."
-            npm --prefix tests run test:unit
+            echo "Running tests..."
+            npm --prefix tests test
           else
             echo "No tests configured"
           fi
