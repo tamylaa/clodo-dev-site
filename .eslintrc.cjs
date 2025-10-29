@@ -18,6 +18,9 @@ module.exports = {
     {
       files: ['public/script.js'],
       env: { browser: true, node: false },
+      globals: {
+        grecaptcha: 'readonly'
+      }
     },
     {
       files: ['build.js', 'dev-server.js', 'scripts/**/*.js'],
