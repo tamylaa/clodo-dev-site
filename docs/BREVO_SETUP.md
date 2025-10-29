@@ -25,10 +25,14 @@ This guide will help you connect your Brevo account to the newsletter subscripti
 
 ## Step 3: Configure the Secure Integration
 
-**⚠️ Security Note**: API keys are now stored in a gitignored file to prevent accidental commits.**
+**⚠️ Security Note**: API keys are stored in a gitignored file to prevent accidental commits. Never commit `brevo-secure-config.js` to version control!**
 
-1. Open `public/brevo-secure-config.js` in your project (this file is gitignored)
-2. Add your actual API key and list ID:
+1. Copy the template file:
+   ```bash
+   cp public/brevo-secure-config-template.js public/brevo-secure-config.js
+   ```
+
+2. Open `public/brevo-secure-config.js` and add your actual API key and list ID:
 
 ```javascript
 window.BREVO_SECURE_CONFIG = {
@@ -43,8 +47,9 @@ The main configuration in `public/brevo-config.js` will automatically load these
 
 1. Run your development server: `npm run dev`
 2. Go to your website and try subscribing with a test email
-3. Check your Brevo dashboard to confirm the contact was added
-4. Verify the contact received any confirmation emails
+3. Check your browser's developer console for any configuration warnings
+4. Check your Brevo dashboard to confirm the contact was added
+5. Verify the contact received any confirmation emails
 
 ## Step 5: Optional Enhancements
 
