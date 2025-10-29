@@ -10,6 +10,7 @@
     "test:accessibility": "jest --testPathPattern=accessibility",
     "test:performance": "jest --testPathPattern=performance",
     "test:integration": "jest --testPathPattern=integration",
+    "test:unit": "jest --testPathPattern=unit",
     "lint": "eslint tests/",
     "type-check": "tsc --noEmit"
   },
