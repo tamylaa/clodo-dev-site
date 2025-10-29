@@ -120,50 +120,17 @@ function minifyJs() {
 // Copy JavaScript config files
 function copyJsConfigs() {
     console.log('📋 Copying JavaScript config files...');
+    const configFiles = ['brevo-config.js', 'brevo-secure-config.js'];
 
-    // Handle brevo-config.js specially - inline secure config if available
-    const configSrc = path.join('public', 'brevo-config.js');
-    const configDist = path.join('dist', 'brevo-config.js');
-    const secureConfigSrc = path.join('public', 'brevo-secure-config.js');
-
-    if (fs.existsSync(configSrc)) {
-        let configContent = fs.readFileSync(configSrc, 'utf8');
-
-        // If secure config exists, inline it into the main config
-        if (fs.existsSync(secureConfigSrc)) {
-            const secureContent = fs.readFileSync(secureConfigSrc, 'utf8');
-            // Extract the BREVO_SECURE_CONFIG object
-            const secureMatch = secureContent.match(/window\.BREVO_SECURE_CONFIG\s*=\s*({[\s\S]*?});/);
-            if (secureMatch) {
-                const secureConfig = secureMatch[1];
-                // Add the secure config at the beginning of brevo-config.js
-                configContent = `// Inlined secure configuration for production
-window.BREVO_SECURE_CONFIG = ${secureConfig};
-
-${configContent}`;
-                console.log('  ✓ Inlined secure config into brevo-config.js');
-            } else {
-                console.log('  ⚠️  Could not parse secure config, copying separately');
-                fs.copyFileSync(configSrc, configDist);
-            }
-        } else if (process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID) {
-            // Generate from environment variables
-            const secureConfig = `{
-    API_KEY: '${process.env.BREVO_API_KEY}',
-    LIST_ID: ${parseInt(process.env.BREVO_LIST_ID)}
-}`;
-            configContent = `// Generated secure configuration from environment variables
-window.BREVO_SECURE_CONFIG = ${secureConfig};
-
-${configContent}`;
-            console.log('  ✓ Generated and inlined secure config from environment variables');
+    configFiles.forEach(file => {
+        const srcPath = path.join('public', file);
+        if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, path.join('dist', file));
+            console.log(`  ✓ Copied ${file}`);
         } else {
-            console.log('  ⚠️  No secure config available, copying brevo-config.js as-is');
-            fs.copyFileSync(configSrc, configDist);
+            console.log(`  ⚠️  ${file} not found (this may be expected for secure configs)`);
         }
-
-        fs.writeFileSync(configDist, configContent);
-    }
+    });
 }
 
 // Copy other assets
