@@ -507,31 +507,25 @@ function setupAnnouncementBar() {
     try {
         const isMigratePage = /migrate\.html$/.test(window.location.pathname);
         if (isMigratePage) return; // don't show on migrate page itself
-        if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') return;
 
-        const bar = document.createElement('div');
-        bar.className = 'announcement-bar';
-        bar.setAttribute('role', 'region');
-        bar.setAttribute('aria-label', 'Announcement');
-        bar.innerHTML = `
-            <span>New: Migrate from Vercel/Railway to Cloudflare with Clodo</span>
-            <a href="migrate.html">Learn more</a>
-            <button type="button" class="announcement-dismiss" aria-label="Dismiss announcement">✕</button>
-        `;
+        const banner = document.querySelector('.migration-banner');
+        if (!banner) return; // banner not found
 
-        const dismissBtn = bar.querySelector('.announcement-dismiss');
-        dismissBtn.addEventListener('click', () => {
-            localStorage.setItem('cf-migrate-announcement-dismissed', 'true');
-            bar.remove();
-        });
+        // Check if user has dismissed the banner
+        if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') {
+            banner.style.display = 'none';
+            return;
+        }
 
-        // Insert before header so it sits above sticky navbar
-        const body = document.body;
-        const firstChild = body.firstElementChild;
-        if (firstChild) {
-            body.insertBefore(bar, firstChild);
-        } else {
-            body.appendChild(bar);
+        // Show the banner (it's already in the HTML)
+        banner.style.display = 'block';
+
+        const dismissBtn = banner.querySelector('.banner-close');
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', () => {
+                localStorage.setItem('cf-migrate-announcement-dismissed', 'true');
+                banner.style.display = 'none';
+            });
         }
     } catch (e) {
         // Non-fatal
