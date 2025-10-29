@@ -117,6 +117,22 @@ function minifyJs() {
     fs.writeFileSync(distJsFile, minified);
 }
 
+// Copy JavaScript config files
+function copyJsConfigs() {
+    console.log('📋 Copying JavaScript config files...');
+    const configFiles = ['brevo-config.js', 'brevo-secure-config.js'];
+
+    configFiles.forEach(file => {
+        const srcPath = path.join('public', file);
+        if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, path.join('dist', file));
+            console.log(`  ✓ Copied ${file}`);
+        } else {
+            console.log(`  ⚠️  ${file} not found (this may be expected for secure configs)`);
+        }
+    });
+}
+
 // Copy other assets
 function copyAssets() {
     console.log('📦 Copying assets...');
@@ -185,6 +201,7 @@ try {
     bundleCss();
     minifyCss();
     minifyJs();
+    copyJsConfigs();
     copyAssets();
     generateBuildInfo();
 
