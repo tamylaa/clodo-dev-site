@@ -1,0 +1,353 @@
+/* Subscribe Page Styles */
+
+.subscribe-page {
+  min-height: 100vh;
+}
+
+.subscribe-hero {
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+}
+
+.subscribe-hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.subscribe-content {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.subscribe-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+}
+
+.subscribe-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subscription-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.benefit-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.benefit-text h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.benefit-text p {
+  opacity: 0.9;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.subscription-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.subscribe-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.subscribe-form-card {
+  background: white;
+  color: var(--color-text);
+  padding: var(--spacing-xl);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.subscribe-form-card h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.form-description {
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: var(--spacing-lg);
+}
+
+.subscription-options {
+  margin-bottom: var(--spacing-lg);
+}
+
+.subscription-options h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--color-background-light);
+  border-radius: 8px;
+}
+
+.option-item input[type="checkbox"] {
+  margin: 0;
+}
+
+.recaptcha-container {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+}
+
+.consent-section {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.consent-section input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.consent-section label {
+  margin: 0;
+}
+
+.consent-section a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.btn--large {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.btn-text {
+  display: inline;
+}
+
+.btn-spinner {
+  display: none;
+}
+
+.btn[aria-busy="true"] .btn-text {
+  display: none;
+}
+
+.btn[aria-busy="true"] .btn-spinner {
+  display: inline;
+}
+
+.trust-signals {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.trust-signals {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.trust-item svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.recent-content {
+  padding: var(--spacing-xl) 0;
+  background: var(--color-background-light);
+}
+
+.recent-content .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.recent-content h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.content-preview {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.content-item {
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.content-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.content-item p {
+  opacity: 0.8;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.5;
+}
+
+.content-date {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.footer-simple {
+  background: var(--color-background-dark);
+  color: white;
+  padding: var(--spacing-lg) 0;
+}
+
+.footer-simple .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.footer-nav {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .subscribe-content h1 {
+    font-size: 2rem;
+  }
+
+  .subscribe-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .subscription-benefits {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .subscription-stats {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .subscribe-form-card {
+    padding: var(--spacing-lg);
+  }
+
+  .trust-signals {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+}

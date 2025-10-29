@@ -39,7 +39,8 @@ function bundleCss() {
         'utilities.css',
         'components.css',
         'layout.css',
-        'pages/index.css'
+        'pages/index.css',
+        'pages/subscribe.css'
     ];
     let bundled = '';
 
