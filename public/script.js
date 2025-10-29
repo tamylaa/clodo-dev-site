@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle contact form submission
         setupContactForm();
 
-        // Setup newsletter form
+        // Setup newsletter form with Brevo integration
         setupNewsletterForm();
 
         // Smooth scrolling for anchor links
@@ -260,20 +260,16 @@ function setupNewsletterForm() {
         const emailInput = newsletterForm.querySelector('input[type="email"]');
         const submitBtn = newsletterForm.querySelector('button[type="submit"]');
         const messageEl = newsletterForm.querySelector('.form-message');
+        const consentCheckbox = newsletterForm.querySelector('input[name="consent"]');
+
         // Ensure message element has an id for aria-describedby linkage
         if (messageEl && !messageEl.id) {
             messageEl.id = 'newsletter-message';
         }
-        
+
         if (!emailInput.value) {
             showFormMessage(messageEl, 'Please enter your email address.', 'error');
             emailInput.setAttribute('aria-invalid', 'true');
-            if (messageEl) {
-                const helperId = emailInput.getAttribute('aria-describedby') || '';
-                const ids = new Set(helperId.split(' ').filter(Boolean));
-                ids.add(messageEl.id);
-                emailInput.setAttribute('aria-describedby', Array.from(ids).join(' '));
-            }
             return;
         }
 
@@ -282,12 +278,19 @@ function setupNewsletterForm() {
         if (!emailRegex.test(emailInput.value)) {
             showFormMessage(messageEl, 'Please enter a valid email address.', 'error');
             emailInput.setAttribute('aria-invalid', 'true');
-            if (messageEl) {
-                const helperId = emailInput.getAttribute('aria-describedby') || '';
-                const ids = new Set(helperId.split(' ').filter(Boolean));
-                ids.add(messageEl.id);
-                emailInput.setAttribute('aria-describedby', Array.from(ids).join(' '));
-            }
+            return;
+        }
+
+        // Check consent
+        if (!consentCheckbox.checked) {
+            showFormMessage(messageEl, 'Please agree to receive emails and accept our Privacy Policy.', 'error');
+            return;
+        }
+
+        // Validate reCAPTCHA if present
+        const recaptchaResponse = grecaptcha && grecaptcha.getResponse ? grecaptcha.getResponse() : null;
+        if (!recaptchaResponse) {
+            showFormMessage(messageEl, 'Please complete the reCAPTCHA verification.', 'error');
             return;
         }
 
@@ -297,20 +300,122 @@ function setupNewsletterForm() {
         submitBtn.innerHTML = '<span class="spinner spinner--sm spinner--white"></span> Subscribing...';
 
         try {
-            // Simulate API call (replace with actual API endpoint)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Check if Brevo is configured
+            if (!window.BREVO_CONFIG || !window.BREVO_CONFIG.API_KEY || window.BREVO_CONFIG.API_KEY === 'YOUR_BREVO_API_KEY_HERE') {
+                throw new Error('Brevo API key not configured. Please check brevo-secure-config.js');
+            }
 
-            // Success
-            showFormMessage(messageEl, '✓ Successfully subscribed! Check your email for confirmation.', 'success');
-            emailInput.value = '';
-            emailInput.removeAttribute('aria-invalid');
-            
-            // Store email preference
-            localStorage.setItem('newsletter-subscribed', 'true');
-            
+            if (!window.BREVO_CONFIG.LIST_ID) {
+                throw new Error('Brevo list ID not configured. Please check brevo-secure-config.js and update LIST_ID');
+            }
+
+            console.log('Brevo config loaded:', {
+                hasApiKey: !!window.BREVO_CONFIG.API_KEY,
+                listId: window.BREVO_CONFIG.LIST_ID,
+                apiKeyPrefix: window.BREVO_CONFIG.API_KEY.substring(0, 10) + '...'
+            });
+
+            // Brevo API integration
+            const response = await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': window.BREVO_CONFIG.API_KEY
+                },
+                body: JSON.stringify({
+                    email: emailInput.value,
+                    listIds: [window.BREVO_CONFIG.LIST_ID],
+                    updateEnabled: true,
+                    attributes: {
+                        SOURCE: newsletterForm.querySelector('input[name="source"]')?.value || 'website',
+                        SUBSCRIPTION_DATE: new Date().toISOString(),
+                        CONSENT_GIVEN: true,
+                        RECAPTCHA_TOKEN: recaptchaResponse
+                    }
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Success - redirect to subscription page for better UX
+                console.log('Newsletter subscription successful:', data);
+
+                // Check if we're already on the subscription page
+                if (window.location.pathname.includes('subscribe')) {
+                    // On subscription page - show success message
+                    showFormMessage(messageEl, '✓ Successfully subscribed! Welcome to the Clodo community.', 'success');
+                    emailInput.value = '';
+                    consentCheckbox.checked = false;
+                    emailInput.removeAttribute('aria-invalid');
+
+                    // Reset reCAPTCHA
+                    if (grecaptcha && grecaptcha.reset) {
+                        grecaptcha.reset();
+                    }
+
+                    // Redirect to home page after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 3000);
+                } else {
+                    // On footer - redirect to subscription page with pre-filled email
+                    const params = new URLSearchParams({
+                        email: encodeURIComponent(emailInput.value),
+                        source: 'footer'
+                    });
+                    window.location.href = 'subscribe.html?' + params.toString();
+                }            } else {
+                // Handle specific Brevo API errors
+                let errorMessage = 'Failed to subscribe. Please try again.';
+
+                if (data.code === 'duplicate_parameter') {
+                    errorMessage = 'This email is already subscribed to our newsletter.';
+                } else if (data.code === 'invalid_parameter') {
+                    errorMessage = 'Please enter a valid email address.';
+                } else if (data.message) {
+                    errorMessage = data.message;
+                }
+
+                showFormMessage(messageEl, errorMessage, 'error');
+                emailInput.setAttribute('aria-invalid', 'true');
+
+                // Reset reCAPTCHA on error
+                if (grecaptcha && grecaptcha.reset) {
+                    grecaptcha.reset();
+                }
+
+                // If on subscription page and it's a duplicate, still show success-like message
+                if (window.location.pathname.includes('subscribe') && data.code === 'duplicate_parameter') {
+                    showFormMessage(messageEl, '✓ This email is already subscribed to our newsletter!', 'success');
+                    emailInput.value = '';
+                    consentCheckbox.checked = false;
+                    emailInput.removeAttribute('aria-invalid');
+                }
+            }
+
         } catch (error) {
-            showFormMessage(messageEl, 'Failed to subscribe. Please try again.', 'error');
+            console.error('Newsletter subscription error:', error);
+
+            let errorMessage = 'Network error. Please check your connection and try again.';
+
+            // Provide more specific error messages
+            if (error.message && error.message.includes('Failed to fetch')) {
+                errorMessage = 'Unable to connect to newsletter service. Please check your internet connection.';
+            } else if (error.message && error.message.includes('CORS')) {
+                errorMessage = 'Connection blocked by security policy. Please contact support.';
+            } else if (error.message) {
+                errorMessage = `Subscription failed: ${error.message}`;
+            }
+
+            showFormMessage(messageEl, errorMessage, 'error');
             emailInput.setAttribute('aria-invalid', 'true');
+
+            // Reset reCAPTCHA on error
+            if (grecaptcha && grecaptcha.reset) {
+                grecaptcha.reset();
+            }
         } finally {
             submitBtn.setAttribute('aria-busy', 'false');
             submitBtn.textContent = originalText;
