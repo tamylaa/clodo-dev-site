@@ -325,10 +325,10 @@ footer::before {
     z-index: 1;
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-3xl) 2rem 0;
+    padding: var(--spacing-2xl) 2rem 0;
     display: grid;
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 0.9fr 0.9fr;
-    gap: var(--spacing-md);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: var(--spacing-xl);
     align-items: start;
 }
 
@@ -383,11 +383,26 @@ footer::before {
     flex-wrap: wrap;
 }
 
+.footer-nav a {
+    color: rgb(255 255 255 / 80%);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
 .footer-bottom a {
     color: var(--gradient-primary);
     text-decoration: none;
     font-weight: 500;
     transition: color var(--transition-fast);
+}
+
+.consent-section a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.footer-nav a:hover {
+    color: var(--color-white);
 }
 
 .footer-bottom a:hover {
@@ -404,7 +419,7 @@ footer::before {
 }
 
 .footer-section {
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-logo {
@@ -431,9 +446,9 @@ footer::before {
 
 .footer-section p {
     color: var(--text-muted-light);
-    font-size: 1.125rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     max-width: 400px;
 }
 
@@ -489,25 +504,38 @@ footer::before {
 /* Newsletter Signup */
 .footer-newsletter {
     background: linear-gradient(135deg, rgb(102 126 234 / 10%), rgb(240 147 251 / 10%));
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
-    margin-top: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    margin-top: 0;
     border: 1px solid rgb(102 126 234 / 20%);
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
-    grid-column: 1 / -1; /* span full width of footer grid */
+    max-width: 100%;
+    width: 100%;
 }
 
 .footer-newsletter h4 {
     color: var(--bg-primary);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.125rem;
+}
+
+.benefit-text p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.content-item p {
+    opacity: 0.8;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
 }
 
 .footer-newsletter p:not(.form-message) {
     color: var(--text-secondary);
-    font-size: 0.875rem;
-    margin-bottom: var(--spacing-lg);
+    font-size: 0.8rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-newsletter .newsletter-form {
@@ -543,19 +571,22 @@ footer::before {
 .footer-newsletter .form-group {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    align-items: stretch;
+    width: 100%;
 }
 
 .footer-newsletter input {
-    flex: 1;
-    padding: 0.75rem 1rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
     border: 1px solid rgb(255 255 255 / 20%);
     border-radius: var(--radius-md);
     background: rgb(255 255 255 / 8%);
     color: var(--color-white);
     font-size: 0.875rem;
-    min-height: 44px;
+    min-height: 36px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .footer-newsletter input::placeholder {
@@ -574,8 +605,8 @@ footer::before {
 }
 
 .footer-newsletter button {
-    min-height: 44px;
-    padding: 0.75rem 1.5rem;
+    min-height: 36px;
+    padding: 0.5rem 1rem;
     background: linear-gradient(135deg, var(--primary-color), var(--gradient-primary));
     color: var(--color-white);
     border: none;
@@ -584,6 +615,7 @@ footer::before {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .footer-newsletter button:disabled {
@@ -605,16 +637,16 @@ footer::before {
 /* Sequential six-row layout for newsletter */
 .footer-newsletter .form-field {
     display: block;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-newsletter .form-actions {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-newsletter .reassurance {
     color: var(--text-muted-darker);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -637,10 +669,28 @@ footer::before {
 .footer-newsletter .consent {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     color: var(--text-muted-darker);
-    font-size: 0.875rem;
-    margin-top: var(--spacing-sm);
+    font-size: 0.75rem;
+    margin-top: var(--spacing-xs);
+}
+
+.option-item input[type="checkbox"] {
+    margin: 0;
+}
+
+.consent-section input[type="checkbox"] {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.footer-newsletter .consent input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 2px 0 0;
+    flex-shrink: 0;
+    accent-color: var(--primary-color);
+    cursor: pointer;
 }
 
 .footer-newsletter .consent a {
@@ -657,10 +707,10 @@ footer::before {
 }
 
 .footer-newsletter .form-message {
-    margin-top: var(--spacing-md);
-    font-size: 0.875rem;
+    margin-top: var(--spacing-sm);
+    font-size: 0.8rem;
     display: none;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border-radius: var(--radius-md);
 }
 
@@ -946,7 +996,7 @@ footer::before {
 .subscribe-hero {
     padding: var(--spacing-xl) 0;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
+    color: var(--color-white);
 }
 
 .subscribe-hero .container {
@@ -991,7 +1041,7 @@ footer::before {
     align-items: flex-start;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255 255 255 / 10%);
     border-radius: 12px;
     backdrop-filter: blur(10px);
 }
@@ -1005,12 +1055,6 @@ footer::before {
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
-}
-
-.benefit-text p {
-    opacity: 0.9;
-    font-size: 0.9rem;
-    line-height: 1.5;
 }
 
 .subscription-stats {
@@ -1042,11 +1086,11 @@ footer::before {
 }
 
 .subscribe-form-card {
-    background: white;
+    background: var(--color-white);
     color: var(--color-text);
     padding: var(--spacing-xl);
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
 }
 
 .subscribe-form-card h2 {
@@ -1082,10 +1126,6 @@ footer::before {
     border-radius: 8px;
 }
 
-.option-item input[type="checkbox"] {
-    margin: 0;
-}
-
 .recaptcha-container {
     margin-bottom: var(--spacing-lg);
     display: flex;
@@ -1101,18 +1141,8 @@ footer::before {
     line-height: 1.5;
 }
 
-.consent-section input[type="checkbox"] {
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-
 .consent-section label {
     margin: 0;
-}
-
-.consent-section a {
-    color: var(--color-primary);
-    text-decoration: underline;
 }
 
 .btn--large {
@@ -1142,9 +1172,6 @@ footer::before {
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border);
-}
-
-.trust-signals {
     display: flex;
     justify-content: center;
     gap: var(--spacing-lg);
@@ -1188,9 +1215,9 @@ footer::before {
 
 .content-item {
     padding: var(--spacing-lg);
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
 }
 
 .content-item h3 {
@@ -1198,12 +1225,6 @@ footer::before {
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
     color: var(--color-primary);
-}
-
-.content-item p {
-    opacity: 0.8;
-    margin-bottom: var(--spacing-sm);
-    line-height: 1.5;
 }
 
 .content-date {
@@ -1214,7 +1235,7 @@ footer::before {
 
 .footer-simple {
     background: var(--color-background-dark);
-    color: white;
+    color: var(--color-white);
     padding: var(--spacing-lg) 0;
 }
 
@@ -1227,7 +1248,7 @@ footer::before {
     padding: 0 var(--spacing-lg);
 }
 
-.footer-logo {
+.footer-simple .footer-logo {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -1239,18 +1260,8 @@ footer::before {
     gap: var(--spacing-lg);
 }
 
-.footer-nav a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.footer-nav a:hover {
-    color: white;
-}
-
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .subscribe-content h1 {
         font-size: 2rem;
     }

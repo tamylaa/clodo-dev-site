@@ -252,15 +252,39 @@ function setupContactForm() {
 
 function setupNewsletterForm() {
     const newsletterForm = document.querySelector('.newsletter-form');
-    if (!newsletterForm) return;
+    if (!newsletterForm) {
+        console.warn('Newsletter form not found on this page');
+        return;
+    }
+
+    console.log('Newsletter form initialized');
+
+    // Pre-fill email from URL parameters if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailFromUrl = urlParams.get('email');
+    if (emailFromUrl) {
+        const emailInput = newsletterForm.querySelector('input[type="email"]');
+        if (emailInput) {
+            emailInput.value = emailFromUrl;
+            console.log('Pre-filled email from URL:', emailFromUrl);
+        }
+    }
 
     newsletterForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('Newsletter form submitted');
 
         const emailInput = newsletterForm.querySelector('input[type="email"]');
         const submitBtn = newsletterForm.querySelector('button[type="submit"]');
         const messageEl = newsletterForm.querySelector('.form-message');
         const consentCheckbox = newsletterForm.querySelector('input[name="consent"]');
+
+        console.log('Form elements found:', {
+            emailInput: !!emailInput,
+            submitBtn: !!submitBtn,
+            messageEl: !!messageEl,
+            consentCheckbox: !!consentCheckbox
+        });
 
         // Ensure message element has an id for aria-describedby linkage
         if (messageEl && !messageEl.id) {
@@ -287,11 +311,15 @@ function setupNewsletterForm() {
             return;
         }
 
-        // Validate reCAPTCHA if present
-        const recaptchaResponse = grecaptcha && grecaptcha.getResponse ? grecaptcha.getResponse() : null;
-        if (!recaptchaResponse) {
-            showFormMessage(messageEl, 'Please complete the reCAPTCHA verification.', 'error');
-            return;
+        // Validate reCAPTCHA if present on the page
+        const hasRecaptcha = document.querySelector('.g-recaptcha') !== null;
+        let recaptchaResponse = null;
+        if (hasRecaptcha) {
+            recaptchaResponse = grecaptcha && grecaptcha.getResponse ? grecaptcha.getResponse() : null;
+            if (!recaptchaResponse) {
+                showFormMessage(messageEl, 'Please complete the reCAPTCHA verification.', 'error');
+                return;
+            }
         }
 
         const originalText = submitBtn.textContent;
@@ -336,7 +364,12 @@ function setupNewsletterForm() {
                 })
             });
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (e) {
+                data = null;
+            }
 
             if (response.ok) {
                 // Success - redirect to subscription page for better UX
@@ -362,20 +395,23 @@ function setupNewsletterForm() {
                 } else {
                     // On footer - redirect to subscription page with pre-filled email
                     const params = new URLSearchParams({
-                        email: encodeURIComponent(emailInput.value),
+                        email: emailInput.value,
                         source: 'footer'
                     });
-                    window.location.href = 'subscribe.html?' + params.toString();
-                }            } else {
+                    window.location.href = '/subscribe.html?' + params.toString();
+                }
+            } else {
                 // Handle specific Brevo API errors
                 let errorMessage = 'Failed to subscribe. Please try again.';
 
-                if (data.code === 'duplicate_parameter') {
-                    errorMessage = 'This email is already subscribed to our newsletter.';
-                } else if (data.code === 'invalid_parameter') {
-                    errorMessage = 'Please enter a valid email address.';
-                } else if (data.message) {
-                    errorMessage = data.message;
+                if (data) {
+                    if (data.code === 'duplicate_parameter') {
+                        errorMessage = 'This email is already subscribed to our newsletter.';
+                    } else if (data.code === 'invalid_parameter') {
+                        errorMessage = 'Please enter a valid email address.';
+                    } else if (data.message) {
+                        errorMessage = data.message;
+                    }
                 }
 
                 showFormMessage(messageEl, errorMessage, 'error');

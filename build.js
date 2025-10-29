@@ -22,7 +22,7 @@ function cleanDist() {
 // Copy HTML files
 function copyHtml() {
     console.log('📄 Copying HTML files...');
-    const htmlFiles = ['index.html', 'about.html', 'docs.html', 'examples.html', 'pricing.html', 'components.html'];
+    const htmlFiles = ['index.html', 'about.html', 'docs.html', 'examples.html', 'pricing.html', 'components.html', 'subscribe.html'];
     htmlFiles.forEach(file => {
         const srcPath = path.join('public', file);
         if (fs.existsSync(srcPath)) {

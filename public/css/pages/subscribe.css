@@ -7,7 +7,7 @@
 .subscribe-hero {
   padding: var(--spacing-xl) 0;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: white;
+  color: var(--color-white);
 }
 
 .subscribe-hero .container {
@@ -52,7 +52,7 @@
   align-items: flex-start;
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   border-radius: 12px;
   backdrop-filter: blur(10px);
 }
@@ -103,11 +103,11 @@
 }
 
 .subscribe-form-card {
-  background: white;
+  background: var(--color-white);
   color: var(--color-text);
   padding: var(--spacing-xl);
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
 }
 
 .subscribe-form-card h2 {
@@ -203,9 +203,6 @@
   margin-top: var(--spacing-lg);
   padding-top: var(--spacing-lg);
   border-top: 1px solid var(--color-border);
-}
-
-.trust-signals {
   display: flex;
   justify-content: center;
   gap: var(--spacing-lg);
@@ -249,9 +246,9 @@
 
 .content-item {
   padding: var(--spacing-lg);
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
 }
 
 .content-item h3 {
@@ -275,7 +272,7 @@
 
 .footer-simple {
   background: var(--color-background-dark);
-  color: white;
+  color: var(--color-white);
   padding: var(--spacing-lg) 0;
 }
 
@@ -307,17 +304,17 @@
 }
 
 .footer-nav a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255 255 255 / 80%);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .footer-nav a:hover {
-  color: white;
+  color: var(--color-white);
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .subscribe-content h1 {
     font-size: 2rem;
   }

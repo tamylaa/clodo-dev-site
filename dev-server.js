@@ -7,7 +7,9 @@ const useDist = process.argv.includes('--dist');
 const publicDir = path.join(__dirname, useDist ? 'dist' : 'public');
 
 let server = http.createServer((req, res) => {
-    let filePath = path.join(publicDir, req.url === '/' ? 'index.html' : req.url);
+    // Parse URL to remove query parameters
+    const urlPath = req.url.split('?')[0];
+    let filePath = path.join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
 
     // Security check - prevent directory traversal
     const resolvedPath = path.resolve(filePath);
