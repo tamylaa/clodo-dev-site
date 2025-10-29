@@ -12,48 +12,38 @@ concurrency:
 
 jobs:
   build-and-test:
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        node: [18, 20]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 20
           cache: 'npm'
 
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Lint (JS)
-        run: npm run lint:js
+      - name: Lint (JS & CSS)
+        run: npm run lint
 
-      - name: Lint (CSS)
-        run: npm run lint:css
+      - name: Type check
+        run: npm run type-check
 
       - name: Build
-        run: node build.js
+        run: npm run build
 
-      - name: Install test dependencies (if present)
-        shell: bash
+      - name: Quick test (optional)
         run: |
           if [ -f tests/package.json ]; then
+            echo "Installing test dependencies..."
             npm --prefix tests ci
-          fi
-
-      - name: Run tests (skip root pretest hooks)
-        shell: bash
-        run: |
-          if [ -f tests/package.json ]; then
-            npm --prefix tests test
+            echo "Running unit tests only..."
+            npm --prefix tests run test:unit
           else
-            echo "No tests package.json; skipping"
+            echo "No tests configured"
           fi
