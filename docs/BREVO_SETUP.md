@@ -25,14 +25,10 @@ This guide will help you connect your Brevo account to the newsletter subscripti
 
 ## Step 3: Configure the Secure Integration
 
-**⚠️ Security Note**: API keys are stored in a gitignored file to prevent accidental commits. Never commit `brevo-secure-config.js` to version control!**
+**⚠️ Security Note**: API keys should never be committed to version control. Use one of these methods:**
 
-1. Copy the template file:
-   ```bash
-   cp public/brevo-secure-config-template.js public/brevo-secure-config.js
-   ```
-
-2. Open `public/brevo-secure-config.js` and add your actual API key and list ID:
+### Method 1: Local Development (brevo-secure-config.js file)
+For local development, create `public/brevo-secure-config.js` with your credentials:
 
 ```javascript
 window.BREVO_SECURE_CONFIG = {
@@ -41,15 +37,40 @@ window.BREVO_SECURE_CONFIG = {
 };
 ```
 
+This file is gitignored and won't be committed.
+
+### Method 2: Production Deployment (Environment Variables)
+For production, set environment variables during build:
+
+```bash
+export BREVO_API_KEY='xkeysib-your-actual-api-key-here'
+export BREVO_LIST_ID='123'
+npm run build
+```
+
+The build script will automatically generate the secure config file from these variables.
+
+**For GitHub Actions deployment:**
+- Go to your repository Settings → Secrets and variables → Actions
+- Add secrets: `BREVO_API_KEY` and `BREVO_LIST_ID`
+- In your workflow, set the environment variables before running the build:
+
+```yaml
+- name: Build
+  run: npm run build
+  env:
+    BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+    BREVO_LIST_ID: ${{ secrets.BREVO_LIST_ID }}
+```
+
 The main configuration in `public/brevo-config.js` will automatically load these secure values.
 
 ## Step 4: Test the Integration
 
 1. Run your development server: `npm run dev`
 2. Go to your website and try subscribing with a test email
-3. Check your browser's developer console for any configuration warnings
-4. Check your Brevo dashboard to confirm the contact was added
-5. Verify the contact received any confirmation emails
+3. Check your Brevo dashboard to confirm the contact was added
+4. Verify the contact received any confirmation emails
 
 ## Step 5: Optional Enhancements
 

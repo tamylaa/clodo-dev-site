@@ -120,15 +120,45 @@ function minifyJs() {
 // Copy JavaScript config files
 function copyJsConfigs() {
     console.log('📋 Copying JavaScript config files...');
-    const configFiles = ['brevo-config.js', 'brevo-secure-config.js'];
+    const configFiles = ['brevo-config.js'];
 
+    // Handle secure config specially - generate from env vars if needed
+    const secureConfigSrc = path.join('public', 'brevo-secure-config.js');
+    const secureConfigDist = path.join('dist', 'brevo-secure-config.js');
+
+    if (fs.existsSync(secureConfigSrc)) {
+        // Copy existing file
+        fs.copyFileSync(secureConfigSrc, secureConfigDist);
+        console.log('  ✓ Copied brevo-secure-config.js');
+    } else if (process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID) {
+        // Generate from environment variables
+        const secureConfig = `// Secure Brevo configuration - Generated from environment variables
+
+console.log('brevo-secure-config.js is loading...');
+
+window.BREVO_SECURE_CONFIG = {
+    API_KEY: '${process.env.BREVO_API_KEY}',
+    LIST_ID: ${parseInt(process.env.BREVO_LIST_ID)},
+};
+
+console.log('brevo-secure-config.js loaded successfully:', {
+    hasApiKey: !!window.BREVO_SECURE_CONFIG.API_KEY,
+    listId: window.BREVO_SECURE_CONFIG.LIST_ID
+});`;
+        fs.writeFileSync(secureConfigDist, secureConfig);
+        console.log('  ✓ Generated brevo-secure-config.js from environment variables');
+    } else {
+        console.log('  ⚠️  brevo-secure-config.js not found and no environment variables set');
+    }
+
+    // Copy other config files
     configFiles.forEach(file => {
         const srcPath = path.join('public', file);
         if (fs.existsSync(srcPath)) {
             fs.copyFileSync(srcPath, path.join('dist', file));
             console.log(`  ✓ Copied ${file}`);
         } else {
-            console.log(`  ⚠️  ${file} not found (this may be expected for secure configs)`);
+            console.log(`  ⚠️  ${file} not found`);
         }
     });
 }
