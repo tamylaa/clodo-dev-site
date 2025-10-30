@@ -385,7 +385,7 @@ function setupNewsletterForm() {
                     // On subscription page - show success message
                     showFormMessage(messageEl, '✓ Successfully subscribed! Welcome to the Clodo community.', 'success');
                     emailInput.value = '';
-                    consentCheckbox.checked = false;
+                    if (consentCheckbox) consentCheckbox.checked = false;
                     emailInput.removeAttribute('aria-invalid');
 
                     // Reset Turnstile
@@ -433,7 +433,7 @@ function setupNewsletterForm() {
                 if (window.location.pathname.includes('subscribe') && data.code === 'duplicate_parameter') {
                     showFormMessage(messageEl, '✓ This email is already subscribed to our newsletter!', 'success');
                     emailInput.value = '';
-                    consentCheckbox.checked = false;
+                    if (consentCheckbox) consentCheckbox.checked = false;
                     emailInput.removeAttribute('aria-invalid');
                 }
             }
