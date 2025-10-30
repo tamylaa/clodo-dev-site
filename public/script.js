@@ -388,9 +388,10 @@ function setupNewsletterForm() {
                     consentCheckbox.checked = false;
                     emailInput.removeAttribute('aria-invalid');
 
-                    // Reset reCAPTCHA
-                    if (grecaptcha && grecaptcha.reset) {
-                        grecaptcha.reset();
+                    // Reset Turnstile
+                    const turnstileWidget = document.querySelector('.cf-turnstile');
+                    if (turnstileWidget && window.turnstile) {
+                        window.turnstile.reset(turnstileWidget);
                     }
 
                     // Redirect to home page after 3 seconds
@@ -422,9 +423,10 @@ function setupNewsletterForm() {
                 showFormMessage(messageEl, errorMessage, 'error');
                 emailInput.setAttribute('aria-invalid', 'true');
 
-                // Reset reCAPTCHA on error
-                if (grecaptcha && grecaptcha.reset) {
-                    grecaptcha.reset();
+                // Reset Turnstile on error
+                const turnstileWidget = document.querySelector('.cf-turnstile');
+                if (turnstileWidget && window.turnstile) {
+                    window.turnstile.reset(turnstileWidget);
                 }
 
                 // If on subscription page and it's a duplicate, still show success-like message
@@ -453,9 +455,10 @@ function setupNewsletterForm() {
             showFormMessage(messageEl, errorMessage, 'error');
             emailInput.setAttribute('aria-invalid', 'true');
 
-            // Reset reCAPTCHA on error
-            if (grecaptcha && grecaptcha.reset) {
-                grecaptcha.reset();
+            // Reset Turnstile on error
+            const turnstileWidget = document.querySelector('.cf-turnstile');
+            if (turnstileWidget && window.turnstile) {
+                window.turnstile.reset(turnstileWidget);
             }
         } finally {
             submitBtn.setAttribute('aria-busy', 'false');
