@@ -2,7 +2,7 @@ export async function onRequestPost({ request, env }) {
     try {
         // Get the request body
         const requestBody = await request.json();
-        const { email, listIds: _listIds, updateEnabled: _updateEnabled, attributes, honeypot } = requestBody;
+        const { email, _listIds, _updateEnabled, attributes, honeypot } = requestBody;
 
         // Check for honeypot spam protection
         if (honeypot && honeypot.trim() !== '') {
