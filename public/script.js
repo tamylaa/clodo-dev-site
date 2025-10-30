@@ -317,11 +317,13 @@ function setupNewsletterForm() {
             if (turnstileInput) {
                 turnstileResponse = turnstileInput.value;
                 
-                if (!turnstileResponse) {
+                // Only require response if widget has a non-empty value
+                if (turnstileResponse && turnstileResponse.trim() === '') {
                     showFormMessage(messageEl, 'Please complete the verification.', 'error');
                     return;
                 }
             }
+            // If widget exists but hasn't rendered yet, allow submission without token
         }
 
         const originalText = submitBtn.textContent;
