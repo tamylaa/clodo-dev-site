@@ -305,18 +305,22 @@ function setupNewsletterForm() {
             return;
         }
 
-        // Validate Cloudflare Turnstile if present
+        // Validate Cloudflare Turnstile if present and rendered
         const turnstileWidget = document.querySelector('.cf-turnstile');
         let turnstileResponse = null;
         
         if (turnstileWidget) {
-            // Get Turnstile response token
+            // Get Turnstile response token (only if widget has rendered)
             const turnstileInput = turnstileWidget.querySelector('input[name="cf-turnstile-response"]');
-            turnstileResponse = turnstileInput ? turnstileInput.value : null;
             
-            if (!turnstileResponse) {
-                showFormMessage(messageEl, 'Please complete the verification.', 'error');
-                return;
+            // Only validate if the widget has actually rendered (input exists)
+            if (turnstileInput) {
+                turnstileResponse = turnstileInput.value;
+                
+                if (!turnstileResponse) {
+                    showFormMessage(messageEl, 'Please complete the verification.', 'error');
+                    return;
+                }
             }
         }
 
