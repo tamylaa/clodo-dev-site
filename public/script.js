@@ -305,21 +305,17 @@ function setupNewsletterForm() {
             return;
         }
 
-        // Check consent
-        if (!consentCheckbox.checked) {
-            showFormMessage(messageEl, 'Please agree to receive emails and accept our Privacy Policy.', 'error');
-            return;
-        }
-
-        // Validate reCAPTCHA if present and properly configured
-        const hasRecaptcha = document.querySelector('.g-recaptcha') !== null;
-        const recaptchaConfigured = hasRecaptcha && document.querySelector('.g-recaptcha').getAttribute('data-sitekey') !== 'YOUR_RECAPTCHA_SITE_KEY';
-        let recaptchaResponse = null;
-
-        if (recaptchaConfigured) {
-            recaptchaResponse = grecaptcha && grecaptcha.getResponse ? grecaptcha.getResponse() : null;
-            if (!recaptchaResponse) {
-                showFormMessage(messageEl, 'Please complete the reCAPTCHA verification.', 'error');
+        // Validate Cloudflare Turnstile if present
+        const turnstileWidget = document.querySelector('.cf-turnstile');
+        let turnstileResponse = null;
+        
+        if (turnstileWidget) {
+            // Get Turnstile response token
+            const turnstileInput = turnstileWidget.querySelector('input[name="cf-turnstile-response"]');
+            turnstileResponse = turnstileInput ? turnstileInput.value : null;
+            
+            if (!turnstileResponse) {
+                showFormMessage(messageEl, 'Please complete the verification.', 'error');
                 return;
             }
         }
@@ -354,7 +350,7 @@ function setupNewsletterForm() {
                     SOURCE: newsletterForm.querySelector('input[name="source"]')?.value || 'website',
                     SUBSCRIPTION_DATE: new Date().toISOString(),
                     CONSENT_GIVEN: true,
-                    RECAPTCHA_TOKEN: recaptchaResponse
+                    TURNSTILE_TOKEN: turnstileResponse
                 }
             };
 

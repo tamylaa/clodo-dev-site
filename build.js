@@ -40,7 +40,8 @@ function bundleCss() {
         'components.css',
         'layout.css',
         'pages/index.css',
-        'pages/subscribe.css'
+        'pages/subscribe.css',
+        'pages/subscribe-enhanced.css'
     ];
     let bundled = '';
 
