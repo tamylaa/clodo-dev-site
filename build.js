@@ -125,6 +125,12 @@ function copyJsConfigs() {
     const secureConfigSrc = path.join('public', 'brevo-secure-config.js');
     const secureConfigDist = path.join('dist', 'brevo-secure-config.js');
 
+    // DEBUG: Log what we're checking
+    console.log('DEBUG Brevo config detection:');
+    console.log(`  - Local file exists: ${fs.existsSync(secureConfigSrc)}`);
+    console.log(`  - BREVO_API_KEY env: ${process.env.BREVO_API_KEY ? '✓ set' : '✗ not set'}`);
+    console.log(`  - BREVO_LIST_ID env: ${process.env.BREVO_LIST_ID ? '✓ set' : '✗ not set'}`);
+
     if (fs.existsSync(secureConfigSrc)) {
         // Copy existing local file
         fs.copyFileSync(secureConfigSrc, secureConfigDist);
@@ -146,7 +152,8 @@ console.log('brevo-secure-config.js loaded successfully:', {
         fs.writeFileSync(secureConfigDist, secureConfig);
         console.log('  ✓ Generated brevo-secure-config.js from environment variables');
     } else {
-        console.log('  ⚠️  brevo-secure-config.js not found and no BREVO_API_KEY/BREVO_LIST_ID env vars set');
+        console.warn('  ⚠️  ERROR: brevo-secure-config.js not found AND no BREVO_API_KEY/BREVO_LIST_ID env vars!');
+        console.warn('     Subscription will fail in production without these settings.');
     }
 
     // Copy brevo-config.js
