@@ -104,6 +104,12 @@
                         <p class="form-description">Join thousands of developers building the future of edge computing.</p>
 
                         <form class="newsletter-form" action="#" method="post" data-newsletter-form>
+                            <!-- Honeypot spam protection (hidden from users) -->
+                            <div class="form-group" style="display: none !important; position: absolute; left: -9999px;">
+                                <label for="honeypot">Leave this field empty</label>
+                                <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off">
+                            </div>
+
                             <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off">
 
                             <div class="form-group">
@@ -128,8 +134,8 @@
                                 </div>
                             </div>
 
-                            <!-- reCAPTCHA -->
-                            <div class="recaptcha-container">
+                            <!-- reCAPTCHA (optional - remove if not configured) -->
+                            <div id="recaptcha-container" style="display: none;">
                                 <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
                             </div>
 

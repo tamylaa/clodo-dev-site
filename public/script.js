@@ -311,10 +311,12 @@ function setupNewsletterForm() {
             return;
         }
 
-        // Validate reCAPTCHA if present on the page
+        // Validate reCAPTCHA if present and properly configured
         const hasRecaptcha = document.querySelector('.g-recaptcha') !== null;
+        const recaptchaConfigured = hasRecaptcha && document.querySelector('.g-recaptcha').getAttribute('data-sitekey') !== 'YOUR_RECAPTCHA_SITE_KEY';
         let recaptchaResponse = null;
-        if (hasRecaptcha) {
+
+        if (recaptchaConfigured) {
             recaptchaResponse = grecaptcha && grecaptcha.getResponse ? grecaptcha.getResponse() : null;
             if (!recaptchaResponse) {
                 showFormMessage(messageEl, 'Please complete the reCAPTCHA verification.', 'error');
@@ -344,23 +346,31 @@ function setupNewsletterForm() {
             });
 
             // Use Cloudflare Worker to proxy the Brevo API call (avoids CORS issues)
+            const requestBody = {
+                email: emailInput.value,
+                listIds: [window.BREVO_CONFIG.LIST_ID],
+                updateEnabled: true,
+                attributes: {
+                    SOURCE: newsletterForm.querySelector('input[name="source"]')?.value || 'website',
+                    SUBSCRIPTION_DATE: new Date().toISOString(),
+                    CONSENT_GIVEN: true,
+                    RECAPTCHA_TOKEN: recaptchaResponse
+                }
+            };
+
+            // Include honeypot field for spam protection
+            const honeypotField = newsletterForm.querySelector('input[name="honeypot"]');
+            if (honeypotField) {
+                requestBody.honeypot = honeypotField.value;
+            }
+
             const response = await fetch('/functions/newsletter-subscribe', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: emailInput.value,
-                    listIds: [window.BREVO_CONFIG.LIST_ID],
-                    updateEnabled: true,
-                    attributes: {
-                        SOURCE: newsletterForm.querySelector('input[name="source"]')?.value || 'website',
-                        SUBSCRIPTION_DATE: new Date().toISOString(),
-                        CONSENT_GIVEN: true,
-                        RECAPTCHA_TOKEN: recaptchaResponse
-                    }
-                })
+                body: JSON.stringify(requestBody)
             });
 
             let data;

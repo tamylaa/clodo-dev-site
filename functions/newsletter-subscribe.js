@@ -1,12 +1,13 @@
 export async function onRequestPost({ request, env }) {
     try {
         // Get the request body
-        const { email, listIds, updateEnabled, attributes } = await request.json();
+        const requestBody = await request.json();
+        const { email, listIds, updateEnabled, attributes, honeypot } = requestBody;
 
-        // Validate required fields
-        if (!email) {
+        // Check for honeypot spam protection
+        if (honeypot && honeypot.trim() !== '') {
             return new Response(JSON.stringify({
-                error: 'Email is required'
+                error: 'Spam detected'
             }), {
                 status: 400,
                 headers: {
