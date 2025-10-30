@@ -130,13 +130,12 @@ function copyJsConfigs() {
     console.log(`  - Local file exists: ${fs.existsSync(secureConfigSrc)}`);
     console.log(`  - BREVO_API_KEY env: ${process.env.BREVO_API_KEY ? '✓ set' : '✗ not set'}`);
     console.log(`  - BREVO_LIST_ID env: ${process.env.BREVO_LIST_ID ? '✓ set' : '✗ not set'}`);
+    console.log(`  - CI environment: ${process.env.CI ? '✓ production' : '✗ local'}`);
 
-    if (fs.existsSync(secureConfigSrc)) {
-        // Copy existing local file
-        fs.copyFileSync(secureConfigSrc, secureConfigDist);
-        console.log('  ✓ Copied brevo-secure-config.js from local file');
-    } else if (process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID) {
-        // Generate from environment variables (for production/CI)
+    // In production/CI, prioritize environment variables for security
+    // In local development, use local file for convenience
+    if (process.env.CI && process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID) {
+        // Production: Generate from environment variables
         const secureConfig = `// Secure Brevo configuration - Generated from environment variables
 console.log('brevo-secure-config.js is loading...');
 
@@ -150,10 +149,15 @@ console.log('brevo-secure-config.js loaded successfully:', {
     listId: window.BREVO_SECURE_CONFIG.LIST_ID
 });`;
         fs.writeFileSync(secureConfigDist, secureConfig);
-        console.log('  ✓ Generated brevo-secure-config.js from environment variables');
+        console.log('  ✓ Generated brevo-secure-config.js from environment variables (production)');
+    } else if (fs.existsSync(secureConfigSrc)) {
+        // Local development: Copy existing local file
+        fs.copyFileSync(secureConfigSrc, secureConfigDist);
+        console.log('  ✓ Copied brevo-secure-config.js from local file (development)');
     } else {
-        console.warn('  ⚠️  ERROR: brevo-secure-config.js not found AND no BREVO_API_KEY/BREVO_LIST_ID env vars!');
-        console.warn('     Subscription will fail in production without these settings.');
+        console.warn('  ⚠️  ERROR: No brevo configuration available!');
+        console.warn('     For local development: create public/brevo-secure-config.js');
+        console.warn('     For production: set BREVO_API_KEY and BREVO_LIST_ID environment variables');
     }
 
     // Copy brevo-config.js
