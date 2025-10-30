@@ -92,29 +92,16 @@ function minifyCss() {
     });
 }
 
-// Minify JavaScript (simple minification)
-function minifyJs() {
-    console.log('⚡ Minifying JavaScript...');
+// Copy JavaScript (no minification to avoid breaking code)
+function copyJs() {
+    console.log('📋 Copying JavaScript...');
     const jsFile = path.join('public', 'script.js');
     const distJsFile = path.join('dist', 'script.js');
 
     if (!fs.existsSync(jsFile)) return;
 
-    let content = fs.readFileSync(jsFile, 'utf8');
-
-    // Simple minification: remove comments and extra whitespace
-    let minified = content
-        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
-        .replace(/\/\/.*$/gm, '') // Remove single-line comments
-        .replace(/\s+/g, ' ') // Collapse whitespace
-        .replace(/\s*{\s*/g, '{') // Remove spaces around braces
-        .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
-        .replace(/\s*\(\s*/g, '(') // Remove spaces around parentheses
-        .replace(/\s*\)\s*/g, ')') // Remove spaces around parentheses
-        .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
-        .trim();
-
-    fs.writeFileSync(distJsFile, minified);
+    // Just copy the file without minification
+    fs.copyFileSync(jsFile, distJsFile);
 }
 
 // Copy JavaScript config files
@@ -240,7 +227,7 @@ try {
     copyHtml();
     bundleCss();
     minifyCss();
-    minifyJs();
+    copyJs();
     copyJsConfigs();
     copyAssets();
     generateBuildInfo();
