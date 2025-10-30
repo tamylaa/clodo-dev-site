@@ -343,13 +343,12 @@ function setupNewsletterForm() {
                 apiKeyPrefix: window.BREVO_CONFIG.API_KEY.substring(0, 10) + '...'
             });
 
-            // Brevo API integration
-            const response = await fetch('https://api.brevo.com/v3/contacts', {
+            // Use Cloudflare Worker to proxy the Brevo API call (avoids CORS issues)
+            const response = await fetch('/functions/newsletter-subscribe', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'api-key': window.BREVO_CONFIG.API_KEY
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: emailInput.value,
