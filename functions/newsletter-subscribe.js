@@ -80,6 +80,11 @@ export async function onRequestPost({ request, env }) {
 
         const data = await response.json();
 
+        // If Brevo returns an error, log it but still return the response
+        if (!response.ok) {
+            console.error('Brevo API error:', response.status, data);
+        }
+
         // Return the response with CORS headers
         return new Response(JSON.stringify(data), {
             status: response.status,
@@ -93,8 +98,10 @@ export async function onRequestPost({ request, env }) {
 
     } catch (error) {
         console.error('Newsletter subscription error:', error);
+        console.error('Error details:', error.message, error.stack);
         return new Response(JSON.stringify({
-            error: 'Internal server error'
+            error: 'Internal server error',
+            message: error.message || 'Unknown error'
         }), {
             status: 500,
             headers: {
