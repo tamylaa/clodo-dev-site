@@ -366,7 +366,7 @@ function setupNewsletterForm() {
                 requestBody.honeypot = honeypotField.value;
             }
 
-            const response = await fetch('/functions/newsletter-subscribe', {
+            const response = await fetch('/newsletter-subscribe', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

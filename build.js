@@ -207,25 +207,6 @@ function copyAssets() {
     }
 }
 
-// Copy Cloudflare Functions
-function copyFunctions() {
-    console.log('⚡ Copying Cloudflare Functions...');
-    const functionsDir = 'functions';
-    const distFunctionsDir = path.join('dist', 'functions');
-    
-    if (fs.existsSync(functionsDir)) {
-        // Create functions directory in dist
-        fs.mkdirSync(distFunctionsDir, { recursive: true });
-        
-        // Copy all function files
-        const functionFiles = fs.readdirSync(functionsDir);
-        functionFiles.forEach(file => {
-            const srcPath = path.join(functionsDir, file);
-            const destPath = path.join(distFunctionsDir, file);
-            fs.copyFileSync(srcPath, destPath);
-        });
-    }
-}
 
 // Generate build info
 function generateBuildInfo() {
@@ -251,7 +232,6 @@ try {
     copyJs();
     copyJsConfigs();
     copyAssets();
-    copyFunctions();
     generateBuildInfo();
 
     console.log('✅ Build completed successfully!');
