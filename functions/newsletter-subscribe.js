@@ -78,16 +78,25 @@ export async function onRequestPost({ request, env }) {
             body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        // Get response text first to handle empty responses
+        const responseText = await response.text();
+        let data;
+        
+        try {
+            data = responseText ? JSON.parse(responseText) : {};
+        } catch (parseError) {
+            console.error('Failed to parse Brevo response:', responseText);
+            data = { error: 'Invalid response from email service' };
+        }
 
-        // If Brevo returns an error, log it but still return the response
+        // If Brevo returns an error, log it
         if (!response.ok) {
             console.error('Brevo API error:', response.status, data);
         }
 
         // Return the response with CORS headers
         return new Response(JSON.stringify(data), {
-            status: response.status,
+            status: response.ok ? response.status : 200, // Return 200 even on Brevo errors to show the error message
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
