@@ -78,25 +78,31 @@ export async function onRequestPost({ request, env }) {
             body: JSON.stringify(payload)
         });
 
-        // Get response text first to handle empty responses
-        const responseText = await response.text();
         let data;
         
-        try {
-            data = responseText ? JSON.parse(responseText) : {};
-        } catch (parseError) {
-            console.error('Failed to parse Brevo response:', responseText);
-            data = { error: 'Invalid response from email service' };
-        }
+        // Handle 204 No Content (success with no body)
+        if (response.status === 204) {
+            data = { success: true, message: 'Subscription successful' };
+        } else {
+            // Get response text for other status codes
+            const responseText = await response.text();
+            
+            try {
+                data = responseText ? JSON.parse(responseText) : {};
+            } catch (parseError) {
+                console.error('Failed to parse Brevo response:', responseText);
+                data = { error: 'Invalid response from email service' };
+            }
 
-        // If Brevo returns an error, log it
-        if (!response.ok) {
-            console.error('Brevo API error:', response.status, data);
+            // If Brevo returns an error, log it
+            if (!response.ok) {
+                console.error('Brevo API error:', response.status, data);
+            }
         }
 
         // Return the response with CORS headers
         return new Response(JSON.stringify(data), {
-            status: response.ok ? response.status : 200, // Return 200 even on Brevo errors to show the error message
+            status: response.ok ? 200 : response.status,
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
