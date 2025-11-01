@@ -313,6 +313,22 @@
   color: var(--color-white);
 }
 
+/* Honeypot field - hide from users */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.honeypot-group {
+  display: none !important;
+  position: absolute;
+  left: -9999px;
+}
+
 /* Responsive Design */
 @media (width <= 768px) {
   .subscribe-content h1 {
