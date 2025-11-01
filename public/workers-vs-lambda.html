@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Workers vs AWS Lambda: Performance, Cost & Developer Experience</title>
+    <link rel="canonical" href="https://clodo.dev/workers-vs-lambda.html">
+    <meta name="description" content="Compare Cloudflare Workers vs AWS Lambda: cold starts, global performance, pricing, and developer experience. Choose the right serverless platform for your edge applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Cloudflare Workers vs AWS Lambda: Performance, Cost & Developer Experience">
+    <meta property="og:description" content="Compare Cloudflare Workers vs AWS Lambda: cold starts, global performance, pricing, and developer experience for serverless applications.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/workers-vs-lambda.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cloudflare Workers vs AWS Lambda: Performance, Cost & Developer Experience">
+    <meta name="twitter:description" content="Compare Cloudflare Workers vs AWS Lambda: cold starts, global performance, pricing, and developer experience for serverless applications.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cloudflare Workers vs AWS Lambda: Performance, Cost & Developer Experience",
+      "description": "Compare Cloudflare Workers vs AWS Lambda: cold starts, global performance, pricing, and developer experience. Choose the right serverless platform for your edge applications.",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2025-11-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clodo.dev/workers-vs-lambda.html"
+      },
+      "articleSection": "Cloudflare Workers",
+      "keywords": ["cloudflare workers", "aws lambda", "serverless", "performance comparison", "edge computing"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">⚡</span>
+                    <span class="logo-text">Clodo</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Docs</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="migrate.html">Migrate</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener" aria-label="View on GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span id="star-count" aria-label="GitHub stars">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <a href="cloudflare-workers-guide.html">Cloudflare Workers Guide</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Workers vs Lambda</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Cloudflare Workers vs AWS Lambda</h1>
+                    <p>In-depth comparison of the two leading serverless platforms. Understand performance, cost, and developer experience to choose the right solution for your applications.</p>
+                    <div class="hero-actions">
+                        <a href="cloudflare-workers-guide.html" class="btn btn--primary">Workers Guide</a>
+                        <a href="what-is-cloudflare-workers.html" class="btn btn--secondary">What are Workers?</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>The Serverless Showdown</h2>
+                        <p>Cloudflare Workers and AWS Lambda both pioneered serverless computing, but they serve different use cases and excel in different scenarios. Understanding their differences is crucial for making the right architectural choice.</p>
+
+                        <div class="platform-overview">
+                            <div class="platform-card">
+                                <h3>⚡ Cloudflare Workers</h3>
+                                <p>Edge-first serverless platform running on Cloudflare's global network. Designed for low-latency, high-performance applications with worldwide distribution.</p>
+                            </div>
+                            <div class="platform-card">
+                                <h3>☁️ AWS Lambda</h3>
+                                <p>Cloud-centric serverless platform running in AWS data centers. Offers massive scale, rich ecosystem integration, and enterprise-grade features.</p>
+                            </div>
+                        </div>
+
+                        <h2>Performance Comparison</h2>
+                        <div class="performance-comparison">
+                            <div class="perf-metric">
+                                <h3>🏃‍♂️ Cold Start Performance</h3>
+                                <div class="metric-details">
+                                    <div class="metric-option">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li><strong>Near-zero cold starts</strong> - Always warm due to edge distribution</li>
+                                            <li>Consistent startup times across all regions</li>
+                                            <li>No language-specific cold start variations</li>
+                                            <li>Immediate scaling to zero and back</li>
+                                        </ul>
+                                    </div>
+                                    <div class="metric-option">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li><strong>100-1000ms cold starts</strong> depending on language and memory</li>
+                                            <li>Provisioned concurrency available to reduce cold starts</li>
+                                            <li>Node.js and Python have faster cold starts than Java/C#</li>
+                                            <li>Can be mitigated but never eliminated</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="perf-metric">
+                                <h3>🌍 Global Latency</h3>
+                                <div class="metric-details">
+                                    <div class="metric-option">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li><strong>&lt;50ms latency</strong> to users worldwide</li>
+                                            <li>200+ edge locations globally</li>
+                                            <li>Automatic routing to nearest edge</li>
+                                            <li>Consistent performance regardless of user location</li>
+                                        </ul>
+                                    </div>
+                                    <div class="metric-option">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li><strong>100-500ms latency</strong> depending on region</li>
+                                            <li>~25 regions with limited global coverage</li>
+                                            <li>Users routed to specific regions</li>
+                                            <li>Variable performance based on geography</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="perf-metric">
+                                <h3>⚡ Execution Time Limits</h3>
+                                <div class="metric-details">
+                                    <div class="metric-option">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li><strong>Up to 30 seconds</strong> execution time</li>
+                                            <li>Suitable for most web requests and API calls</li>
+                                            <li>Streaming responses for long-running tasks</li>
+                                            <li>WebSocket support for real-time communication</li>
+                                        </ul>
+                                    </div>
+                                    <div class="metric-option">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li><strong>Up to 15 minutes</strong> execution time</li>
+                                            <li>Better for batch processing and long-running tasks</li>
+                                            <li>Step Functions for orchestrating complex workflows</li>
+                                            <li>More flexible for compute-intensive workloads</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Cost Analysis</h2>
+                        <div class="cost-comparison">
+                            <div class="cost-breakdown">
+                                <h3>💰 Pricing Models</h3>
+                                <table class="pricing-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Aspect</th>
+                                            <th>Cloudflare Workers</th>
+                                            <th>AWS Lambda</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Free Tier</td>
+                                            <td>100,000 requests/month</td>
+                                            <td>1M requests + 400,000 GB-seconds</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Per Request</td>
+                                            <td>$0.15 per 1M requests</td>
+                                            <td>$0.20 per 1M requests</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Compute</td>
+                                            <td>$0.30 per 1M CPU-seconds</td>
+                                            <td>$0.0000166667 per GB-second</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data Transfer</td>
+                                            <td>Included in plan</td>
+                                            <td>$0.09 per GB</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="cost-scenarios">
+                                <h3>💡 Cost Scenarios</h3>
+                                <div class="scenario">
+                                    <h4>High-Traffic API (10M requests/month)</h4>
+                                    <ul>
+                                        <li><strong>Workers:</strong> ~$1.50/month (Bundled)</li>
+                                        <li><strong>Lambda:</strong> ~$2.00/month + data transfer</li>
+                                    </ul>
+                                </div>
+                                <div class="scenario">
+                                    <h4>Compute-Heavy Application</h4>
+                                    <ul>
+                                        <li><strong>Workers:</strong> Predictable CPU-second pricing</li>
+                                        <li><strong>Lambda:</strong> Cheaper for bursty workloads</li>
+                                    </ul>
+                                </div>
+                                <div class="scenario">
+                                    <h4>Global CDN Use Case</h4>
+                                    <ul>
+                                        <li><strong>Workers:</strong> No additional CDN costs</li>
+                                        <li><strong>Lambda:</strong> + CloudFront costs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Developer Experience</h2>
+                        <div class="dev-experience">
+                            <div class="dev-aspect">
+                                <h3>🛠️ Development Tools</h3>
+                                <div class="aspect-comparison">
+                                    <div class="aspect-item">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li>Wrangler CLI for development and deployment</li>
+                                            <li>Miniflare for local development</li>
+                                            <li>Built-in TypeScript support</li>
+                                            <li>Integrated with Cloudflare ecosystem</li>
+                                        </ul>
+                                    </div>
+                                    <div class="aspect-item">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li>AWS CLI and SDKs</li>
+                                            <li>LocalStack for local development</li>
+                                            <li>Multiple language support</li>
+                                            <li>Rich AWS ecosystem integration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dev-aspect">
+                                <h3>🌐 Runtime & Languages</h3>
+                                <div class="aspect-comparison">
+                                    <div class="aspect-item">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li>JavaScript/TypeScript only</li>
+                                            <li>V8 JavaScript engine</li>
+                                            <li>WebAssembly support</li>
+                                            <li>Standard web APIs</li>
+                                        </ul>
+                                    </div>
+                                    <div class="aspect-item">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li>Multiple languages (Node.js, Python, Java, C#, Go, Ruby)</li>
+                                            <li>Custom runtimes available</li>
+                                            <li>Container support (Lambda with Docker)</li>
+                                            <li>More flexibility for language choice</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dev-aspect">
+                                <h3>📊 Monitoring & Debugging</h3>
+                                <div class="aspect-comparison">
+                                    <div class="aspect-item">
+                                        <h4>Cloudflare Workers</h4>
+                                        <ul>
+                                            <li>Real-time logs and analytics</li>
+                                            <li>Performance metrics dashboard</li>
+                                            <li>Error tracking and alerting</li>
+                                            <li>Integrated with Cloudflare ecosystem</li>
+                                        </ul>
+                                    </div>
+                                    <div class="aspect-item">
+                                        <h4>AWS Lambda</h4>
+                                        <ul>
+                                            <li>CloudWatch for logs and metrics</li>
+                                            <li>X-Ray for distributed tracing</li>
+                                            <li>Rich monitoring ecosystem</li>
+                                            <li>Enterprise-grade observability</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Ecosystem & Integration</h2>
+                        <div class="ecosystem-comparison">
+                            <div class="ecosystem">
+                                <h3>🔗 Cloudflare Workers Ecosystem</h3>
+                                <ul>
+                                    <li><strong>Cloudflare Products:</strong> Pages, KV, D1, Durable Objects, R2</li>
+                                    <li><strong>CDN Integration:</strong> Built-in global CDN</li>
+                                    <li><strong>Security:</strong> WAF, Bot Management, Rate Limiting</li>
+                                    <li><strong>Storage:</strong> Integrated object storage and databases</li>
+                                </ul>
+                            </div>
+
+                            <div class="ecosystem">
+                                <h3>🔗 AWS Lambda Ecosystem</h3>
+                                <ul>
+                                    <li><strong>AWS Services:</strong> 200+ integrated services</li>
+                                    <li><strong>Third-party:</strong> Extensive marketplace</li>
+                                    <li><strong>Enterprise:</strong> Deep integration with enterprise tools</li>
+                                    <li><strong>Customization:</strong> VPC, custom runtimes, containers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h2>When to Choose Workers</h2>
+                        <div class="choice-scenarios">
+                            <div class="scenario">
+                                <h3>🌍 Global Applications</h3>
+                                <p>If your users are distributed worldwide and you need consistent low latency everywhere, Workers' edge network is unmatched.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>⚡ Real-Time Performance</h3>
+                                <p>For applications where cold starts are unacceptable and every millisecond counts, Workers' always-warm execution is ideal.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>🔒 Security & Compliance</h3>
+                                <p>If you need integrated security features like WAF, DDoS protection, and bot management without additional services.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>💰 Cost-Effective Global Scale</h3>
+                                <p>When you have high request volumes globally and want predictable pricing without regional data transfer costs.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>🚀 Simple Deployment</h3>
+                                <p>If you want a streamlined development experience focused on JavaScript/TypeScript with minimal configuration.</p>
+                            </div>
+                        </div>
+
+                        <h2>When to Choose Lambda</h2>
+                        <div class="choice-scenarios">
+                            <div class="scenario">
+                                <h3>🏢 Enterprise Integration</h3>
+                                <p>If you're already in the AWS ecosystem and need deep integration with existing AWS services and infrastructure.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>🛠️ Language Flexibility</h3>
+                                <p>When you need to use languages other than JavaScript or have existing code in Python, Java, C#, Go, or Ruby.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>⏱️ Long-Running Tasks</h3>
+                                <p>For batch processing, data processing pipelines, or tasks that need more than 30 seconds to complete.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>🏗️ Complex Architectures</h3>
+                                <p>When you need advanced networking (VPC), custom runtimes, or container-based deployments.</p>
+                            </div>
+
+                            <div class="scenario">
+                                <h3>📊 Advanced Analytics</h3>
+                                <p>If you need sophisticated monitoring, distributed tracing, and integration with enterprise analytics tools.</p>
+                            </div>
+                        </div>
+
+                        <h2>Migration Considerations</h2>
+                        <div class="migration-guide">
+                            <div class="migration-path">
+                                <h3>From Lambda to Workers</h3>
+                                <ul>
+                                    <li><strong>Language:</strong> Convert to JavaScript/TypeScript</li>
+                                    <li><strong>Storage:</strong> Migrate from DynamoDB to D1/KV</li>
+                                    <li><strong>APIs:</strong> Adapt to Web APIs instead of AWS SDK</li>
+                                    <li><strong>Deployment:</strong> Use Wrangler instead of AWS CLI</li>
+                                </ul>
+                            </div>
+
+                            <div class="migration-path">
+                                <h3>From Workers to Lambda</h3>
+                                <ul>
+                                    <li><strong>Language:</strong> Choose from multiple runtime options</li>
+                                    <li><strong>Storage:</strong> Use DynamoDB, S3, or RDS</li>
+                                    <li><strong>Global:</strong> Add CloudFront for global distribution</li>
+                                    <li><strong>Security:</strong> Configure WAF and Shield separately</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Hybrid Approach</h3>
+                        <p>Many organizations use both platforms strategically:</p>
+                        <ul>
+                            <li><strong>Workers for Edge:</strong> API endpoints, content modification, global user-facing features</li>
+                            <li><strong>Lambda for Cloud:</strong> Data processing, batch jobs, complex business logic, integrations</li>
+                        </ul>
+
+                        <h2>Getting Started</h2>
+                        <div class="getting-started-comparison">
+                            <div class="platform-start">
+                                <h4>🚀 Cloudflare Workers</h4>
+                                <div class="code-example">
+                                    <pre><code># Install Wrangler
+npm install -g wrangler
+
+# Create new worker
+wrangler init my-worker
+
+# Develop locally
+wrangler dev
+
+# Deploy globally
+wrangler deploy</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="platform-start">
+                                <h4>☁️ AWS Lambda</h4>
+                                <div class="code-example">
+                                    <pre><code># Install AWS CLI
+pip install awscli
+
+# Configure AWS
+aws configure
+
+# Create function
+aws lambda create-function \
+  --function-name my-function \
+  --runtime nodejs18.x \
+  --role arn:aws:iam::account:role/lambda-role \
+  --handler index.handler \
+  --zip-file fileb://function.zip</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Choose Your Serverless Platform?</h3>
+                            <p>Both Cloudflare Workers and AWS Lambda are powerful platforms. Choose based on your performance needs, existing infrastructure, and development preferences.</p>
+                            <a href="cloudflare-workers-guide.html" class="btn btn--primary">Learn More About Workers</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Workers Topics</h3>
+                            <ul>
+                                <li><a href="what-is-cloudflare-workers.html">What are Workers?</a></li>
+                                <li><a href="cloudflare-workers-guide.html">Workers Guide</a></li>
+                                <li><a href="workers-routing.html">Routing & Middleware</a></li>
+                                <li><a href="workers-storage.html">Storage Solutions</a></li>
+                                <li><a href="workers-security.html">Security Best Practices</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Related Comparisons</h3>
+                            <ul>
+                                <li><a href="edge-vs-cloud-computing.html">Edge vs Cloud Computing</a></li>
+                                <li><a href="serverless-vs-edge.html">Serverless vs Edge</a></li>
+                                <li><a href="workers-vs-vercel.html">Workers vs Vercel</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="docs.html">Clodo Documentation</a></li>
+                                <li><a href="examples.html">Workers Examples</a></li>
+                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank">Cloudflare Docs</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-section" aria-labelledby="footer-product">
+                <h4 id="footer-product">Product</h4>
+                <ul role="list">
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </nav>
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2025 Clodo Framework. Open source under MIT License.
+                    <span aria-hidden="true">•</span>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span aria-hidden="true">•</span>
+                    Made with <span class="text-heart">♥</span> for developers
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Edge Computing? - Complete Guide for Developers</title>
+    <link rel="canonical" href="https://clodo.dev/what-is-edge-computing.html">
+    <meta name="description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications. Complete guide with examples and use cases.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="What is Edge Computing? - Complete Developer Guide">
+    <meta property="og:description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications with practical examples.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/what-is-edge-computing.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="What is Edge Computing? - Complete Developer Guide">
+    <meta name="twitter:description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications with practical examples.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is edge computing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Edge computing is a distributed computing paradigm that brings computation and data storage closer to the location where it's needed, reducing latency and bandwidth usage. Instead of sending all data to centralized cloud servers, edge computing processes data at the 'edge' of the network - closer to users and devices."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does edge computing differ from cloud computing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional cloud computing centralizes data processing in large data centers, while edge computing distributes processing across many smaller locations at the network edge. Edge computing reduces latency by processing data closer to users, while cloud computing focuses on massive scalability and centralized processing power."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the benefits of edge computing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Edge computing offers lower latency, reduced bandwidth costs, improved privacy, better reliability, and enhanced performance for real-time applications. It's particularly valuable for IoT, gaming, video streaming, and applications requiring instant responses."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">⚡</span>
+                    <span class="logo-text">Clodo</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Docs</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="migrate.html">Migrate</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span id="star-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>What is Edge Computing?</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>What is Edge Computing?</h1>
+                    <p>Bringing computation closer to users for faster, more efficient applications. Learn how edge computing is revolutionizing web development.</p>
+                    <div class="hero-actions">
+                        <a href="product.html" class="btn btn--primary">Build on the Edge</a>
+                        <a href="docs.html" class="btn btn--secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>Edge Computing Explained</h2>
+                        <p>Edge computing is a fundamental shift in how we think about computing infrastructure. Instead of sending all data to centralized cloud servers for processing, edge computing brings computation and data storage closer to the devices and users that need it.</p>
+
+                        <h3>The Traditional Model vs Edge Computing</h3>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h4>Traditional Cloud Computing</h4>
+                                <ul>
+                                    <li>Data travels to centralized data centers</li>
+                                    <li>Higher latency (100-500ms)</li>
+                                    <li>Increased bandwidth costs</li>
+                                    <li>Potential privacy concerns</li>
+                                    <li>Single points of failure</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>Edge Computing</h4>
+                                <ul>
+                                    <li>Data processed at network edge</li>
+                                    <li>Ultra-low latency (<50ms)</li>
+                                    <li>Reduced bandwidth usage</li>
+                                    <li>Better data privacy</li>
+                                    <li>Distributed reliability</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>How Edge Computing Works</h3>
+                        <p>The edge computing architecture consists of three main layers:</p>
+                        <ol>
+                            <li><strong>Device Layer</strong>: IoT devices, mobile phones, and user devices</li>
+                            <li><strong>Edge Layer</strong>: Edge servers and gateways that process data locally</li>
+                            <li><strong>Cloud Layer</strong>: Centralized servers for heavy processing and storage</li>
+                        </ol>
+
+                        <h3>Real-World Examples</h3>
+                        <div class="examples-grid">
+                            <div class="example">
+                                <h4>Content Delivery</h4>
+                                <p>CDNs like Cloudflare serve cached content from edge locations worldwide, reducing load times from seconds to milliseconds.</p>
+                            </div>
+                            <div class="example">
+                                <h4>Autonomous Vehicles</h4>
+                                <p>Self-driving cars process sensor data at the edge to make instant decisions without relying on cloud connectivity.</p>
+                            </div>
+                            <div class="example">
+                                <h4>Video Streaming</h4>
+                                <p>Adaptive bitrate streaming adjusts video quality in real-time based on network conditions at the edge.</p>
+                            </div>
+                            <div class="example">
+                                <h4>IoT Applications</h4>
+                                <p>Smart home devices process voice commands locally before sending relevant data to the cloud.</p>
+                            </div>
+                        </div>
+
+                        <h3>Why Edge Computing Matters for Developers</h3>
+                        <ul>
+                            <li><strong>Performance</strong>: Applications respond instantly to user interactions</li>
+                            <li><strong>Reliability</strong>: Services continue working even when cloud connectivity is poor</li>
+                            <li><strong>Cost Efficiency</strong>: Reduced data transfer costs and cloud computing fees</li>
+                            <li><strong>Privacy</strong>: Sensitive data can be processed locally without leaving the device</li>
+                            <li><strong>Scalability</strong>: Distributed processing handles massive scale more efficiently</li>
+                        </ul>
+
+                        <h3>Getting Started with Edge Computing</h3>
+                        <p>Clodo Framework makes building edge applications simple:</p>
+                        <div class="code-example">
+                            <pre><code>// Edge function with Clodo Framework
+export async function handleRequest(request) {
+  // Process data at the edge
+  const userLocation = getUserLocation(request);
+  const personalizedContent = await generateContent(userLocation);
+
+  return new Response(personalizedContent, {
+    headers: {
+      'content-type': 'text/html',
+      'cache-control': 'public, max-age=300'
+    }
+  });
+}</code></pre>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Build Your First Edge Application</h3>
+                            <p>Experience the power of edge computing with Clodo Framework.</p>
+                            <a href="product.html" class="btn btn--primary">Start Building</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Edge Computing Topics</h3>
+                            <ul>
+                                <li><a href="what-is-cloudflare-workers.html">Cloudflare Workers</a></li>
+                                <li><a href="serverless-vs-edge.html">Serverless vs Edge</a></li>
+                                <li><a href="edge-security.html">Edge Security</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="docs.html">Clodo Documentation</a></li>
+                                <li><a href="examples.html">Edge Examples</a></li>
+                                <li><a href="https://www.cloudflare.com/learning/serverless/what-is-edge-computing/" target="_blank">Cloudflare Guide</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-section" aria-labelledby="footer-product">
+                <h4 id="footer-product">Product</h4>
+                <ul role="list">
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </nav>
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2025 Clodo Framework. Open source under MIT License.
+                    <span aria-hidden="true">•</span>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span aria-hidden="true">•</span>
+                    Made with <span class="text-heart">♥</span> for developers
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html>

@@ -2,7 +2,8 @@
  * Performance tests and monitoring
  */
 
-const { fetchGitHubStars } = require('../public/script.js');
+const { fetchGitHubStars } = require('../public/js/github-integration.js');
+const { setupScrollAnimations } = require('../public/js/scroll-animations.js');
 
 describe('Performance Tests', () => {
   beforeEach(() => {

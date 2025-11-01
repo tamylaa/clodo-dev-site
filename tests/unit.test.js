@@ -3,11 +3,13 @@
  */
 
 const {
-  fetchGitHubStars,
   setupSmoothScrolling,
-  setupScrollAnimations,
   showNotification
 } = require('../public/script.js');
+
+// Load functions from separate modules
+const { fetchGitHubStars } = require('../public/js/github-integration.js');
+const { setupScrollAnimations } = require('../public/js/scroll-animations.js');
 
 describe('GitHub Stars Fetching', () => {
   beforeEach(() => {

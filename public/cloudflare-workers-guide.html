@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Workers Guide: Serverless at the Edge</title>
+    <link rel="canonical" href="https://clodo.dev/cloudflare-workers-guide.html">
+    <meta name="description" content="Master Cloudflare Workers: serverless functions at the edge. Learn architecture, deployment, best practices, and build scalable applications with global performance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Cloudflare Workers Guide: Serverless at the Edge">
+    <meta property="og:description" content="Master Cloudflare Workers: serverless functions at the edge. Learn architecture, deployment, and best practices for scalable applications.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/cloudflare-workers-guide.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cloudflare Workers Guide: Serverless at the Edge">
+    <meta name="twitter:description" content="Master Cloudflare Workers: serverless functions at the edge. Learn architecture, deployment, and best practices for scalable applications.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cloudflare Workers Guide: Serverless at the Edge",
+      "description": "Master Cloudflare Workers: serverless functions at the edge. Learn architecture, deployment, best practices, and build scalable applications with global performance.",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2025-11-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clodo.dev/cloudflare-workers-guide.html"
+      },
+      "articleSection": "Cloudflare Workers",
+      "keywords": ["cloudflare workers", "serverless", "edge computing", "javascript", "web development"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Clodo</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Docs</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="migrate.html">Migrate</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span id="star-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Cloudflare Workers Guide</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Cloudflare Workers Guide</h1>
+                    <p>Master serverless functions at the edge. Learn Cloudflare Workers architecture, deployment strategies, and best practices for building globally distributed applications.</p>
+                    <div class="hero-actions">
+                        <a href="what-is-cloudflare-workers.html" class="btn btn--primary">What are Workers?</a>
+                        <a href="docs.html" class="btn btn--secondary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>Understanding Cloudflare Workers</h2>
+                        <p>Cloudflare Workers are serverless functions that run on Cloudflare's global edge network, bringing computation closer to your users for improved performance and reduced latency.</p>
+
+                        <h3>How Workers Work</h3>
+                        <p>Workers run on Cloudflare's edge servers located in over 200 cities worldwide. When a request comes in, it's routed to the nearest edge server where your Worker executes, eliminating the round trip to origin servers.</p>
+
+                        <div class="workers-diagram">
+                            <div class="worker-flow">
+                                <div class="flow-step">
+                                    <h4>1. Request</h4>
+                                    <p>User makes request to your domain</p>
+                                </div>
+                                <div class="flow-step">
+                                    <h4>2. Route</h4>
+                                    <p>Cloudflare routes to nearest edge server</p>
+                                </div>
+                                <div class="flow-step">
+                                    <h4>3. Execute</h4>
+                                    <p>Your Worker runs instantly at the edge</p>
+                                </div>
+                                <div class="flow-step">
+                                    <h4>4. Respond</h4>
+                                    <p>Response delivered with minimal latency</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Workers Runtime Environment</h3>
+                        <div class="runtime-features">
+                            <div class="feature">
+                                <h4>🚀 V8 JavaScript Engine</h4>
+                                <p>Powered by Chrome's V8 engine for fast, reliable execution</p>
+                            </div>
+                            <div class="feature">
+                                <h4>📦 WebAssembly Support</h4>
+                                <p>Run compiled languages like Rust, C++, and Go</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🔗 Fetch API</h4>
+                                <p>Standard web APIs for HTTP requests and responses</p>
+                            </div>
+                            <div class="feature">
+                                <h4>💾 Durable Objects</h4>
+                                <p>Persistent storage and coordination across requests</p>
+                            </div>
+                            <div class="feature">
+                                <h4>📊 Analytics Engine</h4>
+                                <p>Real-time analytics and monitoring capabilities</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🔐 Web Crypto API</h4>
+                                <p>Cryptographic operations for security and authentication</p>
+                            </div>
+                        </div>
+
+                        <h2>Workers vs Traditional Serverless</h2>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Cloudflare Workers</th>
+                                    <th>AWS Lambda</th>
+                                    <th>Vercel Functions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cold Start</td>
+                                    <td>~0ms (always warm)</td>
+                                    <td>100-1000ms</td>
+                                    <td>50-200ms</td>
+                                </tr>
+                                <tr>
+                                    <td>Global Distribution</td>
+                                    <td>200+ edge locations</td>
+                                    <td>Regions only</td>
+                                    <td>CDN edge network</td>
+                                </tr>
+                                <tr>
+                                    <td>Execution Time</td>
+                                    <td>Up to 30 seconds</td>
+                                    <td>Up to 15 minutes</td>
+                                    <td>Up to 15 seconds</td>
+                                </tr>
+                                <tr>
+                                    <td>Runtime</td>
+                                    <td>JavaScript, WebAssembly</td>
+                                    <td>Multiple languages</td>
+                                    <td>Node.js, Go, Python</td>
+                                </tr>
+                                <tr>
+                                    <td>Pricing</td>
+                                    <td>Per request + duration</td>
+                                    <td>Per request + GB-seconds</td>
+                                    <td>Included in hosting</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>KV, Durable Objects, R2</td>
+                                    <td>S3, DynamoDB, etc.</td>
+                                    <td>Vercel KV, Postgres</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Building Applications with Workers</h2>
+                        <div class="building-blocks">
+                            <div class="building-block">
+                                <h3>API Development</h3>
+                                <p>Create RESTful APIs, GraphQL endpoints, and microservices that run at the edge for global performance.</p>
+                                <div class="code-example">
+                                    <pre><code>export default {
+  async fetch(request) {
+    const { pathname } = new URL(request.url);
+
+    if (pathname === '/api/users') {
+      const users = await getUsersFromKV();
+      return new Response(JSON.stringify(users), {
+        headers: { 'content-type': 'application/json' }
+      });
+    }
+
+    return new Response('Not Found', { status: 404 });
+  }
+};</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="building-block">
+                                <h3>Content Modification</h3>
+                                <p>Transform HTML, inject content, or modify responses before they reach users.</p>
+                                <div class="code-example">
+                                    <pre><code>export default {
+  async fetch(request) {
+    const response = await fetch(request);
+    const html = await response.text();
+
+    // Inject custom content
+    const modifiedHtml = html.replace(
+      '</head>',
+      '<meta name="custom" content="injected" /></head>'
+    );
+
+    return new Response(modifiedHtml, {
+      headers: response.headers
+    });
+  }
+};</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="building-block">
+                                <h3>Edge Middleware</h3>
+                                <p>Authentication, rate limiting, A/B testing, and request routing at the edge.</p>
+                                <div class="code-example">
+                                    <pre><code>export default {
+  async fetch(request) {
+    // Rate limiting
+    const clientIP = request.headers.get('CF-Connecting-IP');
+    const isAllowed = await checkRateLimit(clientIP);
+
+    if (!isAllowed) {
+      return new Response('Rate limit exceeded', { status: 429 });
+    }
+
+    // Authentication
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader) {
+      return new Response('Unauthorized', { status: 401 });
+    }
+
+    return await fetch(request);
+  }
+};</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Deployment and Development</h2>
+                        <div class="development-workflow">
+                            <div class="workflow-step">
+                                <h4>1. Local Development</h4>
+                                <p>Use Wrangler CLI for local development and testing with <code>wrangler dev</code></p>
+                            </div>
+                            <div class="workflow-step">
+                                <h4>2. Testing</h4>
+                                <p>Write unit tests and integration tests using Jest or your preferred testing framework</p>
+                            </div>
+                            <div class="workflow-step">
+                                <h4>3. Deployment</h4>
+                                <p>Deploy with <code>wrangler deploy</code> for instant global distribution</p>
+                            </div>
+                            <div class="workflow-step">
+                                <h4>4. Monitoring</h4>
+                                <p>Use Cloudflare dashboard and logs for performance monitoring and debugging</p>
+                            </div>
+                        </div>
+
+                        <h3>Wrangler Configuration</h3>
+                        <div class="code-example">
+                            <pre><code>name = "my-worker"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+API_KEY = "your-api-key"
+
+[[kv_namespaces]]
+binding = "MY_KV"
+id = "your-kv-namespace-id"
+
+[build]
+command = "npm run build"</code></pre>
+                        </div>
+
+                        <h2>Best Practices for Workers</h2>
+                        <div class="best-practices">
+                            <div class="practice">
+                                <h4>⚡ Optimize Performance</h4>
+                                <ul>
+                                    <li>Keep response sizes small</li>
+                                    <li>Use streaming for large responses</li>
+                                    <li>Cache frequently accessed data</li>
+                                    <li>Minimize external API calls</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>🔒 Security First</h4>
+                                <ul>
+                                    <li>Validate all inputs</li>
+                                    <li>Use HTTPS only</li>
+                                    <li>Implement proper authentication</li>
+                                    <li>Limit request rates</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>📊 Monitor & Debug</h4>
+                                <ul>
+                                    <li>Use console.log for debugging</li>
+                                    <li>Monitor error rates and latency</li>
+                                    <li>Set up alerts for failures</li>
+                                    <li>Use Cloudflare's analytics</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>🏗️ Architecture</h4>
+                                <ul>
+                                    <li>Design for eventual consistency</li>
+                                    <li>Use appropriate storage solutions</li>
+                                    <li>Plan for horizontal scaling</li>
+                                    <li>Implement proper error handling</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h2>Workers with Clodo Framework</h2>
+                        <p>Clodo Framework simplifies building complex applications with Workers by providing higher-level abstractions and developer-friendly APIs.</p>
+
+                        <div class="clodo-benefits">
+                            <div class="benefit">
+                                <h4>🚀 Rapid Development</h4>
+                                <p>Build applications faster with Clodo's intuitive APIs and built-in best practices</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>📚 Rich Ecosystem</h4>
+                                <p>Access to pre-built components, middleware, and integrations</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>🔧 Advanced Features</h4>
+                                <p>Built-in support for routing, caching, authentication, and more</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>📈 Enterprise Ready</h4>
+                                <p>Production-tested framework used by enterprises worldwide</p>
+                            </div>
+                        </div>
+
+                        <h2>Getting Started with Workers</h2>
+                        <p>Ready to build your first Cloudflare Worker? Here's how to get started:</p>
+                        <ol>
+                            <li><strong>Sign up for Cloudflare:</strong> Create a free account at cloudflare.com</li>
+                            <li><strong>Install Wrangler:</strong> <code>npm install -g wrangler</code></li>
+                            <li><strong>Authenticate:</strong> <code>wrangler auth login</code></li>
+                            <li><strong>Create your first worker:</strong> <code>wrangler init my-worker</code></li>
+                            <li><strong>Deploy globally:</strong> <code>wrangler deploy</code></li>
+                        </ol>
+
+                        <h2>Further Reading</h2>
+                        <div class="further-reading">
+                            <div class="reading-item">
+                                <h4><a href="what-is-cloudflare-workers.html">What are Cloudflare Workers?</a></h4>
+                                <p>Learn the basics of Cloudflare Workers and how they enable serverless computing at the edge.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="workers-vs-lambda.html">Workers vs AWS Lambda</a></h4>
+                                <p>In-depth comparison of Cloudflare Workers and AWS Lambda performance, cost, and developer experience.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="how-to-migrate-from-wrangler.html">Migrate from Wrangler to Clodo</a></h4>
+                                <p>Step-by-step guide to migrating existing Wrangler projects to Clodo Framework.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="clodo-framework-guide.html">Clodo Framework Guide</a></h4>
+                                <p>Discover how Clodo Framework enhances Cloudflare Workers with enterprise features.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Build with Workers?</h3>
+                            <p>Start building powerful edge applications with Clodo Framework and Cloudflare Workers.</p>
+                            <a href="product.html" class="btn btn--primary">Get Started with Clodo</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Workers Topics</h3>
+                            <ul>
+                                <li><a href="what-is-cloudflare-workers.html">What are Workers?</a></li>
+                                <li><a href="workers-vs-lambda.html">Workers vs Lambda</a></li>
+                                <li><a href="workers-routing.html">Routing & Middleware</a></li>
+                                <li><a href="workers-storage.html">Storage Solutions</a></li>
+                                <li><a href="workers-security.html">Security Best Practices</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Related Guides</h3>
+                            <ul>
+                                <li><a href="edge-computing-guide.html">Edge Computing Guide</a></li>
+                                <li><a href="clodo-framework-guide.html">Clodo Framework Guide</a></li>
+                                <li><a href="how-to-migrate-from-wrangler.html">Migrate from Wrangler</a></li>
+                                <li><a href="performance-optimization.html">Performance Optimization</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="docs.html">Clodo Documentation</a></li>
+                                <li><a href="examples.html">Workers Examples</a></li>
+                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank">Cloudflare Docs</a></li>
+                                <li><a href="https://developers.cloudflare.com/workers/wrangler/" target="_blank">Wrangler CLI</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-section" aria-labelledby="footer-product">
+                <h4 id="footer-product">Product</h4>
+                <ul role="list">
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </nav>
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2025 Clodo Framework. Open source under MIT License.
+                    <span aria-hidden="true">•</span>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span aria-hidden="true">•</span>
+                    Made with <span class="text-heart">♥</span> for developers
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html>
