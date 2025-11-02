@@ -3954,6 +3954,7 @@ footer::before {
     width: 100%;
     margin: 0;
     text-align: left;
+    padding-top: 2rem; /* Add space from sticky header */
 }
 
 /* Full viewport width gradient background */
@@ -4946,6 +4947,10 @@ footer::before {
     .code-preview {
         max-width: 500px;
         margin: 0 auto;
+    }
+
+    #hero.hero {
+        padding-top: 1rem; /* Reduce top padding on smaller screens */
     }
 
     .edge-grid,
@@ -6108,5 +6113,3 @@ pre code {
     .faq-grid {
         grid-template-columns: 1fr;
     }
-}
-\n

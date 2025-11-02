@@ -484,10 +484,11 @@ function setupAnnouncementBar() {
         if (!banner) return; // banner not found
 
         // Check if user has dismissed the banner
-        if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') {
-            banner.style.display = 'none';
-            return;
-        }
+        // Temporarily disabled to ensure banner is visible
+        // if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') {
+        //     banner.style.display = 'none';
+        //     return;
+        // }
 
         // Show the banner (it's already in the HTML)
         banner.style.display = 'block';
