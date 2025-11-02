@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync, statSync, copyFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /**
  * Simple build script for Clodo Framework website
@@ -13,20 +17,42 @@ console.log('🚀 Building Clodo Framework website...');
 // Clean dist directory
 function cleanDist() {
     console.log('🧹 Cleaning dist directory...');
-    if (fs.existsSync('dist')) {
-        fs.rmSync('dist', { recursive: true, force: true });
+    if (existsSync('dist')) {
+        rmSync('dist', { recursive: true, force: true });
     }
-    fs.mkdirSync('dist', { recursive: true });
+    mkdirSync('dist', { recursive: true });
 }
 
 // Copy HTML files
 function copyHtml() {
     console.log('📄 Copying HTML files...');
-    const htmlFiles = ['index.html', 'about.html', 'docs.html', 'examples.html', 'pricing.html', 'components.html', 'subscribe.html'];
+    const htmlFiles = [
+        'index.html',
+        'about.html',
+        'docs.html',
+        'examples.html',
+        'pricing.html',
+        'components.html',
+        'subscribe.html',
+        'product.html',
+        'migrate.html',
+        'privacy.html',
+        // New guide pages
+        'edge-computing-guide.html',
+        'cloudflare-workers-guide.html',
+        'clodo-framework-guide.html',
+        'development-deployment-guide.html',
+        // New comparison/content pages
+        'what-is-edge-computing.html',
+        'what-is-cloudflare-workers.html',
+        'how-to-migrate-from-wrangler.html',
+        'edge-vs-cloud-computing.html',
+        'workers-vs-lambda.html'
+    ];
     htmlFiles.forEach(file => {
-        const srcPath = path.join('public', file);
-        if (fs.existsSync(srcPath)) {
-            fs.copyFileSync(srcPath, path.join('dist', file));
+        const srcPath = join('public', file);
+        if (existsSync(srcPath)) {
+            writeFileSync(join('dist', file), readFileSync(srcPath, 'utf8'));
         }
     });
 }
@@ -34,21 +60,17 @@ function copyHtml() {
 // Minify CSS (simple minification)
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
+
+    // public/styles.css now contains all CSS - just minify it directly
     const cssFiles = [
-        'base.css',
-        'utilities.css',
-        'components.css',
-        'layout.css',
-        'pages/index.css',
-        'pages/subscribe.css',
-        'pages/subscribe-enhanced.css'
+        'styles.css' // Single source of truth containing all CSS
     ];
     let bundled = '';
 
     cssFiles.forEach(file => {
-        const filePath = path.join('public', 'css', file);
-        if (fs.existsSync(filePath)) {
-            bundled += fs.readFileSync(filePath, 'utf8') + '\n';
+        const filePath = join('public', file);
+        if (existsSync(filePath)) {
+            bundled += readFileSync(filePath, 'utf8') + '\n';
         }
     });
 
@@ -62,23 +84,35 @@ function bundleCss() {
         .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
         .trim();
 
-    fs.writeFileSync(path.join('dist', 'styles.css'), minified);
-    fs.writeFileSync(path.join('public', 'styles.css'), minified);
+    writeFileSync(join('dist', 'styles.css'), minified);
+    // Note: Don't overwrite public/styles.css - keep it readable for development
+
+    // Copy critical CSS to dist
+    // Temporarily disabled - consolidating with base.css
+    /*
+    if (existsSync(join('public', 'css', 'critical.css'))) {
+        mkdirSync(join('dist', 'css'), { recursive: true });
+        writeFileSync(
+            join('dist', 'css', 'critical.css'),
+            readFileSync(join('public', 'css', 'critical.css'), 'utf8')
+        );
+    }
+    */
 }
 
 function minifyCss() {
     console.log('🎨 Minifying individual CSS...');
-    const cssDir = path.join('public', 'css');
-    const distCssDir = path.join('dist', 'css');
+    const cssDir = join('public', 'css');
+    const distCssDir = join('dist', 'css');
 
-    if (!fs.existsSync(cssDir)) return;
+    if (!existsSync(cssDir)) return;
 
-    fs.mkdirSync(distCssDir, { recursive: true });
+    mkdirSync(distCssDir, { recursive: true });
 
-    const cssFiles = fs.readdirSync(cssDir).filter(file => file.endsWith('.css'));
+    const cssFiles = readdirSync(cssDir).filter(file => file.endsWith('.css'));
 
     cssFiles.forEach(file => {
-        const content = fs.readFileSync(path.join(cssDir, file), 'utf8');
+        const content = readFileSync(join(cssDir, file), 'utf8');
         // Simple minification: remove comments, extra whitespace
         let minified = content
             .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
@@ -89,20 +123,20 @@ function minifyCss() {
             .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
             .trim();
 
-        fs.writeFileSync(path.join(distCssDir, file), minified);
+        writeFileSync(join(distCssDir, file), minified);
     });
 }
 
 // Copy JavaScript (no minification to avoid breaking code)
 function copyJs() {
     console.log('📋 Copying JavaScript...');
-    const jsFile = path.join('public', 'script.js');
-    const distJsFile = path.join('dist', 'script.js');
+    const jsFile = join('public', 'script.js');
+    const distJsFile = join('dist', 'script.js');
 
-    if (!fs.existsSync(jsFile)) return;
+    if (!existsSync(jsFile)) return;
 
     // Just copy the file without minification
-    fs.copyFileSync(jsFile, distJsFile);
+    writeFileSync(distJsFile, readFileSync(jsFile, 'utf8'));
 }
 
 // Copy JavaScript config files
@@ -110,12 +144,12 @@ function copyJsConfigs() {
     console.log('📋 Copying JavaScript config files...');
 
     // First, handle brevo-secure-config.js
-    const secureConfigSrc = path.join('public', 'brevo-secure-config.js');
-    const secureConfigDist = path.join('dist', 'brevo-secure-config.js');
+    const secureConfigSrc = join('public', 'brevo-secure-config.js');
+    const secureConfigDist = join('dist', 'brevo-secure-config.js');
 
     // DEBUG: Log what we're checking
     console.log('DEBUG Brevo config detection:');
-    console.log(`  - Local file exists: ${fs.existsSync(secureConfigSrc)}`);
+    console.log(`  - Local file exists: ${existsSync(secureConfigSrc)}`);
     console.log(`  - BREVO_API_KEY env: ${process.env.BREVO_API_KEY ? '✓ set' : '✗ not set'}`);
     console.log(`  - BREVO_LIST_ID env: ${process.env.BREVO_LIST_ID ? '✓ set' : '✗ not set'}`);
     console.log(`  - CI environment: ${process.env.CI ? '✓ production' : '✗ local'}`);
@@ -136,11 +170,11 @@ console.log('brevo-secure-config.js loaded successfully:', {
     hasApiKey: !!window.BREVO_SECURE_CONFIG.API_KEY,
     listId: window.BREVO_SECURE_CONFIG.LIST_ID
 });`;
-        fs.writeFileSync(secureConfigDist, secureConfig);
+        writeFileSync(secureConfigDist, secureConfig);
         console.log('  ✓ Generated brevo-secure-config.js from environment variables');
-    } else if (fs.existsSync(secureConfigSrc)) {
+    } else if (existsSync(secureConfigSrc)) {
         // No env vars: Copy existing local file (development)
-        fs.copyFileSync(secureConfigSrc, secureConfigDist);
+        writeFileSync(secureConfigDist, readFileSync(secureConfigSrc, 'utf8'));
         console.log('  ✓ Copied brevo-secure-config.js from local file');
     } else {
         console.warn('  ⚠️  ERROR: No brevo configuration available!');
@@ -151,9 +185,9 @@ console.log('brevo-secure-config.js loaded successfully:', {
     // Copy brevo-config.js
     const configFiles = ['brevo-config.js'];
     configFiles.forEach(file => {
-        const srcPath = path.join('public', file);
-        if (fs.existsSync(srcPath)) {
-            fs.copyFileSync(srcPath, path.join('dist', file));
+        const srcPath = join('public', file);
+        if (existsSync(srcPath)) {
+            writeFileSync(join('dist', file), readFileSync(srcPath, 'utf8'));
             console.log(`  ✓ Copied ${file}`);
         } else {
             console.log(`  ⚠️  ${file} not found`);
@@ -164,44 +198,37 @@ console.log('brevo-secure-config.js loaded successfully:', {
 // Copy other assets
 function copyAssets() {
     console.log('📦 Copying assets...');
-    // Copy bundled stylesheet
-    if (fs.existsSync(path.join('public', 'styles.css'))) {
-        fs.copyFileSync(
-            path.join('public', 'styles.css'),
-            path.join('dist', 'styles.css')
-        );
-    }
     // Copy legacy stylesheet for any pages that may still reference it
-    if (fs.existsSync(path.join('public', 'styles-organized.css'))) {
-        fs.copyFileSync(
-            path.join('public', 'styles-organized.css'),
-            path.join('dist', 'styles-organized.css')
+    if (existsSync(join('public', 'styles-organized.css'))) {
+        copyFileSync(
+            join('public', 'styles-organized.css'),
+            join('dist', 'styles-organized.css')
         );
     }
     // Copy root assets like sitemap and robots if present
     ['robots.txt', 'sitemap.xml', 'site.webmanifest'].forEach(file => {
-        const src = path.join('public', file);
-        if (fs.existsSync(src)) {
-            fs.copyFileSync(src, path.join('dist', file));
+        const src = join('public', file);
+        if (existsSync(src)) {
+            copyFileSync(src, join('dist', file));
         }
     });
 
     // Copy icons directory if present
-    const iconsSrc = path.join('public', 'icons');
-    const iconsDest = path.join('dist', 'icons');
-    if (fs.existsSync(iconsSrc)) {
-        fs.mkdirSync(iconsDest, { recursive: true });
-        for (const entry of fs.readdirSync(iconsSrc)) {
-            const srcPath = path.join(iconsSrc, entry);
-            const destPath = path.join(iconsDest, entry);
-            const stat = fs.statSync(srcPath);
+    const iconsSrc = join('public', 'icons');
+    const iconsDest = join('dist', 'icons');
+    if (existsSync(iconsSrc)) {
+        mkdirSync(iconsDest, { recursive: true });
+        for (const entry of readdirSync(iconsSrc)) {
+            const srcPath = join(iconsSrc, entry);
+            const destPath = join(iconsDest, entry);
+            const stat = statSync(srcPath);
             if (stat.isDirectory()) {
-                fs.mkdirSync(destPath, { recursive: true });
-                for (const sub of fs.readdirSync(srcPath)) {
-                    fs.copyFileSync(path.join(srcPath, sub), path.join(destPath, sub));
+                mkdirSync(destPath, { recursive: true });
+                for (const sub of readdirSync(srcPath)) {
+                    copyFileSync(join(srcPath, sub), join(destPath, sub));
                 }
             } else {
-                fs.copyFileSync(srcPath, destPath);
+                copyFileSync(srcPath, destPath);
             }
         }
     }
@@ -211,14 +238,15 @@ function copyAssets() {
 // Generate build info
 function generateBuildInfo() {
     console.log('📊 Generating build info...');
+    const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
     const buildInfo = {
         buildTime: new Date().toISOString(),
-        version: require('./package.json').version,
+        version: packageJson.version,
         commit: process.env.GITHUB_SHA || 'local-build'
     };
 
-    fs.writeFileSync(
-        path.join('dist', 'build-info.json'),
+    writeFileSync(
+        join('dist', 'build-info.json'),
         JSON.stringify(buildInfo, null, 2)
     );
 }

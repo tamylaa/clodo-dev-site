@@ -7,7 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Migrate to Cloudflare - Clodo Framework</title>
+    <title>Migrate to Clodo - From Wrangler/Serverless to Enterprise</title>
+    <link rel="canonical" href="https://clodo.dev/migrate.html">
   <meta name="description" content="Automated migrations from Vercel and Railway to Cloudflare Pages & Workers. Clodo provides mappings, scaffolding, validation, and data sync.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,13 +59,64 @@
     ]
   }
   </script>
+  <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Migrate from Vercel/Railway to Cloudflare Workers",
+    "description": "Step-by-step guide to migrate your application from Vercel or Railway to Cloudflare Pages and Workers using Clodo Framework",
+    "totalTime": "PT4H",
+    "supply": [
+      {
+        "@type": "HowToSupply",
+        "name": "Clodo Framework CLI"
+      },
+      {
+        "@type": "HowToSupply",
+        "name": "Cloudflare Account"
+      }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Analyze Your Project",
+        "text": "Run Clodo CLI to detect your framework, middleware, routes, and services from vercel.json, next.config.js, package.json, and environment variables.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Map Services",
+        "text": "Automatically map Vercel/Railway services to Cloudflare equivalents: KV → KV, Blob → R2, Edge Config → KV/DO, Cron → Triggers, Postgres → external PG or D1.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Generate Artifacts",
+        "text": "Create wrangler.toml, _routes.json, headers.json, functions/, and service bindings for your Cloudflare deployment.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Review Parity Report",
+        "text": "Examine the generated parity report for warnings, remediation steps, and any blockers with code pointers.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Deploy Preview",
+        "text": "Optionally provision resources, run preview deployment, execute smoke tests, and prepare for production cutover.",
+        "position": 5
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
   <header>
     <nav class="navbar">
       <div class="nav-container">
-        <div class="logo"><span class="logo-icon">⚡</span><span class="logo-text">Clodo</span></div>
+        <div class="logo"><span class="logo-icon" aria-hidden="true">⚡</span><span class="logo-text">Clodo</span></div>
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="product.html">Product</a></li>
@@ -398,7 +450,7 @@ Action items: listed with code pointers</code></pre>
               <input type="checkbox" id="newsletter-consent" name="consent" required>
               <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html">Privacy Policy</a>.</label>
             </div>
-            <p class="form-message" aria-live="polite" role="status"></p>
+            <div class="form-message" id="newsletter-message" role="alert" aria-live="polite"></div>
             <noscript>
               <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
             </noscript>

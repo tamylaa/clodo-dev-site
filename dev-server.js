@@ -1,18 +1,22 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import { createServer } from 'http';
+import { readFileSync, existsSync } from 'fs';
+import { join, resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Serve root: public by default, or dist if --dist flag provided
 const useDist = process.argv.includes('--dist');
-const publicDir = path.join(__dirname, useDist ? 'dist' : 'public');
+const publicDir = join(__dirname, useDist ? 'dist' : 'public');
 
-let server = http.createServer((req, res) => {
+let server = createServer((req, res) => {
     // Parse URL to remove query parameters
     const urlPath = req.url.split('?')[0];
-    let filePath = path.join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
+    let filePath = join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
 
     // Security check - prevent directory traversal
-    const resolvedPath = path.resolve(filePath);
+    const resolvedPath = resolve(filePath);
     if (!resolvedPath.startsWith(publicDir)) {
         res.writeHead(403);
         res.end('Forbidden');
@@ -20,69 +24,71 @@ let server = http.createServer((req, res) => {
     }
 
     // Check if file exists
-    fs.access(filePath, fs.constants.F_OK, (err) => {
-        if (err) {
-            res.writeHead(404, { 'Content-Type': 'text/html' });
-            res.end(`
-                <!DOCTYPE html>
-                <html>
-                <head><title>404 - File Not Found</title></head>
-                <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
-                    <h1>404 - File Not Found</h1>
-                    <p>The requested file <code>${req.url}</code> was not found.</p>
-                    <p><a href="/">Go back to home</a></p>
-                </body>
-                </html>
-            `);
-            return;
-        }
+    if (!existsSync(filePath)) {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end(`
+            <!DOCTYPE html>
+            <html>
+            <head><title>404 - File Not Found</title></head>
+            <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+                <h1>404 - File Not Found</h1>
+                <p>The requested file <code>${req.url}</code> was not found.</p>
+                <p><a href="/">Go back to home</a></p>
+            </body>
+            </html>
+        `);
+        return;
+    }
 
-        // Get file extension
-        const ext = path.extname(filePath);
-        let contentType = 'text/html';
+    // Get file extension
+    const ext = filePath.split('.').pop()?.toLowerCase() || '';
+    let contentType = 'text/html';
 
-        switch (ext) {
-            case '.css':
-                contentType = 'text/css';
-                break;
-            case '.js':
-                contentType = 'text/javascript';
-                break;
-            case '.json':
-                contentType = 'application/json';
-                break;
-            case '.png':
-                contentType = 'image/png';
-                break;
-            case '.jpg':
-            case '.jpeg':
-                contentType = 'image/jpeg';
-                break;
-            case '.svg':
-                contentType = 'image/svg+xml';
-                break;
-            case '.ico':
-                contentType = 'image/x-icon';
-                break;
-            case '.txt':
-                contentType = 'text/plain';
-                break;
-            case '.xml':
-                contentType = 'application/xml';
-                break;
-        }
+    switch (ext) {
+        case 'css':
+            contentType = 'text/css';
+            break;
+        case 'js':
+            contentType = 'text/javascript';
+            break;
+        case 'json':
+            contentType = 'application/json';
+            break;
+        case 'png':
+            contentType = 'image/png';
+            break;
+        case 'jpg':
+        case 'jpeg':
+            contentType = 'image/jpeg';
+            break;
+        case 'svg':
+            contentType = 'image/svg+xml';
+            break;
+        case 'ico':
+            contentType = 'image/x-icon';
+            break;
+        case 'txt':
+            contentType = 'text/plain';
+            break;
+        case 'xml':
+            contentType = 'application/xml';
+            break;
+        case 'woff':
+            contentType = 'font/woff';
+            break;
+        case 'woff2':
+            contentType = 'font/woff2';
+            break;
+    }
 
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                res.end('Server error');
-                return;
-            }
-
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(data);
-        });
-    });
+    try {
+        const data = readFileSync(filePath);
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+    } catch (error) {
+        res.writeHead(500);
+        res.end('Server error');
+    }
 });
 
 let PORT = parseInt(process.env.PORT, 10) || 8000;
@@ -106,7 +112,7 @@ function startServer(startPort, attemptsLeft = 20) {
                 // Remove current error listener to avoid stacking
                 server.removeAllListeners('error');
                 // Create a new server instance and retry
-                const newServer = http.createServer(/** @type {any} */ (server.listeners('request')[0]));
+                const newServer = createServer(/** @type {any} */ (server.listeners('request')[0]));
                 // Replace server reference
                 server.close(() => {
                     // no-op

@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy & Terms - Clodo Framework</title>
+    <link rel="canonical" href="https://clodo.dev/privacy.html">
     <meta name="description" content="Privacy policy and terms of service for Clodo Framework.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <span class="logo-icon">⚡</span>
+                    <span class="logo-icon" aria-hidden="true">⚡</span>
                     <span class="logo-text">Clodo</span>
                 </div>
                 <ul class="nav-menu">
@@ -135,7 +136,7 @@
                             <input type="checkbox" id="newsletter-consent" name="consent" required>
                             <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html#privacy">Privacy Policy</a>.</label>
                         </div>
-                        <p class="form-message" aria-live="polite" role="status"></p>
+                        <div class="form-message" id="newsletter-message" role="alert" aria-live="polite"></div>
                         <noscript>
                             <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
                         </noscript>

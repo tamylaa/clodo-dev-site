@@ -2,12 +2,13 @@
   "name": "clodo-dev-site",
   "version": "1.0.0",
   "description": "Clodo Framework website - Enterprise Services on Cloudflare Edge",
+  "type": "module",
   "main": "index.html",
   "scripts": {
     "prebuild": "npm run lint && npm run type-check",
     "build": "node build.js",
     "serve": "node dev-server.js",
-  "serve:dist": "node dev-server.js --dist",
+    "serve:dist": "node dev-server.js --dist",
     "dev": "npm run serve",
     "build:serve": "npm run build && npm run serve",
     "clean": "node scripts/clean.js",
@@ -18,7 +19,7 @@
     "test:performance": "cd tests && npm run test:performance",
     "test:coverage": "cd tests && npm run test:coverage",
     "lint:js": "eslint . --ext .js --max-warnings=0",
-    "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\"",
+    "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\" --max-warnings=335",
     "lint": "npm run lint:js && npm run lint:css",
     "type-check": "tsc --noEmit",
     "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'"

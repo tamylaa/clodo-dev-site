@@ -7,7 +7,8 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Clodo Framework</title>
+    <title>Clodo Pricing - Enterprise Cloudflare Workers Plans</title>
+    <link rel="canonical" href="https://clodo.dev/pricing.html">
     <meta name="description" content="Pricing plans for Clodo Framework - open source, hosted service, and enterprise support.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +17,53 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Clodo Framework really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Clodo Framework is completely free and open source under the MIT License. You can use it for personal projects, startups, and enterprise applications without any licensing fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the costs for Cloudflare services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cloudflare Pages and Workers have generous free tiers. Costs scale with usage - typically $0-50/month for most applications. Enterprise plans are available for high-traffic applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When will the hosted service be available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The hosted Clodo service is planned for Q1 2026. It will provide additional features like managed deployments, monitoring, and enterprise support for teams that prefer not to self-host."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer enterprise support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, enterprise support will be available through the hosted service in Q1 2026, including dedicated support, custom integrations, and SLA guarantees."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <span class="logo-icon">⚡</span>
+                    <span class="logo-icon" aria-hidden="true">⚡</span>
                     <span class="logo-text">Clodo</span>
                 </div>
                 <ul class="nav-menu">
@@ -192,7 +233,7 @@
                             <input type="checkbox" id="newsletter-consent" name="consent" required>
                             <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html">Privacy Policy</a>.</label>
                         </div>
-                        <p class="form-message" aria-live="polite" role="status"></p>
+                        <div class="form-message" id="newsletter-message" role="alert" aria-live="polite"></div>
                         <noscript>
                             <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
                         </noscript>

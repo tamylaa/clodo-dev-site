@@ -1,38 +1,22 @@
-// Enhanced JavaScript for clodo.dev
+// Core initialization - loads immediately
 document.addEventListener('DOMContentLoaded', function() {
     try {
-        // Setup theme toggle
+        // Setup critical features first
         setupThemeToggle();
-
-        // Setup lazy loading for images
-        setupLazyLoading();
-
-        // Fetch GitHub stars count
-        fetchGitHubStars();
-
-        // Handle contact form submission
-        setupContactForm();
-
-        // Setup newsletter form with Brevo integration
         setupNewsletterForm();
-
-        // Smooth scrolling for anchor links
         setupSmoothScrolling();
-
-        // Setup navigation active state detection
         setupNavActiveState();
-
-        // Setup mobile menu toggle
         setupMobileMenu();
-
-        // Add fade-in animations on scroll
-        setupScrollAnimations();
-
-    // Setup announcement bar for migration
-    setupAnnouncementBar();
-
-        // Update stats dynamically (placeholder for future API integration)
+        setupContactForm();
+        setupAnnouncementBar();
+        setupMicroInteractions();
         updateDynamicStats();
+
+        // Lazy load non-critical features after initial page load
+        setTimeout(() => {
+            loadDeferredFeatures();
+        }, 100);
+
     } catch (error) {
         console.error('Error initializing application:', error);
         showNotification('Application failed to load properly. Please refresh the page.', 'error');
@@ -42,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Global error handler
 window.addEventListener('error', function(e) {
     console.error('Global error:', e.error);
-    // Don't show notification for every error to avoid spam
 });
 
 window.addEventListener('unhandledrejection', function(e) {
@@ -50,6 +33,9 @@ window.addEventListener('unhandledrejection', function(e) {
     showNotification('An unexpected error occurred. Please try again.', 'error');
 });
 
+// ===== CRITICAL FEATURES (load immediately) =====
+
+// Theme toggle functionality
 function setupThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
@@ -67,7 +53,7 @@ function setupThemeToggle() {
     themeToggle.addEventListener('click', function() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         applyTheme(newTheme);
         themeToggle.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
@@ -93,163 +79,7 @@ function applyTheme(theme) {
     }
 }
 
-function setupLazyLoading() {
-    // Support for native lazy loading attribute
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    
-    // If native lazy loading is supported, we're done
-    if ('loading' in HTMLImageElement.prototype) {
-        return;
-    }
-
-    // Fallback: Use Intersection Observer for older browsers
-    const imageObserverOptions = {
-        threshold: 0.01,
-        rootMargin: '50px'
-    };
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                
-                // Load image from data-src
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                }
-                
-                // Load srcset from data-srcset
-                if (img.dataset.srcset) {
-                    img.srcset = img.dataset.srcset;
-                }
-                
-                // Add loaded class
-                img.classList.add('lazy-loaded');
-                
-                // Stop observing this image
-                observer.unobserve(img);
-            }
-        });
-    }, imageObserverOptions);
-
-    lazyImages.forEach(img => {
-        // Add placeholder if not already present
-        if (!img.dataset.src) {
-            img.dataset.src = img.src;
-            img.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3C/svg%3E';
-        }
-        
-        img.classList.add('lazy');
-        imageObserver.observe(img);
-    });
-
-    // Also setup lazy loading for background images with data-src
-    const lazyBgs = document.querySelectorAll('[data-bg-src]');
-    const bgObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                el.style.backgroundImage = `url(${el.dataset.bgSrc})`;
-                el.classList.add('lazy-loaded');
-                observer.unobserve(el);
-            }
-        });
-    }, imageObserverOptions);
-
-    lazyBgs.forEach(el => {
-        el.classList.add('lazy');
-        bgObserver.observe(el);
-    });
-}
-
-async function fetchGitHubStars() {
-    const starElements = document.querySelectorAll('#star-count, #github-stars');
-
-    try {
-        // Add loading state
-        starElements.forEach(element => {
-            element.setAttribute('aria-live', 'polite');
-            element.setAttribute('aria-busy', 'true');
-            element.classList.add('state-loading');
-            element.innerHTML = '<span class="spinner spinner--sm" aria-hidden="true"></span>';
-        });
-
-        const response = await fetch('https://api.github.com/repos/tamylaa/clodo-framework', {
-            timeout: 5000 // 5 second timeout
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        if (data.stargazers_count !== undefined && data.stargazers_count >= 0) {
-            const formattedCount = data.stargazers_count.toLocaleString();
-            starElements.forEach(element => {
-                element.setAttribute('aria-busy', 'false');
-                element.classList.remove('state-loading');
-                element.classList.add('state-success');
-                element.textContent = formattedCount;
-            });
-            
-            // Cache the result
-            localStorage.setItem('github-stars-cache', formattedCount);
-        } else {
-            throw new Error('Invalid star count data');
-        }
-    } catch (error) {
-        console.warn('Could not fetch GitHub stars:', error.message);
-        // Fallback to cached or default value
-        const fallbackValue = localStorage.getItem('github-stars-cache') || '—';
-        starElements.forEach(element => {
-            element.setAttribute('aria-busy', 'false');
-            element.classList.remove('state-loading');
-            element.classList.add('state-error');
-            element.textContent = fallbackValue;
-        });
-
-        // Cache the fallback for future use
-        if (fallbackValue !== '—') {
-            localStorage.setItem('github-stars-cache', fallbackValue);
-        }
-    }
-}
-
-function setupContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    if (!contactForm) return;
-
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-
-        // Show loading state
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-
-        try {
-            // In a real implementation, this would send to your API
-            // For now, simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Show success message
-            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-
-            // Reset form
-            contactForm.reset();
-
-        } catch (error) {
-            showNotification('Failed to send message. Please try again.', 'error');
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
-    });
-}
-
+// Newsletter form with Brevo integration
 function setupNewsletterForm() {
     const newsletterForm = document.querySelector('.newsletter-form');
     if (!newsletterForm) {
@@ -308,15 +138,15 @@ function setupNewsletterForm() {
         // Validate Cloudflare Turnstile if present and rendered
         const turnstileWidget = document.querySelector('.cf-turnstile');
         let turnstileResponse = null;
-        
+
         if (turnstileWidget) {
             // Get Turnstile response token (only if widget has rendered)
             const turnstileInput = turnstileWidget.querySelector('input[name="cf-turnstile-response"]');
-            
+
             // Only validate if the widget has actually rendered (input exists)
             if (turnstileInput) {
                 turnstileResponse = turnstileInput.value;
-                
+
                 // Only require response if widget has a non-empty value
                 if (turnstileResponse && turnstileResponse.trim() === '') {
                     showFormMessage(messageEl, 'Please complete the verification.', 'error');
@@ -477,15 +307,28 @@ function setupNewsletterForm() {
 function showFormMessage(messageEl, text, type) {
     messageEl.textContent = text;
     messageEl.className = `form-message show ${type}`;
-    
-    // Auto-hide success messages after 5 seconds
+
+    // Add enhanced animations for success states
     if (type === 'success') {
+        // Add success icon animation
+        messageEl.innerHTML = `<span class="icon icon--success icon--animated" aria-hidden="true">✓</span> ${text}`;
+
+        // Trigger success animation
+        messageEl.style.animation = 'none';
+        messageEl.offsetHeight; // Trigger reflow
+        messageEl.style.animation = 'successPulse 0.6s ease-out';
+
+        // Auto-hide success messages after 5 seconds
         setTimeout(() => {
             messageEl.classList.remove('show');
         }, 5000);
+    } else if (type === 'error') {
+        // Add error icon
+        messageEl.innerHTML = `<span class="icon icon--error" aria-hidden="true">⚠</span> ${text}`;
     }
 }
 
+// Smooth scrolling for anchor links
 function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -505,9 +348,10 @@ function setupSmoothScrolling() {
     });
 }
 
+// Navigation active state detection
 function setupNavActiveState() {
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     // Handle scroll-based active state for on-page sections
     const observerOptions = {
         threshold: 0.3,
@@ -552,7 +396,85 @@ function updateActiveNavLink(sectionId) {
     });
 }
 
-// Lightweight site-wide announcement bar promoting migration
+// Mobile menu toggle
+function setupMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (!mobileMenuToggle || !mobileMenu) return;
+
+    // Toggle menu on button click
+    mobileMenuToggle.addEventListener('click', function() {
+        const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+        mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickInsideToggle = mobileMenuToggle.contains(event.target);
+
+        if (!isClickInsideMenu && !isClickInsideToggle && mobileMenu.classList.contains('active')) {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+        }
+    });
+}
+
+// Contact form submission
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            // In a real implementation, this would send to your API
+            // For now, simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Show success message
+            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+
+            // Reset form
+            contactForm.reset();
+
+        } catch (error) {
+            showNotification('Failed to send message. Please try again.', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// Announcement bar for migration
 function setupAnnouncementBar() {
     try {
         const isMigratePage = /migrate\.html$/.test(window.location.pathname);
@@ -583,56 +505,61 @@ function setupAnnouncementBar() {
     }
 }
 
-function setupScrollAnimations() {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-        return; // Skip adding observers for animations
-    }
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+// Update stats dynamically
+function updateDynamicStats() {
+    // Update current year
+    const yearElements = document.querySelectorAll('.current-year');
+    yearElements.forEach(el => {
+        el.textContent = new Date().getFullYear();
+    });
+
+    // Simulate dynamic stats (in production, these would come from APIs)
+    const stats = {
+        users: '10,000+',
+        deployments: '50,000+',
+        uptime: '99.9%'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-            }
+    Object.keys(stats).forEach(key => {
+        const elements = document.querySelectorAll(`.stat-${key}`);
+        elements.forEach(el => {
+            el.textContent = stats[key];
         });
-    }, observerOptions);
-
-    // Observe elements that should animate in
-    document.querySelectorAll('.feature-card, .testimonial, .stat-item').forEach(el => {
-        observer.observe(el);
     });
 }
 
-function updateDynamicStats() {
-    // Placeholder for dynamic stats - in a real app, these would come from APIs
-    const stats = {
-        companies: 0,
-        services: 0
-    };
+// ===== DEFERRED FEATURES (load after page load) =====
 
-    // Animate numbers (simple implementation)
-    animateNumber(document.querySelector('.stat-number'), stats.companies);
+async function loadDeferredFeatures() {
+    try {
+        // Load lazy loading functionality
+        await loadScript('./js/lazy-loading.js');
+
+        // Load GitHub integration
+        await loadScript('./js/github-integration.js');
+
+        // Load scroll animations
+        await loadScript('./js/scroll-animations.js');
+
+    } catch (error) {
+        console.warn('Some deferred features failed to load:', error);
+    }
 }
 
-function animateNumber(element, target) {
-    if (!element) return;
-
-    let current = 0;
-    const increment = target / 50;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current);
-    }, 50);
+// Utility function to load scripts dynamically
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
 }
 
+// ===== UTILITY FUNCTIONS =====
+
+// Notification system
 function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
@@ -680,6 +607,8 @@ function showNotification(message, type = 'info') {
         }, 300);
     }, 5000);
 }
+
+// ===== PERFORMANCE OPTIMIZATION =====
 
 // Navbar scroll effect with requestAnimationFrame + hysteresis
 let lastScrollTop = 0;
@@ -739,49 +668,48 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Performance optimization: Lazy load images (if any)
-// Add any performance monitoring or analytics here
+// Enhanced micro-interactions
+function setupMicroInteractions() {
+    // Enhanced button interactions
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('mousedown', function() {
+            this.style.transform = 'scale(0.98)';
+        });
 
-// Handle mobile menu (placeholder for future implementation)
-function setupMobileMenu() {
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (!mobileMenuToggle || !mobileMenu) return;
+        button.addEventListener('mouseup', function() {
+            this.style.transform = '';
+        });
 
-    // Toggle menu on button click
-    mobileMenuToggle.addEventListener('click', function() {
-        const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-        mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.remove('active');
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
         });
     });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideMenu = mobileMenu.contains(event.target);
-        const isClickInsideToggle = mobileMenuToggle.contains(event.target);
-        
-        if (!isClickInsideMenu && !isClickInsideToggle && mobileMenu.classList.contains('active')) {
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.remove('active');
-        }
+    // Enhanced form input focus effects
+    document.querySelectorAll('.form-input').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('form-group--focused');
+        });
+
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('form-group--focused');
+        });
     });
 
-    // Close menu on escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.remove('active');
-        }
+    // Enhanced card hover effects with staggered animation
+    document.querySelectorAll('.card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 50}ms`;
+    });
+
+    // Add loading state enhancements
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.setAttribute('aria-busy', 'true');
+                submitBtn.disabled = true;
+            }
+        });
     });
 }
 
@@ -789,9 +717,7 @@ function setupMobileMenu() {
 /* eslint-disable no-undef */
 if (typeof module === 'object' && module && typeof module.exports === 'object') {
     module.exports = {
-        fetchGitHubStars,
         setupSmoothScrolling,
-        setupScrollAnimations,
         showNotification
     };
 }
