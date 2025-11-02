@@ -23,9 +23,13 @@ function cleanDist() {
     mkdirSync('dist', { recursive: true });
 }
 
-// Copy HTML files
+// Copy HTML files with template processing
 function copyHtml() {
-    console.log('📄 Copying HTML files...');
+    console.log('📄 Processing HTML files with templates...');
+
+    // Read footer template
+    const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
+
     const htmlFiles = [
         'index.html',
         'about.html',
@@ -49,10 +53,16 @@ function copyHtml() {
         'edge-vs-cloud-computing.html',
         'workers-vs-lambda.html'
     ];
+
     htmlFiles.forEach(file => {
         const srcPath = join('public', file);
         if (existsSync(srcPath)) {
-            writeFileSync(join('dist', file), readFileSync(srcPath, 'utf8'));
+            let content = readFileSync(srcPath, 'utf8');
+
+            // Replace footer placeholder with actual footer content
+            content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
+
+            writeFileSync(join('dist', file), content);
         }
     });
 }
