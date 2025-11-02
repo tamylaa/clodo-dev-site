@@ -36,3 +36,51 @@
 .skip-link:focus {
     top: 6px;
 }
+
+/* ===== NOSCRIPT OVERLAY (replaces inline styles) ===== */
+.noscript-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 80%);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+}
+
+.noscript-link {
+    color: rgb(0 102 204);
+}
+
+/* ===== UTILITY: HEART TEXT COLOR (replaces inline style) ===== */
+.text-heart {
+    color: rgb(226 85 85);
+}
+
+/* ===== THEME ICON VISIBILITY (remove inline display) ===== */
+.theme-icon--dark { display: none; }
+[data-theme="dark"] .theme-icon--dark { display: inline; }
+
+/* ===== TEXT ALIGNMENT UTILITIES ===== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* ===== FONT WEIGHT UTILITIES ===== */
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* ===== FONT SIZE UTILITIES ===== */
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }

@@ -474,36 +474,235 @@ function setupContactForm() {
     });
 }
 
-// Announcement bar for migration
-function setupAnnouncementBar() {
-    try {
-        const isMigratePage = /migrate\.html$/.test(window.location.pathname);
-        if (isMigratePage) return; // don't show on migrate page itself
-
-        const banner = document.querySelector('.migration-banner');
-        if (!banner) return; // banner not found
-
-        // Check if user has dismissed the banner
-        // Temporarily disabled to ensure banner is visible
-        // if (localStorage.getItem('cf-migrate-announcement-dismissed') === 'true') {
-        //     banner.style.display = 'none';
-        //     return;
-        // }
-
-        // Show the banner (it's already in the HTML)
-        banner.style.display = 'block';
-
-        const dismissBtn = banner.querySelector('.banner-close');
-        if (dismissBtn) {
-            dismissBtn.addEventListener('click', () => {
-                localStorage.setItem('cf-migrate-announcement-dismissed', 'true');
-                banner.style.display = 'none';
-            });
-        }
-    } catch (e) {
-        // Non-fatal
-        console.warn('Announcement bar failed:', e);
+// Comprehensive Announcement Banner System
+class AnnouncementBanner {
+    constructor() {
+        this.banners = [];
+        this.storageKey = 'clodo-announcements';
+        this.init();
     }
+
+    init() {
+        this.loadBanners();
+        this.renderBanners();
+        this.setupEventListeners();
+        this.autoHideBanners();
+    }
+
+    // Define all available announcements
+    getAvailableBanners() {
+        return [
+            {
+                id: 'migration-2025',
+                type: 'info',
+                priority: 10,
+                title: 'New: Migrate to Cloudflare',
+                message: 'Migrate from Vercel/Railway to Cloudflare with Clodo Framework. Get enterprise-grade performance and security.',
+                link: {
+                    text: 'Learn more',
+                    url: 'migrate.html'
+                },
+                dismissible: true,
+                autoHide: false,
+                startDate: '2025-01-01',
+                endDate: '2025-12-31',
+                targetPages: ['index.html', 'about.html', 'product.html'], // Show on specific pages
+                excludePages: ['migrate.html'] // Don't show on these pages
+            },
+            {
+                id: 'launch-announcement',
+                type: 'success',
+                priority: 5,
+                title: '🎉 Clodo Framework v1.0 Released!',
+                message: 'Enterprise SaaS development just got 10x faster. Build production-ready applications on Cloudflare Edge.',
+                link: {
+                    text: 'Get Started',
+                    url: 'docs.html'
+                },
+                dismissible: true,
+                autoHide: 30000, // Auto-hide after 30 seconds
+                startDate: '2025-11-01',
+                endDate: '2025-11-30'
+            }
+        ];
+    }
+
+    loadBanners() {
+        const dismissed = this.getDismissedBanners();
+        const available = this.getAvailableBanners();
+
+        // Filter banners based on date, dismissal status, and page targeting
+        this.banners = available.filter(banner => {
+            // Check if banner is dismissed
+            if (dismissed.includes(banner.id)) return false;
+
+            // Check date range
+            const now = new Date();
+            const startDate = banner.startDate ? new Date(banner.startDate) : null;
+            const endDate = banner.endDate ? new Date(banner.endDate) : null;
+
+            if (startDate && now < startDate) return false;
+            if (endDate && now > endDate) return false;
+
+            // Check page targeting
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+            if (banner.excludePages && banner.excludePages.includes(currentPage)) return false;
+            if (banner.targetPages && !banner.targetPages.includes(currentPage)) return false;
+
+            return true;
+        }).sort((a, b) => b.priority - a.priority); // Sort by priority
+    }
+
+    renderBanners() {
+        const container = document.querySelector('.announcement-container');
+        if (!container) {
+            // Create container if it doesn't exist
+            const newContainer = document.createElement('div');
+            newContainer.className = 'announcement-container';
+            document.body.insertBefore(newContainer, document.body.firstChild);
+        }
+
+        const containerElement = document.querySelector('.announcement-container');
+        if (!containerElement) return;
+
+        // Clear existing banners
+        containerElement.innerHTML = '';
+
+        // Render active banners
+        this.banners.forEach(banner => {
+            const bannerElement = this.createBannerElement(banner);
+            containerElement.appendChild(bannerElement);
+        });
+    }
+
+    createBannerElement(banner) {
+        const bannerDiv = document.createElement('div');
+        bannerDiv.className = `announcement-banner announcement-${banner.type}`;
+        bannerDiv.setAttribute('data-banner-id', banner.id);
+        bannerDiv.setAttribute('role', 'banner');
+        bannerDiv.setAttribute('aria-label', `${banner.type} announcement`);
+
+        bannerDiv.innerHTML = `
+            <div class="announcement-content">
+                <div class="announcement-icon">
+                    ${this.getBannerIcon(banner.type)}
+                </div>
+                <div class="announcement-text">
+                    ${banner.title ? `<strong class="announcement-title">${banner.title}</strong>` : ''}
+                    <span class="announcement-message">${banner.message}</span>
+                </div>
+                <div class="announcement-actions">
+                    ${banner.link ? `<a href="${banner.link.url}" class="announcement-link">${banner.link.text}</a>` : ''}
+                    ${banner.dismissible ? `<button class="announcement-close" aria-label="Dismiss announcement" data-banner-id="${banner.id}">×</button>` : ''}
+                </div>
+            </div>
+        `;
+
+        return bannerDiv;
+    }
+
+    getBannerIcon(type) {
+        const icons = {
+            info: 'ℹ️',
+            success: '✅',
+            warning: '⚠️',
+            error: '❌',
+            news: '📰'
+        };
+        return icons[type] || '📢';
+    }
+
+    setupEventListeners() {
+        // Handle banner dismissal
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('announcement-close')) {
+                const bannerId = e.target.getAttribute('data-banner-id');
+                this.dismissBanner(bannerId);
+            }
+        });
+
+        // Handle banner links (track clicks if needed)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('announcement-link')) {
+                const bannerId = e.target.closest('.announcement-banner').getAttribute('data-banner-id');
+                this.trackBannerClick(bannerId);
+            }
+        });
+    }
+
+    dismissBanner(bannerId) {
+        const dismissed = this.getDismissedBanners();
+        dismissed.push(bannerId);
+        localStorage.setItem(this.storageKey, JSON.stringify(dismissed));
+
+        // Animate out and remove
+        const banner = document.querySelector(`[data-banner-id="${bannerId}"]`);
+        if (banner) {
+            banner.style.animation = 'slideOutUp 0.3s ease-out forwards';
+            setTimeout(() => {
+                banner.remove();
+            }, 300);
+        }
+    }
+
+    getDismissedBanners() {
+        try {
+            return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    autoHideBanners() {
+        this.banners.forEach(banner => {
+            if (banner.autoHide && banner.autoHide > 0) {
+                setTimeout(() => {
+                    const bannerElement = document.querySelector(`[data-banner-id="${banner.id}"]`);
+                    if (bannerElement && !bannerElement.classList.contains('dismissed')) {
+                        this.dismissBanner(banner.id);
+                    }
+                }, banner.autoHide);
+            }
+        });
+    }
+
+    trackBannerClick(bannerId) {
+        // Track banner clicks for analytics
+        try {
+            const clicks = JSON.parse(localStorage.getItem('banner-clicks') || '{}');
+            clicks[bannerId] = (clicks[bannerId] || 0) + 1;
+            localStorage.setItem('banner-clicks', JSON.stringify(clicks));
+        } catch (e) {
+            // Non-fatal
+        }
+    }
+
+    // Admin methods for managing banners
+    resetAllBanners() {
+        localStorage.removeItem(this.storageKey);
+        localStorage.removeItem('banner-clicks');
+        this.init();
+    }
+
+    showBanner(bannerId) {
+        const dismissed = this.getDismissedBanners();
+        const index = dismissed.indexOf(bannerId);
+        if (index > -1) {
+            dismissed.splice(index, 1);
+            localStorage.setItem(this.storageKey, JSON.stringify(dismissed));
+            this.init();
+        }
+    }
+}
+
+// Initialize announcement system
+new AnnouncementBanner();
+
+// Legacy function for backward compatibility
+function setupAnnouncementBar() {
+    // This function is now handled by the AnnouncementBanner class
+    // Keeping for backward compatibility
 }
 
 // Update stats dynamically

@@ -59,6 +59,12 @@ function copyHtml() {
         if (existsSync(srcPath)) {
             let content = readFileSync(srcPath, 'utf8');
 
+            // Add announcement container after body tag
+            content = content.replace(
+                /<body>/,
+                '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
+            );
+
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
 
@@ -71,16 +77,28 @@ function copyHtml() {
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
 
-    // public/styles.css now contains all CSS - just minify it directly
+    // Resolve @import statements and bundle all CSS files
     const cssFiles = [
-        'styles.css' // Single source of truth containing all CSS
+        'css/base.css',
+        'css/utilities.css',
+        'css/components.css',
+        'css/layout.css',
+        'css/pages/index.css',
+        'css/pages/product.css',
+        'css/pages/about.css',
+        'css/pages/migrate.css',
+        'css/pages/subscribe.css',
+        'css/pages/subscribe-enhanced.css'
     ];
     let bundled = '';
 
     cssFiles.forEach(file => {
         const filePath = join('public', file);
         if (existsSync(filePath)) {
+            console.log(`📄 Including ${file}`);
             bundled += readFileSync(filePath, 'utf8') + '\n';
+        } else {
+            console.warn(`⚠️  CSS file not found: ${file}`);
         }
     });
 
@@ -95,19 +113,7 @@ function bundleCss() {
         .trim();
 
     writeFileSync(join('dist', 'styles.css'), minified);
-    // Note: Don't overwrite public/styles.css - keep it readable for development
-
-    // Copy critical CSS to dist
-    // Temporarily disabled - consolidating with base.css
-    /*
-    if (existsSync(join('public', 'css', 'critical.css'))) {
-        mkdirSync(join('dist', 'css'), { recursive: true });
-        writeFileSync(
-            join('dist', 'css', 'critical.css'),
-            readFileSync(join('public', 'css', 'critical.css'), 'utf8')
-        );
-    }
-    */
+    console.log(`📦 Bundled CSS: ${minified.length} bytes`);
 }
 
 function minifyCss() {
