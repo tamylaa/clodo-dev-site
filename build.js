@@ -51,7 +51,9 @@ function copyHtml() {
         'what-is-cloudflare-workers.html',
         'how-to-migrate-from-wrangler.html',
         'edge-vs-cloud-computing.html',
-        'workers-vs-lambda.html'
+        'workers-vs-lambda.html',
+        // Article pages
+        'clodo-framework-promise-to-reality.html'
     ];
 
     htmlFiles.forEach(file => {
