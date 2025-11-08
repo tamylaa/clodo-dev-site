@@ -884,7 +884,16 @@
     animation-delay: 0.5s;
 }
 
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
 .stat-item {
+    flex: 1;
+    max-width: 200px;
     text-align: center;
     padding: 1rem;
     transition: all 0.3s ease;
@@ -1083,6 +1092,17 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        flex: none;
+        max-width: none;
     }
 
     .btn {
