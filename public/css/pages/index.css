@@ -155,6 +155,15 @@
     max-width: 600px;
 }
 
+.blog-hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
 .hero-actions {
     display: flex;
     gap: clamp(1rem, 2vw, 1.5rem);
