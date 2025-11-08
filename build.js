@@ -53,7 +53,8 @@ function copyHtml() {
         'edge-vs-cloud-computing.html',
         'workers-vs-lambda.html',
         // Article pages
-        'clodo-framework-promise-to-reality.html'
+        'clodo-framework-promise-to-reality.html',
+        'clodo-framework-api-simplification.html'
     ];
 
     htmlFiles.forEach(file => {
