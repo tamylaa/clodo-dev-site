@@ -1017,7 +1017,8 @@ function showTryModal() {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(0, 0, 0, 0.8);
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(4px);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1026,14 +1027,16 @@ function showTryModal() {
             }
 
             .modal-content {
-                background: var(--color-bg-primary);
+                background: var(--bg-primary);
+                border: 1px solid var(--border-color);
                 border-radius: 12px;
                 max-width: 500px;
                 width: 90%;
                 max-height: 90vh;
                 overflow-y: auto;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
                 animation: modalSlideIn 0.3s ease-out;
+                position: relative;
             }
 
             .modal-close {
@@ -1042,7 +1045,7 @@ function showTryModal() {
                 right: 16px;
                 background: none;
                 border: none;
-                color: var(--color-text-secondary);
+                color: var(--text-secondary);
                 cursor: pointer;
                 padding: 8px;
                 border-radius: 6px;
@@ -1050,13 +1053,13 @@ function showTryModal() {
             }
 
             .modal-close:hover {
-                background: var(--color-bg-secondary);
-                color: var(--color-text-primary);
+                background: var(--bg-secondary);
+                color: var(--text-primary);
             }
 
             .modal-header {
                 padding: 24px 24px 16px;
-                border-bottom: 1px solid var(--color-border);
+                border-bottom: 1px solid var(--border-color);
             }
 
             .modal-header h2 {
@@ -1067,7 +1070,7 @@ function showTryModal() {
 
             .modal-header p {
                 margin: 0;
-                color: var(--color-text-secondary);
+                color: var(--text-secondary);
                 font-size: 0.95rem;
             }
 
@@ -1085,16 +1088,16 @@ function showTryModal() {
                 display: flex;
                 align-items: center;
                 padding: 16px;
-                border: 2px solid var(--color-border);
+                border: 2px solid var(--border-color);
                 border-radius: 8px;
                 cursor: pointer;
                 transition: all 0.2s;
-                background: var(--color-bg-primary);
+                background: var(--bg-primary);
             }
 
             .setup-option:hover {
-                border-color: var(--color-accent);
-                background: var(--color-bg-secondary);
+                border-color: var(--primary-color);
+                background: var(--bg-secondary);
                 transform: translateY(-1px);
             }
 
@@ -1117,34 +1120,34 @@ function showTryModal() {
 
             .option-content p {
                 margin: 0 0 4px 0;
-                color: var(--color-text-secondary);
+                color: var(--text-secondary);
                 font-size: 0.9rem;
             }
 
             .option-content code {
-                background: var(--color-bg-secondary);
+                background: var(--bg-secondary);
                 padding: 2px 6px;
                 border-radius: 4px;
                 font-size: 0.8rem;
-                color: var(--color-accent);
+                color: var(--primary-color);
             }
 
             .option-arrow {
                 font-size: 1.2rem;
-                color: var(--color-accent);
+                color: var(--primary-color);
                 margin-left: 16px;
             }
 
             .modal-footer {
                 margin-top: 20px;
                 padding-top: 16px;
-                border-top: 1px solid var(--color-border);
+                border-top: 1px solid var(--border-color);
             }
 
             .modal-note {
                 margin: 0;
                 font-size: 0.9rem;
-                color: var(--color-text-secondary);
+                color: var(--text-secondary);
                 text-align: center;
             }
 
