@@ -445,29 +445,41 @@ const tenantData = await clodo.isolate(req.tenantId)
                 return;
             }
 
-            const demo = demos[currentDemo];
-            document.getElementById('demo-output').textContent = demo.output;
+            // Open live Gitpod sandbox for actual code execution
+            const gitpodUrl = `https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site`;
+            window.open(gitpodUrl, '_blank');
 
-            // Show progression CTA after successful demo
+            document.getElementById('demo-output').textContent =
+                '🚀 Opening live development environment...\n\n' +
+                'A new tab will open with a fully functional Clodo workspace where you can:\n' +
+                '• Run the actual code\n' +
+                '• Modify and experiment\n' +
+                '• See real-time execution\n' +
+                '• Deploy to production\n\n' +
+                'No setup required - everything works out of the box!';
+
+            // Show progression CTA after opening sandbox
             setTimeout(() => {
                 document.getElementById('progression-cta').style.display = 'block';
-            }, 5000);
+            }, 3000);
         }
 
         function resetDemo() {
             currentDemo = 'intro';
             document.getElementById('demo-title').textContent = 'Select a demo above to get started!';
             document.getElementById('demo-output').textContent =
-`Welcome to Clodo Framework!
+`Welcome to Clodo Framework Live Demo!
 
-This interactive demo shows how easy it is to build enterprise applications.
+Experience the power of Clodo with real, executable code examples.
 
-Click on any demo card above to explore different features, then click "Run Demo" to see it in action.
+Click on any demo card above to explore different features, then click "Run Demo" to launch a live development environment where you can:
 
-Features demonstrated:
-• RESTful API creation
-• Database operations
-• Authentication & security
+• Execute the actual code in real-time
+• Modify and experiment with the examples
+• See live API responses and database operations
+• Deploy applications instantly
+
+No installation required - everything runs in your browser!`;
 • Cloud deployment
 • Multi-tenant architecture`;
         }
