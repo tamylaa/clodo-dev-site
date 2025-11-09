@@ -1,0 +1,9 @@
+image: gitpod/workspace-full
+
+tasks:
+  - init: npm ci
+    command: node setup-clodo.mjs demo-app
+
+ports:
+  - port: 8787
+    onOpen: open-preview

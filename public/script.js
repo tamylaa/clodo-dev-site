@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setupContactForm();
         setupAnnouncementBar();
         setupMicroInteractions();
+        setupTryModal();
         updateDynamicStats();
 
         // Lazy load non-critical features after initial page load
@@ -913,6 +914,12 @@ function setupMicroInteractions() {
     });
 }
 
+// Try modal setup
+function setupTryModal() {
+    // Modal functionality is already defined globally
+    // This function ensures it's available when needed
+}
+
 // Exports for unit tests (Node/CommonJS environment)
 /* eslint-disable no-undef */
 if (typeof module === 'object' && module && typeof module.exports === 'object') {
@@ -922,3 +929,311 @@ if (typeof module === 'object' && module && typeof module.exports === 'object') 
     };
 }
 /* eslint-enable no-undef */
+
+// ===== TRY CLODO MODAL FUNCTIONALITY =====
+
+/* eslint-disable no-unused-vars */
+function showTryModal() {
+    // Create modal HTML
+    const modalHTML = `
+        <div id="try-modal" class="modal-overlay" role="dialog" aria-labelledby="try-modal-title" aria-describedby="try-modal-desc">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeTryModal()" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <div class="modal-header">
+                    <h2 id="try-modal-title">🚀 Try Clodo Framework</h2>
+                    <p id="try-modal-desc">Get started with Clodo in under 1 minute. Choose your preferred setup method:</p>
+                </div>
+
+                <div class="modal-body">
+                    <div class="setup-options">
+                        <div class="setup-option" onclick="runPowerShellSetup()">
+                            <div class="option-icon">🪟</div>
+                            <div class="option-content">
+                                <h3>Windows (PowerShell)</h3>
+                                <p>Automated setup for Windows users</p>
+                                <code>./setup-clodo.ps1 my-app</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+
+                        <div class="setup-option" onclick="runJSSetup()">
+                            <div class="option-icon">🌐</div>
+                            <div class="option-content">
+                                <h3>Cross-platform (Node.js)</h3>
+                                <p>Works on Windows, macOS, Linux</p>
+                                <code>node setup-clodo.js my-app</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+
+                        <div class="setup-option" onclick="openGitpod()">
+                            <div class="option-icon">🌐</div>
+                            <div class="option-content">
+                                <h3>Browser (Gitpod)</h3>
+                                <p>No installation required</p>
+                                <code>Open in browser</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <p class="modal-note">
+                            💡 <strong>Pro tip:</strong> All options create a complete working app with API endpoints, database integration, and deployment ready.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal styles
+    const modalStyles = `
+        <style>
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: modalFadeIn 0.3s ease-out;
+            }
+
+            .modal-content {
+                background: var(--color-bg-primary);
+                border-radius: 12px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: modalSlideIn 0.3s ease-out;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: none;
+                border: none;
+                color: var(--color-text-secondary);
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 6px;
+                transition: all 0.2s;
+            }
+
+            .modal-close:hover {
+                background: var(--color-bg-secondary);
+                color: var(--color-text-primary);
+            }
+
+            .modal-header {
+                padding: 24px 24px 16px;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .modal-header h2 {
+                margin: 0 0 8px 0;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .modal-header p {
+                margin: 0;
+                color: var(--color-text-secondary);
+                font-size: 0.95rem;
+            }
+
+            .modal-body {
+                padding: 24px;
+            }
+
+            .setup-options {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .setup-option {
+                display: flex;
+                align-items: center;
+                padding: 16px;
+                border: 2px solid var(--color-border);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s;
+                background: var(--color-bg-primary);
+            }
+
+            .setup-option:hover {
+                border-color: var(--color-accent);
+                background: var(--color-bg-secondary);
+                transform: translateY(-1px);
+            }
+
+            .option-icon {
+                font-size: 1.5rem;
+                margin-right: 16px;
+                width: 40px;
+                text-align: center;
+            }
+
+            .option-content {
+                flex: 1;
+            }
+
+            .option-content h3 {
+                margin: 0 0 4px 0;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            .option-content p {
+                margin: 0 0 4px 0;
+                color: var(--color-text-secondary);
+                font-size: 0.9rem;
+            }
+
+            .option-content code {
+                background: var(--color-bg-secondary);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                color: var(--color-accent);
+            }
+
+            .option-arrow {
+                font-size: 1.2rem;
+                color: var(--color-accent);
+                margin-left: 16px;
+            }
+
+            .modal-footer {
+                margin-top: 20px;
+                padding-top: 16px;
+                border-top: 1px solid var(--color-border);
+            }
+
+            .modal-note {
+                margin: 0;
+                font-size: 0.9rem;
+                color: var(--color-text-secondary);
+                text-align: center;
+            }
+
+            @keyframes modalFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            @media (max-width: 640px) {
+                .modal-content {
+                    margin: 20px;
+                    width: calc(100% - 40px);
+                }
+
+                .setup-option {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 8px;
+                }
+
+                .option-icon {
+                    margin-right: 0;
+                    margin-bottom: 8px;
+                }
+
+                .option-arrow {
+                    margin-left: 0;
+                    margin-top: 8px;
+                }
+            }
+        </style>
+    `;
+
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalStyles + modalHTML);
+
+    // Focus management
+    const modal = document.getElementById('try-modal');
+    modal.focus();
+
+    // Close on escape key
+    document.addEventListener('keydown', handleModalKeydown);
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTryModal() {
+    const modal = document.getElementById('try-modal');
+    if (modal) {
+        modal.remove();
+        document.removeEventListener('keydown', handleModalKeydown);
+        document.body.style.overflow = '';
+    }
+}
+
+function handleModalKeydown(event) {
+    if (event.key === 'Escape') {
+        closeTryModal();
+    }
+}
+
+function runPowerShellSetup() {
+    closeTryModal();
+
+    // Copy PowerShell command to clipboard
+    const command = `Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.ps1" -OutFile "setup-clodo.ps1"; ./setup-clodo.ps1 my-clodo-app`;
+    navigator.clipboard.writeText(command).then(() => {
+        showNotification('PowerShell command copied to clipboard! Open PowerShell and paste to get started.', 'success');
+    }).catch(() => {
+        showNotification('Copy this command: ' + command, 'info');
+    });
+}
+
+function runJSSetup() {
+    closeTryModal();
+
+    // Copy JavaScript command to clipboard
+    const command = `curl -o setup-clodo.js https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.js && node setup-clodo.js my-clodo-app`;
+    navigator.clipboard.writeText(command).then(() => {
+        showNotification('JavaScript command copied to clipboard! Open terminal and paste to get started.', 'success');
+    }).catch(() => {
+        showNotification('Copy this command: ' + command, 'info');
+    });
+}
+
+function openGitpod() {
+    closeTryModal();
+
+    // Open Gitpod workspace
+    const gitpodUrl = 'https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site';
+    window.open(gitpodUrl, '_blank');
+
+    showNotification('Opening Clodo Framework in Gitpod...', 'info');
+}
+/* eslint-enable no-unused-vars */
