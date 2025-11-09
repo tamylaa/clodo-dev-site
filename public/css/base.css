@@ -200,6 +200,7 @@ body {
     background-color: var(--bg-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
     animation: fadeIn 0.6s ease-out forwards;
 }
 
@@ -315,6 +316,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: var(--spacing-md);
+    overflow-x: auto;
+    display: block;
 }
 
 th, td {
