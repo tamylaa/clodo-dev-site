@@ -990,7 +990,9 @@ function setupTryModal() {
     // Add event listener to Try Now button
     const tryNowBtn = document.getElementById('try-now-btn');
     if (tryNowBtn) {
-        tryNowBtn.addEventListener('click', showTryModal);
+        tryNowBtn.addEventListener('click', function() {
+            window.open('/demo/index.html', '_blank');
+        });
     }
 }
 
