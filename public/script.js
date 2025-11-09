@@ -1238,21 +1238,11 @@ function showTryModal() {
                             </div>
                             <div class="option-arrow">→</div>
                         </div>
-
-                        <div class="setup-option" data-action="gitpod">
-                            <div class="option-icon">⚙️</div>
-                            <div class="option-content">
-                                <h3>Full Development</h3>
-                                <p>Set up your own Clodo project</p>
-                                <code>Advanced users</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
                     </div>
 
                     <div class="modal-footer">
                         <p class="modal-note">
-                            💡 <strong>Pro tip:</strong> All options create a complete working app with API endpoints, database integration, and deployment ready.
+                            💡 <strong>Pro tip:</strong> These options create a complete working app with API endpoints, database integration, and deployment ready.
                         </p>
                     </div>
                 </div>
@@ -1276,9 +1266,6 @@ function showTryModal() {
                     break;
                 case 'demo':
                     openDemo();
-                    break;
-                case 'gitpod':
-                    openGitpod();
                     break;
             }
         });
@@ -1344,15 +1331,5 @@ function openDemo() {
     window.open('./demo/', '_blank');
 
     showNotification('Opening Clodo Framework live demo...', 'info');
-}
-
-function openGitpod() {
-    closeTryModal();
-
-    // Open Gitpod workspace
-    const gitpodUrl = 'https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site';
-    window.open(gitpodUrl, '_blank');
-
-    showNotification('Opening Clodo Framework development environment...', 'info');
 }
 /* eslint-enable no-unused-vars */
