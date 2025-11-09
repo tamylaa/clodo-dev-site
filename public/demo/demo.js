@@ -238,8 +238,19 @@ document.getElementById('feedback-form').addEventListener('submit', (e) => {
 });
 
 // Progression actions
-function openGitpod() {
-    window.open('https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site', '_blank');
+function runLiveSetup() {
+    // Copy setup commands to clipboard for immediate use
+    const commands = [
+        'PowerShell: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.ps1" -OutFile "setup-clodo.ps1"; ./setup-clodo.ps1 my-app',
+        'JavaScript: curl -o setup-clodo.js https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.js && node setup-clodo.js my-app'
+    ];
+
+    navigator.clipboard.writeText(commands.join('\n\n')).then(() => {
+        alert('🚀 Setup commands copied!\n\nPaste them in your terminal to create your own Clodo project instantly.\n\nThis will create a complete working app with API endpoints, database, and deployment ready!');
+    }).catch(() => {
+        // Fallback if clipboard access fails
+        alert('Setup commands:\n\n' + commands.join('\n\n') + '\n\nPaste these in your terminal to create your Clodo project!');
+    });
 }
 
 function downloadScripts() {
@@ -259,6 +270,6 @@ function visitDocs() {
 }
 
 // Make functions globally available for modal.js
-window.openGitpod = openGitpod;
+window.runLiveSetup = runLiveSetup;
 window.downloadScripts = downloadScripts;
 window.visitDocs = visitDocs;
