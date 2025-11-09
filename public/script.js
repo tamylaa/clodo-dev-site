@@ -916,8 +916,11 @@ function setupMicroInteractions() {
 
 // Try modal setup
 function setupTryModal() {
-    // Modal functionality is already defined globally
-    // This function ensures it's available when needed
+    // Add event listener to Try Now button
+    const tryNowBtn = document.getElementById('try-now-btn');
+    if (tryNowBtn) {
+        tryNowBtn.addEventListener('click', showTryModal);
+    }
 }
 
 // Exports for unit tests (Node/CommonJS environment)
@@ -934,67 +937,8 @@ if (typeof module === 'object' && module && typeof module.exports === 'object') 
 
 /* eslint-disable no-unused-vars */
 function showTryModal() {
-    // Create modal HTML
+    // Create modal HTML with embedded styles
     const modalHTML = `
-        <div id="try-modal" class="modal-overlay" role="dialog" aria-labelledby="try-modal-title" aria-describedby="try-modal-desc">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeTryModal()" aria-label="Close modal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-
-                <div class="modal-header">
-                    <h2 id="try-modal-title">🚀 Try Clodo Framework</h2>
-                    <p id="try-modal-desc">Get started with Clodo in under 1 minute. Choose your preferred setup method:</p>
-                </div>
-
-                <div class="modal-body">
-                    <div class="setup-options">
-                        <div class="setup-option" onclick="runPowerShellSetup()">
-                            <div class="option-icon">🪟</div>
-                            <div class="option-content">
-                                <h3>Windows (PowerShell)</h3>
-                                <p>Automated setup for Windows users</p>
-                                <code>./setup-clodo.ps1 my-app</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
-
-                        <div class="setup-option" onclick="runJSSetup()">
-                            <div class="option-icon">🌐</div>
-                            <div class="option-content">
-                                <h3>Cross-platform (Node.js)</h3>
-                                <p>Works on Windows, macOS, Linux</p>
-                                <code>node setup-clodo.js my-app</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
-
-                        <div class="setup-option" onclick="openGitpod()">
-                            <div class="option-icon">🌐</div>
-                            <div class="option-content">
-                                <h3>Browser (Gitpod)</h3>
-                                <p>No installation required</p>
-                                <code>Open in browser</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <p class="modal-note">
-                            💡 <strong>Pro tip:</strong> All options create a complete working app with API endpoints, database integration, and deployment ready.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-
-    // Add modal styles
-    const modalStyles = `
         <style>
             .modal-overlay {
                 position: fixed;
@@ -1172,10 +1116,87 @@ function showTryModal() {
                 }
             }
         </style>
+
+        <div id="try-modal" class="modal-overlay" role="dialog" aria-labelledby="try-modal-title" aria-describedby="try-modal-desc">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <div class="modal-header">
+                    <h2 id="try-modal-title">🚀 Try Clodo Framework</h2>
+                    <p id="try-modal-desc">Get started with Clodo in under 1 minute. Choose your preferred setup method:</p>
+                </div>
+
+                <div class="modal-body">
+                    <div class="setup-options">
+                        <div class="setup-option" data-action="powershell">
+                            <div class="option-icon">🪟</div>
+                            <div class="option-content">
+                                <h3>Windows (PowerShell)</h3>
+                                <p>Automated setup for Windows users</p>
+                                <code>./setup-clodo.ps1 my-app</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+
+                        <div class="setup-option" data-action="javascript">
+                            <div class="option-icon">🌐</div>
+                            <div class="option-content">
+                                <h3>Cross-platform (Node.js)</h3>
+                                <p>Works on Windows, macOS, Linux</p>
+                                <code>node setup-clodo.js my-app</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+
+                        <div class="setup-option" data-action="gitpod">
+                            <div class="option-icon">🌐</div>
+                            <div class="option-content">
+                                <h3>Browser (Gitpod)</h3>
+                                <p>No installation required</p>
+                                <code>Open in browser</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <p class="modal-note">
+                            💡 <strong>Pro tip:</strong> All options create a complete working app with API endpoints, database integration, and deployment ready.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     `;
 
     // Add modal to page
-    document.body.insertAdjacentHTML('beforeend', modalStyles + modalHTML);
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    // Add event listeners to setup options
+    document.querySelectorAll('.setup-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            switch(action) {
+                case 'powershell':
+                    runPowerShellSetup();
+                    break;
+                case 'javascript':
+                    runJSSetup();
+                    break;
+                case 'gitpod':
+                    openGitpod();
+                    break;
+            }
+        });
+    });
+
+    // Add event listener to close button
+    document.querySelector('.modal-close').addEventListener('click', closeTryModal);
 
     // Focus management
     const modal = document.getElementById('try-modal');
