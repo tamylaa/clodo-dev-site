@@ -144,7 +144,7 @@ function runDemo() {
     setTimeout(() => {
         document.getElementById('demo-output').textContent +=
             '\n\n🚀 Want to run this LIVE?\n' +
-            'Click "Try Live Execution" below to open a real development environment!';
+            'Click "Try Live Execution" below to get setup commands for your local machine!';
 
         // Add live execution button
         const liveBtn = document.createElement('button');
@@ -152,8 +152,18 @@ function runDemo() {
         liveBtn.style.marginTop = '1rem';
         liveBtn.textContent = '🔥 Try Live Execution';
         liveBtn.onclick = () => {
-            const stackblitzUrl = `https://stackblitz.com/github/tamylaa/clodo-dev-site?file=README.md`;
-            window.open(stackblitzUrl, '_blank');
+            // Copy setup commands to clipboard (like the modal does)
+            const commands = [
+                'PowerShell: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.ps1" -OutFile "setup-clodo.ps1"; ./setup-clodo.ps1 my-app',
+                'JavaScript: curl -o setup-clodo.js https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.js && node setup-clodo.js my-app'
+            ];
+
+            navigator.clipboard.writeText(commands.join('\n\n')).then(() => {
+                alert('Setup commands copied to clipboard! 💾\n\nPaste them in your terminal to create your own Clodo project.');
+            }).catch(() => {
+                // Fallback if clipboard access fails
+                alert('Setup commands:\n\n' + commands.join('\n\n'));
+            });
         };
         document.querySelector('.interactive-demo').appendChild(liveBtn);
     }, 2000);
