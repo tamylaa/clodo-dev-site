@@ -7,5 +7,14 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0' https://static.cloudflareinsights.com; script-src-elem 'self' 'nonce-N0Nc3Cl0d0' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://api.brevo.com; object-src 'none'; base-uri 'self'; form-action 'self';
 
-/js/*
+/js/lazy-loading.js
+  Content-Type: application/javascript
+
+/js/github-integration.js
+  Content-Type: application/javascript
+
+/js/scroll-animations.js
+  Content-Type: application/javascript
+
+/js/component-nav.js
   Content-Type: application/javascript
