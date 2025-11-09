@@ -445,18 +445,27 @@ const tenantData = await clodo.isolate(req.tenantId)
                 return;
             }
 
-            // Open live Gitpod sandbox for actual code execution
-            const gitpodUrl = `https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site`;
-            window.open(gitpodUrl, '_blank');
+            // Show instant preview first, then offer live execution
+            const demo = demos[currentDemo];
+            document.getElementById('demo-output').textContent = demo.output;
 
-            document.getElementById('demo-output').textContent =
-                '🚀 Opening live development environment...\n\n' +
-                'A new tab will open with a fully functional Clodo workspace where you can:\n' +
-                '• Run the actual code\n' +
-                '• Modify and experiment\n' +
-                '• See real-time execution\n' +
-                '• Deploy to production\n\n' +
-                'No setup required - everything works out of the box!';
+            // Add live execution option after preview
+            setTimeout(() => {
+                document.getElementById('demo-output').textContent +=
+                    '\n\n🚀 Want to run this LIVE?\n' +
+                    'Click "Try Live Execution" below to open a real development environment!';
+
+                // Add live execution button
+                const liveBtn = document.createElement('button');
+                liveBtn.className = 'btn';
+                liveBtn.style.marginTop = '1rem';
+                liveBtn.textContent = '🔥 Try Live Execution';
+                liveBtn.onclick = () => {
+                    const stackblitzUrl = `https://stackblitz.com/github/tamylaa/clodo-dev-site?file=README.md`;
+                    window.open(stackblitzUrl, '_blank');
+                };
+                document.querySelector('.interactive-demo').appendChild(liveBtn);
+            }, 2000);
 
             // Show progression CTA after opening sandbox
             setTimeout(() => {
