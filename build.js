@@ -271,6 +271,26 @@ function copyAssets() {
             }
         }
     }
+
+    // Copy demo directory if present
+    const demoSrc = join('public', 'demo');
+    const demoDest = join('dist', 'demo');
+    if (existsSync(demoSrc)) {
+        mkdirSync(demoDest, { recursive: true });
+        for (const entry of readdirSync(demoSrc)) {
+            const srcPath = join(demoSrc, entry);
+            const destPath = join(demoDest, entry);
+            const stat = statSync(srcPath);
+            if (stat.isDirectory()) {
+                mkdirSync(destPath, { recursive: true });
+                for (const sub of readdirSync(srcPath)) {
+                    copyFileSync(join(srcPath, sub), join(destPath, sub));
+                }
+            } else {
+                copyFileSync(srcPath, destPath);
+            }
+        }
+    }
 }
 
 

@@ -1227,12 +1227,22 @@ function showTryModal() {
                             <div class="option-arrow">→</div>
                         </div>
 
-                        <div class="setup-option" data-action="gitpod">
-                            <div class="option-icon">🌐</div>
+                        <div class="setup-option" data-action="demo">
+                            <div class="option-icon">🚀</div>
                             <div class="option-content">
-                                <h3>Browser (Gitpod)</h3>
-                                <p>No installation required</p>
-                                <code>Open in browser</code>
+                                <h3>Instant Demo</h3>
+                                <p>Experience Clodo live in your browser</p>
+                                <code>No setup required</code>
+                            </div>
+                            <div class="option-arrow">→</div>
+                        </div>
+
+                        <div class="setup-option" data-action="gitpod">
+                            <div class="option-icon">⚙️</div>
+                            <div class="option-content">
+                                <h3>Full Development</h3>
+                                <p>Set up your own Clodo project</p>
+                                <code>Advanced users</code>
                             </div>
                             <div class="option-arrow">→</div>
                         </div>
@@ -1261,6 +1271,9 @@ function showTryModal() {
                     break;
                 case 'javascript':
                     runJSSetup();
+                    break;
+                case 'demo':
+                    openDemo();
                     break;
                 case 'gitpod':
                     openGitpod();
@@ -1322,6 +1335,15 @@ function runJSSetup() {
     });
 }
 
+function openDemo() {
+    closeTryModal();
+
+    // Open the instant demo
+    window.open('./demo/', '_blank');
+
+    showNotification('Opening Clodo Framework live demo...', 'info');
+}
+
 function openGitpod() {
     closeTryModal();
 
@@ -1329,6 +1351,6 @@ function openGitpod() {
     const gitpodUrl = 'https://gitpod.io/#https://github.com/tamylaa/clodo-dev-site';
     window.open(gitpodUrl, '_blank');
 
-    showNotification('Opening Clodo Framework in Gitpod...', 'info');
+    showNotification('Opening Clodo Framework development environment...', 'info');
 }
 /* eslint-enable no-unused-vars */
