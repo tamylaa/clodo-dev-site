@@ -5,6 +5,11 @@ main section h2 { margin-top: 2rem; }
 main section h3 { margin-top: 1.25rem; }
 main section ul li { line-height: 1.7; }
 
+/* Callout styles */
+.callout {
+  margin-top: 1.25rem;
+}
+
 /* Page-specific CSS vars */
 :root {
     --toc-sticky-top: 84px;

@@ -78,3 +78,27 @@
   margin-top: 2rem;
   font-style: italic;
 }
+
+/* Callout styles */
+.callout {
+  margin-top: 1rem;
+}
+
+.callout--info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.callout--info h3 {
+  margin: 0;
+}
+
+.callout--info p {
+  margin: 0;
+}
+
+.btn--margin-left {
+  margin-left: 0.5rem;
+}

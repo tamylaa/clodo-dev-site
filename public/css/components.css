@@ -870,6 +870,12 @@ input:disabled {
     border-top-color: var(--primary-color);
 }
 
+.spinner--demo {
+    background: #333;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
 /* Skeleton loader */
 .skeleton {
     background: linear-gradient(
@@ -2323,3 +2329,35 @@ dd {
 }
 
 /* ===== NAVIGATION ===== */
+
+/* ===== DESIGN TOKENS ===== */
+.token-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.token-preview--primary {
+    background: var(--primary-color);
+}
+
+.token-preview--primary-dark {
+    background: var(--primary-dark);
+}
+
+.token-preview--success {
+    background: var(--success-color);
+}
+
+.token-preview--warning {
+    background: var(--warning-color);
+}
+
+.token-preview--error {
+    background: var(--error-color);
+}
+
+.token-preview--info {
+    background: var(--info-color);
+}

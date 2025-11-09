@@ -123,6 +123,13 @@
     z-index: 1;
 }
 
+.btn-small-text {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+
 .hero-title span:not(.highlight) {
     display: block;
     font-size: clamp(1.5rem, 3vw, 2.5rem);

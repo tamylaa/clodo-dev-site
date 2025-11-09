@@ -752,6 +752,7 @@ function loadScript(src) {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
+        script.setAttribute('nonce', 'N0Nc3Cl0d0');
         script.onload = resolve;
         script.onerror = reject;
         document.head.appendChild(script);
