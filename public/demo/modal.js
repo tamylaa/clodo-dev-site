@@ -218,21 +218,11 @@ function showTryModal() {
                             </div>
                             <div class="option-arrow">→</div>
                         </div>
-
-                        <div class="setup-option" data-action="gitpod">
-                            <div class="option-icon">⚙️</div>
-                            <div class="option-content">
-                                <h3>Full Development Environment</h3>
-                                <p>Set up your own Clodo project with Gitpod</p>
-                                <code>Requires GitHub login</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
                     </div>
 
                     <div class="modal-footer">
                         <p class="modal-note">
-                            💡 <strong>Pro tip:</strong> All options create a complete working app with API endpoints, database integration, and deployment ready.
+                            💡 <strong>Pro tip:</strong> Both options create a complete working app with API endpoints, database integration, and deployment ready.
                         </p>
                     </div>
                 </div>
@@ -253,9 +243,6 @@ function showTryModal() {
                     break;
                 case 'javascript':
                     runJSSetup();
-                    break;
-                case 'gitpod':
-                    openGitpod(); // eslint-disable-line no-undef
                     break;
             }
         });
