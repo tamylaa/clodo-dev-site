@@ -1044,14 +1044,14 @@ function showSetupModal() {
             <div class="modal-content" onclick="event.stopPropagation()">
                 <button class="modal-close" onclick="closeModal()" aria-label="Close modal">×</button>
                 <div class="modal-header">
-                    <h3>🚀 Try Clodo Framework</h3>
-                    <p>Get started with your instant coding environment</p>
+                    <h3>🚀 Try Clodo Framework - Fallback Mode</h3>
+                    <p>StackBlitz couldn't open automatically. Choose your preferred setup method:</p>
                 </div>
                 <div class="modal-body">
                     <div class="setup-options">
                         <div class="setup-option">
                             <h4>⚡ Instant Environment (Recommended)</h4>
-                            <p>Enable popups for stackblitz.com and try again, or use the setup scripts below.</p>
+                            <p>Enable popups for stackblitz.com and try the button again, or <a href="https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: underline;">open StackBlitz directly</a>.</p>
                         </div>
                         <div class="setup-option">
                             <h4>💻 Local Development</h4>
