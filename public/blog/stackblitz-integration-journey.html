@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an Instant "Try Now" Experience: Our StackBlitz Integration Journey | Clodo Framework</title>
+    <meta name="description" content="How we built a one-click coding environment for Clodo Framework using StackBlitz, npm packages, and smart cache-busting - from concept to production.">
+    <meta name="keywords" content="StackBlitz, developer experience, npm package, ESM modules, git submodules, cache busting, instant coding environment">
+    <link rel="canonical" href="https://clodo.dev/blog/stackblitz-integration-journey.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- HEADER_PLACEHOLDER -->
+    
+    <main id="main-content" class="blog-post">
+        <article class="container">
+            <header class="blog-post__header">
+                <div class="blog-post__meta">
+                    <time datetime="2025-11-11">November 11, 2025</time>
+                    <span class="blog-post__reading-time">12 min read</span>
+                </div>
+                <h1>Building an Instant "Try Now" Experience: Our StackBlitz Integration Journey</h1>
+                <p class="blog-post__subtitle">How we transformed developer onboarding from "install, configure, debug" to one-click coding environment in 60 seconds</p>
+                <div class="blog-post__author">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E" alt="Author avatar" class="blog-post__avatar">
+                    <div>
+                        <div class="blog-post__author-name">Tamyla</div>
+                        <div class="blog-post__author-title">Founder, Clodo Framework</div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="blog-post__content">
+                <h2>The Challenge: Friction Kills Adoption</h2>
+                <p>We had a problem. Developers landing on <a href="https://clodo.dev">clodo.dev</a> were intrigued by our enterprise-grade framework for Cloudflare Workers, but there was a massive gap between interest and actually trying it.</p>
+                
+                <p>The traditional developer experience looked like this:</p>
+                <ol>
+                    <li>Clone repository</li>
+                    <li>Install Node.js and npm</li>
+                    <li>Run <code>npm install</code></li>
+                    <li>Configure Cloudflare credentials</li>
+                    <li>Read documentation to understand setup</li>
+                    <li>Debug inevitable environment issues</li>
+                    <li>Finally write first line of code (maybe)</li>
+                </ol>
+
+                <p><strong>Time to first "Hello World": 30-60 minutes minimum.</strong></p>
+
+                <p>For a framework targeting rapid development, this was unacceptable. We needed instant gratification.</p>
+
+                <h2>The Vision: One-Click to Code</h2>
+                <p>What if developers could start coding in 60 seconds? No installation, no configuration, no friction.</p>
+
+                <blockquote>
+                    <p>"Show, don't tell. Let them experience the framework before they commit to installing it."</p>
+                </blockquote>
+
+                <p>That's where StackBlitz came in. A browser-based IDE that could:</p>
+                <ul>
+                    <li>✅ Run Node.js directly in the browser</li>
+                    <li>✅ Install npm packages automatically</li>
+                    <li>✅ Fetch code from GitHub repos</li>
+                    <li>✅ Provide instant feedback</li>
+                    <li>✅ Zero setup required</li>
+                </ul>
+
+                <h2>Phase 1: The Simple Button (That Wasn't So Simple)</h2>
+                <p>It started innocently enough. Add a "Try Now" button to the hero section:</p>
+
+                <pre><code class="language-html">&lt;button onclick="window.open('https://stackblitz.com/github/tamylaa/clodo-starter-template')"&gt;
+    🚀 Try Now - 1 Click
+&lt;/button&gt;</code></pre>
+
+                <p>Easy, right? Click the button, StackBlitz opens, developer starts coding.</p>
+
+                <h3>Problem #1: The Button Went Rogue</h3>
+                <p>The button was navigating to <code>/demo/</code> instead of opening StackBlitz. Hours of debugging revealed:</p>
+                <ul>
+                    <li>Duplicate button elements in HTML (one visible, one hidden)</li>
+                    <li>Conflicting JavaScript event listeners</li>
+                    <li>Complex modal logic interfering with onclick handlers</li>
+                </ul>
+
+                <p><strong>Solution:</strong> Simplify ruthlessly. Remove all complexity, use a direct onclick handler with <code>type="button"</code> to prevent form submission behavior.</p>
+
+                <pre><code class="language-html">&lt;button type="button" onclick="window.open('https://stackblitz.com/...', '_blank')"&gt;
+    🚀 Try Now - 1 Click
+&lt;/button&gt;</code></pre>
+
+                <h2>Phase 2: The Silent Build Failure</h2>
+                <p>Button fixed! But production wasn't updating. Commits pushed successfully, but the live site showed old code.</p>
+
+                <h3>The Culprit: Broken Git Submodule</h3>
+                <p>Our <code>clodo-starter-template</code> was tracked as a git submodule, but without a proper <code>.gitmodules</code> file. Git showed it as mode 160000 (submodule commit reference), causing Cloudflare Pages builds to fail <strong>silently</strong>.</p>
+
+                <pre><code class="language-bash"># Diagnosis
+$ git ls-tree HEAD | grep clodo-starter-template
+160000 commit 1c53a56... clodo-starter-template
+
+# The fix
+$ git rm --cached clodo-starter-template
+$ echo "clodo-starter-template/" >> .gitignore
+$ git add .gitignore
+$ git commit -m "Fix: remove broken submodule reference"</code></pre>
+
+                <p><strong>Lesson learned:</strong> Git submodules need proper configuration or should be avoided. Separate repositories are often cleaner.</p>
+
+                <h2>Phase 3: From Mock to Real Framework</h2>
+                <p>Now StackBlitz opened correctly, but the demo was using mock code. We wanted developers to experience the <strong>real</strong> <code>@tamyla/clodo-framework</code> npm package.</p>
+
+                <h3>The Transition to Real Package</h3>
+                <p>Updated <code>package.json</code>:</p>
+
+                <pre><code class="language-json">{
+  "name": "clodo-demo",
+  "type": "module",
+  "dependencies": {
+    "@tamyla/clodo-framework": "^3.1.24"
+  }
+}</code></pre>
+
+                <p>And <code>.stackblitzrc</code> to auto-install:</p>
+
+                <pre><code class="language-json">{
+  "startCommand": "node index.js",
+  "installDependencies": true,
+  "nodeVersion": "18"
+}</code></pre>
+
+                <h3>ESM vs CommonJS</h3>
+                <p>Modern JavaScript uses ES Modules (ESM), not CommonJS. We converted:</p>
+
+                <pre><code class="language-javascript">// ❌ Old: CommonJS
+const { createService } = require('@tamyla/clodo-framework');
+
+// ✅ New: ESM
+import { createService } from '@tamyla/clodo-framework';</code></pre>
+
+                <p>Added <code>"type": "module"</code> to package.json to enable ESM throughout the demo.</p>
+
+                <h2>Phase 4: The Cache Problem</h2>
+                <p>Everything worked locally. Pushed to GitHub. But StackBlitz still showed the old mock code.</p>
+
+                <p><strong>The issue:</strong> StackBlitz caches GitHub repositories aggressively for performance.</p>
+
+                <h3>Cache-Busting Strategy</h3>
+                <p>Instead of using the branch reference (which gets cached), we used the specific commit hash:</p>
+
+                <pre><code class="language-html">&lt;!-- ❌ Cached version --&gt;
+https://stackblitz.com/github/tamylaa/clodo-starter-template
+
+&lt;!-- ✅ Cache-busted version --&gt;
+https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/bedd21a</code></pre>
+
+                <p>The commit hash (<code>bedd21a</code>) is immutable, so StackBlitz fetches the exact version we want.</p>
+
+                <h2>The Final Implementation</h2>
+                <p>Here's what we shipped:</p>
+
+                <h3>1. The Button (index.html)</h3>
+                <pre><code class="language-html">&lt;button type="button" 
+        id="try-live-btn" 
+        class="btn btn-primary"
+        onclick="window.open('https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/bedd21a?file=index.js', '_blank')"&gt;
+    &lt;span&gt;🚀 Try Now - 1 Click&lt;/span&gt;
+    &lt;small&gt;Instant coding environment&lt;/small&gt;
+&lt;/button&gt;</code></pre>
+
+                <h3>2. The Demo Repository (clodo-starter-template)</h3>
+                <p><strong>package.json</strong></p>
+                <pre><code class="language-json">{
+  "name": "clodo-demo",
+  "version": "1.0.0",
+  "description": "Clodo Framework Instant Demo",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@tamyla/clodo-framework": "^3.1.24"
+  },
+  "keywords": ["edge-computing", "cloudflare-workers", "serverless"]
+}</code></pre>
+
+                <p><strong>index.js</strong></p>
+                <pre><code class="language-javascript">// Import the real Clodo Framework from npm
+import { createService } from '@tamyla/clodo-framework';
+
+console.log('🚀 Clodo Framework Demo - Real Package!');
+console.log('📦 Loading @tamyla/clodo-framework...');
+
+// Demo service using real framework
+const demoService = createService('demo', (request, env) => {
+    const { method, url, headers = {} } = request;
+
+    if (method === 'GET' && url.includes('/api/health')) {
+        return {
+            status: 200,
+            message: 'Service is healthy!',
+            timestamp: new Date().toISOString(),
+            framework: 'Clodo Framework (Real)',
+            version: '3.1.24'
+        };
+    }
+
+    return {
+        status: 200,
+        message: 'Hello from Clodo Framework on the Edge!',
+        timestamp: new Date().toISOString(),
+        tip: 'Try editing this message!',
+        userAgent: headers['user-agent'] || 'Unknown',
+        method,
+        url
+    };
+});
+
+// Test the service
+console.log('🧪 Testing service...');
+demoService.handleRequest(
+    { method: 'GET', url: '/api/demo', headers: { 'user-agent': 'StackBlitz/1.0' }},
+    { NODE_ENV: 'demo' }
+);
+
+console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
+
+                <p><strong>.stackblitzrc</strong></p>
+                <pre><code class="language-json">{
+  "startCommand": "node index.js",
+  "installDependencies": true,
+  "nodeVersion": "18"
+}</code></pre>
+
+                <h2>The Results: From 30 Minutes to 60 Seconds</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h3>Before</h3>
+                        <ul>
+                            <li>⏱️ Time to first code: <strong>30-60 minutes</strong></li>
+                            <li>📦 Manual npm install required</li>
+                            <li>🔧 Environment configuration needed</li>
+                            <li>🐛 Debugging setup issues common</li>
+                            <li>📉 High drop-off rate</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h3>After</h3>
+                        <ul>
+                            <li>⚡ Time to first code: <strong>60 seconds</strong></li>
+                            <li>✅ Automatic npm install via StackBlitz</li>
+                            <li>✅ Zero configuration needed</li>
+                            <li>✅ Browser-based, no local setup</li>
+                            <li>📈 Instant developer engagement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ol>
+                    <li><strong>Simplicity wins.</strong> Remove complexity ruthlessly. A direct onclick handler beat complex modal systems.</li>
+                    <li><strong>Git submodules are tricky.</strong> Either configure them properly or avoid them. Silent failures are the worst.</li>
+                    <li><strong>Cache is both friend and foe.</strong> Use commit hashes for immutable references and cache-busting.</li>
+                    <li><strong>ESM is the future.</strong> Modern JavaScript should use <code>import</code>, not <code>require()</code>.</li>
+                    <li><strong>Real packages matter.</strong> Mock code doesn't showcase the actual developer experience.</li>
+                    <li><strong>Test production.</strong> Local development can hide deployment issues.</li>
+                </ol>
+
+                <h2>Technical Decisions Worth Highlighting</h2>
+
+                <h3>Why StackBlitz Over CodeSandbox/Replit?</h3>
+                <ul>
+                    <li><strong>StackBlitz</strong> runs Node.js natively in the browser using WebContainers</li>
+                    <li>Faster startup time (no container spin-up)</li>
+                    <li>Native npm install support</li>
+                    <li>Clean GitHub integration</li>
+                    <li>Free for open-source projects</li>
+                </ul>
+
+                <h3>Why Separate Repository for Demo?</h3>
+                <ul>
+                    <li>StackBlitz fetches entire repos - we wanted minimal demo, not full framework source</li>
+                    <li>Independent versioning and updates</li>
+                    <li>Cleaner demo experience without framework internals</li>
+                    <li>Can mark as GitHub template for easy forking</li>
+                </ul>
+
+                <h3>Why Commit Hash in URL?</h3>
+                <ul>
+                    <li>Immutable reference - specific version always works</li>
+                    <li>Bypasses StackBlitz cache</li>
+                    <li>Prevents breaking changes from affecting live demo</li>
+                    <li>Can update main branch while keeping stable demo</li>
+                </ul>
+
+                <h2>What's Next?</h2>
+                <p>This is just the beginning. Future improvements we're considering:</p>
+                <ul>
+                    <li>📊 <strong>Analytics:</strong> Track how many developers click "Try Now" and actually run code</li>
+                    <li>🎯 <strong>Guided tutorials:</strong> Interactive coding challenges in StackBlitz</li>
+                    <li>🔀 <strong>Multiple templates:</strong> Different starting points (REST API, WebSocket service, D1 database integration)</li>
+                    <li>💾 <strong>Save to GitHub:</strong> One-click fork to user's GitHub account</li>
+                    <li>🚀 <strong>Deploy from StackBlitz:</strong> Direct deployment to Cloudflare Workers</li>
+                </ul>
+
+                <h2>Try It Yourself</h2>
+                <p>The "Try Now" button is live on <a href="https://clodo.dev">clodo.dev</a>. Click it and you'll be coding with Clodo Framework in 60 seconds.</p>
+
+                <p>Want to build something similar for your project?</p>
+                <ul>
+                    <li>📦 <a href="https://github.com/tamylaa/clodo-starter-template">View our demo repository</a></li>
+                    <li>🎯 <a href="https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/bedd21a?file=index.js">Try the live demo</a></li>
+                    <li>📚 <a href="https://developer.stackblitz.com/guides/integration/open-from-github">StackBlitz GitHub integration docs</a></li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>Building a friction-free developer experience isn't just about good UX—it's about respecting developers' time. Every minute spent on setup is a minute not spent evaluating your framework.</p>
+
+                <p>By investing in instant gratification, we transformed our developer onboarding from a 30-60 minute commitment to a 60-second experiment. That's a 30-60x improvement in time-to-value.</p>
+
+                <p>The technical journey was messy—broken git submodules, caching issues, ESM vs CommonJS confusion—but the result is elegant: one button, one click, instant coding environment.</p>
+
+                <p><strong>That's the kind of developer experience that converts curiosity into adoption.</strong></p>
+            </section>
+
+            <footer class="blog-post__footer">
+                <div class="blog-post__tags">
+                    <a href="/blog?tag=developer-experience" class="tag">Developer Experience</a>
+                    <a href="/blog?tag=stackblitz" class="tag">StackBlitz</a>
+                    <a href="/blog?tag=technical" class="tag">Technical Deep-Dive</a>
+                    <a href="/blog?tag=npm" class="tag">npm</a>
+                    <a href="/blog?tag=esm" class="tag">ESM</a>
+                </div>
+
+                <div class="blog-post__cta">
+                    <h3>Ready to experience Clodo Framework yourself?</h3>
+                    <a href="/" class="btn btn-primary">Try Now - 1 Click</a>
+                </div>
+
+                <div class="blog-post__share">
+                    <p>Share this article:</p>
+                    <a href="https://twitter.com/intent/tweet?text=Building%20an%20Instant%20Try%20Now%20Experience&url=https://clodo.dev/blog/stackblitz-integration-journey.html" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Twitter</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://clodo.dev/blog/stackblitz-integration-journey.html" target="_blank" rel="noopener" class="btn btn-outline btn-sm">LinkedIn</a>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <!-- FOOTER_PLACEHOLDER -->
+    <script src="../script.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html>
