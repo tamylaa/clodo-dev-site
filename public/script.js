@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setupContactForm();
         setupAnnouncementBar();
         setupMicroInteractions();
-        setupTryModal();
+        setupStackBlitzIntegration();
         updateDynamicStats();
 
         // Lazy load non-critical features after initial page load
@@ -986,14 +986,268 @@ function setupMicroInteractions() {
 }
 
 // Try modal setup
-function setupTryModal() {
-    // Add event listener to Try Now button
-    const tryNowBtn = document.getElementById('try-now-btn');
-    if (tryNowBtn) {
-        tryNowBtn.addEventListener('click', function() {
-            window.open('/demo/index.html', '_blank');
+function setupStackBlitzIntegration() {
+    // Add event listener to Try Live Execution button
+    const tryLiveBtn = document.getElementById('try-live-btn');
+    if (tryLiveBtn) {
+        tryLiveBtn.addEventListener('click', function() {
+            const templateUrl = 'https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js';
+            openStackBlitz(templateUrl);
         });
     }
+}
+
+// StackBlitz opening function with error handling and fallbacks
+function openStackBlitz(templateUrl) {
+    try {
+        // Attempt to open StackBlitz
+        const popup = window.open(templateUrl, '_blank', 'noopener,noreferrer');
+
+        if (!popup) {
+            throw new Error('Popup blocked');
+        }
+
+        // Track successful opens
+        if (typeof gtag !== 'undefined') {
+            // eslint-disable-next-line no-undef
+            gtag('event', 'stackblitz_open', {
+                event_category: 'demo',
+                event_label: 'homepage_cta',
+                value: 1
+            });
+        }
+
+        // Show success feedback
+        showNotification('🚀 Opening instant coding environment...', 'success');
+
+    } catch (error) {
+        console.warn('StackBlitz popup blocked, falling back to modal');
+
+        // Track fallback usage
+        if (typeof gtag !== 'undefined') {
+            // eslint-disable-next-line no-undef
+            gtag('event', 'stackblitz_fallback', {
+                event_category: 'demo',
+                event_label: 'popup_blocked'
+            });
+        }
+
+        // Show setup modal as fallback
+        showSetupModal();
+    }
+}
+
+// Fallback modal for when StackBlitz fails
+function showSetupModal() {
+    const modalHTML = `
+        <div class="modal-overlay" onclick="closeModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeModal()" aria-label="Close modal">×</button>
+                <div class="modal-header">
+                    <h3>🚀 Try Clodo Framework</h3>
+                    <p>Get started with your instant coding environment</p>
+                </div>
+                <div class="modal-body">
+                    <div class="setup-options">
+                        <div class="setup-option">
+                            <h4>⚡ Instant Environment (Recommended)</h4>
+                            <p>Enable popups for stackblitz.com and try again, or use the setup scripts below.</p>
+                        </div>
+                        <div class="setup-option">
+                            <h4>💻 Local Development</h4>
+                            <p>Set up Clodo Framework on your machine:</p>
+                            <div class="code-blocks">
+                                <div class="code-block">
+                                    <h5>Windows PowerShell:</h5>
+                                    <pre><code>irm https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.ps1 | iex</code></pre>
+                                </div>
+                                <div class="code-block">
+                                    <h5>macOS/Linux:</h5>
+                                    <pre><code>curl -fsSL https://raw.githubusercontent.com/tamylaa/clodo-dev-site/main/setup-clodo.js | node</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal styles
+    const modalStyles = `
+        <style>
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(4px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: modalFadeIn 0.3s ease-out;
+            }
+
+            .modal-content {
+                background: var(--bg-primary);
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+                animation: modalSlideIn 0.3s ease-out;
+                position: relative;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: var(--text-secondary);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+            }
+
+            .modal-close:hover {
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+            }
+
+            .modal-header {
+                padding: 24px 24px 16px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .modal-header h3 {
+                margin: 0 0 8px;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .modal-header p {
+                margin: 0;
+                color: var(--text-secondary);
+            }
+
+            .modal-body {
+                padding: 24px;
+            }
+
+            .setup-options {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .setup-option h4 {
+                margin: 0 0 8px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .setup-option p {
+                margin: 0 0 16px;
+                color: var(--text-secondary);
+            }
+
+            .code-blocks {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .code-block h5 {
+                margin: 0 0 8px;
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+
+            .code-block pre {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 6px;
+                padding: 12px;
+                margin: 0;
+                overflow-x: auto;
+            }
+
+            .code-block code {
+                font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+                font-size: 14px;
+                color: var(--text-primary);
+            }
+
+            @keyframes modalFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .modal-content {
+                    width: 95%;
+                    margin: 20px;
+                }
+
+                .code-blocks {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    `;
+
+    // Inject modal into page
+    document.body.insertAdjacentHTML('beforeend', modalStyles + modalHTML);
+
+    // Focus management
+    const modal = document.querySelector('.modal-content');
+
+    if (modal) {
+        modal.focus();
+    }
+
+    // Close modal function
+    window.closeModal = function() {
+        const overlay = document.querySelector('.modal-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+        delete window.closeModal;
+    };
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function handleKeydown(e) {
+        if (e.key === 'Escape') {
+            // eslint-disable-next-line no-undef
+            closeModal();
+            document.removeEventListener('keydown', handleKeydown);
+        }
+    });
 }
 
 // Exports for unit tests (Node/CommonJS environment)
