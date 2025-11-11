@@ -1481,16 +1481,6 @@ function showTryModal() {
                             </div>
                             <div class="option-arrow">→</div>
                         </div>
-
-                        <div class="setup-option" data-action="demo">
-                            <div class="option-icon">🎮</div>
-                            <div class="option-content">
-                                <h3>Interactive Demo</h3>
-                                <p>Explore features in an interactive demo</p>
-                                <code>View demos without setup</code>
-                            </div>
-                            <div class="option-arrow">→</div>
-                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -1516,9 +1506,6 @@ function showTryModal() {
                     break;
                 case 'javascript':
                     runJSSetup();
-                    break;
-                case 'demo':
-                    openDemo();
                     break;
             }
         });
@@ -1577,12 +1564,4 @@ function runJSSetup() {
     });
 }
 
-function openDemo() {
-    closeTryModal();
-
-    // Open the instant demo
-    window.open('./demo/', '_blank');
-
-    showNotification('Opening Clodo Framework live demo...', 'info');
-}
 /* eslint-enable no-unused-vars */
