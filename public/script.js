@@ -987,18 +987,9 @@ function setupMicroInteractions() {
 
 // Try modal setup
 function setupStackBlitzIntegration() {
-    // Add event listener to Try Live Execution button
-    const tryLiveBtn = document.getElementById('try-live-btn');
-    if (tryLiveBtn) {
-        console.log('StackBlitz: Button found, attaching event listener');
-        tryLiveBtn.addEventListener('click', function() {
-            console.log('StackBlitz: Button clicked, opening StackBlitz');
-            const templateUrl = 'https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js';
-            openStackBlitz(templateUrl);
-        });
-    } else {
-        console.log('StackBlitz: Button not found!');
-    }
+    // Button now uses inline onclick handler for reliability
+    // No need for additional event listeners
+    console.log('StackBlitz integration initialized (using inline onclick)');
 }
 
 // StackBlitz opening function with error handling and fallbacks
