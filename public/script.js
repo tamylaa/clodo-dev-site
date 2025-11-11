@@ -990,10 +990,14 @@ function setupStackBlitzIntegration() {
     // Add event listener to Try Live Execution button
     const tryLiveBtn = document.getElementById('try-live-btn');
     if (tryLiveBtn) {
+        console.log('StackBlitz: Button found, attaching event listener');
         tryLiveBtn.addEventListener('click', function() {
+            console.log('StackBlitz: Button clicked, opening StackBlitz');
             const templateUrl = 'https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js';
             openStackBlitz(templateUrl);
         });
+    } else {
+        console.log('StackBlitz: Button not found!');
     }
 }
 
