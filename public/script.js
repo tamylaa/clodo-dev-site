@@ -1457,11 +1457,15 @@ function showTryModal() {
                 </button>
 
                 <div class="modal-header">
-                    <h2 id="try-modal-title">🚀 Try Clodo Framework</h2>
-                    <p id="try-modal-desc">Get started with Clodo in under 1 minute. Choose your preferred setup method:</p>
+                    <h2 id="try-modal-title">🚀 Try Clodo Framework - Alternative Options</h2>
+                    <p id="try-modal-desc">StackBlitz couldn't open automatically. Try these alternatives:</p>
                 </div>
 
                 <div class="modal-body">
+                    <div class="stackblitz-direct-link">
+                        <p><strong>🔗 Direct Link:</strong> <a href="https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: underline;">Open StackBlitz Instantly</a></p>
+                    </div>
+
                     <div class="setup-options">
                         <div class="setup-option" data-action="powershell">
                             <div class="option-icon">🪟</div>
@@ -1484,11 +1488,11 @@ function showTryModal() {
                         </div>
 
                         <div class="setup-option" data-action="demo">
-                            <div class="option-icon">🚀</div>
+                            <div class="option-icon">🎮</div>
                             <div class="option-content">
-                                <h3>Instant Demo</h3>
-                                <p>Experience Clodo live in your browser</p>
-                                <code>No setup required</code>
+                                <h3>Interactive Demo</h3>
+                                <p>Explore features in an interactive demo</p>
+                                <code>View demos without setup</code>
                             </div>
                             <div class="option-arrow">→</div>
                         </div>
