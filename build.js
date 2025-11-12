@@ -91,7 +91,8 @@ function bundleCss() {
         'css/pages/about.css',
         'css/pages/migrate.css',
         'css/pages/subscribe.css',
-        'css/pages/subscribe-enhanced.css'
+        'css/pages/subscribe-enhanced.css',
+        'css/pages/blog.css'
     ];
     let bundled = '';
 

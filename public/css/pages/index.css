@@ -80,6 +80,7 @@
     position: relative;
     z-index: 2;
     min-height: 500px;
+    overflow-x: hidden;
 }
 
 .hero-content {
@@ -1048,6 +1049,7 @@
         max-width: 800px;
         margin: 0 auto;
         min-height: auto;
+        overflow-x: hidden;
     }
 
     .hero-content {
@@ -1108,8 +1110,9 @@
 
     .hero-container {
         gap: 2.5rem;
-        padding: 0 var(--spacing-md);
+        padding: 0 var(--spacing-sm);
         min-height: auto;
+        overflow-x: hidden;
     }
 
     .hero-content {
@@ -1223,9 +1226,10 @@
     }
 
     .hero-container {
-        padding: 0 var(--spacing-md);
+        padding: 0 var(--spacing-sm);
         gap: 2rem;
         min-height: auto;
+        overflow-x: hidden;
     }
 
     .hero-content {
