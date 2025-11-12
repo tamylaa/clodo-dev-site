@@ -623,6 +623,20 @@
     box-shadow: var(--shadow-md);
 }
 
+.feature-card pre {
+    text-align: left;
+    font-size: 0.8rem;
+    max-width: 100%;
+    overflow-x: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.feature-card code {
+    font-size: 0.75rem;
+    word-break: break-word;
+}
+
 /* Featured cards for top 3 features */
 .feature-card:nth-child(1),
 .feature-card:nth-child(2),
@@ -1292,6 +1306,16 @@
     .edge-card,
     .feature-card {
         padding: 1.25rem;
+    }
+
+    .feature-card pre {
+        font-size: 0.7rem;
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+    }
+
+    .feature-card code {
+        font-size: 0.7rem;
     }
 
     .section-header {
