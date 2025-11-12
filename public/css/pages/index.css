@@ -535,7 +535,7 @@
 
 .edge-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -604,7 +604,7 @@
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -616,6 +616,8 @@
     border: 1px solid var(--border-color);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .feature-card:hover {
@@ -628,13 +630,19 @@
     font-size: 0.8rem;
     max-width: 100%;
     overflow-x: auto;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
     white-space: pre-wrap;
+    hyphens: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .feature-card code {
     font-size: 0.75rem;
     word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 /* Featured cards for top 3 features */
@@ -693,7 +701,7 @@
 
 .comparison-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -740,7 +748,7 @@
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -817,7 +825,7 @@
 
 .social-proof__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -912,7 +920,7 @@
 /* ===== STATS SECTION ===== */
 .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 2rem;
     margin-top: 4rem;
     padding: 3rem 2rem;
@@ -1312,10 +1320,14 @@
         font-size: 0.7rem;
         padding: 0.75rem;
         margin: 0.75rem 0;
+        max-width: 100%;
+        overflow-x: auto;
     }
 
     .feature-card code {
         font-size: 0.7rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .section-header {
@@ -1459,7 +1471,7 @@ pre code {
 
 .diagram-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
