@@ -72,7 +72,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 3rem);
+    padding: 0 var(--spacing-lg);
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: min(clamp(2rem, 8vw, 6rem), 48px);
@@ -84,7 +84,7 @@
 
 .hero-content {
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     animation: slideInLeft 1s ease-out;
     justify-self: start;
 }
@@ -160,7 +160,7 @@
     text-shadow: 
         0 2px 6px rgb(0 0 0 / 40%),
         0 4px 12px rgb(0 0 0 / 30%);
-    max-width: 600px;
+    max-width: 100%;
 }
 
 .blog-hero-subtitle {
@@ -528,7 +528,7 @@
 .section-header p {
     font-size: 1.25rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -580,7 +580,7 @@
 .features-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-lg);
 }
 
 .features-grid {
@@ -662,7 +662,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -702,7 +702,7 @@
 .testimonials-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-lg);
 }
 
 .testimonials-grid {
@@ -767,7 +767,7 @@
 .social-proof__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-lg);
 }
 
 .social-proof__header {
@@ -953,10 +953,10 @@
 }
 
 .cta-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-lg);
 }
 
 .cta-content h2 {
@@ -1067,7 +1067,7 @@
 
     .hero-container {
         gap: 2.5rem;
-        padding: 0 clamp(1rem, 3vw, 1.5rem);
+        padding: 0 var(--spacing-md);
         min-height: auto;
     }
 
@@ -1182,7 +1182,7 @@
     }
 
     .hero-container {
-        padding: 0 clamp(0.75rem, 4vw, 1rem);
+        padding: 0 var(--spacing-md);
         gap: 2rem;
         min-height: auto;
     }
@@ -1267,7 +1267,7 @@
 
     .edge-grid,
     .features-grid {
-        padding: 0 1rem;
+        padding: 0 var(--spacing-md);
         gap: 1rem;
     }
 
@@ -1289,7 +1289,7 @@
     }
 
     .social-proof__container {
-        padding: 0 1rem;
+        padding: 0 var(--spacing-md);
     }
 
     .social-proof__title {
@@ -1327,7 +1327,7 @@
     }
 
     .cta-content {
-        padding: 0 1rem;
+        padding: 0 var(--spacing-md);
     }
 
     .cta-content h2 {
@@ -1390,7 +1390,7 @@ pre code {
 
 .diagram-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   padding: 2rem;
   background: var(--color-bg-secondary);
   border-radius: 12px;
@@ -1420,7 +1420,7 @@ pre code {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 .feature-highlight {
