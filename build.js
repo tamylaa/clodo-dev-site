@@ -54,7 +54,12 @@ function copyHtml() {
         'workers-vs-lambda.html',
         // Article pages
         'clodo-framework-promise-to-reality.html',
-        'clodo-framework-api-simplification.html'
+        'clodo-framework-api-simplification.html',
+        // Blog pages
+        'blog/index.html',
+        'blog/debugging-silent-build-failures.html',
+        'blog/instant-try-it-impact.html',
+        'blog/stackblitz-integration-journey.html'
     ];
 
     htmlFiles.forEach(file => {
@@ -71,7 +76,14 @@ function copyHtml() {
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
 
-            writeFileSync(join('dist', file), content);
+            // Ensure destination directory exists
+            const destPath = join('dist', file);
+            const destDir = dirname(destPath);
+            if (!existsSync(destDir)) {
+                mkdirSync(destDir, { recursive: true });
+            }
+
+            writeFileSync(destPath, content);
         }
     });
 }
