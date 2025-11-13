@@ -27,3 +27,10 @@ public/brevo-secure-config.js
 # Coverage / reports
 coverage/
 *.lcov
+
+# SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
+docs/clodo-framework-docs/
+docs/clodo-framework-i-docs/
+docs/ADVANCED_DIGITAL_GROWTH_PLAYBOOK.md
+docs/ANALYTICS.md
+docs/ORGANIC_TRAFFIC_GROWTH_PLAN.md
