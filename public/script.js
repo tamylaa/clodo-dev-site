@@ -1564,4 +1564,149 @@ function runJSSetup() {
     });
 }
 
+// ===== ANALYTICS & MARKETING TRACKING =====
+
+// Enhanced analytics tracking for marketing insights
+function trackEvent(eventName, parameters = {}) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+            ...parameters,
+            page_location: window.location.href,
+            page_title: document.title
+        });
+    }
+
+    // Also track in console for development
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('Analytics Event:', eventName, parameters);
+    }
+}
+
+// Track user engagement and marketing metrics
+function setupMarketingAnalytics() {
+    // Track time on page
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+        const timeSpent = Math.round((Date.now() - startTime) / 1000);
+        trackEvent('page_time', {
+            event_category: 'engagement',
+            event_label: 'time_on_page',
+            value: timeSpent,
+            custom_parameter_1: document.title
+        });
+    });
+
+    // Track scroll depth
+    let maxScroll = 0;
+    window.addEventListener('scroll', () => {
+        const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+        if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+            maxScroll = scrollPercent;
+            trackEvent('scroll_depth', {
+                event_category: 'engagement',
+                event_label: 'scroll_percentage',
+                value: scrollPercent
+            });
+        }
+    });
+
+    // Track feature discovery (when elements come into view)
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const featureObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const featureId = entry.target.id || entry.target.className;
+                trackEvent('feature_view', {
+                    event_category: 'engagement',
+                    event_label: featureId,
+                    value: 1
+                });
+                featureObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe key marketing sections
+    const marketingSections = ['hero', 'features', 'testimonials', 'pricing', 'newsletter'];
+    marketingSections.forEach(sectionId => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            featureObserver.observe(element);
+        }
+    });
+
+    // Track outbound link clicks
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.href && !link.href.includes(window.location.origin)) {
+            trackEvent('outbound_link_click', {
+                event_category: 'engagement',
+                event_label: link.href,
+                link_domain: new URL(link.href).hostname
+            });
+        }
+    });
+
+    // Track form interactions
+    document.addEventListener('focusin', (e) => {
+        if (e.target.matches('input, textarea, select')) {
+            trackEvent('form_interaction', {
+                event_category: 'engagement',
+                event_label: e.target.name || e.target.id || e.target.type
+            });
+        }
+    });
+
+    // Track user type based on behavior
+    let userType = 'visitor';
+    if (document.referrer.includes('github.com')) {
+        userType = 'developer';
+    } else if (document.referrer.includes('stackoverflow.com') || document.referrer.includes('reddit.com')) {
+        userType = 'researcher';
+    }
+
+    // Set user type dimension
+    if (typeof gtag !== 'undefined') {
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            'custom_map': {'dimension1': userType}
+        });
+    }
+}
+
+// Track conversion events
+function trackConversion(conversionType, details = {}) {
+    trackEvent('conversion', {
+        event_category: 'conversion',
+        event_label: conversionType,
+        ...details
+    });
+}
+
+// Newsletter signup tracking (already exists but enhanced)
+function trackNewsletterSignup(method = 'form') {
+    trackConversion('newsletter_signup', {
+        signup_method: method,
+        page_location: window.location.pathname
+    });
+}
+
+// Demo interaction tracking (already exists but enhanced)
+function trackDemoInteraction(demoType, success = true) {
+    trackEvent('demo_interaction', {
+        event_category: 'engagement',
+        event_label: demoType,
+        success: success,
+        value: success ? 1 : 0
+    });
+}
+
+// Initialize marketing analytics
+document.addEventListener('DOMContentLoaded', function() {
+    setupMarketingAnalytics();
+});
+
 /* eslint-enable no-unused-vars */

@@ -1,0 +1,88 @@
+# Cloudflare Pages Redirects for Clodo Framework
+# Enterprise SEO and user experience optimization
+
+# Legacy URL redirects (maintain SEO value)
+/old-framework/* /:splat 301
+/legacy/* /:splat 301
+/v1/* /:splat 301
+
+# Common misspellings and variations
+/framewrok / 301
+/frame-work / 301
+/cloudo / 301
+/cloud-o / 301
+
+# SEO-friendly redirects for enterprise keywords
+/enterprise-orchestration / 301
+/cost-reduction-framework / 301
+/pre-flight-validation / 301
+/multi-tenant-framework / 301
+/cloudflare-orchestration / 301
+
+# Developer-focused redirects
+/cloudflare-workers-framework / 301
+/edge-computing-framework / 301
+/serverless-orchestration / 301
+
+# International redirects (future expansion)
+/en/* /:splat 200
+/en-us/* /:splat 200
+/en-gb/* /:splat 200
+
+# API documentation redirects
+/api-docs /docs.html 301
+/api-reference /docs.html 301
+/developer-docs /docs.html 301
+
+# Blog redirects (when implemented)
+# /blog /blog/ 301
+# /blog/* /blog/:splat 301
+
+# Social media and external links (tracking)
+/github https://github.com/tamylaa/clodo-framework 301
+/twitter https://twitter.com/clodoframework 301
+/linkedin https://linkedin.com/company/clodo-framework 301
+/discord https://discord.gg/clodo 301
+
+# Newsletter and contact
+/contact /#newsletter 301
+/newsletter /subscribe.html 301
+/subscribe /subscribe.html 301
+
+# Product pages
+/product /product.html 301
+/pricing /pricing.html 301
+/features /product.html 301
+/benefits /product.html 301
+
+# Documentation sections
+/getting-started /clodo-framework-guide.html 301
+/quick-start /clodo-framework-guide.html 301
+/installation /clodo-framework-guide.html 301
+/setup /clodo-framework-guide.html 301
+
+# Migration and integration
+/migration /migrate.html 301
+/migrate /migrate.html 301
+/integration /migrate.html 301
+
+# Examples and demos
+/demo /examples.html 301
+/demos /examples.html 301
+/samples /examples.html 301
+/code-examples /examples.html 301
+
+# Support and help
+/support /docs.html 301
+/help /docs.html 301
+/faq /docs.html 301
+/troubleshooting /docs.html 301
+
+# Legal and compliance
+/privacy /privacy.html 301
+/terms /privacy.html 301
+/legal /privacy.html 301
+/compliance /privacy.html 301
+
+# 404 handling - redirect to main site with anchor
+/* /#not-found 404

@@ -1,7 +1,7 @@
 {
   "name": "clodo-dev-site",
   "version": "1.0.0",
-  "description": "Clodo Framework website - Enterprise Services on Cloudflare Edge",
+  "description": "Pre-Flight Checker for Cloudflare Workers - Reduce custom software costs by 60% with enterprise orchestration framework",
   "type": "module",
   "main": "index.html",
   "scripts": {
@@ -26,11 +26,19 @@
   },
   "keywords": [
     "cloudflare",
-    "workers",
-    "framework",
-    "saas",
+    "cloudflare-workers",
+    "enterprise-orchestration",
+    "pre-flight-checker",
+    "multi-tenant-saas",
     "edge-computing",
-    "enterprise"
+    "cost-optimization",
+    "serverless-framework",
+    "enterprise-development",
+    "d1-database",
+    "orchestration-engine",
+    "javascript",
+    "typescript",
+    "saas-framework"
   ],
   "author": "Clodo Framework",
   "license": "MIT",

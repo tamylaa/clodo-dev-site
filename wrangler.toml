@@ -1,5 +1,6 @@
 name = "clodo-dev-site"
 compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
 
 # Compatibility flags for Pages Functions
 compatibility_flags = ["nodejs_compat"]
@@ -8,6 +9,3 @@ compatibility_flags = ["nodejs_compat"]
 # Environment variables are set in Cloudflare Pages dashboard
 # BREVO_API_KEY
 # BREVO_LIST_ID
-
-# Pages Functions configuration
-pages_build_output_dir = "dist"

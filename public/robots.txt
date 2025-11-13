@@ -1,4 +1,70 @@
+# Robots.txt for Clodo Framework - Enterprise Orchestration for Cloudflare Workers
+# https://clodo.dev/robots.txt
+
+# Allow all major search engines to crawl the site
 User-agent: *
 Allow: /
 
+# Major search engine bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# AI Search and Assistant bots
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 1
+
+# Enterprise and developer tool crawlers
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 1
+
+# Disallow admin and development areas
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/internal/
+Disallow: /.env
+Disallow: /.git/
+
+# Sitemap locations
 Sitemap: https://clodo.dev/sitemap.xml
+
+# Additional sitemaps (when implemented)
+# Sitemap: https://clodo.dev/blog/sitemap.xml
+# Sitemap: https://clodo.dev/docs/sitemap.xml
+
+# Host directive for canonical domain
+Host: https://clodo.dev
