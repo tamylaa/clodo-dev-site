@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, statSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,6 +14,11 @@ let server = createServer((req, res) => {
     // Parse URL to remove query parameters
     const urlPath = req.url.split('?')[0];
     let filePath = join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
+
+    // Check if path is a directory and serve index.html from it
+    if (existsSync(filePath) && statSync(filePath).isDirectory()) {
+        filePath = join(filePath, 'index.html');
+    }
 
     // Security check - prevent directory traversal
     const resolvedPath = resolve(filePath);

@@ -64,7 +64,16 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <span class="logo-icon" aria-hidden="true">⚡</span>
+                    <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                        <defs>
+                            <linearGradient id="edge-logo-g" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#0ea5e9"/>
+                                <stop offset="100%" stop-color="#6366f1"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                        <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#edge-logo-g)"/>
+                    </svg>
                     <span class="logo-text">Clodo</span>
                 </div>
                 <ul class="nav-menu">

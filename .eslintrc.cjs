@@ -19,7 +19,8 @@ module.exports = {
       files: ['public/script.js'],
       env: { browser: true, node: false },
       globals: {
-        grecaptcha: 'readonly'
+        grecaptcha: 'readonly',
+        gtag: 'readonly'
       }
     },
     {

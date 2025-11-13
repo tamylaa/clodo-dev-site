@@ -27,8 +27,9 @@ function cleanDist() {
 function copyHtml() {
     console.log('📄 Processing HTML files with templates...');
 
-    // Read footer template
+    // Read templates
     const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
+    const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
 
     const htmlFiles = [
         'index.html',
@@ -41,6 +42,7 @@ function copyHtml() {
         'product.html',
         'migrate.html',
         'privacy.html',
+        'analytics.html',
         // New guide pages
         'edge-computing-guide.html',
         'cloudflare-workers-guide.html',
@@ -72,6 +74,9 @@ function copyHtml() {
                 /<body>/,
                 '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
             );
+
+            // Replace header placeholder with actual header content
+            content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
 
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
@@ -238,7 +243,7 @@ function copyAssets() {
         );
     }
     // Copy root assets like sitemap and robots if present
-    ['robots.txt', 'sitemap.xml', 'site.webmanifest'].forEach(file => {
+    ['robots.txt', 'sitemap.xml', 'site.webmanifest', 'google1234567890abcdef.html'].forEach(file => {
         const src = join('public', file);
         if (existsSync(src)) {
             copyFileSync(src, join('dist', file));

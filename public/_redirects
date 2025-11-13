@@ -35,8 +35,8 @@
 /developer-docs /docs.html 301
 
 # Blog redirects (when implemented)
-# /blog /blog/ 301
-# /blog/* /blog/:splat 301
+ /blog /blog/ 301
+ /blog/* /blog/:splat 301
 
 # Social media and external links (tracking)
 /github https://github.com/tamylaa/clodo-framework 301

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setupSmoothScrolling();
         setupNavActiveState();
         setupMobileMenu();
+        setupNavDropdowns();
         setupContactForm();
         setupAnnouncementBar();
         setupMicroInteractions();
@@ -437,6 +438,51 @@ function setupMobileMenu() {
             mobileMenuToggle.setAttribute('aria-expanded', 'false');
             mobileMenu.classList.remove('active');
         }
+    });
+}
+
+// Navigation dropdown functionality
+function setupNavDropdowns() {
+    const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+
+    dropdownToggles.forEach(toggle => {
+        const dropdown = toggle.closest('.nav-dropdown');
+        const menu = dropdown.querySelector('.nav-dropdown-menu');
+
+        // Desktop hover functionality
+        dropdown.addEventListener('mouseenter', function() {
+            if (window.innerWidth > 768) {
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        dropdown.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 768) {
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Mobile click functionality
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !isExpanded);
+            }
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+            const menu = dropdown.querySelector('.nav-dropdown-menu');
+
+            if (!dropdown.contains(event.target) && window.innerWidth > 768) {
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        });
     });
 }
 

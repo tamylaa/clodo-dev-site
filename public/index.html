@@ -403,7 +403,16 @@
     <nav class="navbar" aria-label="Main navigation">
             <div class="nav-container">
                 <div class="logo">
-                    <span class="logo-icon" aria-hidden="true">⚡</span>
+                    <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                        <defs>
+                            <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#0ea5e9"/>
+                                <stop offset="100%" stop-color="#6366f1"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                        <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#logo-g)"/>
+                    </svg>
                     <span class="logo-text">Clodo</span>
                 </div>
                 <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -417,11 +426,35 @@
                     <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
                     <li><a href="product.html" class="nav-link">Product</a></li>
                     <li><a href="migrate.html" class="nav-link">Migrate</a></li>
-                    <li><a href="docs.html" class="nav-link">Docs</a></li>
+                    <li class="nav-dropdown">
+                        <a href="docs.html" class="nav-link nav-dropdown-toggle">Docs</a>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="docs.html" class="nav-dropdown-link">Documentation</a></li>
+                            <li class="nav-dropdown-divider">Guides</li>
+                            <li><a href="cloudflare-workers-guide.html" class="nav-dropdown-link">Cloudflare Workers Guide</a></li>
+                            <li><a href="edge-computing-guide.html" class="nav-dropdown-link">Edge Computing Guide</a></li>
+                            <li><a href="development-deployment-guide.html" class="nav-dropdown-link">Development & Deployment</a></li>
+                            <li><a href="how-to-migrate-from-wrangler.html" class="nav-dropdown-link">Migration Guide</a></li>
+                            <li><a href="clodo-framework-api-simplification.html" class="nav-dropdown-link">API Simplification</a></li>
+                            <li><a href="clodo-framework-promise-to-reality.html" class="nav-dropdown-link">Framework Promise to Reality</a></li>
+                            <li><a href="components.html" class="nav-dropdown-link">Components</a></li>
+                            <li class="nav-dropdown-divider">Comparisons</li>
+                            <li><a href="edge-vs-cloud-computing.html" class="nav-dropdown-link">Edge vs Cloud Computing</a></li>
+                            <li><a href="workers-vs-lambda.html" class="nav-dropdown-link">Workers vs Lambda</a></li>
+                            <li><a href="what-is-cloudflare-workers.html" class="nav-dropdown-link">What is Cloudflare Workers</a></li>
+                            <li><a href="what-is-edge-computing.html" class="nav-dropdown-link">What is Edge Computing</a></li>
+                        </ul>
+                    </li>
                     <li><a href="examples.html" class="nav-link">Examples</a></li>
                     <li><a href="blog/" class="nav-link">Blog</a></li>
                     <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" class="nav-link nav-dropdown-toggle">About</a>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="about.html" class="nav-dropdown-link">About Us</a></li>
+                            <li><a href="privacy.html" class="nav-dropdown-link">Privacy Policy</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="nav-actions">
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -480,10 +513,13 @@
                             Craft Secure, Reusable Enterprise SaaS on Edge – Lightning Fast with a Reliable Framework
                         </p>
                         <div class="hero-actions">
-                                <button type="button" id="try-live-btn" class="btn btn-primary" aria-label="Try Clodo Now" onclick="window.open('https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/master?file=index.js', '_blank')">
-                                    <span>🚀 Try Now - 1 Click</span>
+                                <button type="button" id="try-live-btn" class="btn btn-hero-primary" aria-label="Try Clodo Now" onclick="window.open('https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/master?file=index.js', '_blank')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.5-3c.74 2.25 2 3.5 4 4 .74-2 3-2.5 4.5-5s-1.5-4-3-5.5c2.5-.5 4.5-2.5 3-5.5s-5-2-5.5-2c1.5 1.26 2 5 2 5s-3.74.5-5.5 3c-.74-2.25-2-3.5-4-4-.74 2-3 2.5-4.5 5z"/>
+                                    </svg>
+                                    <span>Try Now - 1 Click</span>
                                 </button>
-                                <a href="docs.html" class="btn btn-secondary" aria-label="Get started with Clodo Framework documentation">
+                                <a href="docs.html" class="btn btn-hero-secondary" aria-label="Get started with Clodo Framework documentation">
                                     <span>Get Started</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -513,26 +549,44 @@
             </div>
         </section>        <section id="key-benefits" aria-labelledby="benefits-title">
             <div class="container">
-                <h2 id="benefits-title" class="sr-only">Key Benefits</h2>
+                <div class="section-header">
+                    <h2 id="benefits-title">Why Choose Clodo Framework?</h2>
+                    <p>Transform your development workflow with enterprise-grade tools designed for modern SaaS applications.</p>
+                </div>
                 <div class="benefits-grid" role="list" aria-label="Key benefits of Clodo Framework">
                     <div class="benefit-item benefit-item--primary" role="listitem">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                        </svg>
-                        <span>10x Faster Development</span>
+                        <div class="benefit-icon-wrapper">
+                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">10x Faster Development</h3>
+                            <p class="benefit-description">From 6 months to 3 weeks. Pre-built enterprise components and automated orchestration eliminate months of infrastructure work.</p>
+                        </div>
                     </div>
                     <div class="benefit-item" role="listitem">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                        </svg>
-                        <span>90% Cost Reduction</span>
+                        <div class="benefit-icon-wrapper">
+                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">90% Cost Reduction</h3>
+                            <p class="benefit-description">$180K to $15K projects. Intelligent resource allocation and zero cold starts optimize your cloud spending.</p>
+                        </div>
                     </div>
                     <div class="benefit-item" role="listitem">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        <span>Enterprise Security Built-in</span>
+                        <div class="benefit-icon-wrapper">
+                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Enterprise Security Built-in</h3>
+                            <p class="benefit-description">SOC 2 compliant architecture with automated security validation and enterprise-grade tenant isolation.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -597,7 +651,8 @@
                     <p>The most comprehensive framework for Cloudflare Workers - what Rails did for web development, Clodo does for the edge</p>
                 </div>
                 <div class="features-grid" role="list" aria-label="Clodo Framework features">
-                    <article class="feature-card" role="listitem">
+                    <article class="feature-card featured" role="listitem">
+                        <div class="feature-badge">Most Popular</div>
                         <div class="feature-icon" aria-hidden="true">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -615,7 +670,8 @@ const deployment = await clodo.deploy({
 });
 console.log('Deployed securely across domains');</code></pre>
                     </article>
-                    <article class="feature-card" role="listitem">
+                    <article class="feature-card featured" role="listitem">
+                        <div class="feature-badge">Security First</div>
                         <div class="feature-icon" aria-hidden="true">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -630,7 +686,8 @@ const token = clodo.generateToken({
 });
 // Automatically validates security on deploy</code></pre>
                     </article>
-                    <article class="feature-card" role="listitem">
+                    <article class="feature-card featured" role="listitem">
+                        <div class="feature-badge">Game Changer</div>
                         <div class="feature-icon" aria-hidden="true">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
@@ -697,22 +754,137 @@ const token = clodo.generateToken({
 
         <section id="comparison" class="comparison-section" aria-labelledby="comparison-title">
             <div class="container">
-                <h2 id="comparison-title">Clodo vs Traditional Stacks</h2>
+                <div class="section-header">
+                    <h2 id="comparison-title">Clodo vs Traditional Stacks</h2>
+                    <p class="section-subtitle">See how Clodo Framework delivers enterprise results with developer-friendly simplicity</p>
+                </div>
                 <div class="comparison-grid">
-                    <div class="comparison-item">
-                        <h3>Deployment Time</h3>
-                        <p class="traditional">Traditional: 2-6 months custom setup</p>
-                        <p class="clodo">Clodo: Deploy in hours with multi-tenant ready</p>
+                    <div class="comparison-item comparison-item--deployment">
+                        <div class="comparison-header">
+                            <div class="comparison-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Deployment Time</h3>
+                            <div class="comparison-badge comparison-badge--improvement">
+                                <span class="badge-text">95% Faster</span>
+                            </div>
+                        </div>
+                        <div class="comparison-content">
+                            <div class="comparison-option comparison-option--traditional">
+                                <div class="option-header">
+                                    <span class="option-label">Traditional</span>
+                                    <span class="option-status option-status--slow">Slow</span>
+                                </div>
+                                <p class="option-text">2-6 months custom setup, complex configurations, manual testing</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">6 months</span>
+                                    <span class="metric-label">avg deployment</span>
+                                </div>
+                            </div>
+                            <div class="comparison-divider">
+                                <span class="divider-text">vs</span>
+                            </div>
+                            <div class="comparison-option comparison-option--clodo">
+                                <div class="option-header">
+                                    <span class="option-label">Clodo</span>
+                                    <span class="option-status option-status--fast">Lightning Fast</span>
+                                </div>
+                                <p class="option-text">Deploy in hours with multi-tenant ready, pre-built components</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">4 hours</span>
+                                    <span class="metric-label">production ready</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <h3>Security</h3>
-                        <p class="traditional">Traditional: Manual security audits</p>
-                        <p class="clodo">Clodo: Built-in AES-256 encryption & validation</p>
+
+                    <div class="comparison-item comparison-item--security">
+                        <div class="comparison-header">
+                            <div class="comparison-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <circle cx="12" cy="16" r="1"></circle>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <h3>Security & Compliance</h3>
+                            <div class="comparison-badge comparison-badge--security">
+                                <span class="badge-text">Enterprise Grade</span>
+                            </div>
+                        </div>
+                        <div class="comparison-content">
+                            <div class="comparison-option comparison-option--traditional">
+                                <div class="option-header">
+                                    <span class="option-label">Traditional</span>
+                                    <span class="option-status option-status--manual">Manual Process</span>
+                                </div>
+                                <p class="option-text">Manual security audits, custom compliance frameworks, ongoing maintenance</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">Monthly</span>
+                                    <span class="metric-label">security reviews</span>
+                                </div>
+                            </div>
+                            <div class="comparison-divider">
+                                <span class="divider-text">vs</span>
+                            </div>
+                            <div class="comparison-option comparison-option--clodo">
+                                <div class="option-header">
+                                    <span class="option-label">Clodo</span>
+                                    <span class="option-status option-status--automated">Built-in Security</span>
+                                </div>
+                                <p class="option-text">AES-256 encryption, automated validation, SOC 2 compliant by default</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">Always</span>
+                                    <span class="metric-label">compliant</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <h3>Scalability</h3>
-                        <p class="traditional">Traditional: Complex scaling configs</p>
-                        <p class="clodo">Clodo: Edge-native with global CDN</p>
+
+                    <div class="comparison-item comparison-item--scalability">
+                        <div class="comparison-header">
+                            <div class="comparison-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    <polyline points="7.5,4.5 16.5,9.5"></polyline>
+                                    <polyline points="7.5,19.5 16.5,14.5"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Scalability & Performance</h3>
+                            <div class="comparison-badge comparison-badge--performance">
+                                <span class="badge-text">Global Scale</span>
+                            </div>
+                        </div>
+                        <div class="comparison-content">
+                            <div class="comparison-option comparison-option--traditional">
+                                <div class="option-header">
+                                    <span class="option-label">Traditional</span>
+                                    <span class="option-status option-status--complex">Complex Setup</span>
+                                </div>
+                                <p class="option-text">Manual scaling configs, regional limitations, performance bottlenecks</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">Regional</span>
+                                    <span class="metric-label">deployment scope</span>
+                                </div>
+                            </div>
+                            <div class="comparison-divider">
+                                <span class="divider-text">vs</span>
+                            </div>
+                            <div class="comparison-option comparison-option--clodo">
+                                <div class="option-header">
+                                    <span class="option-label">Clodo</span>
+                                    <span class="option-status option-status--global">Edge Native</span>
+                                </div>
+                                <p class="option-text">Global CDN, automatic scaling, 50ms worldwide response times</p>
+                                <div class="option-metric">
+                                    <span class="metric-value">Global</span>
+                                    <span class="metric-label">edge deployment</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -767,12 +939,23 @@ const token = clodo.generateToken({
                             <p>AES-256 encryption, validation, and automated security checks</p>
                         </div>
                         <div class="feature-highlight">
-                            <div class="highlight-icon">🏗️</div>
+                            <div class="highlight-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polygon points="13,2 3,14 12,14 11,22 11,22 11,22"/>
+                                    <polyline points="6,10 4,12 2,10"/>
+                                    <polyline points="10,10 12,12 14,10"/>
+                                    <polyline points="6,18 8,20 10,18"/>
+                                </svg>
+                            </div>
                             <h4>Service Autonomy</h4>
                             <p>Each service deploys independently with domain-specific configurations</p>
                         </div>
                         <div class="feature-highlight">
-                            <div class="highlight-icon">⚡</div>
+                            <div class="highlight-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M13,2 3,14 12,14 11,22 11,22 11,22"/>
+                                </svg>
+                            </div>
                             <h4>Edge Performance</h4>
                             <p>Zero cold starts, global CDN, and intelligent caching</p>
                         </div>
@@ -788,7 +971,8 @@ const token = clodo.generateToken({
                         <h2 id="social-proof-title" class="social-proof__title">Trusted by Developers</h2>
                     </div>
                     <div class="social-proof__grid" role="list" aria-label="Developer testimonials">
-                        <article class="testimonial" role="listitem">
+                        <article class="testimonial testimonial--featured" role="listitem">
+                            <div class="testimonial__badge">⭐ Top Rated</div>
                             <div class="testimonial__rating" aria-label="5 out of 5 stars">
                                 <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                             </div>
@@ -805,7 +989,7 @@ const token = clodo.generateToken({
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial" role="listitem">
+                        <article class="testimonial testimonial--alternate" role="listitem">
                             <div class="testimonial__rating" aria-label="5 out of 5 stars">
                                 <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                             </div>
@@ -822,7 +1006,8 @@ const token = clodo.generateToken({
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial" role="listitem">
+                        <article class="testimonial testimonial--featured" role="listitem">
+                            <div class="testimonial__badge">🏆 Enterprise Choice</div>
                             <div class="testimonial__rating" aria-label="5 out of 5 stars">
                                 <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                             </div>
@@ -839,7 +1024,7 @@ const token = clodo.generateToken({
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial" role="listitem">
+                        <article class="testimonial testimonial--alternate" role="listitem">
                             <div class="testimonial__rating" aria-label="5 out of 5 stars">
                                 <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                             </div>
@@ -873,7 +1058,8 @@ const token = clodo.generateToken({
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial" role="listitem">
+                        <article class="testimonial testimonial--featured" role="listitem">
+                            <div class="testimonial__badge">⚡ Performance Leader</div>
                             <div class="testimonial__rating" aria-label="5 out of 5 stars">
                                 <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                             </div>
@@ -914,24 +1100,80 @@ const token = clodo.generateToken({
 
         <section id="cta" class="cta-section" aria-labelledby="cta-title">
             <div class="container">
-                <div class="cta-content">
-                    <h2 id="cta-title">Ready to Transform Your Development Workflow?</h2>
-                    <p>Join the developers building the next generation of SaaS applications on Cloudflare Edge. Stop assembling frameworks - start building businesses.</p>
-                    <div class="cta-actions" aria-label="Call to action buttons">
-                        <a href="docs.html" class="btn btn-primary btn-large" aria-describedby="cta-primary-desc">
-                            <span>Start Building</span>
+                <div class="cta-container">
+                    <div class="cta-visual">
+                        <div class="cta-badge">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                             </svg>
-                        </a>
-                        <span id="cta-primary-desc" class="sr-only">Navigate to documentation to start building with Clodo Framework</span>
-                        <a href="https://github.com/tamylaa/clodo-framework" class="btn btn-outline btn-large" target="_blank" rel="noopener" aria-describedby="cta-secondary-desc">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>View Source</span>
-                        </a>
-                        <span id="cta-secondary-desc" class="sr-only">Open GitHub repository in new tab to view source code</span>
+                            <span>Open Source</span>
+                        </div>
+                        <div class="cta-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">60%</span>
+                                <span class="stat-label">Cost Reduction</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4hrs</span>
+                                <span class="stat-label">Setup Time</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50ms</span>
+                                <span class="stat-label">Global Latency</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cta-content">
+                        <div class="cta-header">
+                            <h2 id="cta-title">Ready to Transform Your Development Workflow?</h2>
+                            <div class="cta-subtitle">
+                                <p>Join 1000+ developers building the next generation of SaaS applications on Cloudflare Edge.</p>
+                                <p class="cta-highlight">Stop assembling frameworks. Start building businesses.</p>
+                            </div>
+                        </div>
+                        <div class="cta-features">
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polyline points="20,6 9,17 4,12"></polyline>
+                                </svg>
+                                <span>Pre-Flight Checker included</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polyline points="20,6 9,17 4,12"></polyline>
+                                </svg>
+                                <span>Enterprise-grade security</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polyline points="20,6 9,17 4,12"></polyline>
+                                </svg>
+                                <span>Multi-tenant ready</span>
+                            </div>
+                        </div>
+                        <div class="cta-actions" aria-label="Call to action buttons">
+                            <a href="docs.html" class="btn btn-primary btn-large cta-primary-btn" aria-describedby="cta-primary-desc">
+                                <span>Start Building Free</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                            <span id="cta-primary-desc" class="sr-only">Navigate to documentation to start building with Clodo Framework</span>
+                            <a href="https://github.com/tamylaa/clodo-framework" class="btn btn-outline btn-large cta-secondary-btn" target="_blank" rel="noopener" aria-describedby="cta-secondary-desc">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>View Source</span>
+                                <span class="btn-badge">⭐ 0</span>
+                            </a>
+                            <span id="cta-secondary-desc" class="sr-only">Open GitHub repository in new tab to view source code</span>
+                        </div>
+                        <div class="cta-trust">
+                            <p class="trust-text">Trusted by developers at</p>
+                            <div class="trust-logos">
+                                <div class="trust-placeholder">Enterprise Ready</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -939,6 +1181,138 @@ const token = clodo.generateToken({
     </main>
 
     <!-- FOOTER_PLACEHOLDER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-logo">
+                <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                    <defs>
+                        <linearGradient id="footer-logo-g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#0ea5e9"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                    <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#footer-logo-g)"/>
+                </svg>
+                <span class="logo-text">Clodo</span>
+            </div>
+            <p>Building the future of edge computing, one service at a time. Join thousands of developers deploying on Cloudflare Workers with enterprise-grade performance and security.</p>
+
+            <div class="footer-newsletter" id="newsletter">
+                <h4>Stay Updated</h4>
+                <p id="newsletter-helper" class="form-helper">Product updates, engineering posts, and launch notes. <strong>1–2 emails/month.</strong></p>
+                <form class="newsletter-form" action="#" method="post" data-newsletter-form>
+                    <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="source" value="footer">
+                    <div class="form-group">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" inputmode="email" aria-describedby="newsletter-helper" required>
+                        <button type="submit" class="btn btn--primary" aria-label="Subscribe to newsletter">Subscribe</button>
+                    </div>
+                    <div class="reassurance">No spam. Unsubscribe anytime.</div>
+                    <div class="consent">
+                        <input type="checkbox" id="newsletter-consent" name="consent" required>
+                        <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html">Privacy Policy</a>.</label>
+                    </div>
+                    <p class="form-message" aria-live="polite" role="status"></p>
+                    <noscript>
+                        <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
+                    </noscript>
+                </form>
+            </div>
+        </div>
+
+        <nav class="footer-section" aria-labelledby="footer-product">
+            <h4 id="footer-product">Product</h4>
+            <ul role="list">
+                <li><a href="product.html">Product Overview</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="examples.html">Code Examples</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="migrate.html">Migration Guide</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="docs.html#api">API Reference</a></li>
+                <li><a href="product.html#expert-assessment">Expert Review</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-developers">
+            <h4 id="footer-developers">Developers</h4>
+            <ul role="list">
+                <li><a href="docs.html#getting-started">Getting Started</a></li>
+                <li><a href="docs.html#deployment">Deployment</a></li>
+                <li><a href="docs.html#security">Security Guide</a></li>
+                <li><a href="docs.html#troubleshooting">Troubleshooting</a></li>
+                <li><a href="examples.html">Example Projects</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/releases" target="_blank" rel="noopener">Release Notes</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-blog">
+            <h4 id="footer-blog">Blog</h4>
+            <ul role="list">
+                <li><a href="clodo-framework-promise-to-reality.html">From Promise to Reality</a></li>
+                <li><a href="clodo-framework-api-simplification.html">API Complexity Crisis</a></li>
+                <li><a href="about.html#game-changer">Our Story</a></li>
+                <li><a href="about.html#roadmap">Product Roadmap</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-company">
+            <h4 id="footer-company">Company</h4>
+            <ul role="list">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html#vision">Our Mission</a></li>
+                <li><a href="about.html#roadmap">Roadmap</a></li>
+                <li><a href="about.html#game-changer">Our Story</a></li>
+                <li><a href="pricing.html#contact">Contact</a></li>
+                <li><a href="about.html#team">Team</a></li>
+                <li><a href="about.html#careers">Careers</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-community">
+            <h4 id="footer-community">Community</h4>
+            <ul role="list">
+                <li><a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener">GitHub Discussions</a></li>
+                <li><a href="https://twitter.com/clodoframework" target="_blank" rel="noopener">Twitter</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/issues" target="_blank" rel="noopener">Report Issues</a></li>
+                <li><a href="about.html#contact">Email Support</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://twitter.com/clodoframework" target="_blank" rel="noopener" aria-label="Follow us on Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener" aria-label="View on GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener" aria-label="Join GitHub Discussions">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.69-.22.69-.48v-1.62c-2.78.62-3.37-1.35-3.37-1.35-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.53.99 1.53.99.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.11 2.52.32 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.33 4.69-4.55 4.94.28.25.54.69.63 1.34.57.26 2.02.7 2.91.83.89-.53 1.53-.99 1.53-.99.91 0 .98.61.07.61-.45 0-1.11.31-1.11.62 0 0-.89 1.73-3.37 1.73v1.48c0 .26.19.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; 2025 Clodo Framework. Open source under MIT License.
+            <span aria-hidden="true">•</span>
+            <a href="privacy.html">Privacy Policy</a>
+            <span aria-hidden="true">•</span>
+            <a href="privacy.html#terms">Terms of Service</a>
+            <span aria-hidden="true">•</span>
+            Made with <span class="text-heart">♥</span> for developers
+        </p>
+    </div>
+</footer>
 
     <script src="brevo-secure-config.js" nonce="N0Nc3Cl0d0"></script>
     <script src="brevo-config.js" nonce="N0Nc3Cl0d0"></script>
