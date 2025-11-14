@@ -32,6 +32,10 @@ function copyHtml() {
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
     const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
 
+    // Read critical CSS for inlining
+    const criticalCssPath = join('dist', 'critical.css');
+    const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
+
     const htmlFiles = [
         'index.html',
         'about.html',
@@ -85,6 +89,18 @@ function copyHtml() {
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
 
+            // Replace CSS link with inline critical CSS and async non-critical CSS
+            if (criticalCss) {
+                const criticalCssInline = `<style>${criticalCss}</style>`;
+                const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+
+                // Replace existing styles.css link
+                content = content.replace(
+                    /<link[^>]*href="styles\.css"[^>]*>/g,
+                    criticalCssInline + '\n    ' + asyncCssLink
+                );
+            }
+
             // Ensure destination directory exists
             const destPath = join('dist', file);
             const destDir = dirname(destPath);
@@ -97,16 +113,20 @@ function copyHtml() {
     });
 }
 
-// Minify CSS (simple minification)
+// Bundle CSS into critical and non-critical bundles for performance
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
 
-    // Resolve @import statements and bundle all CSS files
-    const cssFiles = [
-        'css/base.css',
+    // Critical CSS files (needed for initial render)
+    const criticalCssFiles = [
+        'css/base.css',        // CSS variables, resets, typography
+        'css/layout.css'       // Grid, containers, basic layout
+    ];
+
+    // Non-critical CSS files (can load asynchronously)
+    const nonCriticalCssFiles = [
         'css/utilities.css',
-        'css/components.css',
-        'css/layout.css',
+        'css/components.css',  // Navigation and other components
         'css/pages/index.css',
         'css/pages/product.css',
         'css/pages/about.css',
@@ -115,30 +135,52 @@ function bundleCss() {
         'css/pages/subscribe-enhanced.css',
         'css/pages/blog.css'
     ];
-    let bundled = '';
 
-    cssFiles.forEach(file => {
+    // Bundle critical CSS
+    let criticalBundled = '';
+    criticalCssFiles.forEach(file => {
         const filePath = join('public', file);
         if (existsSync(filePath)) {
-            console.log(`📄 Including ${file}`);
-            bundled += readFileSync(filePath, 'utf8') + '\n';
+            console.log(`📄 Including critical: ${file}`);
+            criticalBundled += readFileSync(filePath, 'utf8') + '\n';
         } else {
-            console.warn(`⚠️  CSS file not found: ${file}`);
+            console.warn(`⚠️  Critical CSS file not found: ${file}`);
         }
     });
 
-    // Simple minification
-    let minified = bundled
-        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-        .replace(/\s+/g, ' ') // Collapse whitespace
-        .replace(/\s*{\s*/g, '{') // Remove spaces around braces
-        .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
-        .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
-        .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
-        .trim();
+    // Bundle non-critical CSS
+    let nonCriticalBundled = '';
+    nonCriticalCssFiles.forEach(file => {
+        const filePath = join('public', file);
+        if (existsSync(filePath)) {
+            console.log(`📄 Including non-critical: ${file}`);
+            nonCriticalBundled += readFileSync(filePath, 'utf8') + '\n';
+        } else {
+            console.warn(`⚠️  Non-critical CSS file not found: ${file}`);
+        }
+    });
 
-    writeFileSync(join('dist', 'styles.css'), minified);
-    console.log(`📦 Bundled CSS: ${minified.length} bytes`);
+    // Simple minification function
+    const minifyCss = (css) => {
+        return css
+            .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+            .replace(/\s+/g, ' ') // Collapse whitespace
+            .replace(/\s*{\s*/g, '{') // Remove spaces around braces
+            .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
+            .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
+            .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
+            .trim();
+    };
+
+    // Minify and write critical CSS
+    const minifiedCritical = minifyCss(criticalBundled);
+    writeFileSync(join('dist', 'critical.css'), minifiedCritical);
+    console.log(`📦 Critical CSS: ${minifiedCritical.length} bytes`);
+
+    // Minify and write non-critical CSS
+    const minifiedNonCritical = minifyCss(nonCriticalBundled);
+    writeFileSync(join('dist', 'styles.css'), minifiedNonCritical);
+    console.log(`📦 Non-critical CSS: ${minifiedNonCritical.length} bytes`);
 }
 
 function minifyCss() {
@@ -335,8 +377,8 @@ function generateBuildInfo() {
 // Main build process
 try {
     cleanDist();
+    bundleCss();  // Must run before copyHtml since HTML processing needs critical.css
     copyHtml();
-    bundleCss();
     minifyCss();
     copyJs();
     copyJsConfigs();
