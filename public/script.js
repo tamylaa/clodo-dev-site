@@ -877,54 +877,7 @@ function loadScript(src) {
 
 // ===== UTILITY FUNCTIONS =====
 
-// Notification system
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    const validTypes = ['success', 'error', 'info'];
-    const normalizedType = validTypes.includes(type) ? type : 'info';
-    notification.className = `notification notification-${normalizedType}`;
-    notification.textContent = message;
-
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-
-    // Set background color based on type
-    const colors = {
-        success: '#10b981',
-        error: '#ef4444',
-        info: '#3b82f6'
-    };
-    notification.style.backgroundColor = colors[type] || colors.info;
-
-    // Add to page
-    document.body.appendChild(notification);
-
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Remove after 5 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 5000);
-}
+// Enhanced notification system with loading states (defined later in file)
 
 // ===== PERFORMANCE OPTIMIZATION =====
 
@@ -1029,6 +982,251 @@ function setupMicroInteractions() {
             }
         });
     });
+
+    // Enhanced loading states for better UX
+    setupLoadingStates();
+}
+
+// ===== LOADING STATE MANAGEMENT =====
+function setupLoadingStates() {
+    // Enhanced form loading states
+    document.querySelectorAll('form').forEach(form => {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            form.addEventListener('submit', function() {
+                setLoadingState(submitBtn, true);
+            });
+        }
+    });
+
+    // Async content loading simulation
+    setupAsyncContentLoading();
+}
+
+// Set loading state for elements
+function setLoadingState(element, isLoading) {
+    if (isLoading) {
+        element.setAttribute('aria-busy', 'true');
+        element.disabled = true;
+        element.classList.add('state-loading');
+
+        // Store original text for restoration
+        if (!element.dataset.originalText) {
+            element.dataset.originalText = element.textContent;
+        }
+        element.textContent = 'Loading...';
+    } else {
+        element.setAttribute('aria-busy', 'false');
+        element.disabled = false;
+        element.classList.remove('state-loading');
+
+        // Restore original text
+        if (element.dataset.originalText) {
+            element.textContent = element.dataset.originalText;
+        }
+    }
+}
+
+// Show loading overlay
+function showLoadingOverlay(message = 'Loading...') {
+    let overlay = document.querySelector('.loading-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'loading-overlay';
+        overlay.innerHTML = `
+            <div class="loading-content">
+                <div class="spinner spinner--lg"></div>
+                <div class="loading-text">${message}</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Hide loading overlay
+function hideLoadingOverlay() {
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            overlay.remove();
+            document.body.style.overflow = '';
+        }, 300);
+    }
+}
+
+// Show skeleton loading for content areas
+function showSkeletonLoading(container, type = 'card') {
+    if (!container) return;
+
+    const skeletonCount = type === 'list' ? 3 : 1;
+    container.innerHTML = '';
+
+    for (let i = 0; i < skeletonCount; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = `skeleton skeleton--${type}`;
+        container.appendChild(skeleton);
+    }
+}
+
+// Hide skeleton loading and show real content
+function hideSkeletonLoading(container, content) {
+    if (!container) return;
+
+    // Add fade-in animation
+    container.style.opacity = '0';
+    container.innerHTML = content;
+
+    setTimeout(() => {
+        container.style.transition = 'opacity 0.3s ease';
+        container.style.opacity = '1';
+    }, 100);
+}
+
+// Simulate async content loading
+function setupAsyncContentLoading() {
+    // Simulate loading testimonials
+    const testimonialContainer = document.querySelector('.testimonials');
+    if (testimonialContainer && testimonialContainer.children.length === 0) {
+        showSkeletonLoading(testimonialContainer, 'card');
+
+        // Simulate API call
+        setTimeout(() => {
+            const testimonials = `
+                <div class="testimonial">
+                    <div class="testimonial__content">
+                        <p>"Clodo Framework transformed our development workflow. What used to take weeks now takes days."</p>
+                    </div>
+                    <div class="testimonial__info">
+                        <h4>Sarah Chen</h4>
+                        <p>CTO, TechFlow Inc.</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial__content">
+                        <p>"The enterprise-grade security and performance monitoring give us peace of mind."</p>
+                    </div>
+                    <div class="testimonial__info">
+                        <h4>Michael Rodriguez</h4>
+                        <p>Lead Developer, DataSecure</p>
+                    </div>
+                </div>
+            `;
+            hideSkeletonLoading(testimonialContainer, testimonials);
+        }, 2000);
+    }
+
+    // Simulate loading stats
+    const statsContainer = document.querySelector('.stats-grid');
+    if (statsContainer) {
+        const statElements = statsContainer.querySelectorAll('.stat-number');
+        statElements.forEach(stat => {
+            if (stat.textContent.includes('—')) {
+                stat.classList.add('loading-pulse');
+                // Simulate stat loading
+                setTimeout(() => {
+                    stat.classList.remove('loading-pulse');
+                    // In real implementation, this would be actual data
+                }, 1500);
+            }
+        });
+    }
+}
+
+// Progress bar functionality
+function showProgressBar(container, progress = 0) {
+    let progressBar = container.querySelector('.progress-bar');
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressBar.innerHTML = '<div class="progress-fill"></div>';
+        container.appendChild(progressBar);
+    }
+
+    const fill = progressBar.querySelector('.progress-fill');
+    fill.style.width = `${progress}%`;
+}
+
+function showIndeterminateProgress(container) {
+    let progressBar = container.querySelector('.progress-bar');
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar progress-bar--animated';
+        progressBar.innerHTML = '<div class="progress-fill"></div>';
+        container.appendChild(progressBar);
+    }
+}
+
+// Enhanced notification system with loading states
+function showNotification(message, type = 'info', duration = 5000) {
+    const validTypes = ['success', 'error', 'info', 'warning'];
+    const normalizedType = validTypes.includes(type) ? type : 'info';
+
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${normalizedType}`;
+    notification.setAttribute('role', 'alert');
+    notification.setAttribute('aria-live', 'assertive');
+
+    let icon = '';
+    switch (normalizedType) {
+        case 'success':
+            icon = '✓';
+            break;
+        case 'error':
+            icon = '✕';
+            break;
+        case 'warning':
+            icon = '⚠';
+            break;
+        default:
+            icon = 'ℹ';
+    }
+
+    notification.innerHTML = `
+        <div class="notification__content">
+            <span class="notification__icon">${icon}</span>
+            <span class="notification__message">${message}</span>
+        </div>
+        <button class="notification__close" aria-label="Close notification">×</button>
+    `;
+
+    // Add to notification container
+    let container = document.querySelector('.notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'notification-container';
+        document.body.appendChild(container);
+    }
+
+    container.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => notification.classList.add('show'), 10);
+
+    // Auto remove
+    if (duration > 0) {
+        setTimeout(() => {
+            removeNotification(notification);
+        }, duration);
+    }
+
+    // Close button
+    const closeBtn = notification.querySelector('.notification__close');
+    closeBtn.addEventListener('click', () => removeNotification(notification));
+
+    return notification;
+}
+
+function removeNotification(notification) {
+    notification.classList.remove('show');
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 300);
 }
 
 // Try modal setup
