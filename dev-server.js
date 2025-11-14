@@ -10,6 +10,20 @@ const __dirname = dirname(__filename);
 const useDist = process.argv.includes('--dist');
 const publicDir = join(__dirname, useDist ? 'dist' : 'public');
 
+// Cache templates
+const templates = {};
+function getTemplate(name) {
+    if (!templates[name]) {
+        const templatePath = join(__dirname, 'templates', name);
+        if (existsSync(templatePath)) {
+            templates[name] = readFileSync(templatePath, 'utf8');
+        } else {
+            templates[name] = '';
+        }
+    }
+    return templates[name];
+}
+
 let server = createServer((req, res) => {
     // Parse URL to remove query parameters
     const urlPath = req.url.split('?')[0];
@@ -87,7 +101,14 @@ let server = createServer((req, res) => {
     }
 
     try {
-        const data = readFileSync(filePath);
+        let data = readFileSync(filePath, 'utf8');
+
+        // Process SSI includes for HTML files
+        if (ext === 'html') {
+            // Process nav-main.html include
+            data = data.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, getTemplate('nav-main.html'));
+        }
+
         res.writeHead(200, { 'Content-Type': contentType });
         res.end(data);
     } catch (error) {

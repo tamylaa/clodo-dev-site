@@ -30,6 +30,7 @@ function copyHtml() {
     // Read templates
     const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
+    const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
 
     const htmlFiles = [
         'index.html',
@@ -77,6 +78,9 @@ function copyHtml() {
 
             // Replace header placeholder with actual header content
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
+
+            // Process SSI includes
+            content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
 
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
