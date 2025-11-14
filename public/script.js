@@ -354,6 +354,9 @@ function setupSmoothScrolling() {
 function setupNavActiveState() {
     const navLinks = document.querySelectorAll('.nav-link');
 
+    // Handle page-based active state for navigation links
+    setPageActiveState();
+
     // Handle scroll-based active state for on-page sections
     const observerOptions = {
         threshold: 0.3,
@@ -394,6 +397,22 @@ function updateActiveNavLink(sectionId) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
+        }
+    });
+}
+
+function setPageActiveState() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.includes('http')) {
+            // Remove leading slash for comparison
+            const linkPath = href.startsWith('/') ? href : '/' + href;
+            if (currentPath === linkPath || (currentPath === '/' && linkPath === '/index.html')) {
+                link.classList.add('active');
+            }
         }
     });
 }

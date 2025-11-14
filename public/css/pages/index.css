@@ -309,7 +309,7 @@
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     width: 100%;
 }
@@ -351,12 +351,14 @@
 }
 
 .benefit-item--primary {
-    padding: 2.5rem;
-    background: linear-gradient(135deg, rgb(102 126 234 / 5%) 0%, rgb(240 147 251 / 5%) 100%);
-    box-shadow: 0 12px 32px rgb(102 126 234 / 12%);
+    grid-column: 1 / -1;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgb(102 126 234 / 8%) 0%, rgb(240 147 251 / 8%) 100%);
+    box-shadow: 0 16px 40px rgb(102 126 234 / 15%);
     border: 2px solid transparent;
     background-clip: padding-box;
     position: relative;
+    margin-bottom: 2rem;
 }
 
 .benefit-item--primary::after {
@@ -420,7 +422,7 @@
 }
 
 .benefit-item--primary .benefit-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     background: linear-gradient(135deg, var(--primary-color), var(--gradient-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -428,7 +430,7 @@
 }
 
 .benefit-item--primary .benefit-description {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     color: var(--text-primary);
 }
 
@@ -437,6 +439,35 @@
     height: 64px;
     min-width: 64px;
     font-size: 1.5rem;
+}
+
+/* Secondary benefit variations */
+.benefits-grid .benefit-item:nth-child(2) {
+    background: linear-gradient(135deg, rgb(34 197 94 / 3%) 0%, rgb(34 197 94 / 1%) 100%);
+    border-color: rgb(34 197 94 / 20%);
+}
+
+.benefits-grid .benefit-item:nth-child(2) .benefit-icon {
+    background: linear-gradient(135deg, rgb(34 197 94), rgb(22 163 74));
+    box-shadow: 0 8px 16px rgb(34 197 94 / 25%);
+}
+
+.benefits-grid .benefit-item:nth-child(2):hover .benefit-icon {
+    box-shadow: 0 12px 24px rgb(34 197 94 / 35%);
+}
+
+.benefits-grid .benefit-item:nth-child(3) {
+    background: linear-gradient(135deg, rgb(239 68 68 / 3%) 0%, rgb(239 68 68 / 1%) 100%);
+    border-color: rgb(239 68 68 / 20%);
+}
+
+.benefits-grid .benefit-item:nth-child(3) .benefit-icon {
+    background: linear-gradient(135deg, rgb(239 68 68), rgb(220 38 38));
+    box-shadow: 0 8px 16px rgb(239 68 68 / 25%);
+}
+
+.benefits-grid .benefit-item:nth-child(3):hover .benefit-icon {
+    box-shadow: 0 12px 24px rgb(239 68 68 / 35%);
 }
 
 .benefit-item span:last-child {
