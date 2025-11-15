@@ -628,6 +628,11 @@ a {
 
 .nav-menu a.active {
     color: var(--primary-color);
+    font-weight: 600;
+    background: linear-gradient(135deg, rgb(59 130 246 / 10%) 0%, rgb(59 130 246 / 5%) 100%);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    position: relative;
 }
 
 /* ===== NAVIGATION DROPDOWNS ===== */
