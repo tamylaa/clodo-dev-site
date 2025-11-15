@@ -133,7 +133,8 @@ function bundleCss() {
         'css/pages/migrate.css',
         'css/pages/subscribe.css',
         'css/pages/subscribe-enhanced.css',
-        'css/pages/blog.css'
+        'css/pages/blog.css',
+        'css/pages/pricing.css'
     ];
 
     // Bundle critical CSS
