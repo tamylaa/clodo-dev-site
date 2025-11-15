@@ -84,7 +84,7 @@ function copyHtml() {
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
 
             // Process SSI includes
-            content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
+            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/nav-main\.html" -->/gm, navMainTemplate);
 
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
@@ -120,7 +120,8 @@ function bundleCss() {
     // Critical CSS files (needed for initial render)
     const criticalCssFiles = [
         'css/base.css',        // CSS variables, resets, typography
-        'css/layout.css'       // Grid, containers, basic layout
+        'css/layout.css',      // Grid, containers, basic layout
+        'css/nav.css'          // Navigation styles for initial render
     ];
 
     // Non-critical CSS files (can load asynchronously)
