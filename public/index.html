@@ -13,11 +13,22 @@
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
     <link rel="canonical" href="https://clodo.dev">
-    <!-- Core Web Vitals Optimization -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="script.js" as="script">
+    
+    <!-- PERFORMANCE RESOURCE HINTS -->
+    <!-- DNS Prefetch: Resolve domains early -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//api.github.com">
+    <link rel="dns-prefetch" href="//challenges.cloudflare.com">
+    
+    <!-- Preconnect: Establish connections early (more expensive than dns-prefetch) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.github.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="script.js" as="script">
+    
     <!-- International SEO -->
     <link rel="alternate" hreflang="en" href="https://clodo.dev">
     <link rel="alternate" hreflang="en-us" href="https://clodo.dev">
