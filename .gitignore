@@ -33,6 +33,9 @@ tests/playwright-report/
 tests/test-results/
 playwright/.cache/
 
+# Lighthouse CI
+.lighthouseci/
+
 # SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
 docs/clodo-framework-docs/
 docs/clodo-framework-i-docs/

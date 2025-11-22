@@ -25,6 +25,9 @@
     "test:visual": "playwright test tests/e2e/visual-regression.spec.js",
     "test:visual:update": "playwright test tests/e2e/visual-regression.spec.js --update-snapshots",
     "test:all": "npm test && npm run test:e2e",
+    "lighthouse": "lhci autorun",
+    "lighthouse:report": "lhci autorun && npx lighthouse http://localhost:8000 --view",
+    "lighthouse:ci": "lhci autorun",
     "lint:js": "eslint . --ext .js --max-warnings=50",
     "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\"",
     "lint": "npm run lint:js && npm run lint:css",
@@ -54,11 +57,13 @@
     "url": "https://github.com/tamylaa/clodo-framework.git"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.1",
     "eslint": "^8.57.0",
     "eslint-plugin-html": "^8.1.3",
     "http-server": "^14.1.1",
+    "lighthouse": "^12.8.2",
     "playwright": "^1.56.1",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1",
