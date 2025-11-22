@@ -240,6 +240,35 @@
     margin-bottom: var(--spacing-md);
 }
 
+/* Field error states (from Forms module) */
+.field-error {
+    border-color: var(--error-color) !important;
+    background-color: rgb(239 68 68 / 5%);
+}
+
+.field-error:focus {
+    border-color: var(--error-color) !important;
+    box-shadow: 0 0 0 3px rgb(239 68 68 / 10%) !important;
+}
+
+.field-error-message {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--error-color);
+    animation: slideDown 0.2s ease-out;
+}
+
+/* Form loading state */
+.form--submitting {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.btn--loading .btn-spinner {
+    display: inline-block !important;
+}
+
 /* ===== NAVIGATION ===== */
 .navbar {
     background-color: var(--bg-primary);

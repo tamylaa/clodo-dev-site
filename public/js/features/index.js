@@ -10,9 +10,9 @@
 
 // Feature modules
 export { default as Newsletter } from './newsletter.js';
+export { default as Forms } from './forms.js';
 
 // Future feature modules (to be extracted from script.js):
-// export { default as Forms } from './forms.js';
 // export { default as Analytics } from './analytics.js';
 // export { default as GitHub } from './github.js';
 // export { default as Search } from './search.js';
