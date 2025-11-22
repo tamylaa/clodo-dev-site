@@ -642,18 +642,21 @@ footer > * {
     }
 }
 
-.footer-newsletter .form-message.show {
+.footer-newsletter .form-message.show,
+.footer-newsletter .form-message[style*="display: block"] {
     display: block;
 }
 
-.footer-newsletter .form-message.success {
+.footer-newsletter .form-message.success,
+.footer-newsletter .form-message--success {
     background: linear-gradient(135deg, rgb(16 185 129 / 15%), rgb(16 185 129 / 8%));
     color: var(--success-color-light);
     border: 1px solid rgb(16 185 129 / 30%);
     backdrop-filter: blur(10px);
 }
 
-.footer-newsletter .form-message.error {
+.footer-newsletter .form-message.error,
+.footer-newsletter .form-message--error {
     background: linear-gradient(135deg, rgb(239 68 68 / 15%), rgb(239 68 68 / 8%));
     color: var(--error-color-light);
     border: 1px solid rgb(239 68 68 / 30%);

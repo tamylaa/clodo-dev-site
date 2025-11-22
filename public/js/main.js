@@ -45,10 +45,10 @@ async function initFeatures() {
     
     // Newsletter form handler
     if (isFeatureEnabled('NEWSLETTER_MODULE')) {
-        const newsletterForms = document.querySelectorAll('form[action*="newsletter"]');
+        const newsletterForms = document.querySelectorAll('form[data-newsletter-form], form[action*="newsletter"]');
         if (newsletterForms.length > 0) {
             try {
-                const Newsletter = await import('./features/newsletter.js');
+                const { Newsletter } = await import('./features/index.js');
                 Newsletter.init();
                 console.log('[Main.js] ✓ Newsletter module loaded');
             } catch (error) {

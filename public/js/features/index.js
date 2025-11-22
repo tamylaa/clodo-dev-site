@@ -8,8 +8,10 @@
  *   import { Newsletter, Forms, Analytics } from './features/index.js';
  */
 
+// Feature modules
+export { default as Newsletter } from './newsletter.js';
+
 // Future feature modules (to be extracted from script.js):
-// export { default as Newsletter } from './newsletter.js';
 // export { default as Forms } from './forms.js';
 // export { default as Analytics } from './analytics.js';
 // export { default as GitHub } from './github.js';
@@ -17,6 +19,7 @@
 // export { default as LazyLoading } from './lazy-loading.js';
 // export { default as CodeCopy } from './code-copy.js';
 // export { default as Performance } from './performance.js';
+
 
 // Placeholder until features are extracted
 export default {
