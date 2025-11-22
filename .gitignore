@@ -28,6 +28,11 @@ public/brevo-secure-config.js
 coverage/
 *.lcov
 
+# Playwright
+tests/playwright-report/
+tests/test-results/
+playwright/.cache/
+
 # SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
 docs/clodo-framework-docs/
 docs/clodo-framework-i-docs/
