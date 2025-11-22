@@ -11,41 +11,92 @@
  * - Progressive enhancement
  */
 
-// Feature flags for gradual rollout
-const FEATURE_FLAGS = {
-    useModules: false,  // Set to true when ready to migrate
-    enableModulePreload: false,
-    enableCodeSplitting: false
-};
+import { 
+    isFeatureEnabled, 
+    getEnabledFeatures, 
+    isBrowserSupported 
+} from './config/features.js';
 
 /**
  * Initialize core features
  * These run immediately on page load
  */
-function initCore() {
-    // Core features will be imported here
-    // Example: import('./core/theme.js').then(module => module.init());
-    console.log('[Main.js] Core initialization placeholder');
+async function initCore() {
+    console.log('[Main.js] Initializing core features...');
+    
+    // Theme manager - always available, but can be modular
+    if (isFeatureEnabled('THEME_MANAGER_MODULE')) {
+        try {
+            const ThemeManager = await import('./core/theme.js');
+            ThemeManager.init();
+            console.log('[Main.js] ✓ Theme manager module loaded');
+        } catch (error) {
+            console.error('[Main.js] Failed to load theme manager:', error);
+        }
+    }
 }
 
 /**
  * Initialize page-specific features
  * These load after DOM is ready
  */
-function initFeatures() {
-    // Page-specific features will be imported here
-    // Example: import('./features/newsletter.js').then(module => module.init());
-    console.log('[Main.js] Features initialization placeholder');
+async function initFeatures() {
+    console.log('[Main.js] Initializing page features...');
+    
+    // Newsletter form handler
+    if (isFeatureEnabled('NEWSLETTER_MODULE')) {
+        const newsletterForms = document.querySelectorAll('form[action*="newsletter"]');
+        if (newsletterForms.length > 0) {
+            try {
+                const Newsletter = await import('./features/newsletter.js');
+                Newsletter.init();
+                console.log('[Main.js] ✓ Newsletter module loaded');
+            } catch (error) {
+                console.error('[Main.js] Failed to load newsletter:', error);
+            }
+        }
+    }
+    
+    // Navigation component
+    if (isFeatureEnabled('NAVIGATION_MODULE')) {
+        try {
+            const Navigation = await import('./ui/navigation.js');
+            Navigation.init();
+            console.log('[Main.js] ✓ Navigation module loaded');
+        } catch (error) {
+            console.error('[Main.js] Failed to load navigation:', error);
+        }
+    }
 }
 
 /**
  * Initialize deferred features
  * These load after page is interactive (requestIdleCallback)
  */
-function initDeferred() {
-    // Non-critical features load when browser is idle
-    // Example: import('./features/analytics.js').then(module => module.init());
-    console.log('[Main.js] Deferred initialization placeholder');
+async function initDeferred() {
+    console.log('[Main.js] Initializing deferred features...');
+    
+    // Performance monitoring (production only)
+    if (isFeatureEnabled('PERFORMANCE_MONITORING')) {
+        try {
+            const Performance = await import('./features/performance.js');
+            Performance.init();
+            console.log('[Main.js] ✓ Performance monitoring loaded');
+        } catch (error) {
+            console.error('[Main.js] Failed to load performance monitoring:', error);
+        }
+    }
+    
+    // Error tracking (production only)
+    if (isFeatureEnabled('ERROR_TRACKING')) {
+        try {
+            const ErrorTracking = await import('./features/error-tracking.js');
+            ErrorTracking.init();
+            console.log('[Main.js] ✓ Error tracking loaded');
+        } catch (error) {
+            console.error('[Main.js] Failed to load error tracking:', error);
+        }
+    }
 }
 
 /**
@@ -53,12 +104,20 @@ function initDeferred() {
  * Called when DOM is ready
  */
 function init() {
-    if (!FEATURE_FLAGS.useModules) {
+    // Check if ES6 modules are enabled
+    if (!isFeatureEnabled('ES6_MODULES')) {
         console.log('[Main.js] Module system disabled. Using legacy script.js');
         return;
     }
+    
+    // Check browser support
+    if (!isBrowserSupported('ES6_MODULES')) {
+        console.warn('[Main.js] ES6 modules not supported, falling back to legacy script.js');
+        return;
+    }
 
-    console.log('[Main.js] Initializing Clodo Framework modules...');
+    console.log('[Main.js] 🚀 Initializing Clodo Framework modules...');
+    console.log('[Main.js] Enabled features:', getEnabledFeatures().join(', '));
     
     // Initialize core features immediately
     initCore();
@@ -71,7 +130,7 @@ function init() {
     }
     
     // Initialize deferred features when idle
-    if ('requestIdleCallback' in window) {
+    if (isFeatureEnabled('IDLE_CALLBACK') && 'requestIdleCallback' in window) {
         requestIdleCallback(initDeferred);
     } else {
         setTimeout(initDeferred, 1000);
@@ -82,4 +141,5 @@ function init() {
 init();
 
 // Export for testing and manual initialization
-export { init, initCore, initFeatures, initDeferred, FEATURE_FLAGS };
+export { init, initCore, initFeatures, initDeferred };
+
