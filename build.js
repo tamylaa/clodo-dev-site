@@ -224,13 +224,44 @@ function minifyCss() {
 // Copy JavaScript (no minification to avoid breaking code)
 function copyJs() {
     console.log('📋 Copying JavaScript...');
+    
+    // Copy main script.js
     const jsFile = join('public', 'script.js');
     const distJsFile = join('dist', 'script.js');
 
-    if (!existsSync(jsFile)) return;
-
-    // Just copy the file without minification
-    writeFileSync(distJsFile, readFileSync(jsFile, 'utf8'));
+    if (existsSync(jsFile)) {
+        writeFileSync(distJsFile, readFileSync(jsFile, 'utf8'));
+    }
+    
+    // Copy js/ module directory (Quick Win #5)
+    const jsDir = join('public', 'js');
+    const distJsDir = join('dist', 'js');
+    
+    if (existsSync(jsDir)) {
+        console.log('📦 Copying JS modules...');
+        mkdirSync(distJsDir, { recursive: true });
+        
+        // Recursively copy all JS files
+        function copyJsRecursive(srcDir, destDir) {
+            const items = readdirSync(srcDir);
+            
+            items.forEach(item => {
+                const srcPath = join(srcDir, item);
+                const destPath = join(destDir, item);
+                const stat = statSync(srcPath);
+                
+                if (stat.isDirectory()) {
+                    mkdirSync(destPath, { recursive: true });
+                    copyJsRecursive(srcPath, destPath);
+                } else if (item.endsWith('.js') || item === 'README.md') {
+                    copyFileSync(srcPath, destPath);
+                    console.log(`  ✓ Copied ${srcPath.replace('public/', '')}`);
+                }
+            });
+        }
+        
+        copyJsRecursive(jsDir, distJsDir);
+    }
 }
 
 // Copy JavaScript config files
