@@ -96,7 +96,7 @@ const validators = {
      */
     phone: (value) => {
         // Accepts: +1234567890, (123) 456-7890, 123-456-7890, etc.
-        const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+        const phoneRegex = /^[\d\s\-+()]{10,}$/;
         const trimmed = String(value || '').trim();
         return {
             valid: phoneRegex.test(trimmed),
