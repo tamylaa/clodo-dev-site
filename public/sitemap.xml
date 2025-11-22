@@ -9,7 +9,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://clodo.dev/</loc>
-        <lastmod>2025-11-13</lastmod>
+        <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -22,10 +22,20 @@
     <!-- Documentation Pages -->
     <url>
         <loc>https://clodo.dev/docs.html</loc>
-        <lastmod>2025-11-13</lastmod>
+        <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+    
+    <!-- Structured Data Hub (AI Agent Resource) - HIGH PRIORITY -->
+    <url>
+        <loc>https://clodo.dev/structured-data.html</loc>
+        <lastmod>2025-11-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Admin pages excluded from sitemap (robots.txt blocks them) -->
 
     <!-- Framework Guide -->
     <url>

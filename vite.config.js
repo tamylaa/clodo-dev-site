@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import handlebars from 'vite-plugin-handlebars';
 import fs from 'fs';
 
 /**
@@ -12,19 +11,41 @@ import fs from 'fs';
  * Features:
  * - Instant server start
  * - Lightning-fast HMR
- * - Template processing (Handlebars)
+ * - Template processing (SSI includes and placeholders)
  * - CSS preprocessing
  * - ES6 module support
  */
 
-// Load templates for Handlebars
-const templates = {
-  header: fs.readFileSync('./templates/header.html', 'utf-8'),
-  footer: fs.readFileSync('./templates/footer.html', 'utf-8'),
-  hero: fs.readFileSync('./templates/hero.html', 'utf-8'),
-  'nav-main': fs.readFileSync('./templates/nav-main.html', 'utf-8'),
-  'resource-hints': fs.readFileSync('./templates/resource-hints.html', 'utf-8'),
-};
+// Custom plugin to process template includes
+function templatePlugin() {
+  return {
+    name: 'vite-plugin-template-processor',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        // Load templates
+        const headerTemplate = fs.readFileSync('./templates/header.html', 'utf-8');
+        const footerTemplate = fs.readFileSync('./templates/footer.html', 'utf-8');
+        const heroTemplate = fs.readFileSync('./templates/hero.html', 'utf-8');
+        const navMainTemplate = fs.readFileSync('./templates/nav-main.html', 'utf-8');
+        
+        // Replace header placeholder
+        html = html.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
+        
+        // Replace SSI includes for nav-main
+        html = html.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
+        
+        // Replace hero placeholder
+        html = html.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
+        
+        // Replace footer placeholder
+        html = html.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
+        
+        return html;
+      }
+    }
+  };
+}
 
 export default defineConfig({
   // Root directory
@@ -78,27 +99,7 @@ export default defineConfig({
   
   // Plugins
   plugins: [
-    handlebars({
-      partialDirectory: resolve(__dirname, 'templates'),
-      context: {
-        // Global context available to all templates
-        siteTitle: 'Clodo Framework',
-        currentYear: new Date().getFullYear(),
-      },
-      helpers: {
-        // Custom Handlebars helpers
-        eq: (a, b) => a === b,
-        ne: (a, b) => a !== b,
-        lt: (a, b) => a < b,
-        gt: (a, b) => a > b,
-        and: (a, b) => a && b,
-        or: (a, b) => a || b,
-      },
-      compileOptions: {
-        noEscape: true,
-      },
-      reloadOnPartialChange: true,
-    }),
+    templatePlugin(),
   ],
   
   // Dependency optimization

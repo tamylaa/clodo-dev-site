@@ -18,10 +18,15 @@
 /* ===== COMPONENT LIBRARY ===== */
 @import url('./css/components.css');
 
+/* ===== GLOBAL COMPONENTS ===== */
+@import url('./css/global/footer.css');
+
 /* ===== LAYOUT UTILITIES ===== */
 @import url('./css/layout.css');
 
 /* ===== PAGE-SPECIFIC STYLES ===== */
+@import url('./css/pages/index/hero.css');
+@import url('./css/pages/index/features.css');
 @import url('./css/pages/index.css');
 @import url('./css/pages/product.css');
 @import url('./css/pages/about.css');
@@ -30,3 +35,6 @@
 @import url('./css/pages/subscribe-enhanced.css');
 @import url('./css/pages/blog.css');
 @import url('./css/pages/pricing.css');
+
+/* ===== COMPONENT-SPECIFIC STYLES ===== */
+@import url('./css/components/buttons.css');

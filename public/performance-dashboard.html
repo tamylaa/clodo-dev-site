@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Dashboard - Clodo Framework</title>
+    
+    <!-- Admin Page - Prevent Search Engine Indexing -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="description" content="Internal performance monitoring dashboard for site administrators">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .performance-dashboard {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+        }
+        
+        .metric-card.good {
+            border-left: 4px solid #10b981;
+        }
+        
+        .metric-card.needs-improvement {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .metric-card.poor {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .metric-name {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .metric-rating {
+            font-size: 0.875rem;
+            margin-top: var(--spacing-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .metric-rating.good { color: #10b981; }
+        .metric-rating.needs-improvement { color: #f59e0b; }
+        .metric-rating.poor { color: #ef4444; }
+        
+        .section {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .error-item {
+            padding: var(--spacing-md);
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            margin-bottom: var(--spacing-sm);
+            border-radius: 4px;
+        }
+        
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .timing-slow {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.875rem;
+        }
+        
+        .refresh-button {
+            margin-bottom: var(--spacing-lg);
+        }
+    </style>
+</head>
+<body>
+    <!--#include file="../templates/nav-main.html" -->
+    
+    <main class="performance-dashboard">
+        <div class="dashboard-header">
+            <h1>Performance Dashboard</h1>
+            <p>Real-time Web Vitals and performance metrics</p>
+            <button class="btn btn--primary refresh-button" onclick="refreshDashboard()">
+                Refresh Metrics
+            </button>
+        </div>
+        
+        <div id="metrics-grid" class="metrics-grid">
+            <!-- Metrics will be injected here -->
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Network Quality</h2>
+            <div id="network-info">
+                <!-- Network info will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">JavaScript Errors</h2>
+            <div id="errors-list">
+                <!-- Errors will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Slow Resources (> 1s)</h2>
+            <div id="slow-resources">
+                <!-- Slow resources will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Session Info</h2>
+            <div id="session-info">
+                <!-- Session info will be injected here -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- FOOTER_PLACEHOLDER -->
+    
+    <script type="module">
+        import PerformanceMonitor from './js/core/performance-monitor.js';
+        
+        // Initialize with debug enabled
+        PerformanceMonitor.init({
+            debug: true,
+            sampleRate: 1.0,
+        });
+        
+        // Render dashboard
+        function renderDashboard() {
+            const report = PerformanceMonitor.getReport();
+            
+            // Render metrics
+            renderMetrics(report.metrics);
+            
+            // Render network info
+            renderNetworkInfo(report.network);
+            
+            // Render errors
+            renderErrors(report.errors);
+            
+            // Render slow resources
+            renderSlowResources(report.timings);
+            
+            // Render session info
+            renderSessionInfo(report);
+        }
+        
+        function renderMetrics(metrics) {
+            const grid = document.getElementById('metrics-grid');
+            const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb'];
+            
+            grid.innerHTML = metricNames.map(name => {
+                const metric = metrics[name];
+                if (!metric) return '';
+                
+                const unit = name === 'cls' ? '' : 'ms';
+                const value = name === 'cls' ? metric.value.toFixed(3) : Math.round(metric.value);
+                
+                return `
+                    <div class="metric-card ${metric.rating}">
+                        <div class="metric-name">${name.toUpperCase()}</div>
+                        <div class="metric-value">${value}${unit}</div>
+                        <div class="metric-rating ${metric.rating}">${metric.rating.replace('-', ' ')}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderNetworkInfo(network) {
+            const container = document.getElementById('network-info');
+            
+            if (!network) {
+                container.innerHTML = '<p>Network information not available</p>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <p><strong>Effective Type:</strong> ${network.effectiveType}</p>
+                <p><strong>Downlink:</strong> ${network.downlink} Mbps</p>
+                <p><strong>Round-Trip Time:</strong> ${network.rtt} ms</p>
+                <p><strong>Data Saver:</strong> ${network.saveData ? 'Enabled' : 'Disabled'}</p>
+            `;
+        }
+        
+        function renderErrors(errors) {
+            const container = document.getElementById('errors-list');
+            
+            if (errors.length === 0) {
+                container.innerHTML = '<p>✅ No errors detected</p>';
+                return;
+            }
+            
+            container.innerHTML = errors.map(error => `
+                <div class="error-item">
+                    <strong>${error.message}</strong>
+                    ${error.filename ? `<br><code>${error.filename}:${error.lineno}:${error.colno}</code>` : ''}
+                    ${error.error ? `<br><pre style="margin-top: 8px; font-size: 0.875rem;">${error.error}</pre>` : ''}
+                </div>
+            `).join('');
+        }
+        
+        function renderSlowResources(timings) {
+            const container = document.getElementById('slow-resources');
+            const slowResources = timings.filter(t => t.duration > 1000);
+            
+            if (slowResources.length === 0) {
+                container.innerHTML = '<p>✅ No slow resources detected</p>';
+                return;
+            }
+            
+            container.innerHTML = slowResources.map(resource => `
+                <div class="timing-item">
+                    <span>
+                        <strong>[${resource.type}]</strong> 
+                        ${resource.name.substring(resource.name.lastIndexOf('/') + 1)}
+                    </span>
+                    <span class="timing-slow">${Math.round(resource.duration)}ms</span>
+                </div>
+            `).join('');
+        }
+        
+        function renderSessionInfo(report) {
+            const container = document.getElementById('session-info');
+            const duration = (report.sessionDuration / 1000).toFixed(2);
+            
+            container.innerHTML = `
+                <p><strong>URL:</strong> <code>${report.url}</code></p>
+                <p><strong>Session Duration:</strong> ${duration}s</p>
+                <p><strong>Total Resources:</strong> ${report.timings.length}</p>
+            `;
+        }
+        
+        // Refresh dashboard
+        window.refreshDashboard = function() {
+            renderDashboard();
+        };
+        
+        // Initial render after 2 seconds (let metrics collect)
+        setTimeout(() => {
+            renderDashboard();
+            console.log('Dashboard initialized');
+        }, 2000);
+        
+        // Auto-refresh every 5 seconds
+        setInterval(() => {
+            renderDashboard();
+        }, 5000);
+    </script>
+</body>
+</html>

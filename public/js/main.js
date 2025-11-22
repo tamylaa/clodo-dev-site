@@ -17,12 +17,122 @@ import {
     isBrowserSupported 
 } from './config/features.js';
 
+import PerformanceMonitor from './core/performance-monitor.js';
+import SEO from './core/seo.js';
+import AccessibilityManager from './core/accessibility.js';
+
+/**
+ * Initialize accessibility enhancements
+ * Implements WCAG 2.1 AA compliance features
+ */
+function initAccessibility() {
+    try {
+        const a11y = new AccessibilityManager();
+        
+        // Make globally available for debugging
+        if (window.location.hostname === 'localhost') {
+            window.a11y = a11y;
+            console.log('[Accessibility] Initialized. Use window.a11y to access methods');
+            console.log('[Accessibility] Run window.a11y.generateReport() for compliance report');
+        }
+        
+    } catch (error) {
+        console.error('[Main.js] Failed to initialize accessibility:', error);
+    }
+}
+
+/**
+ * Initialize performance monitoring
+ * Starts tracking immediately for accurate metrics
+ */
+function initPerformanceMonitoring() {
+    try {
+        PerformanceMonitor.init({
+            debug: window.location.hostname === 'localhost',
+            sampleRate: 1.0, // 100% on localhost, adjust for production
+            analytics: {
+                enabled: false, // Enable when analytics is set up
+                provider: null,
+            },
+        });
+        
+        // Log initial report after 5 seconds
+        setTimeout(() => {
+            if (window.location.hostname === 'localhost') {
+                console.log('[Performance Report]', PerformanceMonitor.getReport());
+            }
+        }, 5000);
+        
+    } catch (error) {
+        console.error('[Main.js] Failed to initialize performance monitoring:', error);
+    }
+}
+
+/**
+ * Initialize SEO system
+ * Sets up structured data and meta tags
+ */
+function initSEO() {
+    try {
+        SEO.init({
+            baseUrl: window.location.origin,
+            defaultImage: '/assets/images/og-default.jpg',
+            defaultAuthor: 'Clodo Framework Team',
+            twitterHandle: '@clodoframework',
+        });
+        
+        // Add Organization schema (global)
+        SEO.addOrganizationSchema({
+            name: 'Clodo Framework',
+            logo: '/assets/images/logo.svg',
+            description: 'Modern JavaScript framework for building enterprise-grade web applications with unprecedented speed',
+            email: 'support@clodo.dev',
+            socialLinks: [
+                'https://github.com/clodoframework',
+                'https://twitter.com/clodoframework',
+            ],
+        });
+        
+        // Add WebSite schema with search
+        SEO.addWebSiteSchema({
+            name: 'Clodo Framework',
+            description: 'Transform 6-month development cycles into 6 weeks with production-ready components',
+        });
+        
+        // Page-specific schemas based on current page
+        const path = window.location.pathname;
+        
+        if (path === '/' || path === '/index.html') {
+            // Homepage - Add Software schema
+            SEO.addSoftwareSchema({
+                name: 'Clodo Framework',
+                description: 'Modern JavaScript framework for building enterprise-grade web applications',
+                version: '1.0.0',
+                downloadUrl: window.location.origin + '/docs/quick-start',
+            });
+        }
+        
+        console.log('[SEO] Initialized with structured data');
+    } catch (error) {
+        console.error('[Main.js] Failed to initialize SEO:', error);
+    }
+}
+
 /**
  * Initialize core features
  * These run immediately on page load
  */
 async function initCore() {
     console.log('[Main.js] Initializing core features...');
+    
+    // Initialize performance monitoring
+    initPerformanceMonitoring();
+    
+    // Initialize SEO
+    initSEO();
+    
+    // Initialize accessibility
+    initAccessibility();
     
     // Theme manager - always available, but can be modular
     if (isFeatureEnabled('THEME_MANAGER_MODULE')) {

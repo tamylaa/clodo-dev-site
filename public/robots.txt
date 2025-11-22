@@ -1,9 +1,18 @@
-# Robots.txt for Clodo Framework - Enterprise Orchestration for Cloudflare Workers
+# Clodo Framework - Enterprise Orchestration for Cloudflare Workers
 # https://clodo.dev/robots.txt
 
 # Allow all major search engines to crawl the site
 User-agent: *
 Allow: /
+
+# AI Agent Resources - CRITICAL for AI discovery
+Allow: /structured-data.html
+Allow: /sitemap.xml
+
+# Admin/Monitoring Pages - RESTRICTED
+Disallow: /performance-dashboard.html
+Disallow: /analytics.html
+Disallow: /google*.html
 
 # Major search engine bots
 User-agent: Googlebot

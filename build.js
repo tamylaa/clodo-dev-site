@@ -242,6 +242,7 @@ function copyJs() {
         mkdirSync(distJsDir, { recursive: true });
         
         // Recursively copy all JS files
+        // eslint-disable-next-line no-inner-declarations
         function copyJsRecursive(srcDir, destDir) {
             const items = readdirSync(srcDir);
             

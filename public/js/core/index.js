@@ -5,8 +5,17 @@
  * Import from this file instead of individual modules.
  * 
  * Usage:
- *   import { ThemeManager, App, Navigation, EventBus, Storage } from './core/index.js';
+ *   import { ThemeManager, App, Navigation, EventBus, Storage, Component, PerformanceMonitor, SEO } from './core/index.js';
  */
+
+// Base component class
+export { default as Component, createComponent, getComponent, hasComponent } from './component.js';
+
+// Performance monitoring
+export { default as PerformanceMonitor } from './performance-monitor.js';
+
+// SEO management
+export { default as SEO } from './seo.js';
 
 // Theme management
 export { default as ThemeManager } from './theme.js';

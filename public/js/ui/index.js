@@ -8,17 +8,22 @@
  *   import { Navigation, Modal, Tabs } from './ui/index.js';
  */
 
+// UI Components
+import NavigationComponent from './navigation-component.js';
+import Modal from './modal.js';
+import Tabs from './tabs.js';
+import Tooltip from './tooltip.js';
+
+export { NavigationComponent, Modal, Tabs, Tooltip };
+
 // Future UI modules (to be implemented):
-// export { default as Navigation } from './navigation.js';
-// export { default as Modal } from './modal.js';
-// export { default as Tabs } from './tabs.js';
 // export { default as Accordion } from './accordion.js';
-// export { default as Tooltip } from './tooltip.js';
 // export { default as Animations } from './animations.js';
 // export { default as Dropdown } from './dropdown.js';
 // export { default as Toast } from './toast.js';
 
-// Placeholder until UI components are created
 export default {
-  // UI components will be added here during Tasks 25-28
+  NavigationComponent,
+  Modal,
+  Tabs,
 };

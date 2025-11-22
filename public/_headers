@@ -1,6 +1,30 @@
 # Cloudflare Pages headers configuration for Clodo Framework
 # Enterprise-grade security and performance optimization
 
+# Admin/Monitoring Pages - RESTRICTED ACCESS
+/performance-dashboard.html
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+/analytics.html
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+# AI Agent Resources - ALLOW INDEXING (Critical for AI Discovery)
+/structured-data.html
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
+  Cache-Control: public, max-age=86400
+  
+/sitemap.xml
+  X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
+
+# Default for all other pages
 /*
   # Security Headers
   X-Frame-Options: DENY
@@ -44,9 +68,7 @@
 /*.html
   Cache-Control: public, max-age=3600
 
-# Sitemap and Robots - Short Cache
-/sitemap.xml
-  Cache-Control: public, max-age=3600
+# Admin pages override (more specific rules above take precedence)
 
 /robots.txt
   Cache-Control: public, max-age=3600
