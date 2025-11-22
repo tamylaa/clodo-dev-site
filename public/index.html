@@ -390,8 +390,7 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header>
-        <noscript>
+    <noscript>
         <div class="noscript-overlay">
             <div>
                 <h2>JavaScript Required</h2>
@@ -400,9 +399,7 @@
             </div>
         </div>
     </noscript>
-        <!--#include file="../templates/nav-main.html" -->
-        </nav>
-    </header>
+    <!--#include file="../templates/nav-main.html" -->
 
     <!-- Migration Banner -->
     <div class="migration-banner" role="banner" aria-label="Migration announcement">
@@ -423,62 +420,21 @@
     </div>
 
     <main id="main-content">
-        <section id="hero" aria-labelledby="hero-title">
-            <div class="hero-container">
-                <div class="hero-content">
-                        <h1 id="hero-title" class="hero-title">
-                            Powerful Platform Toolkit for <span class="highlight">Cloudflare Engineers</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Craft Secure, Reusable Enterprise SaaS on Edge – Lightning Fast with a Reliable Framework
-                        </p>
-                        <div class="hero-actions">
-                                <button type="button" id="try-live-btn" class="btn btn-hero-primary" aria-label="Try Clodo Now" onclick="window.open('https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/master?file=index.js', '_blank')">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.5-3c.74 2.25 2 3.5 4 4 .74-2 3-2.5 4.5-5s-1.5-4-3-5.5c2.5-.5 4.5-2.5 3-5.5s-5-2-5.5-2c1.5 1.26 2 5 2 5s-3.74.5-5.5 3c-.74-2.25-2-3.5-4-4-.74 2-3 2.5-4.5 5z"/>
-                                    </svg>
-                                    <span>Try Now - 1 Click</span>
-                                </button>
-                                <a href="docs.html" class="btn btn-hero-secondary" aria-label="Get started with Clodo Framework documentation">
-                                    <span>Get Started</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                        </div>
-                    </div>
-                    <div class="hero-visual" aria-hidden="true">
-                        <div class="code-preview">
-                            <div class="code-preview__header">
-                                <div class="code-preview__dots">
-                                    <span class="code-preview__dot code-preview__dot--red" aria-hidden="true"></span>
-                                    <span class="code-preview__dot code-preview__dot--yellow" aria-hidden="true"></span>
-                                    <span class="code-preview__dot code-preview__dot--green" aria-hidden="true"></span>
-                                </div>
-                                <span class="code-preview__title">clodo-service create</span>
-                            </div>
-                            <pre class="code-preview__content"><code><span class="code-preview__comment"># Create a new service in seconds</span>
-<span class="code-preview__command">npx create-clodo-service my-new-service --type data-service</span>
-
-<span class="code-preview__output">✅ Service created successfully!
-📁 Generated complete service structure
-🔒 Security validation passed
-🚀 Ready for deployment</span></code></pre>
-                        </div>
-                    </div>
-            </div>
-        </section>        <section id="key-benefits" aria-labelledby="benefits-title">
+        <!-- HERO_PLACEHOLDER -->        
+         <section id="key-benefits" aria-labelledby="benefits-title">
             <div class="container">
                 <div class="section-header">
                     <h2 id="benefits-title">Why Choose Clodo Framework?</h2>
                     <p>Transform your development workflow with enterprise-grade tools designed for modern SaaS applications.</p>
                 </div>
                 <div class="benefits-grid" role="list" aria-label="Key benefits of Clodo Framework">
-                    <div class="benefit-item benefit-item--primary" role="listitem">
+                    <div class="benefit-item" role="listitem">
                         <div class="benefit-icon-wrapper">
-                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                            </svg>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="#ff0000" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M13 2L3 14h9l-1 8 10 -12h-9l1 -8z"/>
+                                </svg>
+                            </div>
                         </div>
                         <div class="benefit-content">
                             <h3 class="benefit-title">10x Faster Development</h3>
@@ -487,10 +443,12 @@
                     </div>
                     <div class="benefit-item" role="listitem">
                         <div class="benefit-icon-wrapper">
-                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <line x1="12" y1="1" x2="12" y2="23"></line>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
                         </div>
                         <div class="benefit-content">
                             <h3 class="benefit-title">90% Cost Reduction</h3>
@@ -499,9 +457,11 @@
                     </div>
                     <div class="benefit-item" role="listitem">
                         <div class="benefit-icon-wrapper">
-                            <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
                         </div>
                         <div class="benefit-content">
                             <h3 class="benefit-title">Enterprise Security Built-in</h3>
@@ -616,15 +576,6 @@ const token = clodo.generateToken({
                         <h3>Service Autonomy</h3>
                         <p>Each service can discover and deploy itself independently. Template-based customer onboarding with reusable configuration patterns for rapid multi-tenant deployment.</p>
                     </article>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            </svg>
-                        </div>
-                        <h3>Multi-Tenant Customer Management</h3>
-                        <p>Automated customer isolation and management with template-driven onboarding. Reusable configuration templates for rapid customer setup and enterprise-grade tenant separation.</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -678,6 +629,18 @@ const token = clodo.generateToken({
                         </div>
                         <h3>Performance Caching</h3>
                         <p>Schema caching, SQL query caching, and validation result caching. Optimized for Cloudflare's edge network with intelligent cache invalidation and global replication.</p>
+                    </article>
+                    <article class="feature-card" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>Multi-Tenant Customer Management</h3>
+                        <p>Automated customer isolation and management with template-driven onboarding. Reusable configuration templates for rapid customer setup and enterprise-grade tenant separation.</p>
                     </article>
                 </div>
             </div>
@@ -1007,23 +970,6 @@ const token = clodo.generateToken({
                                 </div>
                             </div>
                         </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-                <div class="stats" aria-labelledby="stats-heading">
-                    <h3 id="stats-heading" class="sr-only">Framework Statistics</h3>
-                    <div class="stat-item" aria-label="Development time reduction from 6 months to 3 weeks">
-                        <span class="stat-number">10x</span>
-                        <span class="stat-label">Faster Development</span>
-                    </div>
-                    <div class="stat-item" aria-label="Cost reduction from $180K to $15K">
-                        <span class="stat-number">90%</span>
-                        <span class="stat-label">Cost Reduction</span>
-                    </div>
-                    <div class="stat-item" aria-label="Deployment velocity increase">
-                        <span class="stat-number">5x</span>
-                        <span class="stat-label">Faster Deployment</span>
                     </div>
                 </div>
             </div>

@@ -6,9 +6,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Serve root: public by default, or dist if --dist flag provided
-const useDist = process.argv.includes('--dist');
-const publicDir = join(__dirname, useDist ? 'dist' : 'public');
+// Serve root: dist (production build) by default, or public if --public flag provided
+const usePublic = process.argv.includes('--public');
+const publicDir = join(__dirname, usePublic ? 'public' : 'dist');
 
 // Cache templates
 const templates = {};
@@ -103,10 +103,14 @@ let server = createServer((req, res) => {
     try {
         let data = readFileSync(filePath, 'utf8');
 
-        // Process SSI includes for HTML files
+        // Process SSI includes and placeholders for HTML files
         if (ext === 'html') {
             // Process nav-main.html include
             data = data.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, getTemplate('nav-main.html'));
+            // Process FOOTER_PLACEHOLDER
+            data = data.replace(/<!-- FOOTER_PLACEHOLDER -->/g, getTemplate('footer.html'));
+            // Process HERO_PLACEHOLDER (if needed)
+            data = data.replace(/<!-- HERO_PLACEHOLDER -->/g, getTemplate('hero.html'));
         }
 
         res.writeHead(200, { 'Content-Type': contentType });

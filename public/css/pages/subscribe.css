@@ -47,7 +47,7 @@
   margin-right: auto;
 }
 
-.benefit-item {
+.subscription-benefit-item {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-md);
@@ -57,18 +57,18 @@
   backdrop-filter: blur(10px);
 }
 
-.benefit-icon {
+.subscription-benefit-icon {
   font-size: 2rem;
   flex-shrink: 0;
 }
 
-.benefit-text h3 {
+.subscription-benefit-text h3 {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
 }
 
-.benefit-text p {
+.subscription-benefit-text p {
   opacity: 0.9;
   font-size: 0.9rem;
   line-height: 1.5;

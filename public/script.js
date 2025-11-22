@@ -900,52 +900,28 @@ function loadScript(src) {
 
 // ===== PERFORMANCE OPTIMIZATION =====
 
-// Navbar scroll effect with requestAnimationFrame + hysteresis
-let lastScrollTop = 0;
+// Navbar scroll effect - always visible with enhanced background on scroll
 let scheduled = false;
-const HIDE_THRESHOLD = 10; // px to hide when scrolling down
-const SHOW_THRESHOLD = 4;  // px to show when scrolling up
 
 function handleScroll() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (prefersReducedMotion) {
-        navbar.style.transform = 'none';
-        if (scrollTop > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.backdropFilter = 'blur(20px)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        }
-        lastScrollTop = scrollTop;
-        return;
-    }
+    // Always keep navbar visible
+    navbar.style.transform = 'translateY(0)';
 
-    const delta = scrollTop - lastScrollTop;
-
-    if (delta > HIDE_THRESHOLD && scrollTop > 100) {
-        // Scrolling down sufficiently
-        navbar.style.transform = 'translateY(-100%)';
-    } else if (delta < -SHOW_THRESHOLD) {
-        // Scrolling up
-        navbar.style.transform = 'translateY(0)';
-    }
-
-    // Background blur based on position (no layout shift)
+    // Enhanced background blur when scrolled (no layout shift)
     if (scrollTop > 50) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
     } else {
         navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.boxShadow = 'none';
     }
-
-    lastScrollTop = scrollTop;
 }
 
 window.addEventListener('scroll', () => {

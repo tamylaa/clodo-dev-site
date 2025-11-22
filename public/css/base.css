@@ -188,16 +188,28 @@ img {
     --success-color-light: var(--success-200);
     --error-color-light: var(--error-200);
 
-    /* ===== ACCESSIBILITY COLORS ===== */
-    /* High contrast colors for better accessibility */
-    --focus-ring: var(--primary-500);
-    --focus-ring-offset: 2px;
+    /* ===== SPACING SYSTEM ===== */
+    /* Consistent spacing scale using powers of 2 for harmony */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    --spacing-3xl: 4rem;     /* 64px */
+    --spacing-4xl: 6rem;     /* 96px */
+    --spacing-5xl: 8rem;     /* 128px */
 
-    /* Color combinations that meet WCAG AA standards */
-    --text-on-primary: var(--gray-50);
-    --text-on-secondary: var(--gray-900);
-    --text-on-light: var(--gray-700);
-    --text-on-dark: var(--gray-100);
+    /* ===== SEMANTIC SPACING ===== */
+    /* Content-aware spacing for optimal UX */
+    --space-hero-y: clamp(2rem, 6vh, 4rem);        /* 32px to 64px - tighter for better content density */
+    --space-section-y-standard: clamp(2rem, 8vh, 5rem);  /* 32px to 80px - responsive section spacing */
+    --space-section-y-relaxed: clamp(3rem, 10vh, 6rem);  /* 48px to 96px - for spacious sections */
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s ease-out;
+    --transition-slow: 0.5s ease-out;
 }
 
 /* Dark mode color scheme */

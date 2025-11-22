@@ -31,6 +31,7 @@ function copyHtml() {
     const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
     const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
+    const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
 
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
@@ -86,6 +87,9 @@ function copyHtml() {
             // Process SSI includes
             content = content.replace(/^\s*<!--#include file="\.\.\/templates\/nav-main\.html" -->/gm, navMainTemplate);
 
+            // Replace hero placeholder with actual hero content
+            content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
+
             // Replace footer placeholder with actual footer content
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
 
@@ -120,15 +124,17 @@ function bundleCss() {
     // Critical CSS files (needed for initial render)
     const criticalCssFiles = [
         'css/base.css',        // CSS variables, resets, typography
-        'css/layout.css',      // Grid, containers, basic layout
-        'css/nav.css'          // Navigation styles for initial render
+        'css/layout.css'       // Grid, containers, basic layout
     ];
 
     // Non-critical CSS files (can load asynchronously)
     const nonCriticalCssFiles = [
         'css/utilities.css',
         'css/components.css',  // Navigation and other components
+        'css/global/footer.css',  // Footer styling
+        'css/pages/index/hero.css',  // Hero section styles
         'css/pages/index.css',
+        'css/pages/index/features.css',  // Features section styles
         'css/pages/product.css',
         'css/pages/about.css',
         'css/pages/migrate.css',
@@ -162,15 +168,17 @@ function bundleCss() {
         }
     });
 
-    // Simple minification function
+    // Proper CSS minification function that preserves @keyframes
     const minifyCss = (css) => {
         return css
-            .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-            .replace(/\s+/g, ' ') // Collapse whitespace
-            .replace(/\s*{\s*/g, '{') // Remove spaces around braces
-            .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
-            .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
-            .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
+            // Remove comments
+            .replace(/\/\*[\s\S]*?\*\//g, '')
+            // Normalize whitespace while preserving structure
+            .replace(/\s+/g, ' ')
+            .replace(/\s*([{}:;,])\s*/g, '$1')
+            // Remove trailing semicolons before closing braces
+            .replace(/;\s*}/g, '}')
+            // Remove leading/trailing whitespace
             .trim();
     };
 

@@ -8,7 +8,7 @@
     "prebuild": "npm run lint && npm run type-check",
     "build": "node build.js",
     "serve": "node dev-server.js",
-    "serve:dist": "node dev-server.js --dist",
+    "serve:public": "node dev-server.js --public",
     "dev": "npm run serve",
     "build:serve": "npm run build && npm run serve",
     "clean": "node scripts/clean.js",

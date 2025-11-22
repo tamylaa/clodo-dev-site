@@ -1,0 +1,159 @@
+/* ===========================================
+   PRICING HERO COMPONENT
+   ===========================================
+   
+   Hero section with highlights and value propositions
+   Mobile-first, accessible, performant
+   =========================================== */
+
+/* ===== BASE: Mobile-First (0-767px) ===== */
+
+.hero-section {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    /* Use hero + standard alias for consistent system spacing */
+    padding: var(--space-hero-y) 0 var(--space-section-y-standard);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    /* Fluid typography */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    /* Reduced on mobile */
+    line-height: 1.6;
+}
+
+/* ===== PRICING HIGHLIGHTS ===== */
+
+.pricing-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    /* Reduced gap on mobile */
+    flex-wrap: wrap;
+    padding: 0 var(--spacing-sm);
+}
+
+.highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    /* Slightly smaller on mobile */
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    /* Smaller on mobile */
+    transition: all var(--transition-fast);
+    min-height: 44px;
+    /* WCAG touch target */
+}
+
+.highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.highlight:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.highlight-icon {
+    font-size: 1.25rem;
+    /* Slightly smaller on mobile */
+    flex-shrink: 0;
+}
+
+/* ===== TABLET: 768px+ ===== */
+
+@media (min-width: 768px) {
+    .hero-section {
+        padding: 5rem 0 4rem;
+    }
+
+    .hero-content {
+        padding: 0 var(--spacing-lg);
+    }
+
+    .hero-content p {
+        margin-bottom: 3rem;
+    }
+
+    .pricing-highlights {
+        gap: 1.5rem;
+    }
+
+    .highlight {
+        padding: 1rem 1.5rem;
+        font-size: 0.9375rem;
+    }
+
+    .highlight-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===== DESKTOP: 1024px+ ===== */
+
+@media (min-width: 1024px) {
+    .hero-section {
+        padding: 6rem 0 4rem;
+    }
+
+    .pricing-highlights {
+        gap: 2rem;
+    }
+
+    .highlight {
+        font-size: 1rem;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .highlight {
+        transition: none;
+    }
+
+    .highlight:hover {
+        transform: none;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    .hero-section {
+        padding: 2rem 0;
+        background: white;
+        border-bottom: 2px solid #000;
+    }
+
+    .pricing-highlights {
+        display: none;
+        /* Hide decorative elements */
+    }
+}
