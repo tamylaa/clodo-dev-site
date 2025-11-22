@@ -130,6 +130,7 @@ function bundleCss() {
     // Non-critical CSS files (can load asynchronously)
     const nonCriticalCssFiles = [
         'css/utilities.css',
+        'css/components/buttons.css',  // Button component (Quick Win #3 + #4)
         'css/components.css',  // Navigation and other components
         'css/global/footer.css',  // Footer styling
         'css/pages/index/hero.css',  // Hero section styles

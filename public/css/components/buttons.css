@@ -1,0 +1,216 @@
+/* ===========================================
+   BUTTON COMPONENT
+   ===========================================
+   
+   Reusable button styles following BEM methodology
+   Variants: primary, secondary, outline, text
+   Sizes: small, default, large, block
+   States: hover, active, disabled, busy/loading
+   =========================================== */
+
+/* ===== BASE BUTTON ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    min-height: 44px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgb(0 102 204 / 10%);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===== BUTTON VARIANTS ===== */
+
+/* Primary button - standard */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Secondary button - standard */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--bg-secondary);
+    border-color: var(--text-secondary);
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Outline button */
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
+}
+
+.btn-outline:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Text button */
+.btn-text {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-text:hover {
+    text-decoration: underline;
+}
+
+/* ===== SIZE VARIANTS ===== */
+
+.btn-large {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.75rem;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* ===== BUTTON STATES ===== */
+
+/* Loading state */
+.btn-spinner {
+    display: none;
+}
+
+.btn[aria-busy="true"] .btn-text {
+    display: none;
+}
+
+.btn[aria-busy="true"] .btn-spinner {
+    display: inline;
+}
+
+/* Quick Win #4 Enhancement: Micro-interactions will be added below */
+
+/* ===== MICRO-INTERACTIONS (Quick Win #4) ===== */
+
+/* Ripple effect on click */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active:not(:disabled)::before {
+    width: 300px;
+    height: 300px;
+    transition: width 0s, height 0s;
+}
+
+/* Enhanced hover: lift effect */
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced active: press effect */
+.btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+/* Focus-visible for keyboard navigation */
+.btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn::before {
+        transition: none;
+    }
+    
+    .btn:hover:not(:disabled),
+    .btn:active:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    .btn {
+        border: 1px solid #000;
+        color: #000;
+        background: transparent;
+    }
+}
