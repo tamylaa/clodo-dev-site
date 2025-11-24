@@ -116,7 +116,7 @@ const tenantData = await clodo.isolate(req.tenantId)
 let currentDemo = 'intro';
 let rating = 0;
 
-function showDemo(demoType) {
+function _showDemo(demoType) {
     currentDemo = demoType;
     const demo = demos[demoType];
 
@@ -129,7 +129,7 @@ function showDemo(demoType) {
     }, 3000);
 }
 
-function runDemo() {
+function _runDemo() {
     if (currentDemo === 'intro') {
         document.getElementById('demo-output').textContent =
             'Please select a demo from the cards above first! 👆';
@@ -174,7 +174,7 @@ function runDemo() {
     }, 3000);
 }
 
-function resetDemo() {
+function _resetDemo() {
     currentDemo = 'intro';
     document.getElementById('demo-title').textContent = 'Select a demo above to get started!';
     document.getElementById('demo-output').textContent =
@@ -191,7 +191,7 @@ Click on any demo card above to explore different features, then click "Run Demo
 Get immediate insight, then dive deeper when ready!`;
 }
 
-function showCode() {
+function _showCode() {
     if (currentDemo === 'intro') {
         document.getElementById('demo-output').textContent =
             'Select a demo first to view its code! 👆';

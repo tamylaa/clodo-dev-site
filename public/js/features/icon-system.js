@@ -17,7 +17,7 @@ class IconSystem {
   }
 
   async loadIconDefinitions() {
-    const iconMap = {
+    const _iconMap = {
       '🎯': 'target',
       '💡': 'lightbulb',
       '🚀': 'rocket',
@@ -74,7 +74,7 @@ class IconSystem {
       size = 20,
       className = 'icon',
       ariaLabel = null,
-      role = null
+      _role = null
     } = options;
 
     const wrapper = document.createElement('span');

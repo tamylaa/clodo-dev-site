@@ -254,7 +254,7 @@ class Tooltip {
         
         // Touch support
         if ('ontouchstart' in window) {
-            const touchHandler = (e) => {
+            const touchHandler = (_e) => {
                 if (this.isVisible) {
                     this.hide();
                 } else {

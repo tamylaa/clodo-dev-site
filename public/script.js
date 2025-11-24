@@ -466,7 +466,7 @@ function setupNavDropdowns() {
 
     dropdownToggles.forEach(toggle => {
         const dropdown = toggle.closest('.nav-dropdown');
-        const menu = dropdown.querySelector('.nav-dropdown-menu');
+        const _menu = dropdown.querySelector('.nav-dropdown-menu');
 
         // Desktop hover functionality
         dropdown.addEventListener('mouseenter', function() {

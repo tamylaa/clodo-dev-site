@@ -468,7 +468,7 @@ function destroy() {
  */
 function getActiveSection() {
     const scrollY = window.scrollY + config.scrollSpy.offset;
-    const windowHeight = window.innerHeight;
+    const _windowHeight = window.innerHeight;
     
     // Check sections from bottom to top
     for (let i = config.scrollSpy.sections.length - 1; i >= 0; i--) {

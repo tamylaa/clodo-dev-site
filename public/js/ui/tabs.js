@@ -390,7 +390,7 @@ class Tabs {
         this._emit('before-change', { index, previousIndex, tab, panel });
         
         // Deactivate all tabs
-        this.tabs.forEach((t, i) => {
+        this.tabs.forEach((t, _i) => {
             t.setAttribute('aria-selected', 'false');
             t.setAttribute('tabindex', '-1');
             t.classList.remove(config.classes.active);
