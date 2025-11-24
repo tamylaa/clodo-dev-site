@@ -127,7 +127,7 @@ fs.mkdirSync('services');
 // Create web service
 console.log('\n🌐 Creating web service...');
 const webService = `// services/web.js
-const clodo = require('./.clodo-framework');
+import clodo from './.clodo-framework';
 
 clodo.service('web', async (request, env) => {
   const url = new URL(request.url);
@@ -211,7 +211,7 @@ console.log('✅ Web service created');
 // Create API service
 console.log('\n🔌 Creating API service...');
 const apiService = `// services/api.js
-const clodo = require('./.clodo-framework');
+import clodo from './.clodo-framework';
 
 clodo.service('api', async (request, env) => {
   const url = new URL(request.url);
@@ -290,7 +290,7 @@ console.log('✅ Package.json scripts updated');
 if (isTemplate) {
     console.log('\n📄 Creating index.js entry point...');
     const indexJs = `// index.js - Clodo Framework StackBlitz Template
-const clodo = require('./.clodo-framework');
+import clodo from './.clodo-framework';
 
 console.log('🚀 Clodo Framework Template Loaded!');
 console.log('=====================================');

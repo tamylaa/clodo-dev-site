@@ -16,7 +16,7 @@
 /**
  * Storage types
  */
-export const StorageType = {
+const StorageType = {
     LOCAL: 'local',
     SESSION: 'session',
     MEMORY: 'memory', // Fallback when storage unavailable
@@ -538,21 +538,19 @@ function disableDebug() {
     config.debug = false;
 }
 
-/**
- * Export Storage module
- */
-export default {
-    init,
-    destroy,
-    configure,
-    enableDebug,
-    disableDebug,
-    createStorage,
-    get local() { return localStorage; },
-    get session() { return sessionStorage; },
-    StorageType,
-};
-
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.StorageAPI = {
+        init,
+        destroy,
+        configure,
+        enableDebug,
+        disableDebug,
+        createStorage,
+        StorageType,
+    };
+    window.StorageType = StorageType;
+}
 // Named exports
 export {
     init,

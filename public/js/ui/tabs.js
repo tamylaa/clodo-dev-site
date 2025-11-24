@@ -603,30 +603,18 @@ function getState() {
     };
 }
 
-/**
- * Export Tabs API
- */
-export default {
-    Tabs,
-    init,
-    initAll,
-    getById,
-    getAll,
-    configure,
-    enableDebug,
-    disableDebug,
-    getState,
-};
-
-// Named exports
-export {
-    Tabs,
-    init,
-    initAll,
-    getById,
-    getAll,
-    configure,
-    enableDebug,
-    disableDebug,
-    getState,
-};
+// Expose API to window
+if (typeof window !== 'undefined') {
+    window.Tabs = Tabs;
+    window.TabsAPI = {
+        Tabs,
+        init,
+        initAll,
+        getById,
+        getAll,
+        configure,
+        enableDebug,
+        disableDebug,
+        getState,
+    };
+}

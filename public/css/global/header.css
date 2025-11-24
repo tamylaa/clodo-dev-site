@@ -208,7 +208,7 @@ header {
     transition: transform var(--transition-fast);
 }
 
-.nav-dropdown[aria-expanded="true"] .nav-dropdown-toggle::after {
+.nav-dropdown-toggle[aria-expanded="true"]::after {
     transform: rotate(180deg);
 }
 
@@ -220,7 +220,7 @@ header {
     background: var(--bg-secondary);
 }
 
-.nav-dropdown[aria-expanded="true"] .nav-dropdown-menu {
+.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu {
     display: block;
 }
 

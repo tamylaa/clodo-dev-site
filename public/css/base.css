@@ -129,7 +129,7 @@ img {
     /* Enhanced Neutral Colors with better contrast */
     --text-primary: var(--gray-900);
     --text-secondary: var(--gray-700);
-    --text-muted: var(--gray-500);
+    --text-muted: var(--gray-600);
     --text-muted-darker: var(--gray-400);
     --text-muted-light: var(--gray-300);
 
@@ -302,6 +302,39 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* ===== MOBILE TYPOGRAPHY OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+    body {
+        line-height: 1.7; /* Slightly increased for mobile readability */
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    /* Improve paragraph spacing on mobile */
+    p {
+        margin-bottom: var(--spacing-lg);
+        line-height: 1.7;
+    }
+
+    /* Ensure headings have adequate line height on mobile */
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+    }
+
+    /* Improve readability of small text on mobile */
+    .text-xs, .text-sm {
+        line-height: 1.5;
+    }
+
+    /* Better spacing for lists on mobile */
+    ul, ol {
+        line-height: 1.7;
+    }
+
+    li {
+        margin-bottom: var(--spacing-xs);
+    }
 }
 
 /* ===== ENHANCED TYPOGRAPHY SYSTEM ===== */
@@ -746,9 +779,38 @@ p, li {
 }
 
 /* ===== FOCUS STYLES ===== */
-*:focus {
+/* Enhanced focus indicators for WCAG 2.1 AA compliance */
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px var(--bg-primary), 0 0 0 4px rgb(59 130 246 / 20%);
+}
+
+/* Fallback for browsers that don't support :focus-visible */
+*:focus:not(:focus-visible) {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* Enhanced focus for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px var(--bg-primary), 0 0 0 4px rgb(59 130 246 / 20%);
+}
+
+/* High contrast focus for form elements */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    border-color: var(--primary-color);
+    background-color: var(--bg-primary);
 }
 
 /* ===== LINKS ===== */
@@ -808,12 +870,6 @@ button {
 }
 
 input:focus, textarea:focus, select:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* ===== FOCUS STYLES ===== */
-*:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }

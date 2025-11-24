@@ -4,6 +4,9 @@
  * @module core/accessibility
  */
 
+(function() {
+    'use strict';
+
 /**
  * Accessibility Enhancement System
  * Provides runtime accessibility improvements for better screen reader support,
@@ -20,7 +23,7 @@ class AccessibilityManager {
             '[tabindex]:not([tabindex="-1"])',
             '[contenteditable]:not([contenteditable="false"])'
         ].join(', ');
-        
+
         this.init();
     }
 
@@ -35,7 +38,8 @@ class AccessibilityManager {
         this.addLiveRegionSupport();
         this.monitorDynamicContent();
         this.enhanceTouchTargets();
-        
+        this.trackInteractions();
+
         console.log('✅ Accessibility enhancements initialized');
     }
 
@@ -102,10 +106,10 @@ class AccessibilityManager {
         // Navigation menus
         document.querySelectorAll('[role="menu"]').forEach(menu => {
             const items = menu.querySelectorAll('[role="menuitem"]');
-            
+
             menu.addEventListener('keydown', (e) => {
                 const currentIndex = Array.from(items).indexOf(document.activeElement);
-                
+
                 if (e.key === 'ArrowDown') {
                     e.preventDefault();
                     const nextIndex = (currentIndex + 1) % items.length;
@@ -180,7 +184,7 @@ class AccessibilityManager {
             link.className = 'skip-link';
             link.textContent = 'Skip to main content';
             document.body.insertBefore(link, document.body.firstChild);
-            
+
             // Ensure main content has the ID
             const main = document.querySelector('main');
             if (main && !main.id) {
@@ -262,7 +266,7 @@ class AccessibilityManager {
             if (announcer) {
                 announcer.setAttribute('aria-live', priority);
                 announcer.textContent = message;
-                
+
                 // Clear after announcement
                 setTimeout(() => {
                     announcer.textContent = '';
@@ -303,7 +307,7 @@ class AccessibilityManager {
                         }
 
                         // Check for buttons without accessible names
-                        if (node.tagName === 'BUTTON' && !node.textContent.trim() && 
+                        if (node.tagName === 'BUTTON' && !node.textContent.trim() &&
                             !node.getAttribute('aria-label') && !node.getAttribute('aria-labelledby')) {
                             console.warn('Button without accessible name:', node);
                         }
@@ -311,6 +315,33 @@ class AccessibilityManager {
                         // Enhance new forms
                         if (node.tagName === 'FORM') {
                             this.enhanceFormAccessibility();
+                        }
+
+                        // Enhance focus management for dynamic content
+                        const focusableElements = this.getFocusableElements(node);
+                        if (focusableElements.length > 0) {
+                            // If content was added due to user interaction, manage focus
+                            const activeElement = document.activeElement;
+                            if (activeElement && activeElement !== document.body) {
+                                // Content was added, check if we should move focus
+                                this.handleDynamicContentFocus(node, focusableElements);
+                            }
+                        }
+
+                        // Check for new modals
+                        if (node.classList && node.classList.contains('modal')) {
+                            this.enhanceModalFocus(node);
+                        }
+                    }
+                });
+
+                mutation.removedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        // If a focused element was removed, move focus appropriately
+                        if (document.activeElement === document.body ||
+                            document.activeElement === null ||
+                            !document.contains(document.activeElement)) {
+                            this.handleFocusLoss();
                         }
                     }
                 });
@@ -326,15 +357,16 @@ class AccessibilityManager {
     enhanceTouchTargets() {
         // Ensure all clickable elements meet minimum size requirements (44x44px)
         const minSize = 44;
-        
-        document.querySelectorAll('a, button, input[type="button"], input[type="submit"]').forEach(element => {
+
+        // Exclude footer links to maintain consistent styling
+        document.querySelectorAll('a:not(.footer-section a), button, input[type="button"], input[type="submit"]').forEach(element => {
             const rect = element.getBoundingClientRect();
-            
+
             if (rect.width < minSize || rect.height < minSize) {
                 // Add padding to meet minimum size
                 const currentPadding = parseInt(window.getComputedStyle(element).padding) || 0;
                 const neededPadding = Math.max(0, (minSize - Math.min(rect.width, rect.height)) / 2);
-                
+
                 if (neededPadding > currentPadding) {
                     element.style.padding = `${neededPadding}px`;
                 }
@@ -377,11 +409,172 @@ class AccessibilityManager {
         };
 
         container.addEventListener('keydown', handleTabKey);
-        
+
         // Return cleanup function
         return () => {
             container.removeEventListener('keydown', handleTabKey);
         };
+    }
+
+    /**
+     * Enhanced focus management for dynamic content
+     */
+    enhanceDynamicContentFocus() {
+        // Focus management for content that appears/disappears
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        // Check for new focusable elements
+                        const focusableElements = this.getFocusableElements(node);
+                        if (focusableElements.length > 0) {
+                            // If content was added due to user interaction, manage focus
+                            const activeElement = document.activeElement;
+                            if (activeElement && activeElement !== document.body) {
+                                // Content was added, check if we should move focus
+                                this.handleDynamicContentFocus(node, focusableElements);
+                            }
+                        }
+
+                        // Check for new forms and enhance them
+                        if (node.tagName === 'FORM') {
+                            this.enhanceFormAccessibility();
+                        }
+
+                        // Check for new modals
+                        if (node.classList && node.classList.contains('modal')) {
+                            this.enhanceModalFocus(node);
+                        }
+                    }
+                });
+
+                mutation.removedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        // If a focused element was removed, move focus appropriately
+                        if (document.activeElement === document.body ||
+                            document.activeElement === null ||
+                            !document.contains(document.activeElement)) {
+                            this.handleFocusLoss();
+                        }
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    /**
+     * Handle focus when dynamic content is added
+     */
+    handleDynamicContentFocus(container, focusableElements) {
+        // If it's a modal or dialog, focus the first element
+        if (container.getAttribute('role') === 'dialog' ||
+            container.getAttribute('role') === 'alertdialog' ||
+            container.classList.contains('modal')) {
+            focusableElements[0].focus();
+            return;
+        }
+
+        // If it's an error message or notification, don't auto-focus
+        if (container.classList.contains('error-message') ||
+            container.classList.contains('success-message') ||
+            container.classList.contains('notification')) {
+            return;
+        }
+
+        // For other dynamic content, focus the first focusable element if it's likely user-initiated
+        const recentlyInteracted = Date.now() - (this.lastInteractionTime || 0) < 1000;
+        if (recentlyInteracted && focusableElements.length === 1) {
+            focusableElements[0].focus();
+        }
+    }
+
+    /**
+     * Handle focus loss when elements are removed
+     */
+    handleFocusLoss() {
+        // Try to find a reasonable element to focus
+        const main = document.querySelector('main');
+        const header = document.querySelector('header');
+        const skipLink = document.querySelector('.skip-link');
+
+        if (skipLink) {
+            skipLink.focus();
+        } else if (main) {
+            main.setAttribute('tabindex', '-1');
+            main.focus();
+            main.removeAttribute('tabindex');
+        } else if (header) {
+            header.setAttribute('tabindex', '-1');
+            header.focus();
+            header.removeAttribute('tabindex');
+        }
+    }
+
+    /**
+     * Enhance modal focus management
+     */
+    enhanceModalFocus(modal) {
+        // Ensure modal has proper focus trapping
+        const focusableElements = this.getFocusableElements(modal);
+        if (focusableElements.length > 0) {
+            // Add focus trap event listeners
+            const handleKeyDown = (e) => {
+                if (e.key === 'Tab') {
+                    this.trapFocusInContainer(modal, e);
+                }
+            };
+
+            modal.addEventListener('keydown', handleKeyDown);
+
+            // Store cleanup function
+            modal._focusCleanup = () => {
+                modal.removeEventListener('keydown', handleKeyDown);
+            };
+        }
+    }
+
+    /**
+     * Improved focus trapping for containers
+     */
+    trapFocusInContainer(container, event) {
+        const focusableElements = this.getFocusableElements(container);
+
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey) {
+            // Shift+Tab
+            if (document.activeElement === firstElement) {
+                event.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
+
+    /**
+     * Track user interactions for focus management
+     */
+    trackInteractions() {
+        const interactionEvents = ['mousedown', 'keydown', 'touchstart'];
+
+        interactionEvents.forEach(eventType => {
+            document.addEventListener(eventType, () => {
+                this.lastInteractionTime = Date.now();
+            }, { passive: true });
+        });
     }
 
     /**
@@ -402,7 +595,7 @@ class AccessibilityManager {
 
         const l1 = getLuminance(foreground);
         const l2 = getLuminance(background);
-        
+
         return l1 > l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05);
     }
 
@@ -412,20 +605,20 @@ class AccessibilityManager {
      */
     validateContrast() {
         const issues = [];
-        
+
         document.querySelectorAll('*').forEach(element => {
             const styles = window.getComputedStyle(element);
             const color = styles.color;
             const backgroundColor = styles.backgroundColor;
-            
+
             if (color && backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)') {
                 const ratio = this.getContrastRatio(color, backgroundColor);
                 const fontSize = parseFloat(styles.fontSize);
                 const isBold = parseInt(styles.fontWeight) >= 700;
                 const isLargeText = fontSize >= 18 || (fontSize >= 14 && isBold);
-                
+
                 const requiredRatio = isLargeText ? 3 : 4.5; // WCAG AA
-                
+
                 if (ratio < requiredRatio) {
                     issues.push({
                         element,
@@ -437,7 +630,7 @@ class AccessibilityManager {
                 }
             }
         });
-        
+
         return issues;
     }
 
@@ -481,14 +674,14 @@ class AccessibilityManager {
 
         headings.forEach(heading => {
             const level = parseInt(heading.tagName[1]);
-            
+
             if (level - prevLevel > 1) {
                 issues.push({
                     element: heading,
                     message: `Heading level skipped from H${prevLevel} to H${level}`
                 });
             }
-            
+
             prevLevel = level;
         });
 
@@ -501,19 +694,19 @@ class AccessibilityManager {
      */
     checkLandmarks() {
         const issues = [];
-        
+
         if (!document.querySelector('header, [role="banner"]')) {
             issues.push({ message: 'Missing <header> or role="banner"' });
         }
-        
+
         if (!document.querySelector('nav, [role="navigation"]')) {
             issues.push({ message: 'Missing <nav> or role="navigation"' });
         }
-        
+
         if (!document.querySelector('main, [role="main"]')) {
             issues.push({ message: 'Missing <main> or role="main"' });
         }
-        
+
         if (!document.querySelector('footer, [role="contentinfo"]')) {
             issues.push({ message: 'Missing <footer> or role="contentinfo"' });
         }
@@ -545,10 +738,10 @@ class AccessibilityManager {
 
         inputs.forEach(input => {
             if (input.type === 'hidden') return;
-            
+
             const hasLabel = input.id && document.querySelector(`label[for="${input.id}"]`);
             const hasAriaLabel = input.getAttribute('aria-label') || input.getAttribute('aria-labelledby');
-            
+
             if (!hasLabel && !hasAriaLabel) {
                 issues.push({
                     element: input,
@@ -571,14 +764,14 @@ class AccessibilityManager {
         links.forEach(link => {
             const text = link.textContent.trim();
             const ariaLabel = link.getAttribute('aria-label');
-            
+
             if (!text && !ariaLabel) {
                 issues.push({
                     element: link,
                     message: 'Link has no accessible text'
                 });
             }
-            
+
             if (text && text.length < 2) {
                 issues.push({
                     element: link,
@@ -594,24 +787,32 @@ class AccessibilityManager {
 // Initialize accessibility manager
 let accessibilityManager;
 
-if (typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', () => {
-        accessibilityManager = new AccessibilityManager();
-        
-        // Make globally available
-        window.AccessibilityManager = AccessibilityManager;
-        window.a11y = accessibilityManager;
-        
-        // Add global methods
-        window.announce = window.announce || function(message, priority = 'polite') {
-            const announcer = document.getElementById('aria-announcer');
-            if (announcer) {
-                announcer.setAttribute('aria-live', priority);
-                announcer.textContent = message;
-                setTimeout(() => announcer.textContent = '', 1000);
-            }
-        };
-    });
+function initializeAccessibility() {
+    accessibilityManager = new AccessibilityManager();
+
+    // Make globally available
+    window.AccessibilityManager = AccessibilityManager;
+    window.a11y = accessibilityManager;
+
+    // Add global methods
+    window.announce = window.announce || function(message, priority = 'polite') {
+        const announcer = document.getElementById('aria-announcer');
+        if (announcer) {
+            announcer.setAttribute('aria-live', priority);
+            announcer.textContent = message;
+            setTimeout(() => announcer.textContent = '', 1000);
+        }
+    };
 }
 
-export default AccessibilityManager;
+if (typeof window !== 'undefined') {
+    // Initialize immediately if DOM is ready, otherwise wait for DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAccessibility);
+    } else {
+        initializeAccessibility();
+    }
+}// Remove ES6 exports - this is now an IIFE
+// export default AccessibilityManager;
+
+})();

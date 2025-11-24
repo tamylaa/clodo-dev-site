@@ -426,6 +426,8 @@ class App {
     }
 }
 
-// Export App class
-export default App;
-export { App, AppState };
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.App = App;
+    window.AppState = AppState;
+}

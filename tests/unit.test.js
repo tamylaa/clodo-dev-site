@@ -2,14 +2,14 @@
  * Unit tests for script.js functionality
  */
 
-const {
+import {
   setupSmoothScrolling,
   showNotification
-} = require('../public/script.js');
+} from '../public/script.js';
 
 // Load functions from separate modules
-const { fetchGitHubStars } = require('../public/js/github-integration.js');
-const { setupScrollAnimations } = require('../public/js/scroll-animations.js');
+import { fetchGitHubStars } from '../public/js/github-integration.js';
+import { setupScrollAnimations } from '../public/js/scroll-animations.js';
 
 describe('GitHub Stars Fetching', () => {
   beforeEach(() => {
@@ -84,7 +84,7 @@ describe('Smooth Scrolling', () => {
     `;
 
   // Mock scrollTo
-  window.scrollTo = jest.fn();
+  window.scrollTo = vi.fn();
   });
 
   test('sets up smooth scrolling for anchor links', () => {
@@ -121,8 +121,8 @@ describe('Scroll Animations', () => {
     `;
 
     mockObserver = {
-      observe: jest.fn(),
-      disconnect: jest.fn()
+      observe: vi.fn(),
+      disconnect: vi.fn()
     };
 
     global.IntersectionObserver.mockImplementation(() => mockObserver);

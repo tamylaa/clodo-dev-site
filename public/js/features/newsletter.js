@@ -24,7 +24,7 @@ const config = {
     apiEndpoint: '/newsletter-subscribe',
     
     // Email validation regex (RFC 5322 compliant)
-    emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    emailRegex: /^(?!.*\.\.)[^\s@]+@[^\s@]+\.[^\s@]+$/,
     
     // UI messages
     messages: {
@@ -68,8 +68,33 @@ function showMessage(form, message, type = 'success') {
         form.appendChild(messageEl);
     }
     
-    // Set message content and type
-    messageEl.textContent = message;
+    // Clear previous content
+    messageEl.innerHTML = '';
+    
+    // Add icon for visual feedback
+    if (type === 'success') {
+        const checkmark = document.createElement('span');
+        checkmark.className = 'success-checkmark';
+        checkmark.setAttribute('aria-hidden', 'true');
+        messageEl.appendChild(checkmark);
+        
+        // Add success bounce animation to form
+        form.classList.add('success-bounce');
+        setTimeout(() => form.classList.remove('success-bounce'), 600);
+    } else if (type === 'error') {
+        // Add shake animation to form inputs
+        const inputs = form.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.classList.add('form-input--error');
+            setTimeout(() => input.classList.remove('form-input--error'), 500);
+        });
+    }
+    
+    // Add message text
+    const textNode = document.createTextNode(' ' + message);
+    messageEl.appendChild(textNode);
+    
+    // Set message type class
     messageEl.className = `form-message form-message--${type}`;
     messageEl.style.display = 'block';
     
@@ -98,8 +123,12 @@ function setLoadingState(form, isLoading) {
         if (isLoading) {
             submitBtn.dataset.originalText = submitBtn.textContent;
             submitBtn.textContent = 'Subscribing...';
-        } else if (submitBtn.dataset.originalText) {
-            submitBtn.textContent = submitBtn.dataset.originalText;
+            submitBtn.classList.add('btn-loading');
+        } else {
+            submitBtn.classList.remove('btn-loading');
+            if (submitBtn.dataset.originalText) {
+                submitBtn.textContent = submitBtn.dataset.originalText;
+            }
         }
     }
     
@@ -234,10 +263,16 @@ async function handleSubmit(event) {
         
         // Success!
         showMessage(form, config.messages.success, 'success');
-        form.reset();
         trackEvent('newsletter_subscribe_success', { 
             email_domain: email.split('@')[1] 
         });
+        // Clear the email input
+        const emailInput = form.querySelector('input[type="email"]');
+        if (emailInput) {
+            emailInput.defaultValue = '';
+            emailInput.setAttribute('value', '');
+            emailInput.value = '';
+        }
         
         // Track conversion for marketing
         if (typeof window.gtag === 'function') {
@@ -344,17 +379,13 @@ function destroy() {
     console.log('[Newsletter] Module destroyed');
 }
 
-// Export public API
-export default {
-    init,
-    destroy,
-    subscribe: subscribeToNewsletter, // For programmatic usage
-};
-
-// Also export individual functions for testing
-export {
-    init,
-    destroy,
-    isValidEmail,
-    subscribeToNewsletter,
-};
+// Expose API to window
+if (typeof window !== 'undefined') {
+    window.NewsletterAPI = {
+        init,
+        destroy,
+        subscribe: subscribeToNewsletter,
+        isValidEmail,
+        subscribeToNewsletter,
+    };
+}

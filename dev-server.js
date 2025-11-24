@@ -24,6 +24,20 @@ function getTemplate(name) {
     return templates[name];
 }
 
+// Cache public files
+const publicFiles = {};
+function getPublicFile(name) {
+    if (!publicFiles[name]) {
+        const filePath = join(__dirname, 'public', name);
+        if (existsSync(filePath)) {
+            publicFiles[name] = readFileSync(filePath, 'utf8');
+        } else {
+            publicFiles[name] = '';
+        }
+    }
+    return publicFiles[name];
+}
+
 let server = createServer((req, res) => {
     // Parse URL to remove query parameters
     const urlPath = req.url.split('?')[0];
@@ -107,6 +121,8 @@ let server = createServer((req, res) => {
         if (ext === 'html') {
             // Process nav-main.html include
             data = data.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, getTemplate('nav-main.html'));
+            // Process analytics.html include
+            data = data.replace(/<!--#include file="analytics\.html" -->/g, getPublicFile('analytics.html'));
             // Process FOOTER_PLACEHOLDER
             data = data.replace(/<!-- FOOTER_PLACEHOLDER -->/g, getTemplate('footer.html'));
             // Process HERO_PLACEHOLDER (if needed)

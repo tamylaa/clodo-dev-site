@@ -245,9 +245,12 @@ async function emit(eventName, data = null) {
  * Emit event synchronously (fire and forget)
  */
 function emitSync(eventName, data = null) {
-    emit(eventName, data).catch(error => {
-        console.error(`[EventBus] Unhandled error in emitSync for "${eventName}":`, error);
-    });
+    // Use setTimeout to make it asynchronous
+    setTimeout(() => {
+        emit(eventName, data).catch(error => {
+            console.error(`[EventBus] Unhandled error in emitSync for "${eventName}":`, error);
+        });
+    }, 0);
 }
 
 /**
@@ -380,31 +383,30 @@ function destroy() {
     log('Destroyed ✓');
 }
 
-/**
- * Export Event Bus
- */
-export default {
-    init,
-    destroy,
-    on,
-    once,
-    off,
-    offAll,
-    emit,
-    emitSync,
-    hasListeners,
-    listenerCount,
-    getEventNames,
-    getHistory,
-    clearHistory,
-    replay,
-    getStats,
-    reset,
-    enableDebug,
-    disableDebug,
-    configure,
-};
-
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.EventBus = {
+        init,
+        destroy,
+        on,
+        once,
+        off,
+        offAll,
+        emit,
+        emitSync,
+        hasListeners,
+        listenerCount,
+        getEventNames,
+        getHistory,
+        clearHistory,
+        replay,
+        getStats,
+        reset,
+        enableDebug,
+        disableDebug,
+        configure,
+    };
+}
 // Named exports for testing
 export {
     init,

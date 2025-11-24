@@ -315,8 +315,13 @@
         "keywords": ["Cloudflare Workers", "Edge Computing", "Serverless", "JavaScript"]
     }
     </script>
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 <body>
+    <header>
+        <!--#include file="../templates/nav-main.html" -->
+    </header>
     <div class="ai-notice">
         <h1>🤖 AI Agent Notice</h1>
         <p><strong>This page aggregates all structured data (Schema.org JSON-LD) for the entire Clodo Framework website.</strong></p>
@@ -501,9 +506,9 @@
         <li><a href="https://search.google.com/search-console" target="_blank">Google Search Console</a></li>
     </ul>
     
-    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #ddd; color: #666;">
-        <p><strong>Clodo Framework</strong> | <a href="/">Home</a> | <a href="/docs.html">Documentation</a> | <a href="mailto:support@clodo.dev">Contact</a></p>
-        <p>Last Updated: November 22, 2025</p>
+    <footer>
+        <!--#include file="../templates/footer.html" -->
     </footer>
+    <script src="js/init-systems.js"></script>
 </body>
 </html>

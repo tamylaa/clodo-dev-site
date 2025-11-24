@@ -6,8 +6,6 @@
    Contains: Hero, Benefits, Features, Testimonials
    =========================================== */
 
-@import url('./index/hero.css');
-
 /* Page-specific CSS vars */
 
 /* ===== HERO SECTION ===== */
@@ -1028,7 +1026,7 @@
 }
 
 .social-proof__header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 4rem;
 }
 

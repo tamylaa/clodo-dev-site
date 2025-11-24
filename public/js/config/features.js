@@ -3,12 +3,7 @@
  * 
  * Centralized feature flag management for gradual rollout of new features.
  * 
- * Usage:
- *   import { isFeatureEnabled, getFeatureConfig } from './config/features.js';
- *   
- *   if (isFeatureEnabled('ES6_MODULES')) {
- *     // Use new module system
- *   }
+ * Access via window.FeatureFlags
  * 
  * Strategy:
  * - Start with all new features disabled
@@ -20,7 +15,7 @@
 /**
  * Feature flag definitions
  */
-export const FEATURES = {
+const FEATURES = {
   // JavaScript Modernization
   ES6_MODULES: {
     enabled: false,
@@ -131,7 +126,7 @@ export const FEATURES = {
 /**
  * Environment detection
  */
-export function getEnvironment() {
+function getEnvironment() {
   if (typeof window === 'undefined') return 'server';
   
   const hostname = window.location.hostname;
@@ -156,7 +151,7 @@ export function getEnvironment() {
  * @param {boolean} options.force - Force enable (for testing)
  * @returns {boolean} Whether the feature is enabled
  */
-export function isFeatureEnabled(featureName, options = {}) {
+function isFeatureEnabled(featureName, options = {}) {
   const feature = FEATURES[featureName];
   
   if (!feature) {
@@ -314,13 +309,15 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Export for use in modules
-export default {
-  FEATURES,
-  isFeatureEnabled,
-  getFeatureConfig,
-  getEnabledFeatures,
-  isBrowserSupported,
-  getFallback,
-  getEnvironment,
-};
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.FeatureFlags = {
+        FEATURES,
+        isFeatureEnabled,
+        getFeatureConfig,
+        getEnabledFeatures,
+        isBrowserSupported,
+        getFallback,
+        getEnvironment,
+    };
+}

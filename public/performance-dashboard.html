@@ -117,13 +117,14 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!--#include file="../templates/nav-main.html" -->
     
-    <main class="performance-dashboard">
+    <main class="performance-dashboard" id="main-content">
         <div class="dashboard-header">
             <h1>Performance Dashboard</h1>
             <p>Real-time Web Vitals and performance metrics</p>
-            <button class="btn btn--primary refresh-button" onclick="refreshDashboard()">
+            <button class="btn btn--primary refresh-button" onclick="refreshDashboard()" aria-label="Refresh performance metrics">
                 Refresh Metrics
             </button>
         </div>
@@ -161,137 +162,147 @@
         </div>
     </main>
     
-    <!-- FOOTER_PLACEHOLDER -->
+    <!--#include file="../templates/footer.html" -->
     
-    <script type="module">
-        import PerformanceMonitor from './js/core/performance-monitor.js';
-        
-        // Initialize with debug enabled
-        PerformanceMonitor.init({
-            debug: true,
-            sampleRate: 1.0,
-        });
-        
-        // Render dashboard
-        function renderDashboard() {
-            const report = PerformanceMonitor.getReport();
-            
-            // Render metrics
-            renderMetrics(report.metrics);
-            
-            // Render network info
-            renderNetworkInfo(report.network);
-            
-            // Render errors
-            renderErrors(report.errors);
-            
-            // Render slow resources
-            renderSlowResources(report.timings);
-            
-            // Render session info
-            renderSessionInfo(report);
-        }
-        
-        function renderMetrics(metrics) {
-            const grid = document.getElementById('metrics-grid');
-            const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb'];
-            
-            grid.innerHTML = metricNames.map(name => {
-                const metric = metrics[name];
-                if (!metric) return '';
-                
-                const unit = name === 'cls' ? '' : 'ms';
-                const value = name === 'cls' ? metric.value.toFixed(3) : Math.round(metric.value);
-                
-                return `
-                    <div class="metric-card ${metric.rating}">
-                        <div class="metric-name">${name.toUpperCase()}</div>
-                        <div class="metric-value">${value}${unit}</div>
-                        <div class="metric-rating ${metric.rating}">${metric.rating.replace('-', ' ')}</div>
-                    </div>
+    <script>
+        // Wait for PerformanceMonitor to be loaded
+        function initializeDashboard() {
+            if (typeof window.PerformanceMonitor === 'undefined') {
+                setTimeout(initializeDashboard, 100);
+                return;
+            }
+
+            // Initialize with debug enabled
+            window.PerformanceMonitor.init({
+                debug: true,
+                sampleRate: 1.0,
+            });
+
+            // Render dashboard
+            function renderDashboard() {
+                const report = window.PerformanceMonitor.getReport();
+
+                // Render metrics
+                renderMetrics(report.metrics);
+
+                // Render network info
+                renderNetworkInfo(report.network);
+
+                // Render errors
+                renderErrors(report.errors);
+
+                // Render slow resources
+                renderSlowResources(report.timings);
+
+                // Render session info
+                renderSessionInfo(report);
+            }
+
+            function renderMetrics(metrics) {
+                const grid = document.getElementById('metrics-grid');
+                const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb'];
+
+                grid.innerHTML = metricNames.map(name => {
+                    const metric = metrics[name];
+                    if (!metric) return '';
+
+                    const unit = name === 'cls' ? '' : 'ms';
+                    const value = name === 'cls' ? metric.value.toFixed(3) : Math.round(metric.value);
+
+                    return `
+                        <div class="metric-card ${metric.rating}">
+                            <div class="metric-name">${name.toUpperCase()}</div>
+                            <div class="metric-value">${value}${unit}</div>
+                            <div class="metric-rating ${metric.rating}">${metric.rating.replace('-', ' ')}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderNetworkInfo(network) {
+                const container = document.getElementById('network-info');
+
+                if (!network) {
+                    container.innerHTML = '<p>Network information not available</p>';
+                    return;
+                }
+
+                container.innerHTML = `
+                    <p><strong>Effective Type:</strong> ${network.effectiveType}</p>
+                    <p><strong>Downlink:</strong> ${network.downlink} Mbps</p>
+                    <p><strong>Round-Trip Time:</strong> ${network.rtt} ms</p>
+                    <p><strong>Data Saver:</strong> ${network.saveData ? 'Enabled' : 'Disabled'}</p>
                 `;
-            }).join('');
-        }
-        
-        function renderNetworkInfo(network) {
-            const container = document.getElementById('network-info');
-            
-            if (!network) {
-                container.innerHTML = '<p>Network information not available</p>';
-                return;
             }
-            
-            container.innerHTML = `
-                <p><strong>Effective Type:</strong> ${network.effectiveType}</p>
-                <p><strong>Downlink:</strong> ${network.downlink} Mbps</p>
-                <p><strong>Round-Trip Time:</strong> ${network.rtt} ms</p>
-                <p><strong>Data Saver:</strong> ${network.saveData ? 'Enabled' : 'Disabled'}</p>
-            `;
-        }
-        
-        function renderErrors(errors) {
-            const container = document.getElementById('errors-list');
-            
-            if (errors.length === 0) {
-                container.innerHTML = '<p>✅ No errors detected</p>';
-                return;
+
+            function renderErrors(errors) {
+                const container = document.getElementById('errors-list');
+
+                if (errors.length === 0) {
+                    container.innerHTML = '<p>✅ No errors detected</p>';
+                    return;
+                }
+
+                container.innerHTML = errors.map(error => `
+                    <div class="error-item">
+                        <strong>${error.message}</strong>
+                        ${error.filename ? `<br><code>${error.filename}:${error.lineno}:${error.colno}</code>` : ''}
+                        ${error.error ? `<br><pre style="margin-top: 8px; font-size: 0.875rem;">${error.error}</pre>` : ''}
+                    </div>
+                `).join('');
             }
-            
-            container.innerHTML = errors.map(error => `
-                <div class="error-item">
-                    <strong>${error.message}</strong>
-                    ${error.filename ? `<br><code>${error.filename}:${error.lineno}:${error.colno}</code>` : ''}
-                    ${error.error ? `<br><pre style="margin-top: 8px; font-size: 0.875rem;">${error.error}</pre>` : ''}
-                </div>
-            `).join('');
-        }
-        
-        function renderSlowResources(timings) {
-            const container = document.getElementById('slow-resources');
-            const slowResources = timings.filter(t => t.duration > 1000);
-            
-            if (slowResources.length === 0) {
-                container.innerHTML = '<p>✅ No slow resources detected</p>';
-                return;
+
+            function renderSlowResources(timings) {
+                const container = document.getElementById('slow-resources');
+                const slowResources = timings.filter(t => t.duration > 1000);
+
+                if (slowResources.length === 0) {
+                    container.innerHTML = '<p>✅ No slow resources detected</p>';
+                    return;
+                }
+
+                container.innerHTML = slowResources.map(resource => `
+                    <div class="timing-item">
+                        <span>
+                            <strong>[${resource.type}]</strong>
+                            ${resource.name.substring(resource.name.lastIndexOf('/') + 1)}
+                        </span>
+                        <span class="timing-slow">${Math.round(resource.duration)}ms</span>
+                    </div>
+                `).join('');
             }
-            
-            container.innerHTML = slowResources.map(resource => `
-                <div class="timing-item">
-                    <span>
-                        <strong>[${resource.type}]</strong> 
-                        ${resource.name.substring(resource.name.lastIndexOf('/') + 1)}
-                    </span>
-                    <span class="timing-slow">${Math.round(resource.duration)}ms</span>
-                </div>
-            `).join('');
+
+            function renderSessionInfo(report) {
+                const container = document.getElementById('session-info');
+                const duration = (report.sessionDuration / 1000).toFixed(2);
+
+                container.innerHTML = `
+                    <p><strong>URL:</strong> <code>${report.url}</code></p>
+                    <p><strong>Session Duration:</strong> ${duration}s</p>
+                    <p><strong>Total Resources:</strong> ${report.timings.length}</p>
+                `;
+            }
+
+            // Refresh dashboard
+            window.refreshDashboard = function() {
+                renderDashboard();
+            };
+
+            // Initial render after 2 seconds (let metrics collect)
+            setTimeout(() => {
+                renderDashboard();
+                console.log('Dashboard initialized');
+            }, 2000);
+
+            // Auto-refresh every 5 seconds
+            setInterval(() => {
+                renderDashboard();
+            }, 5000);
         }
-        
-        function renderSessionInfo(report) {
-            const container = document.getElementById('session-info');
-            const duration = (report.sessionDuration / 1000).toFixed(2);
-            
-            container.innerHTML = `
-                <p><strong>URL:</strong> <code>${report.url}</code></p>
-                <p><strong>Session Duration:</strong> ${duration}s</p>
-                <p><strong>Total Resources:</strong> ${report.timings.length}</p>
-            `;
-        }
-        
-        // Refresh dashboard
-        window.refreshDashboard = function() {
-            renderDashboard();
-        };
-        
-        // Initial render after 2 seconds (let metrics collect)
-        setTimeout(() => {
-            renderDashboard();
-            console.log('Dashboard initialized');
-        }, 2000);
-        
-        // Auto-refresh every 5 seconds
-        setInterval(() => {
-            renderDashboard();
-        }, 5000);
+
+        // Start initialization
+        initializeDashboard();
     </script>
+    <script src="js/init-systems.js"></script>
 </body>
 </html>

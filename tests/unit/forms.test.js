@@ -27,7 +27,7 @@ import {
     initRealtimeValidation,
     validators,
     FormState
-} from '../public/js/features/forms.js';
+} from '@/features/forms.js';
 
 describe('Forms Module', () => {
     
@@ -254,13 +254,13 @@ describe('Forms Module', () => {
         
         beforeEach(() => {
             form = document.createElement('form');
+            document.body.appendChild(form);
             form.innerHTML = `
                 <input type="text" name="username" id="username" required>
                 <input type="email" name="email" id="email" required>
                 <input type="text" name="website" class="hp-field">
                 <button type="submit">Submit</button>
             `;
-            document.body.appendChild(form);
         });
         
         afterEach(() => {
@@ -268,8 +268,8 @@ describe('Forms Module', () => {
         });
         
         it('should validate all fields', () => {
-            form.username.value = '';
-            form.email.value = 'invalid';
+            form.querySelector('[name="username"]').value = '';
+            form.querySelector('[name="email"]').value = 'invalid';
             
             const result = validateForm(form);
             expect(result.valid).toBe(false);
@@ -277,8 +277,8 @@ describe('Forms Module', () => {
         });
         
         it('should pass valid form', () => {
-            form.username.value = 'testuser';
-            form.email.value = 'test@example.com';
+            form.querySelector('[name="username"]').value = 'testuser';
+            form.querySelector('[name="email"]').value = 'test@example.com';
             
             const result = validateForm(form);
             expect(result.valid).toBe(true);
@@ -286,17 +286,17 @@ describe('Forms Module', () => {
         });
         
         it('should skip honeypot fields', () => {
-            form.username.value = 'testuser';
-            form.email.value = 'test@example.com';
-            form.website.value = 'bot filled this';
+            form.querySelector('[name="username"]').value = 'testuser';
+            form.querySelector('[name="email"]').value = 'test@example.com';
+            form.querySelector('[name="website"]').value = 'bot filled this';
             
             const result = validateForm(form);
             expect(result.valid).toBe(true);
         });
         
         it('should apply custom rules', () => {
-            form.username.value = 'ab';
-            form.email.value = 'test@example.com';
+            form.querySelector('[name="username"]').value = 'ab';
+            form.querySelector('[name="email"]').value = 'test@example.com';
             
             const result = validateForm(form, {
                 username: { minLength: 3 }
@@ -312,6 +312,7 @@ describe('Forms Module', () => {
         
         beforeEach(() => {
             form = document.createElement('form');
+            document.body.appendChild(form);
             form.innerHTML = `
                 <input type="text" name="username" value="testuser">
                 <input type="email" name="email" value="test@example.com">
@@ -319,7 +320,6 @@ describe('Forms Module', () => {
                 <input type="hidden" name="source" value="test">
                 <input type="checkbox" name="consent" value="yes" checked>
             `;
-            document.body.appendChild(form);
         });
         
         afterEach(() => {
@@ -357,11 +357,11 @@ describe('Forms Module', () => {
         
         beforeEach(() => {
             form = document.createElement('form');
+            document.body.appendChild(form);
             form.innerHTML = `
                 <input type="text" name="username">
                 <button type="submit">Submit</button>
             `;
-            document.body.appendChild(form);
         });
         
         afterEach(() => {
@@ -439,11 +439,11 @@ describe('Forms Module', () => {
         
         beforeEach(() => {
             form = document.createElement('form');
+            document.body.appendChild(form);
             form.innerHTML = `
                 <input type="text" name="username" value="testuser" required>
                 <button type="submit">Submit</button>
             `;
-            document.body.appendChild(form);
             
             submitHandler = vi.fn().mockResolvedValue({ success: true });
         });
@@ -467,7 +467,7 @@ describe('Forms Module', () => {
         });
         
         it('should validate before submission', async () => {
-            form.username.value = '';
+            form.querySelector('[name="username"]').value = '';
             
             await handleFormSubmit(form, submitHandler, {
                 validate: true
@@ -490,12 +490,15 @@ describe('Forms Module', () => {
         });
         
         it('should reset form on success if requested', async () => {
+            const resetSpy = vi.fn();
+            form.reset = resetSpy;
+            
             await handleFormSubmit(form, submitHandler, {
                 validate: false,
                 resetOnSuccess: true
             });
             
-            expect(form.username.value).toBe('');
+            expect(resetSpy).toHaveBeenCalled();
         });
         
         it('should call success callback', async () => {

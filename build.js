@@ -75,35 +75,96 @@ function copyHtml() {
         if (existsSync(srcPath)) {
             let content = readFileSync(srcPath, 'utf8');
 
-            // Add announcement container after body tag
-            content = content.replace(
-                /<body>/,
-                '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
-            );
+            // Add skip link and announcement container after body tag if not already present
+            if (!content.includes('class="skip-link"')) {
+                content = content.replace(
+                    /<body>/,
+                    '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
+                );
+            } else {
+                // Just add announcement container if skip link already exists
+                content = content.replace(
+                    /<body>/,
+                    '<body>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
+                );
+            }
 
             // Replace header placeholder with actual header content
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
 
             // Process SSI includes
             content = content.replace(/^\s*<!--#include file="\.\.\/templates\/nav-main\.html" -->/gm, navMainTemplate);
+            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/footer\.html" -->/gm, footerTemplate);
+            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/header\.html" -->/gm, headerTemplate);
+            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/hero\.html" -->/gm, heroTemplate);
 
-            // Replace hero placeholder with actual hero content
+            // Replace hero placeholder with actual hero content (legacy support)
             content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
 
-            // Replace footer placeholder with actual footer content
+            // Replace footer placeholder with actual footer content (legacy support)
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
 
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
-                const criticalCssInline = `<style>${criticalCss}</style>`;
-                const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+                const criticalCssLength = criticalCss.length;
+                const maxInlineSize = 50000; // 50KB max for inlining
+                
+                console.log(`   📊 CSS Size Check: critical=${(criticalCssLength / 1024).toFixed(1)}KB (max=${(maxInlineSize / 1024).toFixed(0)}KB)`);
+                
+                // Only inline if critical CSS is actually small (< 50KB)
+                if (criticalCssLength < maxInlineSize) {
+                    const criticalCssInline = `<style>${criticalCss}</style>`;
+                    const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
 
-                // Replace existing styles.css link
-                content = content.replace(
-                    /<link[^>]*href="styles\.css"[^>]*>/g,
-                    criticalCssInline + '\n    ' + asyncCssLink
-                );
+                    // Replace ALL existing styles.css links - handle multiple formats:
+                    // 1. Multiple preload + direct links (newer format with duplicates)
+                    // 2. Single direct link (simpler format)
+                    const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
+                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
+                    
+                    // Try multiple pattern first, then single if no match
+                    if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
+                        content = content.replace(
+                            cssLinkPatternMultiple,
+                            criticalCssInline + '\n    ' + asyncCssLink + '\n    '
+                        );
+                    } else if (content.includes('href="styles.css"')) {
+                        // Single simple link replacement
+                        content = content.replace(
+                            cssLinkPatternSingle,
+                            criticalCssInline + '\n    ' + asyncCssLink
+                        );
+                    }
+                    console.log('   ✅ Critical CSS inlined (< 50KB)');
+                } else {
+                    console.warn(`   ⚠️  Critical CSS too large (${(criticalCssLength / 1024).toFixed(1)}KB) - using async loading only`);
+                    // If critical CSS is too large, just use async loading
+                    const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+                    const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
+                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
+                    
+                    // Try multiple pattern first, then single if no match
+                    if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
+                        content = content.replace(
+                            cssLinkPatternMultiple,
+                            asyncCssLink + '\n    '
+                        );
+                    } else if (content.includes('href="styles.css"')) {
+                        content = content.replace(
+                            cssLinkPatternSingle,
+                            asyncCssLink
+                        );
+                    }
+                }
             }
+
+            // Remove redundant security meta tags (already set via HTTP headers in _headers file)
+            content = content.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/g, '');
+            content = content.replace(/<meta http-equiv="X-Frame-Options"[^>]*>/g, '');
+            content = content.replace(/<meta http-equiv="X-Content-Type-Options"[^>]*>/g, '');
+            content = content.replace(/<meta http-equiv="Referrer-Policy"[^>]*>/g, '');
+            
+            // All security headers are now set via HTTP headers in _headers file (correct approach)
 
             // Ensure destination directory exists
             const destPath = join('dist', file);
@@ -132,6 +193,7 @@ function bundleCss() {
         'css/utilities.css',
         'css/components/buttons.css',  // Button component (Quick Win #3 + #4)
         'css/components.css',  // Navigation and other components
+        'css/global/header.css',  // Header/navigation menu styling
         'css/global/footer.css',  // Footer styling
         'css/pages/index/hero.css',  // Hero section styles
         'css/pages/index.css',

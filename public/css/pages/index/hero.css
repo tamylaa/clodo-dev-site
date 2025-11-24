@@ -29,9 +29,8 @@
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr;
-    /* Mobile order: topbar first, then visual (code preview), then content */
+    /* Mobile order: visual (code preview), then content (which now includes topbar) */
     grid-template-areas:
-        "topbar"
         "visual"
         "content";
     gap: var(--spacing-xl);  /* Restored to 32px for mobile */
@@ -43,7 +42,6 @@
 }
 
 .hero-topbar {
-    grid-area: topbar;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -584,10 +582,9 @@ p.hero-subtitle {
         padding: var(--space-hero-y) 0 var(--space-section-y-standard) 0;
     }
     .hero-container {
-        grid-template-columns: 1fr 1fr;
-        /* Tablet+: topbar above content column (right), visual on left */
+        grid-template-columns: 0.9fr 1.1fr; /* Visual 45%, Content 55% for balanced layout */
+        /* Tablet+: visual on left, content (which now includes topbar) on right */
         grid-template-areas:
-            ". topbar"
             "visual content";
         gap: var(--spacing-2xl);  /* Restored to 48px for tablet */
         padding: var(--spacing-lg) 0;
@@ -597,7 +594,6 @@ p.hero-subtitle {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-md);
-        justify-self: start;
         /* Remove margin-bottom - grid gap handles spacing */
     }
 
@@ -647,7 +643,7 @@ p.hero-subtitle {
             "visual"
             "content";
         gap: 3rem;
-        text-align: center;
+        text-align: left;
         max-width: none;
         margin: 0 auto;
         min-height: auto;
@@ -664,7 +660,7 @@ p.hero-subtitle {
     }
 
     .hero-topbar {
-        justify-self: center;
+        justify-self: start;
     }
 
     .hero-title {
@@ -697,8 +693,19 @@ p.hero-subtitle {
         padding: var(--space-hero-y) 0 var(--space-section-y-standard) 0;
     }
     .hero-container {
+        grid-template-columns: 0.9fr 1.1fr;
+        grid-template-areas:
+            "visual content";
         gap: var(--spacing-2xl);  /* Restored to 48px for desktop */
         padding: var(--spacing-xl) 0;
+    }
+
+    .hero-topbar {
+        max-width: 600px;  /* Match content column max-width */
+    }
+
+    .hero-badge-group {
+        align-items: flex-start;  /* Left-align badges to match topbar alignment */
     }
 
     .hero-content {
@@ -735,7 +742,7 @@ p.hero-subtitle {
         padding: var(--space-hero-y) 0 var(--space-section-y-relaxed) 0;
     }
     .hero-container {
-        gap: var(--spacing-3xl);  /* Consistent 64px gap between columns */
+        gap: var(--spacing-xl);  /* Reduce gap to 32px on ultra-wide screens for better visual connection */
     }
 
     .hero-title {
@@ -784,7 +791,7 @@ p.hero-subtitle {
 @media (min-width: 1024px) {
     .hero-container {
         /* Maintain grid areas, just adjust proportions on desktop */
-        grid-template-columns: 0.8fr 1.2fr;
+        grid-template-columns: 0.9fr 1.1fr; /* Visual 45%, Content 55% for optimal balance */
         max-width: 100%;
         padding: 0 var(--spacing-lg);
     }

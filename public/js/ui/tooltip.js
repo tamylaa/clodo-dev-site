@@ -590,34 +590,21 @@ function getState() {
     };
 }
 
-/**
- * Export Tooltip API
- */
-export default {
-    Tooltip,
-    init,
-    initAll,
-    getInstance,
-    destroy,
-    destroyAll,
-    hideAll,
-    configure,
-    enableDebug,
-    disableDebug,
-    getState,
-};
+// Expose API to window
+if (typeof window !== 'undefined') {
+    window.Tooltip = Tooltip;
+    window.TooltipAPI = {
+        Tooltip,
+        init,
+        initAll,
+        getInstance,
+        destroy,
+        destroyAll,
+        hideAll,
+        configure,
+        enableDebug,
+        disableDebug,
+        getState,
+    };
+}
 
-// Named exports
-export {
-    Tooltip,
-    init,
-    initAll,
-    getInstance,
-    destroy,
-    destroyAll,
-    hideAll,
-    configure,
-    enableDebug,
-    disableDebug,
-    getState,
-};

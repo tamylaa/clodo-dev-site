@@ -2,7 +2,7 @@
  * Accessibility tests using axe-core
  */
 
-const axe = require('axe-core');
+import axe from 'axe-core';
 
 describe('Accessibility Tests', () => {
   beforeEach(() => {

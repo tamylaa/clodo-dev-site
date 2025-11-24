@@ -521,14 +521,13 @@ function hasComponent(element) {
     return !!element._component;
 }
 
-/**
- * Export Component API
- */
-export default Component;
-
-export {
-    Component,
-    createComponent,
-    getComponent,
-    hasComponent,
-};
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.Component = Component;
+    window.ComponentAPI = {
+        Component,
+        createComponent,
+        getComponent,
+        hasComponent,
+    };
+}

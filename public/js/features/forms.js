@@ -360,24 +360,34 @@ function validateForm(form, customRules = {}) {
  * @returns {Object} Form data as key-value pairs
  */
 function serializeForm(form) {
-    const formData = new FormData(form);
     const data = {};
+    const fields = form.querySelectorAll('input, textarea, select');
     
-    for (const [key, value] of formData.entries()) {
+    fields.forEach(field => {
         // Skip honeypot fields
-        if (key === 'website') continue;
+        if (field.name === 'website' || field.classList.contains('hp-field')) {
+            return;
+        }
+        
+        // Skip disabled fields and buttons
+        if (field.disabled || field.type === 'submit' || field.type === 'button') {
+            return;
+        }
+        
+        const name = field.name;
+        const value = field.value;
         
         // Handle multiple values (checkboxes, multi-select)
-        if (data[key]) {
-            if (Array.isArray(data[key])) {
-                data[key].push(value);
+        if (data[name]) {
+            if (Array.isArray(data[name])) {
+                data[name].push(value);
             } else {
-                data[key] = [data[key], value];
+                data[name] = [data[name], value];
             }
         } else {
-            data[key] = value;
+            data[name] = value;
         }
-    }
+    });
     
     return data;
 }
@@ -503,14 +513,14 @@ async function handleFormSubmit(form, submitHandler, options = {}) {
         }
     }
     
+    // Serialize form data BEFORE setting loading state
+    const formData = serializeForm(form);
+    
     // Set loading state
     setFormLoading(form, true);
     clearFormMessage(form);
     
     try {
-        // Serialize form data
-        const formData = serializeForm(form);
-        
         // Call submit handler
         const result = await submitHandler(formData);
         
@@ -582,34 +592,20 @@ function initRealtimeValidation(form, customRules = {}) {
     });
 }
 
-// Export public API
-export default {
-    validateField,
-    validateForm,
-    showFieldError,
-    clearFieldError,
-    serializeForm,
-    setFormLoading,
-    showFormMessage,
-    clearFormMessage,
-    handleFormSubmit,
-    initRealtimeValidation,
-    validators,
-    FormState
-};
-
-// Also export individual functions for testing
-export {
-    validateField,
-    validateForm,
-    showFieldError,
-    clearFieldError,
-    serializeForm,
-    setFormLoading,
-    showFormMessage,
-    clearFormMessage,
-    handleFormSubmit,
-    initRealtimeValidation,
-    validators,
-    FormState
-};
+// Expose API to window
+if (typeof window !== 'undefined') {
+    window.FormsAPI = {
+        validateField,
+        validateForm,
+        showFieldError,
+        clearFieldError,
+        serializeForm,
+        setFormLoading,
+        showFormMessage,
+        clearFormMessage,
+        handleFormSubmit,
+        initRealtimeValidation,
+        validators,
+        FormState
+    };
+}

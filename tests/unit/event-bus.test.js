@@ -21,7 +21,7 @@ import {
     getStats,
     reset,
     configure,
-} from '../public/js/core/event-bus.js';
+} from '@/core/event-bus.js';
 
 describe('Event Bus', () => {
     beforeEach(() => {

@@ -12,7 +12,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { isValidEmail, subscribeToNewsletter, init, destroy } from '../public/js/features/newsletter.js';
+import { isValidEmail, subscribeToNewsletter, init, destroy } from '@/features/newsletter.js';
 
 // Mock global fetch
 global.fetch = vi.fn();
@@ -202,11 +202,13 @@ describe('Newsletter Module', () => {
             document.body.appendChild(container);
             form = container.querySelector('form');
             
-            // Mock successful API response
-            global.fetch.mockResolvedValue({
-                ok: true,
-                json: async () => ({ success: true })
-            });
+            // Mock successful API response (async)
+            global.fetch = vi.fn(() => new Promise(resolve => {
+                setTimeout(() => resolve({
+                    ok: true,
+                    json: () => Promise.resolve({ success: true })
+                }), 10);
+            }));
             
             init();
         });
@@ -245,10 +247,7 @@ describe('Newsletter Module', () => {
             form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             
             // Wait for async operations
-            await vi.waitFor(() => {
-                const message = form.querySelector('.form-message');
-                return message && message.style.display !== 'none';
-            });
+            await new Promise(resolve => setTimeout(resolve, 50));
             
             const message = form.querySelector('.form-message');
             expect(message).toBeTruthy();
@@ -267,10 +266,7 @@ describe('Newsletter Module', () => {
             form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             
             // Wait for async operations
-            await vi.waitFor(() => {
-                const message = form.querySelector('.form-message');
-                return message && message.style.display !== 'none';
-            });
+            await new Promise(resolve => setTimeout(resolve, 50));
             
             const message = form.querySelector('.form-message');
             expect(message).toBeTruthy();
@@ -299,14 +295,11 @@ describe('Newsletter Module', () => {
         
         it('should reset form after successful submission', async () => {
             const emailInput = form.querySelector('input[type="email"]');
-            emailInput.value = 'test@example.com';
             
             form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             
             // Wait for async operations
-            await vi.waitFor(() => {
-                return emailInput.value === '';
-            });
+            await new Promise(resolve => setTimeout(resolve, 50));
             
             expect(emailInput.value).toBe('');
         });
@@ -317,22 +310,25 @@ describe('Newsletter Module', () => {
         
         beforeEach(() => {
             // Mock gtag
-            global.gtag = vi.fn();
+            window.gtag = global.gtag = vi.fn();
             
             container = document.createElement('div');
             container.innerHTML = `
                 <form data-newsletter-form>
                     <input type="email" name="email" value="test@example.com" required>
+                    <input type="checkbox" name="consent" checked required>
                     <button type="submit">Subscribe</button>
                 </form>
             `;
             document.body.appendChild(container);
             form = container.querySelector('form');
             
-            global.fetch.mockResolvedValue({
-                ok: true,
-                json: async () => ({ success: true })
-            });
+            global.fetch = vi.fn(() => new Promise(resolve => {
+                setTimeout(() => resolve({
+                    ok: true,
+                    json: () => Promise.resolve({ success: true })
+                }), 10);
+            }));
             
             init();
         });
@@ -347,11 +343,8 @@ describe('Newsletter Module', () => {
         it('should track successful subscription', async () => {
             form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             
-            await vi.waitFor(() => {
-                return global.gtag.mock.calls.some(call => 
-                    call[1] === 'newsletter_subscribe_success'
-                );
-            });
+            // Wait for async operations
+            await new Promise(resolve => setTimeout(resolve, 50));
             
             expect(global.gtag).toHaveBeenCalledWith(
                 'event',

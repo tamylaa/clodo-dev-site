@@ -1,6 +1,6 @@
 /**
  * SEO Enhancement System
- * 
+ *
  * Provides dynamic SEO optimization including:
  * - Structured data (JSON-LD)
  * - Meta tags management
@@ -10,9 +10,12 @@
  * - Breadcrumbs
  * - FAQ schema
  * - Article schema
- * 
+ *
  * @module core/seo
  */
+
+(function() {
+    'use strict';
 
 /**
  * SEO Manager state
@@ -27,7 +30,7 @@ const state = {
 
 /**
  * Initialize SEO system
- * 
+ *
  * @param {Object} options - Configuration options
  * @param {string} options.baseUrl - Site base URL (e.g., 'https://clodo.dev')
  * @param {string} options.defaultImage - Default OG image path
@@ -39,20 +42,20 @@ function init(options = {}) {
         console.warn('[SEO] Already initialized');
         return;
     }
-    
+
     state.baseUrl = options.baseUrl || window.location.origin;
     state.defaultImage = options.defaultImage || state.defaultImage;
     state.defaultAuthor = options.defaultAuthor || state.defaultAuthor;
     state.twitterHandle = options.twitterHandle || state.twitterHandle;
-    
+
     state.initialized = true;
-    
+
     console.log('[SEO] Initialized with base URL:', state.baseUrl);
 }
 
 /**
  * Set page metadata
- * 
+ *
  * @param {Object} meta - Page metadata
  * @param {string} meta.title - Page title
  * @param {string} meta.description - Page description
@@ -76,26 +79,26 @@ function setPageMeta(meta = {}) {
         modifiedTime = null,
         keywords = [],
     } = meta;
-    
+
     // Update document title
     if (title) {
         document.title = title;
     }
-    
+
     // Set meta description
     setMetaTag('name', 'description', description);
-    
+
     // Set keywords
     if (keywords.length > 0) {
         setMetaTag('name', 'keywords', keywords.join(', '));
     }
-    
+
     // Set author
     setMetaTag('name', 'author', author);
-    
+
     // Set canonical URL
     setLinkTag('canonical', url);
-    
+
     // Open Graph
     setMetaTag('property', 'og:title', title);
     setMetaTag('property', 'og:description', description);
@@ -103,7 +106,7 @@ function setPageMeta(meta = {}) {
     setMetaTag('property', 'og:url', url);
     setMetaTag('property', 'og:type', type);
     setMetaTag('property', 'og:site_name', 'Clodo Framework');
-    
+
     // Article-specific OG tags
     if (type === 'article') {
         if (publishedTime) {
@@ -114,7 +117,7 @@ function setPageMeta(meta = {}) {
         }
         setMetaTag('property', 'article:author', author);
     }
-    
+
     // Twitter Cards
     setMetaTag('name', 'twitter:card', 'summary_large_image');
     setMetaTag('name', 'twitter:site', state.twitterHandle);
@@ -122,54 +125,54 @@ function setPageMeta(meta = {}) {
     setMetaTag('name', 'twitter:title', title);
     setMetaTag('name', 'twitter:description', description);
     setMetaTag('name', 'twitter:image', makeAbsoluteUrl(image));
-    
+
     console.log('[SEO] Page meta updated:', { title, description, url, type });
 }
 
 /**
  * Set or update a meta tag
- * 
+ *
  * @param {string} attribute - Attribute name (name or property)
  * @param {string} key - Attribute value
  * @param {string} content - Meta content
  */
 function setMetaTag(attribute, key, content) {
     if (!content) return;
-    
+
     let tag = document.querySelector(`meta[${attribute}="${key}"]`);
-    
+
     if (!tag) {
         tag = document.createElement('meta');
         tag.setAttribute(attribute, key);
         document.head.appendChild(tag);
     }
-    
+
     tag.setAttribute('content', content);
 }
 
 /**
  * Set or update a link tag
- * 
+ *
  * @param {string} rel - Link relationship
  * @param {string} href - Link URL
  */
 function setLinkTag(rel, href) {
     if (!href) return;
-    
+
     let tag = document.querySelector(`link[rel="${rel}"]`);
-    
+
     if (!tag) {
         tag = document.createElement('link');
         tag.setAttribute('rel', rel);
         document.head.appendChild(tag);
     }
-    
+
     tag.setAttribute('href', href);
 }
 
 /**
  * Add structured data (JSON-LD)
- * 
+ *
  * @param {Object} data - JSON-LD structured data
  * @param {string} id - Optional ID for the script tag
  */
@@ -177,25 +180,25 @@ function addStructuredData(data, id = null) {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(data, null, 2);
-    
+
     if (id) {
         script.id = id;
-        
+
         // Remove existing script with same ID
         const existing = document.getElementById(id);
         if (existing) {
             existing.remove();
         }
     }
-    
+
     document.head.appendChild(script);
-    
+
     console.log('[SEO] Added structured data:', data['@type']);
 }
 
 /**
  * Add Organization schema
- * 
+ *
  * @param {Object} options - Organization details
  */
 function addOrganizationSchema(options = {}) {
@@ -217,13 +220,13 @@ function addOrganizationSchema(options = {}) {
             email: options.email || 'support@clodo.dev',
         },
     };
-    
+
     addStructuredData(schema, 'schema-organization');
 }
 
 /**
  * Add WebSite schema with search action
- * 
+ *
  * @param {Object} options - Website details
  */
 function addWebSiteSchema(options = {}) {
@@ -242,13 +245,13 @@ function addWebSiteSchema(options = {}) {
             'query-input': 'required name=search_term_string',
         },
     };
-    
+
     addStructuredData(schema, 'schema-website');
 }
 
 /**
  * Add Breadcrumb schema
- * 
+ *
  * @param {Array} items - Breadcrumb items [{name, url}, ...]
  */
 function addBreadcrumbSchema(items) {
@@ -262,13 +265,13 @@ function addBreadcrumbSchema(items) {
             item: makeAbsoluteUrl(item.url),
         })),
     };
-    
+
     addStructuredData(schema, 'schema-breadcrumb');
 }
 
 /**
  * Add Article schema
- * 
+ *
  * @param {Object} options - Article details
  */
 function addArticleSchema(options = {}) {
@@ -293,20 +296,20 @@ function addArticleSchema(options = {}) {
             },
         },
     };
-    
+
     // Remove null values
     Object.keys(schema).forEach(key => {
         if (schema[key] === null) {
             delete schema[key];
         }
     });
-    
+
     addStructuredData(schema, 'schema-article');
 }
 
 /**
  * Add FAQ schema
- * 
+ *
  * @param {Array} faqs - FAQ items [{question, answer}, ...]
  */
 function addFAQSchema(faqs) {
@@ -322,13 +325,13 @@ function addFAQSchema(faqs) {
             },
         })),
     };
-    
+
     addStructuredData(schema, 'schema-faq');
 }
 
 /**
  * Add Product schema
- * 
+ *
  * @param {Object} options - Product details
  */
 function addProductSchema(options = {}) {
@@ -349,7 +352,7 @@ function addProductSchema(options = {}) {
             availability: 'https://schema.org/InStock',
         },
     };
-    
+
     // Add rating if provided
     if (options.rating) {
         schema.aggregateRating = {
@@ -358,13 +361,13 @@ function addProductSchema(options = {}) {
             reviewCount: options.rating.count,
         };
     }
-    
+
     addStructuredData(schema, 'schema-product');
 }
 
 /**
  * Add SoftwareApplication schema
- * 
+ *
  * @param {Object} options - Software details
  */
 function addSoftwareSchema(options = {}) {
@@ -383,7 +386,7 @@ function addSoftwareSchema(options = {}) {
         downloadUrl: options.downloadUrl || `${state.baseUrl}/docs/quick-start`,
         softwareVersion: options.version || '1.0.0',
     };
-    
+
     // Add rating if provided
     if (options.rating) {
         schema.aggregateRating = {
@@ -392,13 +395,13 @@ function addSoftwareSchema(options = {}) {
             reviewCount: options.rating.count,
         };
     }
-    
+
     addStructuredData(schema, 'schema-software');
 }
 
 /**
  * Generate sitemap data
- * 
+ *
  * @param {Array} pages - Array of page objects [{url, lastmod, changefreq, priority}, ...]
  * @returns {string} XML sitemap
  */
@@ -408,7 +411,7 @@ function generateSitemap(pages) {
         const lastmod = page.lastmod ? new Date(page.lastmod).toISOString().split('T')[0] : '';
         const changefreq = page.changefreq || 'weekly';
         const priority = page.priority || '0.5';
-        
+
         return `
     <url>
         <loc>${url}</loc>
@@ -417,7 +420,7 @@ function generateSitemap(pages) {
         <priority>${priority}</priority>
     </url>`;
     }).join('');
-    
+
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
@@ -426,18 +429,18 @@ ${urls}
 
 /**
  * Make URL absolute
- * 
+ *
  * @param {string} url - Relative or absolute URL
  * @returns {string} Absolute URL
  */
 function makeAbsoluteUrl(url) {
     if (!url) return '';
-    
+
     // Already absolute
     if (url.startsWith('http://') || url.startsWith('https://')) {
         return url;
     }
-    
+
     // Make absolute
     const cleanUrl = url.startsWith('/') ? url : `/${url}`;
     return `${state.baseUrl}${cleanUrl}`;
@@ -445,7 +448,7 @@ function makeAbsoluteUrl(url) {
 
 /**
  * Get current page metadata from DOM
- * 
+ *
  * @returns {Object} Current page metadata
  */
 function getCurrentMeta() {
@@ -461,7 +464,7 @@ function getCurrentMeta() {
 /**
  * Public API
  */
-export default {
+const SEO = {
     init,
     setPageMeta,
     addStructuredData,
@@ -476,3 +479,13 @@ export default {
     makeAbsoluteUrl,
     getCurrentMeta,
 };
+
+// Expose to global scope
+if (typeof window !== 'undefined') {
+    window.SEO = SEO;
+}
+
+// Remove ES6 exports - this is now an IIFE
+// export default SEO;
+
+})();

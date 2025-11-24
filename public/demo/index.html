@@ -223,6 +223,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="container">
         <header class="header">
             <h1>
@@ -273,16 +274,16 @@
             </div>
         </div>
 
-        <div class="interactive-demo">
+        <div class="interactive-demo" id="main-content">
             <h2 id="demo-title">Select a demo above to get started!</h2>
             <div class="demo-controls">
-                <button class="btn" onclick="runDemo()">
+                <button class="btn" onclick="runDemo()" aria-label="Run the selected demo">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <polygon points="5,3 19,12 5,21 5,3"/>
                     </svg>
                     Run Demo
                 </button>
-                <button class="btn btn-secondary" onclick="resetDemo()">
+                <button class="btn btn-secondary" onclick="resetDemo()" aria-label="Reset the demo to initial state">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
                         <path d="M21 3v5h-5"/>
@@ -291,7 +292,7 @@
                     </svg>
                     Reset
                 </button>
-                <button class="btn btn-secondary" onclick="showCode()">
+                <button class="btn btn-secondary" onclick="showCode()" aria-label="View the source code for this demo">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <polyline points="16,18 22,12 16,6"/>
                         <polyline points="8,6 2,12 8,18"/>
@@ -346,7 +347,7 @@ Features demonstrated:
                     <label for="feedback-text">What did you think? (Optional)</label>
                     <textarea id="feedback-text" rows="4" placeholder="Share your thoughts about Clodo Framework..."></textarea>
                 </div>
-                <button type="submit" class="btn">Submit Feedback</button>
+                <button type="submit" class="btn" aria-label="Submit feedback about Clodo Framework">Submit Feedback</button>
             </form>
         </div>
 
@@ -359,13 +360,13 @@ Features demonstrated:
             </h3>
             <p>Experience the full power of Clodo Framework with these options:</p>
             <div class="progression-options">
-                <button class="btn" onclick="runLiveSetup()">
+                <button class="btn" onclick="runLiveSetup()" aria-label="Create a live Clodo Framework project">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <path d="M13,2 3,14 12,14 11,22 11,22 11,22"/>
                     </svg>
                     Create Live Project
                 </button>
-                <button class="btn btn-secondary" onclick="downloadScripts()">
+                <button class="btn btn-secondary" onclick="downloadScripts()" aria-label="Download setup scripts for Clodo Framework">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                         <line x1="8" y1="21" x2="16" y2="21"/>
@@ -373,7 +374,7 @@ Features demonstrated:
                     </svg>
                     Download Setup Scripts
                 </button>
-                <button class="btn btn-secondary" onclick="visitDocs()">
+                <button class="btn btn-secondary" onclick="visitDocs()" aria-label="Read Clodo Framework documentation">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>

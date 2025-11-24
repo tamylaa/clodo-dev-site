@@ -1,0 +1,19 @@
+import { JSDOM } from 'jsdom';
+const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+const { document } = dom.window;
+
+const form = document.createElement('form');
+form.innerHTML = '<input type="text" name="username" id="username" value="testuser">';
+document.body.appendChild(form);
+
+console.log('form.username:', form.username);
+console.log('form.elements.username:', form.elements.username);
+console.log('form.querySelector(\'[name=username]\'):', form.querySelector('[name=username]'));
+console.log('form.querySelector(\'[name=username]\').value:', form.querySelector('[name=username]').value);
+
+// Test serializeForm logic
+const fields = form.querySelectorAll('input, textarea, select');
+console.log('fields found:', fields.length);
+fields.forEach(field => {
+    console.log('field name:', field.name, 'value:', field.value);
+});

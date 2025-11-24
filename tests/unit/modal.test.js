@@ -2,7 +2,7 @@
  * Modal Component Tests
  */
 
-import { jest } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { JSDOM } from 'jsdom';
 
 // Test helpers
@@ -12,6 +12,7 @@ let document;
 let Modal;
 let open;
 let closeAll;
+let resetState;
 let getState;
 
 /**
@@ -56,6 +57,7 @@ async function setupDOM() {
     Modal = module.Modal;
     open = module.open;
     closeAll = module.closeAll;
+    resetState = module.resetState;
     getState = module.getState;
 }
 
@@ -65,6 +67,7 @@ async function setupDOM() {
 function teardownDOM() {
     if (dom) {
         closeAll();
+        resetState();
         dom.window.close();
     }
     delete global.window;
@@ -202,15 +205,26 @@ describe('Modal Component', () => {
         });
 
         it('should focus first element', async () => {
+            const firstButton = document.createElement('button');
+            firstButton.id = 'first';
+            firstButton.textContent = 'First';
+
+            const secondButton = document.createElement('button');
+            secondButton.id = 'second';
+            secondButton.textContent = 'Second';
+
+            const content = document.createElement('div');
+            content.appendChild(firstButton);
+            content.appendChild(secondButton);
+
             const modal = new Modal({
                 animation: false,
-                content: '<button id="first">First</button><button id="second">Second</button>',
+                content: content,
             });
             
             modal.open();
             await wait(50);
             
-            const firstButton = modal.element.querySelector('#first');
             expect(document.activeElement).toBe(firstButton);
         });
 
@@ -396,49 +410,84 @@ describe('Modal Component', () => {
         });
 
         it('should trap focus with Tab key', async () => {
+            const firstButton = document.createElement('button');
+            firstButton.id = 'first';
+            firstButton.textContent = 'First';
+
+            const lastButton = document.createElement('button');
+            lastButton.id = 'last';
+            lastButton.textContent = 'Last';
+
+            const content = document.createElement('div');
+            content.appendChild(firstButton);
+            content.appendChild(lastButton);
+
             const modal = new Modal({
                 animation: false,
-                content: '<button id="first">First</button><button id="last">Last</button>',
+                content: content,
             });
             modal.open();
             
-            const firstButton = modal.element.querySelector('#first');
-            const lastButton = modal.element.querySelector('#last');
+            const lastButtonFromDOM = modal.element.querySelector('#last');
             
             // Focus last button
-            lastButton.focus();
+            lastButtonFromDOM.focus();
+            Object.defineProperty(document, 'activeElement', { value: lastButtonFromDOM, configurable: true });
             
             // Tab from last should go to first
             const event = new window.KeyboardEvent('keydown', {
                 key: 'Tab',
                 bubbles: true,
+                isTrusted: true,
             });
-            Object.defineProperty(document, 'activeElement', { value: lastButton, configurable: true });
+            
+            // Spy on preventDefault since JSDOM doesn't set defaultPrevented
+            const preventDefaultSpy = vi.fn();
+            event.preventDefault = preventDefaultSpy;
+            
             document.dispatchEvent(event);
             
             // Focus trap should have been called
-            expect(event.defaultPrevented).toBe(true);
+            expect(preventDefaultSpy).toHaveBeenCalled();
         });
 
         it('should trap focus with Shift+Tab', async () => {
+            const firstButton = document.createElement('button');
+            firstButton.id = 'first';
+            firstButton.textContent = 'First';
+
+            const lastButton = document.createElement('button');
+            lastButton.id = 'last';
+            lastButton.textContent = 'Last';
+
+            const content = document.createElement('div');
+            content.appendChild(firstButton);
+            content.appendChild(lastButton);
+
             const modal = new Modal({
                 animation: false,
-                content: '<button id="first">First</button><button id="last">Last</button>',
+                content: content,
             });
             modal.open();
             
-            const firstButton = modal.element.querySelector('#first');
+            const firstButtonFromDOM = modal.element.querySelector('#first');
             
             // Shift+Tab from first should go to last
             const event = new window.KeyboardEvent('keydown', {
                 key: 'Tab',
                 shiftKey: true,
                 bubbles: true,
+                isTrusted: true,
             });
-            Object.defineProperty(document, 'activeElement', { value: firstButton, configurable: true });
+            
+            // Spy on preventDefault since JSDOM doesn't set defaultPrevented
+            const preventDefaultSpy = vi.fn();
+            event.preventDefault = preventDefaultSpy;
+            
+            Object.defineProperty(document, 'activeElement', { value: firstButtonFromDOM, configurable: true });
             document.dispatchEvent(event);
             
-            expect(event.defaultPrevented).toBe(true);
+            expect(preventDefaultSpy).toHaveBeenCalled();
         });
     });
 
@@ -558,7 +607,7 @@ describe('Modal Component', () => {
 
         it('should remove event listeners', () => {
             const modal = new Modal({ animation: false });
-            const handler = jest.fn();
+            const handler = vi.fn();
             
             modal.on('open', handler);
             modal.off('open', handler);

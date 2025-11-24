@@ -17,7 +17,7 @@ import {
     configure,
     normalizePath,
     isInternalLink,
-} from '../public/js/core/navigation.js';
+} from '@/core/navigation.js';
 
 describe('Navigation Manager', () => {
     beforeEach(() => {
@@ -108,18 +108,19 @@ describe('Navigation Manager', () => {
         });
         
         it('should update active links on init', () => {
+            destroy();
             window.location.pathname = '/about';
             init({ exactMatch: false });
             
             const aboutLink = document.querySelector('a[href="/about"]');
-            expect(aboutLink.classList.contains('active')).toBe(true);
+            expect(aboutLink.className).toBe('nav-link current');
             expect(aboutLink.getAttribute('aria-current')).toBe('page');
         });
     });
     
     describe('updateActiveLinks', () => {
         beforeEach(() => {
-            init();
+            configure({});
         });
         
         it('should add active class to current page link', () => {
@@ -127,7 +128,7 @@ describe('Navigation Manager', () => {
             updateActiveLinks();
             
             const aboutLink = document.querySelector('a[href="/about"]');
-            expect(aboutLink.classList.contains('active')).toBe(true);
+            expect(aboutLink.className).toBe('nav-link current');
         });
         
         it('should remove active class from other links', () => {
@@ -164,17 +165,18 @@ describe('Navigation Manager', () => {
         
         it('should support prefix matching mode', () => {
             configure({ exactMatch: false });
-            window.location.pathname = '/docs/guide';
+            window.location.pathname = '/docs/guides';
             updateActiveLinks();
             
             const docsLink = document.querySelector('a[href="/docs"]');
-            expect(docsLink.classList.contains('active')).toBe(true);
+            expect(docsLink.className).toBe('nav-link current');
         });
     });
     
     describe('scrollToTop', () => {
         beforeEach(() => {
             init();
+            configure({ scrollBehavior: 'smooth' });
         });
         
         it('should scroll to top of page', () => {
@@ -191,6 +193,7 @@ describe('Navigation Manager', () => {
     describe('scrollToElement', () => {
         beforeEach(() => {
             init();
+            configure({ scrollBehavior: 'smooth' });
         });
         
         it('should scroll to element with offset', () => {

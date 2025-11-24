@@ -1,27 +1,21 @@
 /**
  * Features Modules Index
  * 
- * Central export point for all feature modules.
+ * Central reference point for all feature modules.
  * Features are optional functionality that can be enabled/disabled.
  * 
- * Usage:
- *   import { Newsletter, Forms, Analytics } from './features/index.js';
+ * These are loaded as separate script tags, not as ES modules.
+ * Access via window.NewsletterAPI, window.FormsAPI, etc.
  */
 
-// Feature modules
-export { default as Newsletter } from './newsletter.js';
-export { default as Forms } from './forms.js';
+// All feature modules are now loaded and exposed to window via separate script tags
+// This file documents the available APIs but doesn't re-export them
 
-// Future feature modules (to be extracted from script.js):
-// export { default as Analytics } from './analytics.js';
-// export { default as GitHub } from './github.js';
-// export { default as Search } from './search.js';
-// export { default as LazyLoading } from './lazy-loading.js';
-// export { default as CodeCopy } from './code-copy.js';
-// export { default as Performance } from './performance.js';
-
-
-// Placeholder until features are extracted
-export default {
-  // Features will be added here during Tasks 14-20
-};
+if (typeof window !== 'undefined') {
+    // Create a Features namespace for organization
+    window.Features = {
+        Newsletter: typeof window.NewsletterAPI !== 'undefined' ? window.NewsletterAPI : null,
+        Forms: typeof window.FormsAPI !== 'undefined' ? window.FormsAPI : null,
+        // Additional features to be added as they're extracted from script.js
+    };
+}

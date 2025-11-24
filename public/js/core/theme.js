@@ -4,13 +4,10 @@
  * Handles light/dark theme switching
  * Migrated from script.js setupThemeToggle()
  * 
- * Usage:
- * import { ThemeManager } from './core/theme.js';
- * const theme = new ThemeManager();
- * theme.init();
+ * Access via window.ThemeManager
  */
 
-export class ThemeManager {
+class ThemeManager {
     constructor() {
         this.THEME_KEY = 'clodo-theme';
         this.currentTheme = this.getStoredTheme() || 'dark';
@@ -109,12 +106,15 @@ export class ThemeManager {
     }
 }
 
-// Named exports for flexibility
-export function init() {
+// Initialize function
+function initTheme() {
     const theme = new ThemeManager();
     theme.init();
     return theme;
 }
 
-// Default export
-export default ThemeManager;
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.ThemeManager = ThemeManager;
+    window.initTheme = initTheme;
+}

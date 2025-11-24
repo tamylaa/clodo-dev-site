@@ -9,7 +9,7 @@ import {
     createStorage,
     Storage,
     StorageType,
-} from '../public/js/core/storage.js';
+} from '@/core/storage.js';
 
 describe('Storage Wrapper', () => {
     let storage;

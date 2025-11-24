@@ -2,7 +2,7 @@
  * Navigation Component Tests
  */
 
-import { jest } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { JSDOM } from 'jsdom';
 
 // Test helpers
@@ -161,14 +161,14 @@ describe('NavigationComponent', () => {
         it('should initialize successfully', () => {
             NavigationComponent.init();
             const state = NavigationComponent.getState();
-            assert.strictEqual(state.initialized, true);
+            expect(state.initialized).toBe(true);
         });
 
         it('should not initialize twice', () => {
             NavigationComponent.init();
             NavigationComponent.init(); // Second call
             const state = NavigationComponent.getState();
-            assert.strictEqual(state.initialized, true);
+            expect(state.initialized).toBe(true);
         });
 
         it('should emit ready event on init', (t, done) => {

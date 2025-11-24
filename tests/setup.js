@@ -1,29 +1,56 @@
 // Test setup and global configurations
-// Extend Jest with DOM matchers
-require('@testing-library/jest-dom');
+// Extend expect with DOM matchers
+import '@testing-library/jest-dom/vitest';
+import { vi, afterEach } from 'vitest';
+import assert from 'assert';
+
+// Make assert available globally
+global.assert = assert;
 
 // Mock fetch for API calls
-global.fetch = jest.fn();
+global.fetch = vi.fn();
 
 // Mock localStorage (override jsdom Storage)
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
-};
+const localStorageMock = (() => {
+  const store = new Map();
+  return {
+    getItem: (key) => store.get(key) || null,
+    setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => store.delete(key),
+    clear: () => store.clear(),
+    get length() { return store.size; },
+    key: (index) => Array.from(store.keys())[index] || null,
+  };
+})();
 Object.defineProperty(global, 'localStorage', { value: localStorageMock, writable: true });
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, 'localStorage', { value: localStorageMock, writable: true });
 }
 
-// Mock IntersectionObserver with jest.fn so tests can mockImplementation
-global.IntersectionObserver = jest.fn(function() {
+// Mock sessionStorage
+const sessionStorageMock = (() => {
+  const store = new Map();
   return {
-    observe: jest.fn(),
-    disconnect: jest.fn(),
-    unobserve: jest.fn(),
-    takeRecords: jest.fn(),
+    getItem: (key) => store.get(key) || null,
+    setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => store.delete(key),
+    clear: () => store.clear(),
+    get length() { return store.size; },
+    key: (index) => Array.from(store.keys())[index] || null,
+  };
+})();
+Object.defineProperty(global, 'sessionStorage', { value: sessionStorageMock, writable: true });
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'sessionStorage', { value: sessionStorageMock, writable: true });
+}
+
+// Mock IntersectionObserver with vi.fn so tests can mockImplementation
+global.IntersectionObserver = vi.fn(function() {
+  return {
+    observe: vi.fn(),
+    disconnect: vi.fn(),
+    unobserve: vi.fn(),
+    takeRecords: vi.fn(),
   };
 });
 
@@ -34,6 +61,17 @@ global.ResizeObserver = class ResizeObserver {
   disconnect() {}
   unobserve() {}
 };
+
+// Mock CustomEvent for modal events
+global.CustomEvent = class CustomEvent extends Event {
+  constructor(type, options = {}) {
+    super(type, options);
+    this.detail = options.detail || {};
+  }
+};
+if (typeof window !== 'undefined') {
+  window.CustomEvent = global.CustomEvent;
+}
 
 // Mock WebSocket
 global.WebSocket = class WebSocket {
@@ -46,26 +84,26 @@ global.WebSocket = class WebSocket {
 
 // Stub canvas getContext used by axe-core
 if (typeof HTMLCanvasElement !== 'undefined') {
-  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}));
+  HTMLCanvasElement.prototype.getContext = vi.fn(() => ({}));
 }
 
 // Stub window.matchMedia for tests
 if (typeof window !== 'undefined' && !window.matchMedia) {
-  window.matchMedia = jest.fn().mockImplementation(query => ({
+  window.matchMedia = vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   }));
 }
 
 // Stub window.scrollTo to avoid jsdom not-implemented errors
 if (typeof window !== 'undefined' && !window.scrollTo) {
-  window.scrollTo = jest.fn();
+  window.scrollTo = vi.fn();
 }
 
 // Polyfill PromiseRejectionEvent for jsdom
@@ -128,11 +166,11 @@ global.createMockEnv = (overrides = {}) => ({
   JWT_SECRET: 'test-secret',
   GITHUB_TOKEN: 'test-token',
   DB: {
-    prepare: jest.fn(() => ({
-      bind: jest.fn(() => ({
-        first: jest.fn(),
-        all: jest.fn(),
-        run: jest.fn()
+    prepare: vi.fn(() => ({
+      bind: vi.fn(() => ({
+        first: vi.fn(),
+        all: vi.fn(),
+        run: vi.fn()
       }))
     }))
   },
@@ -142,7 +180,9 @@ global.createMockEnv = (overrides = {}) => ({
 
 // Cleanup after each test
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   localStorageMock.clear();
-  document.body.innerHTML = '';
+  if (typeof document !== 'undefined') {
+    document.body.innerHTML = '';
+  }
 });

@@ -1,9 +1,9 @@
 /**
  * Performance Monitor
- * 
+ *
  * Tracks Web Vitals, errors, resource timing, and user behavior
  * to provide data-driven insights for optimization decisions.
- * 
+ *
  * Features:
  * - Core Web Vitals (LCP, FID, CLS, FCP, TTFB)
  * - JavaScript errors tracking
@@ -11,16 +11,19 @@
  * - User session metrics
  * - Network quality detection
  * - Integration with analytics
- * 
+ *
  * @module PerformanceMonitor
  */
+
+(function() {
+    'use strict';
 
 /**
  * Configuration
  */
 const config = {
     debug: false,
-    
+
     // Performance thresholds (Google recommendations)
     thresholds: {
         // Largest Contentful Paint (LCP)
@@ -49,17 +52,17 @@ const config = {
             needsImprovement: 1800, // 800ms - 1.8s
         },
     },
-    
+
     // Sampling rate (0-1, 1 = 100% of users)
     sampleRate: 1.0,
-    
+
     // Endpoints for reporting (optional)
     endpoints: {
         vitals: null,    // POST Web Vitals data
         errors: null,    // POST JavaScript errors
         timing: null,    // POST resource timing
     },
-    
+
     // Analytics integration
     analytics: {
         enabled: false,
@@ -101,7 +104,7 @@ function shouldSample() {
 function getRating(metricName, value) {
     const threshold = config.thresholds[metricName.toLowerCase()];
     if (!threshold) return 'unknown';
-    
+
     if (value <= threshold.good) return 'good';
     if (value <= threshold.needsImprovement) return 'needs-improvement';
     return 'poor';
@@ -121,26 +124,26 @@ function formatMetric(name, value, unit = 'ms') {
  */
 function measureLCP() {
     if (!('PerformanceObserver' in window)) return;
-    
+
     try {
         const observer = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
             const lastEntry = entries[entries.length - 1];
-            
+
             const lcp = lastEntry.renderTime || lastEntry.loadTime;
             const rating = getRating('lcp', lcp);
-            
+
             state.metrics.lcp = { value: lcp, rating, timestamp: Date.now() };
-            
+
             log(formatMetric('LCP', lcp), `[${rating}]`);
-            
+
             // Report to analytics
             reportMetric('LCP', lcp, rating);
         });
-        
+
         observer.observe({ type: 'largest-contentful-paint', buffered: true });
         state.observers.set('lcp', observer);
-        
+
     } catch (error) {
         console.error('Error measuring LCP:', error);
     }
@@ -151,27 +154,27 @@ function measureLCP() {
  */
 function measureFID() {
     if (!('PerformanceObserver' in window)) return;
-    
+
     try {
         const observer = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            
+
             entries.forEach(entry => {
                 const fid = entry.processingStart - entry.startTime;
                 const rating = getRating('fid', fid);
-                
+
                 state.metrics.fid = { value: fid, rating, timestamp: Date.now() };
-                
+
                 log(formatMetric('FID', fid), `[${rating}]`);
-                
+
                 // Report to analytics
                 reportMetric('FID', fid, rating);
             });
         });
-        
+
         observer.observe({ type: 'first-input', buffered: true });
         state.observers.set('fid', observer);
-        
+
     } catch (error) {
         console.error('Error measuring FID:', error);
     }
@@ -182,52 +185,52 @@ function measureFID() {
  */
 function measureCLS() {
     if (!('PerformanceObserver' in window)) return;
-    
+
     try {
         let clsValue = 0;
         let sessionValue = 0;
         let sessionEntries = [];
-        
+
         const observer = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            
+
             entries.forEach(entry => {
                 // Only count layout shifts without recent user input
                 if (!entry.hadRecentInput) {
                     const firstSessionEntry = sessionEntries[0];
                     const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
-                    
+
                     // Start new session if gap > 1s or > 5s total
-                    if (sessionValue &&
-                        entry.startTime - lastSessionEntry.startTime > 1000 ||
-                        entry.startTime - firstSessionEntry.startTime > 5000) {
-                        
+                    if (sessionValue && lastSessionEntry && firstSessionEntry &&
+                        (entry.startTime - lastSessionEntry.startTime > 1000 ||
+                        entry.startTime - firstSessionEntry.startTime > 5000)) {
+
                         sessionValue = 0;
                         sessionEntries = [];
                     }
-                    
+
                     sessionValue += entry.value;
                     sessionEntries.push(entry);
-                    
+
                     // Update CLS if this session is larger
                     if (sessionValue > clsValue) {
                         clsValue = sessionValue;
                         const rating = getRating('cls', clsValue);
-                        
+
                         state.metrics.cls = { value: clsValue, rating, timestamp: Date.now() };
-                        
+
                         log(formatMetric('CLS', clsValue, ''), `[${rating}]`);
-                        
+
                         // Report to analytics
                         reportMetric('CLS', clsValue, rating);
                     }
                 }
             });
         });
-        
+
         observer.observe({ type: 'layout-shift', buffered: true });
         state.observers.set('cls', observer);
-        
+
     } catch (error) {
         console.error('Error measuring CLS:', error);
     }
@@ -238,29 +241,29 @@ function measureCLS() {
  */
 function measureFCP() {
     if (!('PerformanceObserver' in window)) return;
-    
+
     try {
         const observer = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            
+
             entries.forEach(entry => {
                 if (entry.name === 'first-contentful-paint') {
                     const fcp = entry.startTime;
                     const rating = getRating('fcp', fcp);
-                    
+
                     state.metrics.fcp = { value: fcp, rating, timestamp: Date.now() };
-                    
+
                     log(formatMetric('FCP', fcp), `[${rating}]`);
-                    
+
                     // Report to analytics
                     reportMetric('FCP', fcp, rating);
                 }
             });
         });
-        
+
         observer.observe({ type: 'paint', buffered: true });
         state.observers.set('fcp', observer);
-        
+
     } catch (error) {
         console.error('Error measuring FCP:', error);
     }
@@ -272,15 +275,15 @@ function measureFCP() {
 function measureTTFB() {
     try {
         const navigation = performance.getEntriesByType('navigation')[0];
-        
+
         if (navigation) {
             const ttfb = navigation.responseStart - navigation.requestStart;
             const rating = getRating('ttfb', ttfb);
-            
+
             state.metrics.ttfb = { value: ttfb, rating, timestamp: Date.now() };
-            
+
             log(formatMetric('TTFB', ttfb), `[${rating}]`);
-            
+
             // Report to analytics
             reportMetric('TTFB', ttfb, rating);
         }
@@ -306,15 +309,15 @@ function trackErrors() {
             timestamp: Date.now(),
             url: window.location.href,
         };
-        
+
         state.errors.push(errorData);
-        
+
         log('JavaScript Error:', errorData);
-        
+
         // Report to endpoint
         reportError(errorData);
     });
-    
+
     // Unhandled promise rejections
     window.addEventListener('unhandledrejection', (event) => {
         const errorData = {
@@ -323,11 +326,11 @@ function trackErrors() {
             timestamp: Date.now(),
             url: window.location.href,
         };
-        
+
         state.errors.push(errorData);
-        
+
         log('Promise Rejection:', errorData);
-        
+
         // Report to endpoint
         reportError(errorData);
     });
@@ -340,11 +343,11 @@ function trackErrors() {
  */
 function trackResourceTiming() {
     if (!('PerformanceObserver' in window)) return;
-    
+
     try {
         const observer = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            
+
             entries.forEach(entry => {
                 const timing = {
                     name: entry.name,
@@ -353,19 +356,19 @@ function trackResourceTiming() {
                     size: entry.transferSize,
                     timestamp: Date.now(),
                 };
-                
+
                 state.timings.push(timing);
-                
+
                 // Log slow resources (> 1s)
                 if (entry.duration > 1000) {
                     log(`Slow resource (${entry.initiatorType}):`, entry.name, `${entry.duration.toFixed(2)}ms`);
                 }
             });
         });
-        
+
         observer.observe({ type: 'resource', buffered: true });
         state.observers.set('resource', observer);
-        
+
     } catch (error) {
         console.error('Error tracking resource timing:', error);
     }
@@ -378,9 +381,9 @@ function trackResourceTiming() {
  */
 function detectNetworkQuality() {
     if (!('connection' in navigator)) return null;
-    
+
     const connection = navigator.connection;
-    
+
     return {
         effectiveType: connection.effectiveType, // '4g', '3g', '2g', 'slow-2g'
         downlink: connection.downlink,           // Mbps
@@ -398,13 +401,13 @@ function trackSession() {
     // Page visibility
     document.addEventListener('visibilitychange', () => {
         log('Visibility:', document.visibilityState);
-        
+
         if (document.visibilityState === 'hidden') {
             // Send final report before page unloads
             sendBeacon();
         }
     });
-    
+
     // Time on page
     window.addEventListener('beforeunload', () => {
         const sessionDuration = Date.now() - state.sessionStart;
@@ -419,7 +422,7 @@ function trackSession() {
  */
 function reportMetric(name, value, rating) {
     if (!config.analytics.enabled) return;
-    
+
     // Google Analytics 4
     if (config.analytics.provider === 'ga4' && window.gtag) {
         window.gtag('event', name, {
@@ -428,7 +431,7 @@ function reportMetric(name, value, rating) {
             event_category: 'Web Vitals',
         });
     }
-    
+
     // Plausible Analytics
     else if (config.analytics.provider === 'plausible' && window.plausible) {
         window.plausible('Web Vitals', {
@@ -439,7 +442,7 @@ function reportMetric(name, value, rating) {
             },
         });
     }
-    
+
     // Custom endpoint
     else if (config.endpoints.vitals) {
         sendToEndpoint(config.endpoints.vitals, {
@@ -466,7 +469,7 @@ function reportError(errorData) {
  */
 function sendToEndpoint(endpoint, data) {
     if (!endpoint) return;
-    
+
     // Use sendBeacon for reliability
     if ('sendBeacon' in navigator) {
         navigator.sendBeacon(endpoint, JSON.stringify(data));
@@ -497,9 +500,9 @@ function sendBeacon() {
         userAgent: navigator.userAgent,
         timestamp: Date.now(),
     };
-    
+
     log('Sending final report:', report);
-    
+
     // Send to endpoints
     if (config.endpoints.vitals) {
         sendToEndpoint(config.endpoints.vitals, report);
@@ -514,33 +517,33 @@ function sendBeacon() {
 function init(options = {}) {
     // Merge config
     Object.assign(config, options);
-    
+
     // Check sampling
     if (!shouldSample()) {
         log('Session not sampled, skipping monitoring');
         return;
     }
-    
+
     log('Initializing performance monitoring...');
-    
+
     state.isRecording = true;
-    
+
     // Measure Web Vitals
     measureLCP();
     measureFID();
     measureCLS();
     measureFCP();
     measureTTFB();
-    
+
     // Track errors
     trackErrors();
-    
+
     // Track resource timing
     trackResourceTiming();
-    
+
     // Track session
     trackSession();
-    
+
     log('Performance monitoring initialized');
 }
 
@@ -599,18 +602,18 @@ function disableDebug() {
  */
 function stop() {
     state.isRecording = false;
-    
+
     // Disconnect all observers
     state.observers.forEach(observer => observer.disconnect());
     state.observers.clear();
-    
+
     log('Performance monitoring stopped');
 }
 
 /**
  * Export PerformanceMonitor API
  */
-export default {
+const PerformanceMonitor = {
     init,
     getMetrics,
     getErrors,
@@ -622,15 +625,13 @@ export default {
     sendBeacon,
 };
 
-// Named exports
-export {
-    init,
-    getMetrics,
-    getErrors,
-    getTimings,
-    getReport,
-    enableDebug,
-    disableDebug,
-    stop,
-    sendBeacon,
-};
+// Expose to global scope
+if (typeof window !== 'undefined') {
+    window.PerformanceMonitor = PerformanceMonitor;
+}
+
+// Remove ES6 exports - this is now an IIFE
+// export default PerformanceMonitor;
+// export { ... };
+
+})();

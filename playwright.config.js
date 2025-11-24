@@ -5,6 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  * 
  * Testing Strategy:
  * - E2E tests for critical user journeys
+ * - Integration tests for system components
  * - Visual regression testing for UI consistency
  * - Performance testing with Lighthouse integration
  * - Cross-browser testing (Chromium primary, Firefox/Safari optional)
@@ -12,7 +13,8 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: './tests',
+  testMatch: ['**/*.spec.js'],
   
   // Timeout settings
   timeout: 30000,
@@ -91,9 +93,9 @@ export default defineConfig({
     // },
   ],
   
-  // Web server configuration
+  // Web server configuration for build-time testing
   webServer: {
-    command: 'node dev-server.js',
+    command: 'npx http-server dist -p 8000 -c-1 --cors',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,

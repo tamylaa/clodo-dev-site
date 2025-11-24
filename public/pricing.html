@@ -59,11 +59,12 @@
     </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <!--#include file="../templates/nav-main.html" -->
     </header>
 
-    <main>
+    <main id="main-content">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <div class="breadcrumb-item">
                 <a href="index.html">Home</a>
@@ -178,13 +179,13 @@
                         <label class="form-label" for="contact-message">Message</label>
                         <textarea id="contact-message" class="form-input form-textarea" name="message" placeholder="Your message" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn--primary">Send Message</button>
+                    <button type="submit" class="btn btn--primary" aria-label="Send contact message">Send Message</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER_PLACEHOLDER -->
+    <!--#include file="../templates/footer.html" -->
 
 <script src="script.js" nonce="N0Nc3Cl0d0"></script>
 </body>

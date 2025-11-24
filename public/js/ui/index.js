@@ -1,29 +1,22 @@
 /**
  * UI Modules Index
  * 
- * Central export point for all UI component modules.
+ * Central reference point for all UI component modules.
  * UI modules handle interactive components and visual feedback.
  * 
- * Usage:
- *   import { Navigation, Modal, Tabs } from './ui/index.js';
+ * These are loaded as separate script tags, not as ES modules.
+ * Access via window.NavigationComponent, window.Modal, window.Tabs, window.TooltipAPI
  */
 
-// UI Components
-import NavigationComponent from './navigation-component.js';
-import Modal from './modal.js';
-import Tabs from './tabs.js';
-import Tooltip from './tooltip.js';
+// All UI modules are now loaded and exposed to window via separate script tags
+// This file documents the available APIs but doesn't re-export them
 
-export { NavigationComponent, Modal, Tabs, Tooltip };
-
-// Future UI modules (to be implemented):
-// export { default as Accordion } from './accordion.js';
-// export { default as Animations } from './animations.js';
-// export { default as Dropdown } from './dropdown.js';
-// export { default as Toast } from './toast.js';
-
-export default {
-  NavigationComponent,
-  Modal,
-  Tabs,
-};
+if (typeof window !== 'undefined') {
+    // Create a UI namespace for organization
+    window.UI = {
+        NavigationComponent: typeof window.NavigationComponent !== 'undefined' ? window.NavigationComponent : null,
+        Modal: typeof window.Modal !== 'undefined' ? window.Modal : null,
+        Tabs: typeof window.Tabs !== 'undefined' ? window.Tabs : null,
+        TooltipAPI: typeof window.TooltipAPI !== 'undefined' ? window.TooltipAPI : null,
+    };
+}

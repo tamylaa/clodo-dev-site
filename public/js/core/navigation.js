@@ -64,11 +64,17 @@ function normalizePath(url) {
  * Check if URL is internal
  */
 function isInternalLink(url) {
+    // Empty URLs are not internal
+    if (!url || url.trim() === '') return false;
+    
     try {
-        const urlObj = new URL(url, window.location.origin);
+        const urlObj = new URL(url);
+        // If it's an absolute URL, check if origin matches
         return urlObj.origin === window.location.origin;
     } catch {
-        return false;
+        // If it's not an absolute URL, check if it's a valid relative path
+        // Valid relative paths start with / or are relative to current page
+        return url.startsWith('/') || url.startsWith('./') || url.startsWith('../') || url === '.' || url === '..';
     }
 }
 
@@ -426,36 +432,19 @@ function configure(options) {
     Object.assign(config, options);
 }
 
-/**
- * Export Navigation manager
- */
-export default {
-    init,
-    destroy,
-    navigateTo,
-    goBack,
-    goForward,
-    scrollToTop,
-    scrollToElement,
-    scrollToHash,
-    updateActiveLinks,
-    getCurrentPath,
-    configure,
-};
-
-// Named exports for testing
-export {
-    init,
-    destroy,
-    navigateTo,
-    goBack,
-    goForward,
-    scrollToTop,
-    scrollToElement,
-    scrollToHash,
-    updateActiveLinks,
-    getCurrentPath,
-    configure,
-    normalizePath,
-    isInternalLink,
-};
+// Expose to window
+if (typeof window !== 'undefined') {
+    window.NavigationManager = {
+        init,
+        destroy,
+        navigateTo,
+        goBack,
+        goForward,
+        scrollToTop,
+        scrollToElement,
+        scrollToHash,
+        updateActiveLinks,
+        getCurrentPath,
+        configure,
+    };
+}

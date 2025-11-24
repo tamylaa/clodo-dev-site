@@ -163,3 +163,35 @@
   margin-bottom: 0.5rem;
   color: var(--color-text-secondary);
 }
+
+/* ===== ABOUT PAGE HERO ===== */
+
+.hero-section {
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl) 0;
+    background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%);
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    animation-delay: 0.1s;
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}

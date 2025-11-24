@@ -36,6 +36,14 @@ const config = {
         expanded: 'expanded',
         open: 'open',
     },
+    
+    // Scroll spy configuration
+    scrollSpy: {
+        enabled: true,
+        offset: 100, // px from top
+        throttleDelay: 100, // ms
+        sections: ['hero', 'key-benefits', 'cloudflare-edge', 'features', 'technical-foundation', 'comparison', 'architecture', 'social-proof', 'cta'],
+    },
 };
 
 /**
@@ -47,6 +55,13 @@ const state = {
     dropdownTimers: new Map(),
     resizeObserver: null,
     initialized: false,
+    
+    // Scroll spy state
+    scrollSpy: {
+        activeSection: null,
+        lastScrollY: 0,
+        ticking: false,
+    },
 };
 
 /**
@@ -384,6 +399,7 @@ function init(options = {}) {
     setupMobileMenu();
     setupDropdowns();
     setupGlobalListeners();
+    initScrollSpy();
     
     state.initialized = true;
     
@@ -436,12 +452,191 @@ function destroy() {
     state.dropdownTimers.forEach(timer => clearTimeout(timer));
     state.dropdownTimers.clear();
     
+    // Destroy scroll spy
+    destroyScrollSpy();
+    
     // Reset state
     state.mobileMenuOpen = false;
     state.activeDropdown = null;
     state.initialized = false;
     
     log('Destroyed ✓');
+}
+
+/**
+ * Get the currently active section based on scroll position
+ */
+function getActiveSection() {
+    const scrollY = window.scrollY + config.scrollSpy.offset;
+    const windowHeight = window.innerHeight;
+    
+    // Check sections from bottom to top
+    for (let i = config.scrollSpy.sections.length - 1; i >= 0; i--) {
+        const sectionId = config.scrollSpy.sections[i];
+        const section = document.getElementById(sectionId);
+        
+        if (section) {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionHeight = rect.height;
+            
+            // Section is active if it's in the viewport or user has scrolled past it
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                return sectionId;
+            }
+            
+            // If we're at the top of the page, hero is active
+            if (scrollY < 100 && sectionId === 'hero') {
+                return sectionId;
+            }
+        }
+    }
+    
+    return null;
+}
+
+/**
+ * Update active navigation link
+ */
+function updateActiveNavLink(activeSectionId) {
+    // Remove active class from all nav links
+    const navLinks = document.querySelectorAll(`${config.selectors.navLink}[href^="#"]`);
+    navLinks.forEach(link => {
+        link.classList.remove(config.classes.active);
+        link.removeAttribute('aria-current');
+    });
+    
+    // Add active class to current section link
+    if (activeSectionId) {
+        const activeLink = document.querySelector(`${config.selectors.navLink}[href="#${activeSectionId}"]`);
+        if (activeLink) {
+            activeLink.classList.add(config.classes.active);
+            activeLink.setAttribute('aria-current', 'page');
+        }
+    }
+    
+    // Update state
+    state.scrollSpy.activeSection = activeSectionId;
+}
+
+/**
+ * Handle scroll events for scroll spy
+ */
+function handleScroll() {
+    if (!config.scrollSpy.enabled) return;
+    
+    // Throttle scroll events
+    if (!state.scrollSpy.ticking) {
+        requestAnimationFrame(() => {
+            const activeSection = getActiveSection();
+            
+            if (activeSection !== state.scrollSpy.activeSection) {
+                updateActiveNavLink(activeSection);
+                
+                // Emit event
+                window.dispatchEvent(new CustomEvent('nav:section-change', {
+                    detail: { 
+                        activeSection,
+                        previousSection: state.scrollSpy.activeSection 
+                    },
+                }));
+                
+                log('Active section changed:', activeSection);
+            }
+            
+            state.scrollSpy.lastScrollY = window.scrollY;
+            state.scrollSpy.ticking = false;
+        });
+        
+        state.scrollSpy.ticking = true;
+    }
+}
+
+/**
+ * Handle navigation link clicks for smooth scrolling
+ */
+function handleNavLinkClick(event) {
+    const link = event.target.closest(config.selectors.navLink);
+    if (!link) return;
+    
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+        event.preventDefault();
+        
+        // Smooth scroll to target
+        targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+        
+        // Update URL without triggering scroll
+        history.pushState(null, null, href);
+        
+        // Close mobile menu if open
+        closeMobileMenu();
+        
+        log('Smooth scrolled to:', targetId);
+    }
+}
+
+/**
+ * Initialize scroll spy functionality
+ */
+function initScrollSpy() {
+    if (!config.scrollSpy.enabled) return;
+    
+    // Show scroll spy navigation on index page
+    const isIndexPage = window.location.pathname === '/' || 
+                       window.location.pathname.endsWith('/index.html') ||
+                       window.location.pathname === '';
+    
+    if (isIndexPage) {
+        const scrollSpyItems = document.querySelectorAll('.nav-scroll-spy');
+        scrollSpyItems.forEach(item => {
+            item.style.display = '';
+        });
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Add click event listeners to navigation links
+    const navLinks = document.querySelectorAll(`${config.selectors.navLink}[href^="#"]`);
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavLinkClick);
+    });
+    
+    // Set initial active section
+    const initialActiveSection = getActiveSection();
+    updateActiveNavLink(initialActiveSection);
+    
+    log('Scroll spy initialized');
+}
+
+/**
+ * Destroy scroll spy functionality
+ */
+function destroyScrollSpy() {
+    if (!config.scrollSpy.enabled) return;
+    
+    // Remove scroll event listener
+    window.removeEventListener('scroll', handleScroll);
+    
+    // Remove click event listeners
+    const navLinks = document.querySelectorAll(`${config.selectors.navLink}[href^="#"]`);
+    navLinks.forEach(link => {
+        link.removeEventListener('click', handleNavLinkClick);
+    });
+    
+    // Clear active states
+    updateActiveNavLink(null);
+    
+    log('Scroll spy destroyed');
 }
 
 /**
@@ -479,35 +674,20 @@ function disableDebug() {
     config.debug = false;
 }
 
-/**
- * Export Navigation Component
- */
-export default {
-    init,
-    destroy,
-    toggleMobileMenu,
-    closeMobileMenu,
-    openDropdown,
-    closeDropdown,
-    closeAllDropdowns,
-    getState,
-    configure,
-    enableDebug,
-    disableDebug,
-};
-
-// Named exports for testing
-export {
-    init,
-    destroy,
-    toggleMobileMenu,
-    closeMobileMenu,
-    openDropdown,
-    closeDropdown,
-    closeAllDropdowns,
-    getState,
-    configure,
-    enableDebug,
-    disableDebug,
-    isMobile,
-};
+// Expose API to window
+if (typeof window !== 'undefined') {
+    window.NavigationComponent = {
+        init,
+        destroy,
+        toggleMobileMenu,
+        closeMobileMenu,
+        openDropdown,
+        closeDropdown,
+        closeAllDropdowns,
+        getState,
+        configure,
+        enableDebug,
+        disableDebug,
+        isMobile,
+    };
+}

@@ -1,0 +1,49 @@
+name: Deploy to Cloudflare Pages (Staging)
+
+on:
+  push:
+    branches: [ modernization ]
+  workflow_dispatch:
+
+concurrency:
+  group: staging-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint (JS & CSS)
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build for staging
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Deploy to Cloudflare Pages (Staging)
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: clodo-dev-site-staging
+          directory: dist
+          # Optional: Enable Wrangler for Pages Functions
+          wranglerVersion: '3'
