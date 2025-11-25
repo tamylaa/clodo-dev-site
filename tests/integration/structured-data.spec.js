@@ -11,7 +11,7 @@ test.describe('Structured Data Hub Tests', () => {
         await page.goto('/index.html');
         await page.waitForLoadState('domcontentloaded');
         // Reduced timeout and use domcontentloaded instead of networkidle for faster CI runs
-        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+        await page.waitForTimeout(process.env.CI ? 200 : 500);
     });
 
     test('should inject Organization schema', async ({ page }) => {
