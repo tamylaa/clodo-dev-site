@@ -8,7 +8,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Performance Dashboard Tests', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('file:///c:/Users/Admin/Documents/coding/clodo-dev-site/public/performance-dashboard.html');
+        await page.goto('/performance-dashboard.html');
         await page.waitForLoadState('networkidle');
         // Wait for dashboard to render
         await page.waitForTimeout(3000);
@@ -175,7 +175,7 @@ test.describe('Performance Dashboard Tests', () => {
         const context = await browser.newContext({ javaScriptEnabled: false });
         const page = await context.newPage();
 
-        const response = await page.goto('file:///c:/Users/Admin/Documents/coding/clodo-dev-site/public/performance-dashboard.html');
+        const response = await page.goto('/performance-dashboard.html');
         expect(response.status()).toBe(200);
 
         // Basic structure should be present

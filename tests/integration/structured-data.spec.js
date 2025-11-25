@@ -8,7 +8,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Structured Data Hub Tests', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('file:///c:/Users/Admin/Documents/coding/clodo-dev-site/public/index.html');
+        await page.goto('/index.html');
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(2000);
     });
@@ -177,7 +177,7 @@ test.describe('Structured Data Hub Tests', () => {
     test('should work across different pages', async ({ page }) => {
         // Only test pages that have init-systems.js loaded
         const pages = [
-            'file:///c:/Users/Admin/Documents/coding/clodo-dev-site/public/index.html'
+            '/index.html'
         ];
 
         for (const url of pages) {

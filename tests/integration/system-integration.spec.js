@@ -9,9 +9,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('System Integration Tests', () => {
     test.beforeEach(async ({ page }) => {
-        // Load the built HTML file directly using file:// protocol
-        const fileUrl = 'file:///C:/Users/Admin/Documents/coding/clodo-dev-site/dist/index.html';
-        await page.goto(fileUrl);
+        // Load the HTML file via webServer
+        await page.goto('/index.html');
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(2000);
     });
@@ -432,7 +431,7 @@ test.describe('System Integration Tests', () => {
             });
             const page = await context.newPage();
 
-            const response = await page.goto('file:///C:/Users/Admin/Documents/coding/clodo-dev-site/dist/index.html');
+            const response = await page.goto('/index.html');
             expect(response.status()).toBe(200);
 
             // Content should still be visible - use innerHTML instead of evaluate
