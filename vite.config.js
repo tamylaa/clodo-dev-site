@@ -25,7 +25,7 @@ const __dirname = dirname(__filename);
 function templatePlugin() {
   return {
     name: 'vite-plugin-template-processor',
-    configResolved(config) {
+    configResolved(_config) {
       console.log('⚙️  Vite config resolved - Template processor ready');
     },
     transformIndexHtml: {

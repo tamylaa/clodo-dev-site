@@ -496,7 +496,7 @@ function setupNavDropdowns() {
         const dropdowns = document.querySelectorAll('.nav-dropdown');
         dropdowns.forEach(dropdown => {
             const toggle = dropdown.querySelector('.nav-dropdown-toggle');
-            const menu = dropdown.querySelector('.nav-dropdown-menu');
+            const _menu = dropdown.querySelector('.nav-dropdown-menu');
 
             if (!dropdown.contains(event.target) && window.innerWidth > 768) {
                 toggle.setAttribute('aria-expanded', 'false');
@@ -1023,7 +1023,7 @@ function setLoadingState(element, isLoading) {
 }
 
 // Show loading overlay
-function showLoadingOverlay(message = 'Loading...') {
+function _showLoadingOverlay(message = 'Loading...') {
     let overlay = document.querySelector('.loading-overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -1042,7 +1042,7 @@ function showLoadingOverlay(message = 'Loading...') {
 }
 
 // Hide loading overlay
-function hideLoadingOverlay() {
+function _hideLoadingOverlay() {
     const overlay = document.querySelector('.loading-overlay');
     if (overlay) {
         overlay.classList.remove('show');
@@ -1132,7 +1132,7 @@ function setupAsyncContentLoading() {
 }
 
 // Progress bar functionality
-function showProgressBar(container, progress = 0) {
+function _showProgressBar(container, progress = 0) {
     let progressBar = container.querySelector('.progress-bar');
     if (!progressBar) {
         progressBar = document.createElement('div');
@@ -1145,7 +1145,7 @@ function showProgressBar(container, progress = 0) {
     fill.style.width = `${progress}%`;
 }
 
-function showIndeterminateProgress(container) {
+function _showIndeterminateProgress(container) {
     let progressBar = container.querySelector('.progress-bar');
     if (!progressBar) {
         progressBar = document.createElement('div');
@@ -1232,7 +1232,7 @@ function setupStackBlitzIntegration() {
 }
 
 // StackBlitz opening function with error handling and fallbacks
-function openStackBlitz(templateUrl) {
+function _openStackBlitz(templateUrl) {
     try {
         // Attempt to open StackBlitz
         const popup = window.open(templateUrl, '_blank', 'noopener,noreferrer');
