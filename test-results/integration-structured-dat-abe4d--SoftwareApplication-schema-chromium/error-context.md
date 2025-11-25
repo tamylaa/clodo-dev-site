@@ -1,0 +1,607 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner "info announcement" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: ℹ️
+      - generic [ref=e6]:
+        - strong [ref=e7]: "New: Migrate to Cloudflare"
+        - text: Migrate from Vercel/Railway to Cloudflare with Clodo Framework. Get enterprise-grade performance and security.
+      - generic [ref=e8]:
+        - link "Learn more" [ref=e9] [cursor=pointer]:
+          - /url: migrate.html
+        - button "Dismiss announcement" [ref=e10] [cursor=pointer]: ×
+  - link "Skip to main content" [active] [ref=e11] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e12]:
+    - navigation "Main navigation" [ref=e13]:
+      - generic [ref=e14]:
+        - link "Clodo Framework home" [ref=e15] [cursor=pointer]:
+          - /url: index.html
+          - img [ref=e16]
+          - generic [ref=e19]: Clodo
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - link "Home" [ref=e22] [cursor=pointer]:
+              - /url: index.html
+          - listitem [ref=e23]:
+            - link "Product" [ref=e24] [cursor=pointer]:
+              - /url: product.html
+          - listitem [ref=e25]:
+            - link "Migrate" [ref=e26] [cursor=pointer]:
+              - /url: migrate.html
+          - listitem [ref=e27]:
+            - link "Docs ▾" [ref=e28] [cursor=pointer]:
+              - /url: docs.html
+          - listitem [ref=e29]:
+            - link "Examples" [ref=e30] [cursor=pointer]:
+              - /url: examples.html
+          - listitem [ref=e31]:
+            - link "Blog" [ref=e32] [cursor=pointer]:
+              - /url: blog/
+          - listitem [ref=e33]:
+            - link "Pricing" [ref=e34] [cursor=pointer]:
+              - /url: pricing.html
+          - listitem [ref=e35]:
+            - link "About ▾" [ref=e36] [cursor=pointer]:
+              - /url: about.html
+        - generic [ref=e37]:
+          - button "Toggle dark mode" [ref=e38] [cursor=pointer]:
+            - img [ref=e39]
+            - img [ref=e45]
+          - link "View on GitHub" [ref=e47] [cursor=pointer]:
+            - /url: https://github.com/tamylaa/clodo-framework
+            - generic "GitHub stars" [ref=e49]: —
+  - banner "Migration announcement" [ref=e50]:
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - strong [ref=e54]: "New:"
+        - text: Migrate from Vercel/Railway to Cloudflare with Clodo
+      - link "Learn more" [ref=e55] [cursor=pointer]:
+        - /url: migrate.html
+      - button "Close banner" [ref=e56] [cursor=pointer]:
+        - img [ref=e57]
+  - main [ref=e60]:
+    - region "Enterprise SaaS Development, Reimagined" [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e64]:
+          - generic [ref=e70]:
+            - img [ref=e71]
+            - generic [ref=e73]: clodo-service create
+          - code [ref=e75]:
+            - text: "# Create a new service in seconds npx create-clodo-service my-new-service --type data-service"
+            - generic [ref=e76]:
+              - img [ref=e79]:
+                - img [ref=e80]
+              - text: Service created successfully!
+            - generic [ref=e84]:
+              - generic [ref=e85]: 📁
+              - text: Generated complete service structure
+            - generic [ref=e86]:
+              - img [ref=e89]:
+                - img [ref=e90]
+              - text: Security validation passed
+            - generic [ref=e94]:
+              - img [ref=e97]:
+                - img [ref=e98]
+              - text: Ready for deployment
+        - generic [ref=e100]:
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - img [ref=e104]
+              - generic [ref=e106]: Production Ready
+            - generic [ref=e107]:
+              - img [ref=e108]
+              - generic [ref=e113]:
+                - text: Trusted by
+                - strong [ref=e114]: 500+
+                - text: companies worldwide
+          - heading "Enterprise SaaS Development, Reimagined" [level=1] [ref=e115]:
+            - text: Enterprise SaaS Development,
+            - generic [ref=e116]: Reimagined
+          - paragraph [ref=e117]: Transform 6-month development cycles into 2-week deployments. Build production-ready SaaS applications with enterprise security, zero cold starts, and 90% lower infrastructure costs.
+          - generic [ref=e118]:
+            - button "Try Clodo Framework live in StackBlitz" [ref=e119] [cursor=pointer]:
+              - img [ref=e120]
+              - generic [ref=e122]: Try It Live
+              - img [ref=e123]
+            - link "View documentation" [ref=e127] [cursor=pointer]:
+              - /url: docs.html
+              - img [ref=e128]
+              - generic [ref=e131]: View Documentation
+    - region "Why Choose Clodo Framework?" [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - heading "Why Choose Clodo Framework?" [level=2] [ref=e135]
+          - paragraph [ref=e136]: Transform your development workflow with enterprise-grade tools designed for modern SaaS applications.
+        - list "Key benefits of Clodo Framework" [ref=e137]:
+          - listitem [ref=e138]:
+            - img [ref=e141]
+            - generic [ref=e143]:
+              - heading "10x Faster Development" [level=3] [ref=e144]
+              - paragraph [ref=e145]: From 6 months to 3 weeks. Pre-built enterprise components and automated orchestration eliminate months of infrastructure work.
+          - listitem [ref=e146]:
+            - img [ref=e149]
+            - generic [ref=e151]:
+              - heading "90% Cost Reduction" [level=3] [ref=e152]
+              - paragraph [ref=e153]: $180K to $15K projects. Intelligent resource allocation and zero cold starts optimize your cloud spending.
+          - listitem [ref=e154]:
+            - img [ref=e157]
+            - generic [ref=e159]:
+              - heading "Enterprise Security Built-in" [level=3] [ref=e160]
+              - paragraph [ref=e161]: SOC 2 compliant architecture with automated security validation and enterprise-grade tenant isolation.
+    - region "Why Clodo Transforms Cloudflare Development" [ref=e162]:
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - heading "Why Clodo Transforms Cloudflare Development" [level=2] [ref=e165]
+          - paragraph [ref=e166]: The most comprehensive framework for Cloudflare Workers. Build enterprise SaaS applications with confidence.
+        - list "Cloudflare Edge advantages" [ref=e167]:
+          - listitem [ref=e168]:
+            - img [ref=e170]
+            - heading "Multi-Tenant SaaS Ready" [level=3] [ref=e175]
+            - paragraph [ref=e176]: Customer isolation, configuration management, and enterprise-grade security built-in. Deploy complex multi-tenant applications with confidence.
+          - listitem [ref=e177]:
+            - img [ref=e179]
+            - heading "D1 Database + Auth + Routing" [level=3] [ref=e183]
+            - paragraph [ref=e184]: The only framework with integrated Cloudflare D1, migrations, authentication, and routing. What other frameworks make you assemble from scratch?
+          - listitem [ref=e185]:
+            - img [ref=e187]
+            - heading "Intelligent Orchestration" [level=3] [ref=e189]
+            - paragraph [ref=e190]: Pre-deployment validation, gap analysis, and automated deployment orchestration. Catch issues before they reach production.
+          - listitem [ref=e191]:
+            - img [ref=e193]
+            - heading "Zero Cold Starts" [level=3] [ref=e195]
+            - paragraph [ref=e196]: Cloudflare Workers never cold start. Your applications are always warm, always fast. Perfect for SaaS platforms and APIs.
+    - region "Everything You Need for Production SaaS" [ref=e197]:
+      - generic [ref=e198]:
+        - generic [ref=e199]:
+          - heading "Everything You Need for Production SaaS" [level=2] [ref=e200]
+          - paragraph [ref=e201]: The most comprehensive framework for Cloudflare Workers - what Rails did for web development, Clodo does for the edge
+        - list "Clodo Framework features" [ref=e202]:
+          - listitem [ref=e203]:
+            - text: ⭐ Featured
+            - generic [ref=e204]: Most Popular
+            - img [ref=e206]
+            - heading "Enterprise Deployment System" [level=3] [ref=e211]
+            - paragraph [ref=e212]: Multi-domain deployment orchestration with comprehensive validation. Deploy complex enterprise applications with automated security checks and production readiness validation.
+            - code [ref=e214]: "// Deploy multi-domain SaaS app const deployment = await clodo.deploy({ domains: ['tenant1.app.com', 'tenant2.app.com'], config: { security: 'AES-256', validation: true } }); console.log('Deployed securely across domains');"
+          - listitem [ref=e215]:
+            - text: ⭐ Featured
+            - generic [ref=e216]: Security First
+            - img [ref=e218]
+            - heading "Security-by-Default Architecture" [level=3] [ref=e220]
+            - paragraph [ref=e221]: AES-256-CBC encrypted API tokens, automatic detection of insecure configurations, and comprehensive security validation that prevents deployment of vulnerable code.
+            - code [ref=e223]: "// Secure token generation const token = clodo.generateToken({ encryption: 'AES-256-CBC', autoValidate: true }); // Automatically validates security on deploy"
+          - listitem [ref=e224]:
+            - text: ⭐ Featured
+            - generic [ref=e225]: Game Changer
+            - img [ref=e227]
+            - heading "Service Autonomy" [level=3] [ref=e229]
+            - paragraph [ref=e230]: Each service can discover and deploy itself independently. Template-based customer onboarding with reusable configuration patterns for rapid multi-tenant deployment.
+    - region "Technical Foundation" [ref=e231]:
+      - generic [ref=e232]:
+        - generic [ref=e233]:
+          - heading "Technical Foundation" [level=2] [ref=e234]
+          - paragraph [ref=e235]: Enterprise-grade infrastructure and tooling that powers production SaaS applications
+        - list "Technical foundation features" [ref=e236]:
+          - listitem [ref=e237]:
+            - img [ref=e239]
+            - heading "Domain Configuration Management" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Centralized configuration with runtime discovery. JSON-based domain configs with validation, feature flags, and environment-specific settings for complex multi-tenant applications.
+          - listitem [ref=e245]:
+            - img [ref=e247]
+            - heading "Feature Flag Management" [level=3] [ref=e251]
+            - paragraph [ref=e252]: Runtime feature toggling with domain-specific overrides. Declarative feature management that enables safe rollouts, A/B testing, and gradual feature adoption across services.
+          - listitem [ref=e253]:
+            - img [ref=e255]
+            - heading "TypeScript Support" [level=3] [ref=e257]
+            - paragraph [ref=e258]: Comprehensive type definitions with 500+ lines of TypeScript interfaces. Full type safety for domain configurations, feature flags, and service integrations.
+          - listitem [ref=e259]:
+            - img [ref=e261]
+            - heading "Performance Caching" [level=3] [ref=e263]
+            - paragraph [ref=e264]: Schema caching, SQL query caching, and validation result caching. Optimized for Cloudflare's edge network with intelligent cache invalidation and global replication.
+          - listitem [ref=e265]:
+            - img [ref=e267]
+            - heading "Multi-Tenant Customer Management" [level=3] [ref=e272]
+            - paragraph [ref=e273]: Automated customer isolation and management with template-driven onboarding. Reusable configuration templates for rapid customer setup and enterprise-grade tenant separation.
+    - region "Clodo vs Traditional Stacks" [ref=e274]:
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - heading "Clodo vs Traditional Stacks" [level=2] [ref=e277]
+          - paragraph [ref=e278]: See how Clodo Framework delivers enterprise results with developer-friendly simplicity
+        - generic [ref=e279]:
+          - generic [ref=e280]:
+            - generic [ref=e281]:
+              - img [ref=e283]
+              - heading "Deployment Time" [level=3] [ref=e286]
+              - generic [ref=e288]: 95% Faster
+            - generic [ref=e289]:
+              - generic [ref=e290]:
+                - generic [ref=e291]:
+                  - generic [ref=e292]: Traditional
+                  - generic [ref=e293]: Slow
+                - paragraph [ref=e294]: 2-6 months custom setup, complex configurations, manual testing
+                - generic [ref=e295]:
+                  - generic [ref=e296]: 6 months
+                  - generic [ref=e297]: avg deployment
+              - generic [ref=e299]: vs
+              - generic [ref=e300]:
+                - generic [ref=e301]:
+                  - generic [ref=e302]: Clodo
+                  - generic [ref=e303]: Lightning Fast
+                - paragraph [ref=e304]: Deploy in hours with multi-tenant ready, pre-built components
+                - generic [ref=e305]:
+                  - generic [ref=e306]: 4 hours
+                  - generic [ref=e307]: production ready
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - img [ref=e311]
+              - heading "Security & Compliance" [level=3] [ref=e315]
+              - generic [ref=e317]: Enterprise Grade
+            - generic [ref=e318]:
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - generic [ref=e321]: Traditional
+                  - generic [ref=e322]: Manual Process
+                - paragraph [ref=e323]: Manual security audits, custom compliance frameworks, ongoing maintenance
+                - generic [ref=e324]:
+                  - generic [ref=e325]: Monthly
+                  - generic [ref=e326]: security reviews
+              - generic [ref=e328]: vs
+              - generic [ref=e329]:
+                - generic [ref=e330]:
+                  - generic [ref=e331]: Clodo
+                  - generic [ref=e332]: Built-in Security
+                - paragraph [ref=e333]: AES-256 encryption, automated validation, SOC 2 compliant by default
+                - generic [ref=e334]:
+                  - generic [ref=e335]: Always
+                  - generic [ref=e336]: compliant
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - img [ref=e340]
+              - heading "Scalability & Performance" [level=3] [ref=e344]
+              - generic [ref=e346]: Global Scale
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - generic [ref=e349]:
+                  - generic [ref=e350]: Traditional
+                  - generic [ref=e351]: Complex Setup
+                - paragraph [ref=e352]: Manual scaling configs, regional limitations, performance bottlenecks
+                - generic [ref=e353]:
+                  - generic [ref=e354]: Regional
+                  - generic [ref=e355]: deployment scope
+              - generic [ref=e357]: vs
+              - generic [ref=e358]:
+                - generic [ref=e359]:
+                  - generic [ref=e360]: Clodo
+                  - generic [ref=e361]: Edge Native
+                - paragraph [ref=e362]: Global CDN, automatic scaling, 50ms worldwide response times
+                - generic [ref=e363]:
+                  - generic [ref=e364]: Global
+                  - generic [ref=e365]: edge deployment
+    - region "How Clodo Works" [ref=e366]:
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - heading "How Clodo Works" [level=2] [ref=e369]
+          - paragraph [ref=e370]: Enterprise-grade SaaS architecture simplified
+        - generic [ref=e371]:
+          - img "Clodo Framework Architecture Overview" [ref=e373]:
+            - generic [ref=e375]: Cloudflare Workers (Edge Runtime)
+            - generic [ref=e377]: Clodo Framework
+            - generic [ref=e378]: Security • Multi-tenant • Orchestration
+            - generic [ref=e380]: Autonomous Services
+            - generic [ref=e381]: Domain-specific • Self-deploying • Feature-flagged
+            - generic [ref=e383]: D1 Database + Auth + Routing
+          - generic [ref=e384]:
+            - generic [ref=e385]:
+              - img [ref=e388]:
+                - img [ref=e389]
+              - heading "Security by Default" [level=4] [ref=e393]
+              - paragraph [ref=e394]: AES-256 encryption, validation, and automated security checks
+            - generic [ref=e395]:
+              - img [ref=e397]
+              - heading "Service Autonomy" [level=4] [ref=e402]
+              - paragraph [ref=e403]: Each service deploys independently with domain-specific configurations
+            - generic [ref=e404]:
+              - img [ref=e406]
+              - heading "Edge Performance" [level=4] [ref=e408]
+              - paragraph [ref=e409]: Zero cold starts, global CDN, and intelligent caching
+    - region "Trusted by Developers" [ref=e410]:
+      - generic [ref=e412]:
+        - heading "Trusted by Developers" [level=2] [ref=e414]
+        - list "Developer testimonials" [ref=e415]:
+          - listitem [ref=e416]:
+            - generic [ref=e417]: ⭐ ⭐ Top Rated
+            - generic "5 out of 5 stars" [ref=e418]:
+              - generic [ref=e419]: ★
+              - generic [ref=e420]: ★
+              - generic [ref=e421]: ★
+              - generic [ref=e422]: ★
+              - generic [ref=e423]: ★
+            - paragraph [ref=e425]: "\"Clodo Framework transformed our development process. What would have taken 6 months and $180K in custom development shipped in 3 weeks for $15K. The multi-tenant architecture and built-in security gave us enterprise-grade reliability from day one.\""
+            - generic [ref=e426]:
+              - generic "Avatar for Alex Chen" [ref=e427]:
+                - img "Photo of Alex Chen, Founder & CEO of TechVenture" [ref=e428]
+              - generic [ref=e429]:
+                - generic [ref=e430]: Alex Chen
+                - paragraph [ref=e431]: Founder & CEO, TechVenture
+          - listitem [ref=e432]:
+            - generic "5 out of 5 stars" [ref=e433]:
+              - generic [ref=e434]: ★
+              - generic [ref=e435]: ★
+              - generic [ref=e436]: ★
+              - generic [ref=e437]: ★
+              - generic [ref=e438]: ★
+            - paragraph [ref=e440]: "\"Finally, a framework that treats Cloudflare Workers like a serious platform. The integrated D1, auth, and orchestration layer eliminated months of infrastructure work. Our deployment velocity increased 5x.\""
+            - generic [ref=e441]:
+              - generic "Avatar for Jordan Smith" [ref=e442]:
+                - img "Photo of Jordan Smith, Senior Full-Stack Developer at DataFlow" [ref=e443]
+              - generic [ref=e444]:
+                - generic [ref=e445]: Jordan Smith
+                - paragraph [ref=e446]: Senior Full-Stack Developer, DataFlow
+          - listitem [ref=e447]:
+            - generic [ref=e448]: ⭐ 🏆 Enterprise Choice
+            - generic "5 out of 5 stars" [ref=e449]:
+              - generic [ref=e450]: ★
+              - generic [ref=e451]: ★
+              - generic [ref=e452]: ★
+              - generic [ref=e453]: ★
+              - generic [ref=e454]: ★
+            - paragraph [ref=e456]: "\"The intelligent orchestration caught configuration issues that would have cost us days in production debugging. The pre-deployment validation and gap analysis is like having an expert DevOps engineer built into the framework.\""
+            - generic [ref=e457]:
+              - generic "Avatar for Maria Rodriguez" [ref=e458]:
+                - img "Photo of Maria Rodriguez, Enterprise Platform Architect at GlobalTech" [ref=e459]
+              - generic [ref=e460]:
+                - generic [ref=e461]: Maria Rodriguez
+                - paragraph [ref=e462]: Enterprise Platform Architect, GlobalTech
+          - listitem [ref=e463]:
+            - generic "5 out of 5 stars" [ref=e464]:
+              - generic [ref=e465]: ★
+              - generic [ref=e466]: ★
+              - generic [ref=e467]: ★
+              - generic [ref=e468]: ★
+              - generic [ref=e469]: ★
+            - paragraph [ref=e471]: "\"As a startup CTO, I was skeptical about frameworks claiming 'enterprise-ready.' Clodo delivered. The TypeScript support and feature flags let us ship rapidly while maintaining production stability. Our time-to-market went from 8 weeks to 2 days.\""
+            - generic [ref=e472]:
+              - generic "Avatar for Sarah Kim" [ref=e473]:
+                - img "Photo of Sarah Kim, CTO of InnovateLabs" [ref=e474]
+              - generic [ref=e475]:
+                - generic [ref=e476]: Sarah Kim
+                - paragraph [ref=e477]: CTO, InnovateLabs
+          - listitem [ref=e478]:
+            - generic "5 out of 5 stars" [ref=e479]:
+              - generic [ref=e480]: ★
+              - generic [ref=e481]: ★
+              - generic [ref=e482]: ★
+              - generic [ref=e483]: ★
+              - generic [ref=e484]: ★
+            - paragraph [ref=e486]: "\"Migrating from traditional serverless was painful until Clodo. The domain configuration management and service autonomy features let us deploy multi-tenant apps without the complexity. Our operational overhead dropped 70%.\""
+            - generic [ref=e487]:
+              - generic "Avatar for David Patel" [ref=e488]:
+                - img "Photo of David Patel, DevOps Engineer at CloudScale" [ref=e489]
+              - generic [ref=e490]:
+                - generic [ref=e491]: David Patel
+                - paragraph [ref=e492]: Lead Engineer, ScaleCloud
+          - listitem [ref=e493]:
+            - generic [ref=e494]:
+              - text: ⭐
+              - img [ref=e496]:
+                - img [ref=e497]
+              - text: Performance Leader
+            - generic "5 out of 5 stars" [ref=e499]:
+              - generic [ref=e500]: ★
+              - generic [ref=e501]: ★
+              - generic [ref=e502]: ★
+              - generic [ref=e503]: ★
+              - generic [ref=e504]: ★
+            - paragraph [ref=e506]: "\"The performance caching and zero cold starts are game-changers for our API-first platform. We went from 500ms response times to 50ms globally. Clodo doesn't just make development faster—it makes applications faster.\""
+            - generic [ref=e507]:
+              - generic "Avatar for Lisa Wong" [ref=e508]:
+                - img "Photo of Lisa Wong, VP Engineering at FastAPI Corp" [ref=e509]
+              - generic [ref=e510]:
+                - generic [ref=e511]: Lisa Wong
+                - paragraph [ref=e512]: VP Engineering, FastAPI Corp
+    - region "Ready to Transform Your Development Workflow?" [ref=e513]:
+      - generic [ref=e515]:
+        - generic [ref=e516]:
+          - generic [ref=e517]:
+            - img [ref=e518]
+            - generic [ref=e520]: Open Source
+          - generic [ref=e521]:
+            - generic [ref=e522]:
+              - generic [ref=e523]: 60%
+              - generic [ref=e524]: Cost Reduction
+            - generic [ref=e525]:
+              - generic [ref=e526]: 4hrs
+              - generic [ref=e527]: Setup Time
+            - generic [ref=e528]:
+              - generic [ref=e529]: 50ms
+              - generic [ref=e530]: Global Latency
+        - generic [ref=e531]:
+          - generic [ref=e532]:
+            - heading "Ready to Transform Your Development Workflow?" [level=2] [ref=e533]
+            - generic [ref=e534]:
+              - paragraph [ref=e535]: Join 1000+ developers building the next generation of SaaS applications on Cloudflare Edge.
+              - paragraph [ref=e536]: Stop assembling frameworks. Start building businesses.
+          - generic [ref=e537]:
+            - generic [ref=e538]:
+              - img [ref=e539]
+              - generic [ref=e541]: Pre-Flight Checker included
+            - generic [ref=e542]:
+              - img [ref=e543]
+              - generic [ref=e545]: Enterprise-grade security
+            - generic [ref=e546]:
+              - img [ref=e547]
+              - generic [ref=e549]: Multi-tenant ready
+          - generic "Call to action buttons" [ref=e550]:
+            - link "Start Building Free" [ref=e551] [cursor=pointer]:
+              - /url: docs.html
+              - generic [ref=e552]: Start Building Free
+              - img [ref=e553]
+            - generic [ref=e555]: Navigate to documentation to start building with Clodo Framework
+            - link "View Source ⭐ 0" [ref=e556] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework
+              - img [ref=e557]
+              - generic [ref=e559]: View Source
+              - generic [ref=e560]: ⭐ 0
+            - generic [ref=e561]: Open GitHub repository in new tab to view source code
+          - generic [ref=e562]:
+            - paragraph [ref=e563]: Trusted by developers at
+            - generic [ref=e565]: Enterprise Ready
+  - contentinfo [ref=e566]:
+    - generic [ref=e567]:
+      - generic [ref=e568]:
+        - generic [ref=e569]:
+          - img [ref=e570]
+          - generic [ref=e573]: Clodo
+        - paragraph [ref=e574]: Building the future of edge computing, one service at a time. Join thousands of developers deploying on Cloudflare Workers with enterprise-grade performance and security.
+        - generic [ref=e575]:
+          - heading "Stay Updated" [level=4] [ref=e576]
+          - paragraph [ref=e577]:
+            - text: Product updates, engineering posts, and launch notes.
+            - strong [ref=e578]: 1–2 emails/month.
+          - generic [ref=e579]:
+            - textbox [ref=e580]
+            - generic [ref=e581]:
+              - generic [ref=e582]: Email address
+              - textbox "Email address" [ref=e583]:
+                - /placeholder: Enter your email
+              - button "Subscribe to newsletter" [ref=e584] [cursor=pointer]: Subscribe
+            - generic [ref=e585]: No spam. Unsubscribe anytime.
+            - generic [ref=e586]:
+              - checkbox "I agree to receive emails from Clodo Framework and accept the Privacy Policy ." [ref=e587] [cursor=pointer]
+              - generic [ref=e588]:
+                - text: I agree to receive emails from Clodo Framework and accept the
+                - link "Privacy Policy" [ref=e589] [cursor=pointer]:
+                  - /url: privacy.html
+                - text: .
+      - navigation "Product" [ref=e590]:
+        - heading "Product" [level=4] [ref=e591]
+        - list [ref=e592]:
+          - listitem [ref=e593]:
+            - link "Product Overview" [ref=e594] [cursor=pointer]:
+              - /url: product.html
+          - listitem [ref=e595]:
+            - link "Documentation" [ref=e596] [cursor=pointer]:
+              - /url: docs.html
+          - listitem [ref=e597]:
+            - link "Code Examples" [ref=e598] [cursor=pointer]:
+              - /url: examples.html
+          - listitem [ref=e599]:
+            - link "Pricing" [ref=e600] [cursor=pointer]:
+              - /url: pricing.html
+          - listitem [ref=e601]:
+            - link "Migration Guide" [ref=e602] [cursor=pointer]:
+              - /url: migrate.html
+          - listitem [ref=e603]:
+            - link "GitHub" [ref=e604] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework
+          - listitem [ref=e605]:
+            - link "API Reference" [ref=e606] [cursor=pointer]:
+              - /url: docs.html#api
+          - listitem [ref=e607]:
+            - link "Expert Review" [ref=e608] [cursor=pointer]:
+              - /url: product.html#expert-assessment
+      - navigation "Developers" [ref=e609]:
+        - heading "Developers" [level=4] [ref=e610]
+        - list [ref=e611]:
+          - listitem [ref=e612]:
+            - link "Getting Started" [ref=e613] [cursor=pointer]:
+              - /url: docs.html#getting-started
+          - listitem [ref=e614]:
+            - link "Deployment" [ref=e615] [cursor=pointer]:
+              - /url: docs.html#deployment
+          - listitem [ref=e616]:
+            - link "Security Guide" [ref=e617] [cursor=pointer]:
+              - /url: docs.html#security
+          - listitem [ref=e618]:
+            - link "Troubleshooting" [ref=e619] [cursor=pointer]:
+              - /url: docs.html#troubleshooting
+          - listitem [ref=e620]:
+            - link "Example Projects" [ref=e621] [cursor=pointer]:
+              - /url: examples.html
+          - listitem [ref=e622]:
+            - link "Release Notes" [ref=e623] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework/releases
+      - navigation "Blog" [ref=e624]:
+        - heading "Blog" [level=4] [ref=e625]
+        - list [ref=e626]:
+          - listitem [ref=e627]:
+            - link "From Promise to Reality" [ref=e628] [cursor=pointer]:
+              - /url: clodo-framework-promise-to-reality.html
+          - listitem [ref=e629]:
+            - link "API Complexity Crisis" [ref=e630] [cursor=pointer]:
+              - /url: clodo-framework-api-simplification.html
+          - listitem [ref=e631]:
+            - link "Our Story" [ref=e632] [cursor=pointer]:
+              - /url: about.html#game-changer
+          - listitem [ref=e633]:
+            - link "Product Roadmap" [ref=e634] [cursor=pointer]:
+              - /url: about.html#roadmap
+      - navigation "Company" [ref=e635]:
+        - heading "Company" [level=4] [ref=e636]
+        - list [ref=e637]:
+          - listitem [ref=e638]:
+            - link "About Us" [ref=e639] [cursor=pointer]:
+              - /url: about.html
+          - listitem [ref=e640]:
+            - link "Our Mission" [ref=e641] [cursor=pointer]:
+              - /url: about.html#vision
+          - listitem [ref=e642]:
+            - link "Roadmap" [ref=e643] [cursor=pointer]:
+              - /url: about.html#roadmap
+          - listitem [ref=e644]:
+            - link "Our Story" [ref=e645] [cursor=pointer]:
+              - /url: about.html#game-changer
+          - listitem [ref=e646]:
+            - link "Contact" [ref=e647] [cursor=pointer]:
+              - /url: pricing.html#contact
+          - listitem [ref=e648]:
+            - link "Team" [ref=e649] [cursor=pointer]:
+              - /url: about.html#team
+          - listitem [ref=e650]:
+            - link "Careers" [ref=e651] [cursor=pointer]:
+              - /url: about.html#careers
+      - navigation "Community" [ref=e652]:
+        - heading "Community" [level=4] [ref=e653]
+        - list [ref=e654]:
+          - listitem [ref=e655]:
+            - link "GitHub Discussions" [ref=e656] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework/discussions
+          - listitem [ref=e657]:
+            - link "Twitter" [ref=e658] [cursor=pointer]:
+              - /url: https://twitter.com/clodoframework
+          - listitem [ref=e659]:
+            - link "Report Issues" [ref=e660] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework/issues
+          - listitem [ref=e661]:
+            - link "Email Support" [ref=e662] [cursor=pointer]:
+              - /url: about.html#contact
+          - listitem [ref=e663]:
+            - link "Contribute" [ref=e664] [cursor=pointer]:
+              - /url: https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md
+        - generic [ref=e665]:
+          - link "Follow us on Twitter" [ref=e666] [cursor=pointer]:
+            - /url: https://twitter.com/clodoframework
+            - img [ref=e667]
+          - link "View on GitHub" [ref=e669] [cursor=pointer]:
+            - /url: https://github.com/tamylaa/clodo-framework
+            - img [ref=e670]
+          - link "Join GitHub Discussions" [ref=e672] [cursor=pointer]:
+            - /url: https://github.com/tamylaa/clodo-framework/discussions
+            - img [ref=e673]
+    - paragraph [ref=e676]:
+      - text: © 2025 Clodo Framework. Open source under MIT License.
+      - generic [ref=e677]: •
+      - link "Privacy Policy" [ref=e678] [cursor=pointer]:
+        - /url: privacy.html
+      - generic [ref=e679]: •
+      - link "Terms of Service" [ref=e680] [cursor=pointer]:
+        - /url: privacy.html#terms
+      - generic [ref=e681]: •
+      - text: Made with
+      - generic [ref=e682]: ♥
+      - text: for developers
+  - status [ref=e683]
+```

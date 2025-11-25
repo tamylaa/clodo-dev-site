@@ -9,8 +9,9 @@ import { test, expect } from '@playwright/test';
 test.describe('Structured Data Hub Tests', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/index.html');
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000); // Reduced from 2000ms
+        await page.waitForLoadState('domcontentloaded');
+        // Reduced timeout and use domcontentloaded instead of networkidle for faster CI runs
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
     });
 
     test('should inject Organization schema', async ({ page }) => {
@@ -86,10 +87,10 @@ test.describe('Structured Data Hub Tests', () => {
     });
 
     test('should inject BlogPosting schema on blog pages', async ({ page }) => {
-        // Try a blog post page
-        await page.goto('http://localhost:8080/clodo-framework-guide.html');
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        // Try a blog post page (use correct port 8000)
+        await page.goto('/clodo-framework-guide.html');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
 
         const schemas = await page.$$eval(
             'script[type="application/ld+json"]',

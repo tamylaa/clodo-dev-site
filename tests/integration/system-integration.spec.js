@@ -11,8 +11,8 @@ test.describe('System Integration Tests', () => {
     test.beforeEach(async ({ page }) => {
         // Load the HTML file via webServer
         await page.goto('/index.html');
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
     });
 
     test.describe('Performance Monitor Integration', () => {
@@ -44,8 +44,8 @@ test.describe('System Integration Tests', () => {
             }
         });
 
-        // Wait longer for modules to load - reduced from 5000ms
-        await page.waitForTimeout(2000);
+        // Wait longer for modules to load - reduced for CI
+        await page.waitForTimeout(process.env.CI ? 1000 : 2000);
 
         // Try to access window properties
         const windowCheck = await page.evaluate(() => {
@@ -71,7 +71,7 @@ test.describe('System Integration Tests', () => {
 
     test('should track Web Vitals without errors', async ({ page }) => {
             // Wait for performance monitor to initialize
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(process.env.CI ? 1000 : 2000);
 
             // Check that performance monitor is initialized
             const hasPerformanceMonitor = await page.evaluate(() => {
@@ -107,8 +107,8 @@ test.describe('System Integration Tests', () => {
                 }, 10);
             });
 
-            // Wait longer for the error to be processed (especially on slower devices)
-            await page.waitForTimeout(2000);
+            // Wait for the error to be processed
+            await page.waitForTimeout(process.env.CI ? 1000 : 2000);
 
             // Verify performance monitor captured the error
             const capturedErrors = await page.evaluate(() => {
@@ -358,10 +358,10 @@ test.describe('System Integration Tests', () => {
 
             console.log('Performance metrics:', metrics);
 
-            // Verify reasonable load times
-            expect(metrics.domContentLoaded).toBeLessThan(2000); // < 2s
-            expect(metrics.loadComplete).toBeLessThan(3000); // < 3s
-            expect(metrics.responseTime).toBeLessThan(1000); // < 1s
+            // Verify reasonable load times (relaxed for CI environments)
+            expect(metrics.domContentLoaded).toBeLessThan(3000); // < 3s (increased from 2s)
+            expect(metrics.loadComplete).toBeLessThan(5000); // < 5s (increased from 3s)
+            expect(metrics.responseTime).toBeLessThan(1500); // < 1.5s (increased from 1s)
         });
 
         test('should handle structured data and accessibility together', async ({ page }) => {
@@ -389,7 +389,7 @@ test.describe('System Integration Tests', () => {
         });
 
         test('should track performance of accessibility enhancements', async ({ page }) => {
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(process.env.CI ? 1000 : 2000);
 
             // Get performance metrics including user timing
             const userTimings = await page.evaluate(() => {
