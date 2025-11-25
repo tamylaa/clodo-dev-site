@@ -65,7 +65,8 @@
     flex-direction: column;
     gap: 0.75rem;
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
+    opacity: 1; /* Ensure visible immediately for LCP */
+    transform: translateY(0); /* Prevent layout shift */
     align-items: flex-start;
     width: 100%;
     /* Remove margin-bottom - grid gap handles spacing */
@@ -123,9 +124,9 @@
     color: var(--text-primary);
     text-align: left;
     max-width: none;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.1s;
+    opacity: 1; /* Ensure visible immediately for LCP */
+    transform: translateY(0); /* Prevent layout shift */
+    animation: none; /* Remove blocking animation */
 }
 
 .hero-title__highlight {
@@ -171,9 +172,9 @@
     max-width: 600px;
     font-weight: 400;
     letter-spacing: -0.01em;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.2s;
+    opacity: 1; /* Ensure visible immediately for LCP */
+    transform: translateY(0); /* Prevent layout shift */
+    animation: none; /* Remove blocking animation */
     text-align: left;
     margin: 0;  /* Remove margins - container gap handles spacing */
 }

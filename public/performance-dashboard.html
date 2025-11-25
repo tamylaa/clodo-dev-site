@@ -114,6 +114,144 @@
         .refresh-button {
             margin-bottom: var(--spacing-lg);
         }
+        
+        .memory-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .memory-bar {
+            width: 100%;
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .memory-used {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 90%);
+            transition: width 0.3s ease;
+        }
+        
+        .memory-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+        }
+        
+        .memory-status.high { color: #ef4444; }
+        .memory-status.medium { color: #f59e0b; }
+        .memory-status.low { color: #10b981; }
+        
+        .resource-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .resource-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+        }
+        
+        .resource-category h4 {
+            margin: 0 0 var(--spacing-sm) 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .resource-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .stat-value.warning {
+            color: #f59e0b;
+        }
+        
+        .recommendation {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .recommendation.high {
+            border-left: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+        
+        .recommendation.medium {
+            border-left: 4px solid #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+        }
+        
+        .recommendation.low {
+            border-left: 4px solid #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+        
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .recommendation-priority {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .recommendation-priority.high {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .recommendation-priority.medium {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .recommendation-priority.low {
+            background: #10b981;
+            color: white;
+        }
+        
+        .recommendation-category {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .recommendation-content p {
+            margin: var(--spacing-xs) 0 0 0;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +272,13 @@
         </div>
         
         <div class="section">
+            <h2 class="section-title">Performance Trends</h2>
+            <div id="trends-chart">
+                <!-- Trends chart will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
             <h2 class="section-title">Network Quality</h2>
             <div id="network-info">
                 <!-- Network info will be injected here -->
@@ -148,9 +293,37 @@
         </div>
         
         <div class="section">
+            <h2 class="section-title">Resource Breakdown</h2>
+            <div id="resource-breakdown">
+                <!-- Resource breakdown will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
             <h2 class="section-title">Slow Resources (> 1s)</h2>
             <div id="slow-resources">
                 <!-- Slow resources will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Memory Usage</h2>
+            <div id="memory-info">
+                <!-- Memory info will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Long Tasks (> 50ms)</h2>
+            <div id="long-tasks">
+                <!-- Long tasks will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Optimization Recommendations</h2>
+            <div id="optimization-recommendations">
+                <!-- Recommendations will be injected here -->
             </div>
         </div>
         
@@ -185,6 +358,9 @@
                 // Render metrics
                 renderMetrics(report.metrics);
 
+                // Render trends
+                renderTrends(report.trends);
+
                 // Render network info
                 renderNetworkInfo(report.network);
 
@@ -194,13 +370,25 @@
                 // Render slow resources
                 renderSlowResources(report.timings);
 
+                // Render resource breakdown
+                renderResourceBreakdown(report.resourceBreakdown);
+
+                // Render memory info
+                renderMemoryInfo(report.metrics.memory);
+
+                // Render long tasks
+                renderLongTasks(report.longTasks);
+
                 // Render session info
                 renderSessionInfo(report);
+
+                // Render optimization recommendations
+                renderOptimizationRecommendations(report.recommendations);
             }
 
             function renderMetrics(metrics) {
                 const grid = document.getElementById('metrics-grid');
-                const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb'];
+                const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb', 'inp', 'tbt'];
 
                 grid.innerHTML = metricNames.map(name => {
                     const metric = metrics[name];
@@ -268,6 +456,238 @@
                             ${resource.name.substring(resource.name.lastIndexOf('/') + 1)}
                         </span>
                         <span class="timing-slow">${Math.round(resource.duration)}ms</span>
+                    </div>
+                `).join('');
+            }
+
+            function renderTrends(trends) {
+                const container = document.getElementById('trends-chart');
+                const metrics = ['lcp', 'fid', 'cls', 'fcp', 'ttfb', 'inp', 'tbt'];
+                const colors = {
+                    lcp: '#3b82f6',
+                    fid: '#10b981',
+                    cls: '#f59e0b',
+                    fcp: '#8b5cf6',
+                    ttfb: '#ef4444',
+                    inp: '#06b6d4',
+                    tbt: '#84cc16'
+                };
+
+                // Create SVG chart
+                const width = 800;
+                const height = 300;
+                const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+
+                let svg = container.querySelector('svg');
+                if (!svg) {
+                    svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('width', width);
+                    svg.setAttribute('height', height);
+                    container.appendChild(svg);
+                }
+
+                // Clear previous content
+                svg.innerHTML = '';
+
+                // Find max session time and max value across all metrics
+                let maxTime = 0;
+                let maxValue = 0;
+
+                metrics.forEach(metric => {
+                    const data = trends[metric] || [];
+                    data.forEach(point => {
+                        maxTime = Math.max(maxTime, point.sessionTime);
+                        maxValue = Math.max(maxValue, point.value);
+                    });
+                });
+
+                if (maxTime === 0 || maxValue === 0) {
+                    container.innerHTML = '<p>No trend data available yet. Metrics will appear as they are collected.</p>';
+                    return;
+                }
+
+                // Add axes
+                const xScale = maxTime / (width - margin.left - margin.right);
+                const yScale = maxValue / (height - margin.top - margin.bottom);
+
+                // X axis
+                const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                xAxis.setAttribute('x1', margin.left);
+                xAxis.setAttribute('y1', height - margin.bottom);
+                xAxis.setAttribute('x2', width - margin.right);
+                xAxis.setAttribute('y2', height - margin.bottom);
+                xAxis.setAttribute('stroke', '#666');
+                xAxis.setAttribute('stroke-width', '1');
+                svg.appendChild(xAxis);
+
+                // Y axis
+                const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                yAxis.setAttribute('x1', margin.left);
+                yAxis.setAttribute('y1', margin.top);
+                yAxis.setAttribute('x2', margin.left);
+                yAxis.setAttribute('y2', height - margin.bottom);
+                yAxis.setAttribute('stroke', '#666');
+                yAxis.setAttribute('stroke-width', '1');
+                svg.appendChild(yAxis);
+
+                // Plot each metric
+                metrics.forEach(metric => {
+                    const data = trends[metric] || [];
+                    if (data.length < 2) return;
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    let pathData = '';
+
+                    data.forEach((point, index) => {
+                        const x = margin.left + (point.sessionTime / xScale);
+                        const y = height - margin.bottom - (point.value / yScale);
+
+                        if (index === 0) {
+                            pathData += `M ${x} ${y}`;
+                        } else {
+                            pathData += ` L ${x} ${y}`;
+                        }
+                    });
+
+                    path.setAttribute('d', pathData);
+                    path.setAttribute('stroke', colors[metric]);
+                    path.setAttribute('stroke-width', '2');
+                    path.setAttribute('fill', 'none');
+                    svg.appendChild(path);
+
+                    // Add label
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', width - margin.right + 5);
+                    label.setAttribute('y', margin.top + (metrics.indexOf(metric) * 15));
+                    label.setAttribute('fill', colors[metric]);
+                    label.setAttribute('font-size', '12');
+                    label.textContent = metric.toUpperCase();
+                    svg.appendChild(label);
+                });
+
+                // Add time labels
+                const timeLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                timeLabel.setAttribute('x', width / 2);
+                timeLabel.setAttribute('y', height - 5);
+                timeLabel.setAttribute('text-anchor', 'middle');
+                timeLabel.setAttribute('font-size', '12');
+                timeLabel.setAttribute('fill', '#666');
+                timeLabel.textContent = 'Session Time (seconds)';
+                svg.appendChild(timeLabel);
+            }
+
+            function renderResourceBreakdown(breakdown) {
+                const container = document.getElementById('resource-breakdown');
+
+                if (!breakdown || Object.keys(breakdown).length === 0) {
+                    container.innerHTML = '<p>No resource data available yet.</p>';
+                    return;
+                }
+
+                const categories = Object.entries(breakdown).map(([type, data]) => ({
+                    type: type.toUpperCase(),
+                    ...data,
+                    avgSize: data.count > 0 ? (data.totalSize / data.count / 1024).toFixed(1) : 0,
+                    avgTime: data.count > 0 ? (data.totalTime / data.count).toFixed(1) : 0,
+                    totalSizeMB: (data.totalSize / 1024 / 1024).toFixed(2)
+                }));
+
+                container.innerHTML = `
+                    <div class="resource-breakdown-grid">
+                        ${categories.map(cat => `
+                            <div class="resource-category">
+                                <h4>${cat.type}</h4>
+                                <div class="resource-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Count:</span>
+                                        <span class="stat-value">${cat.count}</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Total Size:</span>
+                                        <span class="stat-value">${cat.totalSizeMB} MB</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Size:</span>
+                                        <span class="stat-value">${cat.avgSize} KB</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Time:</span>
+                                        <span class="stat-value">${cat.avgTime}ms</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Slow (>1s):</span>
+                                        <span class="stat-value ${cat.slowCount > 0 ? 'warning' : ''}">${cat.slowCount}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            function renderMemoryInfo(memory) {
+                const container = document.getElementById('memory-info');
+
+                if (!memory) {
+                    container.innerHTML = '<p>Memory monitoring not available in this browser</p>';
+                    return;
+                }
+
+                const usedPercent = ((memory.heapUsed / memory.heapLimit) * 100).toFixed(1);
+                const status = memory.heapUsed / memory.heapLimit > 0.8 ? 'high' : memory.heapUsed / memory.heapLimit > 0.6 ? 'medium' : 'low';
+
+                container.innerHTML = `
+                    <div class="memory-stats">
+                        <div class="memory-bar">
+                            <div class="memory-used" style="width: ${usedPercent}%"></div>
+                        </div>
+                        <div class="memory-details">
+                            <p><strong>Heap Used:</strong> ${memory.heapUsed.toFixed(1)} MB (${usedPercent}%)</p>
+                            <p><strong>Heap Total:</strong> ${memory.heapTotal.toFixed(1)} MB</p>
+                            <p><strong>Heap Limit:</strong> ${memory.heapLimit.toFixed(1)} MB</p>
+                            <p><strong>Status:</strong> <span class="memory-status ${status}">${status.toUpperCase()}</span></p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderLongTasks(longTasks) {
+                const container = document.getElementById('long-tasks');
+
+                if (!longTasks || longTasks.length === 0) {
+                    container.innerHTML = '<p>✅ No long tasks detected</p>';
+                    return;
+                }
+
+                container.innerHTML = longTasks.map(task => `
+                    <div class="timing-item">
+                        <span>
+                            <strong>Long Task</strong>
+                            <br><small>Started at ${new Date(task.startTime).toLocaleTimeString()}</small>
+                        </span>
+                        <span class="timing-slow">${Math.round(task.duration)}ms</span>
+                    </div>
+                `).join('');
+            }
+
+            function renderOptimizationRecommendations(recommendations) {
+                const container = document.getElementById('optimization-recommendations');
+
+                if (!recommendations || recommendations.length === 0) {
+                    container.innerHTML = '<p>✅ No optimization recommendations at this time.</p>';
+                    return;
+                }
+
+                container.innerHTML = recommendations.map(rec => `
+                    <div class="recommendation ${rec.priority}">
+                        <div class="recommendation-header">
+                            <span class="recommendation-priority ${rec.priority}">${rec.priority.toUpperCase()}</span>
+                            <span class="recommendation-category">${rec.category}</span>
+                        </div>
+                        <div class="recommendation-content">
+                            <strong>${rec.issue}</strong>
+                            <p>${rec.suggestion}</p>
+                        </div>
                     </div>
                 `).join('');
             }

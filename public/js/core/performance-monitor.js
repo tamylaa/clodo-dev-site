@@ -51,6 +51,16 @@ const config = {
             good: 800,       // < 800ms
             needsImprovement: 1800, // 800ms - 1.8s
         },
+        // Interaction to Next Paint (INP)
+        inp: {
+            good: 200,       // < 200ms
+            needsImprovement: 500,  // 200ms - 500ms
+        },
+        // Total Blocking Time (TBT)
+        tbt: {
+            good: 200,       // < 200ms
+            needsImprovement: 600,  // 200ms - 600ms
+        },
     },
 
     // Sampling rate (0-1, 1 = 100% of users)
@@ -77,6 +87,23 @@ const state = {
     metrics: {},
     errors: [],
     timings: [],
+    longTasks: [],
+    trends: {
+        lcp: [],
+        fid: [],
+        cls: [],
+        fcp: [],
+        ttfb: [],
+        inp: [],
+        tbt: []
+    },
+    resourceBreakdown: {
+        css: { count: 0, totalSize: 0, totalTime: 0, slowCount: 0 },
+        script: { count: 0, totalSize: 0, totalTime: 0, slowCount: 0 },
+        img: { count: 0, totalSize: 0, totalTime: 0, slowCount: 0 },
+        font: { count: 0, totalSize: 0, totalTime: 0, slowCount: 0 },
+        other: { count: 0, totalSize: 0, totalTime: 0, slowCount: 0 }
+    },
     sessionStart: Date.now(),
     isRecording: false,
     observers: new Map(),
@@ -111,10 +138,23 @@ function getRating(metricName, value) {
 }
 
 /**
- * Format metric for logging
+ * Store metric trend data
  */
-function formatMetric(name, value, unit = 'ms') {
-    return `${name}: ${value.toFixed(2)}${unit}`;
+function storeMetricTrend(metricName, value, rating) {
+    if (!state.trends[metricName]) return;
+
+    const trendData = {
+        value: value,
+        rating: rating,
+        timestamp: Date.now(),
+        sessionTime: Date.now() - state.sessionStart
+    };
+
+    // Keep only last 50 data points to prevent memory issues
+    state.trends[metricName].push(trendData);
+    if (state.trends[metricName].length > 50) {
+        state.trends[metricName].shift();
+    }
 }
 
 // ==================== WEB VITALS ====================
@@ -134,6 +174,9 @@ function measureLCP() {
             const rating = getRating('lcp', lcp);
 
             state.metrics.lcp = { value: lcp, rating, timestamp: Date.now() };
+
+            // Store trend data
+            storeMetricTrend('lcp', lcp, rating);
 
             log(formatMetric('LCP', lcp), `[${rating}]`);
 
@@ -164,6 +207,9 @@ function measureFID() {
                 const rating = getRating('fid', fid);
 
                 state.metrics.fid = { value: fid, rating, timestamp: Date.now() };
+
+                // Store trend data
+                storeMetricTrend('fid', fid, rating);
 
                 log(formatMetric('FID', fid), `[${rating}]`);
 
@@ -219,6 +265,9 @@ function measureCLS() {
 
                         state.metrics.cls = { value: clsValue, rating, timestamp: Date.now() };
 
+                        // Store trend data
+                        storeMetricTrend('cls', clsValue, rating);
+
                         log(formatMetric('CLS', clsValue, ''), `[${rating}]`);
 
                         // Report to analytics
@@ -253,6 +302,9 @@ function measureFCP() {
 
                     state.metrics.fcp = { value: fcp, rating, timestamp: Date.now() };
 
+                    // Store trend data
+                    storeMetricTrend('fcp', fcp, rating);
+
                     log(formatMetric('FCP', fcp), `[${rating}]`);
 
                     // Report to analytics
@@ -282,6 +334,9 @@ function measureTTFB() {
 
             state.metrics.ttfb = { value: ttfb, rating, timestamp: Date.now() };
 
+            // Store trend data
+            storeMetricTrend('ttfb', ttfb, rating);
+
             log(formatMetric('TTFB', ttfb), `[${rating}]`);
 
             // Report to analytics
@@ -289,6 +344,162 @@ function measureTTFB() {
         }
     } catch (error) {
         console.error('Error measuring TTFB:', error);
+    }
+}
+
+/**
+ * Measure Interaction to Next Paint (INP)
+ */
+function measureINP() {
+    if (!('PerformanceObserver' in window)) return;
+
+    try {
+        let maxInteractionDelay = 0;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+
+            entries.forEach(entry => {
+                // Calculate interaction delay (input delay + processing time)
+                const interactionDelay = entry.processingEnd - entry.startTime;
+
+                if (interactionDelay > maxInteractionDelay) {
+                    maxInteractionDelay = interactionDelay;
+                    const rating = getRating('inp', maxInteractionDelay);
+
+                    state.metrics.inp = { value: maxInteractionDelay, rating, timestamp: Date.now() };
+
+                    // Store trend data
+                    storeMetricTrend('inp', maxInteractionDelay, rating);
+
+                    log(formatMetric('INP', maxInteractionDelay), `[${rating}]`);
+
+                    // Report to analytics
+                    reportMetric('INP', maxInteractionDelay, rating);
+                }
+            });
+        });
+
+        observer.observe({ type: 'event', buffered: true });
+        state.observers.set('inp', observer);
+
+    } catch (error) {
+        console.error('Error measuring INP:', error);
+    }
+}
+
+/**
+ * Measure Total Blocking Time (TBT)
+ */
+function measureTBT() {
+    if (!('PerformanceObserver' in window)) return;
+
+    try {
+        let totalBlockingTime = 0;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+
+            entries.forEach(entry => {
+                // Long tasks are > 50ms
+                if (entry.duration > 50) {
+                    // Blocking time is duration minus 50ms
+                    const blockingTime = entry.duration - 50;
+                    totalBlockingTime += blockingTime;
+                }
+            });
+
+            const rating = getRating('tbt', totalBlockingTime);
+
+            state.metrics.tbt = { value: totalBlockingTime, rating, timestamp: Date.now() };
+
+            // Store trend data
+            storeMetricTrend('tbt', totalBlockingTime, rating);
+
+            log(formatMetric('TBT', totalBlockingTime), `[${rating}]`);
+
+            // Report to analytics
+            reportMetric('TBT', totalBlockingTime, rating);
+        });
+
+        observer.observe({ type: 'longtask', buffered: true });
+        state.observers.set('tbt', observer);
+
+    } catch (error) {
+        console.error('Error measuring TBT:', error);
+    }
+}
+
+/**
+ * Monitor memory usage
+ */
+function monitorMemory() {
+    if (!('memory' in performance)) return;
+
+    try {
+        // Check memory every 10 seconds
+        const memoryCheck = setInterval(() => {
+            const memInfo = performance.memory;
+
+            const heapUsed = memInfo.usedJSHeapSize / 1024 / 1024; // MB
+            const heapTotal = memInfo.totalJSHeapSize / 1024 / 1024; // MB
+            const heapLimit = memInfo.jsHeapSizeLimit / 1024 / 1024; // MB
+
+            state.metrics.memory = {
+                heapUsed: heapUsed,
+                heapTotal: heapTotal,
+                heapLimit: heapLimit,
+                timestamp: Date.now()
+            };
+
+            log(`Memory: ${heapUsed.toFixed(1)}MB used, ${heapTotal.toFixed(1)}MB total`);
+
+        }, 10000);
+
+        // Store interval ID for cleanup
+        state.memoryInterval = memoryCheck;
+
+    } catch (error) {
+        console.error('Error monitoring memory:', error);
+    }
+}
+
+/**
+ * Detect long tasks (>50ms)
+ */
+function detectLongTasks() {
+    if (!('PerformanceObserver' in window)) return;
+
+    try {
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+
+            entries.forEach(entry => {
+                if (entry.duration > 50) {
+                    const longTask = {
+                        duration: entry.duration,
+                        startTime: entry.startTime,
+                        timestamp: Date.now(),
+                        url: window.location.href
+                    };
+
+                    // Store long tasks (keep last 10)
+                    if (!state.longTasks) state.longTasks = [];
+                    state.longTasks.push(longTask);
+                    if (state.longTasks.length > 10) {
+                        state.longTasks.shift();
+                    }
+
+                    log(`Long task detected: ${entry.duration.toFixed(2)}ms`);
+                }
+            });
+        });
+
+        observer.observe({ type: 'longtask', buffered: true });
+        state.observers.set('longtasks', observer);
+
+    } catch (error) {
+        console.error('Error detecting long tasks:', error);
     }
 }
 
@@ -359,6 +570,9 @@ function trackResourceTiming() {
 
                 state.timings.push(timing);
 
+                // Categorize resource
+                updateResourceBreakdown(entry);
+
                 // Log slow resources (> 1s)
                 if (entry.duration > 1000) {
                     log(`Slow resource (${entry.initiatorType}):`, entry.name, `${entry.duration.toFixed(2)}ms`);
@@ -371,6 +585,47 @@ function trackResourceTiming() {
 
     } catch (error) {
         console.error('Error tracking resource timing:', error);
+    }
+}
+
+/**
+ * Update resource breakdown analysis
+ */
+function updateResourceBreakdown(entry) {
+    let category = 'other';
+
+    // Categorize by initiator type
+    switch (entry.initiatorType) {
+        case 'link':
+        case 'css':
+            category = 'css';
+            break;
+        case 'script':
+            category = 'script';
+            break;
+        case 'img':
+        case 'image':
+            category = 'img';
+            break;
+        case 'font':
+            category = 'font';
+            break;
+        default:
+            // Check file extension for better categorization
+            const url = entry.name.toLowerCase();
+            if (url.includes('.css')) category = 'css';
+            else if (url.includes('.js')) category = 'script';
+            else if (url.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) category = 'img';
+            else if (url.match(/\.(woff|woff2|ttf|otf|eot)$/)) category = 'font';
+    }
+
+    const breakdown = state.resourceBreakdown[category];
+    breakdown.count++;
+    breakdown.totalSize += entry.transferSize || 0;
+    breakdown.totalTime += entry.duration;
+
+    if (entry.duration > 1000) {
+        breakdown.slowCount++;
     }
 }
 
@@ -534,6 +789,14 @@ function init(options = {}) {
     measureCLS();
     measureFCP();
     measureTTFB();
+    measureINP();
+    measureTBT();
+
+    // Monitor memory usage
+    monitorMemory();
+
+    // Detect long tasks
+    detectLongTasks();
 
     // Track errors
     trackErrors();
@@ -569,6 +832,160 @@ function getTimings() {
 }
 
 /**
+ * Get long tasks
+ */
+function getLongTasks() {
+    return [...(state.longTasks || [])];
+}
+
+/**
+ * Get metric trends
+ */
+function getTrends() {
+    return { ...state.trends };
+}
+
+/**
+ * Get resource breakdown analysis
+ */
+function getResourceBreakdown() {
+    return { ...state.resourceBreakdown };
+}
+
+/**
+ * Generate optimization recommendations
+ */
+function getOptimizationRecommendations() {
+    const recommendations = [];
+    const metrics = state.metrics;
+    const breakdown = state.resourceBreakdown;
+    const longTasks = state.longTasks || [];
+
+    // Core Web Vitals recommendations
+    if (metrics.lcp && metrics.lcp.rating !== 'good') {
+        if (metrics.lcp.value > 4000) {
+            recommendations.push({
+                priority: 'high',
+                category: 'LCP',
+                issue: 'Largest Contentful Paint is very slow',
+                suggestion: 'Optimize server response times, remove render-blocking JavaScript/CSS, optimize images, and use preload for critical resources.'
+            });
+        } else if (metrics.lcp.value > 2500) {
+            recommendations.push({
+                priority: 'medium',
+                category: 'LCP',
+                issue: 'Largest Contentful Paint needs improvement',
+                suggestion: 'Consider optimizing images, using modern image formats (WebP/AVIF), and implementing lazy loading for below-the-fold images.'
+            });
+        }
+    }
+
+    if (metrics.cls && metrics.cls.rating !== 'good') {
+        recommendations.push({
+            priority: 'high',
+            category: 'CLS',
+            issue: 'Cumulative Layout Shift detected',
+            suggestion: 'Reserve space for dynamic content, avoid inserting content above existing content, and use CSS aspect-ratio for media elements.'
+        });
+    }
+
+    if (metrics.fid && metrics.fid.rating !== 'good') {
+        recommendations.push({
+            priority: 'medium',
+            category: 'FID',
+            issue: 'First Input Delay is high',
+            suggestion: 'Reduce JavaScript execution time, remove unused JavaScript, and minimize main thread work.'
+        });
+    }
+
+    // Advanced metrics recommendations
+    if (metrics.inp && metrics.inp.rating !== 'good') {
+        recommendations.push({
+            priority: 'high',
+            category: 'INP',
+            issue: 'Interaction to Next Paint is slow',
+            suggestion: 'Optimize event handlers, break up long tasks, and use passive event listeners where appropriate.'
+        });
+    }
+
+    if (metrics.tbt && metrics.tbt.rating !== 'good') {
+        recommendations.push({
+            priority: 'high',
+            category: 'TBT',
+            issue: 'Total Blocking Time is high',
+            suggestion: 'Break up long tasks (>50ms), minimize main thread work, and optimize JavaScript execution.'
+        });
+    }
+
+    // Resource recommendations
+    if (breakdown.script.slowCount > 0) {
+        recommendations.push({
+            priority: 'medium',
+            category: 'JavaScript',
+            issue: `${breakdown.script.slowCount} slow JavaScript resources detected`,
+            suggestion: 'Minify and compress JavaScript, use code splitting, implement lazy loading for non-critical scripts.'
+        });
+    }
+
+    if (breakdown.img.slowCount > 0) {
+        recommendations.push({
+            priority: 'medium',
+            category: 'Images',
+            issue: `${breakdown.img.slowCount} slow image resources detected`,
+            suggestion: 'Optimize images (compress, use WebP/AVIF), implement responsive images, and use lazy loading.'
+        });
+    }
+
+    if (breakdown.css.slowCount > 0) {
+        recommendations.push({
+            priority: 'medium',
+            category: 'CSS',
+            issue: `${breakdown.css.slowCount} slow CSS resources detected`,
+            suggestion: 'Minify CSS, remove unused styles, and consider using CSS-in-JS or critical CSS extraction.'
+        });
+    }
+
+    // Memory recommendations
+    if (metrics.memory) {
+        const memoryUsagePercent = (metrics.memory.heapUsed / metrics.memory.heapLimit) * 100;
+        if (memoryUsagePercent > 80) {
+            recommendations.push({
+                priority: 'high',
+                category: 'Memory',
+                issue: 'High memory usage detected',
+                suggestion: 'Check for memory leaks, optimize object creation, and consider using memory profiling tools.'
+            });
+        }
+    }
+
+    // Long tasks recommendations
+    if (longTasks.length > 5) {
+        recommendations.push({
+            priority: 'medium',
+            category: 'Performance',
+            issue: `${longTasks.length} long tasks detected`,
+            suggestion: 'Break up long-running JavaScript tasks, use requestAnimationFrame for animations, and implement web workers for heavy computations.'
+        });
+    }
+
+    // Network recommendations
+    const network = detectNetworkQuality();
+    if (network && network.effectiveType === 'slow-2g') {
+        recommendations.push({
+            priority: 'high',
+            category: 'Network',
+            issue: 'Slow network connection detected',
+            suggestion: 'Implement progressive loading, use smaller assets for slow connections, and consider service worker caching.'
+        });
+    }
+
+    return recommendations.sort((a, b) => {
+        const priorityOrder = { high: 3, medium: 2, low: 1 };
+        return priorityOrder[b.priority] - priorityOrder[a.priority];
+    });
+}
+
+/**
  * Get performance report
  */
 function getReport() {
@@ -576,6 +993,10 @@ function getReport() {
         metrics: getMetrics(),
         errors: getErrors(),
         timings: getTimings(),
+        longTasks: getLongTasks(),
+        trends: getTrends(),
+        resourceBreakdown: getResourceBreakdown(),
+        recommendations: getOptimizationRecommendations(),
         network: detectNetworkQuality(),
         sessionDuration: Date.now() - state.sessionStart,
         url: window.location.href,
@@ -607,6 +1028,11 @@ function stop() {
     state.observers.forEach(observer => observer.disconnect());
     state.observers.clear();
 
+    // Clear memory monitoring interval
+    if (state.memoryInterval) {
+        clearInterval(state.memoryInterval);
+    }
+
     log('Performance monitoring stopped');
 }
 
@@ -618,6 +1044,10 @@ const PerformanceMonitor = {
     getMetrics,
     getErrors,
     getTimings,
+    getLongTasks,
+    getTrends,
+    getResourceBreakdown,
+    getOptimizationRecommendations,
     getReport,
     enableDebug,
     disableDebug,
