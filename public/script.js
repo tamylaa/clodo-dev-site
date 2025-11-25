@@ -164,25 +164,10 @@ function setupNewsletterForm() {
         submitBtn.innerHTML = '<span class="spinner spinner--sm spinner--white"></span> Subscribing...';
 
         try {
-            // Check if Brevo is configured
-            if (!window.BREVO_CONFIG || !window.BREVO_CONFIG.API_KEY || window.BREVO_CONFIG.API_KEY === 'YOUR_BREVO_API_KEY_HERE') {
-                throw new Error('Brevo API key not configured. Please check brevo-secure-config.js');
-            }
-
-            if (!window.BREVO_CONFIG.LIST_ID) {
-                throw new Error('Brevo list ID not configured. Please check brevo-secure-config.js and update LIST_ID');
-            }
-
-            console.log('Brevo config loaded:', {
-                hasApiKey: !!window.BREVO_CONFIG.API_KEY,
-                listId: window.BREVO_CONFIG.LIST_ID,
-                apiKeyPrefix: window.BREVO_CONFIG.API_KEY.substring(0, 10) + '...'
-            });
-
-            // Use Cloudflare Worker to proxy the Brevo API call (avoids CORS issues)
+            // Prepare the request for the Cloudflare function
             const requestBody = {
                 email: emailInput.value,
-                listIds: [window.BREVO_CONFIG.LIST_ID],
+                // listIds will be handled server-side by the Cloudflare function using env.BREVO_LIST_ID
                 updateEnabled: true,
                 attributes: {
                     SOURCE: newsletterForm.querySelector('input[name="source"]')?.value || 'website',
