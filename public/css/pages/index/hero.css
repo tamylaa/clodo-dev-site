@@ -140,6 +140,7 @@
     position: relative;
     display: inline-block;
     font-weight: 900;
+    font-size: 1.1em;
 }
 
 /* For browsers that don't support background-clip, use solid color */
@@ -169,7 +170,7 @@
     font-size: clamp(1.125rem, 4.5vw, 1.375rem);
     line-height: 1.6;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: none;
     font-weight: 400;
     letter-spacing: -0.01em;
     opacity: 1; /* Ensure visible immediately for LCP */
