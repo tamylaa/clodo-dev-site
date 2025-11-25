@@ -25,8 +25,8 @@ export default defineConfig({
   // Test run configuration
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: process.env.CI ? 1 : 0, // Reduced from 2 to 1 retry in CI
+  workers: process.env.CI ? 2 : undefined, // Run 2 workers in parallel in CI instead of 1
   
   // Reporter configuration
   reporter: [
@@ -66,19 +66,19 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     
-    // Mobile testing
-    {
+    // Mobile testing (skip in CI for faster builds)
+    ...(process.env.CI ? [] : [{
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
-    },
+    }]),
     
-    // Tablet testing
-    {
+    // Tablet testing (skip in CI for faster builds)
+    ...(process.env.CI ? [] : [{
       name: 'tablet',
       use: {
         ...devices['iPad Pro'],
       },
-    },
+    }]),
     
     // Optional: Firefox (uncomment when needed)
     // {

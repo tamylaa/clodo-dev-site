@@ -10,8 +10,8 @@ test.describe('Performance Dashboard Tests', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/performance-dashboard.html');
         await page.waitForLoadState('networkidle');
-        // Wait for dashboard to render
-        await page.waitForTimeout(3000);
+        // Wait for dashboard to render - reduced from 3000ms
+        await page.waitForTimeout(1000);
     });
 
     test('should load performance dashboard page', async ({ page }) => {
@@ -110,8 +110,16 @@ test.describe('Performance Dashboard Tests', () => {
         const sessionInfo = await page.$('#session-info');
         expect(sessionInfo).toBeTruthy();
 
+        // Wait for session info to be populated (dashboard initializes after 2 seconds)
+        await page.waitForFunction(() => {
+            const element = document.getElementById('session-info');
+            return element && element.textContent && element.textContent.includes('URL');
+        }, { timeout: 5000 });
+
         const text = await sessionInfo.textContent();
         expect(text).toContain('URL');
+        expect(text).toContain('Session Duration');
+        expect(text).toContain('Total Resources');
         console.log('Session info:', text.substring(0, 150));
     });
 

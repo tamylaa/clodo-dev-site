@@ -448,3 +448,6 @@ if (typeof window !== 'undefined') {
         configure,
     };
 }
+
+// ES Module exports
+export { init, destroy, navigateTo, goBack, goForward, scrollToTop, scrollToElement, scrollToHash, updateActiveLinks, getCurrentPath, configure, normalizePath, isInternalLink };

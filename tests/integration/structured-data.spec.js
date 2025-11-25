@@ -10,7 +10,7 @@ test.describe('Structured Data Hub Tests', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/index.html');
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(1000); // Reduced from 2000ms
     });
 
     test('should inject Organization schema', async ({ page }) => {

@@ -389,3 +389,6 @@ if (typeof window !== 'undefined') {
         subscribeToNewsletter,
     };
 }
+
+// ES Module exports
+export { init, destroy, subscribeToNewsletter, isValidEmail };

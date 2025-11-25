@@ -560,4 +560,5 @@ export {
     disableDebug,
     createStorage,
     Storage,
+    StorageType,
 };

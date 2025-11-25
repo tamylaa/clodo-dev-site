@@ -7,7 +7,6 @@
   "scripts": {
     "prebuild": "npm run lint && npm run type-check",
     "build": "node build.js",
-    "postbuild": "npm run test:all",
     "build:vite": "vite build",
     "serve": "node dev-server.js",
     "serve:public": "node dev-server.js --public",

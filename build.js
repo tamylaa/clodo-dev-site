@@ -63,6 +63,8 @@ function copyHtml() {
         // Article pages
         'clodo-framework-promise-to-reality.html',
         'clodo-framework-api-simplification.html',
+        // Performance dashboard page
+        'performance-dashboard.html',
         // Blog pages
         'blog/index.html',
         'blog/debugging-silent-build-failures.html',

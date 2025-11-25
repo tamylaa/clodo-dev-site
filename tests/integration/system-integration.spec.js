@@ -44,8 +44,8 @@ test.describe('System Integration Tests', () => {
             }
         });
 
-        // Wait longer for modules to load
-        await page.waitForTimeout(5000);
+        // Wait longer for modules to load - reduced from 5000ms
+        await page.waitForTimeout(2000);
 
         // Try to access window properties
         const windowCheck = await page.evaluate(() => {
@@ -317,8 +317,8 @@ test.describe('System Integration Tests', () => {
                 errors.push(error.message);
             });
 
-            // Wait for all systems to initialize
-            await page.waitForTimeout(3000);
+            // Wait for all systems to initialize - reduced from 3000ms
+            await page.waitForTimeout(1500);
 
             // Check all systems are defined
             const systemsCheck = await page.evaluate(() => {

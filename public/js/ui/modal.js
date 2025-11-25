@@ -656,3 +656,7 @@ if (typeof window !== 'undefined') {
         getState,
     };
 }
+
+// ES Module exports
+export { Modal, open, closeAll, resetState, getById, getOpenModals, configure, enableDebug, disableDebug, init, getState };
+export default Modal;

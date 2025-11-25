@@ -609,3 +609,19 @@ if (typeof window !== 'undefined') {
         FormState
     };
 }
+
+// ES Module exports
+export {
+    validateField,
+    validateForm,
+    showFieldError,
+    clearFieldError,
+    serializeForm,
+    setFormLoading,
+    showFormMessage,
+    clearFormMessage,
+    handleFormSubmit,
+    initRealtimeValidation,
+    validators,
+    FormState
+};

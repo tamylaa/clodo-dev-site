@@ -691,3 +691,21 @@ if (typeof window !== 'undefined') {
         isMobile,
     };
 }
+
+// ES Module exports
+const NavigationComponentAPI = {
+    init,
+    destroy,
+    toggleMobileMenu,
+    closeMobileMenu,
+    openDropdown,
+    closeDropdown,
+    closeAllDropdowns,
+    getState,
+    configure,
+    enableDebug,
+    disableDebug,
+    isMobile,
+};
+
+export { NavigationComponentAPI as default, init, destroy, toggleMobileMenu, closeMobileMenu, openDropdown, closeDropdown, closeAllDropdowns, getState, configure, enableDebug, disableDebug, isMobile };
