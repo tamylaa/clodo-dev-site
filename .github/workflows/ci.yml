@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
       - name: Lint (JS & CSS)
         run: npm run lint
 
@@ -45,9 +48,6 @@ jobs:
         with:
           path: dist/
           key: build-${{ runner.os }}-${{ hashFiles('public/**', 'build.js') }}
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
 
       - name: Run E2E tests
         run: npm run test:e2e
