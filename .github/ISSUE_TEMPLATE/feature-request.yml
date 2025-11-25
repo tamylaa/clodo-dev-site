@@ -1,0 +1,63 @@
+name: "🚀 Feature Request"
+description: "Suggest a new feature or enhancement for Clodo Framework"
+title: "[FEATURE] "
+labels: ["enhancement", "feature-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Feature Request
+
+        Thanks for suggesting ways to improve Clodo Framework! We love hearing from our community.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What's the problem you're trying to solve?
+      placeholder: "Describe the problem or limitation you're facing..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like to see this solved?
+      placeholder: "Describe your proposed solution..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: "Describe any alternative solutions you've considered..."
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Important for my use case
+        - Critical for enterprise adoption
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Can you describe a specific use case for this feature?
+      placeholder: "Describe how you'd use this feature in your project..."
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context or information here.
+      placeholder: "Any additional information, mockups, or examples..."

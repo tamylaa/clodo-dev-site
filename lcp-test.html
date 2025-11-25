@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCP Test</title>
+</head>
+<body>
+    <h1>LCP Performance Test</h1>
+    <div id="lcp-result">Loading...</div>
+
+    <script src="js/core/performance-monitor.js"></script>
+    <script>
+        // Initialize performance monitor
+        window.PerformanceMonitor.init({ debug: true });
+
+        // Check LCP after 3 seconds
+        setTimeout(() => {
+            const report = window.PerformanceMonitor.getReport();
+            const lcp = report.metrics.lcp;
+
+            const resultDiv = document.getElementById('lcp-result');
+            if (lcp) {
+                resultDiv.innerHTML = `
+                    <h2>Current LCP: ${Math.round(lcp.value)}ms</h2>
+                    <p>Rating: <strong>${lcp.rating}</strong></p>
+                    <p>Measured at: ${new Date(lcp.timestamp).toLocaleTimeString()}</p>
+                `;
+                console.log('LCP Result:', lcp);
+            } else {
+                resultDiv.innerHTML = '<p>LCP not yet measured</p>';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+name: "🐛 Bug Report"
+description: "Report a bug or issue with Clodo Framework"
+title: "[BUG] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Bug Report
+
+        Thanks for helping us improve Clodo Framework! Please fill out the details below.
+
+  - type: input
+    id: version
+    attributes:
+      label: Clodo Framework Version
+      description: What version of Clodo Framework are you using?
+      placeholder: "e.g., 2.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where are you experiencing this issue?
+      options:
+        - Cloudflare Workers (Production)
+        - Local Development
+        - Cloudflare Pages
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: What happened? Please provide a clear and concise description of the bug.
+      placeholder: "Describe the issue you encountered..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug? Please provide step-by-step instructions.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened?
+      placeholder: "What did you expect to happen?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: "What actually happened instead?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment-details
+    attributes:
+      label: Environment Details
+      description: Please provide additional environment information
+      placeholder: |
+        - Node.js version:
+        - Cloudflare Workers runtime:
+        - Browser (if applicable):
+        - Operating System:
+        - Any other relevant details:
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
+      placeholder: "Any additional information, screenshots, or code snippets..."
