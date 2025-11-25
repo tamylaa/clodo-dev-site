@@ -1,0 +1,68 @@
+---
+name: "❓ Help & Questions"
+description: "Ask questions and get help from the community"
+title: "[QUESTION] "
+labels: ["question", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ❓ Help & Questions
+
+        Need help with Clodo Framework? Ask the community!
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What type of question is this?
+      options:
+        - Getting Started
+        - Configuration & Setup
+        - Development & Coding
+        - Deployment & Production
+        - Performance & Optimization
+        - Security & Compliance
+        - Integration & APIs
+        - Troubleshooting
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please provide a clear and detailed question
+      placeholder: "What are you trying to accomplish? What have you tried so far?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Provide any relevant code, error messages, or configuration details
+      placeholder: |
+        **Code snippet:**
+        ```javascript
+        // Your code here
+        ```
+
+        **Error message:**
+        // Any error messages
+
+        **Environment:**
+        - Clodo version: X.X.X
+        - Node.js version: X.X.X
+        - Cloudflare Workers: Yes/No
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before Posting
+      description: Please confirm you've done these steps
+      options:
+        - label: I've searched existing discussions and issues
+        - label: I've checked the documentation at clodo.dev/docs
+        - label: I've reviewed the examples at clodo.dev/examples

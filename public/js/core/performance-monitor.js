@@ -138,6 +138,29 @@ function getRating(metricName, value) {
 }
 
 /**
+ * Format metric for logging
+ */
+function formatMetric(name, value) {
+    if (typeof value === 'number') {
+        // Format time-based metrics in milliseconds
+        if (name.includes('LCP') || name.includes('FCP') || name.includes('TTFB')) {
+            return `${name}: ${Math.round(value)}ms`;
+        }
+        // Format CLS as decimal
+        if (name.includes('CLS')) {
+            return `${name}: ${value.toFixed(4)}`;
+        }
+        // Format FID in milliseconds
+        if (name.includes('FID')) {
+            return `${name}: ${Math.round(value)}ms`;
+        }
+        // Default formatting
+        return `${name}: ${value}`;
+    }
+    return `${name}: ${value}`;
+}
+
+/**
  * Store metric trend data
  */
 function storeMetricTrend(metricName, value, rating) {
@@ -610,13 +633,14 @@ function updateResourceBreakdown(entry) {
         case 'font':
             category = 'font';
             break;
-        default:
+        default: {
             // Check file extension for better categorization
             const url = entry.name.toLowerCase();
             if (url.includes('.css')) category = 'css';
             else if (url.includes('.js')) category = 'script';
             else if (url.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) category = 'img';
             else if (url.match(/\.(woff|woff2|ttf|otf|eot)$/)) category = 'font';
+        }
     }
 
     const breakdown = state.resourceBreakdown[category];

@@ -1,0 +1,61 @@
+---
+name: "💡 Feature Ideas"
+description: "Share your ideas for new Clodo Framework features"
+title: "[FEATURE IDEA] "
+labels: ["enhancement", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Feature Idea
+
+        Thanks for sharing your ideas! Feature requests help us build a better Clodo Framework.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem are you trying to solve?
+      placeholder: "Describe the problem this feature would solve..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work?
+      placeholder: "Describe your proposed solution..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: "Describe any alternative solutions you've considered..."
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Important for my use case
+        - Critical blocker
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Please check all that apply
+      options:
+        - label: This is for a commercial project
+        - label: This is for an open source project
+        - label: I've searched existing issues and this is not a duplicate
+        - label: I'm willing to contribute code for this feature

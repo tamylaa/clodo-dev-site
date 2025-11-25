@@ -206,7 +206,8 @@ function bundleCss() {
         'css/pages/subscribe.css',
         'css/pages/subscribe-enhanced.css',
         'css/pages/blog.css',
-        'css/pages/pricing.css'
+        'css/pages/pricing.css',
+        'css/pages/case-studies.css'
     ];
 
     // Bundle critical CSS

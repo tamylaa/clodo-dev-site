@@ -1,0 +1,97 @@
+---
+name: "🏆 Success Stories"
+description: "Share your Clodo Framework success stories and case studies"
+title: "[SUCCESS] "
+labels: ["success-story", "case-study"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🏆 Success Story
+
+        Congratulations on your success! Sharing your story helps inspire other developers and validates the impact of Clodo Framework.
+
+  - type: input
+    id: company
+    attributes:
+      label: Company/Project Name
+      description: What's the name of your company or project? (can be anonymous)
+      placeholder: "Acme Corp or 'Anonymous Enterprise'"
+
+  - type: dropdown
+    id: industry
+    attributes:
+      label: Industry
+      options:
+        - Technology/SaaS
+        - Healthcare
+        - Finance/FinTech
+        - E-commerce
+        - Education
+        - Manufacturing
+        - Government
+        - Non-profit
+        - Other
+
+  - type: dropdown
+    id: company_size
+    attributes:
+      label: Company Size
+      options:
+        - Startup (1-10 employees)
+        - Small Business (11-50 employees)
+        - Medium Business (51-200 employees)
+        - Enterprise (201-1000 employees)
+        - Large Enterprise (1000+ employees)
+
+  - type: textarea
+    id: challenge
+    attributes:
+      label: The Challenge
+      description: What problem were you trying to solve?
+      placeholder: "Describe the business challenge or technical problem you faced..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: The Solution
+      description: How did Clodo Framework help?
+      placeholder: "Describe how you used Clodo Framework to solve the challenge..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: results
+    attributes:
+      label: Results & Impact
+      description: What were the measurable outcomes?
+      placeholder: |
+        **Quantitative Results:**
+        - Development time saved: X weeks/months
+        - Cost savings: $X
+        - Performance improvements: X%
+
+        **Qualitative Benefits:**
+        - Improved developer experience
+        - Better scalability
+        - Enhanced reliability
+    validations:
+      required: true
+
+  - type: textarea
+    id: lessons
+    attributes:
+      label: Key Lessons Learned
+      description: What advice would you give to others?
+      placeholder: "Share any tips, best practices, or gotchas you discovered..."
+
+  - type: checkboxes
+    id: permissions
+    attributes:
+      label: Permissions
+      description: Please confirm the following
+      options:
+        - label: I have permission to share this success story publicly
+        - label: I understand this may be featured on clodo.dev and marketing materials

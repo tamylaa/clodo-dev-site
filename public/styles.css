@@ -35,6 +35,7 @@
 @import url('./css/pages/subscribe-enhanced.css');
 @import url('./css/pages/blog.css');
 @import url('./css/pages/pricing.css');
+@import url('./css/pages/case-studies.css');
 
 /* ===== COMPONENT-SPECIFIC STYLES ===== */
 @import url('./css/components/buttons.css');

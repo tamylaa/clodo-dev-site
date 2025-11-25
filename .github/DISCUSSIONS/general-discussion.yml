@@ -1,0 +1,46 @@
+---
+name: "💬 General Discussion"
+description: "General community discussions, ideas, and sharing"
+title: "[DISCUSSION] "
+labels: ["discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💬 General Discussion
+
+        Share your thoughts, ideas, and experiences with the Clodo Framework community!
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Discussion Topic
+      description: What would you like to discuss?
+      options:
+        - Cloudflare Workers ecosystem
+        - Edge computing trends
+        - Serverless architecture
+        - Enterprise development
+        - Performance optimization
+        - Developer experience
+        - Industry insights
+        - Other
+
+  - type: textarea
+    id: discussion
+    attributes:
+      label: Discussion Points
+      description: What would you like to discuss or share?
+      placeholder: "Share your thoughts, experiences, or questions..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Community Guidelines
+      description: Please follow our community guidelines
+      options:
+        - label: I have read and agree to follow the Code of Conduct
+        - label: This discussion is respectful and constructive
+        - label: I understand spam or inappropriate content will be removed

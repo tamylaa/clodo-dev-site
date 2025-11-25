@@ -72,9 +72,9 @@
     <!-- Cloudflare Workers Guide -->
     <url>
         <loc>https://clodo.dev/cloudflare-workers-guide.html</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <lastmod>2025-11-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
 
     <!-- Development Deployment Guide -->
@@ -88,7 +88,7 @@
     <!-- Edge Computing Guide -->
     <url>
         <loc>https://clodo.dev/edge-computing-guide.html</loc>
-        <lastmod>2025-11-13</lastmod>
+        <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -112,7 +112,7 @@
     <!-- Workers vs Lambda -->
     <url>
         <loc>https://clodo.dev/workers-vs-lambda.html</loc>
-        <lastmod>2025-11-13</lastmod>
+        <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
