@@ -67,9 +67,9 @@ test.describe('Structured Data Hub Tests', () => {
     });
 
     test('should inject FAQPage schema on docs page', async ({ page }) => {
-        await page.goto('http://localhost:8080/docs.html');
+        await page.goto('/docs.html');
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
 
         const schemas = await page.$$eval(
             'script[type="application/ld+json"]',
