@@ -28,26 +28,17 @@
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="favicon.svg">
     
-    <!-- PERFORMANCE RESOURCE HINTS -->
-    <!-- DNS Prefetch: Resolve domains early -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//api.github.com">
-    <link rel="dns-prefetch" href="//challenges.cloudflare.com">
-    
-    <!-- Preconnect: Establish connections early (more expensive than dns-prefetch) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.github.com">
+    <!-- PERFORMANCE RESOURCE HINTS - OPTIMIZED FOR LCP -->
+    <!-- Preconnect to OWN domain first (highest priority) -->
     <link rel="preconnect" href="https://clodo.dev">
     
-    <!-- Load Google Fonts with font-display: swap to prevent invisible text -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- DNS Prefetch for analytics only (not fonts - we use system fonts now!) -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//api.github.com">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Preload Critical Resources ONLY -->
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
-    <link rel="preload" href="script.js" as="script">
     
     <!-- Prefetch Likely Navigation Destinations -->
     <link rel="prefetch" href="docs.html">
@@ -311,23 +302,7 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
-    <!-- Core Web Vitals Optimization -->
-    <script>
-        // Preload critical resources
-        const linkPreload = document.createElement('link');
-        linkPreload.rel = 'preload';
-        linkPreload.href = 'script.js';
-        linkPreload.as = 'script';
-        document.head.appendChild(linkPreload);
-
-        // Optimize font loading
-        const fontLink = document.createElement('link');
-        fontLink.rel = 'preload';
-        fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-        fontLink.as = 'style';
-        fontLink.onload = function() { this.onload=null; this.rel='stylesheet'; };
-        document.head.appendChild(fontLink);
-    </script>
+    <!-- Core Web Vitals Optimization - REMOVED unnecessary preloads -->
     <!-- Performance monitoring -->
     <script>
         // Core Web Vitals tracking
@@ -1168,8 +1143,9 @@ const token = clodo.generateToken({
 
     <!--#include file="../templates/footer.html" -->
 
-    <script src="js/init-systems.js" nonce="N0Nc3Cl0d0"></script>
-    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer nonce="N0Nc3Cl0d0"></script>
+    <script src="script.js" defer nonce="N0Nc3Cl0d0"></script>
 </body>
 </html>
 

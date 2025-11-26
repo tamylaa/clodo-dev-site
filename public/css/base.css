@@ -296,7 +296,8 @@ img {
 /* ===== HTML & BODY ===== */
 body {
     margin: 0;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* System font stack for instant LCP - no web font downloads! */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-primary);
@@ -390,11 +391,13 @@ body {
 }
 
 .font-sans {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 .font-display {
-    font-family: 'Work Sans', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Use system fonts for display text too - instant rendering */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-weight: 700;
 }
 
 /* ===== HEADING HIERARCHY ===== */
