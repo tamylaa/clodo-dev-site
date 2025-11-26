@@ -208,7 +208,7 @@ p.hero-subtitle {
     margin: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    max-width: 90% !important; /* Constrain to 90% of container width so it doesn't exceed title */
+    max-width: 70% !important; /* Constrain to 90% of container width so it doesn't exceed title */
 }
 
 /* Premium Action Buttons */
