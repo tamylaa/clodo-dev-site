@@ -28,13 +28,10 @@ function copyHtml() {
     console.log('📄 Processing HTML files with templates...');
 
     // Read templates
-    const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
-    const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
-    const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
-    const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
-    console.log(`✅ Hero template loaded: ${heroTemplate.length} bytes`);
-
-    // Read critical CSS for inlining
+const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
+const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
+const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
+const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');    // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
@@ -102,35 +99,10 @@ function copyHtml() {
             content = content.replace(/^\s*<!--#include file="\.\.\/templates\/hero\.html" -->/gm, heroTemplate);
 
             // Replace hero placeholder with actual hero content (legacy support)
-            const beforeHero = content.includes('<!-- HERO_PLACEHOLDER -->');
-            const beforeLen = content.length;
             content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
-            const afterHero = content.includes('<!-- HERO_PLACEHOLDER -->');
-            const afterLen = content.length;
-            const hasHero = content.includes('<section id="hero"');
-            const hasHeroSubtitle = content.includes('hero-subtitle');
-            if (file === 'index.html') {
-                console.log(`📄 ${file}: Before replace: ${beforeHero}, After replace: ${afterHero}`);
-                console.log(`   Hero section present: ${hasHero}, hero-subtitle present: ${hasHeroSubtitle}`);
-                console.log(`   Content length: before=${beforeLen}, after=${afterLen}, diff=${afterLen - beforeLen}, template=${heroTemplate.length}`);
-                // If lengths match, replacement worked
-                if ((afterLen - beforeLen) === (heroTemplate.length - '<!-- HERO_PLACEHOLDER -->'.length)) {
-                    console.log(`   ✅ Hero template replacement verified (length matches)`);
-                } else {
-                    console.log(`   ❌ ERROR: Hero template replacement failed (length mismatch)!`);
-                    console.log(`   Expected diff: ${heroTemplate.length - '<!-- HERO_PLACEHOLDER -->'.length}, Actual diff: ${afterLen - beforeLen}`);
-                }
-            }
 
             // Replace footer placeholder with actual footer content (legacy support)
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
-
-            if (file === 'index.html') {
-                // Debug: Write BEFORE CSS processing
-                const beforeCssPath = join('dist', 'index-before-css.html');
-                writeFileSync(beforeCssPath, content);
-                console.log(`   🔍 DEBUG: Wrote content BEFORE CSS processing to ${beforeCssPath}`);
-            }
 
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
