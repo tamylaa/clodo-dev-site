@@ -234,17 +234,29 @@ function bundleCss() {
         }
     });
 
-    // Proper CSS minification function that preserves @keyframes
+    // Proper CSS minification function that preserves @keyframes and CSS syntax
     const minifyCss = (css) => {
         return css
-            // Remove comments
+            // Remove multi-line comments
             .replace(/\/\*[\s\S]*?\*\//g, '')
-            // Normalize whitespace while preserving structure
-            .replace(/\s+/g, ' ')
-            .replace(/\s*([{}:;,])\s*/g, '$1')
-            // Remove trailing semicolons before closing braces
+            // Remove single-line comments (but not URLs)
+            .replace(/(?<!:)\/\/.*/g, '')
+            // Remove leading/trailing whitespace per line and empty lines
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line.length > 0)
+            .join('\n')
+            // Now carefully minify spacing while preserving important syntax
+            .replace(/\s*{\s*/g, '{')
+            .replace(/\s*}\s*/g, '}')
+            .replace(/\s*:\s*/g, ':')
+            .replace(/\s*;\s*/g, ';')
+            .replace(/\s*,\s*/g, ',')
             .replace(/;\s*}/g, '}')
-            // Remove leading/trailing whitespace
+            // CRITICAL: Preserve space before !important flag
+            .replace(/\s+!important/g, ' !important')
+            // Preserve spaces in calc() and similar functions
+            .replace(/calc\s*\(\s*/g, 'calc(')
             .trim();
     };
 
@@ -272,14 +284,28 @@ function minifyCss() {
 
     cssFiles.forEach(file => {
         const content = readFileSync(join(cssDir, file), 'utf8');
-        // Simple minification: remove comments, extra whitespace
+        // Improved minification: preserve CSS syntax properly
         let minified = content
-            .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-            .replace(/\s+/g, ' ') // Collapse whitespace
-            .replace(/\s*{\s*/g, '{') // Remove spaces around braces
-            .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
-            .replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
-            .replace(/;\s*}/g, '}') // Remove semicolon before closing brace
+            // Remove multi-line comments
+            .replace(/\/\*[\s\S]*?\*\//g, '')
+            // Remove single-line comments (but not URLs)
+            .replace(/(?<!:)\/\/.*/g, '')
+            // Remove leading/trailing whitespace per line and empty lines
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line.length > 0)
+            .join('\n')
+            // Now minify spacing
+            .replace(/\s*{\s*/g, '{')
+            .replace(/\s*}\s*/g, '}')
+            .replace(/\s*:\s*/g, ':')
+            .replace(/\s*;\s*/g, ';')
+            .replace(/\s*,\s*/g, ',')
+            .replace(/;\s*}/g, '}')
+            // CRITICAL: Preserve space before !important
+            .replace(/\s+!important/g, ' !important')
+            // Preserve spaces in calc() and similar functions
+            .replace(/calc\s*\(\s*/g, 'calc(')
             .trim();
 
         writeFileSync(join(distCssDir, file), minified);

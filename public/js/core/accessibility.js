@@ -212,6 +212,11 @@ class AccessibilityManager {
     enhanceFormAccessibility() {
         // Ensure all form inputs have labels
         document.querySelectorAll('input, textarea, select').forEach(input => {
+            // Skip hidden fields and honeypot fields (intentionally unlabeled)
+            if (input.type === 'hidden' || input.classList.contains('hp-field')) {
+                return;
+            }
+            
             if (!input.id && !input.getAttribute('aria-label') && !input.getAttribute('aria-labelledby')) {
                 console.warn('Form input without label:', input);
             }

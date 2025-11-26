@@ -728,7 +728,7 @@ p.hero-subtitle {
     .hero-subtitle {
         font-size: 1.5rem;
         /* Remove margin-bottom - grid gap handles spacing */
-        text-align: left;
+        text-align: left !important;
     }
 
     .btn {
