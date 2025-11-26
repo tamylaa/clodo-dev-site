@@ -678,6 +678,7 @@ p.hero-subtitle {
 
     .hero-subtitle {
         font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+        text-align: left;
     }
 
     .hero-actions {
@@ -725,6 +726,7 @@ p.hero-subtitle {
     .hero-subtitle {
         font-size: 1.5rem;
         /* Remove margin-bottom - grid gap handles spacing */
+        text-align: left;
     }
 
     .btn {
@@ -1017,6 +1019,7 @@ p.hero-subtitle {
 
     .hero-subtitle {
         font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+        text-align: left;
     }
 
     .hero-actions {
