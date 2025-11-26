@@ -198,7 +198,17 @@
 
 /* Ensure paragraph defaults are reset */
 p.hero-subtitle {
-    margin: 0;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Override generic .hero-content p rules from other CSS files */
+#hero .hero-content p.hero-subtitle {
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
 }
 
 /* Premium Action Buttons */
