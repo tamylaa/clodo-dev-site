@@ -28,10 +28,12 @@ function copyHtml() {
     console.log('📄 Processing HTML files with templates...');
 
     // Read templates
-const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
-const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
-const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
-const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');    // Read critical CSS for inlining
+    const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
+    const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
+    const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
+    const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
+
+    // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
