@@ -1,6 +1,9 @@
 ﻿/* ===========================================
    CLOUDO FRAMEWORK - BASE STYLES
    ===========================================
+   
+   📚 CSS Architecture: See /CSS_ARCHITECTURE.md for load order,
+   specificity rules, and cascade guidelines.
 
    Contains:
    - CSS Custom Properties (Variables)

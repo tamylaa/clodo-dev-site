@@ -1,6 +1,12 @@
 ﻿/* ===========================================
    CLOUDO FRAMEWORK - LAYOUT
    ===========================================
+   
+   📚 CSS Architecture: See /CSS_ARCHITECTURE.md for load order,
+   specificity rules, and cascade guidelines.
+   
+   ⚠️  WARNING: Generic hero/section rules in this file can cascade
+   to page-specific styles. Use structural properties only.
 
    Contains:
    - Grid Systems

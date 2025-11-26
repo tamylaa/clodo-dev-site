@@ -1,6 +1,9 @@
 /* ===========================================
    CLOUDO FRAMEWORK - INDEX PAGE STYLES
    ===========================================
+   
+   📚 CSS Architecture: See /CSS_ARCHITECTURE.md for load order,
+   specificity rules, and cascade guidelines.
 
    Page-specific styles for index.html
    Contains: Hero, Benefits, Features, Testimonials

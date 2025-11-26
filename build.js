@@ -359,57 +359,10 @@ function copyJs() {
 // Copy JavaScript config files
 function copyJsConfigs() {
     console.log('📋 Copying JavaScript config files...');
-
-    // First, handle brevo-secure-config.js
-    const secureConfigSrc = join('public', 'brevo-secure-config.js');
-    const secureConfigDist = join('dist', 'brevo-secure-config.js');
-
-    // DEBUG: Log what we're checking
-    console.log('DEBUG Brevo config detection:');
-    console.log(`  - Local file exists: ${existsSync(secureConfigSrc)}`);
-    console.log(`  - BREVO_API_KEY env: ${process.env.BREVO_API_KEY ? '✓ set' : '✗ not set'}`);
-    console.log(`  - BREVO_LIST_ID env: ${process.env.BREVO_LIST_ID ? '✓ set' : '✗ not set'}`);
-    console.log(`  - CI environment: ${process.env.CI ? '✓ production' : '✗ local'}`);
-
-    // Prioritize environment variables when available (for production security)
-    // Fall back to local file for development convenience
-    if (process.env.BREVO_API_KEY && process.env.BREVO_LIST_ID) {
-        // Environment variables available: Generate from them (production)
-        const secureConfig = `// Secure Brevo configuration - Generated from environment variables
-console.log('brevo-secure-config.js is loading...');
-
-window.BREVO_SECURE_CONFIG = {
-    API_KEY: '${process.env.BREVO_API_KEY}',
-    LIST_ID: ${parseInt(process.env.BREVO_LIST_ID)},
-};
-
-console.log('brevo-secure-config.js loaded successfully:', {
-    hasApiKey: !!window.BREVO_SECURE_CONFIG.API_KEY,
-    listId: window.BREVO_SECURE_CONFIG.LIST_ID
-});`;
-        writeFileSync(secureConfigDist, secureConfig);
-        console.log('  ✓ Generated brevo-secure-config.js from environment variables');
-    } else if (existsSync(secureConfigSrc)) {
-        // No env vars: Copy existing local file (development)
-        writeFileSync(secureConfigDist, readFileSync(secureConfigSrc, 'utf8'));
-        console.log('  ✓ Copied brevo-secure-config.js from local file');
-    } else {
-        console.warn('  ⚠️  ERROR: No brevo configuration available!');
-        console.warn('     For local development: create public/brevo-secure-config.js');
-        console.warn('     For production: set BREVO_API_KEY and BREVO_LIST_ID environment variables');
-    }
-
-    // Copy brevo-config.js
-    const configFiles = ['brevo-config.js'];
-    configFiles.forEach(file => {
-        const srcPath = join('public', file);
-        if (existsSync(srcPath)) {
-            writeFileSync(join('dist', file), readFileSync(srcPath, 'utf8'));
-            console.log(`  ✓ Copied ${file}`);
-        } else {
-            console.log(`  ⚠️  ${file} not found`);
-        }
-    });
+    
+    // Note: Newsletter subscription now handled server-side via Cloudflare Functions
+    // No client-side Brevo configuration needed
+    console.log('  ℹ️  Newsletter uses server-side API (Cloudflare Functions)');
 }
 
 // Copy other assets

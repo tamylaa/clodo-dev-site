@@ -1,6 +1,22 @@
 /* =========================================
    HERO SECTION - Premium Professional Design
+   =========================================
+   
+   📚 CSS Architecture: See /CSS_ARCHITECTURE.md for load order,
+   specificity rules, and cascade guidelines.
+   
+   ⚠️  This file contains overrides for generic layout.css rules
+   to prevent parent-level text-align cascading issues.
    ========================================= */
+
+/* Override generic layout.css hero rules */
+#hero {
+    text-align: left !important;
+}
+
+#hero * {
+    text-align: inherit;
+}
 
 /* ===== BASE STYLES (Mobile: 0-767px) ===== */
 
@@ -760,7 +776,7 @@ p.hero-subtitle {
 
     .hero-subtitle {
         font-size: 1.625rem;
-        text-align: left;
+        text-align: left !important;
     }
 }
 
