@@ -248,6 +248,39 @@ header {
     margin-top: var(--spacing-sm);
 }
 
+/* Learn dropdown sections */
+.nav-dropdown-section {
+    margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+}
+
+.nav-dropdown-section-title {
+    padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    margin-bottom: var(--spacing-xs);
+}
+
+.nav-dropdown-section-title:hover {
+    background: var(--bg-hover, var(--bg-primary)) !important;
+    color: var(--primary-color) !important;
+}
+
+.nav-dropdown-subitem {
+    padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;
+    font-size: 0.8125rem !important;
+    color: var(--text-secondary) !important;
+    border-left: 2px solid transparent;
+}
+
+.nav-dropdown-subitem:hover {
+    background: var(--bg-hover, var(--bg-primary)) !important;
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color);
+}
+
 /* ===== NAV ACTIONS (GitHub button, etc.) ===== */
 
 .nav-actions {

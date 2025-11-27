@@ -2,7 +2,6 @@
   "name": "clodo-dev-site",
   "version": "1.0.0",
   "description": "Pre-Flight Checker for Cloudflare Workers - Reduce custom software costs by 60% with enterprise orchestration framework",
-  "type": "module",
   "main": "index.html",
   "scripts": {
     "prebuild": "npm run lint && npm run type-check",
