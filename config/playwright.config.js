@@ -19,8 +19,8 @@ const rootDir = join(__dirname, '..');
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './tests',
-  testMatch: ['**/*.spec.js'],
+  testDir: join(rootDir, 'tests'),
+  testMatch: ['**/*.spec.js', '**/integration/**/*.js'],
   
   // Timeout settings
   timeout: 30000,
