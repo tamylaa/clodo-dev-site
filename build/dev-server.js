@@ -5,10 +5,11 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const projectRoot = resolve(__dirname, '..');
 
 // Serve root: dist (production build) by default, or public if --public flag provided
 const usePublic = process.argv.includes('--public');
-const publicDir = join(__dirname, usePublic ? 'public' : 'dist');
+const publicDir = join(projectRoot, usePublic ? 'public' : 'dist');
 
 // Cache templates
 const templates = {};

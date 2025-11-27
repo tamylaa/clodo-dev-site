@@ -1,4 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const rootDir = join(__dirname, '..');
 
 /**
  * Playwright Configuration for Clodo Framework Website
@@ -95,7 +101,7 @@ export default defineConfig({
   
   // Web server configuration for build-time testing
   webServer: {
-    command: 'npx http-server dist -p 8000 -c-1 --cors',
+    command: `node ${join(rootDir, 'build', 'dev-server.js')}`,
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
