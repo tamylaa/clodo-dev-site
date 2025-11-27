@@ -182,26 +182,32 @@ describe('Modal Component', () => {
             expect(document.body.classList.contains('modal-scroll-locked')).toBe(false);
         });
 
-        it('should emit before-open event', (done) => {
+        it('should emit before-open event', async () => {
             const modal = new Modal({ animation: false });
             
-            window.addEventListener('modal:before-open', (e) => {
-                expect(e.detail.modalId).toBe(modal.id);
-                done();
-            }, { once: true });
+            const beforeOpenPromise = new Promise((resolve) => {
+                window.addEventListener('modal:before-open', (e) => {
+                    expect(e.detail.modalId).toBe(modal.id);
+                    resolve();
+                }, { once: true });
+            });
             
             modal.open();
+            await beforeOpenPromise;
         });
 
-        it('should emit open event', (done) => {
+        it('should emit open event', async () => {
             const modal = new Modal({ animation: false });
             
-            window.addEventListener('modal:open', (e) => {
-                expect(e.detail.modalId).toBe(modal.id);
-                done();
-            }, { once: true });
+            const openPromise = new Promise((resolve) => {
+                window.addEventListener('modal:open', (e) => {
+                    expect(e.detail.modalId).toBe(modal.id);
+                    resolve();
+                }, { once: true });
+            });
             
             modal.open();
+            await openPromise;
         });
 
         it('should focus first element', async () => {
@@ -257,28 +263,34 @@ describe('Modal Component', () => {
             expect(document.body.contains(modal.element)).toBe(false);
         });
 
-        it('should emit before-close event', (done) => {
+        it('should emit before-close event', async () => {
             const modal = new Modal({ animation: false });
             modal.open();
             
-            window.addEventListener('modal:before-close', (e) => {
-                expect(e.detail.modalId).toBe(modal.id);
-                done();
-            }, { once: true });
+            const beforeClosePromise = new Promise((resolve) => {
+                window.addEventListener('modal:before-close', (e) => {
+                    expect(e.detail.modalId).toBe(modal.id);
+                    resolve();
+                }, { once: true });
+            });
             
             modal.close();
+            await beforeClosePromise;
         });
 
-        it('should emit close event', (done) => {
+        it('should emit close event', async () => {
             const modal = new Modal({ animation: false });
             modal.open();
             
-            window.addEventListener('modal:close', (e) => {
-                expect(e.detail.modalId).toBe(modal.id);
-                done();
-            }, { once: true });
+            const closePromise = new Promise((resolve) => {
+                window.addEventListener('modal:close', (e) => {
+                    expect(e.detail.modalId).toBe(modal.id);
+                    resolve();
+                }, { once: true });
+            });
             
             modal.close();
+            await closePromise;
         });
 
         it('should restore focus', async () => {
@@ -595,14 +607,17 @@ describe('Modal Component', () => {
             expect(document.body.contains(modal.element)).toBe(true);
         });
 
-        it('should allow event listeners', (done) => {
+        it('should allow event listeners', async () => {
             const modal = new Modal({ animation: false });
             
-            modal.on('open', () => {
-                done();
+            const openPromise = new Promise((resolve) => {
+                modal.on('open', () => {
+                    resolve();
+                });
             });
             
             modal.open();
+            await openPromise;
         });
 
         it('should remove event listeners', () => {

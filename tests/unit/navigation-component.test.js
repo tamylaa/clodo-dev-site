@@ -171,12 +171,15 @@ describe('NavigationComponent', () => {
             expect(state.initialized).toBe(true);
         });
 
-        it('should emit ready event on init', (t, done) => {
-            window.addEventListener('nav:ready', () => {
-                done();
-            }, { once: true });
+        it('should emit ready event on init', async () => {
+            const readyPromise = new Promise((resolve) => {
+                window.addEventListener('nav:ready', () => {
+                    resolve();
+                }, { once: true });
+            });
             
             NavigationComponent.init();
+            await readyPromise;
         });
 
         it('should accept configuration options', () => {
@@ -210,22 +213,25 @@ describe('NavigationComponent', () => {
             assert.strictEqual(menu.classList.contains('active'), false);
         });
 
-        it('should emit toggle event when opening/closing', (t, done) => {
+        it('should emit toggle event when opening/closing', async () => {
             const toggle = document.querySelector('#mobile-menu-toggle');
             let eventCount = 0;
             
-            window.addEventListener('nav:mobile-toggle', (e) => {
-                eventCount++;
-                if (eventCount === 1) {
-                    assert.strictEqual(e.detail.open, true);
-                } else if (eventCount === 2) {
-                    assert.strictEqual(e.detail.open, false);
-                    done();
-                }
+            const togglePromise = new Promise((resolve) => {
+                window.addEventListener('nav:mobile-toggle', (e) => {
+                    eventCount++;
+                    if (eventCount === 1) {
+                        assert.strictEqual(e.detail.open, true);
+                    } else if (eventCount === 2) {
+                        assert.strictEqual(e.detail.open, false);
+                        resolve();
+                    }
+                });
             });
             
             click(toggle);
             click(toggle);
+            await togglePromise;
         });
 
         it('should close menu on link click', () => {
