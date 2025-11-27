@@ -7,7 +7,7 @@
  * Can auto-discover zone/account info using API token.
  *
  * Usage:
- *   node scripts/validate-cloudflare-analytics.js <API_TOKEN> [DOMAIN] [BEACON_TOKEN]
+ *   node tools/validate-cloudflare-analytics.js <API_TOKEN> [DOMAIN] [BEACON_TOKEN]
  *
  * If DOMAIN is not provided, will try to auto-discover from zones.
  * If BEACON_TOKEN is provided, will update analytics.html non-interactively.

@@ -12,7 +12,7 @@
     "strict": false
   },
   "include": [
-    "dev-server.js",
-    "build.js"
+    "../build/dev-server.js",
+    "../build/build.js"
   ]
 }

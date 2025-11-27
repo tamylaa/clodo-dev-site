@@ -337,15 +337,13 @@ npm test
 ### Project Structure
 ```
 clodo-framework/
-├── src/                    # Source code
-│   ├── core/              # Core orchestration engine
-│   ├── modules/           # Enterprise modules
-│   ├── security/          # Security components
-│   └── utils/             # Utilities
-├── examples/              # Production examples
-├── docs/                  # Documentation
+├── config/                # Configuration files
+├── build/                 # Build scripts
+├── tools/                 # Development utilities
+├── reports/               # Build reports and analysis
+├── docs/                  # Documentation (organized by type)
 ├── tests/                 # Test suites
-└── scripts/               # Build and deployment scripts
+└── public/                # Static assets and HTML
 ```
 
 ## 🌟 Who's Using Clodo?
