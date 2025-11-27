@@ -69,7 +69,13 @@ function copyHtml() {
         'blog/index.html',
         'blog/debugging-silent-build-failures.html',
         'blog/instant-try-it-impact.html',
-        'blog/stackblitz-integration-journey.html'
+        'blog/stackblitz-integration-journey.html',
+        // Community pages
+        'community/welcome.html',
+        // Case study pages
+        'case-studies/index.html',
+        'case-studies/fintech-payment-platform.html',
+        'case-studies/healthcare-saas-platform.html'
     ];
 
     htmlFiles.forEach(file => {
@@ -94,11 +100,11 @@ function copyHtml() {
             // Replace header placeholder with actual header content
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
 
-            // Process SSI includes
-            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/nav-main\.html" -->/gm, navMainTemplate);
-            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/footer\.html" -->/gm, footerTemplate);
-            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/header\.html" -->/gm, headerTemplate);
-            content = content.replace(/^\s*<!--#include file="\.\.\/templates\/hero\.html" -->/gm, heroTemplate);
+            // Process SSI includes (handles any indentation)
+            content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, footerTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/header\.html" -->/g, headerTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/hero\.html" -->/g, heroTemplate);
 
             // Replace hero placeholder with actual hero content (legacy support)
             content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);

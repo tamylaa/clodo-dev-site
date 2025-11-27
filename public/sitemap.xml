@@ -181,4 +181,36 @@
         <priority>0.6</priority>
     </url>
 
+    <!-- Community -->
+    <url>
+        <loc>https://clodo.dev/community/welcome.html</loc>
+        <lastmod>2025-11-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Case Studies Hub -->
+    <url>
+        <loc>https://clodo.dev/case-studies/</loc>
+        <lastmod>2025-11-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Case Study: Fintech Payment Platform -->
+    <url>
+        <loc>https://clodo.dev/case-studies/fintech-payment-platform.html</loc>
+        <lastmod>2025-11-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Case Study: Healthcare SaaS Platform -->
+    <url>
+        <loc>https://clodo.dev/case-studies/healthcare-saas-platform.html</loc>
+        <lastmod>2025-11-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
 </urlset>
