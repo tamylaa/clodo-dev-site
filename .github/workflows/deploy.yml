@@ -1,5 +1,9 @@
 name: Deploy to Cloudflare Pages
 
+# Production deployment workflow
+# Runs on push to master branch only
+# Builds and deploys to Cloudflare Pages
+
 on:
   push:
     branches: [ master ]
