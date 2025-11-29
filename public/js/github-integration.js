@@ -54,7 +54,7 @@ async function fetchGitHubStars() {
 }
 
 // Initialize GitHub integration when this module loads
-fetchGitHubStars();
+// fetchGitHubStars();
 
 // Exports for unit tests (Node/CommonJS environment)
 /* eslint-disable no-undef */

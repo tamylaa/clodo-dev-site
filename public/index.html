@@ -302,6 +302,20 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
+    
+    <!-- Critical Theme Script - Prevents FOUC -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.style.colorScheme = theme;
+            } catch (e) { console.error('Theme init failed', e); }
+        })();
+    </script>
+
     <!-- Core Web Vitals Optimization - REMOVED unnecessary preloads -->
     <!-- Performance monitoring -->
     <script>
@@ -396,8 +410,9 @@
     }
     </script>
     <!-- Analytics -->
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <!-- Analytics - Temporarily disabled for LCP optimization -->
+<!-- Google Analytics 4 - Disabled to reduce load delay -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -408,7 +423,7 @@
     'allow_google_signals': true,
     'allow_ad_personalization_signals': false
   });
-</script>
+</script> -->
 
 <!-- Enhanced SEO Tracking -->
 <script>
@@ -1209,6 +1224,11 @@ const token = clodo.generateToken({
     <!-- Defer JavaScript - load after LCP for better performance -->
     <script src="js/init-systems.js" defer nonce="N0Nc3Cl0d0"></script>
     <script src="script.js" defer nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Using system fonts for optimal performance (removed Google Fonts) -->
 </body>
 </html>
 

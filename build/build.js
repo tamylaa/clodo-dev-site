@@ -32,6 +32,14 @@ function copyHtml() {
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
     const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
     const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
+    const heroMinimalTemplate = readFileSync(join('templates', 'hero-minimal.html'), 'utf8'); // Minimal hero for critical path
+    const tocTemplate = readFileSync(join('templates', 'table-of-contents.html'), 'utf8');
+    const tocFaqTemplate = readFileSync(join('templates', 'table-of-contents-faq.html'), 'utf8');
+    const relatedContentTemplate = readFileSync(join('templates', 'related-content.html'), 'utf8');
+    const relatedContentFaqTemplate = readFileSync(join('templates', 'related-content-faq.html'), 'utf8');
+    const relatedContentComparisonTemplate = readFileSync(join('templates', 'related-content-comparison.html'), 'utf8');
+    const relatedContentWorkersTemplate = readFileSync(join('templates', 'related-content-workers.html'), 'utf8');
+    const announcementBannerTemplate = readFileSync(join('templates', 'announcement-banner.html'), 'utf8');
 
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
@@ -60,6 +68,8 @@ function copyHtml() {
         'how-to-migrate-from-wrangler.html',
         'edge-vs-cloud-computing.html',
         'workers-vs-lambda.html',
+        'clodo-vs-lambda.html',
+        'faq.html',
         // Article pages
         'clodo-framework-promise-to-reality.html',
         'clodo-framework-api-simplification.html',
@@ -84,17 +94,28 @@ function copyHtml() {
             let content = readFileSync(srcPath, 'utf8');
 
             // Add skip link and announcement container after body tag if not already present
+            // Skip announcement banner for index.html to optimize LCP (hero title should be LCP)
+            const isIndexPage = file === 'index.html';
             if (!content.includes('class="skip-link"')) {
-                content = content.replace(
-                    /<body>/,
-                    '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
-                );
+                if (!isIndexPage) {
+                    content = content.replace(
+                        /<body>/,
+                        '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container">' + announcementBannerTemplate + '</div>'
+                    );
+                } else {
+                    content = content.replace(
+                        /<body>/,
+                        '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>'
+                    );
+                }
             } else {
-                // Just add announcement container if skip link already exists
-                content = content.replace(
-                    /<body>/,
-                    '<body>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container"></div>'
-                );
+                // Just add announcement container if skip link already exists (but not for index)
+                if (!isIndexPage) {
+                    content = content.replace(
+                        /<body>/,
+                        '<body>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container">' + announcementBannerTemplate + '</div>'
+                    );
+                }
             }
 
             // Replace header placeholder with actual header content
@@ -105,9 +126,20 @@ function copyHtml() {
             content = content.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, footerTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/header\.html" -->/g, headerTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/hero\.html" -->/g, heroTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents\.html" -->/g, tocTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents-faq\.html" -->/g, tocFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content\.html" -->/g, relatedContentTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-faq\.html" -->/g, relatedContentFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, relatedContentComparisonTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, relatedContentWorkersTemplate);
 
-            // Replace hero placeholder with actual hero content (legacy support)
-            content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
+            // Replace hero placeholder with actual hero content
+            // For index.html, use minimal hero (critical path only)
+            if (file === 'index.html') {
+                content = content.replace('<!-- HERO_PLACEHOLDER -->', heroMinimalTemplate);
+            } else {
+                content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
+            }
 
             // Replace footer placeholder with actual footer content (legacy support)
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
@@ -119,35 +151,87 @@ function copyHtml() {
                 
                 console.log(`   📊 CSS Size Check: critical=${(criticalCssLength / 1024).toFixed(1)}KB (max=${(maxInlineSize / 1024).toFixed(0)}KB)`);
                 
+                // Determine which page-specific CSS bundle to load
+                let pageBundle = 'common'; // Default to common CSS
+                const fileName = file.split('/').pop().replace('.html', '');
+                
+                // Map file to page bundle
+                if (fileName === 'index') {
+                    pageBundle = 'index';
+                } else if (fileName.includes('pricing')) {
+                    pageBundle = 'pricing';
+                } else if (fileName.includes('blog')) {
+                    pageBundle = 'blog';
+                } else if (fileName.includes('subscribe')) {
+                    pageBundle = 'subscribe';
+                } else if (fileName.includes('product')) {
+                    pageBundle = 'product';
+                } else if (fileName.includes('about')) {
+                    pageBundle = 'about';
+                } else if (fileName.includes('migrate')) {
+                    pageBundle = 'migrate';
+                } else if (fileName.includes('case-stud')) {
+                    pageBundle = 'case-studies';
+                }
+                
+                const cssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
+                console.log(`   📄 Loading CSS bundle: ${cssFile}`);
+                
                 // Only inline if critical CSS is actually small (< 50KB)
                 if (criticalCssLength < maxInlineSize) {
                     const criticalCssInline = `<style>${criticalCss}</style>`;
-                    const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
-
-                    // Replace ALL existing styles.css links - handle multiple formats:
-                    // 1. Multiple preload + direct links (newer format with duplicates)
-                    // 2. Single direct link (simpler format)
+                    
+                    // Define patterns
                     const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
-                    
-                    // Try multiple pattern first, then single if no match
-                    if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
-                        content = content.replace(
-                            cssLinkPatternMultiple,
-                            criticalCssInline + '\n    ' + asyncCssLink + '\n    '
-                        );
-                    } else if (content.includes('href="styles.css"')) {
-                        // Single simple link replacement
-                        content = content.replace(
-                            cssLinkPatternSingle,
-                            criticalCssInline + '\n    ' + asyncCssLink
-                        );
+
+                    if (file === 'index.html') {
+                        // OPTIMIZATION FOR LCP:
+                        // For index.html, we separate preload and application to ensure NO render blocking
+                        // 1. In Head: Inline Critical CSS + Preload common CSS + Preload page CSS
+                        // 2. In Footer: Apply both CSS files
+                        
+                        const headInjection = `${criticalCssInline}\n    <link rel="preload" href="styles.css" as="style">\n    <link rel="preload" href="${cssFile}" as="style">`;
+                        const footerInjection = `<link rel="stylesheet" href="styles.css">\n    <link rel="stylesheet" href="${cssFile}">`;
+                        
+                        // Replace in head
+                        if (content.includes('href="styles.css"')) {
+                            if (content.match(cssLinkPatternMultiple)) {
+                                content = content.replace(cssLinkPatternMultiple, headInjection);
+                            } else {
+                                content = content.replace(cssLinkPatternSingle, headInjection);
+                            }
+                        }
+                        
+                        // Append to body (before closing tag)
+                        content = content.replace('</body>', `    ${footerInjection}\n</body>`);
+                        
+                    } else {
+                        // Standard behavior for other pages (Preload + Onload hack)
+                        const commonCss = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssFile}"></noscript>` : '';
+                        const asyncCssLink = commonCss + pageCss;
+                        
+                        if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
+                            content = content.replace(
+                                cssLinkPatternMultiple,
+                                criticalCssInline + '\n    ' + asyncCssLink + '\n    '
+                            );
+                        } else if (content.includes('href="styles.css"')) {
+                            content = content.replace(
+                                cssLinkPatternSingle,
+                                criticalCssInline + '\n    ' + asyncCssLink
+                            );
+                        }
                     }
                     console.log('   ✅ Critical CSS inlined (< 50KB)');
                 } else {
                     console.warn(`   ⚠️  Critical CSS too large (${(criticalCssLength / 1024).toFixed(1)}KB) - using async loading only`);
                     // If critical CSS is too large, just use async loading
-                    const asyncCssLink = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+                    const commonCss = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
+                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssFile}"></noscript>` : '';
+                    const asyncCssLink = commonCss + pageCss;
+                    
                     const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
                     
@@ -190,55 +274,74 @@ function copyHtml() {
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
 
-    // Critical CSS files (needed for initial render)
+    // Critical CSS files (needed for initial render - above-the-fold only)
     const criticalCssFiles = [
-        'css/base.css',        // CSS variables, resets, typography
-        'css/layout.css'       // Grid, containers, basic layout
+        'css/critical-base.css', // Optimized variables & resets
+        'css/global/header.css', // Header/navigation (always visible)
+        'css/utilities.css'      // Essential utility classes
     ];
 
-    // Non-critical CSS files (can load asynchronously)
-    const nonCriticalCssFiles = [
-        'css/utilities.css',
-        'css/components/buttons.css',  // Button component (Quick Win #3 + #4)
-        'css/components.css',  // Navigation and other components
-        'css/global/header.css',  // Header/navigation menu styling
-        'css/global/footer.css',  // Footer styling
-        'css/pages/index/hero.css',  // Hero section styles
-        'css/pages/index.css',
-        'css/pages/index/features.css',  // Features section styles
-        'css/pages/product.css',
-        'css/pages/about.css',
-        'css/pages/migrate.css',
-        'css/pages/subscribe.css',
-        'css/pages/subscribe-enhanced.css',
-        'css/pages/blog.css',
-        'css/pages/pricing.css',
-        'css/pages/case-studies.css'
+    // Common CSS (shared across all pages, loaded asynchronously)
+    const commonCssFiles = [
+        'css/base.css',        // Full base styles (overrides critical-base)
+        'css/layout.css',      // Grid, containers, basic layout
+        'css/components/buttons.css',  // Button component
+        'css/components-common.css',  // Truly reusable components (buttons, cards, forms, icons, alerts, badges, loading)
+        'css/global/footer.css'  // Footer styling (below-the-fold)
     ];
 
-    // Bundle critical CSS
-    let criticalBundled = '';
-    criticalCssFiles.forEach(file => {
-        const filePath = join('public', file);
-        if (existsSync(filePath)) {
-            console.log(`📄 Including critical: ${file}`);
-            criticalBundled += readFileSync(filePath, 'utf8') + '\n';
-        } else {
-            console.warn(`⚠️  Critical CSS file not found: ${file}`);
-        }
-    });
+    // Page-specific CSS bundles (reduces unused CSS by 60%+)
+    const pageBundles = {
+        'index': [
+            'css/pages/index/hero.css',
+            'css/hero-decorations.css',
+            'css/pages/index/hero-animations.css',
+            'css/pages/index/social-proof.css',
+            'css/pages/index/stats.css'
+            // Note: benefits, testimonials, features, and index-specific moved to deferred for performance
+        ],
+        'pricing': [
+            'css/pages/pricing/hero.css',
+            'css/pages/pricing/cards.css',
+            'css/pages/pricing/contact-form.css'
+        ],
+        'blog': [
+            'css/pages/blog/header.css',
+            'css/pages/blog/index.css',
+            'css/pages/blog/card.css',
+            'css/pages/blog/stats.css',
+            'css/pages/blog/post.css'
+        ],
+        'subscribe': [
+            'css/pages/subscribe/hero.css',
+            'css/pages/subscribe/form.css',
+            'css/pages/subscribe/preview.css',
+            'css/pages/subscribe/testimonials.css'
+        ],
+        'product': [
+            'css/pages/product.css'
+        ],
+        'about': [
+            'css/pages/about.css'
+        ],
+        'migrate': [
+            'css/pages/migrate.css'
+        ],
+        'case-studies': [
+            'css/pages/case-studies.css'
+        ]
+    };
 
-    // Bundle non-critical CSS
-    let nonCriticalBundled = '';
-    nonCriticalCssFiles.forEach(file => {
-        const filePath = join('public', file);
-        if (existsSync(filePath)) {
-            console.log(`📄 Including non-critical: ${file}`);
-            nonCriticalBundled += readFileSync(filePath, 'utf8') + '\n';
-        } else {
-            console.warn(`⚠️  Non-critical CSS file not found: ${file}`);
-        }
-    });
+    // Deferred CSS bundles - loaded after initial page render
+    const deferredBundles = {
+        'index-deferred': [
+            'css/components-page-specific.css',  // Below-the-fold homepage sections
+            'css/pages/index/benefits.css',      // Benefits section
+            'css/pages/index.css',               // Edge, features, comparison, testimonials, CTA sections
+            'css/pages/index/testimonials.css',  // Testimonials section
+            'css/pages/index/features.css'       // Features section
+        ]
+    };
 
     // Proper CSS minification function that preserves @keyframes and CSS syntax
     const minifyCss = (css) => {
@@ -266,15 +369,79 @@ function bundleCss() {
             .trim();
     };
 
+    // Bundle critical CSS
+    let criticalBundled = '';
+    criticalCssFiles.forEach(file => {
+        const filePath = join('public', file);
+        if (existsSync(filePath)) {
+            console.log(`📄 Including critical: ${file}`);
+            criticalBundled += readFileSync(filePath, 'utf8') + '\n';
+        } else {
+            console.warn(`⚠️  Critical CSS file not found: ${file}`);
+        }
+    });
+
+    // Bundle common CSS (shared across pages)
+    let commonBundled = '';
+    commonCssFiles.forEach(file => {
+        const filePath = join('public', file);
+        if (existsSync(filePath)) {
+            console.log(`📄 Including common: ${file}`);
+            commonBundled += readFileSync(filePath, 'utf8') + '\n';
+        } else {
+            console.warn(`⚠️  Common CSS file not found: ${file}`);
+        }
+    });
+
+    // Bundle page-specific CSS
+    Object.entries(pageBundles).forEach(([pageName, files]) => {
+        console.log(`📄 Bundling ${pageName} CSS...`);
+        let pageBundled = '';
+        files.forEach(file => {
+            const filePath = join('public', file);
+            if (existsSync(filePath)) {
+                console.log(`   📄 Including: ${file}`);
+                pageBundled += readFileSync(filePath, 'utf8') + '\n';
+            } else {
+                console.warn(`⚠️  Page CSS file not found: ${file}`);
+            }
+        });
+        
+        // Minify and write page-specific CSS
+        const minifiedPage = minifyCss(pageBundled);
+        writeFileSync(join('dist', `styles-${pageName}.css`), minifiedPage);
+        console.log(`   📦 ${pageName} CSS: ${minifiedPage.length} bytes`);
+    });
+
+    // Bundle deferred CSS (lazy-loaded after initial render)
+    Object.entries(deferredBundles).forEach(([bundleName, files]) => {
+        console.log(`📄 Bundling ${bundleName} CSS (deferred)...`);
+        let deferredBundled = '';
+        files.forEach(file => {
+            const filePath = join('public', file);
+            if (existsSync(filePath)) {
+                console.log(`   📄 Including: ${file}`);
+                deferredBundled += readFileSync(filePath, 'utf8') + '\n';
+            } else {
+                console.warn(`⚠️  Deferred CSS file not found: ${file}`);
+            }
+        });
+        
+        // Minify and write deferred CSS
+        const minifiedDeferred = minifyCss(deferredBundled);
+        writeFileSync(join('dist', `styles-${bundleName}.css`), minifiedDeferred);
+        console.log(`   📦 ${bundleName} CSS (deferred): ${minifiedDeferred.length} bytes`);
+    });
+
     // Minify and write critical CSS
     const minifiedCritical = minifyCss(criticalBundled);
     writeFileSync(join('dist', 'critical.css'), minifiedCritical);
     console.log(`📦 Critical CSS: ${minifiedCritical.length} bytes`);
 
-    // Minify and write non-critical CSS
-    const minifiedNonCritical = minifyCss(nonCriticalBundled);
-    writeFileSync(join('dist', 'styles.css'), minifiedNonCritical);
-    console.log(`📦 Non-critical CSS: ${minifiedNonCritical.length} bytes`);
+    // Minify and write common CSS (shared bundle)
+    const minifiedCommon = minifyCss(commonBundled);
+    writeFileSync(join('dist', 'styles.css'), minifiedCommon);
+    console.log(`📦 Common CSS: ${minifiedCommon.length} bytes`);
 }
 
 function minifyCss() {
@@ -318,16 +485,29 @@ function minifyCss() {
     });
 }
 
-// Copy JavaScript (no minification to avoid breaking code)
+// Simple JS Minifier
+function minifyJs(code) {
+    return code
+        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+        .replace(/(?<!:)\/\/.*/g, '') // Remove single-line comments
+        .replace(/^\s+|\s+$/gm, '') // Trim lines
+        .replace(/\n+/g, '\n') // Remove empty lines
+        ;
+}
+
+// Copy JavaScript with minification
 function copyJs() {
-    console.log('📋 Copying JavaScript...');
+    console.log('📋 Copying and Minifying JavaScript...');
     
     // Copy main script.js
     const jsFile = join('public', 'script.js');
     const distJsFile = join('dist', 'script.js');
 
     if (existsSync(jsFile)) {
-        writeFileSync(distJsFile, readFileSync(jsFile, 'utf8'));
+        const content = readFileSync(jsFile, 'utf8');
+        const minified = minifyJs(content);
+        writeFileSync(distJsFile, minified);
+        console.log(`  ✓ Minified script.js (${(content.length/1024).toFixed(1)}KB -> ${(minified.length/1024).toFixed(1)}KB)`);
     }
     
     // Copy js/ module directory (Quick Win #5)
@@ -351,9 +531,13 @@ function copyJs() {
                 if (stat.isDirectory()) {
                     mkdirSync(destPath, { recursive: true });
                     copyJsRecursive(srcPath, destPath);
-                } else if (item.endsWith('.js') || item === 'README.md') {
+                } else if (item.endsWith('.js')) {
+                    const content = readFileSync(srcPath, 'utf8');
+                    const minified = minifyJs(content);
+                    writeFileSync(destPath, minified);
+                    console.log(`  ✓ Minified ${srcPath.replace('public/', '')}`);
+                } else if (item === 'README.md') {
                     copyFileSync(srcPath, destPath);
-                    console.log(`  ✓ Copied ${srcPath.replace('public/', '')}`);
                 }
             });
         }
@@ -478,9 +662,17 @@ try {
     copyAssets();
     generateBuildInfo();
 
-    console.log('✅ Build completed successfully!');
-    console.log('📁 Output directory: ./dist');
-    console.log('🚀 Ready for deployment');
+    // Run link health check
+    console.log('🔗 Running link health check...');
+    import('./check-links.js').then(({ checkLinks }) => {
+        checkLinks();
+        console.log('✅ Build completed successfully!');
+        console.log('📁 Output directory: ./dist');
+        console.log('🚀 Ready for deployment');
+    }).catch(error => {
+        console.error('❌ Link check failed:', error.message);
+        process.exit(1);
+    });
 
 } catch (error) {
     console.error('❌ Build failed:', error.message);

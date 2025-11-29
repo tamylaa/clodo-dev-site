@@ -92,10 +92,79 @@
             <div class="container">
                 <div class="content-grid">
                     <article class="main-content">
-                        <h2>Understanding Cloudflare Workers</h2>
+                        <div class="table-of-contents">
+                            <h2>Table of Contents</h2>
+                            <nav aria-label="Table of contents">
+                                <ul>
+                                    <li><a href="#understanding-workers">Understanding Cloudflare Workers</a>
+                                        <ul>
+                                            <li><a href="#how-workers-work">How Workers Work</a></li>
+                                            <li><a href="#workers-runtime">Workers Runtime Environment</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#workers-vs-traditional">Workers vs Traditional Serverless</a></li>
+                                    <li><a href="#building-applications">Building Applications with Workers</a></li>
+                                    <li><a href="#deployment-development">Deployment and Development</a></li>
+                                    <li><a href="#best-practices">Best Practices for Workers</a></li>
+                                    <li><a href="#workers-with-clodo">Workers with Clodo Framework</a></li>
+                                    <li><a href="#getting-started">Getting Started with Workers</a></li>
+                                    <li><a href="#workers-vs-traditional-detailed">Cloudflare Workers vs Traditional Serverless</a>
+                                        <ul>
+                                            <li><a href="#performance-advantages">Performance Advantages</a></li>
+                                            <li><a href="#cold-start-elimination">Cold Start Elimination</a></li>
+                                            <li><a href="#global-distribution">Global Distribution</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#deployment-strategies">Cloudflare Workers Deployment Strategies</a>
+                                        <ul>
+                                            <li><a href="#single-worker-architecture">Single Worker Architecture</a></li>
+                                            <li><a href="#multi-worker-architecture">Multi-Worker Architecture</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#performance-optimization">Cloudflare Workers Performance Optimization</a>
+                                        <ul>
+                                            <li><a href="#runtime-optimization">Runtime Optimization</a></li>
+                                            <li><a href="#network-optimization">Network Optimization</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#security-best-practices">Cloudflare Workers Security Best Practices</a>
+                                        <ul>
+                                            <li><a href="#input-validation">Input Validation and Sanitization</a></li>
+                                            <li><a href="#authentication-authorization">Authentication and Authorization</a></li>
+                                            <li><a href="#rate-limiting">Rate Limiting and Abuse Prevention</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#cost-optimization">Cloudflare Workers Cost Optimization</a>
+                                        <ul>
+                                            <li><a href="#pricing-structure">Pricing Structure</a></li>
+                                            <li><a href="#optimization-strategies">Optimization Strategies</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#monitoring-debugging">Cloudflare Workers Monitoring and Debugging</a>
+                                        <ul>
+                                            <li><a href="#built-in-monitoring">Built-in Monitoring</a></li>
+                                            <li><a href="#custom-monitoring">Custom Monitoring</a></li>
+                                            <li><a href="#debugging-techniques">Debugging Techniques</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#advanced-patterns">Advanced Cloudflare Workers Patterns</a>
+                                        <ul>
+                                            <li><a href="#middleware-pattern">Middleware Pattern</a></li>
+                                            <li><a href="#service-worker-pattern">Service Worker Pattern</a></li>
+                                            <li><a href="#edge-computing-patterns">Edge Computing Patterns</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#related-content">Related Content & Resources</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <h2 id="understanding-workers">Understanding Cloudflare Workers</h2>
                         <p>Cloudflare Workers are serverless functions that run on Cloudflare's global edge network, bringing computation closer to your users for improved performance and reduced latency.</p>
 
-                        <h3>How Workers Work</h3>
+                        <p>If you're new to Cloudflare Workers, start with our <a href="what-is-cloudflare-workers.html">introduction to what Workers are</a>. For a detailed comparison with traditional serverless platforms, see our <a href="workers-vs-lambda.html">Workers vs AWS Lambda guide</a>.</p>
+
+                        <h3 id="how-workers-work">How Workers Work</h3>
                         <p>Workers run on Cloudflare's edge servers located in over 200 cities worldwide. When a request comes in, it's routed to the nearest edge server where your Worker executes, eliminating the round trip to origin servers.</p>
 
                         <div class="workers-diagram">
@@ -119,7 +188,7 @@
                             </div>
                         </div>
 
-                        <h3>Workers Runtime Environment</h3>
+                        <h3 id="workers-runtime">Workers Runtime Environment</h3>
                         <div class="runtime-features">
                             <div class="feature">
                                 <h4>🚀 V8 JavaScript Engine</h4>
@@ -147,7 +216,8 @@
                             </div>
                         </div>
 
-                        <h2>Workers vs Traditional Serverless</h2>
+                        <h2 id="workers-vs-traditional">Workers vs Traditional Serverless</h2>
+                        <p>For a detailed comparison of Cloudflare Workers versus AWS Lambda, including performance benchmarks and cost analysis, see our comprehensive <a href="workers-vs-lambda.html">Workers vs Lambda guide</a>.</p>
                         <table class="comparison-table">
                             <thead>
                                 <tr>
@@ -197,7 +267,7 @@
                             </tbody>
                         </table>
 
-                        <h2>Building Applications with Workers</h2>
+                        <h2 id="building-applications">Building Applications with Workers</h2>
                         <div class="building-blocks">
                             <div class="building-block">
                                 <h3>API Development</h3>
@@ -270,7 +340,8 @@
                             </div>
                         </div>
 
-                        <h2>Deployment and Development</h2>
+                        <h2 id="deployment-development">Deployment and Development</h2>
+                        <p>Learn about deployment strategies, CI/CD integration, and production best practices in our comprehensive <a href="development-deployment-guide.html">development and deployment guide</a>.</p>
                         <div class="development-workflow">
                             <div class="workflow-step">
                                 <h4>1. Local Development</h4>
@@ -307,7 +378,7 @@ id = "your-kv-namespace-id"
 command = "npm run build"</code></pre>
                         </div>
 
-                        <h2>Best Practices for Workers</h2>
+                        <h2 id="best-practices">Best Practices for Workers</h2>
                         <div class="best-practices">
                             <div class="practice">
                                 <h4>⚡ Optimize Performance</h4>
@@ -350,7 +421,7 @@ command = "npm run build"</code></pre>
                             </div>
                         </div>
 
-                        <h2>Workers with Clodo Framework</h2>
+                        <h2 id="workers-with-clodo">Workers with Clodo Framework</h2>
                         <p>Clodo Framework simplifies building complex applications with Workers by providing higher-level abstractions and developer-friendly APIs.</p>
 
                         <div class="clodo-benefits">
@@ -372,7 +443,7 @@ command = "npm run build"</code></pre>
                             </div>
                         </div>
 
-                        <h2>Getting Started with Workers</h2>
+                        <h2 id="getting-started">Getting Started with Workers</h2>
                         <p>Ready to build your first Cloudflare Worker? Here's how to get started:</p>
                         <ol>
                             <li><strong>Sign up for Cloudflare:</strong> Create a free account at cloudflare.com</li>
@@ -382,42 +453,25 @@ command = "npm run build"</code></pre>
                             <li><strong>Deploy globally:</strong> <code>wrangler deploy</code></li>
                         </ol>
 
-                        <h2>Further Reading</h2>
-                        <div class="further-reading">
-                            <div class="reading-item">
-                                <h4><a href="what-is-cloudflare-workers.html">What are Cloudflare Workers?</a></h4>
-                                <p>Learn the basics of Cloudflare Workers and how they enable serverless computing at the edge.</p>
-                            </div>
-                            <div class="reading-item">
-                                <h4><a href="workers-vs-lambda.html">Workers vs AWS Lambda</a></h4>
-                                <p>In-depth comparison of Cloudflare Workers and AWS Lambda performance, cost, and developer experience.</p>
-                            </div>
-                            <div class="reading-item">
-                                <h4><a href="how-to-migrate-from-wrangler.html">Migrate from Wrangler to Clodo</a></h4>
-                                <p>Step-by-step guide to migrating existing Wrangler projects to Clodo Framework.</p>
-                            </div>
-                            <div class="reading-item">
-                                <h4><a href="clodo-framework-guide.html">Clodo Framework Guide</a></h4>
-                                <p>Discover how Clodo Framework enhances Cloudflare Workers with enterprise features.</p>
-                            </div>
-                        </div>
+                        <h2 id="related-content">Related Content & Resources</h2>
+                        <!--#include file="../templates/related-content.html" -->
 
-                        <h2>Cloudflare Workers vs Traditional Serverless</h2>
+                        <h2 id="workers-vs-traditional-detailed">Cloudflare Workers vs Traditional Serverless</h2>
                         <p>When comparing Cloudflare Workers to traditional serverless platforms like AWS Lambda or Google Cloud Functions, several key differences emerge that make Workers particularly suitable for certain use cases.</p>
 
-                        <h3>Performance Advantages</h3>
+                        <h3 id="performance-advantages">Performance Advantages</h3>
                         <p>Cloudflare Workers execute at the edge, typically within milliseconds of user requests. Traditional serverless functions often run in centralized regions, adding network latency. For global applications, Workers can reduce response times by 50-80% compared to regional serverless deployments.</p>
 
-                        <h3>Cold Start Elimination</h3>
+                        <h3 id="cold-start-elimination">Cold Start Elimination</h3>
                         <p>Unlike traditional serverless functions that experience cold starts (initialization delays of 100ms to several seconds), Cloudflare Workers maintain persistent runtime environments. This makes them ideal for latency-sensitive applications like API gateways, authentication services, and real-time data processing.</p>
 
-                        <h3>Global Distribution</h3>
-                        <p>With over 200 edge locations worldwide, Cloudflare Workers provide true global distribution out of the box. Traditional serverless platforms require multi-region deployments and global load balancers to achieve similar coverage, significantly increasing complexity and cost.</p>
+                        <h3 id="global-distribution">Global Distribution</h3>
+                        <p>With over 200 edge locations worldwide, Cloudflare Workers provide true global distribution out of the box. For a deeper understanding of edge computing concepts and benefits, explore our <a href="edge-computing-guide.html">comprehensive edge computing guide</a>.</p>
 
-                        <h2>Cloudflare Workers Deployment Strategies</h2>
+                        <h2 id="deployment-strategies">Cloudflare Workers Deployment Strategies</h2>
                         <p>Effective deployment of Cloudflare Workers requires understanding various strategies for different use cases and scaling requirements.</p>
 
-                        <h3>Single Worker Architecture</h3>
+                        <h3 id="single-worker-architecture">Single Worker Architecture</h3>
                         <p>For simple applications, a single Worker can handle all routing and logic. This approach works well for small to medium applications with predictable traffic patterns.</p>
 
                         <h4>Routing Patterns</h4>
@@ -427,7 +481,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Header-based routing:</strong> Route based on request headers (API versioning, content negotiation)</li>
                         </ul>
 
-                        <h3>Multi-Worker Architecture</h3>
+                        <h3 id="multi-worker-architecture">Multi-Worker Architecture</h3>
                         <p>Large applications benefit from splitting functionality across multiple Workers. This approach improves maintainability, enables independent deployments, and allows for better resource allocation.</p>
 
                         <h4>Worker Composition Patterns</h4>
@@ -437,10 +491,10 @@ command = "npm run build"</code></pre>
                             <li><strong>Plugin architecture:</strong> Modular Workers that can be combined for different use cases</li>
                         </ul>
 
-                        <h2>Cloudflare Workers Performance Optimization</h2>
+                        <h2 id="performance-optimization">Cloudflare Workers Performance Optimization</h2>
                         <p>Optimizing Cloudflare Workers performance requires understanding both the platform's capabilities and best practices for edge computing.</p>
 
-                        <h3>Runtime Optimization</h3>
+                        <h3 id="runtime-optimization">Runtime Optimization</h3>
                         <p>Workers run on V8 isolates with limited CPU and memory resources. Efficient code is crucial for maintaining low latency and high throughput.</p>
 
                         <h4>Memory Management</h4>
@@ -457,7 +511,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Caching strategies:</strong> Cache expensive computations and API responses</li>
                         </ul>
 
-                        <h3>Network Optimization</h3>
+                        <h3 id="network-optimization">Network Optimization</h3>
                         <p>Since Workers run at the edge, network efficiency directly impacts performance. Minimize data transfer and optimize connection handling.</p>
 
                         <h4>Response Optimization</h4>
@@ -467,10 +521,10 @@ command = "npm run build"</code></pre>
                             <li><strong>Caching headers:</strong> Set appropriate cache-control headers</li>
                         </ul>
 
-                        <h2>Cloudflare Workers Security Best Practices</h2>
+                        <h2 id="security-best-practices">Cloudflare Workers Security Best Practices</h2>
                         <p>Security is paramount when deploying code to the edge. Cloudflare Workers provide several security features and best practices to protect your applications.</p>
 
-                        <h3>Input Validation and Sanitization</h3>
+                        <h3 id="input-validation">Input Validation and Sanitization</h3>
                         <p>All user inputs must be validated and sanitized to prevent injection attacks and malformed data processing.</p>
 
                         <h4>Request Validation</h4>
@@ -480,7 +534,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Sanitization:</strong> Remove or escape potentially dangerous characters</li>
                         </ul>
 
-                        <h3>Authentication and Authorization</h3>
+                        <h3 id="authentication-authorization">Authentication and Authorization</h3>
                         <p>Implement proper authentication and authorization mechanisms to control access to your Workers.</p>
 
                         <h4>JWT Token Validation</h4>
@@ -490,7 +544,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Token refresh:</strong> Handle token renewal securely</li>
                         </ul>
 
-                        <h3>Rate Limiting and Abuse Prevention</h3>
+                        <h3 id="rate-limiting">Rate Limiting and Abuse Prevention</h3>
                         <p>Protect your Workers from abuse using rate limiting and other protective measures.</p>
 
                         <h4>Rate Limiting Strategies</h4>
@@ -500,10 +554,10 @@ command = "npm run build"</code></pre>
                             <li><strong>Progressive delays:</strong> Implement exponential backoff for repeated violations</li>
                         </ul>
 
-                        <h2>Cloudflare Workers Cost Optimization</h2>
-                        <p>Understanding Cloudflare Workers pricing and optimization strategies can significantly reduce operational costs.</p>
+                        <h2 id="cost-optimization">Cloudflare Workers Cost Optimization</h2>
+                        <p>Understanding Cloudflare Workers pricing and optimization strategies can significantly reduce operational costs. For detailed pricing information and billing examples, visit our <a href="pricing.html">pricing page</a>.</p>
 
-                        <h3>Pricing Structure</h3>
+                        <h3 id="pricing-structure">Pricing Structure</h3>
                         <p>Cloudflare Workers pricing is based on three main components: requests, duration, and additional services.</p>
 
                         <h4>Cost Components</h4>
@@ -513,7 +567,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Additional services:</strong> KV storage, Durable Objects, etc.</li>
                         </ul>
 
-                        <h3>Optimization Strategies</h3>
+                        <h3 id="optimization-strategies">Optimization Strategies</h3>
                         <p>Several strategies can help minimize Cloudflare Workers costs while maintaining performance.</p>
 
                         <h4>Request Optimization</h4>
@@ -530,10 +584,10 @@ command = "npm run build"</code></pre>
                             <li><strong>Async processing:</strong> Use background processing for non-critical tasks</li>
                         </ul>
 
-                        <h2>Cloudflare Workers Monitoring and Debugging</h2>
+                        <h2 id="monitoring-debugging">Cloudflare Workers Monitoring and Debugging</h2>
                         <p>Effective monitoring and debugging are essential for maintaining reliable Cloudflare Workers applications.</p>
 
-                        <h3>Built-in Monitoring</h3>
+                        <h3 id="built-in-monitoring">Built-in Monitoring</h3>
                         <p>Cloudflare provides several monitoring tools and dashboards for Workers.</p>
 
                         <h4>Cloudflare Dashboard</h4>
@@ -543,7 +597,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Analytics:</strong> Performance trends and usage patterns</li>
                         </ul>
 
-                        <h3>Custom Monitoring</h3>
+                        <h3 id="custom-monitoring">Custom Monitoring</h3>
                         <p>Implement custom monitoring to track application-specific metrics and business KPIs.</p>
 
                         <h4>Logging Strategies</h4>
@@ -553,7 +607,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Performance monitoring:</strong> Track custom performance metrics</li>
                         </ul>
 
-                        <h3>Debugging Techniques</h3>
+                        <h3 id="debugging-techniques">Debugging Techniques</h3>
                         <p>Debugging Workers requires different approaches than traditional server-side debugging.</p>
 
                         <h4>Debugging Tools</h4>
@@ -563,10 +617,10 @@ command = "npm run build"</code></pre>
                             <li><strong>Request inspection:</strong> Examine request/response data in logs</li>
                         </ul>
 
-                        <h2>Advanced Cloudflare Workers Patterns</h2>
+                        <h2 id="advanced-patterns">Advanced Cloudflare Workers Patterns</h2>
                         <p>Beyond basic request/response handling, Cloudflare Workers support advanced patterns for complex applications.</p>
 
-                        <h3>Middleware Pattern</h3>
+                        <h3 id="middleware-pattern">Middleware Pattern</h3>
                         <p>Implement middleware chains for cross-cutting concerns like authentication, logging, and error handling.</p>
 
                         <h4>Middleware Implementation</h4>
@@ -576,7 +630,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Error handling:</strong> Centralized error responses</li>
                         </ul>
 
-                        <h3>Service Worker Pattern</h3>
+                        <h3 id="service-worker-pattern">Service Worker Pattern</h3>
                         <p>Use service worker patterns for caching, offline functionality, and background sync.</p>
 
                         <h4>Service Worker Features</h4>
@@ -586,7 +640,7 @@ command = "npm run build"</code></pre>
                             <li><strong>Push notifications:</strong> Handle push events</li>
                         </ul>
 
-                        <h3>Edge Computing Patterns</h3>
+                        <h3 id="edge-computing-patterns">Edge Computing Patterns</h3>
                         <p>Leverage edge computing for data processing, content optimization, and user personalization.</p>
 
                         <h4>Edge Optimization</h4>
@@ -603,36 +657,7 @@ command = "npm run build"</code></pre>
                         </div>
                     </article>
 
-                    <aside class="sidebar">
-                        <div class="sidebar-section">
-                            <h3>Workers Topics</h3>
-                            <ul>
-                                <li><a href="what-is-cloudflare-workers.html">What are Workers?</a></li>
-                                <li><a href="workers-vs-lambda.html">Workers vs Lambda</a></li>
-                                <li><a href="cloudflare-workers-guide.html">Getting Started</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-section">
-                            <h3>Related Guides</h3>
-                            <ul>
-                                <li><a href="edge-computing-guide.html">Edge Computing Guide</a></li>
-                                <li><a href="clodo-framework-guide.html">Clodo Framework Guide</a></li>
-                                <li><a href="how-to-migrate-from-wrangler.html">Migrate from Wrangler</a></li>
-                                <li><a href="docs.html">Documentation</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-section">
-                            <h3>Resources</h3>
-                            <ul>
-                                <li><a href="docs.html">Clodo Documentation</a></li>
-                                <li><a href="examples.html">Workers Examples</a></li>
-                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank">Cloudflare Docs</a></li>
-                                <li><a href="https://developers.cloudflare.com/workers/wrangler/" target="_blank">Wrangler CLI</a></li>
-                            </ul>
-                        </div>
-                    </aside>
+                    <!--#include file="../templates/related-content-workers.html" -->
                 </div>
             </div>
         </section>

@@ -15,14 +15,12 @@
 export default {
   ci: {
     collect: {
-      // Build the site before collecting metrics
-      startServerCommand: 'node dev-server.js',
-      startServerReadyPattern: 'Server running',
+      // Use Vite dev server for development testing
+      startServerCommand: 'npm run dev',
+      startServerReadyPattern: 'ready in',
+      staticDistDir: null,
       url: [
-        'http://localhost:8000/',
-        'http://localhost:8000/docs.html',
-        'http://localhost:8000/examples.html',
-        'http://localhost:8000/about.html',
+        'http://localhost:5173/',
       ],
       numberOfRuns: 3, // Run 3 times and take median
       settings: {

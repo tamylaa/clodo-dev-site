@@ -1,28 +1,28 @@
 // Core initialization - loads immediately
 document.addEventListener('DOMContentLoaded', function() {
-    try {
-        // Setup critical features first
-        setupThemeToggle();
-        setupNewsletterForm();
-        setupSmoothScrolling();
-        setupNavActiveState();
-        setupMobileMenu();
-        setupNavDropdowns();
-        setupContactForm();
-        setupAnnouncementBar();
-        setupMicroInteractions();
-        setupStackBlitzIntegration();
-        updateDynamicStats();
-
-        // Lazy load non-critical features after initial page load
+    // Defer all initialization to allow first paint
+    requestAnimationFrame(() => {
         setTimeout(() => {
-            loadDeferredFeatures();
-        }, 100);
+            try {
+                // Setup critical features first (minimal for LCP)
+                setupThemeToggle();
+                setupSmoothScrolling();
+                setupNavActiveState();
+                setupMobileMenu();
+                setupNavDropdowns();
+                setupHeroFloatingElements(); // Defer floating elements to prevent LCP blocking
 
-    } catch (error) {
-        console.error('Error initializing application:', error);
-        showNotification('Application failed to load properly. Please refresh the page.', 'error');
-    }
+                // Defer heavy JavaScript execution until after LCP window (750ms delay for extra safety)
+                setTimeout(() => {
+                    loadDeferredFeatures();
+                }, 750);
+
+            } catch (error) {
+                console.error('Error initializing application:', error);
+                showNotification('Application failed to load properly. Please refresh the page.', 'error');
+            }
+        }, 0);
+    });
 });
 
 // Global error handler
@@ -606,24 +606,19 @@ class AnnouncementBanner {
     }
 
     renderBanners() {
-        const container = document.querySelector('.announcement-container');
-        if (!container) {
-            // Create container if it doesn't exist
-            const newContainer = document.createElement('div');
-            newContainer.className = 'announcement-container';
-            document.body.insertBefore(newContainer, document.body.firstChild);
-        }
-
         const containerElement = document.querySelector('.announcement-container');
         if (!containerElement) return;
 
-        // Clear existing banners
-        containerElement.innerHTML = '';
+        // Get existing banner IDs
+        const existingBannerIds = Array.from(containerElement.querySelectorAll('.announcement-banner'))
+            .map(banner => banner.getAttribute('data-banner-id'));
 
-        // Render active banners
+        // Only render banners that aren't already present
         this.banners.forEach(banner => {
-            const bannerElement = this.createBannerElement(banner);
-            containerElement.appendChild(bannerElement);
+            if (!existingBannerIds.includes(banner.id)) {
+                const bannerElement = this.createBannerElement(banner);
+                containerElement.appendChild(bannerElement);
+            }
         });
     }
 
@@ -785,6 +780,14 @@ async function loadDeferredFeatures() {
     try {
         // Initialize lazy loading functionality inline
         setupLazyLoading();
+
+        // Load deferred JavaScript features (moved from immediate execution for LCP optimization)
+        setupNewsletterForm();
+        setupContactForm();
+        setupAnnouncementBar();
+        setupMicroInteractions();
+        setupStackBlitzIntegration();
+        updateDynamicStats();
 
         // Load GitHub integration
         await loadScript('./js/github-integration.js');
@@ -965,6 +968,22 @@ function setupMicroInteractions() {
 
     // Enhanced loading states for better UX
     setupLoadingStates();
+}
+
+// ===== HERO FLOATING ELEMENTS (deferred for LCP optimization) =====
+function setupHeroFloatingElements() {
+    // Reveal floating elements after DOMContentLoaded to prevent LCP blocking
+    const floatingElements = document.querySelectorAll('.hero-float');
+    if (floatingElements.length > 0) {
+        // Use requestAnimationFrame for smooth reveal
+        requestAnimationFrame(() => {
+            floatingElements.forEach(element => {
+                element.style.opacity = '1';
+            });
+        });
+    }
+
+    // Hero title gradient is now inlined in HTML for better LCP performance
 }
 
 // ===== LOADING STATE MANAGEMENT =====

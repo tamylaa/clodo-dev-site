@@ -1,17 +1,10 @@
-<!-- PERFORMANCE RESOURCE HINTS -->
-<!-- DNS Prefetch: Resolve domains early -->
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="dns-prefetch" href="//api.github.com">
-<link rel="dns-prefetch" href="//challenges.cloudflare.com">
+<!-- PERFORMANCE RESOURCE HINTS - OPTIMIZED FOR LCP -->
+<!-- DNS Prefetch for analytics only (not fonts - we use system fonts now!) -->
+<!-- Temporarily disabled Google Tag Manager prefetch for LCP optimization -->
+<!-- <link rel="dns-prefetch" href="//www.googletagmanager.com"> -->
 
-<!-- Preconnect: Establish connections early (more expensive than dns-prefetch) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://api.github.com">
-
-<!-- Preload Critical Resources -->
-<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="script.js" as="script">
+<!-- Preload Critical Resources ONLY -->
+<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="styles.css"></noscript>
 
 <!-- Future: Module Preload (for ES6 modules migration) -->
 <!-- <link rel="modulepreload" href="js/main.js"> -->

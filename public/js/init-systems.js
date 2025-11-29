@@ -92,7 +92,11 @@ function initializeSystems() {
 
 // Load modules when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadCoreModules);
+    document.addEventListener('DOMContentLoaded', () => {
+        // Delay loading of non-critical scripts until after LCP window (500ms)
+        setTimeout(loadCoreModules, 500);
+    });
 } else {
-    loadCoreModules();
+    // Delay loading of non-critical scripts until after LCP window (500ms)
+    setTimeout(loadCoreModules, 500);
 }

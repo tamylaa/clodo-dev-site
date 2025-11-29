@@ -30,6 +30,7 @@
     "test:all": "npm run test:e2e",
     "lighthouse": "lhci autorun",
     "lighthouse:report": "lhci autorun && npx lighthouse http://localhost:8000 --view",
+    "lighthouse:audit": "node tools/run-lighthouse-audit.js",
     "lighthouse:ci": "lhci autorun",
     "lint:js": "eslint . --ext .js --max-warnings=50",
     "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\"",
@@ -106,5 +107,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "jsdom": "^27.2.0"
   }
 }

@@ -1,91 +1,59 @@
 <!-- HERO SECTION TEMPLATE -->
 <section id="hero" aria-labelledby="hero-title">
     <div class="hero-container">
-        <!-- Step 2: Code Preview Window -->
-        <div class="hero-visual" aria-hidden="true">
-            <div class="code-preview">
-                <div class="code-preview__header">
-                    <div class="code-preview__dots">
-                        <span class="code-preview__dot code-preview__dot--red" aria-hidden="true"></span>
-                        <span class="code-preview__dot code-preview__dot--yellow" aria-hidden="true"></span>
-                        <span class="code-preview__dot code-preview__dot--green" aria-hidden="true"></span>
+        <!-- Visual (Code Preview) -->
+        <div class="hero-visual">
+            <div class="code-window">
+                <div class="code-window-header">
+                    <div class="code-window-dots">
+                        <span class="code-window-dot code-window-dot--red"></span>
+                        <span class="code-window-dot code-window-dot--yellow"></span>
+                        <span class="code-window-dot code-window-dot--green"></span>
                     </div>
-                    <div class="code-preview__title">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="4 17 10 11 4 5"/>
-                            <line x1="12" y1="19" x2="20" y2="19"/>
-                        </svg>
+                    <div class="code-window-title">
                         <span>clodo-service create</span>
                     </div>
                 </div>
-                <pre class="code-preview__content"><code><span class="code-comment"># Create a new service in seconds</span>
-<span class="code-command">npx create-clodo-service</span> <span class="code-arg">my-new-service</span> <span class="code-flag">--type</span> <span class="code-value">data-service</span>
+                <pre class="code-content"><code><span class="code-comment"># Create a new service in seconds</span>
+<span class="code-command">npx create-clodo-service</span> <span class="code-arg">my-new-service</span>
 
-<span class="code-output"><span class="code-icon">✅</span> Service created successfully!</span>
-<span class="code-output"><span class="code-icon">📁</span> Generated complete service structure</span>
-<span class="code-output"><span class="code-icon">🔒</span> Security validation passed</span>
-<span class="code-output code-success"><span class="code-icon">🚀</span> Ready for deployment</span></code></pre>
+<span class="code-success">✅ Service created successfully!</span>
+<span class="code-success">🚀 Ready for deployment</span></code></pre>
             </div>
-            
-            <!-- Floating elements for visual interest -->
-            <div class="hero-float hero-float--1" aria-hidden="true"></div>
-            <div class="hero-float hero-float--2" aria-hidden="true"></div>
-            <div class="hero-float hero-float--3" aria-hidden="true"></div>
         </div>
 
-        <!-- Step 3: Title, Subtitle, Buttons -->
+        <!-- Content (Title, Subtitle, Buttons) -->
         <div class="hero-content">
-            <!-- Step 1: Production Ready + Trusted by xxx (moved inside hero-content) -->
-            <div class="hero-topbar" aria-hidden="false">
+            <!-- Badge Section -->
+            <div class="hero-topbar">
                 <div class="hero-badge-group">
+                    <!-- Production Ready Badge -->
                     <div class="hero-badge">
-                        <svg class="hero-badge__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                        </svg>
+                        <span class="hero-badge__icon">⭐</span>
                         <span>Production Ready</span>
-                    </div>
-                    <div class="hero-social-proof">
-                        <svg class="hero-social-proof__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                        <span class="hero-social-proof__text">Trusted by <strong>500+</strong> companies worldwide</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Compelling Headline with Gradient -->
+            <!-- Headline -->
             <h1 id="hero-title" class="hero-title">
-                Stop Wasting Engineering Sprints on Infrastructure Boilerplate<br>
+                Stop Wasting Engineering Sprints on Infrastructure Boilerplate</span>
             </h1>
 
-            <!-- Concise Value Proposition -->
+            <!-- Subtitle -->
             <p class="hero-subtitle">
-                The complete Cloudflare Workers toolkit for high-performance teams. Deploy battle-tested, multi-tenant applications in 60 seconds with production-ready architecture, D1 orchestration, edge auth, and  more features out of the box.
+                The complete Cloudflare Workers toolkit for high-performance teams. Deploy battle-tested applications in 60 seconds.
             </p>
 
-            <!-- Enhanced CTA Section -->
+            <!-- Buttons -->
             <div class="hero-actions">
-                <button type="button" id="try-live-btn" class="btn btn-hero-primary" onclick="openStackBlitz('https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js')" aria-label="Try Clodo Framework live in StackBlitz">
-                    <svg class="btn__icon btn__icon--left" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                    </svg>
-                    <span class="btn__text">Try It Live</span>
-                    <svg class="btn__icon btn__icon--right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
+                <button onclick="openStackBlitz('https://stackblitz.com/github/tamylaa/clodo-starter-template?file=index.js')" class="btn btn--primary btn--large">
+                    <span class="btn__icon">🚀</span>
+                    <span>Try It Live</span>
                 </button>
-
-                <a href="docs.html" class="btn btn-hero-secondary" aria-label="View documentation">
-                    <svg class="btn__icon btn__icon--left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                    </svg>
-                    <span class="btn__text">View Documentation</span>
+                <a href="docs.html" class="btn btn--secondary btn--large">
+                    <span class="btn__icon">📖</span>
+                    <span>View Documentation</span>
                 </a>
             </div>
         </div>

@@ -95,6 +95,8 @@
                         <h2>Cloudflare Workers Explained</h2>
                         <p>Cloudflare Workers are serverless functions that execute on Cloudflare's global edge network. Unlike traditional serverless functions that run in centralized data centers, Workers run at the network edge - the physical location closest to your users.</p>
 
+                        <p>If you're new to serverless computing, you might want to <a href="workers-vs-lambda.html">compare Cloudflare Workers vs AWS Lambda</a> to understand the key differences. For a comprehensive guide on building with Workers, check out our <a href="cloudflare-workers-guide.html">complete Cloudflare Workers guide</a>.</p>
+
                         <h3>How Cloudflare Workers Work</h3>
                         <p>When a user makes a request to your application:</p>
                         <ol>
@@ -111,6 +113,8 @@
                             <li><strong>Cost Effective</strong>: Pay only for execution time, not idle resources</li>
                             <li><strong>Developer Friendly</strong>: Write in JavaScript/TypeScript you already know</li>
                         </ul>
+
+                        <p>These benefits become even more apparent when you <a href="workers-vs-lambda.html">compare Workers to traditional serverless platforms</a> like AWS Lambda, where cold starts can add significant latency.</p>
 
                         <h3>Use Cases</h3>
                         <div class="use-cases-grid">
@@ -149,6 +153,8 @@ export async function handleRequest(request) {
                             <a href="product.html" class="btn btn--primary">Start Building</a>
                         </div>
                     </article>
+
+                    <!--#include file="../templates/related-content-workers.html" -->
 
                     <aside class="sidebar">
                         <div class="sidebar-section">

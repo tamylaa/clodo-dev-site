@@ -22,6 +22,21 @@ import SEO from './core/seo.js';
 import AccessibilityManager from './core/accessibility.js';
 
 /**
+ * Dynamically load a script
+ * @param {string} src - Script source URL
+ * @returns {Promise} Resolves when script is loaded
+ */
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+/**
  * Initialize accessibility enhancements
  * Implements WCAG 2.1 AA compliance features
  */
@@ -152,20 +167,6 @@ async function initCore() {
  */
 async function initFeatures() {
     console.log('[Main.js] Initializing page features...');
-    
-    // Newsletter form handler
-    if (isFeatureEnabled('NEWSLETTER_MODULE')) {
-        const newsletterForms = document.querySelectorAll('form[data-newsletter-form], form[action*="newsletter"]');
-        if (newsletterForms.length > 0) {
-            try {
-                const { Newsletter } = await import('./features/index.js');
-                Newsletter.init();
-                console.log('[Main.js] ✓ Newsletter module loaded');
-            } catch (error) {
-                console.error('[Main.js] Failed to load newsletter:', error);
-            }
-        }
-    }
     
     // Navigation component
     if (isFeatureEnabled('NAVIGATION_MODULE')) {

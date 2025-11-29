@@ -1,0 +1,144 @@
+/* ===== HERO DECORATIVE ELEMENTS ===== */
+/* These load AFTER page is interactive to keep critical path fast */
+
+/* #hero and #hero-title styles removed to prevent conflict with critical CSS */
+
+/* Production Ready Badge - loads after hero is visible */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 1rem;
+    /* animation: fadeInDown 0.6s ease-out forwards; */
+    opacity: 1;
+}
+
+/* Gradient text effect for headline - NO ANIMATION for fast LCP */
+/* #hero-title style removed - handled by inline styles in hero-minimal.html */
+
+/* Code window decoration */
+.hero-code-window {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto 0;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid #e5e7eb;
+    animation: slideInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-code-window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    margin: -2rem -2rem 0 -2rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.hero-code-window-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.hero-code-window-controls span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.hero-code-window-controls .red { background: #ef4444; }
+.hero-code-window-controls .amber { background: #f59e0b; }
+.hero-code-window-controls .green { background: #10b981; }
+
+.hero-code-window-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #6b7280;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+}
+
+.hero-code-content {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+    font-size: 0.875rem;
+    color: #111827;
+    text-align: left;
+    padding: 1.5rem 1.25rem;
+    overflow-x: auto;
+}
+
+.hero-code-content code {
+    background: transparent;
+}
+
+.hero-code-content .comment { color: #6b7280; }
+.hero-code-content .command { color: #2563eb; font-weight: 600; }
+.hero-code-content .argument { color: #34d399; }
+.hero-code-content .success { color: #374151; }
+
+/* Floating elements animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #hero-title {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    .hero-code-window {
+        max-width: 100%;
+    }
+
+    button, a {
+        font-size: 1rem !important;
+        padding: 0.875rem 1.5rem !important;
+    }
+}

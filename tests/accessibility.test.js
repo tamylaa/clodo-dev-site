@@ -2,7 +2,7 @@
  * Accessibility tests using axe-core
  */
 
-import { test, expect } from '@playwright/test';
+import { describe, test, expect, beforeEach } from 'vitest';
 import axe from 'axe-core';
 
 describe('Accessibility Tests', () => {
