@@ -37,19 +37,17 @@ jobs:
       - name: Type check
         run: npm run type-check
 
-      - name: Verify Cloudflare Project
-        run: |
-          npx wrangler pages project list
+      - name: Build for production
+        run: npm run build
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CI: true
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clodo-dev-site
+          projectName: clododev
           directory: dist
           # Optional: Enable Wrangler for Pages Functions
           wranglerVersion: '3'
