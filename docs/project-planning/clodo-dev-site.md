@@ -1154,7 +1154,7 @@ Building clodo.dev with Clodo Framework is **strategic validation**:
 
 ---
 
-**Document Location**: `i-docs/project-planning/clododev.md`  
+**Document Location**: `docs/project-planning/clodo-dev-site.md`  
 **Related Todo List**: 10 items created in task management system  
 **Owner**: Solo developer (you)  
 **Start Date**: October 22, 2025 (TODAY)
