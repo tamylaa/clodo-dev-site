@@ -1228,8 +1228,9 @@ const token = clodo.generateToken({
     <!-- Lazy load below-the-fold CSS to improve LCP -->
     <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
     
-    <!-- Lazy load analytics after page is fully interactive (prevents TBT/CLS impact) -->
-    <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script>
+    <!-- Analytics: Temporarily disabled to prevent double-loading with Cloudflare auto-injection -->
+    <!-- TODO: Enable after disabling Cloudflare auto-injection in dashboard -->
+    <!-- <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script> -->
     
     <!-- Using system fonts for optimal performance (removed Google Fonts) -->
 </body>
