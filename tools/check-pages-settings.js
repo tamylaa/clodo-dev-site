@@ -4,20 +4,22 @@
  * Check Cloudflare Pages Web Analytics Settings
  * 
  * Usage:
- *   node tools/check-pages-settings.js <API_TOKEN> <ACCOUNT_ID>
+ *   node tools/check-pages-settings.js <API_TOKEN>
  * 
- * Get Account ID: https://dash.cloudflare.com → Pages → Select project → Settings
+ * Get API Token: https://dash.cloudflare.com → My Profile → API Tokens
+ * Required permissions: Account.Cloudflare Pages (Read)
  */
 
 import https from 'https';
 
-const [,, API_TOKEN, ACCOUNT_ID] = process.argv;
+const [,, API_TOKEN] = process.argv;
 
-if (!API_TOKEN || !ACCOUNT_ID) {
-  console.error('❌ Missing required arguments');
+if (!API_TOKEN) {
+  console.error('❌ Missing required argument');
   console.error('\nUsage:');
-  console.error('  node tools/check-pages-settings.js <API_TOKEN> <ACCOUNT_ID>');
-  console.error('\nGet Account ID: Dashboard → Pages → Settings');
+  console.error('  node tools/check-pages-settings.js <API_TOKEN>');
+  console.error('\nGet API Token: Dashboard → My Profile → API Tokens');
+  console.error('Required permissions: Account.Cloudflare Pages (Read)');
   process.exit(1);
 }
 
@@ -57,8 +59,27 @@ function makeRequest(method, path, data = null) {
   });
 }
 
+async function getAccountId() {
+  try {
+    console.log('🔍 Fetching account information...');
+    const response = await makeRequest('GET', '/client/v4/accounts');
+    
+    if (!response.result || response.result.length === 0) {
+      throw new Error('No accounts found');
+    }
+
+    const account = response.result[0];
+    console.log(`✅ Account: ${account.name} (${account.id})\n`);
+    return account.id;
+  } catch (error) {
+    throw new Error(`Failed to fetch account: ${error.message}`);
+  }
+}
+
 async function checkPagesSettings() {
   try {
+    const ACCOUNT_ID = await getAccountId();
+    
     console.log('🔍 Fetching Cloudflare Pages projects...\n');
     
     const response = await makeRequest('GET', `/client/v4/accounts/${ACCOUNT_ID}/pages/projects`);

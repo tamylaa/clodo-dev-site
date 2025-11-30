@@ -17,7 +17,7 @@
     // Configuration
     const CONFIG = {
         // Cloudflare Web Analytics - Get from: Pages → Settings → Web Analytics
-        CLOUDFLARE_TOKEN: 'fb8c151f5bbb4654b8c8d1e882aa4f6a', // Your actual token
+        CLOUDFLARE_TOKEN: '049306cd3cd546ae91b66ebd97a71b89', // Token from Cloudflare dashboard snippet
         // Load analytics only after LCP is complete
         WAIT_FOR_LCP: true,
         // Minimum delay to ensure no impact on critical metrics
