@@ -45,32 +45,37 @@
     }
 
     /**
-     * Load Cloudflare Web Analytics beacon
-     * Uses best practices: defer, no blocking, async injection
+     * Send analytics beacon through server-side proxy
+     * This avoids CORS issues and service availability problems
+     * Uses best practices: deferred, non-blocking, with retry logic
      */
-    function loadCloudflareBeacon() {
-        // Check if Cloudflare already injected it (to avoid duplicates)
-        if (document.querySelector('script[src*="cloudflareinsights.com"]')) {
-            console.log('Analytics: Cloudflare beacon already loaded, skipping');
-            return;
+    function sendBeaconViaProxy() {
+        try {
+            // Collect minimal page data
+            const data = {
+                cu: window.location.href,
+                // User agent and other fields omitted - Cloudflare collects server-side
+            };
+            
+            // Send to our proxy endpoint (server-side)
+            fetch('/api/analytics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: CONFIG.CLOUDFLARE_TOKEN,
+                    data: data
+                }),
+                keepalive: true // Ensure request completes even if page unloads
+            }).catch(() => {
+                // Silently fail - analytics shouldn't break the site
+            });
+            
+            console.log('Analytics: Beacon sent via proxy after LCP');
+        } catch (error) {
+            // Silently fail - analytics shouldn't break the site
         }
-        
-        const script = document.createElement('script');
-        script.defer = true;
-        script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-        script.setAttribute('data-cf-beacon', JSON.stringify({
-            token: CONFIG.CLOUDFLARE_TOKEN,
-            spa: true // Enable SPA tracking if needed
-        }));
-        
-        // Mark for Content Security Policy
-        if (document.querySelector('script[nonce]')) {
-            const nonce = document.querySelector('script[nonce]').getAttribute('nonce');
-            if (nonce) script.setAttribute('nonce', nonce);
-        }
-        
-        document.head.appendChild(script);
-        console.log('Analytics: Cloudflare beacon loaded after LCP');
     }
 
     /**
@@ -126,13 +131,13 @@
             if ('requestIdleCallback' in window) {
                 // Best approach: Load during idle time (when CPU is free)
                 requestIdleCallback(function() {
-                    loadCloudflareBeacon();
+                    sendBeaconViaProxy();
                 }, { timeout: 3000 });
             } else {
                 // Fallback for older browsers: Use requestAnimationFrame + setTimeout
                 requestAnimationFrame(function() {
                     setTimeout(function() {
-                        loadCloudflareBeacon();
+                        sendBeaconViaProxy();
                     }, 0);
                 });
             }
