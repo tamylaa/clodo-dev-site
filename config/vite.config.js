@@ -153,7 +153,7 @@ export default defineConfig({
     outDir: '../dist-vite',
     emptyOutDir: true,
     assetsDir: 'assets',
-    sourcemap: true,
+    sourcemap: process.env.NODE_ENV === 'development', // Only in dev, never in production
     minify: 'terser',
     target: 'es2015',
     cssTarget: 'chrome90',
