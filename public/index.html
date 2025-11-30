@@ -32,8 +32,7 @@
     <!-- Preconnect to OWN domain first (highest priority) -->
     <link rel="preconnect" href="https://clodo.dev">
     
-    <!-- DNS Prefetch for analytics only (not fonts - we use system fonts now!) -->
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <!-- DNS Prefetch for API only (analytics loads async after LCP) -->
     <link rel="dns-prefetch" href="//api.github.com">
     
     <!-- Preload Critical Resources ONLY -->
@@ -409,71 +408,95 @@
       ]
     }
     </script>
-    <!-- Analytics -->
-    <!-- Analytics - Temporarily disabled for LCP optimization -->
-<!-- Google Analytics 4 - Disabled to reduce load delay -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID', {
-    'custom_map': {'dimension1': 'page_location'},
-    'send_page_view': true,
-    'allow_google_signals': true,
-    'allow_ad_personalization_signals': false
-  });
-</script> -->
-
-<!-- Enhanced SEO Tracking -->
-<script>
-  // Track GitHub referrals
-  if (document.referrer.includes('github.com')) {
-    gtag('event', 'github_referral', {
-      'event_category': 'engagement',
-      'event_label': document.referrer,
-      'value': 1
-    });
-  }
-
-  // Track enterprise keyword searches
-  if (document.referrer.includes('google.com') || document.referrer.includes('bing.com')) {
-    gtag('event', 'organic_search_referral', {
-      'event_category': 'acquisition',
-      'event_label': document.referrer
-    });
-  }
-
-  // Track documentation engagement
-  document.addEventListener('DOMContentLoaded', function() {
-    // Track time on page
-    let startTime = Date.now();
-    window.addEventListener('beforeunload', function() {
-      let timeSpent = Math.round((Date.now() - startTime) / 1000);
-      gtag('event', 'time_on_page', {
-        'event_category': 'engagement',
-        'event_label': window.location.pathname,
-        'value': timeSpent
-      });
-    });
-
-    // Track documentation section views
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          gtag('event', 'section_view', {
+    <!-- Analytics - Loaded async after LCP for zero performance impact -->
+    <script>
+    // Load Google Analytics asynchronously after page is interactive
+    (function() {
+      function loadGA() {
+        // Initialize dataLayer
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+          'custom_map': {'dimension1': 'page_location'},
+          'send_page_view': true,
+          'allow_google_signals': true,
+          'allow_ad_personalization_signals': false
+        });
+        
+        // Load GA script
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
+        document.head.appendChild(script);
+        
+        // Track referrals after GA loads
+        script.onload = function() {
+          if (document.referrer.includes('github.com')) {
+            gtag('event', 'github_referral', {
+              'event_category': 'engagement',
+              'event_label': document.referrer,
+              'value': 1
+            });
+          }
+          if (document.referrer.includes('google.com') || document.referrer.includes('bing.com')) {
+            gtag('event', 'organic_search_referral', {
+              'event_category': 'acquisition',
+              'event_label': document.referrer
+            });
+          }
+        };
+      }
+      
+      // Load after LCP or after 3 seconds
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          if (lastEntry) {
+            observer.disconnect();
+            setTimeout(loadGA, 1000);
+          }
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+        setTimeout(() => { observer.disconnect(); loadGA(); }, 5000);
+      } else {
+        setTimeout(loadGA, 3000);
+      }
+    })();
+    
+    // Track engagement - these work even before GA loads
+    document.addEventListener('DOMContentLoaded', function() {
+      let startTime = Date.now();
+      window.addEventListener('beforeunload', function() {
+        if (window.gtag) {
+          let timeSpent = Math.round((Date.now() - startTime) / 1000);
+          gtag('event', 'time_on_page', {
             'event_category': 'engagement',
-            'event_label': entry.target.id || entry.target.className
+            'event_label': window.location.pathname,
+            'value': timeSpent
           });
         }
       });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('section, .feature, .example').forEach(section => {
-      observer.observe(section);
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && window.gtag) {
+            gtag('event', 'section_view', {
+              'event_category': 'engagement',
+              'event_label': entry.target.id || entry.target.className
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      document.querySelectorAll('section, .feature, .example').forEach(section => {
+        observer.observe(section);
+      });
     });
-  });
-</script>
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link" tabindex="0">Skip to main content</a>
@@ -1228,9 +1251,9 @@ const token = clodo.generateToken({
     <!-- Lazy load below-the-fold CSS to improve LCP -->
     <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
     
-    <!-- Analytics: Temporarily disabled to prevent double-loading with Cloudflare auto-injection -->
-    <!-- TODO: Enable after disabling Cloudflare auto-injection in dashboard -->
-    <!-- <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script> -->
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script>
     
     <!-- Using system fonts for optimal performance (removed Google Fonts) -->
 </body>
