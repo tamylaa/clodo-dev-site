@@ -16,8 +16,8 @@
 
     // Configuration
     const CONFIG = {
-        // Cloudflare Web Analytics (replace with your actual token)
-        CLOUDFLARE_TOKEN: 'YOUR_BEACON_TOKEN',
+        // Cloudflare Web Analytics - Get from: Pages → Settings → Web Analytics
+        CLOUDFLARE_TOKEN: 'fb8c151f5bbb4654b8c8d1e882aa4f6a', // Your actual token
         // Load analytics only after LCP is complete
         WAIT_FOR_LCP: true,
         // Minimum delay to ensure no impact on critical metrics
@@ -49,6 +49,12 @@
      * Uses best practices: defer, no blocking, async injection
      */
     function loadCloudflareBeacon() {
+        // Check if Cloudflare already injected it (to avoid duplicates)
+        if (document.querySelector('script[src*="cloudflareinsights.com"]')) {
+            console.log('Analytics: Cloudflare beacon already loaded, skipping');
+            return;
+        }
+        
         const script = document.createElement('script');
         script.defer = true;
         script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
@@ -64,6 +70,7 @@
         }
         
         document.head.appendChild(script);
+        console.log('Analytics: Cloudflare beacon loaded after LCP');
     }
 
     /**
