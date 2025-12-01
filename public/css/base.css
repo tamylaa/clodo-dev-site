@@ -31,6 +31,12 @@ img {
     height: auto;
 }
 
+/* Prevent CLS: Reserve space for images with explicit dimensions */
+img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+    height: auto;
+}
+
 /* Optimize animations */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
