@@ -45,38 +45,112 @@ Source: Cloudflare Bot Management / Rate Limit
 2. Select your domain (clodo.dev)
 3. Go to **Security** > **WAF** > **Custom Rules**
 
-### Step 2: Create Allow Rule for Lighthouse
+### Step 2: Create Allow Rule for Lighthouse (Updated Dashboard UI)
+
+Using the Cloudflare dashboard UI (as of Dec 2025):
 
 **Rule Name**: `Allow Performance Audit Tools`
 
-**Rule Expression** (use Firewall Rules syntax):
-```
-(cf.bot_management.score <= 50 AND http.user_agent contains "HeadlessChrome") OR
-(cf.bot_management.score <= 50 AND http.user_agent contains "WebPageTest") OR
-(cf.bot_management.score <= 50 AND http.user_agent contains "Chrome-Lighthouse")
-```
+### Option A: Using "Known Bots" Field (Simplest)
 
-**Action**: `Allow`
+If you see a "Known Bots" dropdown:
 
-**Why this works**: 
-- `cf.bot_management.score <= 50` means "likely a bot"
-- We're explicitly allowing these bots by user agent
-- Cloudflare will still track them, but won't block
+1. **Field**: `Known Bots`
+2. **Operator**: `equals`
+3. **Value**: Select from dropdown (look for "Lighthouse" or "Google")
+4. **Action**: Select `Allow` from the dropdown
 
-### Alternative: Simpler Rule
-
-If the above is complex, use this simpler version:
-
-**Rule Expression**:
-```
-http.user_agent contains "HeadlessChrome"
-```
-
-**Action**: `Allow`
+**If Lighthouse isn't in the dropdown, use Option B:**
 
 ---
 
-## Step 3: Create Rate Limit Bypass (if needed)
+### Option B: Using Custom Expression (Full Control)
+
+1. Click **"Edit expression"** button
+2. Paste this expression:
+```
+(cf.bot_management.score > 30) AND (http.user_agent contains "HeadlessChrome" OR http.user_agent contains "Lighthouse")
+```
+
+3. **Then take action...**
+   - Choose action: `Allow`
+
+**What this does**:
+- `cf.bot_management.score > 30`: Detects bot-like behavior
+- `http.user_agent contains "HeadlessChrome"`: Lighthouse uses HeadlessChrome
+- `http.user_agent contains "Lighthouse"`: Explicit Lighthouse detection
+- Action: `Allow` - Don't block it
+
+---
+
+### Option C: If You Still Get "Choose action" Dropdown
+
+The dropdown might show:
+- `Block`
+- `Allow`
+- `Challenge`
+- `Log`
+- `Managed Challenge`
+- `JS Challenge`
+
+**Select**: `Allow`
+
+---
+
+## Why the UI Difference
+
+The newer Cloudflare dashboard simplified rule creation with:
+- **Known Bots field**: Pre-configured bot detection
+- **Graphical builder**: No need for expression syntax
+- **Expression Preview**: Shows what rule actually does
+
+Use whichever method your dashboard shows. All lead to the same result.
+
+---
+
+## Troubleshooting: Common UI Issues
+
+### "Known Bots" Dropdown is Empty or No Lighthouse Option
+
+**Solution**: Use the Custom Expression method
+
+1. Look for **"Edit expression"** link
+2. Clear the default `(cf.client.bot)` expression
+3. Paste:
+```
+http.user_agent contains "HeadlessChrome"
+```
+4. Click **"Deploy with API call"** or **"Deploy"**
+
+### "Choose action" Shows No Options
+
+This might mean the rule needs to be completed. You need:
+1. **Field** (already set to "Known Bots")
+2. **Operator** (already set to "equals")
+3. **Value** (select from dropdown)
+4. **Action** (use the "Choose action" dropdown below, not the top button)
+
+### Rule Won't Deploy
+
+Try these steps:
+1. Make sure "Rule name" is filled in: `Allow Performance Audit Tools`
+2. Make sure an **Action** is selected (Allow, Block, Challenge, etc)
+3. Click **"Save as Draft"** first, then **"Deploy"**
+4. Or use **"Deploy with API call"** instead
+
+### After Deploying: Still Getting 503?
+
+**Wait 2-5 minutes** for the rule to propagate through Cloudflare's network, then:
+```bash
+npm run lighthouse:audit
+```
+
+If still 503 after 5 minutes, check:
+1. Is the rule **Active**? (should show green checkmark)
+2. Is it in the right **Security Level**? (Rules > WAF > Custom Rules)
+3. Are there **other rules** blocking it? (check Rule Priority)
+
+---
 
 If pages still return 503 after WAF rule, there may be a rate limit:
 
