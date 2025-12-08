@@ -215,7 +215,7 @@ async function initDeferred() {
             const BrevoChat = await import('./features/brevo-chat.js');
             const chatManager = new BrevoChat.default();
             chatManager.init({
-                websiteId: 'YOUR_WEBSITE_ID' // Replace with actual Brevo website ID
+                websiteId: '68fe79edfbaca7d0230ae87d' // Your Brevo website ID
             });
             console.log('[Main.js] ✓ Brevo chat loaded');
         } catch (error) {

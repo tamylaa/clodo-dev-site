@@ -22,7 +22,7 @@ class BrevoChatManager {
       return;
     }
 
-    this.websiteId = config.websiteId || 'YOUR_WEBSITE_ID'; // Replace with actual ID
+    this.websiteId = config.websiteId || '68fe79edfbaca7d0230ae87d'; // Your actual Brevo website ID
 
     // Defer loading until after page load to preserve LCP
     if (document.readyState === 'loading') {
@@ -34,45 +34,41 @@ class BrevoChatManager {
   }
 
   /**
-   * Load Brevo chat widget
+   * Load Brevo chat widget using the official Brevo Conversations code
    */
   loadChat() {
     if (this.isLoaded) return;
 
     try {
-      // Set up Brevo configuration
-      window.BrevoConversationsSetup = {
-        v: 2,
-        websiteId: this.websiteId,
-        // Add other configuration options as needed
-        // popup: { enabled: true },
-        // proactive: { enabled: true }
-      };
-
-      // Load the chat script
-      const script = document.createElement('script');
-      script.src = 'https://cdn.brevo.com/js/chat.js';
-      script.async = true;
-      script.id = 'brevo-chat-script';
-
-      // Add nonce for CSP compliance
-      const nonce = document.querySelector('script[nonce]')?.nonce;
-      if (nonce) {
-        script.nonce = nonce;
-      }
-
-      script.onload = () => {
-        this.isLoaded = true;
-        console.log('[BrevoChat] Widget loaded successfully');
-        this.trackEngagement();
-      };
-
-      script.onerror = (error) => {
-        console.error('[BrevoChat] Failed to load widget:', error);
-        this.handleFallback();
-      };
-
-      document.head.appendChild(script);
+      // Use the official Brevo Conversations initialization code
+      (function(d, w, c) {
+        w.BrevoConversationsID = this.websiteId;
+        w[c] = w[c] || function() {
+          (w[c].q = w[c].q || []).push(arguments);
+        };
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+        
+        // Add nonce for CSP compliance
+        const nonce = d.querySelector('script[nonce]')?.nonce;
+        if (nonce) {
+          s.nonce = nonce;
+        }
+        
+        s.onload = () => {
+          this.isLoaded = true;
+          console.log('[BrevoChat] Widget loaded successfully');
+          this.trackEngagement();
+        };
+        
+        s.onerror = (error) => {
+          console.error('[BrevoChat] Failed to load widget:', error);
+          this.handleFallback();
+        };
+        
+        if (d.head) d.head.appendChild(s);
+      }).call(this, document, window, 'BrevoConversations');
 
     } catch (error) {
       console.error('[BrevoChat] Initialization error:', error);

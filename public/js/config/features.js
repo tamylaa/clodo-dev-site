@@ -18,10 +18,10 @@
 const FEATURES = {
   // JavaScript Modernization
   ES6_MODULES: {
-    enabled: false,
+    enabled: true,
     description: 'Enable ES6 module system',
-    rollout: 0, // 0-100% rollout
-    environments: ['development'], // Only enable in dev
+    rollout: 100, // 0-100% rollout
+    environments: ['development', 'production'], // Enable in all environments
   },
   
   MODULE_LAZY_LOADING: {
@@ -123,9 +123,9 @@ const FEATURES = {
   },
   
   BREVO_CHAT: {
-    enabled: false,
+    enabled: true,
     description: 'Brevo live chat widget for visitor engagement',
-    rollout: 0,
+    rollout: 100,
     dependencies: ['ES6_MODULES'],
   },
 };
