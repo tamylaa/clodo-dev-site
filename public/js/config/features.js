@@ -121,6 +121,13 @@ const FEATURES = {
     rollout: 0,
     experimental: true,
   },
+  
+  BREVO_CHAT: {
+    enabled: false,
+    description: 'Brevo live chat widget for visitor engagement',
+    rollout: 0,
+    dependencies: ['ES6_MODULES'],
+  },
 };
 
 /**

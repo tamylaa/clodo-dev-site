@@ -208,6 +208,20 @@ async function initDeferred() {
             console.error('[Main.js] Failed to load error tracking:', error);
         }
     }
+    
+    // Brevo Chat (engagement magnet)
+    if (isFeatureEnabled('BREVO_CHAT')) {
+        try {
+            const BrevoChat = await import('./features/brevo-chat.js');
+            const chatManager = new BrevoChat.default();
+            chatManager.init({
+                websiteId: 'YOUR_WEBSITE_ID' // Replace with actual Brevo website ID
+            });
+            console.log('[Main.js] ✓ Brevo chat loaded');
+        } catch (error) {
+            console.error('[Main.js] Failed to load Brevo chat:', error);
+        }
+    }
 }
 
 /**
