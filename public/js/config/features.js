@@ -215,7 +215,7 @@ function isFeatureEnabled(featureName, options = {}) {
  * @param {string} featureName - Name of the feature flag
  * @returns {Object} Feature configuration
  */
-export function getFeatureConfig(featureName) {
+function getFeatureConfig(featureName) {
   return FEATURES[featureName] || null;
 }
 
@@ -223,9 +223,9 @@ export function getFeatureConfig(featureName) {
  * Get all enabled features
  * 
  * @param {Object} options - Options for checking features
- * @returns {Array<string>} Array of enabled feature names
+ * @returns {Array} Array of enabled feature names
  */
-export function getEnabledFeatures(options = {}) {
+function getEnabledFeatures(options = {}) {
   return Object.keys(FEATURES).filter(name => 
     isFeatureEnabled(name, options)
   );
@@ -237,7 +237,7 @@ export function getEnabledFeatures(options = {}) {
  * @param {string} featureName - Feature to check
  * @returns {boolean} Whether browser supports the feature
  */
-export function isBrowserSupported(featureName) {
+function isBrowserSupported(featureName) {
   const checks = {
     ES6_MODULES: () => 'noModule' in document.createElement('script'),
     INTERSECTION_OBSERVER: () => 'IntersectionObserver' in window,
@@ -251,12 +251,12 @@ export function isBrowserSupported(featureName) {
 }
 
 /**
- * Get fallback strategy for a feature
+ * Get fallback configuration for a feature
  * 
  * @param {string} featureName - Name of the feature
  * @returns {string|null} Fallback strategy
  */
-export function getFallback(featureName) {
+function getFallback(featureName) {
   const feature = FEATURES[featureName];
   return feature?.fallback || null;
 }

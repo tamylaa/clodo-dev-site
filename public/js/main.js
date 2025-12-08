@@ -1,9 +1,9 @@
 /**
  * Main Entry Point for Clodo Framework JavaScript
- * 
+ *
  * This file demonstrates the future ES6 module structure
  * Currently runs alongside script.js during transition period
- * 
+ *
  * Architecture:
  * - ES6 modules with explicit imports/exports
  * - Feature-based organization
@@ -11,11 +11,12 @@
  * - Progressive enhancement
  */
 
-import { 
-    isFeatureEnabled, 
-    getEnabledFeatures, 
-    isBrowserSupported 
-} from './config/features.js';
+// Feature flags are loaded as IIFE and available on window.FeatureFlags
+// import {
+//     isFeatureEnabled,
+//     getEnabledFeatures,
+//     isBrowserSupported
+// } from './config/features.js';
 
 // Core modules are loaded as IIFEs and available on window object
 // import PerformanceMonitor from './core/performance-monitor.js';
@@ -153,7 +154,7 @@ async function initCore() {
     initAccessibility();
     
     // Theme manager - always available, but can be modular
-    if (isFeatureEnabled('THEME_MANAGER_MODULE')) {
+    if (window.FeatureFlags.isFeatureEnabled('THEME_MANAGER_MODULE')) {
         try {
             const ThemeManager = await import('./core/theme.js');
             ThemeManager.init();
@@ -172,7 +173,7 @@ async function initFeatures() {
     console.log('[Main.js] Initializing page features...');
     
     // Navigation component
-    if (isFeatureEnabled('NAVIGATION_MODULE')) {
+    if (window.FeatureFlags.isFeatureEnabled('NAVIGATION_MODULE')) {
         try {
             const Navigation = await import('./ui/navigation.js');
             Navigation.init();
@@ -191,7 +192,7 @@ async function initDeferred() {
     console.log('[Main.js] Initializing deferred features...');
     
     // Performance monitoring (production only)
-    if (isFeatureEnabled('PERFORMANCE_MONITORING')) {
+    if (window.FeatureFlags.isFeatureEnabled('PERFORMANCE_MONITORING')) {
         try {
             const Performance = await import('./features/performance.js');
             Performance.init();
@@ -202,7 +203,7 @@ async function initDeferred() {
     }
     
     // Error tracking (production only)
-    if (isFeatureEnabled('ERROR_TRACKING')) {
+    if (window.FeatureFlags.isFeatureEnabled('ERROR_TRACKING')) {
         try {
             const ErrorTracking = await import('./features/error-tracking.js');
             ErrorTracking.init();
@@ -213,7 +214,7 @@ async function initDeferred() {
     }
     
     // Brevo Chat (engagement magnet)
-    if (isFeatureEnabled('BREVO_CHAT')) {
+    if (window.FeatureFlags.isFeatureEnabled('BREVO_CHAT')) {
         try {
             const BrevoChat = await import('./features/brevo-chat.js');
             const chatManager = new BrevoChat.default();
@@ -233,19 +234,19 @@ async function initDeferred() {
  */
 function init() {
     // Check if ES6 modules are enabled
-    if (!isFeatureEnabled('ES6_MODULES')) {
+    if (!window.FeatureFlags.isFeatureEnabled('ES6_MODULES')) {
         console.log('[Main.js] Module system disabled. Using legacy script.js');
         return;
     }
     
     // Check browser support
-    if (!isBrowserSupported('ES6_MODULES')) {
+    if (!window.FeatureFlags.isBrowserSupported('ES6_MODULES')) {
         console.warn('[Main.js] ES6 modules not supported, falling back to legacy script.js');
         return;
     }
 
     console.log('[Main.js] 🚀 Initializing Clodo Framework modules...');
-    console.log('[Main.js] Enabled features:', getEnabledFeatures().join(', '));
+    console.log('[Main.js] Enabled features:', window.FeatureFlags.getEnabledFeatures().join(', '));
     
     // Initialize core features immediately
     initCore();
@@ -258,7 +259,7 @@ function init() {
     }
     
     // Initialize deferred features when idle
-    if (isFeatureEnabled('IDLE_CALLBACK') && 'requestIdleCallback' in window) {
+    if (window.FeatureFlags.isFeatureEnabled('IDLE_CALLBACK') && 'requestIdleCallback' in window) {
         requestIdleCallback(initDeferred);
     } else {
         setTimeout(initDeferred, 1000);
