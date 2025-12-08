@@ -17,9 +17,10 @@ import {
     isBrowserSupported 
 } from './config/features.js';
 
-import PerformanceMonitor from './core/performance-monitor.js';
-import SEO from './core/seo.js';
-import AccessibilityManager from './core/accessibility.js';
+// Core modules are loaded as IIFEs and available on window object
+// import PerformanceMonitor from './core/performance-monitor.js';
+// import SEO from './core/seo.js';
+// import AccessibilityManager from './core/accessibility.js';
 
 /**
  * Dynamically load a script
@@ -38,21 +39,23 @@ function loadScript(src) {
 
 /**
  * Initialize accessibility enhancements
- * Implements WCAG 2.1 AA compliance features
+ * Accessibility is auto-initialized by the IIFE in accessibility.js
  */
 function initAccessibility() {
     try {
-        const a11y = new AccessibilityManager();
-        
-        // Make globally available for debugging
-        if (window.location.hostname === 'localhost') {
-            window.a11y = a11y;
-            console.log('[Accessibility] Initialized. Use window.a11y to access methods');
-            console.log('[Accessibility] Run window.a11y.generateReport() for compliance report');
+        // Accessibility is already initialized by the IIFE
+        // Just verify it's working
+        if (window.a11y && typeof window.a11y.generateReport === 'function') {
+            if (window.location.hostname === 'localhost') {
+                console.log('[Accessibility] Already initialized. Use window.a11y to access methods');
+                console.log('[Accessibility] Run window.a11y.generateReport() for compliance report');
+            }
+        } else {
+            console.warn('[Accessibility] Not available - accessibility.js may not have loaded');
         }
         
     } catch (error) {
-        console.error('[Main.js] Failed to initialize accessibility:', error);
+        console.error('[Main.js] Failed to verify accessibility:', error);
     }
 }
 
@@ -62,7 +65,7 @@ function initAccessibility() {
  */
 function initPerformanceMonitoring() {
     try {
-        PerformanceMonitor.init({
+        window.PerformanceMonitor.init({
             debug: window.location.hostname === 'localhost',
             sampleRate: 1.0, // 100% on localhost, adjust for production
             analytics: {
@@ -74,7 +77,7 @@ function initPerformanceMonitoring() {
         // Log initial report after 5 seconds
         setTimeout(() => {
             if (window.location.hostname === 'localhost') {
-                console.log('[Performance Report]', PerformanceMonitor.getReport());
+                console.log('[Performance Report]', window.PerformanceMonitor.getReport());
             }
         }, 5000);
         
@@ -89,7 +92,7 @@ function initPerformanceMonitoring() {
  */
 function initSEO() {
     try {
-        SEO.init({
+        window.SEO.init({
             baseUrl: window.location.origin,
             defaultImage: '/assets/images/og-default.jpg',
             defaultAuthor: 'Clodo Framework Team',
@@ -97,7 +100,7 @@ function initSEO() {
         });
         
         // Add Organization schema (global)
-        SEO.addOrganizationSchema({
+        window.SEO.addOrganizationSchema({
             name: 'Clodo Framework',
             logo: '/assets/images/logo.svg',
             description: 'Modern JavaScript framework for building enterprise-grade web applications with unprecedented speed',
@@ -109,7 +112,7 @@ function initSEO() {
         });
         
         // Add WebSite schema with search
-        SEO.addWebSiteSchema({
+        window.SEO.addWebSiteSchema({
             name: 'Clodo Framework',
             description: 'Transform 6-month development cycles into 6 weeks with production-ready components',
         });
@@ -119,7 +122,7 @@ function initSEO() {
         
         if (path === '/' || path === '/index.html') {
             // Homepage - Add Software schema
-            SEO.addSoftwareSchema({
+            window.SEO.addSoftwareSchema({
                 name: 'Clodo Framework',
                 description: 'Modern JavaScript framework for building enterprise-grade web applications',
                 version: '1.0.0',

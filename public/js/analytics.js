@@ -51,6 +51,12 @@
      */
     function sendBeaconViaProxy() {
         try {
+            // Skip analytics on localhost to avoid 404 errors
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('Analytics: Skipped on localhost');
+                return;
+            }
+            
             // Collect minimal page data
             const data = {
                 cu: window.location.href,
