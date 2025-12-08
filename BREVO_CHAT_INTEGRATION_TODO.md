@@ -27,7 +27,7 @@
   - Set up Brevo account and obtain API key/chat ID
   - Configure chat widget settings in Brevo dashboard
   - Set up conversation routing and team assignments
-- [ ] Domain Verification
+- [x] Domain Verification
   - Add site domain to Brevo for chat widget activation
   - Configure SSL certificate validation
   - Test API connectivity from site
@@ -45,7 +45,7 @@
   - Ensure chat widget works on mobile/tablet
   - Position widget to not interfere with existing UI
   - Test accessibility compliance
-- [ ] Error Handling & Fallbacks
+- [x] Error Handling & Fallbacks
   - Implement graceful degradation if Brevo fails to load
   - Add error tracking for chat initialization
   - Create offline/contact form fallback
@@ -69,19 +69,19 @@
   - Configure custom events for engagement metrics
 
 ## Phase 5: Testing & Optimization (2-3 days)
-- [ ] Security Testing
+- [x] Security Testing
   - Validate CSP allows Brevo without vulnerabilities
   - Test for XSS prevention with chat input
   - Audit data privacy compliance (GDPR/CCPA)
-- [ ] Performance Testing
+- [x] Performance Testing
   - Measure impact on Core Web Vitals
   - Test loading times across devices/networks
   - Optimize script loading priority
-- [ ] Functional Testing
+- [x] Functional Testing
   - Test chat widget appearance and functionality
   - Validate proactive triggers work correctly
   - Test conversation flow and routing
-- [ ] Cross-Browser Testing
+- [x] Cross-Browser Testing
   - Ensure compatibility with major browsers
   - Test mobile responsiveness
   - Validate accessibility features

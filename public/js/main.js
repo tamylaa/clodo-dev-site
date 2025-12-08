@@ -11,6 +11,8 @@
  * - Progressive enhancement
  */
 
+console.log('[Main.js] 🚀 Main.js loaded and executing');
+
 import { 
     isFeatureEnabled, 
     getEnabledFeatures, 
@@ -211,6 +213,7 @@ async function initDeferred() {
     
     // Brevo Chat (engagement magnet)
     if (isFeatureEnabled('BREVO_CHAT')) {
+        console.log('[Main.js] BREVO_CHAT feature enabled, loading chat module');
         try {
             const BrevoChat = await import('./features/brevo-chat.js');
             const chatManager = new BrevoChat.default();
@@ -221,6 +224,8 @@ async function initDeferred() {
         } catch (error) {
             console.error('[Main.js] Failed to load Brevo chat:', error);
         }
+    } else {
+        console.log('[Main.js] BREVO_CHAT feature disabled');
     }
 }
 

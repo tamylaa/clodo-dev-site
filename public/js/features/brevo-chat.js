@@ -17,18 +17,22 @@ class BrevoChatManager {
    * @param {Object} config - Configuration object
    */
   init(config = {}) {
+    console.log('[BrevoChat] Init called with config:', config);
     if (!this.isEnabled) {
       console.log('[BrevoChat] Disabled by feature flag');
       return;
     }
 
     this.websiteId = config.websiteId || '68fe79edfbaca7d0230ae87d'; // Your actual Brevo website ID
+    console.log('[BrevoChat] Website ID set to:', this.websiteId);
 
     // Defer loading until after page load to preserve LCP
     if (document.readyState === 'loading') {
+      console.log('[BrevoChat] Waiting for DOMContentLoaded');
       document.addEventListener('DOMContentLoaded', () => this.loadChat());
     } else {
       // Page already loaded, load immediately but defer
+      console.log('[BrevoChat] Page already loaded, deferring chat load');
       setTimeout(() => this.loadChat(), 100);
     }
   }
