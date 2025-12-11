@@ -15,7 +15,7 @@
  * Navigation component configuration
  */
 const config = {
-    debug: false,
+    debug: false, // Debug mode disabled
     mobileBreakpoint: 768,
     dropdownDelay: 200, // ms
     animationDuration: 300, // ms
@@ -92,8 +92,8 @@ function toggleMobileMenu(forceState = null) {
     const isOpen = forceState !== null ? forceState : !state.mobileMenuOpen;
     
     state.mobileMenuOpen = isOpen;
-    toggle.setAttribute('aria-expanded', isOpen);
-    menu.classList.toggle(config.classes.active, isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    menu.setAttribute('data-visible', String(isOpen));
     
     // Emit event
     window.dispatchEvent(new CustomEvent('nav:mobile-toggle', {
@@ -709,3 +709,13 @@ const NavigationComponentAPI = {
 };
 
 export { NavigationComponentAPI as default, init, destroy, toggleMobileMenu, closeMobileMenu, openDropdown, closeDropdown, closeAllDropdowns, getState, configure, enableDebug, disableDebug, isMobile };
+
+// Auto-initialize when loaded as ES module (for pages that load this directly)
+if (typeof document !== 'undefined' && document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+    });
+} else if (typeof document !== 'undefined') {
+    // DOM already loaded
+    init();
+}

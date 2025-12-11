@@ -150,6 +150,11 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Explicitly hide when closed (defensive programming) */
+.nav-menu[data-visible="false"] {
+    display: none;
+}
+
 .nav-menu[data-visible="true"] {
     display: flex;
     flex-direction: column;
@@ -329,9 +334,11 @@ header {
         /* Hide hamburger on tablet+ */
     }
 
-    .nav-menu {
-        display: flex;
-        /* Show menu on tablet+ */
+    .nav-menu,
+    .nav-menu[data-visible="false"],
+    .nav-menu[data-visible="true"] {
+        display: flex !important;
+        /* Show menu on tablet+ regardless of data-visible state */
         position: static;
         flex-direction: row;
         align-items: center;

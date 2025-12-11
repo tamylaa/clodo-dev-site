@@ -125,15 +125,25 @@ function copyHtml() {
 
             // Process SSI includes (handles any indentation)
             content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, footerTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/footer\.html" -->/g, footerTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/header\.html" -->/g, headerTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/header\.html" -->/g, headerTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/hero\.html" -->/g, heroTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/hero\.html" -->/g, heroTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents\.html" -->/g, tocTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents\.html" -->/g, tocTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents-faq\.html" -->/g, tocFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents-faq\.html" -->/g, tocFaqTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content\.html" -->/g, relatedContentTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content\.html" -->/g, relatedContentTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-faq\.html" -->/g, relatedContentFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-faq\.html" -->/g, relatedContentFaqTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, relatedContentComparisonTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, relatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, relatedContentWorkersTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-workers\.html" -->/g, relatedContentWorkersTemplate);
 
             // Replace hero placeholder with actual hero content
             // For index.html, use minimal hero (critical path only)
@@ -183,9 +193,9 @@ function copyHtml() {
                 if (criticalCssLength < maxInlineSize) {
                     const criticalCssInline = `<style>${criticalCss}</style>`;
                     
-                    // Define patterns
-                    const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
-                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
+                    // Define patterns - handle both absolute and relative paths (../ for subdirectories)
+                    const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
+                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
 
                     if (file === 'index.html') {
                         // OPTIMIZATION FOR LCP:
@@ -197,7 +207,7 @@ function copyHtml() {
                         const footerInjection = `<link rel="stylesheet" href="styles.css">\n    <link rel="stylesheet" href="${cssFile}">`;
                         
                         // Replace in head
-                        if (content.includes('href="styles.css"')) {
+                        if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
                             if (content.match(cssLinkPatternMultiple)) {
                                 content = content.replace(cssLinkPatternMultiple, headInjection);
                             } else {
@@ -210,16 +220,20 @@ function copyHtml() {
                         
                     } else {
                         // Standard behavior for other pages (Preload + Onload hack)
-                        const commonCss = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
-                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssFile}"></noscript>` : '';
+                        // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
+                        const isSubdirectory = file.includes('/');
+                        const pathPrefix = isSubdirectory ? '../' : '';
+                        
+                        const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;
+                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${pathPrefix}${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}${cssFile}"></noscript>` : '';
                         const asyncCssLink = commonCss + pageCss;
                         
-                        if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
+                        if ((content.includes('href="styles.css"') || content.includes('href="../styles.css"')) && content.match(cssLinkPatternMultiple)) {
                             content = content.replace(
                                 cssLinkPatternMultiple,
                                 criticalCssInline + '\n    ' + asyncCssLink + '\n    '
                             );
-                        } else if (content.includes('href="styles.css"')) {
+                        } else if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
                             content = content.replace(
                                 cssLinkPatternSingle,
                                 criticalCssInline + '\n    ' + asyncCssLink
@@ -230,20 +244,24 @@ function copyHtml() {
                 } else {
                     console.warn(`   ⚠️  Critical CSS too large (${(criticalCssLength / 1024).toFixed(1)}KB) - using async loading only`);
                     // If critical CSS is too large, just use async loading
-                    const commonCss = '<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="styles.css"></noscript>';
-                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssFile}"></noscript>` : '';
+                    // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
+                    const isSubdirectory = file.includes('/');
+                    const pathPrefix = isSubdirectory ? '../' : '';
+                    
+                    const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;
+                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${pathPrefix}${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}${cssFile}"></noscript>` : '';
                     const asyncCssLink = commonCss + pageCss;
                     
-                    const cssLinkPatternMultiple = /<link[^>]*href="styles\.css"[^>]*>[\s\n]*<link[^>]*href="styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
-                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="styles\.css"[^>]*>/g;
+                    const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
+                    const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
                     
                     // Try multiple pattern first, then single if no match
-                    if (content.includes('href="styles.css"') && content.match(cssLinkPatternMultiple)) {
+                    if ((content.includes('href="styles.css"') || content.includes('href="../styles.css"')) && content.match(cssLinkPatternMultiple)) {
                         content = content.replace(
                             cssLinkPatternMultiple,
                             asyncCssLink + '\n    '
                         );
-                    } else if (content.includes('href="styles.css"')) {
+                    } else if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
                         content = content.replace(
                             cssLinkPatternSingle,
                             asyncCssLink

@@ -44,7 +44,7 @@ function templatePlugin() {
           
           const templates = {};
           for (const [filename, name] of Object.entries(templatesMap)) {
-            const templatePath = join(__dirname, 'templates', filename);
+            const templatePath = join(__dirname, '..', 'templates', filename);
             if (!fs.existsSync(templatePath)) {
               console.warn(`⚠️  Template not found: ${templatePath}`);
               templates[name] = '';
@@ -67,6 +67,10 @@ function templatePlugin() {
             html = html.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, templates['nav-main']);
             console.log('  ✓ Nav-main template injected');
           }
+          if (html.includes('<!--#include file="../../templates/nav-main.html" -->')) {
+            html = html.replace(/<!--#include file="\.\.\/\.\.\/templates\/nav-main\.html" -->/g, templates['nav-main']);
+            console.log('  ✓ Nav-main template injected (blog)');
+          }
           
           // Replace hero placeholder
           if (html.includes('<!-- HERO_PLACEHOLDER -->')) {
@@ -78,6 +82,16 @@ function templatePlugin() {
           if (html.includes('<!-- FOOTER_PLACEHOLDER -->')) {
             html = html.replace('<!-- FOOTER_PLACEHOLDER -->', templates.footer);
             console.log('  ✓ Footer template injected');
+          }
+          
+          // Replace SSI includes for footer
+          if (html.includes('<!--#include file="../templates/footer.html" -->')) {
+            html = html.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, templates.footer);
+            console.log('  ✓ Footer template injected');
+          }
+          if (html.includes('<!--#include file="../../templates/footer.html" -->')) {
+            html = html.replace(/<!--#include file="\.\.\/\.\.\/templates\/footer\.html" -->/g, templates.footer);
+            console.log('  ✓ Footer template injected (blog)');
           }
           
           console.log('✨ HTML templates processing complete');
@@ -127,13 +141,13 @@ function serverLogPlugin() {
 }
 
 export default defineConfig({
-  // Root directory - serve from dist after build
-  root: 'dist',
+  // Root directory - serve from project root for development
+  root: '..',
   
   // Base public path
   base: '/',
   
-  // Disable default public dir - dist IS the public dir
+  // Disable default public dir - we'll serve from dist
   publicDir: false,
   
   // Server configuration
