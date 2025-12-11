@@ -77,6 +77,8 @@ function copyHtml() {
         'performance-dashboard.html',
         // Blog pages
         'blog/index.html',
+        'blog/cloudflare-infrastructure-myth.html',
+        'blog/building-developer-communities.html',
         'blog/debugging-silent-build-failures.html',
         'blog/instant-try-it-impact.html',
         'blog/stackblitz-integration-journey.html',
