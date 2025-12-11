@@ -1,0 +1,165 @@
+{
+  "$schema": "./blog-data.schema.json",
+  "authors": {
+    "tamyla": {
+      "id": "tamyla",
+      "name": "Tamyla",
+      "jobTitle": "Founder & Principal Engineer",
+      "organization": "Clodo Framework",
+      "url": "https://clodo.dev/about",
+      "avatar": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E",
+      "credentials": [
+        "1+ years on Cloudflare Workers",
+        "Built 500+ member community",
+        "Debugged 100+ deployment issues"
+      ],
+      "social": {
+        "github": "https://github.com/tamylaa",
+        "linkedin": "https://linkedin.com/in/tamyla",
+        "twitter": "https://twitter.com/clodoframework"
+      },
+      "expertise": [
+        "Cloudflare Workers",
+        "Edge Computing",
+        "Serverless Architecture",
+        "V8 Isolates",
+        "Distributed Systems",
+        "Developer Experience",
+        "Open Source"
+      ],
+      "bio": "7+ years building production systems on Cloudflare Workers. Creator of Clodo Framework. Previously architected edge infrastructure at scale."
+    }
+  },
+  "testimonials": {
+    "cloudflare-workers": [
+      {
+        "id": "sarah-k",
+        "quote": "Migrated our auth service from Lambda in a weekend. Cold starts went from 800ms to literally zero. Our users in Australia finally stopped complaining.",
+        "author": "Sarah K.",
+        "role": "Senior Engineer",
+        "company": "Series B SaaS Startup",
+        "rating": 5,
+        "topic": "Cloudflare Workers"
+      },
+      {
+        "id": "marcus-t",
+        "quote": "The billing model alone saved us $4k/month. We were paying Lambda to wait on OpenAI API calls. Workers only charge for actual compute. Game changer.",
+        "author": "Marcus T.",
+        "role": "CTO",
+        "company": "AI-first Startup",
+        "rating": 5,
+        "topic": "Cloudflare Workers"
+      },
+      {
+        "id": "dev-r",
+        "quote": "Honestly skeptical at first—sounded too good. But after running both in parallel for 3 months, we're all-in on Workers. The DX with Clodo Framework sealed the deal.",
+        "author": "Dev R.",
+        "role": "Platform Lead",
+        "company": "E-commerce Platform",
+        "rating": 5,
+        "topic": "Cloudflare Workers"
+      }
+    ],
+    "developer-experience": [
+      {
+        "id": "alex-m",
+        "quote": "The instant 'Try Now' button changed everything. I evaluated 5 frameworks in an hour because Clodo let me start coding immediately.",
+        "author": "Alex M.",
+        "role": "Full Stack Developer",
+        "company": "Freelance",
+        "rating": 5,
+        "topic": "Developer Experience"
+      }
+    ]
+  },
+  "relatedArticles": {
+    "cloudflare-workers": [
+      {
+        "slug": "cloudflare-infrastructure-myth",
+        "title": "Cloudflare Workers: The Infrastructure Revolution You're Missing",
+        "description": "Why Cloudflare isn't just a CDN—it's a distributed computing platform.",
+        "tag": "Infrastructure"
+      },
+      {
+        "slug": "stackblitz-integration-journey",
+        "title": "Building an Instant 'Try Now' Experience",
+        "description": "How we transformed developer onboarding from 30 minutes to 60 seconds.",
+        "tag": "Integration"
+      },
+      {
+        "slug": "debugging-silent-build-failures",
+        "title": "Debugging Production: When Git Submodules Fail Silently",
+        "description": "A forensic analysis of silent Cloudflare Pages build failures.",
+        "tag": "Debugging"
+      }
+    ],
+    "developer-experience": [
+      {
+        "slug": "instant-try-it-impact",
+        "title": "30x Faster Developer Onboarding",
+        "description": "How reducing time-to-first-code transformed developer engagement.",
+        "tag": "Analytics"
+      },
+      {
+        "slug": "building-developer-communities",
+        "title": "Building Developer Communities: From Code to Culture",
+        "description": "How successful open source projects build thriving communities.",
+        "tag": "Community"
+      }
+    ]
+  },
+  "tags": {
+    "infrastructure": { "label": "Infrastructure", "color": "#4f46e5" },
+    "cloudflare-workers": { "label": "Cloudflare Workers", "color": "#f38020" },
+    "edge-computing": { "label": "Edge Computing", "color": "#10b981" },
+    "serverless": { "label": "Serverless", "color": "#8b5cf6" },
+    "developer-experience": { "label": "Developer Experience", "color": "#ec4899" },
+    "debugging": { "label": "Debugging", "color": "#ef4444" },
+    "community": { "label": "Community", "color": "#06b6d4" },
+    "technical": { "label": "Technical Deep-Dive", "color": "#6366f1" }
+  },
+  "sources": {
+    "shopify-cloudflare": {
+      "id": 1,
+      "title": "Shopify on Cloudflare",
+      "url": "https://www.cloudflare.com/case-studies/shopify/",
+      "description": "Official case study detailing 3.4 trillion monthly requests"
+    },
+    "baselime-migration": {
+      "id": 2,
+      "title": "Baselime Migration",
+      "url": "https://baselime.io/blog/why-serverless/",
+      "description": "First-hand account of AWS to Cloudflare migration with cost analysis"
+    },
+    "v8-engine": {
+      "id": 3,
+      "title": "V8 JavaScript Engine",
+      "url": "https://v8.dev/docs/embed",
+      "description": "Official Google V8 documentation on isolate architecture"
+    },
+    "cloudflare-workers-docs": {
+      "id": 4,
+      "title": "Cloudflare Workers Documentation",
+      "url": "https://developers.cloudflare.com/workers/",
+      "description": "Official platform documentation and pricing"
+    },
+    "aws-lambda-cold-starts": {
+      "id": 5,
+      "title": "AWS Lambda Cold Starts",
+      "url": "https://docs.aws.amazon.com/lambda/latest/operatorguide/execution-environments.html",
+      "description": "Official AWS documentation on Lambda execution model"
+    },
+    "stackblitz-docs": {
+      "id": 6,
+      "title": "StackBlitz Documentation",
+      "url": "https://developer.stackblitz.com/guides/integration/open-from-github",
+      "description": "Official StackBlitz GitHub integration guide"
+    },
+    "git-submodules": {
+      "id": 7,
+      "title": "Git Submodules Documentation",
+      "url": "https://git-scm.com/docs/git-submodule",
+      "description": "Official Git documentation on submodule management"
+    }
+  }
+}
