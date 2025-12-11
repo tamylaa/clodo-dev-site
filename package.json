@@ -13,6 +13,8 @@
     "serve": "node build/dev-server.js",
     "serve:dist": "npm run build && node build/dev-server.js",
     "clean": "node tools/clean.js",
+    "clean:tests": "node -e \"const fs=require('fs');const path=require('path');const dir='.test-output';if(fs.existsSync(dir)){fs.rmSync(dir,{recursive:true,force:true});fs.mkdirSync(dir,{recursive:true});fs.mkdirSync(path.join(dir,'lighthouse'),{recursive:true});fs.mkdirSync(path.join(dir,'playwright'),{recursive:true});console.log('✓ Test outputs cleaned');}\"",
+    "clean:all": "npm run clean && npm run clean:tests",
     "pretest": "npm run lint",
     "test": "cd tests && npm test",
     "test:unit": "cd tests && npm run test:unit",

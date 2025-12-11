@@ -28,13 +28,18 @@ public/brevo-secure-config.js
 coverage/
 *.lcov
 
-# Playwright
+# Test outputs
+.test-output/
 tests/playwright-report/
 tests/test-results/
 playwright/.cache/
 
 # Lighthouse CI
 .lighthouseci/
+
+# Internal documentation (keep in repo but separate)
+# Uncomment below if you want to ignore internal docs:
+# .docs/
 
 # SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
 docs/clodo-framework-docs/

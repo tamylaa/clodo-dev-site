@@ -374,6 +374,14 @@ We welcome contributions from the community!
 - Update documentation
 - Follow semantic versioning
 
+### Project Structure
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed information about:
+- Directory organization
+- File naming conventions
+- Build system
+- Testing infrastructure
+- Documentation structure
+
 ## 📄 License
 
 **MIT License** - Open source and free to use commercially.
