@@ -167,13 +167,15 @@ function copyHtml() {
                 let pageBundle = 'common'; // Default to common CSS
                 const fileName = file.split('/').pop().replace('.html', '');
                 
-                // Map file to page bundle
-                if (fileName === 'index') {
+                // Map file to page bundle (check full path for subdirectories)
+                if (file.includes('blog/')) {
+                    pageBundle = 'blog';
+                } else if (file.includes('case-studies/')) {
+                    pageBundle = 'case-studies';
+                } else if (fileName === 'index') {
                     pageBundle = 'index';
                 } else if (fileName.includes('pricing')) {
                     pageBundle = 'pricing';
-                } else if (fileName.includes('blog')) {
-                    pageBundle = 'blog';
                 } else if (fileName.includes('subscribe')) {
                     pageBundle = 'subscribe';
                 } else if (fileName.includes('product')) {
@@ -182,8 +184,6 @@ function copyHtml() {
                     pageBundle = 'about';
                 } else if (fileName.includes('migrate')) {
                     pageBundle = 'migrate';
-                } else if (fileName.includes('case-stud')) {
-                    pageBundle = 'case-studies';
                 }
                 
                 const cssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
