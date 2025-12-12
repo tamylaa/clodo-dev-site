@@ -481,3 +481,50 @@
         border: 1px solid #000;
     }
 }
+
+/* ===========================================
+   BREADCRUMBS FOR BLOG POSTS
+   =========================================== */
+
+.blog-post .breadcrumbs {
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    padding: 0 var(--spacing-md, 1rem);
+}
+
+.breadcrumbs ol {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.breadcrumbs li {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Add separator after each item except the last */
+.breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin: 0 0.5rem;
+    color: var(--text-muted, #9ca3af);
+}
+
+.breadcrumbs li:last-child {
+    color: var(--text-secondary, #6b7280);
+}
+
+.breadcrumbs a {
+    color: var(--primary-color, #4f46e5);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
