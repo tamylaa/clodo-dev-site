@@ -1407,6 +1407,7 @@
 
 .breadcrumbs ol {
     display: flex;
+    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     gap: 0;
@@ -1419,6 +1420,14 @@
 .breadcrumbs li {
     display: inline-flex;
     align-items: center;
+}
+
+/* Add separator after each item except the last */
+.breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin: 0 0.5rem;
+    color: var(--text-muted, #9ca3af);
+    font-size: 0.7rem;
 }
 
 .breadcrumbs li:last-child {
@@ -1434,10 +1443,9 @@
     text-decoration: underline;
 }
 
+/* Hide inline separators if present in HTML (use CSS ::after instead) */
 .breadcrumb-separator {
-    margin: 0 0.5rem;
-    color: var(--text-muted, #9ca3af);
-    font-size: 0.7rem;
+    display: none;
 }
 
 /* Hidden utility */
