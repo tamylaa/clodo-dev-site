@@ -1,0 +1,168 @@
+{
+  "$schema": "../blog-post.schema.json",
+  "slug": "cloudflare-workers-tutorial-beginners",
+  "title": "Cloudflare Workers Tutorial for Beginners: Build Your First API in 10 Minutes",
+  "subtitle": "A practical, step-by-step guide to building and deploying your first serverless API",
+  "description": "Learn Cloudflare Workers step-by-step. Build and deploy your first serverless API in 10 minutes with code examples. Perfect for developers coming from Node.js, Express, or AWS Lambda.",
+  "author": "tamyla",
+  "authorCredential": "7+ years on Cloudflare Workers",
+  "publishedDate": "2024-11-25",
+  "modifiedDate": "2024-11-25",
+  "category": "Tutorial",
+  "tags": [
+    "cloudflare-workers",
+    "tutorial",
+    "serverless",
+    "edge-computing",
+    "api-development",
+    "beginners"
+  ],
+  "readingTime": 12,
+  "schemas": {
+    "article": true,
+    "faq": true,
+    "howTo": true,
+    "breadcrumb": true
+  },
+  "content": {
+    "sections": [
+      {
+        "id": "what-is-workers",
+        "title": "What is Cloudflare Workers? (30-Second Explanation)"
+      },
+      {
+        "id": "prerequisites",
+        "title": "Prerequisites"
+      },
+      {
+        "id": "step-1",
+        "title": "Step 1: Install Wrangler CLI"
+      },
+      {
+        "id": "step-2",
+        "title": "Step 2: Authenticate with Cloudflare"
+      },
+      {
+        "id": "step-3",
+        "title": "Step 3: Create Your First Worker"
+      },
+      {
+        "id": "step-4",
+        "title": "Step 4: Understanding the Code"
+      },
+      {
+        "id": "step-5",
+        "title": "Step 5: Build a Real API"
+      },
+      {
+        "id": "step-6",
+        "title": "Step 6: Test Locally"
+      },
+      {
+        "id": "step-7",
+        "title": "Step 7: Deploy to Production"
+      },
+      {
+        "id": "next-steps",
+        "title": "What's Next? (Add Database, Auth, AI)"
+      },
+      {
+        "id": "common-mistakes",
+        "title": "5 Common Mistakes to Avoid"
+      },
+      {
+        "id": "faq",
+        "title": "Frequently Asked Questions"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is Cloudflare Workers?",
+      "answer": "Cloudflare Workers is a serverless platform that runs JavaScript code at the edge—in 330+ data centers worldwide. Unlike AWS Lambda which runs in specific regions, Workers run close to your users everywhere, resulting in sub-50ms response times globally. Workers use V8 isolates (the same engine that powers Chrome) and start in under 5ms with no cold starts."
+    },
+    {
+      "question": "Is Cloudflare Workers free?",
+      "answer": "Yes! Cloudflare Workers has a generous free tier: 100,000 requests per day, 10ms CPU time per request, and access to Workers KV (key-value storage). This is enough for most personal projects, MVPs, and small production apps. The paid plan ($5/month) includes 10 million requests and more CPU time."
+    },
+    {
+      "question": "How do I get started with Cloudflare Workers?",
+      "answer": "Getting started is simple: 1) Install Wrangler CLI with 'npm install -g wrangler', 2) Authenticate with 'wrangler login', 3) Create a project with 'npm create cloudflare@latest', 4) Write your Worker code in src/index.js, 5) Deploy with 'wrangler deploy'. Your API will be live on a *.workers.dev URL in seconds."
+    },
+    {
+      "question": "What can I build with Cloudflare Workers?",
+      "answer": "Cloudflare Workers can handle: REST APIs, authentication/authorization, image optimization, A/B testing, redirects/rewrites, caching logic, webhooks, scheduled tasks (cron), WebSocket servers (with Durable Objects), AI inference (with Workers AI), and full-stack apps with database (D1) and storage (R2)."
+    },
+    {
+      "question": "What is the difference between Cloudflare Workers and AWS Lambda?",
+      "answer": "Key differences: 1) Cold starts: Workers start in <5ms vs Lambda's 500ms-10s, 2) Location: Workers run in 330+ cities vs Lambda's ~30 regions, 3) Billing: Workers charge CPU time only vs Lambda's wall-clock time, 4) Pricing: Workers free tier is 100K req/day vs Lambda's 1M req/month, 5) Runtime: Workers use V8 isolates vs Lambda's containers."
+    },
+    {
+      "question": "Can I use npm packages with Cloudflare Workers?",
+      "answer": "Yes, but with caveats. Workers support npm packages that don't rely on Node.js-specific APIs (like fs, net, child_process). Most utility libraries (lodash, date-fns, zod) work perfectly. For Node.js APIs, Cloudflare provides compatibility flags and polyfills. Check the Cloudflare docs for the Node.js compatibility matrix."
+    }
+  ],
+  "howToSteps": [
+    {
+      "position": 1,
+      "name": "Install Wrangler CLI",
+      "text": "Open your terminal and run: npm install -g wrangler. This installs Cloudflare's command-line tool for Workers development.",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-1"
+    },
+    {
+      "position": 2,
+      "name": "Authenticate with Cloudflare",
+      "text": "Run: wrangler login. This opens your browser to authenticate with your Cloudflare account.",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-2"
+    },
+    {
+      "position": 3,
+      "name": "Create a new Worker project",
+      "text": "Run: npm create cloudflare@latest my-first-worker. Select 'Hello World' template and TypeScript when prompted.",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-3"
+    },
+    {
+      "position": 4,
+      "name": "Write your Worker code",
+      "text": "Open src/index.ts and modify the fetch handler to return JSON responses, handle routes, and process request data.",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-4"
+    },
+    {
+      "position": 5,
+      "name": "Test locally",
+      "text": "Run: wrangler dev. Your Worker runs locally at localhost:8787. Make changes and see instant updates.",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-5"
+    },
+    {
+      "position": 6,
+      "name": "Deploy to production",
+      "text": "Run: wrangler deploy. Your Worker is now live at https://my-first-worker.<your-subdomain>.workers.dev",
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-6"
+    }
+  ],
+  "sources": [
+    "cloudflare-workers-docs"
+  ],
+  "relatedArticles": [
+    "cloudflare-infrastructure-myth",
+    "stackblitz-integration-journey"
+  ],
+  "ctas": {
+    "midArticle": true,
+    "footer": true,
+    "product": true
+  },
+  "seo": {
+    "keywords": [
+      "cloudflare workers tutorial",
+      "cloudflare workers for beginners",
+      "how to use cloudflare workers",
+      "cloudflare workers example",
+      "cloudflare workers api",
+      "serverless tutorial",
+      "edge computing tutorial",
+      "cloudflare workers vs lambda"
+    ],
+    "twitterCard": "summary_large_image"
+  }
+}

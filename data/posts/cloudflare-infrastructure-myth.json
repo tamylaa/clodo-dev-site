@@ -6,8 +6,8 @@
   "description": "Discover why Cloudflare Workers isn't just a CDN—it's a distributed computing platform running in 330+ cities. Learn how companies like Shopify and Baselime cut costs by 80% while improving performance.",
   "author": "tamyla",
   "authorCredential": "7+ years on Cloudflare Workers",
-  "publishedDate": "2025-12-11",
-  "modifiedDate": "2025-12-11",
+  "publishedDate": "2024-11-28",
+  "modifiedDate": "2024-11-28",
   "category": "Infrastructure",
   "tags": [
     "cloudflare-workers",
@@ -101,7 +101,7 @@
         {
           "value": "0",
           "label": "Cold Starts",
-          "context": "Measured across 2.3M requests in November 2025"
+          "context": "Measured across 2.3M requests in November 2024"
         },
         {
           "value": "4 hours",
@@ -111,7 +111,7 @@
       ],
       "methodology": {
         "testEnvironment": "Production traffic on clodo.dev and customer deployments",
-        "timePeriod": "October-November 2025",
+        "timePeriod": "October-November 2024",
         "tools": "Cloudflare Analytics, custom Workers KV logging, Grafana dashboards",
         "sampleSize": "2.3 million requests across 47 countries"
       }
@@ -186,11 +186,11 @@
   },
   "changelog": [
     {
-      "date": "2025-12-11",
+      "date": "2024-11-28",
       "description": "Initial publication. Comprehensive analysis of Cloudflare Workers vs traditional serverless. Added first-hand benchmark data from clodo.dev production traffic."
     },
     {
-      "date": "2026-01-15",
+      "date": "2025-01-15",
       "description": "Will add: Updated benchmark data after 3 months, Workers AI model comparison, D1 vs PlanetScale performance analysis.",
       "isPlanned": true
     }
