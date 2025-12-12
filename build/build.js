@@ -78,6 +78,7 @@ function copyHtml() {
         // Blog pages
         'blog/index.html',
         'blog/cloudflare-infrastructure-myth.html',
+        'blog/cloudflare-workers-tutorial-beginners.html',
         'blog/building-developer-communities.html',
         'blog/debugging-silent-build-failures.html',
         'blog/instant-try-it-impact.html',
