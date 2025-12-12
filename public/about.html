@@ -17,12 +17,39 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
+    
+    <!-- Schema.org AboutPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Clodo Framework",
+        "description": "About Clodo Framework - vision, roadmap, and the story behind building enterprise services on Cloudflare Edge.",
+        "url": "https://clodo.dev/about.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev",
+            "description": "Enterprise-grade Cloudflare Workers framework for building multi-tenant SaaS applications",
+            "foundingDate": "2024",
+            "slogan": "Democratizing Enterprise Software Development",
+            "sameAs": [
+                "https://github.com/tamylaa/clodo-framework",
+                "https://www.npmjs.com/package/@tamyla/clodo-framework"
+            ],
+            "knowsAbout": [
+                "Cloudflare Workers",
+                "Edge Computing",
+                "Serverless Architecture",
+                "Multi-tenant SaaS",
+                "TypeScript",
+                "API Development"
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <header>
         <!--#include file="../templates/nav-main.html" -->
     </header>

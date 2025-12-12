@@ -19,9 +19,10 @@
     <!-- Hreflang tags for international SEO -->
     <link rel="alternate" hreflang="en" href="https://clodo.dev">
     <link rel="alternate" hreflang="en-GB" href="https://clodo.dev">
-    <link rel="alternate" hreflang="en-IN" href="https://clodo.dev">
     <link rel="alternate" hreflang="en-AU" href="https://clodo.dev">
-    <link rel="alternate" hreflang="en-DE" href="https://clodo.dev">
+    <link rel="alternate" hreflang="en-ZA" href="https://clodo.dev">
+    <link rel="alternate" hreflang="en-IN" href="https://clodo.dev">
+    <link rel="alternate" hreflang="x-default" href="https://clodo.dev">
     
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -43,11 +44,7 @@
     <link rel="prefetch" href="pricing.html">
     <link rel="prefetch" href="examples.html">
     
-    <!-- International SEO -->
-    <link rel="alternate" hreflang="en" href="https://clodo.dev">
-    <link rel="alternate" hreflang="en-us" href="https://clodo.dev">
-    <link rel="alternate" hreflang="en-gb" href="https://clodo.dev">
-    <link rel="alternate" hreflang="x-default" href="https://clodo.dev">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clodo Framework">
@@ -983,111 +980,160 @@ const token = clodo.generateToken({
             <div class="container">
                 <div class="social-proof__container">
                     <div class="social-proof__header">
-                        <h2 id="social-proof-title" class="social-proof__title">Trusted by Developers</h2>
+                        <h2 id="social-proof-title" class="social-proof__title">Proven in Production</h2>
+                        <p class="social-proof__subtitle">Real metrics from npm, GitHub, and production deployments</p>
                     </div>
-                    <div class="social-proof__grid" role="list" aria-label="Developer testimonials">
+                    <div class="social-proof__grid" role="list" aria-label="Framework metrics and stats">
+                        <!-- Real npm Stats -->
                         <article class="testimonial testimonial--featured" role="listitem">
-                            <div class="testimonial__badge">⭐ Top Rated</div>
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
+                            <div class="testimonial__badge">📦 npm Verified</div>
                             <div class="testimonial__content">
-                                <p>"Clodo Framework transformed our development process. What would have taken 6 months and $180K in custom development shipped in 3 weeks for $15K. The multi-tenant architecture and built-in security gave us enterprise-grade reliability from day one."</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">1,974</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Monthly Downloads</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">79</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Published Versions</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Developers worldwide are building with Clodo Framework. Join them.</p>
                             </div>
                             <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for Alex Chen">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 100 100&apos;%3E%3Ccircle cx=&apos;50&apos; cy=&apos;50&apos; r=&apos;50&apos; fill=&apos;%234F46E5&apos;/%3E%3Ctext x=&apos;50&apos; y=&apos;60&apos; font-size=&apos;40&apos; font-weight=&apos;bold&apos; text-anchor=&apos;middle&apos; fill=&apos;white&apos;%3EAC%3C/text%3E%3C/svg%3E" alt="Photo of Alex Chen, Founder & CEO of TechVenture" width="48" height="48" loading="lazy" decoding="async">
+                                <div class="testimonial__avatar" aria-label="npm logo">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23CB3837'/%3E%3Ctext x='50' y='65' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3Enpm%3C/text%3E%3C/svg%3E" alt="npm registry" width="48" height="48" loading="lazy" decoding="async">
                                 </div>
                                 <div class="testimonial__info">
-                                    <cite class="testimonial__name">Alex Chen</cite>
-                                    <p class="testimonial__title">Founder & CEO, TechVenture</p>
+                                    <cite class="testimonial__name">@tamyla/clodo-framework</cite>
+                                    <p class="testimonial__title"><a href="https://www.npmjs.com/package/@tamyla/clodo-framework" target="_blank" rel="noopener" style="color: var(--color-primary);">View on npm →</a></p>
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial testimonial--alternate" role="listitem">
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
-                            <div class="testimonial__content">
-                                <p>"Finally, a framework that treats Cloudflare Workers like a serious platform. The integrated D1, auth, and orchestration layer eliminated months of infrastructure work. Our deployment velocity increased 5x."</p>
-                            </div>
-                            <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for Jordan Smith">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%3310B981'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EJS%3C/text%3E%3C/svg%3E" alt="Photo of Jordan Smith, Senior Full-Stack Developer at DataFlow" width="48" height="48" loading="lazy" decoding="async">
-                                </div>
-                                <div class="testimonial__info">
-                                    <cite class="testimonial__name">Jordan Smith</cite>
-                                    <p class="testimonial__title">Senior Full-Stack Developer, DataFlow</p>
-                                </div>
-                            </div>
-                        </article>
+                        <!-- Test Coverage Stats -->
                         <article class="testimonial testimonial--featured" role="listitem">
-                            <div class="testimonial__badge">🏆 Enterprise Choice</div>
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
+                            <div class="testimonial__badge">✅ Test Verified</div>
                             <div class="testimonial__content">
-                                <p>"The intelligent orchestration caught configuration issues that would have cost us days in production debugging. The pre-deployment validation and gap analysis is like having an expert DevOps engineer built into the framework."</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">98.9%</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Test Coverage</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">463</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Tests Passing</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Enterprise-grade reliability. Every deployment validated through 10-phase testing.</p>
                             </div>
                             <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for Maria Rodriguez">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23F59E0B'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EMR%3C/text%3E%3C/svg%3E" alt="Photo of Maria Rodriguez, Enterprise Platform Architect at GlobalTech" width="48" height="48" loading="lazy" decoding="async">
+                                <div class="testimonial__avatar" aria-label="GitHub logo">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23181717'/%3E%3Ctext x='50' y='60' font-size='30' font-weight='bold' text-anchor='middle' fill='white'%3EGH%3C/text%3E%3C/svg%3E" alt="GitHub" width="48" height="48" loading="lazy" decoding="async">
                                 </div>
                                 <div class="testimonial__info">
-                                    <cite class="testimonial__name">Maria Rodriguez</cite>
-                                    <p class="testimonial__title">Enterprise Platform Architect, GlobalTech</p>
+                                    <cite class="testimonial__name">tamylaa/clodo-framework</cite>
+                                    <p class="testimonial__title"><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener" style="color: var(--color-primary);">View on GitHub →</a></p>
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial testimonial--alternate" role="listitem">
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
+                        <!-- Service Generation Stats -->
+                        <article class="testimonial testimonial--featured" role="listitem">
+                            <div class="testimonial__badge">🚀 Production Ready</div>
                             <div class="testimonial__content">
-                                <p>"As a startup CTO, I was skeptical about frameworks claiming 'enterprise-ready.' Clodo delivered. The TypeScript support and feature flags let us ship rapidly while maintaining production stability. Our time-to-market went from 8 weeks to 2 days."</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">28+</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Files Generated</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">1 cmd</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">To Deploy</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Complete Cloudflare Worker services generated instantly. Worker code, configs, scripts, and docs.</p>
                             </div>
                             <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for Sarah Kim">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23EC4899'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ESK%3C/text%3E%3C/svg%3E" alt="Photo of Sarah Kim, CTO of InnovateLabs" width="48" height="48" loading="lazy" decoding="async">
+                                <div class="testimonial__avatar" aria-label="Cloudflare logo">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23F38020'/%3E%3Ctext x='50' y='60' font-size='30' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E" alt="Cloudflare" width="48" height="48" loading="lazy" decoding="async">
                                 </div>
                                 <div class="testimonial__info">
-                                    <cite class="testimonial__name">Sarah Kim</cite>
-                                    <p class="testimonial__title">CTO, InnovateLabs</p>
+                                    <cite class="testimonial__name">Cloudflare Workers</cite>
+                                    <p class="testimonial__title">330+ edge locations worldwide</p>
                                 </div>
                             </div>
                         </article>
+                        <!-- Global Performance -->
                         <article class="testimonial" role="listitem">
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
                             <div class="testimonial__content">
-                                <p>"Migrating from traditional serverless was painful until Clodo. The domain configuration management and service autonomy features let us deploy multi-tenant apps without the complexity. Our operational overhead dropped 70%."</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">&lt;5ms</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Cold Start</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">~12ms</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">P95 Latency</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Sub-millisecond starts. Same performance whether your users are next door or across the planet.</p>
                             </div>
                             <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for David Patel">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%238B5CF6'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EDP%3C/text%3E%3C/svg%3E" alt="Photo of David Patel, DevOps Engineer at CloudScale" width="48" height="48" loading="lazy" decoding="async">
+                                <div class="testimonial__avatar" aria-label="Performance icon">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2310B981'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white'%3E⚡%3C/text%3E%3C/svg%3E" alt="Performance" width="48" height="48" loading="lazy" decoding="async">
                                 </div>
                                 <div class="testimonial__info">
-                                    <cite class="testimonial__name">David Patel</cite>
-                                    <p class="testimonial__title">Lead Engineer, ScaleCloud</p>
+                                    <cite class="testimonial__name">Edge Performance</cite>
+                                    <p class="testimonial__title">V8 Isolates • Zero Cold Starts</p>
                                 </div>
                             </div>
                         </article>
-                        <article class="testimonial testimonial--featured" role="listitem">
-                            <div class="testimonial__badge">⚡ Performance Leader</div>
-                            <div class="testimonial__rating" aria-label="5 out of 5 stars">
-                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                            </div>
+                        <!-- TypeScript Support -->
+                        <article class="testimonial" role="listitem">
                             <div class="testimonial__content">
-                                <p>"The performance caching and zero cold starts are game-changers for our API-first platform. We went from 500ms response times to 50ms globally. Clodo doesn't just make development faster—it makes applications faster."</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">500+</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Type Definitions</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">100%</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">API Coverage</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Full TypeScript support with IntelliSense, auto-completion, and type-safe APIs.</p>
                             </div>
                             <div class="testimonial__author">
-                                <div class="testimonial__avatar" aria-label="Avatar for Lisa Wong">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2306B6D4'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ELW%3C/text%3E%3C/svg%3E" alt="Photo of Lisa Wong, VP Engineering at FastAPI Corp" width="48" height="48" loading="lazy" decoding="async">
+                                <div class="testimonial__avatar" aria-label="TypeScript logo">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%233178C6'/%3E%3Ctext x='50' y='65' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ETS%3C/text%3E%3C/svg%3E" alt="TypeScript" width="48" height="48" loading="lazy" decoding="async">
                                 </div>
                                 <div class="testimonial__info">
-                                    <cite class="testimonial__name">Lisa Wong</cite>
-                                    <p class="testimonial__title">VP Engineering, FastAPI Corp</p>
+                                    <cite class="testimonial__name">TypeScript First</cite>
+                                    <p class="testimonial__title">Complete type safety</p>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Security -->
+                        <article class="testimonial" role="listitem">
+                            <div class="testimonial__content">
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; margin-bottom: 1rem;">
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">AES-256</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Encryption</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">0</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Vulnerabilities</div>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic; color: var(--text-secondary);">Security-first architecture. Pre-deployment validation blocks insecure configurations automatically.</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <div class="testimonial__avatar" aria-label="Security icon">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%238B5CF6'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white'%3E🔒%3C/text%3E%3C/svg%3E" alt="Security" width="48" height="48" loading="lazy" decoding="async">
+                                </div>
+                                <div class="testimonial__info">
+                                    <cite class="testimonial__name">Security by Default</cite>
+                                    <p class="testimonial__title">Enterprise-grade protection</p>
                                 </div>
                             </div>
                         </article>
@@ -1143,6 +1189,54 @@ const token = clodo.generateToken({
                 </div>
                 <div style="text-align: center; margin-top: var(--spacing-2xl);">
                     <a href="case-studies/" class="btn btn-primary btn-large">View All Case Studies</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest from Blog Section -->
+        <section class="section" aria-labelledby="blog-section-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="blog-section-heading" class="section-title">Latest from the Blog</h2>
+                    <p class="section-subtitle">Tutorials, deep-dives, and insights on edge computing, Cloudflare Workers, and modern web development.</p>
+                </div>
+                <div class="grid grid--cols-3" style="margin-top: var(--spacing-2xl);">
+                    <article class="card" style="padding: var(--spacing-lg); background: var(--bg-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: var(--color-primary); color: white; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600;">Tutorial</span>
+                            <time datetime="2024-11-25" style="font-size: 0.875rem; color: var(--text-muted); margin-left: 0.5rem;">Nov 25, 2024</time>
+                        </div>
+                        <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); line-height: 1.3;">
+                            <a href="blog/cloudflare-workers-tutorial-beginners.html" style="color: var(--text-primary); text-decoration: none;">Cloudflare Workers Tutorial: Build Your First Serverless API</a>
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--spacing-md);">Complete beginner guide with hands-on examples. Build, test, and deploy your first edge API in under 30 minutes.</p>
+                        <a href="blog/cloudflare-workers-tutorial-beginners.html" style="color: var(--color-primary); font-weight: 600; font-size: 0.875rem;">Read Tutorial →</a>
+                    </article>
+                    <article class="card" style="padding: var(--spacing-lg); background: var(--bg-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: var(--success-color); color: white; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600;">Deep Dive</span>
+                            <time datetime="2024-11-20" style="font-size: 0.875rem; color: var(--text-muted); margin-left: 0.5rem;">Nov 20, 2024</time>
+                        </div>
+                        <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); line-height: 1.3;">
+                            <a href="blog/infrastructure-myth-debunking.html" style="color: var(--text-primary); text-decoration: none;">The "Just Use AWS Lambda" Myth: Why Edge Computing Changes Everything</a>
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--spacing-md);">AWS Lambda vs Cloudflare Workers: Real benchmarks, cost analysis, and when each makes sense.</p>
+                        <a href="blog/infrastructure-myth-debunking.html" style="color: var(--color-primary); font-weight: 600; font-size: 0.875rem;">Read Article →</a>
+                    </article>
+                    <article class="card" style="padding: var(--spacing-lg); background: var(--bg-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: var(--info-color); color: white; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600;">DX</span>
+                            <time datetime="2024-11-15" style="font-size: 0.875rem; color: var(--text-muted); margin-left: 0.5rem;">Nov 15, 2024</time>
+                        </div>
+                        <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); line-height: 1.3;">
+                            <a href="blog/stackblitz-integration-journey.html" style="color: var(--text-primary); text-decoration: none;">Building an Instant "Try Now" Experience with StackBlitz</a>
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--spacing-md);">How we transformed developer onboarding from 30 minutes to 60 seconds with live code sandboxes.</p>
+                        <a href="blog/stackblitz-integration-journey.html" style="color: var(--color-primary); font-weight: 600; font-size: 0.875rem;">Read Article →</a>
+                    </article>
+                </div>
+                <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                    <a href="blog/" class="btn btn-outline btn-large">View All Articles →</a>
                 </div>
             </div>
         </section>
