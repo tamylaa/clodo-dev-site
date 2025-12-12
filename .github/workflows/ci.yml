@@ -1,15 +1,12 @@
 name: CI
 
 # CI workflow runs on:
-# - Push to modernization branch (development/testing)
-# - Pull requests to modernization or master (pre-merge validation)
-# Production deployments use the separate deploy.yml workflow
+# - Pull requests to master (pre-merge validation with full tests)
+# Deployments are handled by deploy.yml (master) and deploy-staging.yml (modernization)
 
 on:
-  push:
-    branches: [ modernization ]
   pull_request:
-    branches: [ modernization, master ]
+    branches: [ master ]
 
 concurrency:
   group: ci-${{ github.ref }}
