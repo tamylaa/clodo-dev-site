@@ -1,5 +1,24 @@
 /* ===== ABOUT PAGE STYLES ===== */
 
+/* Generic section styling - minimal overrides, reuses shared patterns */
+main section {
+  padding: 3rem 0;
+}
+
+main section:nth-child(odd) {
+  background: var(--color-bg-primary);
+}
+
+main section:nth-child(even) {
+  background: var(--color-bg-secondary);
+}
+
+@media (min-width: 768px) {
+  main section {
+    padding: 4rem 0;
+  }
+}
+
 #game-changer {
   padding: 2rem 0;
   background: var(--color-bg-secondary);
@@ -207,6 +226,92 @@
     margin-right: auto;
 }
 
+/* ===== CONTACT SECTION - Minimal page-specific overrides ===== */
+/* Base #contact styles inherit from global styles/shared patterns */
+
+#contact {
+  padding: 4rem 0;
+  background: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border);
+}
+
+#contact h2 {
+  margin-bottom: 2rem;
+}
+
+#contact ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+#contact li {
+  padding: 1.5rem;
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+#contact li:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgb(59 130 246 / 10%);
+  transform: translateY(-2px);
+}
+
+#contact li a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+#contact li a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  #contact {
+    padding: 6rem 0;
+  }
+
+  #contact h2 {
+    margin-bottom: 3rem;
+  }
+
+  #contact ul {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  #contact li {
+    padding: 2rem;
+  }
+}
+
+/* ===== ROADMAP SECTION - Minimal page-specific overrides ===== */
+
+#roadmap {
+  padding: 4rem 0;
+  background: var(--color-bg-primary);
+}
+
+#roadmap > div > p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  #roadmap {
+    padding: 6rem 0;
+  }
+}
+
+/* Breadcrumbs and container styles are shared in layout.css - no duplication needed */
+
 /* ===== PRINT STYLES ===== */
 @media print {
     .mobile-menu-toggle,
@@ -246,6 +351,14 @@
     }
 
     #roadmap summary {
+        border: 2px solid var(--border-color);
+    }
+
+    #contact li {
+        border: 2px solid var(--border-color);
+    }
+
+    details {
         border: 2px solid var(--border-color);
     }
 }
