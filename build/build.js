@@ -592,7 +592,7 @@ function copyAssets() {
         );
     }
     // Copy root assets like sitemap and robots if present
-    ['robots.txt', 'sitemap.xml', 'site.webmanifest', 'google1234567890abcdef.html', 'favicon.svg', 'favicon.ico'].forEach(file => {
+    ['robots.txt', 'sitemap.xml', 'site.webmanifest', 'google1234567890abcdef.html', 'favicon.svg', 'favicon.ico', '_redirects', '_headers'].forEach(file => {
         const src = join('public', file);
         if (existsSync(src)) {
             copyFileSync(src, join('dist', file));
