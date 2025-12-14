@@ -76,15 +76,15 @@ class ThemeManager {
         const toggleBtn = document.getElementById('theme-toggle');
         if (!toggleBtn) return;
 
-        const moonIcon = toggleBtn.querySelector('.theme-icon-moon');
-        const sunIcon = toggleBtn.querySelector('.theme-icon-sun');
+        const lightIcon = toggleBtn.querySelector('.theme-icon--light');
+        const darkIcon = toggleBtn.querySelector('.theme-icon--dark');
 
         if (this.currentTheme === 'dark') {
-            moonIcon?.classList.remove('hidden');
-            sunIcon?.classList.add('hidden');
+            lightIcon?.style.display = 'none';
+            darkIcon?.style.display = 'inline';
         } else {
-            moonIcon?.classList.add('hidden');
-            sunIcon?.classList.remove('hidden');
+            lightIcon?.style.display = 'inline';
+            darkIcon?.style.display = 'none';
         }
     }
 
@@ -111,6 +111,8 @@ class ThemeManager {
     init() {
         // Inline script already applied theme, just setup toggle listeners
         this.setupListeners();
+        // Update toggle button to match current theme
+        this.updateToggleButton();
         console.log('[ThemeManager] Initialized with theme:', this.currentTheme);
     }
 }

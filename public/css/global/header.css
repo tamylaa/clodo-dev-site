@@ -29,6 +29,32 @@ header {
     /* Reduced padding on mobile */
     max-width: 1200px;
     margin: 0 auto;
+    gap: var(--spacing-sm);
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 767px) {
+    .nav-container {
+        justify-content: space-between;
+    }
+    
+    .logo {
+        order: 1;
+    }
+    
+    .mobile-menu-toggle {
+        order: 3;
+    }
+    
+    .nav-menu {
+        order: 2;
+    }
+    
+    .nav-actions {
+        order: 4;
+        display: flex;
+        gap: var(--spacing-xs);
+    }
 }
 
 @media (min-width: 768px) {
@@ -295,8 +321,10 @@ header {
 /* ===== NAV ACTIONS (GitHub button, etc.) ===== */
 
 .nav-actions {
-    display: none;
-    /* Hidden on mobile */
+    display: flex;
+    /* Show on all devices for theme toggle accessibility */
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .github-btn {
