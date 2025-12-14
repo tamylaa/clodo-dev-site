@@ -46,51 +46,64 @@ function copyHtml() {
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
-    const htmlFiles = [
-        'index.html',
-        'about.html',
-        'docs.html',
-        'examples.html',
-        'pricing.html',
-        'components.html',
-        'subscribe.html',
-        'product.html',
-        'migrate.html',
-        'privacy.html',
-        'analytics.html',
-        // New guide pages
-        'edge-computing-guide.html',
-        'cloudflare-workers-guide.html',
-        'clodo-framework-guide.html',
-        'development-deployment-guide.html',
-        // New comparison/content pages
-        'what-is-edge-computing.html',
-        'what-is-cloudflare-workers.html',
-        'how-to-migrate-from-wrangler.html',
-        'edge-vs-cloud-computing.html',
-        'workers-vs-lambda.html',
-        'clodo-vs-lambda.html',
-        'faq.html',
-        // Article pages
-        'clodo-framework-promise-to-reality.html',
-        'clodo-framework-api-simplification.html',
-        // Performance dashboard page
-        'performance-dashboard.html',
-        // Blog pages
-        'blog/index.html',
-        'blog/cloudflare-infrastructure-myth.html',
-        'blog/cloudflare-workers-tutorial-beginners.html',
-        'blog/building-developer-communities.html',
-        'blog/debugging-silent-build-failures.html',
-        'blog/instant-try-it-impact.html',
-        'blog/stackblitz-integration-journey.html',
-        // Community pages
-        'community/welcome.html',
-        // Case study pages
-        'case-studies/index.html',
-        'case-studies/fintech-payment-platform.html',
-        'case-studies/healthcare-saas-platform.html'
-    ];
+    // Auto-discover HTML files that need template processing
+    function findHtmlFiles(dir, relativePath = '') {
+        const files = [];
+        const fullDirPath = join('public', dir);
+        
+        if (!existsSync(fullDirPath)) {
+            return files;
+        }
+        
+        const entries = readdirSync(fullDirPath);
+
+        for (const entry of entries) {
+            const fullEntryPath = join(fullDirPath, entry);
+            const stat = statSync(fullEntryPath);
+
+            if (stat.isDirectory()) {
+                // Skip directories that shouldn't be processed or exposed
+                const skipDirs = ['node_modules', 'css', 'js', 'icons', 'demo', 'images', 'assets', 'fonts', 'vendor'];
+                if (entry.startsWith('.') || skipDirs.includes(entry)) {
+                    console.log(`   ⏭️  Skipping directory: ${entry}`);
+                    continue;
+                }
+                
+                // Additional safety check: skip any directory that might contain internal/private content
+                if (entry.includes('internal') || entry.includes('private') || entry.includes('draft') || entry.includes('temp')) {
+                    console.log(`   ⚠️  Skipping potentially internal directory: ${entry}`);
+                    continue;
+                }
+                
+                // Recursively search subdirectories with updated relative path
+                const subRelativePath = relativePath ? join(relativePath, entry) : entry;
+                files.push(...findHtmlFiles(join(dir, entry), subRelativePath));
+            } else if (entry.endsWith('.html')) {
+                // Skip files that might be internal or shouldn't be exposed
+                if (entry.includes('internal') || entry.includes('private') || entry.includes('draft') || entry.includes('temp')) {
+                    console.log(`   ⚠️  Skipping potentially internal file: ${entry}`);
+                    continue;
+                }
+                
+                const content = readFileSync(fullEntryPath, 'utf8');
+
+                // Check if file uses SSI includes (needs template processing)
+                if (content.includes('<!--#include file="')) {
+                    const filePath = relativePath ? join(relativePath, entry) : entry;
+                    files.push(filePath);
+                } else {
+                    // Log files that are HTML but don't use templates (for awareness)
+                    console.log(`   ℹ️  HTML file without SSI includes: ${relativePath ? join(relativePath, entry) : entry}`);
+                }
+            }
+        }
+
+        return files;
+    }
+
+    const htmlFiles = findHtmlFiles('');
+    console.log(`   📋 Found ${htmlFiles.length} HTML files that need template processing:`);
+    htmlFiles.forEach(file => console.log(`     - ${file}`));
 
     htmlFiles.forEach(file => {
         const srcPath = join('public', file);
