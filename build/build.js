@@ -127,7 +127,12 @@ function copyHtml() {
 
             // Inject critical theme script into <head> to prevent FOUC
             // This MUST be inline before CSS loads - handled automatically by build process
-            content = content.replace('</head>', `    ${themeScriptTemplate}\n</head>`);
+            if (content.includes('</head>')) {
+                content = content.replace('</head>', `    ${themeScriptTemplate}\n</head>`);
+                console.log(`   ✅ Theme script injected in ${file}`);
+            } else {
+                console.warn(`   ⚠️  No </head> tag found in ${file} - theme script NOT injected!`);
+            }
 
             // Process SSI includes (handles any indentation)
             content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);

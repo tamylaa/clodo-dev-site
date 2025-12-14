@@ -1,42 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Security Headers -->
+<!-- Security Headers -->
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Meta Tags -->
-    <title>Debugging Production: When Git Submodules Fail Silently | Clodo Framework Blog</title>
-    <meta name="description" content="A technical deep-dive into debugging silent Cloudflare Pages build failures caused by broken git submodules, cache invalidation, and deployment strategies.">
-    <meta name="keywords" content="git submodules, debugging, Cloudflare Pages, deployment, cache busting, production debugging, Clodo Framework">
-    <meta name="author" content="Clodo Framework">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://clodo.dev/blog/debugging-silent-build-failures.html">
-    
-    <!-- Hreflang for International SEO -->
-    <link rel="alternate" hreflang="en" href="https://clodo.dev/blog/debugging-silent-build-failures.html">
-    <link rel="alternate" hreflang="x-default" href="https://clodo.dev/blog/debugging-silent-build-failures.html">
-    
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
-    
-    <!-- Critical Theme Script - Prevents FOUC -->
-    <script>
-        (function() {
-            try {
-                const savedTheme = localStorage.getItem('theme');
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                document.documentElement.style.colorScheme = theme;
-            } catch (e) { console.error('Theme init failed', e); }
-        })();
-    </script>
-    
-    <!-- Open Graph / Facebook -->
+<!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Clodo Framework">
     <meta property="og:title" content="Debugging Production: When Git Submodules Fail Silently">
@@ -811,3 +783,4 @@ jobs:
     <script src="../script.js" nonce="N0Nc3Cl0d0"></script>
 </body>
 </html>
+

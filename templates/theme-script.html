@@ -4,9 +4,9 @@
 <script>
 (function() {
     try {
-        // Get stored theme (matches ThemeManager's THEME_KEY)
-        const t = localStorage.getItem('clodo-theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        // Get stored theme - ALWAYS default to 'light' unless explicitly stored as 'dark'
+        // Do NOT respect system preference (prefers-color-scheme) - only use explicit user choice
+        const t = localStorage.getItem('clodo-theme') || 'light';
         // Apply BEFORE CSS renders to prevent FOUC
         document.documentElement.setAttribute('data-theme', t);
         document.documentElement.style.colorScheme = t;

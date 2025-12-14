@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Clodo Framework | Edge Computing, Cloudflare Workers & Developer Insights</title>
     <meta name="description" content="Technical articles about edge computing, Cloudflare Workers, infrastructure optimization, and developer experience. Learn how to reduce cloud costs by 60-80%.">
@@ -9,18 +9,6 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
     
-    <!-- Critical Theme Script - Prevents FOUC -->
-    <script>
-        (function() {
-            try {
-                const savedTheme = localStorage.getItem('theme');
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                document.documentElement.style.colorScheme = theme;
-            } catch (e) { console.error('Theme init failed', e); }
-        })();
-    </script>
 </head>
 <body>
     <!-- HEADER_PLACEHOLDER -->
@@ -145,3 +133,4 @@
     <script src="../script.js" nonce="N0Nc3Cl0d0"></script>
 </body>
 </html>
+
