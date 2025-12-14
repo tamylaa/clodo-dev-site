@@ -314,6 +314,67 @@ function copyHtml() {
     });
 }
 
+// Copy HTML files that don't use SSI includes (standalone HTML pages)
+function copyStandaloneHtml() {
+    console.log('📄 Copying standalone HTML files...');
+    
+    function copyHtmlFiles(dir, relativePath = '') {
+        const fullDirPath = join('public', dir);
+        
+        if (!existsSync(fullDirPath)) {
+            return;
+        }
+        
+        const entries = readdirSync(fullDirPath);
+
+        for (const entry of entries) {
+            const fullEntryPath = join(fullDirPath, entry);
+            const stat = statSync(fullEntryPath);
+
+            if (stat.isDirectory()) {
+                // Skip directories that shouldn't be processed
+                const skipDirs = ['node_modules', 'css', 'js', 'icons', 'demo', 'images', 'assets', 'fonts', 'vendor'];
+                if (entry.startsWith('.') || skipDirs.includes(entry)) {
+                    continue;
+                }
+                
+                // Additional safety check: skip any directory that might contain internal/private content
+                if (entry.includes('internal') || entry.includes('private') || entry.includes('draft') || entry.includes('temp')) {
+                    continue;
+                }
+                
+                // Recursively search subdirectories
+                const subRelativePath = relativePath ? join(relativePath, entry) : entry;
+                copyHtmlFiles(join(dir, entry), subRelativePath);
+            } else if (entry.endsWith('.html')) {
+                // Skip files that might be internal or shouldn't be exposed
+                if (entry.includes('internal') || entry.includes('private') || entry.includes('draft') || entry.includes('temp')) {
+                    continue;
+                }
+                
+                const content = readFileSync(fullEntryPath, 'utf8');
+
+                // Only copy HTML files that DON'T use SSI includes (these are standalone pages)
+                if (!content.includes('<!--#include file="')) {
+                    const filePath = relativePath ? join(relativePath, entry) : entry;
+                    const destPath = join('dist', filePath);
+                    
+                    // Ensure destination directory exists
+                    const destDir = dirname(destPath);
+                    if (!existsSync(destDir)) {
+                        mkdirSync(destDir, { recursive: true });
+                    }
+                    
+                    copyFileSync(fullEntryPath, destPath);
+                    console.log(`   📋 Copied standalone HTML: ${filePath}`);
+                }
+            }
+        }
+    }
+
+    copyHtmlFiles('');
+}
+
 // Bundle CSS into critical and non-critical bundles for performance
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
@@ -700,6 +761,7 @@ try {
     cleanDist();
     bundleCss();  // Must run before copyHtml since HTML processing needs critical.css
     copyHtml();
+    copyStandaloneHtml();
     minifyCss();
     copyJs();
     copyJsConfigs();
