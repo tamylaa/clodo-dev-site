@@ -3,13 +3,14 @@
 /* ===== PRICING HERO SECTION ===== */
 .hero-section {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    padding: 6rem 0 4rem;
+    padding: 3rem 1.5rem 2rem;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
@@ -17,36 +18,58 @@
 }
 
 .hero-content p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 3vw, 1.25rem);
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto 3rem;
     line-height: 1.6;
 }
 
+@media (min-width: 768px) {
+    .hero-section {
+        padding: 6rem 0 4rem;
+    }
+}
+
 .pricing-highlights {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .pricing-highlights {
+        gap: 2rem;
+        padding: 0;
+    }
 }
 
 .highlight {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 1rem 1.5rem;
+    padding: 0.875rem 1rem;
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     font-weight: 500;
     color: var(--text-primary);
     transition: all var(--transition-fast);
+    font-size: 0.9rem;
 }
 
 .highlight:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .highlight {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
 }
 
 .highlight-icon {
@@ -55,16 +78,36 @@
 
 /* ===== PRICING GRID ===== */
 #pricing {
-    padding: 6rem 0;
+    padding: 3rem 0;
     background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    #pricing {
+        padding: 6rem 0;
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
 }
 
 /* ===== PRICING CARDS ===== */
@@ -72,11 +115,12 @@
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 1.5rem;
     text-align: center;
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    color: var(--text-primary);
 }
 
 .pricing-card:hover {
@@ -89,9 +133,20 @@
     background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
     color: var(--color-white);
     border: 2px solid var(--primary-color);
-    transform: scale(1.05);
+    transform: none;
     position: relative;
-    padding-top: 4rem;  /* Extra padding for "MOST POPULAR" banner */
+    padding-top: 3.5rem;  /* Extra padding for "MOST POPULAR" banner */
+}
+
+@media (min-width: 768px) {
+    .pricing-card {
+        padding: 2.5rem;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1.05);
+        padding-top: 4rem;
+    }
 }
 
 .pricing-card.featured::before {
@@ -334,5 +389,65 @@
     .pricing-card li {
         font-size: 0.8125rem;
         padding: 0.5rem 0;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .mobile-menu-toggle,
+    .nav-dropdown-menu,
+    nav,
+    .pricing-highlights,
+    form {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .hero-section {
+        background: white;
+        color: black;
+        border-bottom: 2px solid #000;
+    }
+
+    .pricing-card {
+        border: 2px solid #000;
+        page-break-inside: avoid;
+    }
+
+    .pricing-card.featured {
+        background: white;
+        color: black;
+    }
+
+    h1, h2, h3 {
+        color: black;
+        page-break-after: avoid;
+    }
+
+    .price {
+        color: black;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    .pricing-card {
+        border: 2px solid var(--border-color);
+    }
+
+    .pricing-card.featured {
+        border: 3px solid var(--border-color);
+    }
+
+    .highlight {
+        border: 2px solid var(--border-color);
+    }
+
+    button {
+        border-width: 2px;
     }
 }

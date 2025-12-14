@@ -99,17 +99,36 @@
     color: var(--primary-color);
 }
 
+/* Mobile Navigation Fixes */
+@media (max-width: 768px) {
+    .blog-nav .nav-container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .blog-nav__menu {
+        display: none;
+    }
+
+    .blog-nav__actions .github-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
 /* Blog Post Styles */
 
 .blog-post {
     padding: 1rem 0 3rem;
     scroll-margin-top: 70px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .blog-post__header {
     max-width: 800px;
     margin: 0 auto 2rem;
     text-align: center;
+    padding: 0 var(--spacing-md);
 }
 
 .blog-post__meta {
@@ -2049,4 +2068,28 @@ sup a:hover {
     font-weight: bold;
     margin-right: 0.5rem;
     flex-shrink: 0;
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    .blog-card {
+        border: 2px solid var(--border-color);
+    }
+
+    .table-of-contents {
+        border-left: 4px solid var(--border-color);
+        border: 2px solid var(--border-color);
+    }
+
+    .blog-post__content blockquote {
+        border-left: 4px solid #000;
+    }
+
+    .blog-post__tags .tag {
+        border: 2px solid var(--border-color);
+    }
+
+    button {
+        border-width: 2px;
+    }
 }

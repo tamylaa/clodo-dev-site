@@ -10,7 +10,20 @@
 class ThemeManager {
     constructor() {
         this.THEME_KEY = 'clodo-theme';
-        this.currentTheme = this.getStoredTheme() || 'dark';
+        // Prefer already-applied theme from inline script
+        this.currentTheme = document.documentElement.getAttribute('data-theme') || 
+                           this.getStoredTheme() || 
+                           this.getSystemPreference();
+    }
+
+    /**
+     * Get system color scheme preference
+     */
+    getSystemPreference() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
     }
 
     /**
@@ -81,7 +94,10 @@ class ThemeManager {
     setupListeners() {
         const toggleBtn = document.getElementById('theme-toggle');
         if (!toggleBtn) {
-            console.warn('[ThemeManager] Theme toggle button not found');
+            // Theme toggle not on this page - wait for DOM if needed
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => this.setupListeners());
+            }
             return;
         }
 
@@ -90,18 +106,11 @@ class ThemeManager {
 
     /**
      * Initialize theme manager
+     * Skips re-applying theme if inline script already set it
      */
     init() {
-        // Apply stored or default theme immediately
-        this.applyTheme(this.currentTheme);
-        
-        // Setup event listeners when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setupListeners());
-        } else {
-            this.setupListeners();
-        }
-
+        // Inline script already applied theme, just setup toggle listeners
+        this.setupListeners();
         console.log('[ThemeManager] Initialized with theme:', this.currentTheme);
     }
 }

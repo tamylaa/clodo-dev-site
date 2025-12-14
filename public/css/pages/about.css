@@ -1,15 +1,26 @@
 /* ===== ABOUT PAGE STYLES ===== */
 
 #game-changer {
-  padding: 4rem 0;
+  padding: 2rem 0;
   background: var(--color-bg-secondary);
 }
 
 .narrative-content {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
   line-height: 1.7;
   color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  #game-changer {
+    padding: 4rem 0;
+  }
+
+  .narrative-content {
+    padding: 0;
+  }
 }
 
 .narrative-content p {
@@ -194,4 +205,47 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .mobile-menu-toggle,
+    .nav-dropdown-menu,
+    .nav-actions,
+    .newsletter-section,
+    form {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    a {
+        color: #0066cc;
+        text-decoration: underline;
+    }
+
+    h1, h2, h3 {
+        page-break-after: avoid;
+        color: black;
+    }
+
+    p {
+        page-break-inside: avoid;
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    #highlights .highlight-card {
+        border: 2px solid var(--border-color);
+    }
+
+    #roadmap summary {
+        border: 2px solid var(--border-color);
+    }
 }

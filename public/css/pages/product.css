@@ -1,13 +1,66 @@
 /* ===== PRODUCT PAGE STYLES ===== */
 
 #expert-assessment {
-  padding: 4rem 0;
+  padding: 2rem 0;
   background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .assessment-content {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  #expert-assessment {
+    padding: 4rem 0;
+  }
+
+  .assessment-content {
+    padding: 0;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .mobile-menu-toggle,
+    .nav-dropdown-menu,
+    nav,
+    form {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    h1, h2, h3 {
+        page-break-after: avoid;
+        color: black;
+    }
+
+    .assessment-quote {
+        border-left: 4px solid #000;
+        page-break-inside: avoid;
+    }
+
+    ul {
+        page-break-inside: avoid;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    .assessment-strengths {
+        border: 2px solid var(--border-color);
+        padding: 1rem;
+    }
+
+    .assessment-quote {
+        border-left: 4px solid #000;
+    }
 }
 
 .assessment-rating {

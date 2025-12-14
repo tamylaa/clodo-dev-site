@@ -24,6 +24,7 @@
 html {
     scroll-behavior: smooth;
     transition: background-color var(--transition-normal), color var(--transition-normal);
+    color-scheme: light dark;
 }
 
 img {
@@ -761,13 +762,40 @@ p, li {
     border-radius: var(--radius-sm);
 }
 
-/* High contrast mode support */
+/* High contrast mode support - maintain theme compatibility */
 @media (prefers-contrast: high) {
     :root {
-        --text-primary: rgb(0 0 0);
-        --text-secondary: rgb(0 0 0);
-        --bg-primary: rgb(255 255 255);
-        --bg-secondary: rgb(255 255 255);
+        /* Increase border and shadow visibility */
+        --border-color: rgb(0 0 0);
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 50%);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 60%), 0 2px 4px -2px rgb(0 0 0 / 60%);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 60%), 0 4px 6px -4px rgb(0 0 0 / 60%);
+    }
+
+    /* Enhance outline visibility in high contrast */
+    *:focus-visible {
+        outline: 3px solid #000;
+        outline-offset: 2px;
+    }
+}
+
+@media (prefers-contrast: high) and (prefers-color-scheme: dark) {
+    :root {
+        --border-color: rgb(255 255 255);
+    }
+
+    *:focus-visible {
+        outline: 3px solid #fff;
+    }
+}
+
+@media (prefers-contrast: high) and (prefers-color-scheme: light) {
+    :root {
+        --border-color: rgb(0 0 0);
+    }
+
+    *:focus-visible {
+        outline: 3px solid #000;
     }
 }
 

@@ -31,6 +31,12 @@ header {
     margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+    .nav-container {
+        padding: var(--spacing-sm) var(--spacing-lg);
+    }
+}
+
 /* ===== LOGO ===== */
 
 .logo {

@@ -8,6 +8,19 @@
     <link rel="canonical" href="https://clodo.dev/blog/">
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+    
+    <!-- Critical Theme Script - Prevents FOUC -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.style.colorScheme = theme;
+            } catch (e) { console.error('Theme init failed', e); }
+        })();
+    </script>
 </head>
 <body>
     <!-- HEADER_PLACEHOLDER -->

@@ -40,6 +40,7 @@ function copyHtml() {
     const relatedContentComparisonTemplate = readFileSync(join('templates', 'related-content-comparison.html'), 'utf8');
     const relatedContentWorkersTemplate = readFileSync(join('templates', 'related-content-workers.html'), 'utf8');
     const announcementBannerTemplate = readFileSync(join('templates', 'announcement-banner.html'), 'utf8');
+    const themeScriptTemplate = readFileSync(join('templates', 'theme-script.html'), 'utf8'); // Critical theme initialization
 
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
@@ -123,6 +124,10 @@ function copyHtml() {
 
             // Replace header placeholder with actual header content
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
+
+            // Inject critical theme script into <head> to prevent FOUC
+            // This MUST be inline before CSS loads - handled automatically by build process
+            content = content.replace('</head>', `    ${themeScriptTemplate}\n</head>`);
 
             // Process SSI includes (handles any indentation)
             content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);

@@ -26,6 +26,7 @@
     padding: var(--space-hero-y) 0 var(--space-section-y-standard) 0;
     background: var(--primary-50); /* Simplified for LCP */
     overflow: hidden;
+    color: var(--text-primary);
 }
 
 #hero::before {
@@ -62,10 +63,19 @@
         "content";
     gap: var(--spacing-lg);  /* Spacing between sections */
     align-items: flex-start;  /* Content-aware layout - no artificial centering */
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) var(--spacing-md);
     max-width: 1200px;
     margin: 0 auto;
     min-height: auto;  /* Allow content to determine height naturally */
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "content visual";
+        padding: var(--spacing-lg) 0;
+    }
 }
 
 .hero-topbar {

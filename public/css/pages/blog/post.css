@@ -9,8 +9,10 @@
 /* ===== BASE: Mobile-First (0-767px) ===== */
 
 .blog-post {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
     /* Reduced padding on mobile */
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 /* ===== POST HEADER ===== */
@@ -118,6 +120,8 @@
     line-height: 1.75;
     /* Optimal: 1.6-1.8 */
     color: var(--text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .blog-post__content h2 {
@@ -187,6 +191,16 @@
     content: "— ";
 }
 
+/* ===== IMAGES ===== */
+
+.blog-post__content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem 0;
+    border-radius: var(--radius-md);
+}
+
 /* ===== CODE BLOCKS ===== */
 
 .blog-post__content pre {
@@ -199,6 +213,8 @@
     /* Horizontal scroll on mobile */
     -webkit-overflow-scrolling: touch;
     /* Smooth scroll on iOS */
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .blog-post__content code {
@@ -235,6 +251,9 @@
     overflow-x: auto;
     display: block;
     /* Enable horizontal scroll */
+    box-sizing: border-box;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .blog-post__content th,
@@ -243,6 +262,7 @@
     border: 1px solid var(--border-color);
     text-align: left;
     font-size: 0.9375rem;
+    word-wrap: break-word;
 }
 
 .blog-post__content th {
@@ -381,6 +401,61 @@
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
+}
+
+/* ===== MOBILE SPECIFIC IMPROVEMENTS (0-480px) ===== */
+
+@media (max-width: 480px) {
+    .blog-post {
+        padding: 1rem 0;
+    }
+
+    .blog-post__header {
+        margin-bottom: 1.5rem;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .blog-post__content {
+        padding: 0 var(--spacing-sm);
+        font-size: 1rem;
+    }
+
+    .blog-post__content h2 {
+        margin-top: 1.75rem;
+        margin-bottom: 1rem;
+        font-size: 1.375rem;
+    }
+
+    .blog-post__content h3 {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .blog-post__content blockquote {
+        margin: 1.5rem 0;
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .blog-post__content pre {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        font-size: 0.8em;
+    }
+
+    .blog-post__footer {
+        padding: 1.5rem var(--spacing-sm) 0;
+    }
+
+    .blog-post__cta {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .blog-post__series {
+        padding: 1.25rem;
+        margin-top: 1.5rem;
+    }
 }
 
 /* ===== TABLET: 768px+ ===== */

@@ -25,6 +25,7 @@
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='27' cy='7' r='0.5'/%3E%3Ccircle cx='47' cy='7' r='0.8'/%3E%3Ccircle cx='7' cy='27' r='0.8'/%3E%3Ccircle cx='27' cy='27' r='1'/%3E%3Ccircle cx='47' cy='27' r='0.5'/%3E%3Ccircle cx='7' cy='47' r='0.5'/%3E%3Ccircle cx='27' cy='47' r='0.8'/%3E%3Ccircle cx='47' cy='47' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat,
         linear-gradient(135deg, var(--bg-primary) 0%, rgb(248 250 252) 100%);
     position: relative;
+    color: var(--text-primary);
 }
 
 #key-benefits::before {
@@ -42,9 +43,24 @@
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     width: 100%;
+    padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* High-specificity homepage overrides to avoid conflicts with global/layout styles */
@@ -60,7 +76,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 2.5rem;
+    padding: 1.5rem;
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-secondary) 100%);
     border-radius: var(--radius-xl);
     box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
@@ -68,6 +84,12 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .benefit-item {
+        padding: 2.5rem;
+    }
 }
 
 .benefit-item::before {
@@ -1733,4 +1755,59 @@ pre code {
   color: var(--color-text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    /* Hide interactive elements */
+    .mobile-menu-toggle,
+    .nav-dropdown-menu,
+    .nav-actions,
+    #newsletter,
+    .cta-section,
+    form {
+        display: none;
+    }
+
+    /* Optimize for printing */
+    body {
+        background: white;
+        color: black;
+    }
+
+    a {
+        color: #0066cc;
+        text-decoration: underline;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black;
+    }
+
+    p, li {
+        page-break-inside: avoid;
+        orphans: 3;
+        widows: 3;
+    }
+
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+    .benefit-item {
+        border: 2px solid var(--border-color);
+    }
+
+    .pricing-card {
+        border: 2px solid var(--border-color);
+    }
+
+    button {
+        border-width: 2px;
+    }
 }

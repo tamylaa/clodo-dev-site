@@ -9,8 +9,15 @@ footer {
     color: var(--bg-primary);
     position: relative;
     overflow: hidden;
-    margin-top: 4rem;
-    padding-top: var(--spacing-3xl);
+    margin-top: 2rem;
+    padding-top: var(--spacing-2xl);
+}
+
+@media (min-width: 768px) {
+    footer {
+        margin-top: 4rem;
+        padding-top: var(--spacing-3xl);
+    }
 }
 
 /* Premium layered background effect */
@@ -32,15 +39,29 @@ footer > * {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1.7fr 0.9fr 0.8fr 0.9fr 0.6fr 0.6fr;
-    gap: var(--spacing-md) var(--spacing-lg);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
     align-items: start;
     align-content: start;
     justify-items: stretch;
-    padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-3xl);
+    padding: var(--spacing-2xl) var(--spacing-md) var(--spacing-3xl);
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+}
+
+@media (min-width: 640px) {
+    .footer-content {
+        grid-template-columns: 1.7fr 0.9fr 0.8fr;
+        gap: var(--spacing-md) var(--spacing-lg);
+        padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-3xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1.7fr 0.9fr 0.8fr 0.9fr 0.6fr 0.6fr;
+    }
 }
 
 /* Staggered entrance animation for footer sections */

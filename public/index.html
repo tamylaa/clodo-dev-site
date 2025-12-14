@@ -297,19 +297,6 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
-    
-    <!-- Critical Theme Script - Prevents FOUC -->
-    <script>
-        (function() {
-            try {
-                const savedTheme = localStorage.getItem('theme');
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-                document.documentElement.style.colorScheme = theme;
-            } catch (e) { console.error('Theme init failed', e); }
-        })();
-    </script>
 
     <!-- Core Web Vitals Optimization - REMOVED unnecessary preloads -->
     <!-- Performance monitoring -->
