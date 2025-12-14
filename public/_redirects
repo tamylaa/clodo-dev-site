@@ -24,21 +24,13 @@
 /edge-computing-framework / 301
 /serverless-orchestration / 301
 
-# International redirects (future expansion)
-# NOTE: These use 200 (rewrite) but should be implemented when language support is added
-# /en/* /:splat 200
-# /en-us/* /:splat 200
-# /en-gb/* /:splat 200
-
 # API documentation redirects
 /api-docs /docs.html 301
 /api-reference /docs.html 301
 /developer-docs /docs.html 301
 
-# Blog redirects (when implemented)
+# Blog redirects
 /blog /blog/ 301
-# /blog/about.html /about.html 301  # NOTE: Anchors don't work in redirects - this would need client-side handling
-# /blog/about.html#contact /about.html#contact 301  # NOTE: Anchors are client-side only, can't redirect these
 /blog/* /blog/:splat 301
 
 # Social media and external links (tracking)
