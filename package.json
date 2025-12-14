@@ -7,11 +7,15 @@
   "scripts": {
     "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run check-links",
     "build": "node build/build.js",
+    "build:astro": "astro build",
+    "dev:astro": "astro dev",
+    "preview:astro": "astro preview",
     "start": "npm run serve",
     "dev": "npm run serve",
     "preview": "vite preview --config config/vite.config.js",
     "serve": "node build/dev-server.js",
     "serve:dist": "npm run build && node build/dev-server.js",
+    "serve:astro": "npm run build:astro && npm run preview:astro",
     "clean": "node tools/clean.js",
     "clean:tests": "node -e \"import('fs').then(fs=>import('path').then(path=>{const dir='.test-output';if(fs.existsSync(dir)){fs.rmSync(dir,{recursive:true,force:true});fs.mkdirSync(dir,{recursive:true});fs.mkdirSync(path.join(dir,'lighthouse'),{recursive:true});fs.mkdirSync(path.join(dir,'playwright'),{recursive:true});console.log('✓ Test outputs cleaned');}}))\"",
     "clean:all": "npm run clean && npm run clean:tests",
@@ -116,6 +120,10 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.16.5",
     "jsdom": "^27.2.0"
   }
 }
