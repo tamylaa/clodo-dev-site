@@ -3,6 +3,16 @@
 /**
  * Link Health Checker for Clodo Dev Site
  * Validates internal links and provides analytics
+ *
+ * Usage:
+ *   npm run check-links
+ *   node build/check-links.js
+ *
+ * This script scans all HTML files in the public directory and:
+ * - Validates that internal links point to existing files
+ * - Reports broken links
+ * - Provides link analytics
+ * - Saves detailed report to build/link-health-report.json
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
@@ -34,20 +44,25 @@ let linkAnalytics = {
  * Extract links from HTML content
  */
 function extractLinks(html, filePath) {
-    const dom = new JSDOM(html);
-    const links = dom.window.document.querySelectorAll('a[href]');
+    try {
+        const dom = new JSDOM(html);
+        const links = dom.window.document.querySelectorAll('a[href]');
 
-    return Array.from(links).map(link => ({
-        href: link.getAttribute('href'),
-        text: link.textContent.trim(),
-        file: filePath.replace(SITE_ROOT + '\\', '').replace(SITE_ROOT + '/', ''),
-        dataAttributes: {
-            linkType: link.getAttribute('data-link-type'),
-            contentCluster: link.getAttribute('data-content-cluster'),
-            linkPosition: link.getAttribute('data-link-position'),
-            contentType: link.getAttribute('data-content-type')
-        }
-    }));
+        return Array.from(links).map(link => ({
+            href: link.getAttribute('href'),
+            text: link.textContent.trim(),
+            file: filePath.replace(SITE_ROOT + '\\', '').replace(SITE_ROOT + '/', ''),
+            dataAttributes: {
+                linkType: link.getAttribute('data-link-type'),
+                contentCluster: link.getAttribute('data-content-cluster'),
+                linkPosition: link.getAttribute('data-link-position'),
+                contentType: link.getAttribute('data-content-type')
+            }
+        }));
+    } catch (error) {
+        console.error(`Error parsing HTML in ${filePath}:`, error.message);
+        return [];
+    }
 }
 
 /**
@@ -224,9 +239,20 @@ function main() {
     const htmlFiles = findHtmlFiles(PUBLIC_DIR);
     console.log(`Found ${htmlFiles.length} HTML files`);
 
+    let processedCount = 0;
     htmlFiles.forEach(file => {
         processFile(file);
+        processedCount++;
+        if (processedCount % 10 === 0) {
+            console.log(`Processed ${processedCount}/${htmlFiles.length} files...`);
+        }
     });
+
+    console.log(`\n📊 Link Analysis Results:`);
+    console.log(`   Total links found: ${linkAnalytics.totalLinks}`);
+    console.log(`   Internal links: ${linkAnalytics.internalLinks}`);
+    console.log(`   External links: ${linkAnalytics.externalLinks}`);
+    console.log(`   Broken links: ${linkAnalytics.brokenLinks.length}`);
 
     const success = generateReport();
 
@@ -239,7 +265,7 @@ function main() {
 }
 
 // Run if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && process.argv[1].endsWith('check-links.js')) {
     main();
 }
 
