@@ -52,9 +52,25 @@
       "keywords": ["FinTech case study", "payment platform", "cost reduction", "zero downtime migration", "Clodo Framework", "banking technology"]
     }
     </script>
+    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
+<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
+<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
+<script>
+(function() {
+    try {
+        // Get stored theme (matches ThemeManager's THEME_KEY)
+        const t = localStorage.getItem('clodo-theme') || 
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        // Apply BEFORE CSS renders to prevent FOUC
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.style.colorScheme = t;
+    } catch (e) { 
+        // Fail silently - CSS defaults to light theme
+    }
+})();
+</script>
 </head>
-<body>
-    <!--#include file="../../templates/nav-main.html" -->
+<body><!--#include file="../../templates/nav-main.html" -->
 
     <main>
         <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -376,9 +392,7 @@
                 </section>
             </div>
         </article>
-    </main>
-
-    <!--#include file="../../templates/footer.html" -->
+    </main><!--#include file="../../templates/footer.html" -->
 
 <script src="../script.js" nonce="N0Nc3Cl0d0" defer></script>
 </body>

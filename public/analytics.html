@@ -7,10 +7,26 @@
     <meta name="robots" content="noindex">
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
+<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
+<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
+<script>
+(function() {
+    try {
+        // Get stored theme (matches ThemeManager's THEME_KEY)
+        const t = localStorage.getItem('clodo-theme') || 
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        // Apply BEFORE CSS renders to prevent FOUC
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.style.colorScheme = t;
+    } catch (e) { 
+        // Fail silently - CSS defaults to light theme
+    }
+})();
+</script>
 </head>
 <body>
-    <header>
-        <!--#include file="../templates/nav-main.html" -->
+    <header><!--#include file="../templates/nav-main.html" -->
     </header>
     <main>
         <div class="container">
@@ -18,8 +34,7 @@
             <p>This page is reserved for analytics tracking and monitoring.</p>
         </div>
     </main>
-    <footer>
-        <!--#include file="../templates/footer.html" -->
+    <footer><!--#include file="../templates/footer.html" -->
     </footer>
     <!-- Cloudflare Web Analytics enabled via dashboard - no manual beacon needed -->
 </body>

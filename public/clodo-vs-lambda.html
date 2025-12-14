@@ -84,6 +84,23 @@
             font-size: 1.2em;
         }
     </style>
+    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
+<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
+<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
+<script>
+(function() {
+    try {
+        // Get stored theme (matches ThemeManager's THEME_KEY)
+        const t = localStorage.getItem('clodo-theme') || 
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        // Apply BEFORE CSS renders to prevent FOUC
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.style.colorScheme = t;
+    } catch (e) { 
+        // Fail silently - CSS defaults to light theme
+    }
+})();
+</script>
 </head>
 <body>
     <!-- HEADER_PLACEHOLDER -->
@@ -264,8 +281,7 @@
                 <a href="/docs.html" class="btn btn--outline" style="padding: 1rem 2rem; font-size: 1.1rem; display: inline-block; margin-left: 1rem;">Read Docs</a>
             </div>
 
-            <!-- Related Content Section -->
-            <!--#include file="../templates/related-content-comparison.html" -->
+            <!-- Related Content Section --><!--#include file="../templates/related-content-comparison.html" -->
         </section>
     </main>
 
@@ -273,6 +289,21 @@
         <!-- Footer will be included -->
     </footer>
 
-    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
 </body>
 </html>
