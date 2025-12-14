@@ -327,9 +327,18 @@
     <a href="#main-content" class="skip-link">Skip to main content</a><!--#include file="../templates/nav-main.html" -->
 
     <!-- Breadcrumbs -->
-    <div class="breadcrumb-nav">
-        <a href="/">Home</a> / <span>Component Library</span>
-    </div>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Component Library</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
 
     <!-- Header -->
     <div class="component-header">

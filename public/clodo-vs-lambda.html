@@ -89,6 +89,18 @@
     <!-- HEADER_PLACEHOLDER -->
     
     <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Clodo vs AWS Lambda</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
         <section class="hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #172554 100%); padding: 4rem 2rem; text-align: center; color: white;">
             <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Clodo vs AWS Lambda</h1>
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">The Complete Cost & Performance Comparison</p>
@@ -269,7 +281,7 @@
     </main>
 
     <footer>
-        <!-- Footer will be included -->
+        <!--#include file="../templates/footer.html" -->
     </footer>
 
     

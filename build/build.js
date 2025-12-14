@@ -46,7 +46,17 @@ function copyHtml() {
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
-    // Auto-discover HTML files that need template processing
+    // Function to adjust template paths for subdirectory files
+    function adjustTemplatePaths(template, prefix) {
+        if (!prefix) return template;
+        // Adjust href attributes that are relative (not starting with http, //, or #)
+        return template.replace(/href="([^"]*)"/g, (match, href) => {
+            if (href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('mailto:')) {
+                return match; // Leave absolute URLs and anchors unchanged
+            }
+            return `href="${prefix}${href}"`;
+        });
+    }
     function findHtmlFiles(dir, relativePath = '') {
         const files = [];
         const fullDirPath = join('public', dir);
@@ -110,6 +120,24 @@ function copyHtml() {
         if (existsSync(srcPath)) {
             let content = readFileSync(srcPath, 'utf8');
 
+            // Calculate path prefix for subdirectory files
+            const fileDir = dirname(file);
+            const isSubdirectory = fileDir !== '.' && fileDir !== '';
+            const pathPrefix = isSubdirectory ? '../' : '';
+            console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${pathPrefix}'`);
+
+            // Create adjusted templates for this file's directory level
+            const adjustedNavMainTemplate = adjustTemplatePaths(navMainTemplate, pathPrefix);
+            const adjustedFooterTemplate = adjustTemplatePaths(footerTemplate, pathPrefix);
+            const adjustedHeaderTemplate = adjustTemplatePaths(headerTemplate, pathPrefix);
+            const adjustedHeroTemplate = adjustTemplatePaths(heroTemplate, pathPrefix);
+            const adjustedTocTemplate = adjustTemplatePaths(tocTemplate, pathPrefix);
+            const adjustedTocFaqTemplate = adjustTemplatePaths(tocFaqTemplate, pathPrefix);
+            const adjustedRelatedContentTemplate = adjustTemplatePaths(relatedContentTemplate, pathPrefix);
+            const adjustedRelatedContentFaqTemplate = adjustTemplatePaths(relatedContentFaqTemplate, pathPrefix);
+            const adjustedRelatedContentComparisonTemplate = adjustTemplatePaths(relatedContentComparisonTemplate, pathPrefix);
+            const adjustedRelatedContentWorkersTemplate = adjustTemplatePaths(relatedContentWorkersTemplate, pathPrefix);
+
             // Add skip link and announcement container after body tag if not already present
             // Skip announcement banner for index.html to optimize LCP (hero title should be LCP)
             const isIndexPage = file === 'index.html';
@@ -136,7 +164,7 @@ function copyHtml() {
             }
 
             // Replace header placeholder with actual header content
-            content = content.replace('<!-- HEADER_PLACEHOLDER -->', headerTemplate);
+            content = content.replace('<!-- HEADER_PLACEHOLDER -->', adjustedHeaderTemplate);
 
             // Inject critical theme script into <head> to prevent FOUC
             // This MUST be inline before CSS loads - handled automatically by build process
@@ -147,27 +175,27 @@ function copyHtml() {
                 console.warn(`   ⚠️  No </head> tag found in ${file} - theme script NOT injected!`);
             }
 
-            // Process SSI includes (handles any indentation)
-            content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/nav-main\.html" -->/g, navMainTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, footerTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/footer\.html" -->/g, footerTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/header\.html" -->/g, headerTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/header\.html" -->/g, headerTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/hero\.html" -->/g, heroTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/hero\.html" -->/g, heroTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents\.html" -->/g, tocTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents\.html" -->/g, tocTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents-faq\.html" -->/g, tocFaqTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents-faq\.html" -->/g, tocFaqTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/related-content\.html" -->/g, relatedContentTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content\.html" -->/g, relatedContentTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-faq\.html" -->/g, relatedContentFaqTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-faq\.html" -->/g, relatedContentFaqTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, relatedContentComparisonTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, relatedContentComparisonTemplate);
-            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, relatedContentWorkersTemplate);
-            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-workers\.html" -->/g, relatedContentWorkersTemplate);
+            // Process SSI includes (handles any indentation) with path-adjusted templates
+            content = content.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, adjustedNavMainTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/nav-main\.html" -->/g, adjustedNavMainTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/footer\.html" -->/g, adjustedFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/footer\.html" -->/g, adjustedFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/header\.html" -->/g, adjustedHeaderTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/header\.html" -->/g, adjustedHeaderTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/hero\.html" -->/g, adjustedHeroTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/hero\.html" -->/g, adjustedHeroTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents\.html" -->/g, adjustedTocTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents\.html" -->/g, adjustedTocTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/table-of-contents-faq\.html" -->/g, adjustedTocFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/table-of-contents-faq\.html" -->/g, adjustedTocFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content\.html" -->/g, adjustedRelatedContentTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content\.html" -->/g, adjustedRelatedContentTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-faq\.html" -->/g, adjustedRelatedContentFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-faq\.html" -->/g, adjustedRelatedContentFaqTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
 
             // Replace hero placeholder with actual hero content
             // For index.html, use minimal hero (critical path only)
@@ -178,7 +206,7 @@ function copyHtml() {
             }
 
             // Replace footer placeholder with actual footer content (legacy support)
-            content = content.replace('<!-- FOOTER_PLACEHOLDER -->', footerTemplate);
+            content = content.replace('<!-- FOOTER_PLACEHOLDER -->', adjustedFooterTemplate);
 
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
@@ -245,8 +273,10 @@ function copyHtml() {
                     } else {
                         // Standard behavior for other pages (Preload + Onload hack)
                         // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
-                        const isSubdirectory = file.includes('/');
+                        const fileDir = dirname(file);
+                        const isSubdirectory = fileDir !== '.' && fileDir !== '';
                         const pathPrefix = isSubdirectory ? '../' : '';
+                        console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${pathPrefix}'`);
                         
                         const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;
                         const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${pathPrefix}${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}${cssFile}"></noscript>` : '';
@@ -269,7 +299,8 @@ function copyHtml() {
                     console.warn(`   ⚠️  Critical CSS too large (${(criticalCssLength / 1024).toFixed(1)}KB) - using async loading only`);
                     // If critical CSS is too large, just use async loading
                     // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
-                    const isSubdirectory = file.includes('/');
+                    const fileDir = dirname(file);
+                    const isSubdirectory = fileDir !== '.' && fileDir !== '';
                     const pathPrefix = isSubdirectory ? '../' : '';
                     
                     const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;

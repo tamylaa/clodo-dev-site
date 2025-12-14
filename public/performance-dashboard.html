@@ -259,6 +259,18 @@
     <a href="#main-content" class="skip-link">Skip to main content</a><!--#include file="../templates/nav-main.html" -->
     
     <main class="performance-dashboard" id="main-content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Performance Dashboard</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
         <div class="dashboard-header">
             <h1>Performance Dashboard</h1>
             <p>Real-time Web Vitals and performance metrics</p>
