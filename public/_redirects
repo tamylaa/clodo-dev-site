@@ -25,9 +25,10 @@
 /serverless-orchestration / 301
 
 # International redirects (future expansion)
-/en/* /:splat 200
-/en-us/* /:splat 200
-/en-gb/* /:splat 200
+# NOTE: These use 200 (rewrite) but should be implemented when language support is added
+# /en/* /:splat 200
+# /en-us/* /:splat 200
+# /en-gb/* /:splat 200
 
 # API documentation redirects
 /api-docs /docs.html 301
@@ -35,10 +36,10 @@
 /developer-docs /docs.html 301
 
 # Blog redirects (when implemented)
- /blog /blog/ 301
- /blog/about.html /about.html 301
- /blog/about.html#contact /about.html#contact 301
- /blog/* /blog/:splat 301
+/blog /blog/ 301
+# /blog/about.html /about.html 301  # NOTE: Anchors don't work in redirects - this would need client-side handling
+# /blog/about.html#contact /about.html#contact 301  # NOTE: Anchors are client-side only, can't redirect these
+/blog/* /blog/:splat 301
 
 # Social media and external links (tracking)
 /github https://github.com/tamylaa/clodo-framework 301
