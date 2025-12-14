@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import rss from '@astrojs/rss';
 import node from '@astrojs/node';
 
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
   // Integrations
   integrations: [
     sitemap(), // Automatically generates sitemap.xml
-    rss(), // RSS feed support
+    // RSS can be added later in routes once blog collection is ready
   ],
   
   // Adapter for Cloudflare Pages

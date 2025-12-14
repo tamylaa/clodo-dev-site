@@ -82,9 +82,9 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site);
     </footer>
     
     <!-- Analytics and scripts -->
-    <script src="/js/init-systems.js" defer></script>
-    <script src="/js/config/features.js"></script>
-    <script type="module" src="/js/main.js"></script>
+    <script src="/js/init-systems.js" is:inline></script>
+    <script src="/js/config/features.js" is:inline></script>
+    <script type="module" src="/js/main.js" is:inline></script>
   </body>
 </html>
 
