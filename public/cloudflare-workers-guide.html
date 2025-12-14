@@ -58,23 +58,6 @@
       "keywords": ["cloudflare workers", "serverless", "edge computing", "javascript", "web development"]
     }
     </script>
-    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
-<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
-<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
-<script>
-(function() {
-    try {
-        // Get stored theme (matches ThemeManager's THEME_KEY)
-        const t = localStorage.getItem('clodo-theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        // Apply BEFORE CSS renders to prevent FOUC
-        document.documentElement.setAttribute('data-theme', t);
-        document.documentElement.style.colorScheme = t;
-    } catch (e) { 
-        // Fail silently - CSS defaults to light theme
-    }
-})();
-</script>
 </head>
 <body>
     <header><!--#include file="../templates/nav-main.html" -->
