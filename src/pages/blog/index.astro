@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Blog - Cloudflare & Edge Computing";
+const description = "Expert guides and insights on Cloudflare Workers, edge computing, and modern web development.";
+
+// Blog posts data - will be expanded with JSON integration
+const posts = [
+  {
+    slug: 'cloudflare-workers-tutorial-beginners',
+    title: 'Cloudflare Workers Tutorial for Beginners',
+    subtitle: 'Build Your First Serverless API in 10 Minutes',
+    description: 'Learn Cloudflare Workers step-by-step. Build and deploy your first serverless API with code examples.',
+    category: 'Tutorial',
+    publishedDate: '2024-11-25',
+    readingTime: 12,
+    tags: ['cloudflare-workers', 'tutorial', 'serverless']
+  },
+  {
+    slug: 'cloudflare-infrastructure-myth',
+    title: 'The Cloudflare Infrastructure Myth',
+    subtitle: 'Separating Hype from Reality',
+    description: 'Understanding how Cloudflare infrastructure actually works and what it means for your applications.',
+    category: 'Analysis',
+    publishedDate: '2024-11-20',
+    readingTime: 15,
+    tags: ['cloudflare', 'infrastructure', 'performance']
+  }
+];
+
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title={title} description={description}>
+  <nav class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Blog</li>
+    </ol>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Expert guides and insights on Cloudflare Workers, edge computing, and modern web development</p>
+    </div>
+  </section>
+
+  <main class="content">
+    <section class="posts-section">
+      <h2>Latest Articles</h2>
+      
+      {posts.length > 0 ? (
+        <div class="posts-grid">
+          {posts.map(post => (
+            <article class="post-card">
+              <div class="post-header">
+                <h3>
+                  <a href={`/blog/${post.slug}/`}>{post.title}</a>
+                </h3>
+                {post.subtitle && <p class="subtitle">{post.subtitle}</p>}
+              </div>
+              
+              <div class="post-meta">
+                <span class="date">{formatDate(post.publishedDate)}</span>
+                {post.readingTime && <span class="reading-time">{post.readingTime} min read</span>}
+                {post.category && <span class="category">{post.category}</span>}
+              </div>
+              
+              <p class="post-description">{post.description}</p>
+              
+              {post.tags && post.tags.length > 0 && (
+                <div class="tags">
+                  {post.tags.slice(0, 3).map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+              
+              <a href={`/blog/${post.slug}/`} class="read-more">Read Article →</a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="no-posts">
+          <p>Blog posts coming soon. Check back for updates!</p>
+        </div>
+      )}
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .posts-section h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .post-card {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    border-color: var(--primary-color, #1d4ed8);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
+  }
+
+  .post-header {
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .post-header h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .post-header h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .post-header h3 a:hover {
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #475569);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .date {
+    font-weight: 500;
+  }
+
+  .reading-time::before {
+    content: '⏱️ ';
+  }
+
+  .category {
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .post-description {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+    flex-grow: 1;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+
+  .tag {
+    background: var(--tag-bg, #dbeafe);
+    color: var(--primary-color, #1d4ed8);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .read-more {
+    display: inline-block;
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .read-more:hover {
+    transform: translateX(4px);
+  }
+
+  .no-posts {
+    padding: 2rem;
+    text-align: center;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
