@@ -48,6 +48,7 @@
     "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "type-check": "tsc --noEmit --project config/tsconfig.json",
+    "verify:deployment": "node build/verify-deployment.js",
     "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'"
   },
   "keywords": [
