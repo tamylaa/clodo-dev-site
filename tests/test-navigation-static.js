@@ -18,7 +18,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Test configuration
-const DIST_DIR = join(__dirname, '..', 'dist');
+// Prefer `dist` (legacy) but fall back to Astro build output `dist-astro/client` if present.
+const LEGACY_DIST = join(__dirname, '..', 'dist');
+const ASTRO_DIST = join(__dirname, '..', 'dist-astro', 'client');
+let DIST_DIR = LEGACY_DIST;
+import { existsSync } from 'fs';
+if (!existsSync(DIST_DIR) && existsSync(ASTRO_DIST)) {
+    DIST_DIR = ASTRO_DIST;
+}
 const CRITICAL_CSS_PATH = join(DIST_DIR, 'critical.css');
 
 // Test results
