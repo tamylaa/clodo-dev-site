@@ -1,28 +1,34 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_Db8Fy30b.mjs';
-import { manifest } from './manifest_B2Zdg6KA.mjs';
+import { manifest } from './manifest_NYRV4BWH.mjs';
 
 const serverIslandMap = new Map();;
 
 const _page0 = () => import('./pages/about.astro.mjs');
 const _page1 = () => import('./pages/cloudflare-workers-guide.astro.mjs');
 const _page2 = () => import('./pages/components.astro.mjs');
-const _page3 = () => import('./pages/docs.astro.mjs');
-const _page4 = () => import('./pages/examples.astro.mjs');
-const _page5 = () => import('./pages/migrate.astro.mjs');
-const _page6 = () => import('./pages/pricing.astro.mjs');
-const _page7 = () => import('./pages/product.astro.mjs');
-const _page8 = () => import('./pages/index.astro.mjs');
+const _page3 = () => import('./pages/development-deployment-guide.astro.mjs');
+const _page4 = () => import('./pages/docs.astro.mjs');
+const _page5 = () => import('./pages/edge-computing-guide.astro.mjs');
+const _page6 = () => import('./pages/examples.astro.mjs');
+const _page7 = () => import('./pages/faq.astro.mjs');
+const _page8 = () => import('./pages/migrate.astro.mjs');
+const _page9 = () => import('./pages/pricing.astro.mjs');
+const _page10 = () => import('./pages/product.astro.mjs');
+const _page11 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["src/pages/about.astro", _page0],
     ["src/pages/cloudflare-workers-guide.astro", _page1],
     ["src/pages/components.astro", _page2],
-    ["src/pages/docs.astro", _page3],
-    ["src/pages/examples.astro", _page4],
-    ["src/pages/migrate.astro", _page5],
-    ["src/pages/pricing.astro", _page6],
-    ["src/pages/product.astro", _page7],
-    ["src/pages/index.astro", _page8]
+    ["src/pages/development-deployment-guide.astro", _page3],
+    ["src/pages/docs.astro", _page4],
+    ["src/pages/edge-computing-guide.astro", _page5],
+    ["src/pages/examples.astro", _page6],
+    ["src/pages/faq.astro", _page7],
+    ["src/pages/migrate.astro", _page8],
+    ["src/pages/pricing.astro", _page9],
+    ["src/pages/product.astro", _page10],
+    ["src/pages/index.astro", _page11]
 ]);
 
 const _manifest = Object.assign(manifest, {

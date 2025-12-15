@@ -1,0 +1,533 @@
+---
+// src/pages/faq.astro
+// Frequently asked questions about Clodo Framework
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'FAQ - Frequently Asked Questions About Clodo Framework';
+const description = 'Get answers to common questions about Clodo Framework, Cloudflare Workers, edge computing, and SaaS development.';
+
+const faqs = [
+  {
+    category: 'General',
+    questions: [
+      {
+        q: 'What is Clodo Framework?',
+        a: 'Clodo Framework is a modern SaaS development framework that runs on Cloudflare Workers. It provides service templates, middleware, and utilities to help you build production-ready applications in weeks instead of months.'
+      },
+      {
+        q: 'Do I need to know Cloudflare to use Clodo?',
+        a: 'No. Clodo abstracts away most Cloudflare complexity. You can write standard Node.js/TypeScript code and Clodo handles the edge deployment details. Of course, learning Cloudflare concepts helps optimize your applications.'
+      },
+      {
+        q: 'Is Clodo open source?',
+        a: 'Yes! Clodo Framework is open source on GitHub. You can inspect the code, contribute, and use it for commercial projects.'
+      },
+      {
+        q: 'Can I use Clodo with my existing project?',
+        a: 'Yes. You can adopt Clodo incrementally. Start by migrating one service and gradually move more functionality to Clodo as you become comfortable with it.'
+      }
+    ]
+  },
+  {
+    category: 'Pricing & Costs',
+    questions: [
+      {
+        q: 'How much does Clodo Framework cost?',
+        a: 'Clodo Framework itself is free and open source. You only pay for Cloudflare resources you use: $0.50 per 1M CPU milliseconds and $0.15 per 1M requests beyond the free tier.'
+      },
+      {
+        q: 'Is there a free tier?',
+        a: 'Yes! Cloudflare offers a generous free tier: 100,000 requests/day, 10ms CPU time per request, and 1GB KV storage. This is enough for testing and small projects.'
+      },
+      {
+        q: 'How does pricing compare to Lambda/other serverless?',
+        a: 'Clodo on Cloudflare is typically 5-10x cheaper than Lambda for similar workloads because: (1) you only pay per request, not per 100ms chunk, (2) no cold starts or warm-up costs, (3) global deployment is included.'
+      },
+      {
+        q: 'What if my app grows to millions of requests?',
+        a: 'Great question! At 10M requests/day: Lambda costs $500-1000/month, Clodo costs $20-50/month. The cost advantage scales with usage.'
+      }
+    ]
+  },
+  {
+    category: 'Performance',
+    questions: [
+      {
+        q: 'How fast is Clodo?',
+        a: 'Response times are typically 10-50ms (P95). This includes database queries. Compare to Lambda: 300-500ms average.'
+      },
+      {
+        q: 'Does Clodo have cold starts?',
+        a: 'No. Cloudflare Workers are always warm and ready to respond immediately. No cold start penalty.'
+      },
+      {
+        q: 'Can I use Clodo for real-time applications?',
+        a: 'Yes! Clodo includes Durable Objects for stateful real-time applications like collaborative editing, multiplayer games, and live chat.'
+      },
+      {
+        q: 'What is the maximum request size?',
+        a: 'Clodo supports requests up to 100MB in size, with typical payloads being much smaller.'
+      }
+    ]
+  },
+  {
+    category: 'Security',
+    questions: [
+      {
+        q: 'Is Clodo secure for production?',
+        a: 'Yes. Clodo is production-ready and used by many companies. You get Cloudflare\'s built-in DDoS protection, WAF, and security features at no extra cost.'
+      },
+      {
+        q: 'How do I store sensitive data like API keys?',
+        a: 'Use Cloudflare Workers Secrets. Secrets are encrypted and injected at runtime. They\'re never stored in your source code or logs.'
+      },
+      {
+        q: 'Can I use Clodo with GDPR/CCPA compliance requirements?',
+        a: 'Yes. You can process data at the edge without sending to a centralized data center. This simplifies data residency requirements. Cloudflare also offers GDPR-compliant data handling.'
+      },
+      {
+        q: 'How does Clodo prevent SQL injection?',
+        a: 'Clodo encourages parameterized queries. When using D1 database, always use placeholders (?) instead of string concatenation: db.prepare("SELECT * FROM users WHERE id = ?").bind(userId).run()'
+      }
+    ]
+  },
+  {
+    category: 'Database & Storage',
+    questions: [
+      {
+        q: 'What databases does Clodo support?',
+        a: 'Clodo includes D1 (SQLite) by default. You can also connect to PostgreSQL, MySQL, or any external database. D1 is recommended for new projects.'
+      },
+      {
+        q: 'Can I use MongoDB with Clodo?',
+        a: 'Yes! You can connect to MongoDB Atlas from Clodo workers. However, D1 (SQL) is simpler and recommended for most projects.'
+      },
+      {
+        q: 'How much data can I store in D1?',
+        a: 'D1 databases can store up to 1TB of data. This is plenty for most applications. You can create multiple databases if needed.'
+      },
+      {
+        q: 'What is KV and when should I use it?',
+        a: 'KV is a globally distributed key-value store. Use it for caching, sessions, or fast lookups. It has eventual consistency (KV is best-effort). Use D1 when you need strong consistency.'
+      },
+      {
+        q: 'How do I backup my D1 database?',
+        a: 'Cloudflare provides automated backups. You can also export your database with: wrangler d1 execute mydb --file backup.sql'
+      }
+    ]
+  },
+  {
+    category: 'Deployment',
+    questions: [
+      {
+        q: 'How do I deploy a Clodo application?',
+        a: 'Simply run: wrangler deploy. Your code is deployed globally to 300+ Cloudflare data centers in seconds. No infrastructure setup needed.'
+      },
+      {
+        q: 'Can I use my own domain?',
+        a: 'Yes. You can use your own domain with Clodo. Point your domain to Cloudflare nameservers and Clodo will serve it.'
+      },
+      {
+        q: 'How do I deploy to staging/production?',
+        a: 'Use environments in wrangler.toml: wrangler deploy --env production deploys to production, wrangler deploy --env staging deploys to staging. Each environment has separate configuration and database.'
+      },
+      {
+        q: 'Can I do zero-downtime deployments?',
+        a: 'Yes! Cloudflare handles this automatically. New code is deployed to all locations simultaneously, and existing requests complete with old code.'
+      }
+    ]
+  },
+  {
+    category: 'Development',
+    questions: [
+      {
+        q: 'What languages does Clodo support?',
+        a: 'Primarily TypeScript and JavaScript. Both run on the same V8 engine. TypeScript is recommended for type safety.'
+      },
+      {
+        q: 'Can I use npm packages with Clodo?',
+        a: 'Yes! Most npm packages work fine. Packages are bundled with your worker code. Avoid large packages that add significant bundle size.'
+      },
+      {
+        q: 'How do I debug Clodo applications?',
+        a: 'Use wrangler dev for local development and debugging. Use wrangler tail to view production logs in real-time.'
+      },
+      {
+        q: 'Can I use async/await in Clodo?',
+        a: 'Yes, absolutely. All Clodo worker code is async by default. Use async/await for clean, readable code.'
+      },
+      {
+        q: 'Is there a maximum code size?',
+        a: 'The uncompressed code size limit is 1MB, compressed. Most applications are well under this. If you exceed it, consider splitting into multiple workers or reducing dependencies.'
+      }
+    ]
+  },
+  {
+    category: 'Comparison',
+    questions: [
+      {
+        q: 'How does Clodo compare to Lambda?',
+        a: 'Clodo is faster (10ms vs 300ms+), cheaper ($0.50/M cpu-ms vs $0.000001667/ms), and simpler (no cold starts, no configuration). Lambda has more mature ecosystem. Clodo is better for APIs and SaaS.'
+      },
+      {
+        q: 'Clodo vs Next.js?',
+        a: 'Next.js is a framework for full-stack apps with Node.js backend. Clodo is a framework for edge functions. You could use both: Next.js for frontend, Clodo for API layer.'
+      },
+      {
+        q: 'Can I use Clodo with Vercel/Netlify?',
+        a: 'Yes! You can deploy Next.js/frontend to Vercel and backend API to Clodo. This gives you the best of both worlds.'
+      },
+      {
+        q: 'Clodo vs building on Cloudflare Workers directly?',
+        a: 'Clodo is built on top of Cloudflare Workers. It provides higher-level abstractions, service templates, and middleware. If you prefer lower-level control, you can use Cloudflare Workers directly.'
+      }
+    ]
+  },
+  {
+    category: 'Community & Support',
+    questions: [
+      {
+        q: 'Where can I get help?',
+        a: 'Join our Discord community, check GitHub discussions, or open an issue on GitHub. You can also check the documentation at clodo.dev'
+      },
+      {
+        q: 'Is there a Clodo community?',
+        a: 'Yes! We have an active community on Discord. Share your projects, ask questions, and learn from other developers.'
+      },
+      {
+        q: 'Can I contribute to Clodo?',
+        a: 'Absolutely! Clodo is open source. Check CONTRIBUTING.md on GitHub for guidelines. We welcome bug reports, feature requests, and pull requests.'
+      },
+      {
+        q: 'Does Clodo provide enterprise support?',
+        a: 'Yes. For enterprise deployments, contact us at sales@clodo.dev for custom support plans.'
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">FAQ</span>
+        <meta itemprop="position" content="2">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="faq-title">
+    <div class="container">
+      <h1 id="faq-title">Frequently Asked Questions</h1>
+      <p>Find answers to common questions about Clodo Framework, Cloudflare Workers, and building serverless applications.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="faq-content">
+    <div class="container">
+      {faqs.map((category) => (
+        <div class="faq-category">
+          <h2>{category.category}</h2>
+          
+          <div class="faq-items">
+            {category.questions.map((item, index) => (
+              <details class="faq-item" id={`faq-${category.category.toLowerCase()}-${index}`}>
+                <summary class="faq-question">
+                  <span class="faq-icon">+</span>
+                  <span class="faq-text">{item.q}</span>
+                </summary>
+                <div class="faq-answer">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Still Have Questions CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Still Have Questions?</h2>
+      <p>Can't find the answer you're looking for? Our community is here to help.</p>
+      
+      <div class="cta-options">
+        <div class="cta-card">
+          <h3>📚 Documentation</h3>
+          <p>Comprehensive guides and API references</p>
+          <a href="/docs/">Read Docs →</a>
+        </div>
+
+        <div class="cta-card">
+          <h3>💬 Discord Community</h3>
+          <p>Chat with other developers and get help</p>
+          <a href="https://discord.gg/clodo">Join Discord →</a>
+        </div>
+
+        <div class="cta-card">
+          <h3>📧 Email Support</h3>
+          <p>Enterprise support and custom solutions</p>
+          <a href="mailto:support@clodo.dev">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .faq-content {
+    padding: 3rem 1rem;
+  }
+
+  .faq-category {
+    margin-bottom: 4rem;
+  }
+
+  .faq-category h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+  }
+
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .faq-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color, #1d4ed8);
+  }
+
+  .faq-item[open] {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    border-color: var(--primary-color, #1d4ed8);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    list-style: none;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  .faq-answer {
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  .faq-answer p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cta-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #ffffff);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .cta-section > .container > p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    margin-bottom: 2rem;
+  }
+
+  .cta-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cta-card {
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .cta-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--primary-color, #1d4ed8);
+  }
+
+  .cta-card h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .cta-card p {
+    color: var(--text-secondary, #475569);
+    margin: 0 0 1rem 0;
+  }
+
+  .cta-card a {
+    display: inline-block;
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .cta-card a:hover {
+    color: var(--primary-hover, #1e40af);
+  }
+
+  @media (max-width: 768px) {
+    .faq-question {
+      font-size: 1rem;
+    }
+
+    .faq-answer {
+      margin-left: 2rem;
+    }
+
+    .cta-options {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+      text-align: left;
+    }
+  }
+</style>

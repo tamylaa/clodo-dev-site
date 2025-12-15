@@ -1,0 +1,741 @@
+---
+// src/pages/development-deployment-guide.astro
+// Complete guide to development workflow and deployment strategies
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const title = 'Development & Deployment Guide - Clodo Framework';
+const description = 'Complete workflow from local development to production deployment. Setup your development environment, testing pipeline, and deployment automation.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Guides</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Development & Deployment</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="guide-title">
+    <div class="container">
+      <h1 id="guide-title">Development to Production: Complete Workflow</h1>
+      <p>Master the complete development lifecycle with Clodo Framework. From local setup to automated deployments, optimize every step of your workflow.</p>
+    </div>
+  </section>
+
+  <!-- Main Content with TOC -->
+  <div class="guide-container">
+    <TableOfContents />
+    
+    <main class="guide-content">
+      <!-- Local Development -->
+      <section id="local-development" class="guide-section">
+        <h2>Setting Up Local Development</h2>
+
+        <h3>Prerequisites</h3>
+        <ul class="checklist">
+          <li>Node.js 18+ and npm 9+</li>
+          <li>Git for version control</li>
+          <li>Code editor (VS Code recommended)</li>
+          <li>Wrangler CLI for local development</li>
+        </ul>
+
+        <h3>Initial Setup</h3>
+        <pre><code>{`# Clone the repository
+git clone <repo-url>
+cd clodo-project
+
+# Install dependencies
+npm install
+
+# Install Wrangler globally
+npm install -g wrangler
+
+# Create local environment file
+cp .env.example .env.local
+
+# Start development server
+npm run dev`}</code></pre>
+
+        <h3>Project Structure</h3>
+        <pre><code>{`clodo-project/
+├── src/
+│   ├── services/        # Business logic
+│   ├── middleware/       # Request/response middleware
+│   ├── models/           # Data models and types
+│   ├── utils/            # Utility functions
+│   └── index.ts          # Entry point
+├── tests/
+│   ├── unit/             # Unit tests
+│   ├── integration/      # Integration tests
+│   └── fixtures/         # Test data
+├── wrangler.toml         # Cloudflare Workers config
+├── package.json
+├── tsconfig.json
+└── README.md`}</code></pre>
+
+        <h3>Development Commands</h3>
+        <pre><code>{`# Start local dev server with live reload
+npm run dev
+
+# Run with debugging
+npm run dev -- --debug
+
+# Build for production
+npm run build
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+
+# Format code
+npm run format`}</code></pre>
+      </section>
+
+      <!-- Testing Strategy -->
+      <section id="testing" class="guide-section">
+        <h2>Testing Strategy</h2>
+
+        <h3>Unit Tests</h3>
+        <pre><code>{`// tests/unit/auth.test.ts
+import { describe, it, expect } from 'vitest';
+import { validateEmail } from '../../src/utils/validation';
+
+describe('validateEmail', () => {
+  it('should accept valid emails', () => {
+    expect(validateEmail('user@example.com')).toBe(true);
+  });
+
+  it('should reject invalid emails', () => {
+    expect(validateEmail('invalid')).toBe(false);
+  });
+});`}</code></pre>
+
+        <h3>Integration Tests</h3>
+        <pre><code>{`// tests/integration/api.test.ts
+import { describe, it, expect, beforeAll } from 'vitest';
+
+describe('API Integration', () => {
+  beforeAll(() => {
+    // Setup test environment
+  });
+
+  it('should create and retrieve users', async () => {
+    const response = await fetch('http://localhost:8787/users', {
+      method: 'POST',
+      body: JSON.stringify({ name: 'John', email: 'john@example.com' })
+    });
+    
+    expect(response.status).toBe(201);
+    const user = await response.json();
+    expect(user.id).toBeDefined();
+  });
+});`}</code></pre>
+
+        <h3>Running Tests</h3>
+        <pre><code>{`# Run all tests
+npm test
+
+# Run specific test file
+npm test -- auth.test.ts
+
+# Run with coverage
+npm test -- --coverage
+
+# Watch mode
+npm test -- --watch`}</code></pre>
+      </section>
+
+      <!-- Code Quality -->
+      <section id="code-quality" class="guide-section">
+        <h2>Code Quality and Standards</h2>
+
+        <h3>Linting Configuration</h3>
+        <pre><code>{`// .eslintrc.json
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "error",
+    "prefer-const": "error"
+  }
+}`}</code></pre>
+
+        <h3>Type Safety</h3>
+        <pre><code>{`// src/models/User.ts
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  createdAt: Date;
+  role: 'admin' | 'user';
+}
+
+export class UserService {
+  async getUser(id: string): Promise<User> {
+    // TypeScript ensures return type matches
+  }
+}`}</code></pre>
+
+        <h3>Pre-commit Hooks</h3>
+        <pre><code>{`// package.json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": ["eslint --fix", "prettier --write"],
+    "*.{ts,tsx}": "tsc --noEmit"
+  }
+}`}</code></pre>
+      </section>
+
+      <!-- Branching Strategy -->
+      <section id="branching" class="guide-section">
+        <h2>Git Workflow and Branching</h2>
+
+        <h3>Branch Structure</h3>
+        <ul>
+          <li><strong>main:</strong> Production-ready code, protected branch</li>
+          <li><strong>develop:</strong> Integration branch for features</li>
+          <li><strong>feature/*:</strong> Individual feature branches</li>
+          <li><strong>bugfix/*:</strong> Bug fix branches</li>
+          <li><strong>release/*:</strong> Release preparation branches</li>
+        </ul>
+
+        <h3>Feature Branch Workflow</h3>
+        <pre><code>{`# Create feature branch from develop
+git checkout develop
+git pull origin develop
+git checkout -b feature/user-authentication
+
+# Work on feature
+# ... make changes ...
+git add .
+git commit -m "feat: implement JWT authentication"
+
+# Keep branch up to date
+git fetch origin
+git rebase origin/develop
+
+# Push and create pull request
+git push origin feature/user-authentication
+
+# After PR approval and CI passes, merge to develop
+git checkout develop
+git merge feature/user-authentication`}</code></pre>
+
+        <h3>Commit Message Convention</h3>
+        <pre><code>{`# Format: <type>(<scope>): <subject>
+# Types: feat, fix, docs, style, refactor, perf, test, chore
+# Examples:
+
+feat(auth): add JWT token refresh mechanism
+fix(db): handle connection pool exhaustion
+docs(api): update endpoint documentation
+perf(cache): implement Redis caching layer
+test(user): add unit tests for validation`}</code></pre>
+      </section>
+
+      <!-- Environment Management -->
+      <section id="environments" class="guide-section">
+        <h2>Environment Management</h2>
+
+        <h3>Configuration Hierarchy</h3>
+        <pre><code>{`// .env.local (development)
+DATABASE_URL=sqlite:local.db
+API_KEY=dev-key-123
+LOG_LEVEL=debug
+DEBUG=true
+
+// .env.staging
+DATABASE_URL=postgresql://staging-db.example.com/app
+API_KEY=staging-key-456
+LOG_LEVEL=info
+DEBUG=false
+
+// .env.production
+DATABASE_URL=postgresql://prod-db.example.com/app
+API_KEY=prod-key-789
+LOG_LEVEL=warn
+DEBUG=false`}</code></pre>
+
+        <h3>Runtime Configuration</h3>
+        <pre><code>{`// src/config.ts
+export const config = {
+  environment: process.env.NODE_ENV || 'development',
+  database: {
+    url: process.env.DATABASE_URL,
+    pool: parseInt(process.env.DB_POOL_SIZE || '10')
+  },
+  api: {
+    key: process.env.API_KEY,
+    timeout: parseInt(process.env.API_TIMEOUT || '5000')
+  },
+  logging: {
+    level: process.env.LOG_LEVEL || 'info'
+  }
+};`}</code></pre>
+
+        <h3>Secrets Management</h3>
+        <p>Never commit secrets. Use environment variables and secret management services:</p>
+        <ul>
+          <li><strong>Development:</strong> .env.local (gitignored)</li>
+          <li><strong>Staging:</strong> GitHub Secrets for CI/CD</li>
+          <li><strong>Production:</strong> Cloudflare Workers Secrets</li>
+        </ul>
+      </section>
+
+      <!-- CI/CD Pipeline -->
+      <section id="cicd" class="guide-section">
+        <h2>Continuous Integration & Deployment</h2>
+
+        <h3>GitHub Actions Workflow</h3>
+        <pre><code>{`# .github/workflows/ci.yml
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+      - run: npm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy to Cloudflare
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}`}</code></pre>
+
+        <h3>Deployment Stages</h3>
+        <ol class="stages">
+          <li>
+            <strong>Build:</strong> Compile TypeScript, bundle code, run linters
+          </li>
+          <li>
+            <strong>Test:</strong> Unit tests, integration tests, type checking
+          </li>
+          <li>
+            <strong>Staging:</strong> Deploy to staging environment, run smoke tests
+          </li>
+          <li>
+            <strong>Production:</strong> Deploy to production with canary support
+          </li>
+        </ol>
+      </section>
+
+      <!-- Rollback Strategy -->
+      <section id="rollback" class="guide-section">
+        <h2>Monitoring and Rollback</h2>
+
+        <h3>Health Checks</h3>
+        <pre><code>{`// src/healthcheck.ts
+export async function healthCheck(env: any): Promise<Response> {
+  const checks = {
+    database: await checkDatabase(env),
+    cache: await checkCache(env),
+    external: await checkExternalServices()
+  };
+
+  const allHealthy = Object.values(checks).every(c => c.status === 'ok');
+  
+  return new Response(JSON.stringify(checks), {
+    status: allHealthy ? 200 : 503
+  });
+}`}</code></pre>
+
+        <h3>Monitoring</h3>
+        <pre><code>{`# Track these metrics:
+- Error rate (target: < 0.1%)
+- Response time P95 (target: < 100ms)
+- Requests per second
+- Database connection pool usage
+- API quota usage
+
+# Set up alerts for:
+- Error rate > 1%
+- Response time P95 > 500ms
+- Database connections > 80%`}</code></pre>
+
+        <h3>Rollback Procedure</h3>
+        <ol class="procedures">
+          <li>Detect degradation through monitoring</li>
+          <li>Alert on-call engineer</li>
+          <li>Verify issue with health checks</li>
+          <li>Trigger rollback to previous known-good version</li>
+          <li>Monitor metrics to confirm recovery</li>
+          <li>Post-mortem analysis</li>
+        </ol>
+      </section>
+
+      <!-- Performance Tuning -->
+      <section id="performance" class="guide-section">
+        <h2>Performance Tuning</h2>
+
+        <h3>Profiling</h3>
+        <pre><code>{`// Measure function execution time
+function profile(label: string) {
+  return function(target: any, key: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+    descriptor.value = async function(...args: any[]) {
+      const start = performance.now();
+      try {
+        return await originalMethod.apply(this, args);
+      } finally {
+        const duration = performance.now() - start;
+        console.log(\`[\${label}] \${duration.toFixed(2)}ms\`);
+      }
+    };
+    return descriptor;
+  };
+}`}</code></pre>
+
+        <h3>Common Bottlenecks</h3>
+        <ul>
+          <li><strong>N+1 Queries:</strong> Use batching and JOINs</li>
+          <li><strong>Inefficient Algorithms:</strong> Use caching and memoization</li>
+          <li><strong>Large Payloads:</strong> Implement pagination and compression</li>
+          <li><strong>Network Latency:</strong> Use edge caching and CDN</li>
+        </ul>
+      </section>
+
+      <!-- Scaling Strategy -->
+      <section id="scaling" class="guide-section">
+        <h2>Scaling for Growth</h2>
+
+        <h3>Horizontal Scaling</h3>
+        <p>Cloudflare Workers automatically scale horizontally across all edge locations.</p>
+        <ul>
+          <li>No load balancer needed</li>
+          <li>Automatic request distribution</li>
+          <li>Infinite concurrent requests</li>
+        </ul>
+
+        <h3>Database Scaling</h3>
+        <pre><code>{`# Monitor D1 query performance
+wrangler d1 execute mydb "ANALYZE"
+
+# Optimize with indexes
+CREATE INDEX idx_user_email ON users(email);
+CREATE INDEX idx_post_author ON posts(author_id);
+
+# Archive old data
+DELETE FROM logs WHERE created_at < DATE('now', '-90 days');`}</code></pre>
+
+        <h3>Caching Strategy</h3>
+        <p>Layer caching for maximum performance:</p>
+        <ol>
+          <li><strong>Browser Cache:</strong> Static assets (1 year)</li>
+          <li><strong>Cloudflare Cache:</strong> HTML/API responses (1 hour)</li>
+          <li><strong>KV Cache:</strong> Database query results (5 minutes)</li>
+          <li><strong>Database:</strong> Source of truth</li>
+        </ol>
+      </section>
+
+      <!-- Disaster Recovery -->
+      <section id="disaster-recovery" class="guide-section">
+        <h2>Disaster Recovery</h2>
+
+        <h3>Backup Strategy</h3>
+        <pre><code>{`# Automated D1 backups
+wrangler d1 backup create mydb
+
+# Export data
+wrangler d1 execute mydb --file backup.sql
+
+# Test restore
+wrangler d1 restore mydb backup-id`}</code></pre>
+
+        <h3>Recovery Time Objectives</h3>
+        <div class="rto-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>RTO</th>
+                <th>Recovery Method</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Code bug in production</td>
+                <td>5-15 minutes</td>
+                <td>Rollback to previous version</td>
+              </tr>
+              <tr>
+                <td>Data corruption</td>
+                <td>30-60 minutes</td>
+                <td>Restore from backup</td>
+              </tr>
+              <tr>
+                <td>Regional outage</td>
+                <td>Automatic</td>
+                <td>Geographic failover (built-in)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .guide-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .guide-content {
+    min-width: 0;
+  }
+
+  .guide-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section:last-child {
+    border-bottom: none;
+  }
+
+  .guide-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+    scroll-margin-top: 5rem;
+  }
+
+  .guide-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .guide-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .guide-section li {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .guide-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .checklist li::before {
+    content: '✓';
+  }
+
+  .stages, .procedures {
+    list-style: decimal;
+    padding-left: 2rem;
+  }
+
+  .stages li, .procedures li {
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .stages li::before, .procedures li::before {
+    display: none;
+  }
+
+  .guide-section code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+  }
+
+  .guide-section pre {
+    background: #0b1220;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section pre code {
+    background: none;
+    padding: 0;
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .rto-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .rto-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .rto-table th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .rto-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  @media (max-width: 1024px) {
+    .guide-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .guide-container {
+      padding: 1rem;
+    }
+
+    .guide-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .guide-section pre {
+      padding: 1rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

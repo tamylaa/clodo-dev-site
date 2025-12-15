@@ -1,0 +1,716 @@
+---
+// src/pages/edge-computing-guide.astro
+// Comprehensive guide to edge computing concepts and benefits
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const title = 'Edge Computing Guide - Architecture, Benefits & Implementation';
+const description = 'Learn edge computing fundamentals. Understand how running code at the edge reduces latency, improves security, and transforms application architecture.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Guides</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Edge Computing Guide</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="guide-title">
+    <div class="container">
+      <h1 id="guide-title">Edge Computing: The Future of Distributed Systems</h1>
+      <p>Move computation closer to users. Edge computing reduces latency, improves security, and unlocks new possibilities for real-time applications. Learn the fundamentals and architectural patterns.</p>
+    </div>
+  </section>
+
+  <!-- Main Content with TOC -->
+  <div class="guide-container">
+    <TableOfContents />
+    
+    <main class="guide-content">
+      <!-- Edge Computing Fundamentals -->
+      <section id="fundamentals" class="guide-section">
+        <h2>Edge Computing Fundamentals</h2>
+
+        <h3>What is Edge Computing?</h3>
+        <p>Edge computing is a computing paradigm where data processing happens at or near the data source rather than in centralized cloud data centers. The "edge" refers to the network edge—thousands of servers located close to end-users worldwide.</p>
+
+        <h3>Traditional vs Edge Architecture</h3>
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Traditional Cloud</th>
+                <th>Edge Computing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Server Location</strong></td>
+                <td>Centralized data centers (few locations)</td>
+                <td>Distributed globally (300+ locations)</td>
+              </tr>
+              <tr>
+                <td><strong>Latency</strong></td>
+                <td>500-1000ms typical</td>
+                <td>10-50ms typical</td>
+              </tr>
+              <tr>
+                <td><strong>Request Path</strong></td>
+                <td>User → Internet → Data Center → Internet → User</td>
+                <td>User → Nearest Edge Location → User</td>
+              </tr>
+              <tr>
+                <td><strong>Cold Starts</strong></td>
+                <td>Yes (warm-up needed)</td>
+                <td>No (always ready)</td>
+              </tr>
+              <tr>
+                <td><strong>Bandwidth Usage</strong></td>
+                <td>Higher (long-distance transit)</td>
+                <td>Lower (local processing)</td>
+              </tr>
+              <tr>
+                <td><strong>Cost Model</strong></td>
+                <td>Always-on resources</td>
+                <td>Pay-per-request</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Why Edge Computing Matters</h3>
+        <ul class="benefits">
+          <li><strong>Latency:</strong> 10x faster responses by running code near users</li>
+          <li><strong>Bandwidth:</strong> Reduce origin traffic by processing at the edge</li>
+          <li><strong>Privacy:</strong> Keep sensitive data local, never transmit to centralized servers</li>
+          <li><strong>Availability:</strong> Continue serving even when origin is down</li>
+          <li><strong>Cost:</strong> Process fewer requests at expensive origin servers</li>
+          <li><strong>Scale:</strong> Handle traffic spikes without origin infrastructure</li>
+        </ul>
+      </section>
+
+      <!-- Edge Computing Use Cases -->
+      <section id="use-cases" class="guide-section">
+        <h2>Real-World Use Cases</h2>
+
+        <h3>Real-Time Applications</h3>
+        <p><strong>Gaming & Multiplayer:</strong> Run game servers on edge for &lt; 100ms latency, enabling competitive multiplayer experiences.</p>
+        <p><strong>Video Streaming:</strong> Process requests at edge to select best video quality, insert ads, generate thumbnails—all in real-time.</p>
+
+        <h3>Content Personalization</h3>
+        <p>Modify responses based on user location, device type, or previous behavior—instantly at the edge, without origin latency.</p>
+        <pre><code>{`// Personalize content at edge
+const country = request.headers.get('CF-IPCountry');
+const device = request.headers.get('User-Agent');
+
+if (country === 'US' && device.includes('Mobile')) {
+  return new Response(template_us_mobile);
+} else if (country === 'EU') {
+  return new Response(template_eu, {
+    headers: { 'Content-Language': 'en-EU' }
+  });
+}`}</code></pre>
+
+        <h3>Security & Access Control</h3>
+        <p><strong>Bot Protection:</strong> Detect and block bad bots before they reach your origin.</p>
+        <p><strong>Rate Limiting:</strong> Enforce rate limits at the edge to protect origin servers.</p>
+        <p><strong>Authentication:</strong> Verify JWT tokens at edge, reject invalid requests before hitting origin.</p>
+
+        <h3>API Response Enhancement</h3>
+        <pre><code>{`// Enrich API responses at edge
+const response = await fetch(request);
+const data = await response.json();
+
+// Add computed fields without touching origin
+data.processed_at = new Date().toISOString();
+data.ttl_seconds = 3600;
+data.cache_key = hash(request.url);
+
+return new Response(JSON.stringify(data), {
+  headers: { 'Cache-Control': 'public, max-age=3600' }
+});`}</code></pre>
+
+        <h3>Image Optimization</h3>
+        <p>Detect device capabilities and automatically serve WebP format, apply responsive sizing, and generate thumbnails—all at the edge.</p>
+
+        <h3>A/B Testing</h3>
+        <pre><code>{`// Run A/B tests at edge
+const userId = request.headers.get('Cookie').match(/uid=([^;]+)/)?.[1];
+const variant = hashUserId(userId) % 2 === 0 ? 'A' : 'B';
+
+const response = await fetch(\`/variants/\${variant}\`);
+response.headers.set('X-Variant', variant);
+return response;`}</code></pre>
+      </section>
+
+      <!-- Edge Computing Architecture -->
+      <section id="architecture" class="guide-section">
+        <h2>Edge Computing Architecture</h2>
+
+        <h3>Typical Edge Stack</h3>
+        <ol class="stack">
+          <li><strong>Edge Function:</strong> Your code running on edge servers</li>
+          <li><strong>Edge Cache:</strong> Automatically cache responses</li>
+          <li><strong>Edge KV:</strong> Fast key-value store on edge</li>
+          <li><strong>Durable Objects:</strong> Strong consistency when needed</li>
+          <li><strong>Origin API:</strong> Fallback for complex operations</li>
+        </ol>
+
+        <h3>Request Flow Diagram</h3>
+        <pre><code>{`User Request
+    ↓
+Nearest Edge Location (300+ cities)
+    ↓
+Check Cache (instant if hit)
+    ↓
+Run Edge Function
+    ↓
+Check Durable Objects (for state)
+    ↓
+Check Edge KV (fast lookup)
+    ↓
+If needed, fetch from Origin
+    ↓
+Cache response at edge
+    ↓
+Send response to user`}</code></pre>
+
+        <h3>When to Use Each Component</h3>
+        <div class="component-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Best For</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Edge Cache</strong></td>
+                <td>Static assets, HTML, API responses</td>
+                <td>&lt; 1ms</td>
+              </tr>
+              <tr>
+                <td><strong>Edge KV</strong></td>
+                <td>Database query results, session data</td>
+                <td>1-5ms</td>
+              </tr>
+              <tr>
+                <td><strong>Durable Objects</strong></td>
+                <td>Real-time state, WebSocket connections</td>
+                <td>5-50ms</td>
+              </tr>
+              <tr>
+                <td><strong>Origin Database</strong></td>
+                <td>Write operations, complex queries</td>
+                <td>50-500ms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Performance Benefits -->
+      <section id="performance" class="guide-section">
+        <h2>Performance Benefits</h2>
+
+        <h3>Latency Reduction</h3>
+        <p>Requests no longer need to traverse the internet to your origin. Instead, they're processed at the nearest edge location.</p>
+        <pre><code>{`Traditional:     User → 5000km → Origin → 5000km → User (500ms+)
+Edge Computing:  User → 50km → Edge → 50km → User (10-50ms)`}</code></pre>
+
+        <h3>Time to First Byte (TTFB)</h3>
+        <p>Edge computing dramatically improves TTFB metrics:</p>
+        <ul class="metrics">
+          <li><strong>Before:</strong> Average 300-500ms TTFB</li>
+          <li><strong>After:</strong> Average 20-50ms TTFB</li>
+          <li><strong>Improvement:</strong> 10-15x faster</li>
+        </ul>
+
+        <h3>Cumulative Layout Shift (CLS)</h3>
+        <p>With sub-50ms responses, JavaScript can execute before the browser paints, eliminating layout shifts.</p>
+
+        <h3>Core Web Vitals Impact</h3>
+        <div class="vitals">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Before Edge</th>
+                <th>After Edge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>LCP</strong> (Largest Contentful Paint)</td>
+                <td>2.8s</td>
+                <td>1.2s</td>
+              </tr>
+              <tr>
+                <td><strong>FID</strong> (First Input Delay)</td>
+                <td>150ms</td>
+                <td>40ms</td>
+              </tr>
+              <tr>
+                <td><strong>CLS</strong> (Cumulative Layout Shift)</td>
+                <td>0.15</td>
+                <td>0.05</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Security Advantages -->
+      <section id="security" class="guide-section">
+        <h2>Security Advantages</h2>
+
+        <h3>DDoS Protection</h3>
+        <p>Edge networks absorb DDoS traffic before it reaches your origin. Cloudflare's edge blocks millions of attacks daily.</p>
+
+        <h3>Bot Detection at Scale</h3>
+        <pre><code>{`// Detect bots at edge before reaching origin
+const botSignals = [
+  request.headers.has('User-Agent') === false,
+  request.method !== 'GET' && request.method !== 'POST',
+  request.headers.get('Referer')?.includes('bad-referrer.com'),
+  parseFloat(request.headers.get('DNT') || '0') === 1
+];
+
+if (botSignals.filter(Boolean).length >= 2) {
+  return new Response('Forbidden', { status: 403 });
+}`}</code></pre>
+
+        <h3>Sensitive Data Protection</h3>
+        <p>Process sensitive data at the edge and never transmit it to centralized servers:</p>
+        <ul>
+          <li>Tokenize credit cards at edge before origin</li>
+          <li>Encrypt personally identifiable information</li>
+          <li>Filter sensitive data from logs</li>
+        </ul>
+
+        <h3>Zero Trust Authentication</h3>
+        <pre><code>{`// Verify JWT at edge before allowing access
+const token = request.headers.get('Authorization')?.split(' ')[1];
+
+if (!token) {
+  return new Response('Unauthorized', { status: 401 });
+}
+
+try {
+  const verified = await verifyJWT(token, env.JWT_SECRET);
+  const request_with_user = new Request(request, {
+    headers: {
+      ...request.headers,
+      'X-User-ID': verified.sub
+    }
+  });
+  return fetch(request_with_user);
+} catch {
+  return new Response('Invalid token', { status: 401 });
+}`}</code></pre>
+      </section>
+
+      <!-- Cost Optimization -->
+      <section id="cost" class="guide-section">
+        <h2>Cost Optimization</h2>
+
+        <h3>Reduce Origin Load</h3>
+        <p>By processing requests at the edge, your origin servers handle 50-80% fewer requests:</p>
+        <ul>
+          <li><strong>Cached content:</strong> Served from edge, never hits origin</li>
+          <li><strong>Rejected requests:</strong> Bots, invalid auth, rate-limited—blocked at edge</li>
+          <li><strong>Processed requests:</strong> Transformations happen at edge, not origin</li>
+        </ul>
+
+        <h3>Cost Comparison</h3>
+        <div class="cost-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Infrastructure</th>
+                <th>1M Req/Day</th>
+                <th>100M Req/Day</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Traditional Servers</strong></td>
+                <td>\$500-1000/month</td>
+                <td>\$50-100k/month</td>
+              </tr>
+              <tr>
+                <td><strong>Edge + Origin (hybrid)</strong></td>
+                <td>\$50-100/month</td>
+                <td>\$2-5k/month</td>
+              </tr>
+              <tr>
+                <td><strong>Savings</strong></td>
+                <td>90%+</td>
+                <td>95%+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Implementing Edge Computing -->
+      <section id="implementation" class="guide-section">
+        <h2>Implementing Edge Computing</h2>
+
+        <h3>Step 1: Identify Cacheable Requests</h3>
+        <p>Start by identifying what can be cached or processed at the edge:</p>
+        <ul>
+          <li>Static assets (images, CSS, JS)</li>
+          <li>HTML pages (with personalization)</li>
+          <li>API responses (with short TTL)</li>
+          <li>User sessions (with secure storage)</li>
+        </ul>
+
+        <h3>Step 2: Implement Edge Logic</h3>
+        <pre><code>{`// Simple cache-first strategy
+export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const cache = caches.default;
+    
+    // Check cache first
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    
+    // Fetch from origin
+    const response = await fetch(request);
+    
+    // Cache successful responses
+    if (response.status === 200) {
+      const ttl = request.url.includes('.js') ? 31536000 : 3600;
+      const cached_response = new Response(response.body, response);
+      cached_response.headers.set('Cache-Control', \`public, max-age=\${ttl}\`);
+      event.waitUntil(cache.put(request, cached_response.clone()));
+    }
+    
+    return response;
+  }
+};`}</code></pre>
+
+        <h3>Step 3: Monitor Performance</h3>
+        <p>Track these metrics to verify edge benefits:</p>
+        <ul>
+          <li>Cache hit ratio (target: 80%+)</li>
+          <li>Time to first byte (target: < 50ms)</li>
+          <li>Origin request reduction (target: 70%+)</li>
+          <li>Cost per million requests (target: $1-5)</li>
+        </ul>
+      </section>
+
+      <!-- Advanced Patterns -->
+      <section id="advanced" class="guide-section">
+        <h2>Advanced Patterns</h2>
+
+        <h3>Intelligent Routing</h3>
+        <pre><code>{`// Route traffic intelligently based on location
+const country = request.headers.get('CF-IPCountry');
+const endpoints = {
+  'US': 'https://api-us.example.com',
+  'EU': 'https://api-eu.example.com',
+  'APAC': 'https://api-apac.example.com'
+};
+
+const endpoint = endpoints[country] || endpoints['US'];
+return fetch(\`\${endpoint}\${new URL(request.url).pathname}\`);`}</code></pre>
+
+        <h3>Response Modification</h3>
+        <p>Transform responses from your origin before sending to users:</p>
+        <pre><code>{`// Add security headers at edge
+const response = await fetch(request);
+response.headers.set('X-Frame-Options', 'DENY');
+response.headers.set('Content-Security-Policy', "default-src 'self'");
+response.headers.set('X-Content-Type-Options', 'nosniff');
+response.headers.set('Referrer-Policy', 'strict-origin');
+return response;`}</code></pre>
+
+        <h3>Request Batching</h3>
+        <p>Combine multiple user requests into single batched request to origin:</p>
+        <pre><code>{`// Batch similar requests to reduce origin load
+const pending = new Map();
+
+async function batchQuery(id: string): Promise<any> {
+  // If there's already a request in flight, wait for it
+  if (pending.has(id)) {
+    return pending.get(id);
+  }
+  
+  // Otherwise, create new request
+  const promise = fetch(\`/api/data/\${id}\`);
+  pending.set(id, promise);
+  
+  try {
+    return await promise;
+  } finally {
+    pending.delete(id);
+  }
+}`}</code></pre>
+      </section>
+
+      <!-- Challenges and Solutions -->
+      <section id="challenges" class="guide-section">
+        <h2>Common Challenges</h2>
+
+        <h3>State Management</h3>
+        <p><strong>Challenge:</strong> Edge functions are stateless, making it hard to maintain session state.</p>
+        <p><strong>Solution:</strong> Use Durable Objects for strong consistency or KV with TTL for eventually-consistent state.</p>
+
+        <h3>Cold Starts (doesn't apply with Cloudflare)</h3>
+        <p>Cloudflare Workers have ZERO cold starts. Code is always warm and ready.</p>
+
+        <h3>Debugging Distributed Systems</h3>
+        <p><strong>Challenge:</strong> Requests processed in different geographic locations make debugging harder.</p>
+        <p><strong>Solution:</strong> Add comprehensive logging, unique request IDs, and use analytics to correlate events.</p>
+
+        <h3>Eventual Consistency</h3>
+        <p>When using KV caching, data might be slightly stale. Choose TTL carefully based on consistency requirements.</p>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .guide-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .guide-content {
+    min-width: 0;
+  }
+
+  .guide-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section:last-child {
+    border-bottom: none;
+  }
+
+  .guide-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+    scroll-margin-top: 5rem;
+  }
+
+  .guide-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .guide-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .guide-section li {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .guide-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .benefits li::before {
+    content: '✓';
+  }
+
+  .metrics li::before {
+    content: '✓';
+  }
+
+  .stack {
+    list-style: decimal;
+    padding-left: 2rem;
+  }
+
+  .stack li {
+    padding-left: 0;
+  }
+
+  .stack li::before {
+    display: none;
+  }
+
+  .guide-section code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+  }
+
+  .guide-section pre {
+    background: #0b1220;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section pre code {
+    background: none;
+    padding: 0;
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .comparison-table, .component-table, .vitals, .cost-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  @media (max-width: 1024px) {
+    .guide-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .guide-container {
+      padding: 1rem;
+    }
+
+    .guide-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .guide-section pre {
+      padding: 1rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>
