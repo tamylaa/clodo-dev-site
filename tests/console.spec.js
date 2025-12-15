@@ -13,8 +13,9 @@ const pagesToTest = [
 ];
 
 test.describe('Console errors on key pages', () => {
+  const base = process.env.PW_BASE_URL || process.env.BASE_URL || 'http://localhost:8000';
   for (const path of pagesToTest) {
-    test(`No console errors on ${path}`, async ({ page, baseURL }) => {
+    test(`No console errors on ${path}`, async ({ page }) => {
       const errors = [];
       page.on('console', (msg) => {
         if (msg.type() === 'error') {
@@ -22,8 +23,8 @@ test.describe('Console errors on key pages', () => {
         }
       });
 
-      // Use relative path so Playwright resolves against configured baseURL
-      await page.goto(path);
+      // Navigate to absolute URL built from base server URL
+      await page.goto(base + path);
       // Wait a bit for scripts to run and async logs
       await page.waitForTimeout(500);
 
