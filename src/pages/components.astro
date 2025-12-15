@@ -1,0 +1,743 @@
+---
+// src/pages/components.astro
+// Component library documentation and showcase
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Component Library - Clodo Framework';
+const description = 'Comprehensive component documentation and showcase for Clodo Framework UI components.';
+
+const componentSections = [
+  { id: 'buttons', name: 'Buttons', icon: '🔘' },
+  { id: 'cards', name: 'Cards', icon: '📇' },
+  { id: 'forms', name: 'Forms', icon: '📝' },
+  { id: 'badges', name: 'Badges', icon: '🏷️' },
+  { id: 'alerts', name: 'Alerts', icon: '🔔' },
+  { id: 'loaders', name: 'Loading States', icon: '⏳' },
+  { id: 'design-tokens', name: 'Design Tokens', icon: '🎨' }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Component Library</span>
+        <meta itemprop="position" content="2">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Header -->
+  <div class="component-header">
+    <h1>Component Library</h1>
+    <p>Comprehensive UI component documentation for Clodo Framework</p>
+  </div>
+
+  <!-- Component Navigation -->
+  <div class="component-nav">
+    <ul>
+      {componentSections.map((section) => (
+        <li><a href={`#${section.id}`} class="nav-link">{section.icon} {section.name}</a></li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Components Container -->
+  <div class="components-container">
+
+    <!-- Buttons Section -->
+    <section id="buttons" class="component-section">
+      <h2>🔘 Buttons</h2>
+      <p class="component-description">
+        Buttons are the primary call-to-action elements. They support multiple variants, sizes, and states.
+        All buttons follow the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standard.
+      </p>
+
+      <div class="accessibility-note">
+        <strong>♿ Accessibility:</strong> All buttons have focus states, appropriate ARIA labels, and minimum 44px height for touch targets.
+      </div>
+
+      <div class="variant-group">
+        <h3>Variants</h3>
+        <div class="component-showcase">
+          <button class="btn btn--primary">Primary Button</button>
+          <button class="btn btn--secondary">Secondary Button</button>
+          <button class="btn btn--outline">Outline Button</button>
+        </div>
+      </div>
+
+      <div class="variant-group">
+        <h3>Sizes</h3>
+        <div class="component-showcase">
+          <button class="btn btn--primary btn--sm">Small</button>
+          <button class="btn btn--primary">Default</button>
+          <button class="btn btn--primary btn--lg">Large</button>
+        </div>
+      </div>
+
+      <div class="variant-group">
+        <h3>States</h3>
+        <div class="component-showcase">
+          <button class="btn btn--primary">Normal</button>
+          <button class="btn btn--primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<button class="btn btn--primary">Click Me</button>
+<button class="btn btn--secondary">Secondary</button>
+<button class="btn btn--outline">Outline</button>
+
+<!-- Sizes -->
+<button class="btn btn--primary btn--sm">Small</button>
+<button class="btn btn--primary btn--lg">Large</button>
+
+<!-- States -->
+<button class="btn btn--primary" disabled>Disabled</button>
+<button class="btn btn--primary btn--full">Full Width</button>`}</div>
+      </div>
+
+      <table class="properties-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Purpose</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="property-name">.btn</td>
+            <td>Base button styles</td>
+            <td>Required on all buttons</td>
+          </tr>
+          <tr>
+            <td class="property-name">.btn--primary</td>
+            <td>Primary action button</td>
+            <td>Main CTAs and actions</td>
+          </tr>
+          <tr>
+            <td class="property-name">.btn--secondary</td>
+            <td>Secondary action button</td>
+            <td>Alternative actions</td>
+          </tr>
+          <tr>
+            <td class="property-name">.btn--outline</td>
+            <td>Outline button</td>
+            <td>Tertiary actions</td>
+          </tr>
+          <tr>
+            <td class="property-name">.btn--lg</td>
+            <td>Large button size</td>
+            <td>Prominent CTAs</td>
+          </tr>
+          <tr>
+            <td class="property-name">.btn--sm</td>
+            <td>Small button size</td>
+            <td>Compact layouts</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Cards Section -->
+    <section id="cards" class="component-section">
+      <h2>📇 Cards</h2>
+      <p class="component-description">
+        Cards are container components for grouping related content. They support headers, bodies, and footers with
+        consistent spacing and hover effects.
+      </p>
+
+      <div class="component-showcase grid">
+        <div class="card">
+          <div class="card__header">
+            <h3 class="card__title">Card Title</h3>
+          </div>
+          <div class="card__body">
+            <p class="card__subtitle">This is a basic card with header, body, and content.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__body">
+            <h3 class="card__title">Simple Card</h3>
+            <p class="card__subtitle">Card without header or footer sections.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__header">
+            <h3 class="card__title">Full Card</h3>
+          </div>
+          <div class="card__body">
+            <p class="card__subtitle">This card has all three sections.</p>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--primary btn--sm">Action</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<div class="card">
+    <div class="card__header">
+        <h3 class="card__title">Card Title</h3>
+    </div>
+    <div class="card__body">
+        <p class="card__subtitle">Card content</p>
+    </div>
+    <div class="card__footer">
+        <button class="btn btn--primary">Action</button>
+    </div>
+</div>`}</div>
+      </div>
+    </section>
+
+    <!-- Forms Section -->
+    <section id="forms" class="component-section">
+      <h2>📝 Forms</h2>
+      <p class="component-description">
+        Form components include text inputs, labels, error messages, and textarea fields.
+        All form elements are fully accessible with proper ARIA attributes.
+      </p>
+
+      <div class="accessibility-note">
+        <strong>♿ Accessibility:</strong> All form inputs include focus states, error messages, and are associated with labels.
+      </div>
+
+      <div class="component-showcase">
+        <form class="form-demo">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" class="form-input form-textarea" placeholder="Your message here..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<form>
+    <div class="form-group">
+        <label class="form-label" for="input-id">Label</label>
+        <input type="text" id="input-id" class="form-input" placeholder="Placeholder">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" for="textarea-id">Message</label>
+        <textarea id="textarea-id" class="form-input form-textarea"></textarea>
+    </div>
+
+    <div class="form-error">This field is required</div>
+</form>`}</div>
+      </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section id="badges" class="component-section">
+      <h2>🏷️ Badges</h2>
+      <p class="component-description">
+        Badges are small inline labels for status, categories, or priority indicators.
+        They come in different colors and should be used sparingly.
+      </p>
+
+      <div class="component-showcase">
+        <div class="badge-demo">
+          <span class="badge badge--primary">Primary</span>
+          <span class="badge badge--success">Success</span>
+          <span class="badge badge--warning">Warning</span>
+          <span class="badge badge--error">Error</span>
+        </div>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<span class="badge badge--primary">Primary</span>
+<span class="badge badge--success">Success</span>
+<span class="badge badge--warning">Warning</span>
+<span class="badge badge--error">Error</span>`}</div>
+      </div>
+    </section>
+
+    <!-- Alerts Section -->
+    <section id="alerts" class="component-section">
+      <h2>🔔 Alerts</h2>
+      <p class="component-description">
+        Alerts communicate messages to users. They come in four variants: success, warning, error, and info.
+        Use them to provide feedback about actions or inform users about important information.
+      </p>
+
+      <div class="component-showcase alert-demo">
+        <div class="alert alert--success">
+          <strong>Success!</strong> Your changes have been saved successfully.
+        </div>
+        <div class="alert alert--warning">
+          <strong>Warning:</strong> Please review your information before proceeding.
+        </div>
+        <div class="alert alert--error">
+          <strong>Error:</strong> Something went wrong. Please try again.
+        </div>
+        <div class="alert alert--info">
+          <strong>Info:</strong> This is an informational message for your attention.
+        </div>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<div class="alert alert--success">
+    <strong>Success!</strong> Message content
+</div>
+
+<div class="alert alert--warning">
+    <strong>Warning:</strong> Message content
+</div>
+
+<div class="alert alert--error">
+    <strong>Error:</strong> Message content
+</div>
+
+<div class="alert alert--info">
+    <strong>Info:</strong> Message content
+</div>`}</div>
+      </div>
+    </section>
+
+    <!-- Loading States Section -->
+    <section id="loaders" class="component-section">
+      <h2>⏳ Loading States</h2>
+      <p class="component-description">
+        Loading indicators provide visual feedback when content is being processed or fetched.
+        They come in different sizes and colors.
+      </p>
+
+      <div class="variant-group">
+        <h3>Spinners</h3>
+        <div class="component-showcase">
+          <div class="spinner spinner--sm"></div>
+          <div class="spinner"></div>
+          <div class="spinner spinner--lg"></div>
+        </div>
+      </div>
+
+      <div class="component-usage">
+        <h4>HTML Usage</h4>
+        <div class="code-block">{`<!-- Basic spinner -->
+<div class="spinner"></div>
+
+<!-- Size variants -->
+<div class="spinner spinner--sm"></div>
+<div class="spinner spinner--lg"></div>
+
+<!-- Color variants -->
+<div class="spinner spinner--primary"></div>
+<div class="spinner spinner--white"></div>`}</div>
+      </div>
+    </section>
+
+    <!-- Design Tokens Section -->
+    <section id="design-tokens" class="component-section">
+      <h2>🎨 Design Tokens</h2>
+      <p class="component-description">
+        Clodo Framework uses CSS custom properties (variables) for consistent styling across all components.
+        These tokens ensure visual consistency and make theming easier.
+      </p>
+
+      <div class="variant-group">
+        <h3>Spacing Tokens</h3>
+        <table class="properties-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="property-name">--spacing-xs</td>
+              <td class="property-type">0.25rem (4px)</td>
+              <td>Minimal spacing</td>
+            </tr>
+            <tr>
+              <td class="property-name">--spacing-sm</td>
+              <td class="property-type">0.5rem (8px)</td>
+              <td>Small gaps</td>
+            </tr>
+            <tr>
+              <td class="property-name">--spacing-md</td>
+              <td class="property-type">1rem (16px)</td>
+              <td>Default spacing</td>
+            </tr>
+            <tr>
+              <td class="property-name">--spacing-lg</td>
+              <td class="property-type">1.5rem (24px)</td>
+              <td>Large gaps</td>
+            </tr>
+            <tr>
+              <td class="property-name">--spacing-xl</td>
+              <td class="property-type">2rem (32px)</td>
+              <td>Extra large gaps</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="variant-group">
+        <h3>Border Radius Tokens</h3>
+        <table class="properties-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="property-name">--radius-sm</td>
+              <td class="property-type">0.25rem (4px)</td>
+              <td>Subtle curves</td>
+            </tr>
+            <tr>
+              <td class="property-name">--radius-md</td>
+              <td class="property-type">0.5rem (8px)</td>
+              <td>Standard radius</td>
+            </tr>
+            <tr>
+              <td class="property-name">--radius-lg</td>
+              <td class="property-type">1rem (16px)</td>
+              <td>Prominent radius</td>
+            </tr>
+            <tr>
+              <td class="property-name">--radius-full</td>
+              <td class="property-type">9999px</td>
+              <td>Circular elements</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="component-usage">
+        <h4>Using Design Tokens in CSS</h4>
+        <div class="code-block">{`.my-component {
+    /* Color tokens */
+    color: var(--text-primary);
+    background: var(--primary-color);
+    
+    /* Spacing tokens */
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    
+    /* Border radius tokens */
+    border-radius: var(--radius-md);
+    
+    /* Shadow tokens */
+    box-shadow: var(--shadow-md);
+    
+    /* Transition tokens */
+    transition: all var(--transition-fast);
+}`}</div>
+      </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="component-section">
+      <h2>Design System Best Practices</h2>
+      <div class="accessibility-note accessibility-note--primary">
+        <strong>💡 Tip:</strong> Always use design tokens instead of hardcoded values to maintain consistency.
+      </div>
+
+      <ul class="feature-list">
+        <li><strong>Use Component Classes:</strong> Apply the appropriate component classes (btn, card, alert, etc.) rather than custom styling</li>
+        <li><strong>Mobile First:</strong> Design for mobile screens first, then enhance for larger viewports</li>
+        <li><strong>Accessibility First:</strong> Ensure all components have proper semantic HTML, ARIA labels, and focus states</li>
+        <li><strong>Consistent Spacing:</strong> Use spacing tokens consistently throughout your layouts</li>
+        <li><strong>Color Contrast:</strong> Maintain WCAG AA (4.5:1) or AAA (7:1) contrast ratios for text</li>
+        <li><strong>Touch Targets:</strong> Keep interactive elements at least 44px high for touch accessibility</li>
+        <li><strong>Dark Mode:</strong> All components support dark mode through CSS custom properties</li>
+        <li><strong>Responsive Design:</strong> Use media queries and fluid sizing for responsive components</li>
+      </ul>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .component-header {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(100, 200, 255, 0.05));
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .component-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+  }
+
+  .component-header p {
+    margin: 0;
+    color: var(--text-secondary, #475569);
+    font-size: 1.125rem;
+  }
+
+  .component-nav {
+    position: sticky;
+    top: 60px;
+    background: var(--bg-primary, #ffffff);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    z-index: 50;
+    padding: 1rem 2rem;
+  }
+
+  .component-nav ul {
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .component-nav a {
+    color: var(--text-secondary, #6b7280);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .component-nav a:hover {
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .components-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .component-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    scroll-margin-top: 120px;
+  }
+
+  .component-section h2 {
+    font-size: 1.75rem;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color, #1d4ed8);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .component-description {
+    color: var(--text-secondary, #475569);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .component-showcase {
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .component-showcase.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .component-showcase.alert-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .component-usage {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+
+  .component-usage h4 {
+    margin: 0 0 1rem 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .code-block {
+    background: #0b1220;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #e0e7ff;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+  }
+
+  .variant-group {
+    margin-bottom: 2rem;
+  }
+
+  .variant-group h3 {
+    font-size: 1.125rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .properties-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  .properties-table th,
+  .properties-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .properties-table th {
+    background: var(--table-header-bg, #f9fafb);
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .property-name {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--primary-color, #1d4ed8);
+    font-weight: 500;
+  }
+
+  .badge-demo {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .form-demo {
+    max-width: 400px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+  }
+
+  .form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .accessibility-note {
+    background: rgb(59 130 246 / 0.1);
+    border-left: 4px solid var(--info-color, #0066cc);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary, #0f172a);
+  }
+
+  .accessibility-note strong {
+    color: var(--info-color, #0066cc);
+  }
+
+  .accessibility-note--primary {
+    border-color: var(--primary-color, #1d4ed8);
+    background: rgba(29, 78, 216, 0.05);
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .feature-list li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .feature-list li::before {
+    content: '✓ ';
+    color: var(--success-color, #22c55e);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .component-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .component-nav ul {
+      gap: 1rem;
+    }
+
+    .component-showcase.grid {
+      grid-template-columns: 1fr;
+    }
+
+    .component-showcase.alert-demo {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
