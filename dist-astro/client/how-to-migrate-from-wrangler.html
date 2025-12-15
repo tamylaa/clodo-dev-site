@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Migrate from Wrangler to Clodo - Step-by-Step Guide</title>
+    <link rel="canonical" href="https://clodo.dev/how-to-migrate-from-wrangler.html">
+    <meta name="description" content="Complete step-by-step guide to migrate from Cloudflare Wrangler CLI to Clodo Framework. Automated migration tools and best practices included.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="How to Migrate from Wrangler to Clodo - Complete Guide">
+    <meta property="og:description" content="Step-by-step migration guide from Cloudflare Wrangler CLI to Clodo Framework with automated tools.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/how-to-migrate-from-wrangler.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Migrate from Wrangler to Clodo - Complete Guide">
+    <meta name="twitter:description" content="Step-by-step migration guide from Cloudflare Wrangler CLI to Clodo Framework with automated tools.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Migrate from Wrangler CLI to Clodo Framework",
+      "description": "Complete step-by-step guide to migrate your Cloudflare Workers project from Wrangler CLI to Clodo Framework",
+      "totalTime": "PT30M",
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "Existing Wrangler project"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Clodo Framework CLI"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Node.js and npm"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Install Clodo Framework",
+          "text": "Install Clodo Framework globally using npm: npm install -g @clodo/framework",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Analyze Your Project",
+          "text": "Run Clodo's migration analyzer: clodo migrate analyze --source wrangler",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Generate Migration Plan",
+          "text": "Clodo will automatically generate a migration plan showing what needs to be changed",
+          "position": 3
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Execute Migration",
+          "text": "Run the automated migration: clodo migrate execute --plan migration-plan.json",
+          "position": 4
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test and Deploy",
+          "text": "Test your migrated application and deploy to production",
+          "position": 5
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>How to Migrate from Wrangler to Clodo</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>How to Migrate from Wrangler to Clodo</h1>
+                    <p>Automated migration tools and step-by-step guide to transition from Cloudflare Wrangler CLI to Clodo Framework seamlessly.</p>
+                    <div class="hero-actions">
+                        <a href="migrate.html" class="btn btn--primary">Start Migration</a>
+                        <a href="docs.html" class="btn btn--secondary">View Migration Docs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>Automated Migration Process</h2>
+                        <p>Clodo Framework provides automated migration tools that analyze your existing Wrangler project and generate a complete migration plan. The process is designed to be safe, reversible, and comprehensive.</p>
+
+                        <h3>Step 1: Install Clodo Framework</h3>
+                        <div class="code-example">
+                            <pre><code>npm install -g @clodo/framework</code></pre>
+                        </div>
+
+                        <h3>Step 2: Analyze Your Project</h3>
+                        <p>Navigate to your Wrangler project directory and run the analysis:</p>
+                        <div class="code-example">
+                            <pre><code>cd your-wrangler-project
+clodo migrate analyze --source wrangler</code></pre>
+                        </div>
+
+                        <h3>Step 3: Review Migration Plan</h3>
+                        <p>Clodo will generate a detailed migration plan showing:</p>
+                        <ul>
+                            <li>Configuration changes needed</li>
+                            <li>Code modifications required</li>
+                            <li>Dependencies to update</li>
+                            <li>Potential compatibility issues</li>
+                        </ul>
+
+                        <h3>Step 4: Execute Migration</h3>
+                        <div class="code-example">
+                            <pre><code>clodo migrate execute --plan migration-plan.json</code></pre>
+                        </div>
+
+                        <h3>Step 5: Test and Deploy</h3>
+                        <p>After migration, thoroughly test your application:</p>
+                        <ul>
+                            <li>Run your existing test suite</li>
+                            <li>Test all API endpoints</li>
+                            <li>Verify data integrity</li>
+                            <li>Deploy to staging environment</li>
+                        </ul>
+
+                        <h2>Key Differences: Wrangler vs Clodo</h2>
+                        <div class="comparison-table">
+                            <div class="comparison-item">
+                                <h4>Configuration</h4>
+                                <p><strong>Wrangler:</strong> wrangler.toml</p>
+                                <p><strong>Clodo:</strong> clodo.config.js (more flexible)</p>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>Routing</h4>
+                                <p><strong>Wrangler:</strong> Manual route configuration</p>
+                                <p><strong>Clodo:</strong> Automatic routing with middleware</p>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>Development</h4>
+                                <p><strong>Wrangler:</strong> Basic tooling</p>
+                                <p><strong>Clodo:</strong> Hot reload, debugging, testing</p>
+                            </div>
+                        </div>
+
+                        <h2>Common Migration Challenges</h2>
+                        <div class="challenges-list">
+                            <div class="challenge">
+                                <h4>Environment Variables</h4>
+                                <p>Clodo uses a different naming convention for environment variables. The migration tool automatically handles this conversion.</p>
+                            </div>
+                            <div class="challenge">
+                                <h4>Bindings</h4>
+                                <p>KV, D1, and R2 bindings are configured differently. Clodo provides helper functions to simplify binding usage.</p>
+                            </div>
+                            <div class="challenge">
+                                <h4>Middleware</h4>
+                                <p>If you're using custom middleware, it may need to be adapted to Clodo's middleware system.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Migrate?</h3>
+                            <p>Get started with our automated migration tools today.</p>
+                            <a href="migrate.html" class="btn btn--primary">Begin Migration</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Migration Resources</h3>
+                            <ul>
+                                <li><a href="migrate.html">Full Migration Guide</a></li>
+                                <li><a href="docs.html#migration">Migration Documentation</a></li>
+                                <li><a href="examples.html">Migration Examples</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Need Help?</h3>
+                            <p>Our migration support team can help with complex projects.</p>
+                            <a href="mailto:hello@clodo.dev" class="btn btn--secondary">Contact Support</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main><!--#include file="../templates/footer.html" -->
+
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

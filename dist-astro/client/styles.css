@@ -1,0 +1,43 @@
+﻿/* ===========================================
+   CLOUDO FRAMEWORK - MAIN STYLESHEET
+   ===========================================
+
+   MODULAR ARCHITECTURE:
+   - Imports base styles (variables, resets, typography)
+   - Imports component library (buttons, cards, forms, etc.)
+   - Imports layout utilities (grid, flexbox, spacing)
+   - Imports page-specific styles
+   =========================================== */
+
+/* ===== BASE STYLES ===== */
+@import url('./css/base.css');
+
+/* ===== UTILITIES ===== */
+@import url('./css/utilities.css');
+
+/* ===== COMPONENT LIBRARY ===== */
+@import url('./css/components.css');
+@import url('./css/components-reusable.css');
+
+/* ===== GLOBAL COMPONENTS ===== */
+@import url('./css/global/header.css');
+@import url('./css/global/footer.css');
+
+/* ===== LAYOUT UTILITIES ===== */
+@import url('./css/layout.css');
+
+/* ===== PAGE-SPECIFIC STYLES ===== */
+@import url('./css/pages/index/hero.css');
+@import url('./css/pages/index/features.css');
+@import url('./css/pages/index.css');
+@import url('./css/pages/product.css');
+@import url('./css/pages/about.css');
+@import url('./css/pages/migrate.css');
+@import url('./css/pages/subscribe.css');
+/*@import url('./css/pages/subscribe-enhanced.css');*/
+@import url('./css/pages/blog.css');
+@import url('./css/pages/pricing.css');
+@import url('./css/pages/case-studies.css');
+
+/* ===== COMPONENT-SPECIFIC STYLES ===== */
+@import url('./css/components/buttons.css');

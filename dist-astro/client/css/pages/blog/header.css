@@ -1,0 +1,251 @@
+/* ===========================================
+   BLOG HEADER COMPONENT
+   ===========================================
+   
+   Sticky navigation with accessible menu,
+   mobile-first responsive design
+   =========================================== */
+
+/* ===== BASE: Mobile-First (0-767px) ===== */
+
+.blog-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Ensure header stays above content */
+    will-change: transform;
+    /* Optimize for smooth scrolling */
+}
+
+.blog-nav {
+    padding: 1rem 0;
+}
+
+.blog-nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    /* Mobile: smaller padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* ===== LOGO ===== */
+
+.blog-nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    /* Minimum touch target: 44x44px */
+    min-height: 44px;
+    padding: 0.5rem 0;
+}
+
+.blog-nav__logo:hover {
+    color: var(--primary-color);
+}
+
+/* Focus state for keyboard navigation - WCAG 2.4.7 */
+.blog-nav__logo:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.blog-nav__logo .logo-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+}
+
+/* ===== MENU ===== */
+
+.blog-nav__menu {
+    display: none;
+    /* Hidden on mobile by default */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    /* Reduced gap for mobile */
+}
+
+.blog-nav__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+    /* Minimum touch target */
+    display: inline-block;
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.blog-nav__link:hover {
+    color: var(--primary-color);
+}
+
+/* Active state indicator */
+.blog-nav__link--active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.blog-nav__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* Focus state for keyboard navigation */
+.blog-nav__link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===== ACTIONS ===== */
+
+.blog-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    /* Reduced gap for mobile */
+}
+
+.blog-nav__actions .github-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    /* Ensure 44px height */
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    min-height: 44px;
+    /* WCAG touch target */
+}
+
+.blog-nav__actions .github-btn:hover {
+    background: var(--bg-hover, var(--bg-secondary));
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.blog-nav__actions .github-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.blog-nav__actions .github-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== MOBILE MENU TOGGLE (準備) ===== */
+
+.blog-nav__toggle {
+    display: block;
+    /* Visible on mobile */
+    background: none;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-nav__toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===== TABLET: 768px+ ===== */
+
+@media (min-width: 768px) {
+    .blog-nav .nav-container {
+        padding: 0 var(--spacing-lg);
+        gap: 2rem;
+    }
+
+    .blog-nav__menu {
+        display: flex;
+        /* Show menu on tablet+ */
+        gap: 2rem;
+    }
+
+    .blog-nav__toggle {
+        display: none;
+        /* Hide hamburger on tablet+ */
+    }
+
+    .blog-nav__actions {
+        gap: 1rem;
+    }
+}
+
+/* ===== DESKTOP: 1024px+ ===== */
+
+@media (min-width: 1024px) {
+    .blog-nav__menu {
+        gap: 2.5rem;
+    }
+
+    .blog-nav__link {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-nav__logo,
+    .blog-nav__link,
+    .blog-nav__actions .github-btn {
+        transition: none;
+    }
+
+    .blog-header {
+        will-change: auto;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    .blog-header {
+        position: static;
+        border-bottom: 2px solid #000;
+    }
+
+    .blog-nav__actions {
+        display: none;
+    }
+}

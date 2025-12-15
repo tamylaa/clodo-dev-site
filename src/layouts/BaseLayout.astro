@@ -1,6 +1,10 @@
 ---
 // src/layouts/BaseLayout.astro
-// This replaces your templates/header.html, templates/footer.html, etc.
+// Master layout that unifies all pages with consistent header, footer, and styling
+// Imports: Header, Footer, and styling - managed centrally for consistency
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 export interface Props {
   title: string;
@@ -67,19 +71,13 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site);
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Navigation will go here -->
-    <nav class="navbar">
-      <!-- Navigation component -->
-    </nav>
+    <Header />
     
     <main id="main-content">
       <slot />
     </main>
     
-    <!-- Footer will go here -->
-    <footer>
-      <!-- Footer component -->
-    </footer>
+    <Footer />
     
     <!-- Analytics and scripts -->
     <script src="/js/init-systems.js" is:inline></script>

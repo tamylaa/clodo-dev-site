@@ -1,0 +1,339 @@
+---
+// src/components/Hero.astro
+// Hero section with badge, title, subtitle, CTA buttons, and code preview
+// Provides: prominent landing section with visual element
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  badges?: Array<{ icon: string; text: string }>;
+  ctas?: Array<{ text: string; href: string; variant: 'primary' | 'secondary' }>;
+  codePreview?: string;
+  showCodePreview?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  badges = [{ icon: '⭐', text: 'Production Ready' }],
+  ctas = [
+    { text: 'Get Started', href: '/docs/', variant: 'primary' },
+    { text: 'View on GitHub', href: 'https://github.com/tamylaa/clodo-starter-template', variant: 'secondary' }
+  ],
+  codePreview = `# Create a new service in seconds
+npx create-clodo-service my-new-service
+
+✅ Service created successfully!
+🚀 Ready for deployment`,
+  showCodePreview = true
+} = Astro.props;
+---
+
+<section id="hero" class="hero" aria-labelledby="hero-title">
+  <div class="hero-container">
+    {showCodePreview && (
+      <div class="hero-visual">
+        <div class="code-window">
+          <div class="code-window-header">
+            <div class="code-window-dots">
+              <span class="code-window-dot code-window-dot--red"></span>
+              <span class="code-window-dot code-window-dot--yellow"></span>
+              <span class="code-window-dot code-window-dot--green"></span>
+            </div>
+            <div class="code-window-title">
+              <span>clodo-service create</span>
+            </div>
+          </div>
+          <pre class="code-content"><code set:html={codePreview} /></pre>
+        </div>
+      </div>
+    )}
+
+    <div class="hero-content">
+      {/* Badge Section */}
+      <div class="hero-topbar">
+        <div class="hero-badge-group">
+          {badges.map((badge) => (
+            <div class="hero-badge">
+              <span class="hero-badge__icon">{badge.icon}</span>
+              <span>{badge.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Headline */}
+      <h1 id="hero-title" class="hero-title">
+        {title}
+      </h1>
+
+      {/* Subtitle */}
+      <p class="hero-subtitle">
+        {subtitle}
+      </p>
+
+      {/* CTA Buttons */}
+      <div class="hero-actions">
+        {ctas.map((cta) => (
+          <a 
+            href={cta.href} 
+            class={`btn btn--${cta.variant} btn--large`}
+            target={cta.href.startsWith('http') ? '_blank' : undefined}
+            rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {cta.text}
+          </a>
+        ))}
+      </div>
+
+      {/* Social Proof */}
+      <div class="hero-social-proof">
+        <p class="hero-social-text">
+          Trusted by thousands of developers and enterprises worldwide
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 4rem 1rem;
+    background: linear-gradient(
+      135deg,
+      var(--hero-bg-start, #ffffff),
+      var(--hero-bg-end, #f9fafb)
+    );
+    border-bottom: 1px solid var(--hero-border, #e5e7eb);
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .code-window {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0.75rem;
+    background-color: #0b1220;
+    border: 1px solid #1e293b;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .code-window-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: #0f1419;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .code-window-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .code-window-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .code-window-dot--red {
+    background-color: #ef4444;
+  }
+
+  .code-window-dot--yellow {
+    background-color: #eab308;
+  }
+
+  .code-window-dot--green {
+    background-color: #22c55e;
+  }
+
+  .code-window-title {
+    flex: 1;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-family: 'Monaco', 'Menlo', monospace;
+  }
+
+  .code-content {
+    padding: 1rem;
+    margin: 0;
+    color: #94a3b8;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+
+  .code-comment {
+    color: #64748b;
+  }
+
+  .code-command {
+    color: #3b82f6;
+  }
+
+  .code-arg {
+    color: #10b981;
+  }
+
+  .code-success {
+    color: #22c55e;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-topbar {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .hero-badge-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--badge-bg, #f0f9ff);
+    border: 1px solid var(--badge-border, #bfdbfe);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--badge-text, #1e40af);
+  }
+
+  .hero-badge__icon {
+    font-size: 1rem;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--hero-title, #0f172a);
+  }
+
+  .hero-subtitle {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--hero-subtitle, #475569);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn--large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .btn--primary {
+    background-color: var(--btn-primary-bg, #1d4ed8);
+    color: white;
+  }
+
+  .btn--primary:hover {
+    background-color: var(--btn-primary-hover, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+  }
+
+  .btn--secondary {
+    background-color: var(--btn-secondary-bg, #f3f4f6);
+    color: var(--btn-secondary-text, #111827);
+    border: 1px solid var(--btn-secondary-border, #e5e7eb);
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--btn-secondary-hover, #e5e7eb);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-social-proof {
+    margin-top: 1rem;
+  }
+
+  .hero-social-text {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--hero-muted, #64748b);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 1rem;
+    }
+
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-visual {
+      order: 2;
+    }
+
+    .hero-content {
+      order: 1;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+
+    .code-window {
+      max-width: 100%;
+    }
+  }
+</style>

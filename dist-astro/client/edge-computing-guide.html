@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Computing Guide: Complete Fundamentals & Best Practices</title>
+    <link rel="canonical" href="https://clodo.dev/edge-computing-guide.html">
+    
+    <!-- Hreflang tags for international SEO -->
+    <link rel="alternate" hreflang="en" href="https://clodo.dev/edge-computing-guide.html">
+    <link rel="alternate" hreflang="en-GB" href="https://clodo.dev/edge-computing-guide.html">
+    <link rel="alternate" hreflang="en-IN" href="https://clodo.dev/edge-computing-guide.html">
+    <link rel="alternate" hreflang="en-AU" href="https://clodo.dev/edge-computing-guide.html">
+    <link rel="alternate" hreflang="en-DE" href="https://clodo.dev/edge-computing-guide.html">
+    
+    <meta name="description" content="Master edge computing fundamentals: architecture, benefits, use cases, and implementation strategies. Complete guide for developers building modern web applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Edge Computing Guide: Complete Fundamentals & Best Practices">
+    <meta property="og:description" content="Master edge computing fundamentals: architecture, benefits, use cases, and implementation strategies for modern web applications.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/edge-computing-guide.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Edge Computing Guide: Complete Fundamentals & Best Practices">
+    <meta name="twitter:description" content="Master edge computing fundamentals: architecture, benefits, use cases, and implementation strategies for modern web applications.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Edge Computing Guide: Complete Fundamentals & Best Practices",
+      "description": "Master edge computing fundamentals: architecture, benefits, use cases, and implementation strategies. Complete guide for developers building modern web applications.",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2025-11-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clodo.dev/edge-computing-guide.html"
+      },
+      "articleSection": "Edge Computing",
+      "keywords": ["edge computing", "cloud computing", "serverless", "web performance", "distributed systems"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Edge Computing Guide</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Edge Computing Guide</h1>
+                    <p>Master the fundamentals of edge computing: architecture, benefits, implementation strategies, and real-world applications for modern web development.</p>
+                    <div class="hero-actions">
+                        <a href="what-is-edge-computing.html" class="btn btn--primary">What is Edge Computing?</a>
+                        <a href="product.html" class="btn btn--secondary">Build on the Edge</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>Understanding Edge Computing Architecture</h2>
+                        <p>Edge computing represents a fundamental shift in how we design and deploy distributed systems. By moving computation closer to data sources and end users, edge computing addresses the limitations of traditional cloud-centric architectures.</p>
+
+                        <h3>The Edge Computing Stack</h3>
+                        <div class="architecture-diagram">
+                            <div class="layer">
+                                <h4>Device Layer</h4>
+                                <p>IoT devices, mobile phones, sensors, and user endpoints that generate data.</p>
+                            </div>
+                            <div class="layer">
+                                <h4>Edge Layer</h4>
+                                <p>Edge servers, gateways, and compute nodes that process data locally.</p>
+                            </div>
+                            <div class="layer">
+                                <h4>Cloud Layer</h4>
+                                <p>Centralized data centers for heavy processing, storage, and analytics.</p>
+                            </div>
+                        </div>
+
+                        <h3>Key Edge Computing Concepts</h3>
+                        <dl>
+                            <dt>Edge Nodes</dt>
+                            <dd>Distributed compute resources located at the network periphery, closer to users and devices.</dd>
+
+                            <dt>Fog Computing</dt>
+                            <dd>A middleware layer between edge devices and cloud data centers for data preprocessing.</dd>
+
+                            <dt>Edge Intelligence</dt>
+                            <dd>AI/ML processing at the edge for real-time decision making and reduced latency.</dd>
+
+                            <dt>Edge-to-Cloud Continuum</dt>
+                            <dd>Seamless integration between edge processing and cloud services for optimal performance.</dd>
+                        </dl>
+
+                        <h2>Benefits of Edge Computing</h2>
+                        <div class="benefits-grid">
+                            <div class="benefit">
+                                <h4>⚡ Reduced Latency</h4>
+                                <p>Data processing happens milliseconds from the user, enabling real-time applications and instant responses.</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>💰 Cost Optimization</h4>
+                                <p>Lower bandwidth costs by processing data locally and only sending relevant information to the cloud.</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>🔒 Enhanced Privacy</h4>
+                                <p>Sensitive data can be processed locally without leaving the device or network perimeter.</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>📶 Improved Reliability</h4>
+                                <p>Applications continue functioning even with intermittent cloud connectivity.</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>⚖️ Better Scalability</h4>
+                                <p>Distributed processing handles massive scale more efficiently than centralized architectures.</p>
+                            </div>
+                            <div class="benefit">
+                                <h4>🌐 Global Performance</h4>
+                                <p>Consistent low-latency performance regardless of user location through global edge networks.</p>
+                            </div>
+                        </div>
+
+                        <h2>Edge Computing Use Cases</h2>
+                        <div class="use-cases">
+                            <div class="use-case">
+                                <h3>Content Delivery & Streaming</h3>
+                                <p>CDNs and video streaming services use edge computing to deliver content with minimal latency, enabling adaptive bitrate streaming and personalized experiences.</p>
+                            </div>
+
+                            <div class="use-case">
+                                <h3>IoT & Smart Devices</h3>
+                                <p>Smart homes, industrial IoT, and connected devices process sensor data at the edge for real-time automation and reduced cloud dependency.</p>
+                            </div>
+
+                            <div class="use-case">
+                                <h3>Autonomous Systems</h3>
+                                <p>Self-driving vehicles, drones, and robotics require edge processing for instant decision-making based on sensor inputs.</p>
+                            </div>
+
+                            <div class="use-case">
+                                <h3>Gaming & Interactive Media</h3>
+                                <p>Cloud gaming platforms and interactive applications use edge computing to minimize lag and enable real-time multiplayer experiences.</p>
+                            </div>
+
+                            <div class="use-case">
+                                <h3>Financial Services</h3>
+                                <p>High-frequency trading, fraud detection, and real-time payment processing benefit from ultra-low latency edge computation.</p>
+                            </div>
+
+                            <div class="use-case">
+                                <h3>Healthcare & Telemedicine</h3>
+                                <p>Remote patient monitoring, diagnostic imaging, and emergency response systems require reliable, low-latency processing.</p>
+                            </div>
+                        </div>
+
+                        <h2>Edge Computing vs Traditional Cloud Computing</h2>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <th>Edge Computing</th>
+                                    <th>Cloud Computing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Latency</td>
+                                    <td>&lt; 50ms</td>
+                                    <td>100-500ms</td>
+                                </tr>
+                                <tr>
+                                    <td>Data Processing</td>
+                                    <td>Local to user/device</td>
+                                    <td>Centralized data centers</td>
+                                </tr>
+                                <tr>
+                                    <td>Bandwidth Usage</td>
+                                    <td>Reduced (process locally)</td>
+                                    <td>Higher (send all data)</td>
+                                </tr>
+                                <tr>
+                                    <td>Scalability</td>
+                                    <td>Distributed scaling</td>
+                                    <td>Centralized scaling</td>
+                                </tr>
+                                <tr>
+                                    <td>Offline Capability</td>
+                                    <td>Works without cloud</td>
+                                    <td>Requires connectivity</td>
+                                </tr>
+                                <tr>
+                                    <td>Use Cases</td>
+                                    <td>Real-time, IoT, mobile</td>
+                                    <td>Batch processing, analytics</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Implementing Edge Computing with Clodo</h2>
+                        <p>Clodo Framework makes building edge applications simple and efficient. Here's how to get started:</p>
+
+                        <div class="implementation-steps">
+                            <div class="step">
+                                <h4>1. Define Your Edge Strategy</h4>
+                                <p>Identify which parts of your application benefit most from edge processing based on latency requirements and data sensitivity.</p>
+                            </div>
+
+                            <div class="step">
+                                <h4>2. Design for Distribution</h4>
+                                <p>Architect your application to work across distributed edge nodes while maintaining consistency and reliability.</p>
+                            </div>
+
+                            <div class="step">
+                                <h4>3. Implement with Clodo</h4>
+                                <p>Use Clodo's edge-native APIs and runtime to build applications that automatically scale across global edge networks.</p>
+                            </div>
+
+                            <div class="step">
+                                <h4>4. Monitor & Optimize</h4>
+                                <p>Track performance metrics and user experience to continuously improve your edge computing implementation.</p>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+                            <pre><code>// Edge-optimized API with Clodo Framework
+export async function handleRequest(request) {
+  const userLocation = getUserLocation(request);
+
+  // Process personalization at the edge
+  const personalizedContent = await generatePersonalizedContent(userLocation);
+
+  // Cache locally for instant subsequent requests
+  await cacheResponse(request.url, personalizedContent);
+
+  return new Response(personalizedContent, {
+    headers: {
+      'content-type': 'text/html',
+      'cache-control': 'public, max-age=300',
+      'x-edge-location': userLocation.region
+    }
+  });
+}</code></pre>
+                        </div>
+
+                        <h2>Best Practices for Edge Computing</h2>
+                        <ul>
+                            <li><strong>Design for Failure:</strong> Plan for edge node failures and implement graceful degradation</li>
+                            <li><strong>Optimize Data Flow:</strong> Minimize data transfer between edge and cloud layers</li>
+                            <li><strong>Security First:</strong> Implement end-to-end encryption and secure edge-to-cloud communication</li>
+                            <li><strong>Monitor Performance:</strong> Track latency, throughput, and error rates across edge locations</li>
+                            <li><strong>Version Management:</strong> Handle application updates across distributed edge infrastructure</li>
+                            <li><strong>Cost Optimization:</strong> Balance edge processing costs with performance benefits</li>
+                        </ul>
+
+                        <h2>Further Reading</h2>
+                        <div class="further-reading">
+                            <div class="reading-item">
+                                <h4><a href="what-is-edge-computing.html">What is Edge Computing?</a></h4>
+                                <p>Get started with the fundamentals of edge computing and understand how it differs from traditional cloud architectures.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="edge-vs-cloud-computing.html">Edge Computing vs Cloud Computing</a></h4>
+                                <p>Detailed comparison of edge vs cloud computing with performance metrics, cost analysis, and use case recommendations.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="cloudflare-workers-guide.html">Cloudflare Workers Guide</a></h4>
+                                <p>Learn how Cloudflare Workers power edge computing with serverless functions deployed globally.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="clodo-framework-guide.html">Clodo Framework Guide</a></h4>
+                                <p>Discover how Clodo Framework simplifies building enterprise applications on Cloudflare Workers.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Build on the Edge?</h3>
+                            <p>Join thousands of developers building faster, more reliable applications with Clodo Framework.</p>
+                            <a href="product.html" class="btn btn--primary">Get Started with Clodo</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Edge Computing Topics</h3>
+                            <ul>
+                                <li><a href="what-is-edge-computing.html">What is Edge Computing?</a></li>
+                                <li><a href="edge-vs-cloud-computing.html">Edge vs Cloud Computing</a></li>
+                                <li><a href="what-is-cloudflare-workers.html">Cloudflare Workers</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Related Guides</h3>
+                            <ul>
+                                <li><a href="cloudflare-workers-guide.html">Cloudflare Workers Guide</a></li>
+                                <li><a href="clodo-framework-guide.html">Clodo Framework Guide</a></li>
+                                <li><a href="how-to-migrate-from-wrangler.html">Migrate from Wrangler</a></li>
+                                <li><a href="docs.html">Documentation</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="docs.html">Clodo Documentation</a></li>
+                                <li><a href="examples.html">Edge Examples</a></li>
+                                <li><a href="https://www.cloudflare.com/learning/serverless/what-is-edge-computing/" target="_blank">Cloudflare Learning</a></li>
+                                <li><a href="https://web.dev/performance/" target="_blank">Web Performance</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main><!--#include file="../templates/footer.html" -->
+
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

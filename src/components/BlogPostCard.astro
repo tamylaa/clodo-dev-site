@@ -1,0 +1,188 @@
+---
+// src/components/BlogPostCard.astro
+// Card component for displaying blog posts in lists
+// Provides: post preview, metadata, category badge, read time
+
+export interface Props {
+  title: string;
+  slug: string;
+  excerpt: string;
+  date: Date | string;
+  category: string;
+  readTime?: number;
+  image?: string;
+  author?: string;
+}
+
+const {
+  title,
+  slug,
+  excerpt,
+  date,
+  category,
+  readTime,
+  image,
+  author
+} = Astro.props;
+
+const postDate = new Date(date);
+const formattedDate = postDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<article class="blog-post-card">
+  <a href={`/blog/${slug}/`} class="blog-post-card__link">
+    {image && (
+      <div class="blog-post-card__image">
+        <img src={image} alt={title} loading="lazy" />
+      </div>
+    )}
+    
+    <div class="blog-post-card__content">
+      <div class="blog-post-card__meta">
+        <span class="blog-post-card__category">{category}</span>
+        <time datetime={postDate.toISOString()} class="blog-post-card__date">
+          {formattedDate}
+        </time>
+        {readTime && (
+          <span class="blog-post-card__read-time">{readTime} min read</span>
+        )}
+      </div>
+
+      <h3 class="blog-post-card__title">{title}</h3>
+      <p class="blog-post-card__excerpt">{excerpt}</p>
+
+      {author && (
+        <div class="blog-post-card__author">
+          By {author}
+        </div>
+      )}
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-post-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--card-bg, #ffffff);
+    border: 1px solid var(--card-border, #e5e7eb);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .blog-post-card:hover {
+    border-color: var(--card-border-hover, #1d4ed8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .blog-post-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-post-card__image {
+    width: 100%;
+    height: 200px;
+    background-color: var(--card-image-bg, #f3f4f6);
+    overflow: hidden;
+  }
+
+  .blog-post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-post-card:hover .blog-post-card__image img {
+    transform: scale(1.05);
+  }
+
+  .blog-post-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    flex: 1;
+  }
+
+  .blog-post-card__meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--card-meta, #6b7280);
+  }
+
+  .blog-post-card__category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--category-bg, #f0f9ff);
+    color: var(--category-text, #1d4ed8);
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-post-card__date {
+    font-weight: 500;
+  }
+
+  .blog-post-card__read-time {
+    color: var(--card-meta, #6b7280);
+  }
+
+  .blog-post-card__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--card-title, #111827);
+  }
+
+  .blog-post-card:hover .blog-post-card__title {
+    color: var(--card-title-hover, #1d4ed8);
+  }
+
+  .blog-post-card__excerpt {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--card-excerpt, #4b5563);
+    flex: 1;
+  }
+
+  .blog-post-card__author {
+    font-size: 0.75rem;
+    color: var(--card-meta, #6b7280);
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--card-border, #e5e7eb);
+  }
+
+  @media (max-width: 640px) {
+    .blog-post-card__content {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+
+    .blog-post-card__title {
+      font-size: 1.125rem;
+    }
+
+    .blog-post-card__meta {
+      font-size: 0.7rem;
+    }
+  }
+</style>
