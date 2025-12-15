@@ -22,7 +22,8 @@ test.describe('Console errors on key pages', () => {
         }
       });
 
-      await page.goto(baseURL + path);
+      // Use relative path so Playwright resolves against configured baseURL
+      await page.goto(path);
       // Wait a bit for scripts to run and async logs
       await page.waitForTimeout(500);
 
