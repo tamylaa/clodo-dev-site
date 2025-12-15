@@ -1,0 +1,680 @@
+---
+// src/pages/clodo-vs-lambda.astro
+// Detailed comparison between Clodo Framework and AWS Lambda
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Clodo vs AWS Lambda - Complete Comparison Guide';
+const description = 'Compare Clodo Framework on Cloudflare Workers with AWS Lambda. Understand pricing, performance, scalability, and which is right for your project.';
+
+const comparisonData = [
+  {
+    category: 'Performance',
+    items: [
+      { metric: 'Cold Start', clodo: 'None (0ms)', lambda: '100-300ms', winner: 'clodo', why: 'Cloudflare Workers are always warm' },
+      { metric: 'P95 Response Time', clodo: '10-50ms', lambda: '300-500ms', winner: 'clodo', why: 'Edge execution vs regional data centers' },
+      { metric: 'Global Distribution', clodo: '300+ locations', lambda: '13 regions', winner: 'clodo', why: 'Automatic global deployment' },
+      { metric: 'Execution Location', clodo: 'Nearest to user', lambda: 'Fixed region', winner: 'clodo', why: 'Reduced latency from edge proximity' }
+    ]
+  },
+  {
+    category: 'Pricing',
+    items: [
+      { metric: 'Free Tier', clodo: '100k req/day', lambda: '1M req/month', winner: 'tie', why: 'Different time periods' },
+      { metric: 'CPU Time Cost', clodo: '$0.50/1M ms', lambda: '$0.0000166667/ms', winner: 'clodo', why: 'Per-request vs per-ms (Clodo wins overall)' },
+      { metric: 'Request Cost', clodo: 'Included', lambda: '$0.20/1M', winner: 'clodo', why: 'Clodo bundles requests' },
+      { metric: '1M Req/Day Cost', clodo: '$0.30-0.50', lambda: '\$5-15', winner: 'clodo', why: '10-30x cheaper' },
+      { metric: '100M Req/Day Cost', clodo: '$30-50', lambda: '$500-1500', winner: 'clodo', why: 'Scales favorably' }
+    ]
+  },
+  {
+    category: 'Scalability',
+    items: [
+      { metric: 'Concurrent Requests', clodo: 'Unlimited', lambda: 'Configurable', winner: 'clodo', why: 'Built for massive scale' },
+      { metric: 'Auto-Scaling', clodo: 'Automatic', lambda: 'Automatic', winner: 'tie', why: 'Both scale automatically' },
+      { metric: 'DDoS Protection', clodo: 'Built-in', lambda: 'Requires CloudFront', winner: 'clodo', why: 'No extra setup needed' }
+    ]
+  },
+  {
+    category: 'Database Support',
+    items: [
+      { metric: 'Built-in DB', clodo: 'D1 (SQLite)', lambda: 'None', winner: 'clodo', why: 'D1 included with framework' },
+      { metric: 'External Databases', clodo: 'PostgreSQL, MySQL, etc.', lambda: 'RDS, DynamoDB, etc.', winner: 'tie', why: 'Both support major DBs' },
+      { metric: 'Connection Pooling', clodo: 'Automatic', lambda: 'Manual setup', winner: 'clodo', why: 'Less configuration needed' }
+    ]
+  },
+  {
+    category: 'Developer Experience',
+    items: [
+      { metric: 'Setup Time', clodo: '5 minutes', lambda: '30+ minutes', winner: 'clodo', why: 'Minimal configuration' },
+      { metric: 'Debugging', clodo: 'Local dev server', lambda: 'SAM/Local', winner: 'clodo', why: 'Simpler debugging experience' },
+      { metric: 'Language Support', clodo: 'TypeScript/JavaScript', lambda: 'Multiple', winner: 'lambda', why: 'More language options' },
+      { metric: 'Learning Curve', clodo: 'Gentle', lambda: 'Steep', winner: 'clodo', why: 'Less AWS complexity' }
+    ]
+  },
+  {
+    category: 'Real-Time Features',
+    items: [
+      { metric: 'WebSockets', clodo: 'Durable Objects', lambda: 'API Gateway', winner: 'clodo', why: 'Lower latency, stateful' },
+      { metric: 'Streaming', clodo: 'Built-in', lambda: 'Supported', winner: 'tie', why: 'Both support streaming' },
+      { metric: 'Latency', clodo: 'Sub-100ms', lambda: '100-300ms+', winner: 'clodo', why: 'Edge execution' }
+    ]
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Comparisons</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Clodo vs Lambda</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="comparison-title">
+    <div class="container">
+      <h1 id="comparison-title">Clodo vs AWS Lambda: The Complete Comparison</h1>
+      <p>Make an informed decision between Clodo Framework on Cloudflare Workers and AWS Lambda. See detailed metrics across performance, pricing, and features.</p>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="comparison-section">
+    <div class="container">
+      {comparisonData.map((category) => (
+        <div class="category-section">
+          <h2>{category.category}</h2>
+          
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Clodo Framework</th>
+                  <th>AWS Lambda</th>
+                  <th>Winner</th>
+                </tr>
+              </thead>
+              <tbody>
+                {category.items.map((item) => (
+                  <tr>
+                    <td class="metric-name">{item.metric}</td>
+                    <td class="clodo-value">{item.clodo}</td>
+                    <td class="lambda-value">{item.lambda}</td>
+                    <td class={`winner winner-${item.winner}`}>
+                      {item.winner === 'clodo' && '🏆 Clodo'}
+                      {item.winner === 'lambda' && '🏆 Lambda'}
+                      {item.winner === 'tie' && '🤝 Tie'}
+                      <span class="tooltip" title={item.why}></span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases-section">
+    <div class="container">
+      <h2>When to Choose Each</h2>
+
+      <div class="use-cases-grid">
+        <div class="use-case clodo-use">
+          <h3>✅ Choose Clodo When:</h3>
+          <ul>
+            <li>You need sub-100ms response times globally</li>
+            <li>Cost is a critical factor</li>
+            <li>You want rapid deployment without configuration</li>
+            <li>Building APIs, webhooks, or real-time features</li>
+            <li>You prefer JavaScript/TypeScript ecosystem</li>
+            <li>You want DDoS protection built-in</li>
+            <li>Database connections need to be managed at scale</li>
+          </ul>
+        </div>
+
+        <div class="use-case lambda-use">
+          <h3>✅ Choose Lambda When:</h3>
+          <ul>
+            <li>You need AWS ecosystem integration (S3, DynamoDB, SQS, etc.)</li>
+            <li>You require specific language support (Python, Go, Java)</li>
+            <li>Complex VPC networking is required</li>
+            <li>You have existing AWS infrastructure</li>
+            <li>You need 15+ minute execution time</li>
+            <li>Your organization is already standardized on AWS</li>
+            <li>You need extensive IAM policies and security controls</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost Breakdown -->
+  <section class="cost-section">
+    <div class="container">
+      <h2>Real-World Cost Comparison</h2>
+      <p>Comparing the same 10M requests/month with 50ms average CPU time:</p>
+
+      <div class="cost-breakdown">
+        <div class="cost-option clodo">
+          <h3>Clodo Framework</h3>
+          <div class="calculation">
+            <div class="line">CPU Time: 10M × 50ms = 500M ms</div>
+            <div class="line">500M ms × \$0.50/1M ms = <strong>\$250</strong></div>
+            <div class="divider"></div>
+            <div class="line">D1 Database: ~\$0.75/month</div>
+            <div class="line total"><strong>Total: \$250.75/month</strong></div>
+          </div>
+        </div>
+
+        <div class="cost-option lambda">
+          <h3>AWS Lambda</h3>
+          <div class="calculation">
+            <div class="line">Requests: 10M × \$0.20/M = \$2.00</div>
+            <div class="line">CPU Duration: 500M ms × \$0.0000166667 = \$8,333.35</div>
+            <div class="line">RDS Database: ~\$100-300/month</div>
+            <div class="divider"></div>
+            <div class="line total"><strong>Total: \$8,435-8,635/month</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="cost-note"><strong>Result:</strong> Clodo is 34-35x cheaper for this workload. Difference: ~\$8,185/month saved.</p>
+    </div>
+  </section>
+
+  <!-- Migration Guide -->
+  <section class="migration-section">
+    <div class="container">
+      <h2>Migrating from Lambda to Clodo</h2>
+
+      <div class="migration-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Extract Business Logic</h3>
+          <p>Move business logic out of Lambda handler code into reusable functions</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Convert HTTP Routing</h3>
+          <p>Lambda: API Gateway → Routes → Handler</p>
+          <p>Clodo: URL matching → Handler</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Migrate Database Layer</h3>
+          <p>Move from RDS/DynamoDB to D1 or keep external DB</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Update Environment Variables</h3>
+          <p>Replace Lambda env vars with wrangler.toml and secrets</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Test Locally</h3>
+          <p>Use `wrangler dev` instead of SAM Local</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>Deploy</h3>
+          <p>Run `wrangler deploy` instead of CloudFormation/CDK</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verdict -->
+  <section class="verdict-section">
+    <div class="container">
+      <h2>The Verdict</h2>
+      
+      <div class="verdict-content">
+        <p><strong>Clodo Framework is the better choice for 90% of SaaS applications.</strong> If you're building:</p>
+        <ul>
+          <li>REST/GraphQL APIs</li>
+          <li>Webhooks and integrations</li>
+          <li>Real-time applications</li>
+          <li>Microservices</li>
+          <li>Any project where cost and performance matter</li>
+        </ul>
+
+        <p>Then Clodo's combination of <strong>zero cold starts, sub-100ms latency, and 35x lower costs</strong> makes it the obvious choice.</p>
+
+        <p>Choose Lambda only if you have deep AWS ecosystem dependencies or specific requirements Lambda uniquely provides.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .comparison-section {
+    padding: 3rem 1rem;
+  }
+
+  .category-section {
+    margin-bottom: 3rem;
+  }
+
+  .category-section h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: white;
+  }
+
+  .comparison-table th {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .comparison-table tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  .metric-name {
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+    min-width: 150px;
+  }
+
+  .clodo-value {
+    color: #059669;
+    font-weight: 500;
+  }
+
+  .lambda-value {
+    color: #d97706;
+    font-weight: 500;
+  }
+
+  .winner {
+    font-weight: 600;
+    position: relative;
+  }
+
+  .winner-clodo {
+    color: #059669;
+  }
+
+  .winner-lambda {
+    color: #d97706;
+  }
+
+  .tooltip {
+    cursor: help;
+  }
+
+  .use-cases-section {
+    padding: 3rem 1rem;
+    background: var(--card-bg, #f9fafb);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .use-cases-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .use-case {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color, #e5e7eb);
+    background: white;
+  }
+
+  .clodo-use {
+    border-color: #059669;
+    background: rgba(5, 150, 105, 0.02);
+  }
+
+  .lambda-use {
+    border-color: #d97706;
+    background: rgba(217, 119, 6, 0.02);
+  }
+
+  .use-case h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .use-case ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .use-case li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .use-case li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .clodo-use li::before {
+    color: #059669;
+  }
+
+  .lambda-use li::before {
+    color: #d97706;
+  }
+
+  .cost-section {
+    padding: 3rem 1rem;
+  }
+
+  .cost-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .cost-section > .container > p {
+    color: var(--text-secondary, #475569);
+    margin-bottom: 2rem;
+  }
+
+  .cost-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .cost-option {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color, #e5e7eb);
+  }
+
+  .cost-option.clodo {
+    border-color: #059669;
+    background: rgba(5, 150, 105, 0.05);
+  }
+
+  .cost-option.lambda {
+    border-color: #d97706;
+    background: rgba(217, 119, 6, 0.05);
+  }
+
+  .cost-option h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+  }
+
+  .cost-option.clodo h3 {
+    color: #059669;
+  }
+
+  .cost-option.lambda h3 {
+    color: #d97706;
+  }
+
+  .calculation {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.95rem;
+  }
+
+  .line {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .line strong {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .divider {
+    border-top: 2px solid var(--border-color, #e5e7eb);
+    margin: 1rem 0;
+  }
+
+  .total {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .cost-note {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-left: 4px solid #d97706;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: #7c2d12;
+  }
+
+  .migration-section {
+    padding: 3rem 1rem;
+    background: var(--card-bg, #f9fafb);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .migration-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .migration-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .step {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    position: relative;
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .step h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .step p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  .verdict-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #ffffff);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .verdict-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .verdict-content {
+    max-width: 800px;
+  }
+
+  .verdict-content p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.7;
+    margin: 1rem 0;
+    font-size: 1.05rem;
+  }
+
+  .verdict-content p strong {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .verdict-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .verdict-content li {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .verdict-content li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  @media (max-width: 768px) {
+    .use-cases-grid,
+    .cost-breakdown {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-table {
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.75rem;
+    }
+
+    .migration-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

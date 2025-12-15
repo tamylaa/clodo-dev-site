@@ -1,0 +1,1055 @@
+---
+// src/pages/workers-vs-lambda.astro
+// Comprehensive comparison between Cloudflare Workers and AWS Lambda
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Cloudflare Workers vs AWS Lambda: Complete Comparison';
+const description = 'Detailed comparison of Cloudflare Workers and AWS Lambda. Performance, pricing, features, and use cases to help you choose the right platform.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Comparisons</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Workers vs Lambda</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="comparison-title">
+    <div class="container">
+      <h1 id="comparison-title">Cloudflare Workers vs AWS Lambda</h1>
+      <p>Two leading serverless platforms, two fundamentally different architectures. Understand the differences to choose the right fit for your use case.</p>
+    </div>
+  </section>
+
+  <!-- Architecture Comparison -->
+  <section class="section">
+    <div class="container">
+      <h2>Fundamental Architecture Difference</h2>
+
+      <div class="architecture-comparison">
+        <div class="platform">
+          <h3>Cloudflare Workers: Edge Architecture</h3>
+          <p>Code runs on 300+ edge locations globally, closest to the user.</p>
+          <ul>
+            <li>Global by default</li>
+            <li>Sub-100ms latency from anywhere</li>
+            <li>No cold starts</li>
+            <li>Stateless execution</li>
+            <li>V8 isolate isolation</li>
+          </ul>
+          <p class="best-for">Best for: Global APIs, fast responses, edge computing</p>
+        </div>
+
+        <div class="platform">
+          <h3>AWS Lambda: Regional Architecture</h3>
+          <p>Code runs in specific AWS regions (us-east-1, eu-west-1, etc.), fixed data center location.</p>
+          <ul>
+            <li>Regional by default</li>
+            <li>100-300ms+ latency depending on user location</li>
+            <li>Cold starts (100-300ms)</li>
+            <li>Stateless or stateful (with external storage)</li>
+            <li>Container or isolate isolation</li>
+          </ul>
+          <p class="best-for">Best for: AWS-ecosystem integration, complex computing, batch processing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Comparison Table -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Detailed Feature Comparison</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Cloudflare Workers</th>
+            <th>AWS Lambda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" class="table-section">🌍 Global Deployment</td>
+          </tr>
+          <tr>
+            <td>Default Deployment</td>
+            <td>Global (300+ locations instantly)</td>
+            <td>Single region (choose one)</td>
+          </tr>
+          <tr>
+            <td>Multi-Region Setup</td>
+            <td>Automatic</td>
+            <td>Manual (CloudFormation, CDK)</td>
+          </tr>
+          <tr>
+            <td>Deployment Time</td>
+            <td>&lt;15 seconds globally</td>
+            <td>5-10 minutes per region</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">⚡ Performance</td>
+          </tr>
+          <tr>
+            <td>Cold Start</td>
+            <td>0ms (always warm)</td>
+            <td>100-300ms first request</td>
+          </tr>
+          <tr>
+            <td>Execution Time (avg)</td>
+            <td>5-50ms</td>
+            <td>50-300ms</td>
+          </tr>
+          <tr>
+            <td>Global Latency</td>
+            <td>10-50ms (any location)</td>
+            <td>100-500ms (depending on region)</td>
+          </tr>
+          <tr>
+            <td>Timeout</td>
+            <td>30 seconds</td>
+            <td>15 minutes</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">💰 Pricing</td>
+          </tr>
+          <tr>
+            <td>Free Tier</td>
+            <td>100k req/day unlimited duration</td>
+            <td>1M req/month + 400k GB-seconds</td>
+          </tr>
+          <tr>
+            <td>CPU Pricing</td>
+            <td>\$0.50/1M ms (all tiers)</td>
+            <td>\$0.0000166667/ms + request fee</td>
+          </tr>
+          <tr>
+            <td>Request Pricing</td>
+            <td>Included in free tier</td>
+            <td>\$0.20/1M</td>
+          </tr>
+          <tr>
+            <td>1M Req/Day</td>
+            <td>\$0.30-0.50</td>
+            <td>\$5-20</td>
+          </tr>
+          <tr>
+            <td>100M Req/Day</td>
+            <td>\$30-50</td>
+            <td>\$500-2000</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">🔧 Operations</td>
+          </tr>
+          <tr>
+            <td>Configuration Complexity</td>
+            <td>Minimal (wrangler.toml)</td>
+            <td>Extensive (IAM, VPC, triggers)</td>
+          </tr>
+          <tr>
+            <td>Monitoring</td>
+            <td>Built-in dashboard</td>
+            <td>CloudWatch (separate service)</td>
+          </tr>
+          <tr>
+            <td>Logging</td>
+            <td>Automatic</td>
+            <td>CloudWatch setup required</td>
+          </tr>
+          <tr>
+            <td>Debugging</td>
+            <td>wrangler dev (local)</td>
+            <td>SAM Local (more setup)</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">💾 Storage & Database</td>
+          </tr>
+          <tr>
+            <td>KV Storage</td>
+            <td>✅ KV Store (included)</td>
+            <td>❌ (use DynamoDB, ElastiCache)</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>✅ D1 (SQLite, included)</td>
+            <td>❌ (use RDS, DynamoDB)</td>
+          </tr>
+          <tr>
+            <td>Stateful Computing</td>
+            <td>✅ Durable Objects</td>
+            <td>❌ (Lambda@Edge limited)</td>
+          </tr>
+          <tr>
+            <td>Connection Pooling</td>
+            <td>Automatic</td>
+            <td>Manual setup</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">📱 Runtime Support</td>
+          </tr>
+          <tr>
+            <td>Languages</td>
+            <td>JavaScript/TypeScript</td>
+            <td>Node.js, Python, Java, Go, C#, Ruby, Custom</td>
+          </tr>
+          <tr>
+            <td>npm Packages</td>
+            <td>Most (no Node.js APIs)</td>
+            <td>All (full Node.js)</td>
+          </tr>
+          <tr>
+            <td>Environment</td>
+            <td>V8 Isolate (lightweight)</td>
+            <td>Container or Firecracker VM</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">🔐 Security & Compliance</td>
+          </tr>
+          <tr>
+            <td>DDoS Protection</td>
+            <td>✅ Built-in</td>
+            <td>❌ (CloudFront required)</td>
+          </tr>
+          <tr>
+            <td>WAF</td>
+            <td>✅ Built-in</td>
+            <td>❌ (WAF service separate)</td>
+          </tr>
+          <tr>
+            <td>Rate Limiting</td>
+            <td>✅ Built-in</td>
+            <td>❌ (API Gateway)</td>
+          </tr>
+          <tr>
+            <td>Data Residency</td>
+            <td>Regional storage options</td>
+            <td>Full VPC control</td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="table-section">🚀 Advanced Features</td>
+          </tr>
+          <tr>
+            <td>Scheduled Functions</td>
+            <td>✅ Cron triggers</td>
+            <td>✅ EventBridge</td>
+          </tr>
+          <tr>
+            <td>WebSockets</td>
+            <td>✅ Low latency (Durable Objects)</td>
+            <td>✅ Via API Gateway</td>
+          </tr>
+          <tr>
+            <td>Event Streaming</td>
+            <td>Limited</td>
+            <td>✅ SQS, Kinesis, SNS</td>
+          </tr>
+          <tr>
+            <td>Batch Processing</td>
+            <td>Not ideal (30s timeout)</td>
+            <td>✅ Excellent (15min timeout)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="section">
+    <div class="container">
+      <h2>When to Choose Each Platform</h2>
+
+      <div class="use-cases-grid">
+        <div class="use-case workers">
+          <h3>✅ Choose Cloudflare Workers For:</h3>
+          <ul>
+            <li>Global APIs requiring sub-100ms latency</li>
+            <li>Cost-sensitive applications (high volume)</li>
+            <li>Real-time applications (WebSockets)</li>
+            <li>CDN edge transformations</li>
+            <li>API gateway / rate limiting</li>
+            <li>Request routing & authentication</li>
+            <li>Webhook receivers</li>
+            <li>Rapid prototyping with minimal setup</li>
+            <li>Teams familiar with JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="use-case lambda">
+          <h3>✅ Choose AWS Lambda For:</h3>
+          <ul>
+            <li>Integration with AWS ecosystem (S3, DynamoDB, SQS, etc.)</li>
+            <li>Batch processing or long-running jobs (up to 15 min)</li>
+            <li>Multi-language requirements</li>
+            <li>Complex compute-intensive work</li>
+            <li>Organizations already standardized on AWS</li>
+            <li>Specific IAM security requirements</li>
+            <li>Integration with Lambda@Edge or CloudFront</li>
+            <li>VPC networking requirements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost Analysis -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Real-World Cost Scenarios</h2>
+
+      <p>Comparing 10M requests/month with 50ms average execution time:</p>
+
+      <div class="cost-scenarios">
+        <div class="scenario">
+          <h3>Scenario 1: Small API (10M req/month, 50ms avg)</h3>
+          <table class="cost-table">
+            <tr>
+              <td><strong>Cloudflare Workers</strong></td>
+              <td class="amount">~\$250/month</td>
+            </tr>
+            <tr>
+              <td><strong>AWS Lambda</strong></td>
+              <td class="amount">~\$2,000/month</td>
+            </tr>
+            <tr class="savings">
+              <td><strong>Savings with Workers</strong></td>
+              <td class="amount">~\$1,750/month</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="scenario">
+          <h3>Scenario 2: Batch Job (1M req/month, 5 min avg)</h3>
+          <table class="cost-table">
+            <tr>
+              <td><strong>Cloudflare Workers</strong></td>
+              <td class="amount">Not ideal (30s timeout)</td>
+            </tr>
+            <tr>
+              <td><strong>AWS Lambda</strong></td>
+              <td class="amount">~\$15,000/month</td>
+            </tr>
+            <tr class="note-row">
+              <td colspan="2" class="note">Workers: Redesign for edge (split into 5 sequential requests)</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="scenario">
+          <h3>Scenario 3: AWS Ecosystem Integration</h3>
+          <table class="cost-table">
+            <tr>
+              <td><strong>Cloudflare Workers</strong></td>
+              <td class="amount">Higher (external API calls)</td>
+            </tr>
+            <tr>
+              <td><strong>AWS Lambda</strong></td>
+              <td class="amount">Lower (internal, no data transfer costs)</td>
+            </tr>
+            <tr class="note-row">
+              <td colspan="2" class="note">Lambda wins due to AWS integration and data transfer costs</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <p class="cost-note"><strong>Takeaway:</strong> Workers is 70-90% cheaper for most APIs. Lambda is better for batch jobs and AWS integration.</p>
+    </div>
+  </section>
+
+  <!-- Performance Comparison -->
+  <section class="section">
+    <div class="container">
+      <h2>Performance Metrics</h2>
+
+      <div class="performance-grid">
+        <div class="metric">
+          <h3>Cold Start Time</h3>
+          <div class="comparison">
+            <div class="bar workers">
+              <span class="value">0ms</span>
+            </div>
+            <div class="bar lambda">
+              <span class="value">100-300ms</span>
+            </div>
+          </div>
+          <p class="metric-note">Workers are always warm, Lambda has occasional cold starts</p>
+        </div>
+
+        <div class="metric">
+          <h3>P95 Response Time (US → Server)</h3>
+          <div class="comparison">
+            <div class="bar workers">
+              <span class="value">15ms</span>
+            </div>
+            <div class="bar lambda">
+              <span class="value">150ms</span>
+            </div>
+          </div>
+          <p class="metric-note">Workers edge location faster than regional Lambda</p>
+        </div>
+
+        <div class="metric">
+          <h3>P95 Response Time (Asia → Server)</h3>
+          <div class="comparison">
+            <div class="bar workers">
+              <span class="value">25ms</span>
+            </div>
+            <div class="bar lambda">
+              <span class="value">400ms+</span>
+            </div>
+          </div>
+          <p class="metric-note">Workers excels globally, Lambda has routing delay to nearest region</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Migration Path -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Migration: Lambda to Workers</h2>
+
+      <p>Many teams start with Lambda then migrate to Workers when they need global scale and cost reduction.</p>
+
+      <div class="migration-flow">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Evaluate Compatibility</h3>
+          <p><strong>Questions:</strong> Does your code use only JS/TS? Can it finish in 30 seconds?</p>
+          <p class="note">If no → Stay with Lambda. If yes → Consider Workers.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Extract Business Logic</h3>
+          <p>Move core logic out of Lambda handler. Remove AWS SDK dependencies where possible.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Convert HTTP Triggers</h3>
+          <p>Lambda: API Gateway → Lambda<br>Workers: HTTP request → Worker</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Migrate Storage</h3>
+          <p>Option A: Keep RDS/DynamoDB (external API calls)<br>Option B: Switch to D1/KV (faster)</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <h3>Deploy & Test</h3>
+          <p>Use <code>wrangler dev</code> locally, then <code>wrangler deploy</code> to production.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <h3>Enjoy Savings</h3>
+          <p>Monitor costs and performance. Expect 50-80% cost reduction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verdict -->
+  <section class="section">
+    <div class="container">
+      <h2>Final Verdict</h2>
+
+      <div class="verdict-content">
+        <div class="verdict-section">
+          <h3>🏆 Cloudflare Workers Wins On:</h3>
+          <ul>
+            <li>Global latency (edge deployment)</li>
+            <li>Cost (35-50x cheaper for APIs)</li>
+            <li>Rapid deployment</li>
+            <li>Developer experience (simple, minimal config)</li>
+            <li>Built-in security (DDoS, WAF, rate limiting)</li>
+          </ul>
+        </div>
+
+        <div class="verdict-section">
+          <h3>🏆 AWS Lambda Wins On:</h3>
+          <ul>
+            <li>Execution time (15 min vs 30s)</li>
+            <li>Language support (8+ languages)</li>
+            <li>AWS ecosystem integration</li>
+            <li>Complex security (VPC, IAM)</li>
+            <li>Enterprise organizations already on AWS</li>
+          </ul>
+        </div>
+
+        <div class="verdict-recommendation">
+          <p><strong>Recommendation:</strong> For most SaaS applications and APIs, <strong>Cloudflare Workers is the better choice.</strong> It's faster, cheaper, and simpler. Choose Lambda only if you have specific AWS requirements or batch processing needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Next Steps</h2>
+
+      <div class="next-steps">
+        <div class="step-link">
+          <h3><a href="/what-is-cloudflare-workers">Learn about Cloudflare Workers</a></h3>
+          <p>Deep dive into how Workers works and why it's powerful.</p>
+        </div>
+
+        <div class="step-link">
+          <h3><a href="/clodo-vs-lambda">Compare Clodo vs Lambda</a></h3>
+          <p>See how Clodo Framework makes Workers even better.</p>
+        </div>
+
+        <div class="step-link">
+          <h3><a href="/clodo-framework-guide">Build with Clodo</a></h3>
+          <p>Get started building serverless applications on Workers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section.alt {
+    background: var(--card-bg, #f9fafb);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .architecture-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .platform {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .platform h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .platform p {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .platform ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .platform li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .platform li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+  }
+
+  .best-for {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    color: #166534;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: white;
+  }
+
+  .comparison-table th {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .comparison-table tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  .table-section {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb) !important;
+    font-weight: 600;
+    color: var(--heading-color, #0f172a) !important;
+  }
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .use-case {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color, #e5e7eb);
+  }
+
+  .use-case.workers {
+    border-color: #059669;
+    background: rgba(5, 150, 105, 0.02);
+  }
+
+  .use-case.lambda {
+    border-color: #d97706;
+    background: rgba(217, 119, 6, 0.02);
+  }
+
+  .use-case h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .use-case.workers h3 {
+    color: #059669;
+  }
+
+  .use-case.lambda h3 {
+    color: #d97706;
+  }
+
+  .use-case ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .use-case li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .use-case li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .use-case.workers li::before {
+    color: #059669;
+  }
+
+  .use-case.lambda li::before {
+    color: #d97706;
+  }
+
+  .cost-scenarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .scenario {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .scenario h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cost-table tr {
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .cost-table td {
+    padding: 0.75rem;
+  }
+
+  .cost-table .amount {
+    text-align: right;
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .cost-table .savings {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+  }
+
+  .cost-table .note-row {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    color: #7c2d12;
+    font-weight: 500;
+  }
+
+  .cost-table .note-row .note {
+    color: #7c2d12;
+  }
+
+  .cost-note {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-left: 4px solid #d97706;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: #7c2d12;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .metric {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .metric h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+  }
+
+  .comparison {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .bar {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-weight: 600;
+  }
+
+  .bar.workers {
+    background: #059669;
+  }
+
+  .bar.lambda {
+    background: #d97706;
+  }
+
+  .value {
+    font-size: 1.1rem;
+  }
+
+  .metric-note {
+    margin: 1rem 0 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .migration-flow {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .step h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .step p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .step code {
+    background: #1f2937;
+    color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+  }
+
+  .note {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-left: 4px solid #d97706;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    color: #7c2d12;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .verdict-content {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .verdict-section {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .verdict-section h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .verdict-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .verdict-section li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .verdict-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+  }
+
+  .verdict-recommendation {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    border-left: 4px solid #059669;
+    border-radius: 0.5rem;
+  }
+
+  .verdict-recommendation p {
+    margin: 0;
+    color: var(--heading-color, #0f172a);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .next-steps {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .step-link {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .step-link h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .step-link a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .step-link a:hover {
+    text-decoration: underline;
+  }
+
+  .step-link p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .architecture-comparison,
+    .use-cases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .step {
+      grid-template-columns: 40px 1fr;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .comparison-table {
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.75rem;
+    }
+  }
+</style>

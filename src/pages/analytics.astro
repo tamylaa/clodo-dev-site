@@ -1,0 +1,1002 @@
+---
+// src/pages/analytics.astro
+// Analytics and monitoring capabilities for Clodo applications
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Analytics & Monitoring for Clodo Applications';
+const description = 'Monitor performance, track user behavior, and optimize your Clodo application with real-time analytics and comprehensive observability.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/docs/" itemprop="item"><span itemprop="name">Docs</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Analytics & Monitoring</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">Analytics & Monitoring</h1>
+      <p>Real-time insights into your application performance, user behavior, and infrastructure health. Monitor, measure, and optimize with confidence.</p>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section">
+    <div class="container">
+      <h2>What You Can Monitor</h2>
+
+      <div class="monitoring-grid">
+        <div class="category">
+          <h3>📊 Performance Metrics</h3>
+          <ul>
+            <li>Request latency (P50, P95, P99)</li>
+            <li>Cache hit rates</li>
+            <li>CPU time consumed</li>
+            <li>Database query time</li>
+            <li>Time to first byte (TTFB)</li>
+            <li>Throughput (requests/second)</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>❌ Error Tracking</h3>
+          <ul>
+            <li>Error rate and frequency</li>
+            <li>Error stack traces</li>
+            <li>Failed request patterns</li>
+            <li>HTTP status code distribution</li>
+            <li>Timeout occurrences</li>
+            <li>Database connection errors</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>👥 User Behavior</h3>
+          <ul>
+            <li>Unique users and sessions</li>
+            <li>Traffic by geography</li>
+            <li>Device and browser types</li>
+            <li>User journeys and funnels</li>
+            <li>Feature usage tracking</li>
+            <li>Conversion rates</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>💰 Cost & Usage</h3>
+          <ul>
+            <li>Total requests processed</li>
+            <li>CPU milliseconds used</li>
+            <li>Estimated monthly cost</li>
+            <li>Database read/write operations</li>
+            <li>KV Store operations</li>
+            <li>Per-route cost breakdown</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>🔐 Security</h3>
+          <ul>
+            <li>DDoS attack detection</li>
+            <li>Rate limit violations</li>
+            <li>Authentication failures</li>
+            <li>Suspicious traffic patterns</li>
+            <li>IP reputation scoring</li>
+            <li>Geographic anomalies</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>🗄️ Infrastructure</h3>
+          <ul>
+            <li>Database performance</li>
+            <li>Storage usage trends</li>
+            <li>API dependency health</li>
+            <li>Uptime and availability</li>
+            <li>Geographic distribution</li>
+            <li>Resource utilization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Analytics Tools -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Built-in Analytics & Monitoring</h2>
+
+      <div class="tools-list">
+        <div class="tool">
+          <h3>📈 Cloudflare Analytics</h3>
+          <p>Real-time dashboard showing all traffic and performance metrics across your application.</p>
+          <ul class="features">
+            <li>Real-time request tracking</li>
+            <li>Geographic heatmaps</li>
+            <li>Performance graphs (latency, throughput)</li>
+            <li>Cache analytics</li>
+            <li>Custom dashboards</li>
+            <li>30-day data retention</li>
+          </ul>
+          <p class="access">Access via: Cloudflare Dashboard → Workers Analytics</p>
+        </div>
+
+        <div class="tool">
+          <h3>🔍 Workers Tail</h3>
+          <p>Real-time streaming logs directly in your terminal. Perfect for debugging and development.</p>
+          <ul class="features">
+            <li>Live console output from requests</li>
+            <li>Structured logging (JSON)</li>
+            <li>Filter by status, method, path</li>
+            <li>Search logs by content</li>
+            <li>Works on production</li>
+          </ul>
+          <p class="code">Usage: <code>wrangler tail</code></p>
+        </div>
+
+        <div class="tool">
+          <h3>📊 Metrics & Observability</h3>
+          <p>Export metrics to your favorite monitoring service for deep analysis and alerting.</p>
+          <ul class="features">
+            <li>Prometheus compatible</li>
+            <li>Grafana integration</li>
+            <li>Datadog integration</li>
+            <li>New Relic support</li>
+            <li>Custom metric export</li>
+            <li>Alerting rules</li>
+          </ul>
+          <p class="note">Build custom queries and dashboards in your preferred tool</p>
+        </div>
+
+        <div class="tool">
+          <h3>🚨 Error Tracking</h3>
+          <p>Automatic error detection and reporting to help you find and fix issues faster.</p>
+          <ul class="features">
+            <li>Stack trace capture</li>
+            <li>Request context included</li>
+            <li>Error grouping by type</li>
+            <li>Trend analysis</li>
+            <li>Integration with Sentry, Rollbar</li>
+            <li>Custom error handlers</li>
+          </ul>
+          <p class="example">Example: Automatic alerting on new error patterns</p>
+        </div>
+
+        <div class="tool">
+          <h3>📍 Trace & Profiling</h3>
+          <p>Deep visibility into where time is spent in your requests.</p>
+          <ul class="features">
+            <li>Function-level timing</li>
+            <li>Database query profiling</li>
+            <li>Network latency breakdown</li>
+            <li>Distributed tracing</li>
+            <li>Flame graphs</li>
+            <li>Per-request timeline</li>
+          </ul>
+          <p class="useful">Useful for: Identifying performance bottlenecks</p>
+        </div>
+
+        <div class="tool">
+          <h3>📱 Real User Monitoring (RUM)</h3>
+          <p>Track how real users experience your application from their browsers.</p>
+          <ul class="features">
+            <li>Page load time (PLT)</li>
+            <li>Largest contentful paint (LCP)</li>
+            <li>First input delay (FID)</li>
+            <li>Cumulative layout shift (CLS)</li>
+            <li>User session recordings (optional)</li>
+            <li>JavaScript error tracking</li>
+          </ul>
+          <p class="metric">Metric: Core Web Vitals scoring</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Examples -->
+  <section class="section">
+    <div class="container">
+      <h2>Implementation Examples</h2>
+
+      <div class="examples">
+        <div class="example-card">
+          <h3>Custom Logging</h3>
+          <pre><code>export default {'{'}
+  async fetch(request, env, ctx) {'{'}
+    const startTime = Date.now();
+    
+    // Log request details
+    console.log({'{'}
+      method: request.method,
+      url: request.url,
+      ip: request.headers.get('cf-connecting-ip'),
+      timestamp: new Date().toISOString()
+    {'}'});
+    
+    const response = await handleRequest(request, env);
+    
+    // Log response details
+    const duration = Date.now() - startTime;
+    console.log({'{'}
+      status: response.status,
+      duration,
+      cached: response.headers.get('cf-cache-status')
+    {'}'});
+    
+    return response;
+  {'}'}
+{'}'}
+</code></pre>
+        </div>
+
+        <div class="example-card">
+          <h3>Performance Tracking</h3>
+          <pre><code>// Send metrics to analytics service
+async function trackMetric(env, name, value, tags = {'{'}{'}'}) {'{'}
+  await env.ANALYTICS.put(
+    `metric:${'{'}name{'}'}}:${'{'}Date.now(){'}'}}`,
+    JSON.stringify({'{'}
+      value,
+      tags,
+      timestamp: Date.now()
+    {'}'})
+  );
+{'}'}
+
+// Usage in handler
+export default {'{'}
+  async fetch(request, env) {'{'}
+    const start = Date.now();
+    
+    const response = await fetch('https://api.example.com');
+    const duration = Date.now() - start;
+    
+    await trackMetric(env, 'api_latency', duration, {'{'}
+      endpoint: 'example.com',
+      status: response.status
+    {'}'});
+    
+    return response;
+  {'}'}
+{'}'}
+</code></pre>
+        </div>
+
+        <div class="example-card">
+          <h3>Error Tracking</h3>
+          <pre><code>async function reportError(env, error, context = {'{'}{'}'}) {'{'}
+  const errorData = {'{'}
+    message: error.message,
+    stack: error.stack,
+    context,
+    timestamp: new Date().toISOString(),
+    url: context.url || 'unknown'
+  {'}'};
+  
+  // Log to console (visible in wrangler tail)
+  console.error('ERROR:', errorData);
+  
+  // Send to error tracking service
+  await fetch('https://errors.example.com/api/errors', {'{'}
+    method: 'POST',
+    body: JSON.stringify(errorData)
+  {'}'});
+{'}'}
+
+// Usage
+try {'{'}
+  // Your code
+{'}' } catch (error) {'{'}
+  await reportError(env, error, {'{'}
+    userId: request.headers.get('user-id'),
+    endpoint: request.url
+  {'}'});
+  return new Response('Error occurred', {'{'}status: 500{'}'});
+{'}'}
+</code></pre>
+        </div>
+
+        <div class="example-card">
+          <h3>User Event Tracking</h3>
+          <pre><code>// Track user events
+async function trackEvent(env, eventName, eventData) {'{'}
+  const event = {'{'}
+    name: eventName,
+    data: eventData,
+    timestamp: Date.now(),
+    sessionId: crypto.randomUUID()
+  {'}'};
+  
+  // Store in KV for later analysis
+  await env.EVENTS.put(
+    `event:${'{'}Date.now(){'}'}}:${'{'}eventName{'}'}}`,
+    JSON.stringify(event)
+  );
+  
+  // Batch send to analytics
+  if (shouldFlushEvents()) {'{'}
+    await flushEventsToAnalytics(env);
+  {'}'}
+{'}'}
+
+// Usage
+export default {'{'}
+  async fetch(request, env) {'{'}
+    const method = request.method;
+    
+    if (method === 'POST') {'{'}
+      const data = await request.json();
+      await trackEvent(env, 'form_submission', {'{'}
+        formId: data.formId,
+        duration: data.duration
+      {'}'});
+    {'}'}
+    
+    return new Response('ok');
+  {'}'}
+{'}'}
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Monitoring Best Practices</h2>
+
+      <div class="best-practices">
+        <div class="practice">
+          <h3>🎯 Establish Baselines</h3>
+          <p>Before optimizing, measure your current performance. Know what "normal" looks like.</p>
+          <ul>
+            <li>Average response time</li>
+            <li>Error rate</li>
+            <li>P99 latency</li>
+            <li>Cache hit rate</li>
+          </ul>
+        </div>
+
+        <div class="practice">
+          <h3>⚠️ Set Alerts</h3>
+          <p>Don't wait for users to report issues. Set up proactive alerts for anomalies.</p>
+          <ul>
+            <li>Error rate &gt; 1%</li>
+            <li>Latency P95 &gt; 200ms</li>
+            <li>Cache hit rate &lt; 80%</li>
+            <li>Availability &lt; 99.9%</li>
+          </ul>
+        </div>
+
+        <div class="practice">
+          <h3>🔄 Track Trends Over Time</h3>
+          <p>Compare performance week-over-week and month-over-month to spot gradual degradation.</p>
+          <ul>
+            <li>Performance by time of day</li>
+            <li>Seasonal patterns</li>
+            <li>Long-term trends</li>
+            <li>Correlation with deployments</li>
+          </ul>
+        </div>
+
+        <div class="practice">
+          <h3>🚨 Debug Systematically</h3>
+          <p>Use structured logging and tracing to quickly locate issues.</p>
+          <ul>
+            <li>Add correlation IDs to requests</li>
+            <li>Log at key decision points</li>
+            <li>Include timing information</li>
+            <li>Capture error context</li>
+          </ul>
+        </div>
+
+        <div class="practice">
+          <h3>📈 Measure Business Metrics</h3>
+          <p>Don't just track technical metrics. Monitor what matters to your business.</p>
+          <ul>
+            <li>Conversion rate</li>
+            <li>User retention</li>
+            <li>Feature adoption</li>
+            <li>Revenue per user</li>
+          </ul>
+        </div>
+
+        <div class="practice">
+          <h3>💾 Retain Data Appropriately</h3>
+          <p>Balance detailed data retention with cost. Keep different data for different periods.</p>
+          <ul>
+            <li>1 day: Full resolution data</li>
+            <li>30 days: Hourly aggregates</li>
+            <li>1 year: Daily aggregates</li>
+            <li>Archive as needed for compliance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Metrics to Track -->
+  <section class="section">
+    <div class="container">
+      <h2>Key Metrics to Track</h2>
+
+      <table class="metrics-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Good Range</th>
+            <th>Warning Range</th>
+            <th>Action Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>P95 Latency</strong></td>
+            <td>&lt; 100ms</td>
+            <td>100-200ms</td>
+            <td>&gt; 200ms - investigate immediately</td>
+          </tr>
+          <tr>
+            <td><strong>Error Rate</strong></td>
+            <td>&lt; 0.1%</td>
+            <td>0.1-1%</td>
+            <td>&gt; 1% - page incident</td>
+          </tr>
+          <tr>
+            <td><strong>Cache Hit Rate</strong></td>
+            <td>&gt; 90%</td>
+            <td>70-90%</td>
+            <td>&lt; 70% - review caching strategy</td>
+          </tr>
+          <tr>
+            <td><strong>CPU Efficiency</strong></td>
+            <td>&lt; 50ms/req</td>
+            <td>50-100ms/req</td>
+            <td>&gt; 100ms/req - profile and optimize</td>
+          </tr>
+          <tr>
+            <td><strong>Availability</strong></td>
+            <td>&gt; 99.99%</td>
+            <td>99.9-99.99%</td>
+            <td>&lt; 99.9% - critical issue</td>
+          </tr>
+          <tr>
+            <td><strong>Cost per 1M Req</strong></td>
+            <td>&lt; \$0.50</td>
+            <td>\$0.50-1.00</td>
+            <td>&gt; \$1.00 - optimize efficiency</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Tools Integration -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Third-Party Integrations</h2>
+
+      <div class="integrations-grid">
+        <div class="integration">
+          <h3>Sentry</h3>
+          <p>Error tracking and performance monitoring with detailed stack traces and session replay.</p>
+          <p class="tags"><span>Error Tracking</span><span>Performance</span><span>Session Replay</span></p>
+        </div>
+
+        <div class="integration">
+          <h3>Datadog</h3>
+          <p>Comprehensive monitoring, logs, and APM with excellent Cloudflare Workers integration.</p>
+          <p class="tags"><span>Metrics</span><span>Logs</span><span>APM</span></p>
+        </div>
+
+        <div class="integration">
+          <h3>New Relic</h3>
+          <p>Full-stack observability including infrastructure, applications, and user experience monitoring.</p>
+          <p class="tags"><span>APM</span><span>Infrastructure</span><span>RUM</span></p>
+        </div>
+
+        <div class="integration">
+          <h3>Grafana</h3>
+          <p>Open-source visualization platform for creating custom dashboards and alerts.</p>
+          <p class="tags"><span>Dashboards</span><span>Alerts</span><span>Open Source</span></p>
+        </div>
+
+        <div class="integration">
+          <h3>Prometheus</h3>
+          <p>Time-series database for metrics collection and alerting. Works great with Cloudflare.</p>
+          <p class="tags"><span>Metrics</span><span>Time Series</span><span>Open Source</span></p>
+        </div>
+
+        <div class="integration">
+          <h3>LogRocket</h3>
+          <p>Session replay and performance monitoring focused on user experience and debugging.</p>
+          <p class="tags"><span>Session Replay</span><span>Performance</span><span>Debugging</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section class="section">
+    <div class="container">
+      <h2>Quick Start: Setting Up Monitoring</h2>
+
+      <div class="quick-start-steps">
+        <div class="step">
+          <h3>Step 1: Enable Tail Logging</h3>
+          <pre><code>wrangler tail</code></pre>
+          <p>See real-time logs from your live application.</p>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Access Cloudflare Analytics</h3>
+          <p>Go to Cloudflare Dashboard → Workers → Your Worker → Analytics</p>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Add Custom Logging</h3>
+          <pre><code>console.log('Event:', {'{'}key: 'value{'}'})</code></pre>
+          <p>Use console.log/error for structured logging visible in tail.</p>
+        </div>
+
+        <div class="step">
+          <h3>Step 4: Set Up Third-Party Service</h3>
+          <p>Choose Sentry, Datadog, or another service and configure integration.</p>
+        </div>
+
+        <div class="step">
+          <h3>Step 5: Create Custom Dashboard</h3>
+          <p>Build dashboards tailored to your metrics and KPIs in your monitoring tool.</p>
+        </div>
+
+        <div class="step">
+          <h3>Step 6: Configure Alerts</h3>
+          <p>Set up alerts for critical metrics and anomalies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Resources -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Related Resources</h2>
+
+      <div class="resources">
+        <div class="resource">
+          <h3><a href="/cloudflare-workers-guide">📖 Cloudflare Workers Guide</a></h3>
+          <p>Complete guide to Workers including built-in analytics features.</p>
+        </div>
+
+        <div class="resource">
+          <h3><a href="/docs">📚 Clodo Documentation</a></h3>
+          <p>Learn about monitoring and observability in Clodo applications.</p>
+        </div>
+
+        <div class="resource">
+          <h3><a href="/development-deployment-guide">🚀 Development & Deployment Guide</a></h3>
+          <p>Best practices for monitoring in production environments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section.alt {
+    background: var(--card-bg, #f9fafb);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .category {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .category h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .category li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .category li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+  }
+
+  .tools-list {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .tool {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .tool h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .tool p {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .features li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .features li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .access,
+  .code,
+  .note,
+  .example,
+  .useful,
+  .metric {
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  code {
+    background: #1f2937;
+    color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+    font-size: 0.85rem;
+  }
+
+  .examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .example-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .example-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+  }
+
+  pre {
+    background: #1f2937;
+    color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+  }
+
+  .best-practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .practice {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .practice h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .practice p {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .practice ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .practice li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .practice li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+  }
+
+  .metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: white;
+    margin: 2rem 0;
+  }
+
+  .metrics-table th {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .metrics-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .metrics-table tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  .integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .integration {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .integration h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .integration p {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags span {
+    display: inline-block;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .quick-start-steps {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .step {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .step h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .step p {
+    margin: 0.75rem 0 0 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .resource {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .resource h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .resource a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .resource a:hover {
+    text-decoration: underline;
+  }
+
+  .resource p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .examples {
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-table {
+      font-size: 0.9rem;
+    }
+
+    .metrics-table th,
+    .metrics-table td {
+      padding: 0.75rem;
+    }
+  }
+</style>

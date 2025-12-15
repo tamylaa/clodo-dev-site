@@ -1,0 +1,958 @@
+---
+// src/pages/what-is-edge-computing.astro
+// Educational guide explaining edge computing fundamentals
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'What is Edge Computing? The Future of Serverless';
+const description = 'Understand edge computing: process data closer to users, not in distant data centers. Learn why edge computing matters and how it changes application architecture.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Learning</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">What is Edge Computing</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">What is Edge Computing?</h1>
+      <p>Processing data as close to the source as possible instead of sending it to a distant data center. The foundation of next-generation internet infrastructure.</p>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section class="section">
+    <div class="container">
+      <h2>The Problem: Distance Costs Time</h2>
+
+      <div class="problem-visualization">
+        <div class="scenario">
+          <h3>Traditional Approach</h3>
+          <div class="flow">
+            <div class="node user">📱 User in Tokyo</div>
+            <div class="arrow">→</div>
+            <div class="node server">☁️ Server in Virginia</div>
+            <div class="arrow">→</div>
+            <div class="node database">🗄️ Database in Virginia</div>
+            <div class="arrow">←</div>
+            <div class="node server">☁️ Server in Virginia</div>
+            <div class="arrow">←</div>
+            <div class="node user">📱 User in Tokyo</div>
+          </div>
+          <p class="latency">~300-500ms latency</p>
+          <p class="reason">User → Virginia (150ms) + Processing (50-150ms) + Virginia → User (150ms)</p>
+        </div>
+
+        <div class="scenario">
+          <h3>Edge Computing Approach</h3>
+          <div class="flow compact">
+            <div class="node user">📱 User in Tokyo</div>
+            <div class="arrow">→</div>
+            <div class="node edge">⚡ Edge in Tokyo</div>
+            <div class="arrow compact">↔️ (if needed)</div>
+            <div class="node database">🗄️ Distributed DB</div>
+            <div class="arrow">←</div>
+            <div class="node user">📱 User in Tokyo</div>
+          </div>
+          <p class="latency">~10-50ms latency</p>
+          <p class="reason">User → Tokyo Edge (5ms) + Processing (5-25ms) + Tokyo Edge → User (5ms)</p>
+        </div>
+      </div>
+
+      <p class="insight"><strong>Physics fact:</strong> Light travels ~300km/millisecond. Every millisecond of distance adds latency. Edge computing brings computation to the user.</p>
+    </div>
+  </section>
+
+  <!-- Definition -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Definition: Edge Computing</h2>
+
+      <div class="definition-box">
+        <p><strong>Edge computing</strong> is the practice of processing and storing data closer to the source (the "edge") rather than at centralized data centers.</p>
+
+        <ul class="definition-points">
+          <li><strong>The Edge:</strong> Data centers physically located near where data is generated or consumed (at the network edge)</li>
+          <li><strong>The Cloud:</strong> Centralized data centers far from most users (usually 1-2 central locations per region)</li>
+          <li><strong>Distributed:</strong> Instead of 1-2 data centers per region, hundreds to thousands of edge locations worldwide</li>
+        </ul>
+      </div>
+
+      <p>Think of it like this: instead of shipping goods from a warehouse across the country (cloud), you have distribution centers in every city (edge).</p>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="section">
+    <div class="container">
+      <h2>Why Edge Computing Matters</h2>
+
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <h3>🏃 Speed</h3>
+          <p><strong>10-50x faster response times</strong> by processing near users instead of across the globe.</p>
+          <p class="impact">Impact: Better UX, higher conversion rates, reduced bounce rates</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>💰 Cost Savings</h3>
+          <p><strong>Reduced bandwidth costs</strong> and pay-per-use pricing instead of reserved capacity.</p>
+          <p class="impact">Impact: 70-90% cost reduction vs traditional cloud for many workloads</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>🔐 Privacy & Compliance</h3>
+          <p><strong>Keep data local</strong> to meet regulatory requirements (GDPR, CCPA, data residency laws).</p>
+          <p class="impact">Impact: Easier compliance, reduced legal risk, customer trust</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>⚡ Reliability</h3>
+          <p><strong>Distributed system</strong> means if one location fails, 299+ others still work.</p>
+          <p class="impact">Impact: Better uptime, automatic failover, DDoS resistance</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>🚀 Scalability</h3>
+          <p><strong>Infinite horizontal scaling</strong> across global edge locations automatically.</p>
+          <p class="impact">Impact: Handle traffic spikes without pre-provisioning</p>
+        </div>
+
+        <div class="reason-card">
+          <h3>🌍 Global by Default</h3>
+          <p><strong>Deploy once</strong>, run everywhere without managing multiple regions.</p>
+          <p class="impact">Impact: Simpler operations, truly global reach instantly</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Examples -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Real-World Examples</h2>
+
+      <div class="examples-list">
+        <div class="example">
+          <h3>📺 Streaming Service</h3>
+          <p><strong>Problem:</strong> Netflix stream buffering in India</p>
+          <p><strong>Traditional Solution:</strong> Replicate all content to India data center (~2000ms away from Virginia)</p>
+          <p><strong>Edge Solution:</strong> Cache popular content at edge in Mumbai, Bangalore, Delhi (~50ms away)</p>
+          <p class="result">Result: Instant streaming, lower bandwidth costs</p>
+        </div>
+
+        <div class="example">
+          <h3>🚗 Autonomous Vehicles</h3>
+          <p><strong>Problem:</strong> Self-driving car needs real-time decision-making (100ms latency unacceptable)</p>
+          <p><strong>Traditional Solution:</strong> Send sensor data to cloud, wait for response (500ms+ latency)</p>
+          <p><strong>Edge Solution:</strong> Process on-device and at nearby edge nodes (~50ms total latency)</p>
+          <p class="result">Result: Safe driving, edge handles camera analysis and path planning</p>
+        </div>
+
+        <div class="example">
+          <h3>🏥 Remote Diagnostics</h3>
+          <p><strong>Problem:</strong> Rural clinic needs instant heart monitor analysis</p>
+          <p><strong>Traditional Solution:</strong> Send data to hospital in capital city (60km, 200ms away)</p>
+          <p><strong>Edge Solution:</strong> Local edge node analyzes data, sends summary to hospital (~30ms)</p>
+          <p class="result">Result: Faster diagnosis, reduced data transmission</p>
+        </div>
+
+        <div class="example">
+          <h3>🏭 IoT Manufacturing</h3>
+          <p><strong>Problem:</strong> Factory floor sensors generate 10TB/day, need instant alerts for issues</p>
+          <p><strong>Traditional Solution:</strong> Send all data to cloud, process centrally</p>
+          <p><strong>Edge Solution:</strong> Local edge analyzes instantly, sends only anomalies to cloud</p>
+          <p class="result">Result: Real-time monitoring, 99% less data transmission</p>
+        </div>
+
+        <div class="example">
+          <h3>🎮 Gaming</h3>
+          <p><strong>Problem:</strong> FPS player in Tokyo with 200ms ping disadvantage vs US player</p>
+          <p><strong>Traditional Solution:</strong> Game servers in US only</p>
+          <p><strong>Edge Solution:</strong> Game logic runs on edge nodes worldwide, players get &lt;50ms ping</p>
+          <p class="result">Result: Fair competitive play for global audience</p>
+        </div>
+
+        <div class="example">
+          <h3>💳 Payment Processing</h3>
+          <p><strong>Problem:</strong> Fraud detection needs real-time decision (transaction delay bad UX)</p>
+          <p><strong>Traditional Solution:</strong> Send to central payment processor (100-300ms)</p>
+          <p><strong>Edge Solution:</strong> ML model runs at edge, fraud analysis in 10ms</p>
+          <p class="result">Result: Instant transactions, better fraud prevention</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="section">
+    <div class="container">
+      <h2>Edge vs Cloud vs On-Premise</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Characteristic</th>
+            <th>On-Premise</th>
+            <th>Cloud (Centralized)</th>
+            <th>Edge Computing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Location</strong></td>
+            <td>Your office/facility</td>
+            <td>Few central locations (US, EU, AS)</td>
+            <td>300+ locations globally</td>
+          </tr>
+          <tr>
+            <td><strong>Latency</strong></td>
+            <td>0-10ms (local)</td>
+            <td>100-500ms (global)</td>
+            <td>10-50ms (global)</td>
+          </tr>
+          <tr>
+            <td><strong>Scaling</strong></td>
+            <td>Manual, expensive</td>
+            <td>Automatic, but at central capacity limits</td>
+            <td>Automatic, infinite across edge</td>
+          </tr>
+          <tr>
+            <td><strong>Setup Time</strong></td>
+            <td>Weeks/months</td>
+            <td>Hours/days</td>
+            <td>Minutes/seconds</td>
+          </tr>
+          <tr>
+            <td><strong>Cost</strong></td>
+            <td>High capex, high opex</td>
+            <td>Medium capex, medium opex</td>
+            <td>Low capex, pay-per-use</td>
+          </tr>
+          <tr>
+            <td><strong>Data Residency</strong></td>
+            <td>Enforced locally</td>
+            <td>Difficult to enforce</td>
+            <td>Easy to enforce per-region</td>
+          </tr>
+          <tr>
+            <td><strong>Reliability</strong></td>
+            <td>Single point of failure</td>
+            <td>Centralized bottleneck</td>
+            <td>Distributed redundancy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Edge Computing Layers -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Edge Computing Architecture</h2>
+
+      <div class="architecture">
+        <div class="layer">
+          <h3>Device Edge (Client-Side)</h3>
+          <p>Processing on user's device (browser, phone, IoT device)</p>
+          <div class="examples">
+            <span class="example-tag">Browser JS</span>
+            <span class="example-tag">Mobile App</span>
+            <span class="example-tag">Wearables</span>
+          </div>
+        </div>
+
+        <div class="layer">
+          <h3>Near Edge (Network Edge)</h3>
+          <p>Processing at network's edge (user's ISP, mobile tower)</p>
+          <div class="examples">
+            <span class="example-tag">5G MEC</span>
+            <span class="example-tag">ISP Cache</span>
+            <span class="example-tag">Local CDN</span>
+          </div>
+        </div>
+
+        <div class="layer">
+          <h3>Far Edge (Regional Edge)</h3>
+          <p>Processing at regional edge data centers (closest to geographic region)</p>
+          <div class="examples">
+            <span class="example-tag">Cloudflare Workers</span>
+            <span class="example-tag">AWS Lambda@Edge</span>
+            <span class="example-tag">Akamai</span>
+          </div>
+        </div>
+
+        <div class="layer">
+          <h3>Cloud (Central)</h3>
+          <p>Processing at centralized cloud data centers (last resort for heavy computation)</p>
+          <div class="examples">
+            <span class="example-tag">EC2</span>
+            <span class="example-tag">App Engine</span>
+            <span class="example-tag">Traditional Cloud</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">Most efficient systems use <strong>all layers</strong>: simple decisions at device/near edge, complex logic at far edge, AI/analytics at cloud center.</p>
+    </div>
+  </section>
+
+  <!-- Edge Computing Challenges -->
+  <section class="section">
+    <div class="container">
+      <h2>Challenges with Edge Computing</h2>
+
+      <div class="challenges-grid">
+        <div class="challenge">
+          <h3>🔀 Consistency</h3>
+          <p>Data distributed across 300+ locations means keeping it consistent is hard.</p>
+          <p class="solution">Solution: Use eventual consistency, CRDTs, or synchronize with central database</p>
+        </div>
+
+        <div class="challenge">
+          <h3>⚙️ Complexity</h3>
+          <p>Debugging edge code is harder when it runs in 300+ places simultaneously.</p>
+          <p class="solution">Solution: Centralized logging, distributed tracing, good observability tools</p>
+        </div>
+
+        <div class="challenge">
+          <h3>⏱️ Timeouts</h3>
+          <p>Edge functions usually have strict time limits (often 30 seconds max).</p>
+          <p class="solution">Solution: Design for fast operations, queue long tasks for central cloud</p>
+        </div>
+
+        <div class="challenge">
+          <h3>💾 Memory Limits</h3>
+          <p>Edge nodes are lightweight, can't run massive ML models on every edge.</p>
+          <p class="solution">Solution: Use model distillation, inference at regional cloud when needed</p>
+        </div>
+
+        <div class="challenge">
+          <h3>🗄️ Statelessness</h3>
+          <p>Edge is ephemeral. Can't rely on local storage between requests.</p>
+          <p class="solution">Solution: Use durable storage services (KV, D1), design stateless operations</p>
+        </div>
+
+        <div class="challenge">
+          <h3>🌍 Deployment Complexity</h3>
+          <p>Managing code across 300+ locations requires different skills than central deployment.</p>
+          <p class="solution">Solution: Use frameworks like Clodo that automate deployment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge + Cloud -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Edge + Cloud: The Best of Both Worlds</h2>
+
+      <p>Edge computing isn't a cloud replacement—it's a complement. The best architecture uses both strategically:</p>
+
+      <div class="hybrid-architecture">
+        <div class="component">
+          <h3>🚀 At the Edge</h3>
+          <ul>
+            <li>Request routing &amp; caching</li>
+            <li>Real-time personalization</li>
+            <li>Input validation &amp; filtering</li>
+            <li>DDoS mitigation</li>
+            <li>Fast API responses</li>
+            <li>Authentication checks</li>
+          </ul>
+        </div>
+
+        <div class="component">
+          <h3>☁️ In the Cloud</h3>
+          <ul>
+            <li>Complex data processing</li>
+            <li>Machine learning &amp; AI</li>
+            <li>Data warehousing &amp; analytics</li>
+            <li>Long-running jobs</li>
+            <li>Legacy system integration</li>
+            <li>Centralized business logic</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="benefit"><strong>Result:</strong> Fast edge response for users, powerful cloud computation when needed. Best of both worlds.</p>
+    </div>
+  </section>
+
+  <!-- The Future -->
+  <section class="section">
+    <div class="container">
+      <h2>The Future is Edge</h2>
+
+      <div class="future-vision">
+        <p><strong>Edge computing is not the future—it's the present accelerating.</strong></p>
+
+        <div class="trends">
+          <div class="trend">
+            <h3>More Edge Locations</h3>
+            <p>Cloudflare: 300+ today → 500+ by 2025 → 1000+ by 2027</p>
+          </div>
+
+          <div class="trend">
+            <h3>More Compute Options</h3>
+            <p>From simple functions → containers → GPUs → full orchestration at edge</p>
+          </div>
+
+          <div class="trend">
+            <h3>More Data Locality</h3>
+            <p>Regulations and user privacy preferences push processing closer to source</p>
+          </div>
+
+          <div class="trend">
+            <h3>AI at the Edge</h3>
+            <p>Small ML models running on edge devices for real-time inference</p>
+          </div>
+
+          <div class="trend">
+            <h3>Internet Changes</h3>
+            <p>5G, 6G, and next-gen networks built with edge computing as foundation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="section alt">
+    <div class="container">
+      <h2>Next Steps</h2>
+
+      <div class="next-steps">
+        <div class="step">
+          <h3><a href="/edge-computing-guide">📖 Deep Dive: Edge Computing Guide</a></h3>
+          <p>Technical deep dive into edge computing architecture and best practices.</p>
+        </div>
+
+        <div class="step">
+          <h3><a href="/what-is-cloudflare-workers">⚡ Cloudflare Workers</a></h3>
+          <p>Learn about the platform powering edge computing.</p>
+        </div>
+
+        <div class="step">
+          <h3><a href="/clodo-framework-guide">🚀 Build with Clodo</a></h3>
+          <p>Get started building edge applications with Clodo Framework.</p>
+        </div>
+
+        <div class="step">
+          <h3><a href="/docs">📚 Documentation</a></h3>
+          <p>Explore Clodo's complete technical documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section.alt {
+    background: var(--card-bg, #f9fafb);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    margin: 0 0 2rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .problem-visualization {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .scenario {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .scenario h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+
+  .flow.compact {
+    gap: 0.5rem;
+  }
+
+  .node {
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .arrow {
+    text-align: center;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .arrow.compact {
+    margin: -0.5rem 0;
+  }
+
+  .latency {
+    font-weight: bold;
+    color: var(--primary-color, #1d4ed8);
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .reason {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  .insight {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-left: 4px solid #d97706;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: #7c2d12;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .definition-box {
+    background: white;
+    border: 2px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .definition-box p {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .definition-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .definition-points li {
+    padding: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .reason-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .reason-card h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .reason-card p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .impact {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-top: 0.75rem;
+    color: #166534;
+    font-size: 0.9rem;
+  }
+
+  .examples-list {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .example {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .example h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  .example p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.5;
+  }
+
+  .result {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-top: 0.75rem;
+    color: #166534;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: white;
+    margin: 2rem 0;
+  }
+
+  .comparison-table th {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .comparison-table tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  .architecture {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .layer {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .layer h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .layer p {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .example-tag {
+    display: inline-block;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .note {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-left: 4px solid #d97706;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: #7c2d12;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .challenge {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .challenge h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    color: #d97706;
+  }
+
+  .challenge p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  .solution {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-top: 0.75rem;
+    color: #166534;
+    font-weight: 500;
+  }
+
+  .hybrid-architecture {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .component {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .component h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .component ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .component li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .component li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+  }
+
+  .benefit {
+    background: linear-gradient(135deg, #f0fdf4, #f9fafb);
+    border-left: 4px solid #059669;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: #166534;
+    margin: 1rem 0;
+  }
+
+  .future-vision {
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 2px solid var(--primary-color, #1d4ed8);
+  }
+
+  .future-vision p {
+    font-size: 1.1rem;
+    color: var(--heading-color, #0f172a);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .trends {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .trend {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-radius: 0.375rem;
+    border: 1px solid var(--primary-color, #1d4ed8);
+  }
+
+  .trend h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .trend p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  .next-steps {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .next-steps .step {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .next-steps .step h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .next-steps .step a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .next-steps .step a:hover {
+    text-decoration: underline;
+  }
+
+  .next-steps .step p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .problem-visualization,
+    .hybrid-architecture {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-table {
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.75rem;
+    }
+  }
+</style>
