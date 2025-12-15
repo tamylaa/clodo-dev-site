@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_Db8Fy30b.mjs';
-import { manifest } from './manifest_NYRV4BWH.mjs';
+import { manifest } from './manifest_Bg8ph_t7.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -14,8 +14,11 @@ const _page6 = () => import('./pages/examples.astro.mjs');
 const _page7 = () => import('./pages/faq.astro.mjs');
 const _page8 = () => import('./pages/migrate.astro.mjs');
 const _page9 = () => import('./pages/pricing.astro.mjs');
-const _page10 = () => import('./pages/product.astro.mjs');
-const _page11 = () => import('./pages/index.astro.mjs');
+const _page10 = () => import('./pages/privacy.astro.mjs');
+const _page11 = () => import('./pages/product.astro.mjs');
+const _page12 = () => import('./pages/subscribe.astro.mjs');
+const _page13 = () => import('./pages/terms.astro.mjs');
+const _page14 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["src/pages/about.astro", _page0],
     ["src/pages/cloudflare-workers-guide.astro", _page1],
@@ -27,8 +30,11 @@ const pageMap = new Map([
     ["src/pages/faq.astro", _page7],
     ["src/pages/migrate.astro", _page8],
     ["src/pages/pricing.astro", _page9],
-    ["src/pages/product.astro", _page10],
-    ["src/pages/index.astro", _page11]
+    ["src/pages/privacy.astro", _page10],
+    ["src/pages/product.astro", _page11],
+    ["src/pages/subscribe.astro", _page12],
+    ["src/pages/terms.astro", _page13],
+    ["src/pages/index.astro", _page14]
 ]);
 
 const _manifest = Object.assign(manifest, {

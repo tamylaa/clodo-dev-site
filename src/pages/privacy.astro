@@ -1,0 +1,321 @@
+---
+// src/pages/privacy.astro
+// Privacy policy
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Privacy Policy - Clodo Framework';
+const description = 'Privacy policy for Clodo Framework. Learn how we collect, use, and protect your personal data.';
+const lastUpdated = '2024-12-01';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Privacy Policy</span>
+        <meta itemprop="position" content="2">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <div class="policy-container">
+    <main class="policy-content">
+      <section class="policy-section">
+        <h2>1. Introduction</h2>
+        <p>Clodo Framework ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at clodo.dev and use our products and services.</p>
+        <p>Please read this Privacy Policy carefully. If you do not agree with our policies and practices, please do not use our Services.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>2. Information We Collect</h2>
+
+        <h3>2.1 Information You Provide Directly</h3>
+        <ul>
+          <li><strong>Account Registration:</strong> When you create an account, we collect name, email address, and password</li>
+          <li><strong>Communications:</strong> When you contact us, we collect the content of your message, email address, and any attachments</li>
+          <li><strong>Payments:</strong> When you purchase services, we collect payment information (processed securely by Stripe)</li>
+          <li><strong>Feedback:</strong> When you submit feedback or reviews, we collect the content and your name</li>
+        </ul>
+
+        <h3>2.2 Information Collected Automatically</h3>
+        <ul>
+          <li><strong>Log Data:</strong> IP address, browser type, pages visited, time and date, referring URL</li>
+          <li><strong>Device Information:</strong> Device type, operating system, device identifiers</li>
+          <li><strong>Cookies:</strong> We use cookies for authentication, preferences, and analytics</li>
+          <li><strong>Usage Data:</strong> Features used, actions taken, content viewed</li>
+        </ul>
+
+        <h3>2.3 Third-Party Information</h3>
+        <p>We may receive information about you from third parties, including:</p>
+        <ul>
+          <li>Analytics providers (Google Analytics)</li>
+          <li>Payment processors (Stripe)</li>
+          <li>Social media platforms (if you link your account)</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the information we collect for:</p>
+        <ul>
+          <li><strong>Service Provision:</strong> To deliver, maintain, and improve our Services</li>
+          <li><strong>Communication:</strong> To send transactional emails, support responses, and updates</li>
+          <li><strong>Marketing:</strong> To send promotional materials (with your consent)</li>
+          <li><strong>Analytics:</strong> To understand usage patterns and optimize our Services</li>
+          <li><strong>Security:</strong> To prevent fraud and ensure account security</li>
+          <li><strong>Legal:</strong> To comply with laws and protect our rights</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>4. Information Sharing</h2>
+        <p>We do not sell your personal data. We may share information:</p>
+        <ul>
+          <li><strong>Service Providers:</strong> With vendors who assist in operating our website and conducting business</li>
+          <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+          <li><strong>Business Transfers:</strong> In case of merger, acquisition, or asset sale</li>
+          <li><strong>Your Consent:</strong> With your explicit permission</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>5. Data Retention</h2>
+        <p>We retain your personal data for as long as necessary to provide our Services and fulfill the purposes outlined in this Privacy Policy. You can request deletion of your data at any time by contacting us.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>6. Data Security</h2>
+        <p>We implement industry-standard security measures including:</p>
+        <ul>
+          <li>SSL/TLS encryption for data in transit</li>
+          <li>Encryption at rest for sensitive data</li>
+          <li>Regular security audits</li>
+          <li>Limited access to personal data</li>
+          <li>Strong password policies</li>
+        </ul>
+        <p>However, no method of transmission over the Internet is 100% secure. We cannot guarantee absolute security of your data.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>7. Your Rights</h2>
+        <p>Depending on your location, you may have rights including:</p>
+        <ul>
+          <li><strong>Access:</strong> The right to access your personal data</li>
+          <li><strong>Correction:</strong> The right to correct inaccurate data</li>
+          <li><strong>Deletion:</strong> The right to request deletion (right to be forgotten)</li>
+          <li><strong>Portability:</strong> The right to receive your data in a portable format</li>
+          <li><strong>Opt-Out:</strong> The right to opt out of marketing communications</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at privacy@clodo.dev</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>8. Cookies and Tracking</h2>
+        <p>We use cookies and similar tracking technologies for:</p>
+        <ul>
+          <li>Authentication and security</li>
+          <li>Preferences and personalization</li>
+          <li>Analytics and performance monitoring</li>
+          <li>Marketing and advertising</li>
+        </ul>
+        <p>You can control cookies through your browser settings. Disabling cookies may limit functionality.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>9. Children's Privacy</h2>
+        <p>Our Services are not intended for individuals under 13 years old. We do not knowingly collect personal data from children under 13. If we discover such data, we will delete it promptly.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>10. GDPR Compliance (EU Users)</h2>
+        <p>If you're in the EU, you have rights under GDPR:</p>
+        <ul>
+          <li>We process your data only with a lawful basis (consent, contract, legal obligation, vital interests, public task, or legitimate interests)</li>
+          <li>You have the right to lodge a complaint with your data protection authority</li>
+          <li>We conduct Data Protection Impact Assessments for high-risk processing</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>11. CCPA Compliance (California Users)</h2>
+        <p>If you're in California, under CCPA you have rights to:</p>
+        <ul>
+          <li>Know what personal data is collected</li>
+          <li>Know whether your personal data is sold or disclosed</li>
+          <li>Say no to the sale or sharing of your personal data</li>
+          <li>Access your personal data</li>
+          <li>Request deletion of your personal data</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>12. Third-Party Links</h2>
+        <p>Our website may contain links to third-party websites. We are not responsible for their privacy practices. Review their privacy policies before providing personal information.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>13. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of material changes by posting the new policy on our website and updating the "Last Updated" date.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>14. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> privacy@clodo.dev</li>
+          <li><strong>Address:</strong> Clodo Framework, [Company Address]</li>
+          <li><strong>Data Protection Officer:</strong> dpo@clodo.dev</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .last-updated {
+    color: var(--text-muted, #6b7280);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .policy-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .policy-content {
+    max-width: 900px;
+  }
+
+  .policy-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .policy-section:last-child {
+    border-bottom: none;
+  }
+
+  .policy-section h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .policy-section h3 {
+    font-size: 1.125rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .policy-section p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .policy-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .policy-section li {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .policy-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 1.5rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.25rem;
+    }
+
+    .policy-section h3 {
+      font-size: 1rem;
+    }
+  }
+</style>
