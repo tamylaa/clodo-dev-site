@@ -26,11 +26,21 @@ export default defineConfig({
     format: 'directory', // Generate /pricing/index.html instead of /pricing.html
   },
   
+  // Content collection configuration
+  content: {
+    collections: {},
+  },
+  
   // Vite config
   vite: {
     build: {
       minify: 'terser',
       cssCodeSplit: true,
+      reportCompressedSize: false,
+    },
+    // Disable CSS linting to allow duplicate selectors
+    css: {
+      postcss: null,
     },
   },
 });

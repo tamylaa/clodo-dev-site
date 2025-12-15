@@ -86,7 +86,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site);
   </body>
 </html>
 
-<style>
-  /* Your CSS here - can be in a separate file too */
-  @import '/styles.css';
+<style is:global>
+  /* Import all styles from public directory */
+  @import url('/styles.css');
 </style>

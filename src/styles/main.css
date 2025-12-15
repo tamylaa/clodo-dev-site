@@ -1,0 +1,7 @@
+/* ===========================================
+   CLODO FRAMEWORK - MAIN STYLESHEET
+   Astro entry point for global styles
+   =========================================== */
+
+/* ===== BASE STYLES ===== */
+@import url('/styles.css');
