@@ -1,0 +1,944 @@
+---
+// src/pages/cloudflare-workers-guide.astro
+// Comprehensive guide to building with Cloudflare Workers
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const title = 'Cloudflare Workers Guide - Build Serverless Applications at the Edge';
+const description = 'Complete guide to Cloudflare Workers. Learn how to build high-performance serverless applications, deploy globally, and optimize for cost and scale.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/guides/" itemprop="item"><span itemprop="name">Guides</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Cloudflare Workers Guide</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="guide-title">
+    <div class="container">
+      <h1 id="guide-title">Cloudflare Workers: Serverless at the Edge</h1>
+      <p>Build, test, and deploy serverless applications that run on Cloudflare's global edge network. With no servers to manage and latencies measured in milliseconds, Cloudflare Workers is the future of serverless computing.</p>
+    </div>
+  </section>
+
+  <!-- Main Content with TOC -->
+  <div class="guide-container">
+    <TableOfContents />
+    
+    <main class="guide-content">
+      <!-- Understanding Cloudflare Workers -->
+      <section id="understanding-workers" class="guide-section">
+        <h2>Understanding Cloudflare Workers</h2>
+        
+        <h3>What Are Cloudflare Workers?</h3>
+        <p>Cloudflare Workers is a serverless computing platform that runs your code on Cloudflare's edge network. Instead of deploying to centralized data centers, your code runs on servers in over 300+ cities worldwide.</p>
+        
+        <div class="concept-card">
+          <h4>Key Concept: The Edge</h4>
+          <p>Traditional cloud: Request travels 5,000+ km to your server → Response travels 5,000+ km back → Total latency: 500-1000ms</p>
+          <p>Cloudflare Workers: Request hits nearest edge location → Response sent locally → Total latency: 10-50ms</p>
+        </div>
+
+        <h3>Core Advantages</h3>
+        <ul class="advantages-list">
+          <li>
+            <strong>Global Distribution:</strong> Automatically deployed to 300+ locations worldwide. Your code runs in the location nearest to your users.
+          </li>
+          <li>
+            <strong>Zero Cold Start:</strong> No warm-up time. Requests are handled instantly, always.
+          </li>
+          <li>
+            <strong>Per-Request Billing:</strong> Pay only for what you use. The free tier includes 100,000 requests/day.
+          </li>
+          <li>
+            <strong>No Server Management:</strong> No VMs to provision, patch, or monitor. Focus entirely on code.
+          </li>
+          <li>
+            <strong>Built-in Security:</strong> DDoS protection, SSL/TLS, and WAF rules included.
+          </li>
+          <li>
+            <strong>Standards-Based:</strong> Write JavaScript/TypeScript that runs on V8 engine. Use familiar APIs like Web Fetch, Request/Response.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Getting Started -->
+      <section id="getting-started" class="guide-section">
+        <h2>Getting Started with Cloudflare Workers</h2>
+
+        <h3>Prerequisites</h3>
+        <ul>
+          <li>Node.js 16+ installed</li>
+          <li>A Cloudflare account (free tier works for learning)</li>
+          <li>A registered domain pointed at Cloudflare (or use workers.dev subdomain)</li>
+        </ul>
+
+        <h3>Step 1: Install Wrangler CLI</h3>
+        <pre><code>{'npm install -g wrangler@latest'}</code></pre>
+
+        <h3>Step 2: Create Your First Worker</h3>
+        <pre><code>{'wrangler init my-worker\ncd my-worker'}</code></pre>
+
+        <h3>Step 3: Write Your Handler</h3>
+        <p>Edit <code>src/index.ts</code>:</p>
+        <pre><code>{`export default {
+  async fetch(request: Request): Promise<Response> {
+    return new Response('Hello from Cloudflare Workers!');
+  },
+};`}</code></pre>
+
+        <h3>Step 4: Test Locally</h3>
+        <pre><code>{'wrangler dev'}</code></pre>
+        <p>Visit <code>http://localhost:8787</code> to test your worker.</p>
+
+        <h3>Step 5: Deploy</h3>
+        <pre><code>{'wrangler deploy'}</code></pre>
+        <p>Your worker is now live on your workers.dev subdomain or custom domain!</p>
+      </section>
+
+      <!-- Building APIs -->
+      <section id="building-apis" class="guide-section">
+        <h2>Building APIs with Cloudflare Workers</h2>
+
+        <h3>Basic Routing</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request): Promise<Response> {
+    const url = new URL(request.url);
+    const path = url.pathname;
+
+    if (path === '/users' && request.method === 'GET') {
+      return new Response(JSON.stringify({ users: [] }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (path.startsWith('/users/') && request.method === 'GET') {
+      const userId = path.split('/')[2];
+      return new Response(JSON.stringify({ id: userId, name: 'John Doe' }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    return new Response('Not Found', { status: 404 });
+  }
+};`}</code></pre>
+
+        <h3>Handling Request Bodies</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request): Promise<Response> {
+    if (request.method === 'POST') {
+      const body = await request.json();
+      console.log('Received:', body);
+      
+      return new Response(JSON.stringify({
+        success: true,
+        received: body
+      }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+  }
+};`}</code></pre>
+
+        <h3>Adding CORS Headers</h3>
+        <pre><code>{`const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export default {
+  async fetch(request: Request): Promise<Response> {
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    const response = new Response('Hello');
+    Object.entries(corsHeaders).forEach(([key, value]) => {
+      response.headers.set(key, value);
+    });
+    return response;
+  }
+};`}</code></pre>
+      </section>
+
+      <!-- Working with Data -->
+      <section id="working-data" class="guide-section">
+        <h2>Working with Data</h2>
+
+        <h3>Cloudflare D1 Database</h3>
+        <p>D1 is Cloudflare's serverless SQLite database. Store persistent data without managing database infrastructure.</p>
+        
+        <pre><code>{`import { D1Database } from '@cloudflare/workers-types';
+
+export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const db = env.DB;
+    
+    // Query data
+    const users = await db.prepare('SELECT * FROM users').all();
+    
+    // Insert data
+    await db.prepare(
+      'INSERT INTO users (name, email) VALUES (?, ?)'
+    ).bind('John', 'john@example.com').run();
+    
+    return new Response(JSON.stringify(users.results));
+  }
+};`}</code></pre>
+
+        <h3>Key-Value Storage with KV</h3>
+        <p>For caching and fast data access, use Cloudflare KV (key-value store):</p>
+        
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const kv = env.CACHE;
+    
+    // Get cached value
+    let data = await kv.get('user:123');
+    
+    if (!data) {
+      // Fetch from database or API
+      data = await fetchUserData('123');
+      
+      // Cache for 1 hour (3600 seconds)
+      await kv.put('user:123', JSON.stringify(data), {
+        expirationTtl: 3600
+      });
+    }
+    
+    return new Response(data);
+  }
+};`}</code></pre>
+
+        <h3>Durable Objects for Stateful Applications</h3>
+        <p>Durable Objects provide strong consistency guarantees for applications that need state:</p>
+        
+        <pre><code>{`export class Counter {
+  state: DurableObjectState;
+  env: any;
+  value: number = 0;
+
+  constructor(state: DurableObjectState, env: any) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async increment(): Promise<number> {
+    this.value++;
+    await this.state.storage.put('value', this.value);
+    return this.value;
+  }
+
+  async fetch(request: Request): Promise<Response> {
+    if (request.url.endsWith('/increment')) {
+      const newValue = await this.increment();
+      return new Response(JSON.stringify({ value: newValue }));
+    }
+    return new Response('Not Found', { status: 404 });
+  }
+}
+
+export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const id = env.COUNTER.idFromName('default');
+    const stub = env.COUNTER.get(id);
+    return stub.fetch(request);
+  }
+};`}</code></pre>
+      </section>
+
+      <!-- Deployment Strategies -->
+      <section id="deployment" class="guide-section">
+        <h2>Deployment Strategies</h2>
+
+        <h3>Environment Configuration</h3>
+        <p>Use <code>wrangler.toml</code> to configure your worker:</p>
+        
+        <pre><code>{`name = "my-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+route = "api.example.com/*"
+zone_id = "abc123"
+
+[env.staging]
+route = "staging.example.com/*"
+zone_id = "def456"
+
+[[env.production.bindings]]
+name = "DB"
+type = "d1"
+database_id = "production-db-id"
+
+[[env.staging.bindings]]
+name = "DB"
+type = "d1"
+database_id = "staging-db-id"`}</code></pre>
+
+        <h3>Canary Deployments</h3>
+        <p>Deploy new versions to a small percentage of traffic to test before full rollout:</p>
+        
+        <pre><code>{`# Deploy to workers.dev first for testing
+wrangler deploy --env staging
+
+# Once validated, deploy 10% of traffic
+wrangler deploy --env production --commit percentage=10
+
+# Monitor error rates and performance
+
+# If successful, increase to 50%
+wrangler deploy --env production --commit percentage=50
+
+# Finally, full rollout
+wrangler deploy --env production --commit`}</code></pre>
+
+        <h3>CI/CD Integration</h3>
+        <pre><code>{`# Deploy on every push to main branch
+name: Deploy to Cloudflare Workers
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}`}</code></pre>
+      </section>
+
+      <!-- Performance Optimization -->
+      <section id="performance" class="guide-section">
+        <h2>Performance Optimization</h2>
+
+        <h3>Minimize JavaScript Bundle Size</h3>
+        <ul>
+          <li><strong>Tree Shake:</strong> Remove unused code from dependencies</li>
+          <li><strong>Split Code:</strong> Load modules only when needed</li>
+          <li><strong>Use Wasm:</strong> Offload CPU-intensive tasks to WebAssembly</li>
+        </ul>
+
+        <h3>Optimize Database Queries</h3>
+        <pre><code>{`// ❌ BAD: N+1 query problem
+const posts = await db.prepare('SELECT * FROM posts').all();
+for (const post of posts.results) {
+  const author = await db.prepare(
+    'SELECT * FROM authors WHERE id = ?'
+  ).bind(post.author_id).first();
+  post.author = author;
+}
+
+// ✅ GOOD: Single query with join
+const posts = await db.prepare(\`
+  SELECT posts.*, authors.name as author_name
+  FROM posts
+  LEFT JOIN authors ON posts.author_id = authors.id
+\`).all();`}</code></pre>
+
+        <h3>Leverage Caching</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    // Check cache first
+    const cache = caches.default;
+    let response = await cache.match(request);
+    
+    if (!response) {
+      response = await generateResponse(request, env);
+      
+      // Cache for 1 hour
+      response.headers.set('Cache-Control', 'public, max-age=3600');
+      event.waitUntil(cache.put(request, response.clone()));
+    }
+    
+    return response;
+  }
+};`}</code></pre>
+
+        <h3>Monitor Performance</h3>
+        <p>Use Cloudflare Analytics to track:</p>
+        <ul>
+          <li>Request count and bandwidth usage</li>
+          <li>Error rates and status codes</li>
+          <li>Response time percentiles (P50, P95, P99)</li>
+          <li>Cost per million requests</li>
+        </ul>
+      </section>
+
+      <!-- Security Best Practices -->
+      <section id="security" class="guide-section">
+        <h2>Security Best Practices</h2>
+
+        <h3>Validate All Input</h3>
+        <pre><code>{`import { z } from 'zod';
+
+const UserSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1).max(255),
+  age: z.number().min(0).max(150).optional(),
+});
+
+export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    if (request.method === 'POST') {
+      const body = await request.json();
+      
+      try {
+        const validated = UserSchema.parse(body);
+        // Process validated data
+      } catch (error) {
+        return new Response('Invalid input', { status: 400 });
+      }
+    }
+  }
+};`}</code></pre>
+
+        <h3>Authenticate Requests</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const token = request.headers.get('Authorization')?.split(' ')[1];
+    
+    if (!token) {
+      return new Response('Missing token', { status: 401 });
+    }
+    
+    try {
+      const verified = await verifyJWT(token, env.JWT_SECRET);
+      console.log('User:', verified.sub);
+      // Continue with authenticated request
+    } catch (error) {
+      return new Response('Invalid token', { status: 401 });
+    }
+  }
+};`}</code></pre>
+
+        <h3>Protect Sensitive Configuration</h3>
+        <pre><code>{`# Store secrets in wrangler.toml (not in source code!)
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[[env.production.secrets]]
+binding = "API_KEY"
+
+# Access in worker:
+export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const apiKey = env.API_KEY; // Safely injected
+  }
+};`}</code></pre>
+
+        <h3>Rate Limiting</h3>
+        <pre><code>{`const rateLimit = new Map();
+
+function isRateLimited(clientIp: string): boolean {
+  const now = Date.now();
+  const requests = rateLimit.get(clientIp) || [];
+  
+  // Keep only requests from last minute
+  const recentRequests = requests.filter(t => now - t < 60000);
+  
+  if (recentRequests.length >= 60) {
+    return true; // More than 60 requests per minute
+  }
+  
+  recentRequests.push(now);
+  rateLimit.set(clientIp, recentRequests);
+  return false;
+}
+
+export default {
+  async fetch(request: Request): Promise<Response> {
+    const clientIp = request.headers.get('CF-Connecting-IP');
+    
+    if (isRateLimited(clientIp)) {
+      return new Response('Too many requests', { status: 429 });
+    }
+  }
+};`}</code></pre>
+      </section>
+
+      <!-- Cost Optimization -->
+      <section id="cost" class="guide-section">
+        <h2>Cost Optimization</h2>
+
+        <h3>Pricing Breakdown</h3>
+        <div class="pricing-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Free Tier</th>
+                <th>Paid Tier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CPU Time</td>
+                <td>10ms/request</td>
+                <td>\$0.50/1M cpu-ms</td>
+              </tr>
+              <tr>
+                <td>Requests</td>
+                <td>100,000/day</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>D1 Database</td>
+                <td>3 databases</td>
+                <td>\$0.75/month per DB</td>
+              </tr>
+              <tr>
+                <td>KV Storage</td>
+                <td>1GB</td>
+                <td>\$0.50/GB/month</td>
+              </tr>
+              <tr>
+                <td>Durable Objects</td>
+                <td>-</td>
+                <td>\$0.15/1M requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Cost-Saving Tips</h3>
+        <ul>
+          <li><strong>Minimize CPU Time:</strong> Inefficient code costs more. Profile and optimize hot paths.</li>
+          <li><strong>Use Caching Aggressively:</strong> Cache API responses in KV to avoid database queries.</li>
+          <li><strong>Batch Operations:</strong> Combine multiple requests into single batch operations.</li>
+          <li><strong>Choose Right Storage:</strong> Use KV for fast lookups, D1 for complex queries, and Durable Objects only when consistency is critical.</li>
+        </ul>
+
+        <h3>Example: Cost Calculation</h3>
+        <p>For 1 million requests/month with 15ms avg CPU time:</p>
+        <ul>
+          <li>CPU Time: 1M requests × 15ms = 15M cpu-ms × \$0.50/1M = \$7.50</li>
+          <li>D1 Queries: 2M queries × \$0.75/day = \$22.50 (estimated)</li>
+          <li>Storage: 5GB KV × \$0.50/GB = \$2.50</li>
+          <li><strong>Total: ~\$32.50/month</strong> (for 1M requests)</li>
+        </ul>
+      </section>
+
+      <!-- Monitoring and Debugging -->
+      <section id="monitoring" class="guide-section">
+        <h2>Monitoring and Debugging</h2>
+
+        <h3>Local Development</h3>
+        <pre><code>{'wrangler dev --local'}</code></pre>
+        <p>Run your worker locally with full debugging support and live reload.</p>
+
+        <h3>Remote Debugging</h3>
+        <pre><code>{`// View logs in real-time
+wrangler tail
+
+// Filter logs
+wrangler tail --status ok
+wrangler tail --method POST
+wrangler tail --search "error"`}</code></pre>
+
+        <h3>Analytics Engine</h3>
+        <p>Send custom analytics events to Cloudflare:</p>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const start = Date.now();
+    const response = await fetch('https://api.example.com/data');
+    const duration = Date.now() - start;
+    
+    env.ANALYTICS_ENGINE_BINDING.writeDataPoint({
+      indexes: ['requests', 'api'],
+      blobs: [response.status],
+      doubles: [duration]
+    });
+    
+    return response;
+  }
+};`}</code></pre>
+
+        <h3>Error Tracking</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    try {
+      return await handleRequest(request);
+    } catch (error) {
+      // Log to external service
+      await fetch('https://logs.example.com', {
+        method: 'POST',
+        body: JSON.stringify({
+          error: error.message,
+          stack: error.stack,
+          url: request.url,
+          timestamp: new Date().toISOString()
+        })
+      });
+      
+      return new Response('Internal Server Error', { status: 500 });
+    }
+  }
+};`}</code></pre>
+      </section>
+
+      <!-- Advanced Patterns -->
+      <section id="advanced" class="guide-section">
+        <h2>Advanced Patterns</h2>
+
+        <h3>WebSocket Support</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    if (request.headers.get('Upgrade') !== 'websocket') {
+      return new Response('Expected Websocket', { status: 400 });
+    }
+
+    const pair = new WebSocketPair();
+    const client = pair[1];
+    const server = pair[0];
+
+    server.accept();
+
+    server.addEventListener('message', (event: MessageEvent) => {
+      console.log('Received:', event.data);
+      server.send(JSON.stringify({ echo: event.data }));
+    });
+
+    return new Response(null, { status: 101, webSocket: client });
+  }
+};`}</code></pre>
+
+        <h3>CRON Triggers</h3>
+        <p>Run scheduled tasks using cron expressions:</p>
+        <pre><code>{`# In wrangler.toml
+[[triggers.crons]]
+crons = ["0 */6 * * *"]  # Every 6 hours
+
+# In worker
+export async function scheduled(event: ScheduledEvent, env: any): Promise<void> {
+  const result = await env.DB.prepare('DELETE FROM temp_files WHERE expired = 1').run();
+  console.log(\`Deleted \${result.meta.changes} expired files\`);
+}`}</code></pre>
+
+        <h3>Middleware Pattern</h3>
+        <pre><code>{`type Middleware = (request: Request, next: () => Promise<Response>) => Promise<Response>;
+
+const authMiddleware: Middleware = async (request, next) => {
+  const token = request.headers.get('Authorization');
+  if (!token) return new Response('Unauthorized', { status: 401 });
+  request.user = await verifyToken(token);
+  return next();
+};
+
+const loggingMiddleware: Middleware = async (request, next) => {
+  const start = Date.now();
+  const response = await next();
+  const duration = Date.now() - start;
+  console.log(\`\${request.method} \${request.url} \${duration}ms\`);
+  return response;
+};
+
+const chain = async (request: Request, middlewares: Middleware[], handler: () => Promise<Response>) => {
+  let index = -1;
+  const dispatch = async (i: number): Promise<Response> => {
+    if (i <= index) return new Response('Invalid middleware', { status: 500 });
+    index = i;
+    const fn = middlewares[i];
+    if (i === middlewares.length - 1) return handler();
+    return fn(request, () => dispatch(i + 1));
+  };
+  return dispatch(0);
+};`}</code></pre>
+      </section>
+
+      <!-- Common Gotchas -->
+      <section id="gotchas" class="guide-section">
+        <h2>Common Gotchas and Troubleshooting</h2>
+
+        <h3>Request/Response Streaming Limitations</h3>
+        <p>Cloudflare Workers have response size limits. For large responses, use streaming:</p>
+        <pre><code>{`export default {
+  async fetch(request: Request): Promise<Response> {
+    const rs = new ReadableStream({
+      start(controller) {
+        for (let i = 0; i < 10000; i++) {
+          controller.enqueue(\`Line \${i}\\n\`);
+        }
+        controller.close();
+      }
+    });
+    return new Response(rs);
+  }
+};`}</code></pre>
+
+        <h3>Request Timeout (30 seconds max)</h3>
+        <p>Long-running operations must complete within 30 seconds. Use background jobs or Durable Objects for longer tasks.</p>
+
+        <h3>No Persistent File System</h3>
+        <p>Workers don't have access to a file system. Use D1, KV, or Durable Objects for persistent storage.</p>
+
+        <h3>Environment Variable Access</h3>
+        <p>Environment variables and secrets are injected at build time. Always access via <code>env</code> parameter, not <code>process.env</code>.</p>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="guide-section">
+        <h2>Conclusion</h2>
+        <p>Cloudflare Workers represents a paradigm shift in serverless computing. By running code at the edge, you gain unprecedented performance improvements and cost efficiency. Combined with Clodo Framework, Workers become the foundation for building modern, scalable SaaS applications.</p>
+        
+        <p>Start small, test locally with <code>wrangler dev</code>, and gradually scale your applications. The global edge awaits.</p>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .guide-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .guide-content {
+    min-width: 0;
+  }
+
+  .guide-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section:last-child {
+    border-bottom: none;
+  }
+
+  .guide-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+    scroll-margin-top: 5rem;
+  }
+
+  .guide-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section h4 {
+    font-size: 1.125rem;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .guide-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .guide-section li {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .guide-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .advantages-list li::before {
+    content: '✓';
+  }
+
+  .guide-section code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+  }
+
+  .guide-section pre {
+    background: #0b1220;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section pre code {
+    background: none;
+    padding: 0;
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .concept-card {
+    background: linear-gradient(135deg, #eff6ff, #f9fafb);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .concept-card h4 {
+    margin-top: 0;
+  }
+
+  .concept-card p {
+    margin: 0.5rem 0;
+  }
+
+  .pricing-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .pricing-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .pricing-table th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .pricing-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .pricing-table tr:hover {
+    background: var(--table-hover-bg, #f9fafb);
+  }
+
+  @media (max-width: 1024px) {
+    .guide-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .guide-container {
+      padding: 1rem;
+    }
+
+    .guide-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .guide-section pre {
+      padding: 1rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>
