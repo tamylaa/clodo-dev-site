@@ -66,6 +66,11 @@ function initAccessibility() {
  */
 function initPerformanceMonitoring() {
     try {
+        if (!window.PerformanceMonitor || typeof window.PerformanceMonitor.init !== 'function') {
+            console.warn('[Main.js] PerformanceMonitor not available - skipping initialization');
+            return;
+        }
+
         window.PerformanceMonitor.init({
             debug: window.location.hostname === 'localhost',
             sampleRate: 1.0, // 100% on localhost, adjust for production
@@ -93,6 +98,11 @@ function initPerformanceMonitoring() {
  */
 function initSEO() {
     try {
+        if (!window.SEO || typeof window.SEO.init !== 'function') {
+            console.warn('[Main.js] SEO module not available - skipping initialization');
+            return;
+        }
+
         window.SEO.init({
             baseUrl: window.location.origin,
             defaultImage: '/assets/images/og-default.jpg',
@@ -143,18 +153,26 @@ function initSEO() {
  */
 async function initCore() {
     console.log('[Main.js] Initializing core features...');
-    
+    // Defensive defaults for FeatureFlags
+    if (!window.FeatureFlags) {
+        window.FeatureFlags = {
+            isFeatureEnabled: () => false,
+            isBrowserSupported: () => true,
+            getEnabledFeatures: () => [],
+        };
+    }
+
     // Initialize performance monitoring
     initPerformanceMonitoring();
-    
+
     // Initialize SEO
     initSEO();
-    
+
     // Initialize accessibility
     initAccessibility();
-    
+
     // Theme manager - always available, but can be modular
-    if (window.FeatureFlags.isFeatureEnabled('THEME_MANAGER_MODULE')) {
+    if (window.FeatureFlags && window.FeatureFlags.isFeatureEnabled('THEME_MANAGER_MODULE')) {
         try {
             const ThemeManager = await import('./core/theme.js');
             ThemeManager.init();

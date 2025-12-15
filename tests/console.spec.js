@@ -9,7 +9,7 @@ const pagesToTest = [
   '/product/',
   '/pricing/',
   '/migrate/',
-  '/index/'
+    // '/index/' intentionally omitted; use '/' for homepage
 ];
 
 test.describe('Console errors on key pages', () => {
