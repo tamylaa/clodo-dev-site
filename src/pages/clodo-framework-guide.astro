@@ -1,0 +1,526 @@
+---
+// src/pages/clodo-framework-guide.astro
+// Complete guide to Clodo Framework
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const title = "Clodo Framework Guide - Build Serverless APIs on Cloudflare Workers";
+const description = "Complete guide to Clodo Framework. Learn how to build production-ready APIs with zero boilerplate on Cloudflare Workers.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/docs/" itemprop="item"><span itemprop="name">Documentation</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Clodo Framework Guide</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">Clodo Framework Guide</h1>
+      <p>Build production-ready serverless APIs with Clodo. Zero boilerplate. Instant deployment. Global scale.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="guide-container">
+    <TableOfContents />
+    
+    <main class="guide-content">
+      <section id="what-is-clodo" class="guide-section">
+        <h2>What is Clodo?</h2>
+        
+        <p>Clodo is a modern framework for building serverless applications on Cloudflare Workers. It eliminates boilerplate while maintaining all the power and performance of Workers.</p>
+
+        <h3>Key Features</h3>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h4>⚡ Zero Cold Starts</h4>
+            <p>Always warm, always ready. Execute code in milliseconds.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🌍 Global by Default</h4>
+            <p>Deploy once to 300+ locations automatically. Sub-100ms latency worldwide.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>💰 Cost Efficient</h4>
+            <p>Pay only for what you use. Most APIs cost $0.30-0.50/month vs $5-20 on Lambda.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>📝 Simple Syntax</h4>
+            <p>Familiar JavaScript/TypeScript. File-based routing. Framework stays out of your way.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>💾 Built-in Database</h4>
+            <p>D1 SQLite included. No extra setup. Queries run in milliseconds globally.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🔒 Security First</h4>
+            <p>DDoS protection, WAF, SSL/TLS included. Enterprise-grade security by default.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="getting-started" class="guide-section">
+        <h2>Getting Started</h2>
+
+        <h3>Installation</h3>
+        <pre><code>{`npm create clodo@latest my-app
+cd my-app
+npm run dev`}</code></pre>
+
+        <h3>Project Structure</h3>
+        <pre><code>{`my-app/
+├── src/
+│   ├── services/     # Business logic
+│   ├── middleware/   # Request processing
+│   ├── models/       # Data models
+│   └── index.ts      # Entry point
+├── wrangler.toml     # Workers config
+└── package.json`}</code></pre>
+
+        <h3>Your First Endpoint</h3>
+        <pre><code>{`// src/services/hello.ts
+export async function handleHello(request: Request) {
+  return new Response(JSON.stringify({
+    message: 'Hello from Clodo',
+    timestamp: new Date().toISOString()
+  }), {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}`}</code></pre>
+      </section>
+
+      <section id="routing" class="guide-section">
+        <h2>Routing and Handlers</h2>
+
+        <p>Clodo supports simple and powerful routing patterns:</p>
+
+        <h3>Basic Routing</h3>
+        <pre><code>{`export default {
+  async fetch(request: Request, env: any): Promise<Response> {
+    const url = new URL(request.url);
+    
+    if (url.pathname === '/users') {
+      return handleUsers(request);
+    }
+    
+    return new Response('Not Found', { status: 404 });
+  }
+};`}</code></pre>
+
+        <h3>Path Parameters</h3>
+        <pre><code>{`const userId = url.pathname.split('/')[2];
+const response = await env.DB.prepare(
+  'SELECT * FROM users WHERE id = ?'
+).bind(userId).first();
+
+return new Response(JSON.stringify(response));`}</code></pre>
+      </section>
+
+      <section id="database" class="guide-section">
+        <h2>Working with D1 Database</h2>
+
+        <h3>Creating Tables</h3>
+        <pre><code>{`CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`}</code></pre>
+
+        <h3>Querying Data</h3>
+        <pre><code>{`// Single row
+const user = await env.DB.prepare(
+  'SELECT * FROM users WHERE id = ?'
+).bind(1).first();
+
+// Multiple rows
+const users = await env.DB.prepare(
+  'SELECT * FROM users LIMIT 10'
+).all();
+
+// Insert
+await env.DB.prepare(
+  'INSERT INTO users (email, name) VALUES (?, ?)'
+).bind('user@example.com', 'John').run();`}</code></pre>
+      </section>
+
+      <section id="deployment" class="guide-section">
+        <h2>Deployment</h2>
+
+        <p>Deploy your Clodo app to production in seconds:</p>
+
+        <pre><code>{`# Test locally
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy
+wrangler deploy`}</code></pre>
+
+        <h3>Environment Configuration</h3>
+        <pre><code>{`[env.production]
+name = "my-app-prod"
+route = "api.example.com/*"
+zone_id = "abc123"
+
+[env.production.vars]
+LOG_LEVEL = "warn"
+CACHE_TTL = "3600"`}</code></pre>
+      </section>
+
+      <section id="best-practices" class="guide-section">
+        <h2>Best Practices</h2>
+
+        <ul class="practices-list">
+          <li>
+            <strong>Use TypeScript:</strong> Catch errors at compile time, not runtime
+          </li>
+          <li>
+            <strong>Validate Input:</strong> Always validate user input before processing
+          </li>
+          <li>
+            <strong>Cache Aggressively:</strong> Use KV and HTTP caching headers
+          </li>
+          <li>
+            <strong>Monitor Performance:</strong> Track latency and errors in production
+          </li>
+          <li>
+            <strong>Handle Errors:</strong> Return meaningful error responses
+          </li>
+          <li>
+            <strong>Test Locally:</strong> Use wrangler dev before deploying
+          </li>
+        </ul>
+      </section>
+
+      <section id="comparison" class="guide-section">
+        <h2>Clodo vs Alternatives</h2>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Clodo</th>
+                <th>Lambda</th>
+                <th>Next.js</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cold Start</strong></td>
+                <td>None</td>
+                <td>100-500ms</td>
+                <td>Depends</td>
+              </tr>
+              <tr>
+                <td><strong>Global Deployment</strong></td>
+                <td>Automatic</td>
+                <td>Manual</td>
+                <td>Manual</td>
+              </tr>
+              <tr>
+                <td><strong>Cost/Month</strong></td>
+                <td>$0.30-5</td>
+                <td>$5-100</td>
+                <td>$15+</td>
+              </tr>
+              <tr>
+                <td><strong>Setup Complexity</strong></td>
+                <td>Low</td>
+                <td>High</td>
+                <td>Medium</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="next-steps" class="guide-section">
+        <h2>Next Steps</h2>
+
+        <p>Ready to build with Clodo?</p>
+        <ul class="next-steps-list">
+          <li>Read the <a href="/docs/">complete documentation</a></li>
+          <li>Check out <a href="/examples/">real-world examples</a></li>
+          <li>Join the <a href="https://discord.gg/clodo">Discord community</a></li>
+          <li>Deploy your first app to production</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .guide-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .guide-content {
+    min-width: 0;
+  }
+
+  .guide-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section:last-child {
+    border-bottom: none;
+  }
+
+  .guide-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+    scroll-margin-top: 5rem;
+  }
+
+  .guide-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section h4 {
+    font-size: 1.125rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .guide-section p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .feature-card h4 {
+    margin-top: 0;
+  }
+
+  .feature-card p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  .guide-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .guide-section li {
+    margin: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .guide-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .guide-section code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+  }
+
+  .guide-section pre {
+    background: #0b1220;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .guide-section pre code {
+    background: none;
+    padding: 0;
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .comparison-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .comparison-table th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .next-steps-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .next-steps-list li {
+    padding-left: 1.5rem;
+  }
+
+  .next-steps-list a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .next-steps-list a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 1024px) {
+    .guide-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .guide-container {
+      padding: 1rem;
+    }
+
+    .guide-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .guide-section pre {
+      padding: 1rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,977 @@
+---
+// src/pages/how-to-migrate-from-wrangler.astro
+// Step-by-step migration guide from raw Wrangler to Clodo
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "How to Migrate from Wrangler to Clodo";
+const description = "Complete step-by-step guide to migrating your Cloudflare Workers code to Clodo framework. No downtime, incremental adoption.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/migrate/" itemprop="item"><span itemprop="name">Migration</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Wrangler to Clodo</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">Migrate from Wrangler to Clodo</h1>
+      <p>Transform your Cloudflare Workers code. Cleaner syntax, less boilerplate, better patterns. Migrate at your own pace.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    <section class="intro-section">
+      <h2>Migration Overview</h2>
+      <p>Migrating from raw Wrangler/Workers to Clodo is straightforward. You can do it gradually, handler by handler, with zero downtime.</p>
+
+      <div class="timeline-summary">
+        <div class="timeline-step">
+          <div class="step-number">1</div>
+          <div class="step-title">Preparation</div>
+          <div class="step-time">15 min</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-number">2</div>
+          <div class="step-title">Setup Project</div>
+          <div class="step-time">5 min</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-number">3</div>
+          <div class="step-title">Migrate Handlers</div>
+          <div class="step-time">2-4 hours</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-number">4</div>
+          <div class="step-title">Test Deploy</div>
+          <div class="step-time">30 min</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 1: Assess Your Current Setup</h2>
+
+      <p>First, understand what you currently have:</p>
+
+      <div class="assessment-checklist">
+        <div class="checklist-item">
+          <input type="checkbox" id="check1" disabled>
+          <label for="check1">How many handlers/routes do you have?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="check2" disabled>
+          <label for="check2">Do you use KV, D1, R2, or other bindings?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="check3" disabled>
+          <label for="check3">What's your current error handling strategy?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="check4" disabled>
+          <label for="check4">Do you have authentication/middleware?</label>
+        </div>
+      </div>
+
+      <h3>Example Current Structure</h3>
+      <pre><code>{`// wrangler.toml
+name = "my-api"
+main = "src/index.ts"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "abc123"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "production"
+database_id = "xyz789"`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 2: Create Clodo Project</h2>
+
+      <p>Initialize a new Clodo project (or convert existing):</p>
+
+      <h3>Option A: Brand New Project</h3>
+      <pre><code>{`npm create clodo@latest my-api-clodo
+cd my-api-clodo
+npm run dev`}</code></pre>
+
+      <h3>Option B: Upgrade Existing Project</h3>
+      <pre><code>{`npm install clodo @clodo/runtime
+npm install -D @clodo/cli`}</code></pre>
+
+      <p><strong>Verify installation:</strong></p>
+      <pre><code>{`npm run dev
+# Should start dev server at localhost:8787`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 3: Migrate Your Handlers</h2>
+
+      <h3>Pattern Comparison</h3>
+
+      <div class="comparison-boxes">
+        <div class="box">
+          <h4>Before (Raw Wrangler)</h4>
+          <pre><code>{`export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    
+    if (url.pathname === '/api/users') {
+      if (request.method === 'GET') {
+        const users = await env.DB.prepare(
+          'SELECT * FROM users'
+        ).all();
+        
+        return new Response(
+          JSON.stringify(users.results),
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+      }
+    }
+    
+    return new Response('Not Found', {
+      status: 404
+    });
+  }
+};`}</code></pre>
+        </div>
+
+        <div class="box">
+          <h4>After (Clodo)</h4>
+          <pre><code>{`import { router } from 'clodo';
+
+export const api = router()
+  .get('/users', async (req) => {
+    const users = await req.db
+      .from('users')
+      .select();
+    
+    return { users };
+  });
+
+export default api;`}</code></pre>
+        </div>
+      </div>
+
+      <h3>Handler Migration Examples</h3>
+
+      <div class="migration-example">
+        <h4>Simple GET Request</h4>
+        <div class="before-after">
+          <div class="before">
+            <p><strong>Before</strong></p>
+            <pre><code>{`if (url.pathname === '/api/hello' 
+    && request.method === 'GET') {
+  return new Response(
+    JSON.stringify({ message: 'Hello' }),
+    { 
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+}`}</code></pre>
+          </div>
+          <div class="after">
+            <p><strong>After</strong></p>
+            <pre><code>{`export async function GET(req) {
+  return { message: 'Hello' };
+}`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="migration-example">
+        <h4>POST with Database</h4>
+        <div class="before-after">
+          <div class="before">
+            <p><strong>Before</strong></p>
+            <pre><code>{`if (url.pathname === '/api/users' 
+    && request.method === 'POST') {
+  const body = await request.json();
+  
+  const result = await env.DB.prepare(
+    'INSERT INTO users (name, email)
+     VALUES (?, ?)'
+  ).bind(body.name, body.email).run();
+  
+  return new Response(
+    JSON.stringify({ id: result.meta.last_row_id }),
+    { status: 201 }
+  );
+}`}</code></pre>
+          </div>
+          <div class="after">
+            <p><strong>After</strong></p>
+            <pre><code>{`export async function POST(req) {
+  const body = await req.json();
+  
+  const result = await req.db
+    .from('users')
+    .insert({
+      name: body.name,
+      email: body.email
+    });
+  
+  return { id: result.id, status: 201 };
+}`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="migration-example">
+        <h4>KV Cache Access</h4>
+        <div class="before-after">
+          <div class="before">
+            <p><strong>Before</strong></p>
+            <pre><code>{`const cachedUser = await env.CACHE
+  .get('user:123');
+
+if (!cachedUser) {
+  const user = await env.DB.prepare(
+    'SELECT * FROM users WHERE id = ?'
+  ).bind(123).first();
+  
+  await env.CACHE.put(
+    'user:123', 
+    JSON.stringify(user),
+    { expirationTtl: 3600 }
+  );
+}`}</code></pre>
+          </div>
+          <div class="after">
+            <p><strong>After</strong></p>
+            <pre><code>{`export async function getUser(req) {
+  return await req.cache.wrap(
+    'user:123',
+    async () => {
+      return await req.db
+        .from('users')
+        .where('id', 123)
+        .first();
+    },
+    { ttl: 3600 }
+  );
+}`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="migration-example">
+        <h4>Error Handling</h4>
+        <div class="before-after">
+          <div class="before">
+            <p><strong>Before</strong></p>
+            <pre><code>{`try {
+  const user = await getUser(123);
+  if (!user) {
+    return new Response(
+      JSON.stringify({ error: 'Not found' }),
+      { status: 404 }
+    );
+  }
+  return new Response(JSON.stringify(user));
+} catch (error) {
+  return new Response(
+    JSON.stringify({ error: 'Server error' }),
+    { status: 500 }
+  );
+}`}</code></pre>
+          </div>
+          <div class="after">
+            <p><strong>After</strong></p>
+            <pre><code>{`export async function getUser(req) {
+  const user = await req.db
+    .from('users')
+    .where('id', 123)
+    .first();
+  
+  if (!user) {
+    throw new NotFoundError('User');
+  }
+  
+  return user;
+  // Error handling automatic
+}`}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 4: Configure Bindings</h2>
+
+      <p>Update your wrangler.toml to work with Clodo:</p>
+
+      <pre><code>{`# wrangler.toml
+name = "my-api-clodo"
+type = "javascript"
+main = "dist/index.js"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "abc123"
+preview_id = "preview123"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "production"
+database_id = "xyz789"
+
+[[r2_buckets]]
+binding = "UPLOAD"
+bucket_name = "my-bucket"
+preview_bucket_name = "my-bucket-preview"
+
+[env.production.vars]
+APP_ENV = "production"
+API_VERSION = "v1"
+
+[env.development]
+vars = { APP_ENV = "development" }`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 5: Update Entry Point</h2>
+
+      <p>Update your main entry file:</p>
+
+      <pre><code>{`// src/index.ts (new Clodo way)
+import { createApp } from 'clodo';
+import { usersRouter } from './routes/users';
+import { productsRouter } from './routes/products';
+
+const app = createApp();
+
+// Register route handlers
+app.use('/api/users', usersRouter);
+app.use('/api/products', productsRouter);
+
+// Error handling middleware
+app.use((error, req, res) => {
+  console.error(error);
+  return { error: error.message, status: 500 };
+});
+
+export default app;`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 6: Test Locally</h2>
+
+      <p>Test your migrated handlers:</p>
+
+      <pre><code>{`# Start dev server
+npm run dev
+
+# In another terminal, test endpoints
+curl http://localhost:8787/api/users
+curl -X POST http://localhost:8787/api/users \\
+  -H "Content-Type: application/json" \\
+  -d '{"name":"John","email":"john@example.com"}'`}</code></pre>
+
+      <p><strong>Use Clodo's built-in testing:</strong></p>
+      <pre><code>{`// tests/users.test.ts
+import { test } from 'clodo/test';
+import { api } from '../src/index';
+
+test('GET /api/users returns list', async () => {
+  const response = await api.handle({
+    method: 'GET',
+    path: '/api/users'
+  });
+  
+  expect(response.status).toBe(200);
+  expect(response.body.users).toBeDefined();
+});`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 7: Database Migrations</h2>
+
+      <p>Update your database migrations to Clodo format:</p>
+
+      <pre><code>{`// migrations/001_create_users.sql
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX users_email ON users(email);
+
+-- migrations/002_create_products.sql
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  price REAL NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`}</code></pre>
+
+      <p><strong>Run migrations:</strong></p>
+      <pre><code>{`# Apply all pending migrations
+clodo migrate
+
+# Rollback last migration
+clodo migrate:rollback
+
+# Check migration status
+clodo migrate:status`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 8: Deploy Incrementally</h2>
+
+      <p>You don't need to migrate everything at once. Deploy handlers gradually:</p>
+
+      <h3>Strategy: Feature Flags</h3>
+      <pre><code>{`// src/middleware/useNewHandler.ts
+export async function useNewHandler(req) {
+  // 10% traffic to new handler for testing
+  if (Math.random() < 0.1) {
+    return true;
+  }
+  return false;
+}
+
+// src/routes/users.ts
+import { useNewHandler } from '../middleware/useNewHandler';
+
+export async function GET(req) {
+  if (await useNewHandler(req)) {
+    // New Clodo-based handler
+    return await getUsersClodo(req);
+  } else {
+    // Old handler (forward to original Workers code)
+    return await getUsersLegacy(req.env);
+  }
+}`}</code></pre>
+
+      <h3>Strategy: Route-based</h3>
+      <p>Migrate one route at a time. Keep old routes running while migrating:</p>
+      <pre><code>{`# Week 1: Migrate /api/users
+# Week 2: Migrate /api/products
+# Week 3: Migrate /api/orders
+# Week 4: Remove old code and cleanup`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 9: Environment Variables</h2>
+
+      <p>Migrate secrets and environment variables:</p>
+
+      <pre><code>{`# Set secrets
+clodo secrets:set DATABASE_URL
+clodo secrets:set API_KEY
+clodo secrets:set JWT_SECRET
+
+# Set environment variables (staging)
+wrangler publish --env staging
+
+# Set environment variables (production)
+wrangler publish --env production`}</code></pre>
+
+      <p><strong>Access in your code:</strong></p>
+      <pre><code>{`export async function handler(req) {
+  const dbUrl = req.env.DATABASE_URL;
+  const apiKey = req.env.API_KEY;
+  
+  // Use them
+}`}</code></pre>
+    </section>
+
+    <section class="step-section">
+      <h2>Step 10: Performance Optimization</h2>
+
+      <p>After migration, optimize performance:</p>
+
+      <h3>Enable Caching</h3>
+      <pre><code>{`// Use Clodo's automatic caching
+export async function GET(req) {
+  return {
+    data: await fetchData(),
+    cache: { ttl: 3600 } // Cache for 1 hour
+  };
+}
+
+// Or fine-grained cache control
+export async function GET(req) {
+  const data = await req.cache.wrap(
+    'my-key',
+    () => expensiveOperation(),
+    { ttl: 3600, stale: true }
+  );
+  
+  return { data };
+}`}</code></pre>
+
+      <h3>Optimize Database Queries</h3>
+      <pre><code>{`// Bad: N+1 queries
+export async function getUsers(req) {
+  const users = await req.db.from('users').select();
+  
+  for (const user of users) {
+    user.posts = await req.db
+      .from('posts')
+      .where('user_id', user.id)
+      .select();
+  }
+  
+  return users;
+}
+
+// Good: Batch load
+export async function getUsers(req) {
+  const users = await req.db
+    .from('users')
+    .with('posts')
+    .select();
+  
+  return users;
+}`}</code></pre>
+    </section>
+
+    <section class="migration-checklist">
+      <h2>Migration Checklist</h2>
+
+      <div class="checklist">
+        <div class="checklist-item">
+          <input type="checkbox" id="c1" disabled>
+          <label for="c1">Audit current Wrangler project structure</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c2" disabled>
+          <label for="c2">Initialize Clodo project</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c3" disabled>
+          <label for="c3">Migrate route handlers (one by one)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c4" disabled>
+          <label for="c4">Update database schema</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c5" disabled>
+          <label for="c5">Configure bindings (KV, D1, R2)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c6" disabled>
+          <label for="c6">Set environment variables and secrets</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c7" disabled>
+          <label for="c7">Test locally with npm run dev</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c8" disabled>
+          <label for="c8">Deploy to staging environment</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c9" disabled>
+          <label for="c9">Run smoke tests</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c10" disabled>
+          <label for="c10">Deploy to production</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c11" disabled>
+          <label for="c11">Monitor performance and logs</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c12" disabled>
+          <label for="c12">Clean up old code (if not needed)</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="troubleshooting-section">
+      <h2>Troubleshooting Common Issues</h2>
+
+      <div class="faq-item">
+        <h3>Q: Error - "Cannot find module 'clodo'"</h3>
+        <p><strong>A:</strong> Make sure Clodo is installed and package.json is correct:</p>
+        <pre><code>{`npm install clodo @clodo/runtime
+npm install -D @clodo/cli`}</code></pre>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q: My middleware isn't running</h3>
+        <p><strong>A:</strong> Ensure middleware is registered before routes:</p>
+        <pre><code>{`const app = createApp();
+
+// Middleware FIRST
+app.use(authMiddleware);
+app.use(loggingMiddleware);
+
+// THEN routes
+app.get('/api/users', getUsers);`}</code></pre>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q: Database queries are slow</h3>
+        <p><strong>A:</strong> Add indexes and batch load relationships:</p>
+        <pre><code>{`// Add indexes to wrangler.toml
+CREATE INDEX users_email ON users(email);
+CREATE INDEX posts_user_id ON posts(user_id);
+
+// Use relationship loading
+const users = await req.db
+  .from('users')
+  .with('posts', 'comments')
+  .select();`}</code></pre>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q: How do I debug locally?</h3>
+        <p><strong>A:</strong> Use Clodo's built-in debugging:</p>
+        <pre><code>{`// Enable debug mode
+DEBUG=clodo:* npm run dev
+
+// Or use inspect
+node --inspect-brk node_modules/.bin/clodo dev`}</code></pre>
+      </div>
+    </section>
+
+    <section class="resources-section">
+      <h2>Resources</h2>
+
+      <ul class="resource-list">
+        <li><a href="/clodo-framework-guide/">Clodo Framework Guide</a></li>
+        <li><a href="/docs/">Complete Documentation</a></li>
+        <li><a href="/examples/">Real-world Examples</a></li>
+        <li><a href="https://github.com/clodo/clodo">GitHub Repository</a></li>
+        <li><a href="/faq/">Frequently Asked Questions</a></li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    margin: 1rem 0 0.75rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  pre {
+    background: #0b1220;
+    color: #e0e7ff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  pre code {
+    color: #e0e7ff;
+  }
+
+  .timeline-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .timeline-step {
+    padding: 1.5rem 1rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color, #1d4ed8);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .step-time {
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .step-section {
+    padding: 2rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .step-section h2 {
+    margin-top: 0;
+  }
+
+  .assessment-checklist,
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .checklist-item input {
+    margin-right: 0.75rem;
+    cursor: pointer;
+  }
+
+  .checklist-item label {
+    cursor: pointer;
+  }
+
+  .comparison-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .box {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    background: var(--card-bg, #f9fafb);
+  }
+
+  .box h4 {
+    margin-top: 0;
+  }
+
+  .box pre {
+    margin: 1rem 0 0 0;
+  }
+
+  .migration-example {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .before,
+  .after {
+    min-width: 0;
+  }
+
+  .before p,
+  .after p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .before pre,
+  .after pre {
+    margin: 0;
+    font-size: 0.75rem;
+  }
+
+  .faq-item {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .faq-item h3 {
+    margin-top: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .resource-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .resource-list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .resource-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .resource-list a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .resource-list a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .before-after {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-boxes {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-summary {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-section h1 {
+      font-size: 1.5rem;
+    }
+
+    pre {
+      padding: 1rem;
+    }
+
+    code {
+      font-size: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,668 @@
+---
+// src/pages/clodo-framework-api-simplification.astro
+// Clodo API simplifications compared to raw Cloudflare Workers
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Clodo API Simplification - Write Less Code";
+const description = "Learn how Clodo simplifies the Cloudflare Workers API. Write cleaner, more maintainable code with built-in best practices.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/docs/" itemprop="item"><span itemprop="name">Documentation</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">API Simplification</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">Clodo API Simplification</h1>
+      <p>Write cleaner, more efficient serverless code. Clodo removes boilerplate and provides intuitive abstractions.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    <section class="comparison-section">
+      <h2>Raw Workers vs Clodo</h2>
+      <p>See how much code Clodo eliminates:</p>
+
+      <div class="comparison-pair">
+        <div class="code-block">
+          <h3>Raw Workers API</h3>
+          <pre><code>{`// Long and verbose
+export default {
+  async fetch(request, env, ctx) {
+    try {
+      const url = new URL(request.url);
+      const method = request.method;
+      
+      if (url.pathname === '/api/users' 
+          && method === 'GET') {
+        
+        const users = await env.DB.prepare(
+          'SELECT * FROM users'
+        ).all();
+        
+        return new Response(
+          JSON.stringify(users.results),
+          {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            }
+          }
+        );
+      }
+      
+      return new Response(
+        JSON.stringify({ error: 'Not Found' }),
+        { status: 404 }
+      );
+    } catch (error) {
+      return new Response(
+        JSON.stringify({ error: error.message }),
+        { status: 500 }
+      );
+    }
+  }
+}`}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <h3>Clodo Framework</h3>
+          <pre><code>{`// Clean and focused
+export async function getUsers(req, db) {
+  const users = await db.query(
+    'SELECT * FROM users'
+  );
+  
+  return {
+    status: 200,
+    body: users
+  };
+}
+
+// Automatically handles:
+// - HTTP method routing
+// - JSON serialization
+// - CORS headers
+// - Error handling
+// - Response formatting`}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2>Key Simplifications</h2>
+
+      <div class="simplifications-grid">
+        <article class="simplification-card">
+          <h3>1. Automatic Routing</h3>
+          <p><strong>Before:</strong> Manual URL parsing and if/else chains</p>
+          <p><strong>After:</strong> File-based routing with automatic method dispatch</p>
+          <pre><code>{`// routes/users.ts → GET /api/users
+export async function GET(req) {
+  return await fetchUsers();
+}`}</code></pre>
+        </article>
+
+        <article class="simplification-card">
+          <h3>2. JSON Handling</h3>
+          <p><strong>Before:</strong> Manual JSON stringify and headers</p>
+          <p><strong>After:</strong> Automatic JSON serialization</p>
+          <pre><code>{`// Returns automatically as JSON
+return { 
+  users: data,
+  total: count 
+};
+
+// Headers set automatically:
+// Content-Type: application/json`}</code></pre>
+        </article>
+
+        <article class="simplification-card">
+          <h3>3. CORS Headers</h3>
+          <p><strong>Before:</strong> Manually set on every response</p>
+          <p><strong>After:</strong> Configure once, applies globally</p>
+          <pre><code>{`// wrangler.toml
+[env.production.vars]
+CORS_ORIGIN = "*"
+
+// Headers applied automatically
+// No repetition needed`}</code></pre>
+        </article>
+
+        <article class="simplification-card">
+          <h3>4. Error Handling</h3>
+          <p><strong>Before:</strong> Try/catch with manual status codes</p>
+          <p><strong>After:</strong> Built-in error middleware</p>
+          <pre><code>{`// Errors automatically formatted
+throw new NotFoundError('User');
+
+// Returns:
+// { error: 'User not found', 
+//   status: 404 }`}</code></pre>
+        </article>
+
+        <article class="simplification-card">
+          <h3>5. Database Queries</h3>
+          <p><strong>Before:</strong> Raw D1 API, manual result handling</p>
+          <p><strong>After:</strong> Query builder with type safety</p>
+          <pre><code>{`// Simple, chainable syntax
+const users = await db
+  .from('users')
+  .where('active', true)
+  .select()
+  .limit(10);`}</code></pre>
+        </article>
+
+        <article class="simplification-card">
+          <h3>6. Request/Response</h3>
+          <p><strong>Before:</strong> Complex object structures</p>
+          <p><strong>After:</strong> Familiar Express-like API</p>
+          <pre><code>{`// Simple and intuitive
+export async function POST(req) {
+  const body = await req.json();
+  const userId = req.params.id;
+  const token = req.headers.authorization;
+}`}</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="metrics-section">
+      <h2>Clodo vs Raw Workers - By The Numbers</h2>
+
+      <div class="metrics-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Raw Workers</th>
+              <th>Clodo</th>
+              <th>Improvement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Average lines per handler</td>
+              <td>30-50</td>
+              <td>5-10</td>
+              <td>75% reduction</td>
+            </tr>
+            <tr>
+              <td>Setup code needed</td>
+              <td>Manual routing</td>
+              <td>File-based</td>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <td>Error handling</td>
+              <td>Per-handler</td>
+              <td>Global middleware</td>
+              <td>DRY principle</td>
+            </tr>
+            <tr>
+              <td>Response formatting</td>
+              <td>Manual headers</td>
+              <td>Automatic</td>
+              <td>Consistent</td>
+            </tr>
+            <tr>
+              <td>Database queries</td>
+              <td>Raw SQL</td>
+              <td>Query builder</td>
+              <td>Type-safe</td>
+            </tr>
+            <tr>
+              <td>Development speed</td>
+              <td>Slow</td>
+              <td>Fast</td>
+              <td>3x faster</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="patterns-section">
+      <h2>Common Patterns Made Simple</h2>
+
+      <h3>Authentication</h3>
+      <div class="pattern-example">
+        <p><strong>Raw Workers:</strong></p>
+        <pre><code>{`const token = request.headers.get('Authorization');
+if (!token) {
+  return new Response('Unauthorized', { status: 401 });
+}
+const user = await validateToken(token);
+if (!user) {
+  return new Response('Invalid token', { status: 401 });
+}`}</code></pre>
+
+        <p><strong>Clodo:</strong></p>
+        <pre><code>{`import { protected } from 'clodo/middleware';
+
+@protected()
+export async function GET(req) {
+  // User already authenticated
+  const user = req.user;
+  return { user };
+}`}</code></pre>
+      </div>
+
+      <h3>Pagination</h3>
+      <div class="pattern-example">
+        <p><strong>Raw Workers:</strong></p>
+        <pre><code>{`const page = parseInt(url.searchParams.get('page')) || 1;
+const limit = parseInt(url.searchParams.get('limit')) || 10;
+const offset = (page - 1) * limit;
+const total = await env.DB.prepare(
+  'SELECT COUNT(*) as count FROM items'
+).first();
+const items = await env.DB.prepare(
+  'SELECT * FROM items LIMIT ? OFFSET ?'
+).bind(limit, offset).all();`}</code></pre>
+
+        <p><strong>Clodo:</strong></p>
+        <pre><code>{`export async function GET(req, db) {
+  const { page = 1, limit = 10 } = req.query;
+  
+  const items = await db.from('items')
+    .paginate(page, limit);
+  
+  return { items };
+  // Pagination metadata added automatically
+}`}</code></pre>
+      </div>
+
+      <h3>File Upload</h3>
+      <div class="pattern-example">
+        <p><strong>Raw Workers:</strong></p>
+        <pre><code>{`const formData = await request.formData();
+const file = formData.get('file');
+const arrayBuffer = await file.arrayBuffer();
+const bucket = env.R2_BUCKET;
+const key = crypto.randomUUID();
+await bucket.put(key, arrayBuffer);
+return new Response(
+  JSON.stringify({ url: key }),
+  { headers: { 'Content-Type': 'application/json' } }
+);`}</code></pre>
+
+        <p><strong>Clodo:</strong></p>
+        <pre><code>{`export async function POST(req) {
+  const file = await req.file('file');
+  const url = await file.upload('r2');
+  
+  return { 
+    url,
+    size: file.size,
+    type: file.type
+  };
+}`}</code></pre>
+      </div>
+    </section>
+
+    <section class="benefits-section">
+      <h2>Why This Matters</h2>
+
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <h3>Faster Development</h3>
+          <p>Write 75% less code. Ship features faster. Focus on business logic, not boilerplate.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Fewer Bugs</h3>
+          <p>Consistent patterns everywhere. Automatic error handling. Type safety throughout.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Easier Maintenance</h3>
+          <p>Familiar conventions. Less code to maintain. Predictable patterns. Easier for teams.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Better Performance</h3>
+          <p>Optimized by default. Caching built-in. Response compression automatic.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Scalability</h3>
+          <p>Add features without complexity. Patterns scale from MVP to millions of requests.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Developer Experience</h3>
+          <p>Intuitive API. Great error messages. Excellent documentation. Active community.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="migration-section">
+      <h2>Getting Started</h2>
+      <p>Ready to simplify your Workers code?</p>
+      <ul class="action-list">
+        <li><a href="/clodo-framework-guide/">Read the framework guide</a></li>
+        <li><a href="/how-to-migrate-from-wrangler/">See how to migrate</a></li>
+        <li><a href="/examples/">Check out examples</a></li>
+        <li><a href="https://github.com/clodo/clodo">View on GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .comparison-pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .code-block {
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .code-block h3 {
+    margin: 0;
+    padding: 1rem;
+    background: var(--card-bg, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    font-size: 1rem;
+  }
+
+  .code-block pre {
+    margin: 0;
+    padding: 1rem;
+    background: #0b1220;
+    overflow-x: auto;
+  }
+
+  .code-block code {
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .simplifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .simplification-card {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .simplification-card h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .simplification-card p {
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+  }
+
+  .simplification-card strong {
+    color: var(--heading-color, #0f172a);
+  }
+
+  .simplification-card pre {
+    background: #0b1220;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0.75rem 0 0 0;
+    overflow-x: auto;
+  }
+
+  .simplification-card code {
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .metrics-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .metrics-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .metrics-table th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .metrics-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .metrics-table tr:nth-child(even) {
+    background: var(--table-row-alt-bg, #f9fafb);
+  }
+
+  .pattern-example {
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .pattern-example p {
+    margin: 1rem 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .pattern-example pre {
+    background: #0b1220;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0.75rem 0 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .pattern-example code {
+    color: #e0e7ff;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .benefits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .benefit-item {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .benefit-item h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .benefit-item p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .action-list li {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .action-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .action-list a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .action-list a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-pair {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .hero-section h1 {
+      font-size: 1.5rem;
+    }
+
+    .simplifications-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .simplification-card code {
+      font-size: 0.75rem;
+    }
+  }
+</style>

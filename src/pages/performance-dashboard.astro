@@ -1,0 +1,575 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Performance Dashboard - Real-time Monitoring";
+const description = "Monitor Clodo applications in real-time. Track metrics, costs, and user experience.";
+---
+
+<BaseLayout title={title} description={description}>
+  <nav class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Performance Dashboard</li>
+    </ol>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Performance Dashboard</h1>
+      <p>Monitor your Clodo applications in real-time. Track metrics, costs, and user experience.</p>
+    </div>
+  </section>
+
+  <main class="content">
+    <section>
+      <h2>What You'll Learn</h2>
+      <p>Building a comprehensive performance monitoring dashboard gives you visibility:</p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <strong>📊 Metrics</strong>
+          <p>Response time, throughput, error rates, and availability</p>
+        </div>
+        <div class="benefit">
+          <strong>💰 Cost</strong>
+          <p>Monitor compute usage and estimate monthly costs</p>
+        </div>
+        <div class="benefit">
+          <strong>👥 Experience</strong>
+          <p>Core Web Vitals and real user performance</p>
+        </div>
+        <div class="benefit">
+          <strong>🔍 Insights</strong>
+          <p>Identify bottlenecks and optimization opportunities</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Metrics to Track</h2>
+      <div class="metrics">
+        <article class="metric">
+          <h3>Response Time (P50, P95, P99)</h3>
+          <p>Percentile response times show API responsiveness under load</p>
+          <strong>Good Values:</strong>
+          <ul>
+            <li>P50: 50-100ms</li>
+            <li>P95: 100-200ms</li>
+            <li>P99: 200-500ms</li>
+          </ul>
+        </article>
+
+        <article class="metric">
+          <h3>Error Rate</h3>
+          <p>Percentage of requests that fail or return errors</p>
+          <strong>Targets:</strong>
+          <ul>
+            <li>Development: Less than 5%</li>
+            <li>Staging: Less than 1%</li>
+            <li>Production: Less than 0.1%</li>
+          </ul>
+        </article>
+
+        <article class="metric">
+          <h3>Throughput</h3>
+          <p>Number of requests per second your API handles</p>
+          <strong>Monitor:</strong>
+          <ul>
+            <li>Average RPS</li>
+            <li>Peak RPS</li>
+            <li>Sustained RPS</li>
+          </ul>
+        </article>
+
+        <article class="metric">
+          <h3>Database Query Time</h3>
+          <p>Time spent in database operations</p>
+          <strong>Acceptable:</strong>
+          <ul>
+            <li>Simple queries: 5-20ms</li>
+            <li>Complex queries: 20-100ms</li>
+            <li>Cached results: 1-5ms</li>
+          </ul>
+        </article>
+
+        <article class="metric">
+          <h3>Cache Hit Rate</h3>
+          <p>Percentage of requests served from cache</p>
+          <strong>Targets:</strong>
+          <ul>
+            <li>Static content: 95%+</li>
+            <li>API responses: 70-90%</li>
+            <li>Database: 60-80%</li>
+          </ul>
+        </article>
+
+        <article class="metric">
+          <h3>Monthly Costs</h3>
+          <p>Estimated monthly compute and bandwidth costs</p>
+          <strong>Typical:</strong>
+          <ul>
+            <li>Free tier: 0 USD</li>
+            <li>Startup: 5-50 USD</li>
+            <li>Scale: 50-500 USD</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Dashboard Components</h2>
+
+      <h3>1. Real-time Metrics Panel</h3>
+      <p>Display current performance at a glance with live updates.</p>
+
+      <h3>2. Time Series Charts</h3>
+      <p>Show trends over time using charting libraries.</p>
+
+      <h3>3. Error Log Viewer</h3>
+      <p>Display recent errors for debugging and analysis.</p>
+
+      <h3>4. Cost Calculator</h3>
+      <p>Estimate and track costs in real-time.</p>
+
+      <h3>5. Health Status Indicator</h3>
+      <p>Quick health check with visual indicators.</p>
+    </section>
+
+    <section>
+      <h2>Third-Party Integrations</h2>
+
+      <div class="integrations">
+        <div class="integration">
+          <h3>Datadog</h3>
+          <p>Enterprise APM and monitoring platform. Full-stack observability, real-time dashboards. Cost: 500+ USD per month</p>
+        </div>
+
+        <div class="integration">
+          <h3>CloudFlare Analytics</h3>
+          <p>Native edge computing metrics. Request analytics, performance metrics, cost breakdown. Cost: Free tier included</p>
+        </div>
+
+        <div class="integration">
+          <h3>Prometheus + Grafana</h3>
+          <p>Open source self-hosted solution. Full control, customization, no vendor lock-in. Cost: Hosting fees only</p>
+        </div>
+
+        <div class="integration">
+          <h3>New Relic</h3>
+          <p>Full observability platform. Application performance monitoring, infrastructure monitoring. Cost: 100+ USD per month</p>
+        </div>
+
+        <div class="integration">
+          <h3>Sentry</h3>
+          <p>Error tracking and performance monitoring. Exception tracking, performance profiling, release management. Cost: 29+ USD per month</p>
+        </div>
+
+        <div class="integration">
+          <h3>LogRocket</h3>
+          <p>Frontend performance monitoring. Session replay, performance metrics, network monitoring. Cost: 99+ USD per month</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Best Practices</h2>
+
+      <div class="practices">
+        <div class="practice">
+          <h3>Use Percentiles</h3>
+          <p>Don't just track average response time. Use P50, P95, P99 to catch outliers and tail latencies.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Monitor Dependencies</h3>
+          <p>Track database, cache, and external API performance separately to identify bottlenecks.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Alert Smartly</h3>
+          <p>Alert on trends and anomalies, not just thresholds. Prevent alert fatigue.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Cost Tracking</h3>
+          <p>Monitor costs in real-time. Set budgets. Edge computing is cheap but surprises happen.</p>
+        </div>
+
+        <div class="practice">
+          <h3>User Metrics</h3>
+          <p>Track real user experience (RUM) metrics. Synthetic monitoring doesn't capture real conditions.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Historical Data</h3>
+          <p>Keep detailed metrics history (90 days minimum) for trend analysis and capacity planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recommended Tools</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Best For</th>
+            <th>Cost per Month</th>
+            <th>Setup Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Clodo Built-in</td>
+            <td>Quick start, basic metrics</td>
+            <td>Included</td>
+            <td>5 min</td>
+          </tr>
+          <tr>
+            <td>Datadog</td>
+            <td>Enterprise monitoring</td>
+            <td>500+ USD</td>
+            <td>30 min</td>
+          </tr>
+          <tr>
+            <td>New Relic</td>
+            <td>Full stack observability</td>
+            <td>100+ USD</td>
+            <td>20 min</td>
+          </tr>
+          <tr>
+            <td>Prometheus + Grafana</td>
+            <td>Open source, self-hosted</td>
+            <td>Infra cost</td>
+            <td>1-2 hours</td>
+          </tr>
+          <tr>
+            <td>CloudFlare Analytics</td>
+            <td>Edge-native metrics</td>
+            <td>Free</td>
+            <td>10 min</td>
+          </tr>
+          <tr>
+            <td>Sentry</td>
+            <td>Error tracking</td>
+            <td>29+ USD</td>
+            <td>15 min</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Quick Start: 10 Minute Setup</h2>
+
+      <ol class="steps">
+        <li>Install Clodo monitoring: <code>npm install @clodo/monitoring</code></li>
+        <li>Enable in your app and configure dashboard settings</li>
+        <li>View your dashboard at: https://your-app.clodo.dev/dashboard</li>
+        <li>Set up alerts for error rate and response time thresholds</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Learn More</h2>
+      <ul class="links">
+        <li><a href="/analytics/">Analytics Guide</a></li>
+        <li><a href="/docs/">Complete Documentation</a></li>
+        <li><a href="/examples/">Real-world Examples</a></li>
+        <li><a href="https://github.com/clodo/clodo">GitHub Repository</a></li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .benefit {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .benefit strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .metric {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .metric h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .metric strong {
+    display: block;
+    margin-top: 1rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .metric ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .metric li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+  }
+
+  .integrations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .integration {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .integration h3 {
+    margin-top: 0;
+  }
+
+  .practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .practice {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .practice h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .practice p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+    margin: 1.5rem 0;
+  }
+
+  th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    counter-reset: step;
+  }
+
+  .steps li {
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+    counter-increment: step;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .links li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .links li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .links a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

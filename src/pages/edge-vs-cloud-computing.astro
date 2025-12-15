@@ -1,0 +1,971 @@
+---
+// src/pages/edge-vs-cloud-computing.astro
+// Edge computing vs traditional cloud computing comparison
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Edge vs Cloud Computing - Architectural Comparison";
+const description = "Compare edge computing and traditional cloud computing. Understand when to use each, cost implications, and technical differences.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Edge vs Cloud</span>
+        <meta itemprop="position" content="2">
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="main-title">
+    <div class="container">
+      <h1 id="main-title">Edge vs Cloud Computing</h1>
+      <p>Understanding the fundamental differences between edge and traditional cloud architectures.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    <section class="intro-section">
+      <p>Traditional cloud and edge computing represent two different approaches to distributed computing. Both have their advantages and ideal use cases. Let's break down the key differences.</p>
+    </section>
+
+    <section class="architecture-section">
+      <h2>Architecture Overview</h2>
+
+      <div class="architecture-comparison">
+        <div class="architecture-item">
+          <h3>Traditional Cloud Computing</h3>
+          <div class="diagram">
+            <p>User → Internet → Data Center (Centralized)</p>
+          </div>
+          <ul class="architecture-points">
+            <li>Centralized data centers in specific locations</li>
+            <li>All computation happens in one or few places</li>
+            <li>Users connect over the internet to reach servers</li>
+            <li>Geographic distribution handled by CDNs</li>
+            <li>Examples: AWS, Google Cloud, Azure</li>
+          </ul>
+        </div>
+
+        <div class="architecture-item">
+          <h3>Edge Computing</h3>
+          <div class="diagram">
+            <p>User → Nearest Edge Location (Distributed)</p>
+          </div>
+          <ul class="architecture-points">
+            <li>Distributed to 300+ edge locations worldwide</li>
+            <li>Computation happens closest to users</li>
+            <li>Request processed and responded to locally</li>
+            <li>Data center fallback for complex operations</li>
+            <li>Examples: Cloudflare, Fastly, AWS CloudFront</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="latency-section">
+      <h2>Latency Impact</h2>
+
+      <p>Latency is the most critical performance metric for modern applications:</p>
+
+      <div class="latency-comparison">
+        <div class="latency-row">
+          <div class="latency-label">
+            <strong>Traditional Cloud</strong>
+            <p>User in Singapore → AWS us-east-1</p>
+          </div>
+          <div class="latency-bar">
+            <div class="latency-value" style="width: 85%;">
+              <span>250-400ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="latency-row">
+          <div class="latency-label">
+            <strong>Edge Computing</strong>
+            <p>User in Singapore → Singapore Edge</p>
+          </div>
+          <div class="latency-bar">
+            <div class="latency-value good" style="width: 15%;">
+              <span>10-50ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="latency-row">
+          <div class="latency-label">
+            <strong>Traditional Cloud</strong>
+            <p>User in London → AWS eu-west-1</p>
+          </div>
+          <div class="latency-bar">
+            <div class="latency-value" style="width: 35%;">
+              <span>80-120ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="latency-row">
+          <div class="latency-label">
+            <strong>Edge Computing</strong>
+            <p>User in London → London Edge</p>
+          </div>
+          <div class="latency-bar">
+            <div class="latency-value good" style="width: 8%;">
+              <span>5-20ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="latency-note">These latencies translate directly to faster page loads, better user experience, and better SEO rankings.</p>
+    </section>
+
+    <section class="cost-section">
+      <h2>Cost Analysis</h2>
+
+      <div class="cost-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Traditional Cloud (AWS Lambda)</th>
+              <th>Edge Computing (Cloudflare)</th>
+              <th>Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Simple API - 1M requests/month</td>
+              <td>$15-30</td>
+              <td>$0.50</td>
+              <td>97% savings</td>
+            </tr>
+            <tr>
+              <td>Static content - 100GB/month</td>
+              <td>$8-12</td>
+              <td>Included free</td>
+              <td>100% savings</td>
+            </tr>
+            <tr>
+              <td>Video delivery - 500GB/month</td>
+              <td>$40-60</td>
+              <td>$20-25</td>
+              <td>50-60% savings</td>
+            </tr>
+            <tr>
+              <td>Database queries - 10M/month</td>
+              <td>$50-100</td>
+              <td>$10-20</td>
+              <td>80% savings</td>
+            </tr>
+            <tr>
+              <td>Complex workload combo</td>
+              <td>$500-1000/month</td>
+              <td>$50-150/month</td>
+              <td>85% savings</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="cost-note">Edge computing's per-request model (not per-server) makes it dramatically cheaper for bursty or variable workloads.</p>
+    </section>
+
+    <section class="use-cases-section">
+      <h2>When to Use Each</h2>
+
+      <div class="use-cases-grid">
+        <div class="use-case-card">
+          <h3>Use Edge Computing When:</h3>
+          <ul>
+            <li>Global audience with varied geography</li>
+            <li>Low latency is critical</li>
+            <li>Workload is unpredictable or spiky</li>
+            <li>API responses are simple/small</li>
+            <li>Cost optimization is important</li>
+            <li>Cold starts are unacceptable</li>
+            <li>You need DDoS protection</li>
+            <li>Request routing based on location</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <h3>Use Traditional Cloud When:</h3>
+          <ul>
+            <li>Heavy computation required</li>
+            <li>Machine learning / GPU workloads</li>
+            <li>Processing large files (GB+)</li>
+            <li>Long-running jobs (minutes/hours)</li>
+            <li>Need access to specialized services</li>
+            <li>Massive parallel processing</li>
+            <li>Complex database transactions</li>
+            <li>Geographic localization required</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hybrid-card">
+        <h3>Hybrid Approach (Recommended)</h3>
+        <p><strong>Best of both worlds:</strong> Use edge for fast, simple operations (API requests, serving cached content, request routing). Use cloud for heavy lifting (processing, ML, complex operations).</p>
+        <pre><code>{`// Edge: Fast API request processing
+@edge
+export async function handleAPI(request) {
+  // Simple validation, routing, caching
+  // ~5ms execution
+}
+
+// Cloud: Heavy processing
+@worker
+export async function processVideo(videoId) {
+  // GPU transcoding, ML inference
+  // Can take minutes
+}`}</code></pre>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2>Feature Comparison</h2>
+
+      <div class="features-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Edge</th>
+              <th>Traditional Cloud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Geographic Distribution</strong></td>
+              <td>300+ locations</td>
+              <td>10-20 regions</td>
+            </tr>
+            <tr>
+              <td><strong>Latency (Average)</strong></td>
+              <td>20-50ms</td>
+              <td>100-400ms</td>
+            </tr>
+            <tr>
+              <td><strong>Cold Start</strong></td>
+              <td>0ms</td>
+              <td>100-500ms</td>
+            </tr>
+            <tr>
+              <td><strong>Max Execution Time</strong></td>
+              <td>30 seconds</td>
+              <td>15 minutes+</td>
+            </tr>
+            <tr>
+              <td><strong>Memory Available</strong></td>
+              <td>128-512 MB</td>
+              <td>128 MB - 10 GB</td>
+            </tr>
+            <tr>
+              <td><strong>Cost (per request)</strong></td>
+              <td>$0.0000002</td>
+              <td>$0.0000002</td>
+            </tr>
+            <tr>
+              <td><strong>Cost (per GB transfer)</strong></td>
+              <td>Included</td>
+              <td>$0.09</td>
+            </tr>
+            <tr>
+              <td><strong>Database Support</strong></td>
+              <td>SQLite, KV</td>
+              <td>PostgreSQL, MySQL, etc.</td>
+            </tr>
+            <tr>
+              <td><strong>File Upload Size</strong></td>
+              <td>100 MB</td>
+              <td>1-2 GB</td>
+            </tr>
+            <tr>
+              <td><strong>DDoS Protection</strong></td>
+              <td>Built-in</td>
+              <td>Add-on service</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="scalability-section">
+      <h2>Scalability</h2>
+
+      <div class="scalability-grid">
+        <div class="scalability-item">
+          <h3>Traditional Cloud Scaling</h3>
+          <p><strong>Vertical:</strong> Add more memory/CPU to a server</p>
+          <p><strong>Horizontal:</strong> Add more server instances</p>
+          <p><strong>Challenge:</strong> Requires load balancing setup, database connections, state management</p>
+          <p><strong>Scale limit:</strong> Typically 10K-100K concurrent connections per region</p>
+        </div>
+
+        <div class="scalability-item">
+          <h3>Edge Scaling</h3>
+          <p><strong>Automatic:</strong> Distributed across 300+ locations automatically</p>
+          <p><strong>Per-location:</strong> Each edge location handles its traffic independently</p>
+          <p><strong>Benefit:</strong> No load balancer configuration needed</p>
+          <p><strong>Scale limit:</strong> Unlimited per-location, millions globally</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="migration-section">
+      <h2>Migration Path</h2>
+
+      <p>Many teams start with traditional cloud, then migrate critical paths to edge:</p>
+
+      <div class="migration-timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-content">
+            <h4>Phase 1: API Layer</h4>
+            <p>Move lightweight APIs (authentication, data fetching) to edge for speed</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-content">
+            <h4>Phase 2: Caching Layer</h4>
+            <p>Use edge caching for database queries and expensive computations</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-content">
+            <h4>Phase 3: Static Content</h4>
+            <p>Serve all static assets (images, CSS, JS) from edge globally</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="timeline-content">
+            <h4>Phase 4: Request Routing</h4>
+            <p>Use edge for intelligent routing before sending to origin</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">5</div>
+          <div class="timeline-content">
+            <h4>Phase 5: Hybrid Architecture</h4>
+            <p>Fully hybrid: Edge handles 95% of traffic, cloud for complex operations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="real-world-section">
+      <h2>Real-World Performance Impact</h2>
+
+      <div class="impact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Traditional Cloud Only</th>
+              <th>Edge + Cloud Hybrid</th>
+              <th>Improvement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P95 Response Time (Asia)</td>
+              <td>450ms</td>
+              <td>80ms</td>
+              <td>82% faster</td>
+            </tr>
+            <tr>
+              <td>Monthly Costs (1M requests)</td>
+              <td>$25</td>
+              <td>$2</td>
+              <td>92% cheaper</td>
+            </tr>
+            <tr>
+              <td>Infrastructure Uptime</td>
+              <td>99.95%</td>
+              <td>99.99%</td>
+              <td>10x more reliable</td>
+            </tr>
+            <tr>
+              <td>DDoS Attack Mitigation Time</td>
+              <td>Minutes</td>
+              <td>Instant</td>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <td>Peak Capacity</td>
+              <td>Provisioned</td>
+              <td>Unlimited</td>
+              <td>Auto-scaling</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="conclusion-section">
+      <h2>The Future is Edge</h2>
+
+      <p>Edge computing is rapidly becoming the standard for new applications. The combination of:</p>
+
+      <ul class="benefits-list">
+        <li>Ultra-low latency</li>
+        <li>Significantly lower costs</li>
+        <li>Automatic global distribution</li>
+        <li>Built-in security</li>
+        <li>Zero cold starts</li>
+      </ul>
+
+      <p>...makes edge computing the obvious choice for most modern applications. When you need heavy computation, cloud handles it seamlessly. The best approach is hybrid: edge for speed, cloud for power.</p>
+
+      <div class="cta-section">
+        <p><strong>Ready to build on edge?</strong></p>
+        <a href="/what-is-edge-computing/" class="cta-link">Learn more about edge computing</a>
+        <a href="/clodo-framework-guide/" class="cta-link">Start with Clodo</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero-section p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0 0.75rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  .architecture-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .architecture-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    background: var(--card-bg, #f9fafb);
+  }
+
+  .architecture-item h3 {
+    margin-top: 0;
+  }
+
+  .diagram {
+    padding: 1.5rem;
+    background: #0b1220;
+    border-radius: 0.25rem;
+    color: #e0e7ff;
+    text-align: center;
+    font-family: monospace;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .architecture-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .architecture-points li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .architecture-points li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .latency-comparison {
+    margin: 2rem 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .latency-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .latency-row:last-child {
+    border-bottom: none;
+  }
+
+  .latency-label {
+    margin: 0;
+  }
+
+  .latency-label strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .latency-label p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .latency-bar {
+    background: var(--card-bg, #f9fafb);
+    border-radius: 0.25rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .latency-value {
+    background: linear-gradient(90deg, #ef4444, #f97316);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .latency-value.good {
+    background: linear-gradient(90deg, #10b981, #059669);
+  }
+
+  .latency-note {
+    font-size: 0.95rem;
+    color: var(--text-muted, #6b7280);
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--card-bg, #f9fafb);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .cost-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .cost-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .cost-table th,
+  .cost-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .cost-table th {
+    background: var(--table-header-bg, #f9fafb);
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+  }
+
+  .cost-table td {
+    color: var(--text-secondary, #475569);
+  }
+
+  .cost-table tr:nth-child(even) {
+    background: var(--table-row-alt-bg, #f9fafb);
+  }
+
+  .cost-note {
+    font-size: 0.95rem;
+    color: var(--text-muted, #6b7280);
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--card-bg, #f9fafb);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+  }
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .use-case-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    background: var(--card-bg, #f9fafb);
+  }
+
+  .use-case-card h3 {
+    margin-top: 0;
+  }
+
+  .use-case-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .use-case-card li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .use-case-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: 600;
+  }
+
+  .hybrid-card {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+    border: 2px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .hybrid-card h3 {
+    margin-top: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .hybrid-card p {
+    margin: 0.75rem 0;
+  }
+
+  .hybrid-card pre {
+    background: #0b1220;
+    color: #e0e7ff;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    margin-top: 1rem;
+  }
+
+  .hybrid-card code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .features-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .features-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .features-table th {
+    background: var(--table-header-bg, #f9fafb);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    color: var(--heading-color, #0f172a);
+  }
+
+  .features-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #475569);
+  }
+
+  .scalability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .scalability-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    background: var(--card-bg, #f9fafb);
+  }
+
+  .scalability-item h3 {
+    margin-top: 0;
+  }
+
+  .scalability-item p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .migration-timeline {
+    margin: 2rem 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 50px;
+    bottom: -50px;
+    width: 2px;
+    background: var(--border-color, #e5e7eb);
+  }
+
+  .timeline-item:last-child::before {
+    display: none;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+  }
+
+  .timeline-content p {
+    margin: 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .impact-table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .impact-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .impact-table th,
+  .impact-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .impact-table th {
+    background: var(--table-header-bg, #f9fafb);
+    font-weight: 600;
+    color: var(--heading-color, #0f172a);
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+  }
+
+  .impact-table td {
+    color: var(--text-secondary, #475569);
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .benefits-list li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  .benefits-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .cta-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .cta-section p {
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+  }
+
+  .cta-link {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color, #1d4ed8);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .cta-link:hover {
+    background: #1e40af;
+  }
+
+  @media (max-width: 768px) {
+    .latency-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .timeline-item {
+      grid-template-columns: 40px 1fr;
+      gap: 1rem;
+    }
+
+    .timeline-item::before {
+      left: 19px;
+    }
+
+    .timeline-marker {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .hero-section h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
