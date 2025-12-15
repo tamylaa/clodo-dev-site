@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Cloudflare Workers Tutorial for Beginners';
+const description = 'Learn Cloudflare Workers step-by-step. Build and deploy your first serverless API with code examples.';
+
+const post = {
+  slug: 'cloudflare-workers-tutorial-beginners',
+  title: 'Cloudflare Workers Tutorial for Beginners',
+  subtitle: 'Build Your First Serverless API in 10 Minutes',
+  category: 'Tutorial',
+  publishedDate: '2024-11-25',
+  readingTime: 12,
+  tags: ['cloudflare-workers', 'tutorial', 'serverless'],
+  author: 'Sarah Chen',
+  content: `
+    <h2>Getting Started with Cloudflare Workers</h2>
+    <p>Cloudflare Workers allow you to run JavaScript at the edge, right on Cloudflare's global network. In this tutorial, we'll build your first serverless API in just 10 minutes.</p>
+    
+    <h3>Prerequisites</h3>
+    <ul>
+      <li>A Cloudflare account (free tier is fine)</li>
+      <li>Node.js installed on your machine</li>
+      <li>Basic JavaScript knowledge</li>
+    </ul>
+    
+    <h3>Step 1: Install Wrangler</h3>
+    <p>Wrangler is the CLI tool for developing Cloudflare Workers locally.</p>
+    
+    <h3>Step 2: Create Your First Worker</h3>
+    <p>Follow these steps to create and deploy your first serverless function...</p>
+  `
+};
+
+const publishedDate = new Date(post.publishedDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <nav class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li>{post.title}</li>
+    </ol>
+  </nav>
+
+  <main class="blog-post-container">
+    <article class="blog-post">
+      <header class="post-header">
+        <div class="container">
+          <h1>{post.title}</h1>
+          <p class="subtitle">{post.subtitle}</p>
+
+          <div class="post-meta">
+            <span class="category">{post.category}</span>
+            <time datetime={post.publishedDate}>{publishedDate}</time>
+            <span class="reading-time">{post.readingTime} min read</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="post-content">
+        <div class="container">
+          <div class="tags">
+            {post.tags.map((tag) => (
+              <a href={`/blog/?tag=${tag}`} class="tag">
+                #{tag}
+              </a>
+            ))}
+          </div>
+
+          <div class="content" set:html={post.content} />
+
+          <div class="post-footer">
+            <a href="/blog/" class="btn btn-secondary">← Back to Blog</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .blog-post-container {
+    padding: 2rem 0;
+  }
+
+  .post-header {
+    background: linear-gradient(135deg, rgba(11, 18, 32, 0.9) 0%, rgba(20, 30, 50, 0.95) 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .post-header h1 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 1rem 0;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .post-meta span,
+  .post-meta time {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .post-content {
+    padding: 2rem 0;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-accent, #007bff);
+    color: white;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+
+  .tag:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 2rem 0;
+  }
+
+  .content h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .content h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+
+  .content p {
+    margin: 1rem 0;
+  }
+
+  .content ul,
+  .content ol {
+    margin: 1rem 0 1rem 2rem;
+  }
+
+  .content li {
+    margin: 0.5rem 0;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+  }
+
+  .btn-secondary:hover {
+    background: #e0e0e0;
+  }
+</style>

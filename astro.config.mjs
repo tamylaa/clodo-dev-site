@@ -3,8 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import node from '@astrojs/node';
 
 export default defineConfig({
-  // Output format
-  output: 'static', // Can be changed to 'hybrid' if you need server-side rendering later
+  // Output format - static site generation
+  output: 'static',
   outDir: './dist-astro', // Separate output from current build
   
   // Base URL for deployment
