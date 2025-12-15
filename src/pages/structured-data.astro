@@ -1,0 +1,555 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Structured Data and SEO Optimization";
+const description = "Implement structured data to improve SEO. Guide to JSON-LD, microdata, and rich snippets for Clodo applications.";
+---
+
+<BaseLayout title={title} description={description}>
+  <nav class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs/">Docs</a></li>
+      <li>Structured Data</li>
+    </ol>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Structured Data and SEO</h1>
+      <p>Implement structured data to improve search engine visibility and rich snippets.</p>
+    </div>
+  </section>
+
+  <main class="content">
+    <section>
+      <h2>Why Structured Data Matters</h2>
+      <p>Structured data helps search engines understand your content better. This leads to:</p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <strong>Rich Snippets</strong>
+          <p>Enhanced search results with ratings, prices, availability</p>
+        </div>
+        <div class="benefit">
+          <strong>Better Rankings</strong>
+          <p>Search engines favor content with proper schema markup</p>
+        </div>
+        <div class="benefit">
+          <strong>Knowledge Graph</strong>
+          <p>Your content may appear in knowledge panels and carousels</p>
+        </div>
+        <div class="benefit">
+          <strong>Voice Search</strong>
+          <p>Structured data helps voice assistants understand your content</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Schema Vocabulary Types</h2>
+
+      <p>Standard vocabularies for structured data. Common types include:</p>
+
+      <div class="schema-types">
+        <div class="schema-type">
+          <h3>Organization</h3>
+          <p>Information about your company or organization</p>
+          <ul>
+            <li>Company name</li>
+            <li>Logo URL</li>
+            <li>Website URL</li>
+            <li>Contact information</li>
+          </ul>
+        </div>
+
+        <div class="schema-type">
+          <h3>Article</h3>
+          <p>Blog posts, news articles, and editorial content</p>
+          <ul>
+            <li>Headline</li>
+            <li>Author name</li>
+            <li>Date published</li>
+            <li>Featured image</li>
+          </ul>
+        </div>
+
+        <div class="schema-type">
+          <h3>Product</h3>
+          <p>Products for sale with pricing and reviews</p>
+          <ul>
+            <li>Product name</li>
+            <li>Price</li>
+            <li>Customer rating</li>
+            <li>Stock availability</li>
+          </ul>
+        </div>
+
+        <div class="schema-type">
+          <h3>Event</h3>
+          <p>Upcoming events with dates and locations</p>
+          <ul>
+            <li>Event name</li>
+            <li>Start date</li>
+            <li>Location</li>
+            <li>Description</li>
+          </ul>
+        </div>
+
+        <div class="schema-type">
+          <h3>LocalBusiness</h3>
+          <p>Physical business locations</p>
+          <ul>
+            <li>Business name</li>
+            <li>Street address</li>
+            <li>Phone number</li>
+            <li>Opening hours</li>
+          </ul>
+        </div>
+
+        <div class="schema-type">
+          <h3>BreadcrumbList</h3>
+          <p>Navigation breadcrumbs on pages</p>
+          <ul>
+            <li>List items</li>
+            <li>Position numbers</li>
+            <li>Item names</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Implementation Formats</h2>
+
+      <h3>JSON-LD Format</h3>
+      <p>JSON-LD is the recommended format for structured data. It is separate from HTML and easy to manage.</p>
+
+      <div class="format-card">
+        <strong>Advantages:</strong>
+        <ul class="adv-list">
+          <li>Separate from HTML markup</li>
+          <li>Easy to maintain and update</li>
+          <li>Recommended by Google</li>
+          <li>Works with JavaScript</li>
+          <li>Can be dynamic</li>
+        </ul>
+      </div>
+
+      <h3>Microdata Format</h3>
+      <p>Microdata integrates directly into your HTML markup using attributes.</p>
+
+      <div class="format-card">
+        <strong>Advantages:</strong>
+        <ul class="adv-list">
+          <li>Integrates with HTML</li>
+          <li>Visible structure</li>
+          <li>Single source of truth</li>
+          <li>Less overhead</li>
+          <li>Semantic markup</li>
+        </ul>
+      </div>
+
+      <h3>RDFa Format</h3>
+      <p>Resource Description Framework in Attributes. Less commonly used but powerful.</p>
+
+      <div class="format-card">
+        <strong>Advantages:</strong>
+        <ul class="adv-list">
+          <li>RDF-based standard</li>
+          <li>More flexible</li>
+          <li>Linked data support</li>
+          <li>Semantic web ready</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Testing and Validation</h2>
+
+      <p>Use these tools to test your structured data implementation:</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>Google Rich Results Test</h3>
+          <p>Test how Google renders your page with structured data. Shows errors and warnings.</p>
+          <p><strong>URL:</strong> search.google.com/test/rich-results</p>
+        </div>
+
+        <div class="tool">
+          <h3>Schema Validation</h3>
+          <p>Validate JSON-LD syntax and schema completeness according to standards.</p>
+          <p><strong>URL:</strong> validator.schema.org</p>
+        </div>
+
+        <div class="tool">
+          <h3>Bing Webmaster Tools</h3>
+          <p>Test structured data for Bing search results and preview rendering.</p>
+          <p><strong>URL:</strong> bing.com/webmaster</p>
+        </div>
+
+        <div class="tool">
+          <h3>Mobile Friendly Test</h3>
+          <p>Test how your structured data appears on mobile devices.</p>
+          <p><strong>URL:</strong> search.google.com/test/mobile-friendly</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>SEO Best Practices</h2>
+
+      <div class="practices">
+        <div class="practice">
+          <h3>Use Accurate Data</h3>
+          <p>Structured data should match your visible content. Errors hurt rankings.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Keep It Updated</h3>
+          <p>Update dates, prices, and availability in real-time. Stale data is worse than no data.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Match Your Content</h3>
+          <p>Do not add schema for content that is not visible to users. Search engines will penalize this.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Use Correct Types</h3>
+          <p>Choose the most specific schema type. Product is more specific than Thing.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Include Images</h3>
+          <p>Schema types that include images get better rich snippets and CTR improvements.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Validate Regularly</h3>
+          <p>Use Google Search Console to monitor structured data errors and issues.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Common Mistakes</h2>
+
+      <div class="mistakes">
+        <div class="mistake">
+          <h3>Incorrect Property Names</h3>
+          <p>Property names are case-sensitive. Use correct camelCase formatting.</p>
+        </div>
+
+        <div class="mistake">
+          <h3>Missing Required Properties</h3>
+          <p>Some schema types require specific properties. Check docs for requirements.</p>
+        </div>
+
+        <div class="mistake">
+          <h3>Wrong Data Types</h3>
+          <p>Dates should be ISO 8601 format (2024-01-15), not natural language.</p>
+        </div>
+
+        <div class="mistake">
+          <h3>Mixing Formats</h3>
+          <p>Use either JSON-LD or Microdata, not both formats on the same page.</p>
+        </div>
+
+        <div class="mistake">
+          <h3>Duplicate Schema</h3>
+          <p>Do not add the same schema twice. It confuses search engines.</p>
+        </div>
+
+        <div class="mistake">
+          <h3>Hidden Schema</h3>
+          <p>Never hide schema in display none or white text. Search engines will penalize this.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Measuring Impact</h2>
+
+      <p>Monitor these metrics to measure schema effectiveness:</p>
+
+      <ul class="metrics-list">
+        <li>Click-through rate (CTR) from search results</li>
+        <li>Average position in search results</li>
+        <li>Rich result appearances</li>
+        <li>Knowledge Graph inclusions</li>
+        <li>Voice search queries</li>
+        <li>Organic traffic growth</li>
+      </ul>
+
+      <p>Track these metrics in Google Search Console over time to see improvements.</p>
+    </section>
+
+    <section>
+      <h2>Learn More</h2>
+      <ul class="links">
+        <li><a href="https://schema.org/">Schema.org Official Documentation</a></li>
+        <li><a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">Google Structured Data Guide</a></li>
+        <li><a href="/docs/">Clodo Documentation</a></li>
+        <li><a href="/examples/">Real-world Examples</a></li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .benefit {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .benefit strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .schema-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .schema-type {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .schema-type h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .format-card {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .adv-list {
+    margin: 1rem 0 0 0;
+  }
+
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .tool {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .tool h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .practice {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .practice h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .practice p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  .mistakes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .mistake {
+    padding: 1.5rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 0.5rem;
+  }
+
+  .mistake h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+    color: #dc2626;
+  }
+
+  .mistake p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  .metrics-list {
+    margin: 1rem 0;
+  }
+
+  .links {
+    margin: 1rem 0;
+  }
+
+  .links a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .schema-types {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,709 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Testing and Module Debugging";
+const description = "Comprehensive guide to testing Clodo modules and applications. Unit testing, integration testing, debugging strategies, and best practices.";
+---
+
+<BaseLayout title={title} description={description}>
+  <nav class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs/">Docs</a></li>
+      <li>Testing and Debugging</li>
+    </ol>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Testing and Module Debugging</h1>
+      <p>Build reliable Clodo applications with comprehensive testing and effective debugging strategies.</p>
+    </div>
+  </section>
+
+  <main class="content">
+    <section>
+      <h2>Testing Strategy Overview</h2>
+      <p>A solid testing approach ensures your Clodo applications are reliable and maintainable.</p>
+
+      <div class="testing-pyramid">
+        <div class="pyramid-level">
+          <h3>Unit Tests</h3>
+          <p>Test individual functions and modules in isolation. The foundation of your test suite.</p>
+          <ul class="level-items">
+            <li>Test single functions</li>
+            <li>Mock external dependencies</li>
+            <li>Fast execution</li>
+            <li>High coverage target</li>
+          </ul>
+        </div>
+
+        <div class="pyramid-level">
+          <h3>Integration Tests</h3>
+          <p>Test how modules work together. Verify module interactions and data flow.</p>
+          <ul class="level-items">
+            <li>Test multiple modules</li>
+            <li>Test database interactions</li>
+            <li>Test API endpoints</li>
+            <li>Medium execution time</li>
+          </ul>
+        </div>
+
+        <div class="pyramid-level">
+          <h3>End-to-End Tests</h3>
+          <p>Test complete user workflows. Verify entire application behavior.</p>
+          <ul class="level-items">
+            <li>Test full workflows</li>
+            <li>Test UI interactions</li>
+            <li>Simulate real usage</li>
+            <li>Slower execution</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Unit Testing</h2>
+
+      <h3>Test Framework Setup</h3>
+      <p>Popular testing frameworks for Clodo applications:</p>
+
+      <div class="frameworks">
+        <div class="framework">
+          <h4>Vitest</h4>
+          <p>Fast unit testing framework with great TypeScript support and Watch mode</p>
+          <ul>
+            <li>Instant feedback</li>
+            <li>TypeScript built-in</li>
+            <li>ESM support</li>
+          </ul>
+        </div>
+
+        <div class="framework">
+          <h4>Jest</h4>
+          <p>Popular testing framework with built-in coverage reporting and assertions</p>
+          <ul>
+            <li>Rich features</li>
+            <li>Coverage reports</li>
+            <li>Large ecosystem</li>
+          </ul>
+        </div>
+
+        <div class="framework">
+          <h4>Mocha</h4>
+          <p>Flexible testing framework that works well with various assertion libraries</p>
+          <ul>
+            <li>Flexible setup</li>
+            <li>Simple syntax</li>
+            <li>Good for custom configs</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Writing Effective Unit Tests</h3>
+      <p>Structure your tests for clarity and maintainability:</p>
+
+      <div class="testing-tips">
+        <div class="tip">
+          <h4>Use Descriptive Names</h4>
+          <p>Test names should clearly describe what is being tested and the expected result.</p>
+        </div>
+
+        <div class="tip">
+          <h4>Arrange-Act-Assert Pattern</h4>
+          <p>Organize tests with setup, action, and verification steps for clarity.</p>
+        </div>
+
+        <div class="tip">
+          <h4>Test One Thing</h4>
+          <p>Each test should verify a single behavior. Avoid testing multiple concerns in one test.</p>
+        </div>
+
+        <div class="tip">
+          <h4>Mock External Dependencies</h4>
+          <p>Mock external services, databases, and APIs to isolate unit tests.</p>
+        </div>
+
+        <div class="tip">
+          <h4>Use Test Fixtures</h4>
+          <p>Create reusable test data and setup to reduce duplication and improve maintainability.</p>
+        </div>
+
+        <div class="tip">
+          <h4>Test Edge Cases</h4>
+          <p>Include tests for boundary conditions, empty inputs, and error scenarios.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Integration Testing</h2>
+
+      <p>Test how your modules interact with each other and external systems.</p>
+
+      <h3>Database Integration Tests</h3>
+      <p>Test database operations with your Clodo modules:</p>
+
+      <div class="db-testing">
+        <div class="db-step">
+          <h4>Test Database Setup</h4>
+          <p>Create isolated test databases for each test run or use test containers.</p>
+        </div>
+
+        <div class="db-step">
+          <h4>Seed Test Data</h4>
+          <p>Populate test databases with known data before running tests.</p>
+        </div>
+
+        <div class="db-step">
+          <h4>Transaction Rollback</h4>
+          <p>Wrap tests in transactions and rollback to keep tests isolated.</p>
+        </div>
+
+        <div class="db-step">
+          <h4>Verify Data Changes</h4>
+          <p>Assert that database state matches expectations after operations.</p>
+        </div>
+      </div>
+
+      <h3>API Integration Tests</h3>
+      <p>Test your Clodo API endpoints with integration tests:</p>
+
+      <ul class="api-tests">
+        <li>Test request and response formats</li>
+        <li>Test HTTP status codes</li>
+        <li>Test error handling and error messages</li>
+        <li>Test authentication and authorization</li>
+        <li>Test rate limiting and throttling</li>
+        <li>Test concurrent requests</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Debugging Strategies</h2>
+
+      <h3>Console Logging</h3>
+      <p>Use structured logging for effective debugging:</p>
+
+      <div class="logging-levels">
+        <div class="level">
+          <h4>Log Level: DEBUG</h4>
+          <p>Detailed diagnostic information for development</p>
+        </div>
+        <div class="level">
+          <h4>Log Level: INFO</h4>
+          <p>General information about application flow</p>
+        </div>
+        <div class="level">
+          <h4>Log Level: WARN</h4>
+          <p>Warning messages for potentially problematic situations</p>
+        </div>
+        <div class="level">
+          <h4>Log Level: ERROR</h4>
+          <p>Error messages for failures and exceptions</p>
+        </div>
+      </div>
+
+      <h3>Debugger Breakpoints</h3>
+      <p>Use built-in debugging tools in Node.js and browsers:</p>
+
+      <ul class="debug-tools">
+        <li>Node.js Inspector with Chrome DevTools</li>
+        <li>VS Code debugger with launch configurations</li>
+        <li>Browser DevTools for frontend debugging</li>
+        <li>Source maps for debugging transpiled code</li>
+      </ul>
+
+      <h3>Error Stack Traces</h3>
+      <p>Understand error stack traces to pinpoint issues:</p>
+
+      <div class="stack-trace">
+        <h4>Reading Stack Traces</h4>
+        <p>Stack traces show the call sequence leading to an error. Read from top to bottom to find where the error originated.</p>
+
+        <ul>
+          <li>Top line shows the error type and message</li>
+          <li>Following lines show the call stack</li>
+          <li>Your code appears first in the stack</li>
+          <li>Library code appears lower in the stack</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Testing Best Practices</h2>
+
+      <div class="best-practices">
+        <div class="practice">
+          <h3>Test Coverage Goals</h3>
+          <p>Aim for 80% code coverage. Focus on critical paths rather than 100% coverage.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Keep Tests Fast</h3>
+          <p>Fast tests encourage running them frequently. Slow tests discourage testing.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Run Tests Before Commit</h3>
+          <p>Use pre-commit hooks to ensure tests pass before code is committed.</p>
+        </div>
+
+        <div class="practice">
+          <h3>CI/CD Pipeline</h3>
+          <p>Automate test running in CI/CD to catch failures early.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Test Performance</h3>
+          <p>Monitor test execution time and optimize slow tests.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Maintain Tests</h3>
+          <p>Tests are code. Refactor and maintain tests like production code.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Document Test Purpose</h3>
+          <p>Clear comments explain why a test exists and what it verifies.</p>
+        </div>
+
+        <div class="practice">
+          <h3>Test Real Scenarios</h3>
+          <p>Write tests based on real-world use cases and user workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Common Testing Issues</h2>
+
+      <div class="issues">
+        <div class="issue">
+          <h3>Flaky Tests</h3>
+          <p>Tests that fail intermittently. Often caused by timing, randomness, or external dependencies.</p>
+          <p><strong>Solution:</strong> Use explicit waits, mock time, and isolate from external systems.</p>
+        </div>
+
+        <div class="issue">
+          <h3>Slow Test Suite</h3>
+          <p>Tests take too long to run. Discourages running tests frequently.</p>
+          <p><strong>Solution:</strong> Parallelize tests, reduce database queries, use in-memory databases.</p>
+        </div>
+
+        <div class="issue">
+          <h3>Test Interdependencies</h3>
+          <p>Tests depend on execution order or shared state. Causes failures when run individually.</p>
+          <p><strong>Solution:</strong> Tests should be independent with isolated setup and teardown.</p>
+        </div>
+
+        <div class="issue">
+          <h3>Hard to Debug Tests</h3>
+          <p>Test failures are cryptic and hard to understand. Need better error messages.</p>
+          <p><strong>Solution:</strong> Use clear test names, descriptive assertions, and good logging.</p>
+        </div>
+
+        <div class="issue">
+          <h3>Coverage Gaps</h3>
+          <p>Critical code paths not tested. Coverage reports show high percentage but tests miss important scenarios.</p>
+          <p><strong>Solution:</strong> Test real workflows, not just code lines. Review failures carefully.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Performance Testing</h2>
+
+      <p>Monitor and optimize your Clodo application performance:</p>
+
+      <div class="performance-metrics">
+        <div class="metric">
+          <h3>Response Time</h3>
+          <p>Measure how long requests take to complete. Target sub-second responses.</p>
+        </div>
+
+        <div class="metric">
+          <h3>Throughput</h3>
+          <p>Measure requests per second your application can handle.</p>
+        </div>
+
+        <div class="metric">
+          <h3>Memory Usage</h3>
+          <p>Monitor memory consumption. Watch for memory leaks in long-running processes.</p>
+        </div>
+
+        <div class="metric">
+          <h3>CPU Usage</h3>
+          <p>Monitor CPU consumption. Identify CPU-intensive operations.</p>
+        </div>
+
+        <div class="metric">
+          <h3>Database Queries</h3>
+          <p>Monitor query count and execution time. Optimize N+1 query problems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Continuous Integration</h2>
+
+      <p>Automate testing in your CI/CD pipeline for reliability:</p>
+
+      <ul class="ci-practices">
+        <li>Run tests on every commit</li>
+        <li>Test across multiple Node versions</li>
+        <li>Generate coverage reports</li>
+        <li>Fail builds on coverage drops</li>
+        <li>Run linting and formatting checks</li>
+        <li>Test against multiple databases</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Resources and Tools</h2>
+
+      <ul class="resources">
+        <li><a href="https://vitest.dev/">Vitest Documentation</a></li>
+        <li><a href="https://jestjs.io/">Jest Documentation</a></li>
+        <li><a href="https://mochajs.org/">Mocha Documentation</a></li>
+        <li><a href="https://nodejs.org/en/docs/guides/debugging-getting-started/">Node.js Debugging Guide</a></li>
+        <li><a href="/docs/">Clodo Documentation</a></li>
+        <li><a href="/examples/">Clodo Examples</a></li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  p {
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #475569);
+  }
+
+  li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .testing-pyramid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .pyramid-level {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .pyramid-level h3 {
+    margin-top: 0;
+  }
+
+  .level-items {
+    margin: 1rem 0 0 0;
+  }
+
+  .frameworks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .framework {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .framework h4 {
+    margin-top: 0;
+  }
+
+  .framework ul {
+    margin: 1rem 0 0 0;
+  }
+
+  .testing-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .tip {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .tip h4 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .db-testing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .db-step {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .db-step h4 {
+    margin-top: 0;
+  }
+
+  .api-tests {
+    margin: 1rem 0;
+  }
+
+  .logging-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .level {
+    padding: 1rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .level h4 {
+    margin-top: 0;
+  }
+
+  .debug-tools {
+    margin: 1rem 0;
+  }
+
+  .stack-trace {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .stack-trace h4 {
+    margin-top: 0;
+  }
+
+  .best-practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .practice {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .practice h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .practice p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+  }
+
+  .issues {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .issue {
+    padding: 1.5rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 0.5rem;
+  }
+
+  .issue h3 {
+    margin-top: 0;
+    color: #dc2626;
+  }
+
+  .performance-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .metric {
+    padding: 1.5rem;
+    background: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .metric h3 {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+  .ci-practices {
+    margin: 1rem 0;
+  }
+
+  .resources {
+    margin: 1rem 0;
+  }
+
+  .resources a {
+    color: var(--primary-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .resources a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .testing-pyramid {
+      grid-template-columns: 1fr;
+    }
+
+    .frameworks {
+      grid-template-columns: 1fr;
+    }
+
+    .testing-tips {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
