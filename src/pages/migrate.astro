@@ -7,11 +7,307 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Migration Guide"
   description="Migrate your applications to Clodo Framework"
 >
-  <section class="migrate">
-    <h1>Migration Guide</h1>
-    <p>Step-by-step guide to migrate your applications</p>
-    
-    <!-- Your migration content -->
-    
-  </section>
+  <main id="main-content">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">Migrate</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Migrate to Cloudflare</h1>
+          <p>Automate your move from Vercel and Railway to Cloudflare Pages & Workers with Clodo’s mapping, scaffolding, and validation toolkit.</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">View the Framework</a>
+            <a class="btn btn--secondary" href="mailto:hello@clodo.dev">Talk to Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="On-page navigation">
+      <div class="container">
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title">On this page</h2>
+          <ul role="list">
+            <li><a href="#supported">Supported sources and targets</a></li>
+            <li><a href="#flow">Migration flow</a></li>
+            <li><a href="#mapping-config">Config mapping</a></li>
+            <li><a href="#mapping-framework">Framework mapping</a></li>
+            <li><a href="#mapping-services">Services mapping</a></li>
+            <li><a href="#runtime">Runtime & polyfills</a></li>
+            <li><a href="#images">Images & optimization</a></li>
+            <li><a href="#caching">Caching strategy</a></li>
+            <li><a href="#env-secrets">Environment & secrets</a></li>
+            <li><a href="#observability">Observability</a></li>
+            <li><a href="#parity">Sample parity report</a></li>
+            <li><a href="#validation">Validation & tests</a></li>
+            <li><a href="#data">Data migration helpers</a></li>
+            <li><a href="#edge-cases">Known edge cases</a></li>
+            <li><a href="#rollout">Rollout strategy</a></li>
+            <li><a href="#capability-architecture">Capability architecture</a></li>
+            <li><a href="#railway">Railway → Cloudflare</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>What gets migrated</h2>
+        <ul class="feature-list">
+          <li>Config: vercel.json/railway configs → wrangler.toml, routes, headers</li>
+          <li>Framework: Next.js Pages/App Router → Pages + Next plugin or Workers</li>
+          <li>Services: KV/Blob/Cron/Edge Config/Postgres → KV/R2/Cron/KV+DO/PG or D1</li>
+          <li>Env & Secrets: exported, namespaced, and imported as Cloudflare secrets</li>
+          <li>Data: KV copy and Blob sync tools with checksums</li>
+          <li>Validation: route parity, SSR smoke tests, cache correctness</li>
+        </ul>
+
+        <h2>How it works</h2>
+        <ol class="feature-list">
+          <li>Analyze your project and detect frameworks/services</li>
+          <li>Generate Cloudflare artifacts and bindings</li>
+          <li>Run data sync (optional) and deploy a preview</li>
+          <li>Review parity report and finalize cutover</li>
+        </ol>
+
+        <p>Below is a compact version of our migration playbook and capability model directly on this page.</p>
+
+        <hr>
+
+        <h2 id="supported">Supported sources and targets</h2>
+        <div class="two-col">
+          <div>
+            <h3>Sources (now and next)</h3>
+            <ul>
+              <li><strong>Vercel</strong>: Next.js (App/Pages), KV, Blob, Edge Config, Cron, Postgres</li>
+              <li><strong>Railway</strong>: Services (web/worker), PG/Redis, variables, domains</li>
+              <li><strong>Netlify</strong> (roadmap): redirects, functions, edge middleware, envs</li>
+              <li><strong>Render</strong> (roadmap): services, cron, disk flags</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Targets</h3>
+            <ul>
+              <li><strong>Cloudflare Pages</strong>: Next.js plugin, functions/, headers.json, _routes.json</li>
+              <li><strong>Cloudflare Workers</strong>: Hono/itty router, Durable Objects, KV/R2/D1 bindings</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 id="flow">Migration flow (CLI UX)</h2>
+        <ol>
+          <li>Detect framework, middleware, routes, and services (vercel.json, next.config.js, package.json, env)</li>
+          <li>Map services <em>(KV → KV, Blob → R2, Edge Config → KV/DO, Cron → Triggers, PG → external PG or D1)</em></li>
+          <li>Generate artifacts <em>(wrangler.toml, _routes.json, headers.json, functions/, bindings)</em></li>
+          <li>Produce a parity report with warnings and remediation steps</li>
+          <li>Optionally provision resources, run preview deploy, smoke tests, and ship</li>
+        </ol>
+
+        <h2 id="mapping-config">Config mapping</h2>
+        <ul>
+          <li><strong>vercel.json → wrangler.toml</strong>: routes/rewrites/redirects to Pages/Workers routing or _routes.json; headers to headers.json or Workers handlers; env to [vars] + secrets</li>
+          <li><strong>next.config.js</strong>: images domains → Cloudflare Images/static fallback; experimental flags warned if unsupported</li>
+        </ul>
+
+        <h2 id="mapping-framework">Framework mapping (Next.js)</h2>
+        <ul>
+          <li><strong>Pages Router</strong>: use Pages + Next plugin with minimal changes</li>
+          <li><strong>App Router</strong>: supported for many cases; warn on Node-only APIs in Server Actions</li>
+          <li><strong>Middleware</strong>: map to Pages/Workers middleware equivalents; validate edge-runtime compatibility</li>
+          <li><strong>ISR/SSG</strong>: revalidate via cache + Workers route or Pages functions; fallback SSG at build, dynamic via SSR</li>
+          <li><strong>API Routes</strong>: map to Pages Functions or Workers routes</li>
+        </ul>
+
+        <h2 id="mapping-services">Services mapping</h2>
+        <ul>
+          <li><strong>Vercel KV → Cloudflare KV</strong>: namespace mapping, TTL semantics, size limits, eventual consistency notes</li>
+          <li><strong>Vercel Blob → Cloudflare R2</strong>: public/private buckets, signed URLs, migration script with checksum</li>
+          <li><strong>Edge Config → KV/DO</strong>: hierarchical config with per-environment overrides</li>
+          <li><strong>Cron → Cloudflare Cron</strong>: schedule translation, prefixed names</li>
+          <li><strong>Postgres</strong>: keep external PG (e.g., Neon) via HTTP/Prisma for parity, or migrate to D1 where constraints fit</li>
+        </ul>
+
+        <h2 id="runtime">Runtime and polyfills</h2>
+        <ul>
+          <li>Workers runtime lacks Node built-ins (fs, net, tls, some Buffer APIs)</li>
+          <li>Auto-detect Node usage; suggest polyfills or alternatives</li>
+          <li>Flag native/binary deps early; isolate via HTTP or replace with Cloudflare primitives</li>
+        </ul>
+
+        <h2 id="images">Images and optimization</h2>
+        <ul>
+          <li>Next/Image optimizer → Cloudflare Images or static generation</li>
+          <li>Pages: use CF Images loader; Workers: route to Images API</li>
+          <li>Document cache-control differences and transform limitations</li>
+        </ul>
+
+        <h2 id="caching">Caching strategy</h2>
+        <ul>
+          <li>CDN defaults vs application-level strategies</li>
+          <li>Utilities: cacheByRoute, cacheByHeader, tag revalidation</li>
+          <li>KV-backed tag invalidation for SSR where needed</li>
+        </ul>
+
+        <h2 id="env-secrets">Environment & secrets</h2>
+        <ul>
+          <li>Export Vercel env; import to Cloudflare via wrangler secrets with namespacing</li>
+          <li>Map branch-based envs to CF environments (production, preview, dev)</li>
+        </ul>
+
+        <h2 id="observability">Observability</h2>
+        <ul>
+          <li>Replace Vercel Analytics with Cloudflare Analytics/Logs + Sentry/Logflare</li>
+          <li>Request logging middleware, error boundaries, edge traces</li>
+        </ul>
+
+        <h2 id="parity">Sample parity report</h2>
+        <pre><code>Summary: 84% auto-mapped, 6 warnings, 2 blockers
+Routes: 51 pages mapped, 3 rewrites migrated, 1 custom header manual
+Middleware: migrated (matcher adjusted)
+Services: KV→KV done; Blob→R2 pending data copy
+Runtime: node:crypto.randomUUID → use global crypto
+Images: Next/Image → CF Images (update loader)
+Action items: listed with code pointers</code></pre>
+
+        <h2 id="validation">Validation & tests</h2>
+        <ul>
+          <li>Route snapshot tests: pre/post responses for key paths</li>
+          <li>SSR smoke tests: HTML markers, status codes, critical cookies</li>
+          <li>Edge function tests: middleware contracts, headers, redirects</li>
+        </ul>
+
+        <h2 id="data">Data migration helpers</h2>
+        <ul>
+          <li>KV copy (Vercel KV → CF KV) with concurrency + retry/backoff</li>
+          <li>Blob sync (Vercel Blob → R2) with checksum verification</li>
+          <li>DB export/import adapters for PG/D1; quota-aware, prepared statements</li>
+        </ul>
+
+        <h2 id="edge-cases">Known edge cases</h2>
+        <ul>
+          <li>Node native modules or binary dependencies (e.g., sharp without CF Images)</li>
+          <li>ISR patterns relying on FS cache; replace with KV/DO strategies</li>
+          <li>On-demand revalidation with custom auth paths</li>
+          <li>WebSockets beyond DO constraints; pivot to DO rooms/Queues</li>
+        </ul>
+
+        <h2 id="rollout">Rollout strategy</h2>
+        <ul>
+          <li>Preview env dry run → compare metrics/errors</li>
+          <li>Canary by domain or route path</li>
+          <li>Clear rollback: DNS switchback, feature flag off</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="capability-architecture">Capability architecture</h2>
+        <p>A platform-agnostic importer powering Vercel/Railway/Netlify/Render migrations to Cloudflare.</p>
+        <h3>Objectives</h3>
+        <ul>
+          <li>Decouple sources via adapters; shared domain model</li>
+          <li>Rule-driven, testable transformations</li>
+          <li>Multiple targets (Pages, Workers) with consistent orchestration</li>
+        </ul>
+
+        <h3>Core capabilities</h3>
+        <ol>
+          <li><strong>Detection & discovery</strong>: identify platform, build project graph</li>
+          <li><strong>Parsers & domain model</strong>: App, Route, Service, Policy</li>
+          <li><strong>Mapping library</strong>: rules and severities (auto/manual/blocker)</li>
+          <li><strong>Transformers</strong>: config, code (codemods), env/secret mappers</li>
+          <li><strong>Generators</strong>: Pages/Workers structures, wrangler.toml bindings</li>
+          <li><strong>Orchestration</strong>: provision with safeguards, env alignment</li>
+          <li><strong>Validation</strong>: parity, SSR snapshots, performance checks</li>
+          <li><strong>Data tools</strong>: KV/Blob/DB migration pipelines</li>
+          <li><strong>Reporting</strong>: migration report with risk and effort</li>
+          <li><strong>Extensibility</strong>: source/target adapters, rule packs</li>
+        </ol>
+
+        <h3>Key interfaces</h3>
+        <ul>
+          <li><strong>ISourceAdapter</strong>: detect, parse, extract</li>
+          <li><strong>ITargetAdapter</strong>: plan, generate, provision, deploy</li>
+          <li><strong>Rule</strong>: applies(model) → transform(model)</li>
+          <li><strong>ParityReport</strong>: coverage %, auto/manual, blockers, risk</li>
+        </ul>
+
+        <h3>Security & delivery</h3>
+        <ul>
+          <li>Secrets never stored in plaintext; OS keychain/CF secrets API</li>
+          <li>PII redaction (opt-in) and audit logs for provisioning</li>
+          <li>Delivery: OSS CLI core + commercial rule packs/support</li>
+        </ul>
+
+        <h3>Example end-to-end (Vercel → Pages)</h3>
+        <ol>
+          <li>Detect Next.js; parse vercel.json; extract rewrites/headers</li>
+          <li>Apply rules: KV→KV, Blob→R2, Edge Config→KV</li>
+          <li>Generate: wrangler.toml, _routes.json, functions/api/*, Next plugin config</li>
+          <li>Provision KV/R2/D1; map env; optional seed</li>
+          <li>Validate smoke tests; produce parity report; deploy preview</li>
+        </ol>
+
+        <hr>
+
+        <h2 id="railway">Railway → Cloudflare notes</h2>
+        <h3>Concepts mapping</h3>
+        <ul>
+          <li>Services (web/worker) → Pages or Workers</li>
+          <li>Variables → wrangler.toml [vars] + secrets; env scoping mapped</li>
+          <li>Domains → Cloudflare DNS/Pages custom domains</li>
+          <li>Postgres → keep external PG or migrate to D1 (where feasible)</li>
+          <li>Redis → KV/DO-based cache patterns</li>
+          <li>Cron → Cloudflare Cron Triggers</li>
+          <li>Persistent Disk → use R2 or external storage</li>
+        </ul>
+
+        <h3>Adapter actions</h3>
+        <ul>
+          <li>Parse railway config via CLI; build service graph</li>
+          <li>Generate Workers for APIs and Pages for frontends</li>
+          <li>Create wrangler.toml bindings (KV, R2, D1, Queues, DO)</li>
+          <li>Migrate env/secrets with namespacing and branch mapping</li>
+        </ul>
+
+        <h3>Edge cases & validation</h3>
+        <ul>
+          <li>Native binaries, FS assumptions, stateful workloads</li>
+          <li>Long-lived connections → DO rooms or Queues</li>
+          <li>Probe health endpoints pre/post; export PG and sync blobs to R2</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="faq">FAQ</h2>
+        <details>
+          <summary>Can I keep my existing Postgres?</summary>
+          <p>Yes. Keeping external PG (e.g., Neon) via HTTP/Prisma is recommended for parity. You can migrate to D1 when your data model and traffic patterns fit.</p>
+        </details>
+        <details>
+          <summary>What if my app uses Node-only APIs?</summary>
+          <p>We flag Node built-ins and native modules. Often there are web-compatible alternatives or Cloudflare primitives; otherwise isolate behind HTTP microservices.</p>
+        </details>
+        <details>
+          <summary>How do you validate parity?</summary>
+          <p>We generate route snapshots, SSR smoke tests, and edge middleware tests. A parity report summarizes coverage, warnings, and blockers with code pointers.</p>
+        </details>
+
+        <div class="callout">
+          <p>Want the full docs? See the Migration directory on GitHub: <a href="https://github.com/tamylaa/clodo-dev-site/tree/master/docs/migration" target="_blank" rel="noopener">docs/migration</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
