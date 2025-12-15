@@ -1,6 +1,6 @@
 name = "clododev"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = "dist"
+pages_build_output_dir = "dist-astro/client"
 
 # Compatibility flags for Pages Functions
 compatibility_flags = ["nodejs_compat"]

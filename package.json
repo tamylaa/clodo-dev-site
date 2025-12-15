@@ -6,7 +6,8 @@
   "main": "index.html",
   "scripts": {
     "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run check-links",
-    "build": "node build/build.js",
+    "build": "npm run build:astro",
+    "build:legacy": "node build/build.js",
     "build:astro": "astro build",
     "dev:astro": "astro dev",
     "preview:astro": "astro preview",
