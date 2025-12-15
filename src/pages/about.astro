@@ -1,0 +1,481 @@
+---
+// src/pages/about.astro
+// About page - mission, story, team, roadmap
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'About Clodo - Enterprise Cloudflare Framework & Mission';
+const description = 'About Clodo Framework - vision, roadmap, and the story behind building enterprise services on Cloudflare Edge.';
+
+const sections = [
+  { id: 'vision', title: '🎯 Our Mission' },
+  { id: 'why-built', title: '🤔 The Problem We Solve' },
+  { id: 'game-changer', title: '⚡ The Game-Changer' },
+  { id: 'highlights', title: '✨ Key Highlights' },
+  { id: 'roadmap', title: '🗺️ Roadmap' },
+  { id: 'contact', title: '📞 Contact' }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="breadcrumb-item">
+      <a href="/">Home</a>
+    </div>
+    <span class="breadcrumb-separator">/</span>
+    <div class="breadcrumb-item">
+      <span>About</span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="hero-content">
+        <h1 id="about-heading">Democratizing Enterprise Software Development</h1>
+        <p class="lead">
+          Clodo Framework was born from a simple insight: custom software shouldn't cost $200K and take 6 months. What if you could build enterprise-grade SaaS applications in weeks for a fraction of the cost?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table of Contents -->
+  <section id="table-of-contents" class="toc-section">
+    <div class="container">
+      <h2>Table of Contents</h2>
+      <nav class="toc-nav" aria-label="Page navigation">
+        <ul>
+          {sections.map((section) => (
+            <li><a href={`#${section.id}`}>{section.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section id="vision" class="content-section">
+    <div class="container">
+      <h2>🎯 Our Mission</h2>
+      <p>
+        To make enterprise-grade software development accessible to every business. We believe that powerful, scalable applications shouldn't require enterprise budgets or development teams of dozens.
+      </p>
+      <p>
+        Clodo Framework transforms the economics of custom software: <strong>10x faster development, 90% cost reduction, enterprise security built-in.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="why-built" class="content-section">
+    <div class="container">
+      <h2>🤔 The Problem We Solve</h2>
+      
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>❌ Custom Development is Expensive</h3>
+          <p>Building enterprise SaaS typically costs $100K-$500K+ and takes 6-18 months. Most companies can't afford it.</p>
+        </div>
+        
+        <div class="problem-card">
+          <h3>❌ Building Securely is Complex</h3>
+          <p>Enterprise security requirements are extensive. Most teams lack expertise in multi-tenant architecture, auth, encryption, and compliance.</p>
+        </div>
+        
+        <div class="problem-card">
+          <h3>❌ Infrastructure is Overkill</h3>
+          <p>Traditional stacks require DevOps expertise, kubernetes knowledge, and significant operational overhead.</p>
+        </div>
+        
+        <div class="problem-card">
+          <h3>❌ Scaling Hurts</h3>
+          <p>Scaling custom applications requires re-architecture, more servers, more ops complexity, more costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="game-changer" class="content-section">
+    <div class="container">
+      <h2>⚡ The Game-Changer</h2>
+      
+      <p>
+        Clodo Framework pre-builds the entire enterprise SaaS foundation so you only build your application logic.
+      </p>
+      
+      <div class="solution-features">
+        <div class="feature">
+          <h3>✅ 10x Faster Development</h3>
+          <ul>
+            <li>Pre-built authentication & authorization</li>
+            <li>Database abstraction layer</li>
+            <li>Request orchestration</li>
+            <li>Error handling & logging</li>
+            <li>Rate limiting & throttling</li>
+          </ul>
+        </div>
+        
+        <div class="feature">
+          <h3>✅ 90% Cost Reduction</h3>
+          <ul>
+            <li>Deploy on Cloudflare (99% cheaper than AWS)</li>
+            <li>No DevOps team needed</li>
+            <li>Auto-scaling built-in</li>
+            <li>Pay for actual usage</li>
+          </ul>
+        </div>
+        
+        <div class="feature">
+          <h3>✅ Enterprise Security</h3>
+          <ul>
+            <li>Multi-tenant isolation by default</li>
+            <li>Field-level encryption</li>
+            <li>Audit logging</li>
+            <li>RBAC (Role-Based Access Control)</li>
+            <li>SOC2 compliance ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights Section -->
+  <section id="highlights" class="content-section">
+    <div class="container">
+      <h2>✨ Key Highlights</h2>
+      
+      <div class="highlights-list">
+        <div class="highlight-item">
+          <strong>Production-Ready Architecture:</strong> Built by engineers with 15+ years of SaaS experience
+        </div>
+        <div class="highlight-item">
+          <strong>Enterprise Features Built-In:</strong> Multi-tenancy, auth, permissions, audit logs, encryption
+        </div>
+        <div class="highlight-item">
+          <strong>Cloudflare Edge Deployment:</strong> Deploy globally in seconds, not hours
+        </div>
+        <div class="highlight-item">
+          <strong>TypeScript Throughout:</strong> Full type safety from database to frontend
+        </div>
+        <div class="highlight-item">
+          <strong>Zero DevOps Required:</strong> Deploy, monitor, scale with CLI commands
+        </div>
+        <div class="highlight-item">
+          <strong>Cost Predictability:</strong> Fixed baseline cost, scales with actual usage
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="content-section">
+    <div class="container">
+      <h2>🗺️ Roadmap</h2>
+      
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-phase">✅ Q4 2024</div>
+          <div class="roadmap-content">
+            <h3>Foundation Release</h3>
+            <ul>
+              <li>Core framework & orchestration</li>
+              <li>Authentication & authorization</li>
+              <li>Multi-tenant support</li>
+              <li>CLI tooling</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Q1 2025</div>
+          <div class="roadmap-content">
+            <h3>Enterprise Features</h3>
+            <ul>
+              <li>Advanced audit logging</li>
+              <li>Field-level encryption</li>
+              <li>Custom webhooks</li>
+              <li>Analytics & monitoring dashboard</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Q2 2025</div>
+          <div class="roadmap-content">
+            <h3>Developer Experience</h3>
+            <ul>
+              <li>VS Code extension</li>
+              <li>Local development tools</li>
+              <li>Testing framework</li>
+              <li>Performance profiler</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section">
+    <div class="container">
+      <h2>📞 Contact</h2>
+      
+      <p>
+        Have questions? Want to collaborate? Reach out to us:
+      </p>
+      
+      <div class="contact-methods">
+        <a href="mailto:hello@clodo.dev" class="contact-link">hello@clodo.dev</a>
+        <a href="https://github.com/tamylaa/clodo-framework" class="contact-link">GitHub</a>
+        <a href="https://twitter.com/clodoframework" class="contact-link">Twitter</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb-item a {
+    color: var(--link-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .toc-section {
+    padding: 2rem 1rem;
+    background-color: var(--toc-bg, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .toc-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .toc-nav a {
+    color: var(--link-color, #1d4ed8);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .toc-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .content-section {
+    padding: 3rem 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .content-section h2 {
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .content-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .content-section p {
+    line-height: 1.6;
+    color: var(--text-secondary, #475569);
+    margin-bottom: 1rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .problem-card {
+    padding: 1.5rem;
+    background-color: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .problem-card h3 {
+    margin-top: 0;
+  }
+
+  .solution-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .feature {
+    padding: 1.5rem;
+    background-color: var(--feature-bg, #f0f9ff);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.25rem;
+  }
+
+  .feature h3 {
+    margin-top: 0;
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .feature ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+  }
+
+  .feature li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .feature li:before {
+    content: '✓ ';
+    color: var(--success-color, #22c55e);
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  .highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .highlight-item {
+    padding: 1rem;
+    background-color: var(--highlight-bg, #eff6ff);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.25rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .roadmap-item {
+    padding: 1.5rem;
+    background-color: var(--roadmap-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .roadmap-phase {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-color, #1d4ed8);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .roadmap-content h3 {
+    margin: 0 0 1rem 0;
+  }
+
+  .roadmap-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .roadmap-content li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary, #475569);
+  }
+
+  .roadmap-content li:before {
+    content: '→ ';
+    color: var(--primary-color, #1d4ed8);
+    margin-right: 0.5rem;
+  }
+
+  .contact-methods {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .contact-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color, #1d4ed8);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    background-color: var(--primary-hover, #1e40af);
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 2rem 1rem;
+    }
+
+    .content-section {
+      padding: 2rem 1rem;
+    }
+
+    .content-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,566 @@
+---
+// src/pages/docs.astro
+// Documentation page - getting started, concepts, and guides
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const title = 'Clodo Documentation - Cloudflare Workers Framework Guide';
+const description = 'Complete documentation for Clodo Framework - the Ruby on Rails of Cloudflare Workers. Build production SaaS applications with enterprise-grade features.';
+
+const headings = [
+  { level: 2, text: 'Getting Started in 5 Minutes', slug: 'getting-started' },
+  { level: 2, text: 'Installation', slug: 'installation' },
+  { level: 2, text: 'Core Concepts', slug: 'concepts' },
+  { level: 2, text: 'Orchestration', slug: 'orchestration' },
+  { level: 2, text: 'Authentication', slug: 'authentication' },
+  { level: 2, text: 'Database Integration', slug: 'database' },
+  { level: 2, text: 'Deployment', slug: 'deployment' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="breadcrumb-item">
+      <a href="/">Home</a>
+    </div>
+    <span class="breadcrumb-separator">/</span>
+    <div class="breadcrumb-item">
+      <span>Documentation</span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="docs-heading">
+    <div class="container">
+      <div class="hero-content">
+        <h1 id="docs-heading">The Complete Guide to Clodo Framework</h1>
+        <p class="lead">
+          Build production-ready, multi-tenant SaaS applications with enterprise-grade security, database integration, and intelligent orchestration. What once took months and $200K now deploys in weeks for a fraction of the cost.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="docs-container">
+    <!-- Main Content -->
+    <main class="docs-main">
+      <!-- Getting Started -->
+      <section id="getting-started" class="docs-section">
+        <h2>🚀 Getting Started in 5 Minutes</h2>
+
+        <section id="installation" class="docs-subsection">
+          <h3>Installation</h3>
+          <pre><code>{'npm install @tamyla/clodo-framework'}</code></pre>
+        </section>
+
+        <section class="docs-subsection">
+          <h3>Create Your First Service</h3>
+          <pre><code>{'npx create-clodo-service my-new-service --type data-service'}</code></pre>
+        </section>
+
+        <section class="docs-subsection">
+          <h3>Development Setup</h3>
+          <pre><code>{`cd my-new-service
+npm install
+npm run dev`}</code></pre>
+        </section>
+
+        <section class="docs-subsection">
+          <h3>Deploy to Production</h3>
+          <pre><code>{'npm run deploy'}</code></pre>
+          <p>Your service is now live on Cloudflare Edge. Global edge deployment. Zero DevOps.</p>
+        </section>
+      </section>
+
+      <!-- Core Concepts -->
+      <section id="concepts" class="docs-section">
+        <h2>🎓 Core Concepts</h2>
+
+        <div class="concept-grid">
+          <div class="concept-card">
+            <h3>Services</h3>
+            <p>
+              Atomic units of functionality. Each service handles one business domain with its own database, API, and lifecycle.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>Orchestration</h3>
+            <p>
+              Clodo's request orchestration layer routes, transforms, and coordinates requests between services with intelligent caching.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>Multi-Tenancy</h3>
+            <p>
+              Built-in request context ensures all data operations are automatically scoped to the requesting tenant.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>Edge-First</h3>
+            <p>
+              Deploy on Cloudflare Edge for global availability, zero cold starts, and automatic scaling.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Orchestration -->
+      <section id="orchestration" class="docs-section">
+        <h2>🔄 Orchestration</h2>
+
+        <p>
+          Orchestration is Clodo's intelligent routing layer that coordinates requests between services:
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Smart Routing:</strong> Routes requests to appropriate services based on path patterns
+          </div>
+          <div class="feature-item">
+            <strong>Request Transformation:</strong> Normalizes requests across service boundaries
+          </div>
+          <div class="feature-item">
+            <strong>Response Aggregation:</strong> Combines responses from multiple services
+          </div>
+          <div class="feature-item">
+            <strong>Intelligent Caching:</strong> Context-aware caching improves performance
+          </div>
+          <div class="feature-item">
+            <strong>Error Handling:</strong> Consistent error responses and retry logic
+          </div>
+          <div class="feature-item">
+            <strong>Rate Limiting:</strong> Per-service and global rate limiting
+          </div>
+        </div>
+
+        <pre><code>{`// Example orchestration config
+export default {
+  services: [
+    {
+      name: 'users',
+      path: '/api/users',
+      url: 'https://users-service.clodo.dev',
+      methods: ['GET', 'POST'],
+      cache: { ttl: 300 }
+    },
+    {
+      name: 'orders',
+      path: '/api/orders',
+      url: 'https://orders-service.clodo.dev',
+      methods: ['GET', 'POST', 'PUT'],
+      auth: 'required'
+    }
+  ]
+};`}</code></pre>
+      </section>
+
+      <!-- Authentication -->
+      <section id="authentication" class="docs-section">
+        <h2>🔐 Authentication</h2>
+
+        <p>
+          Clodo provides enterprise-grade authentication built on industry standards:
+        </p>
+
+        <div class="auth-grid">
+          <div class="auth-card">
+            <h3>JWT Tokens</h3>
+            <p>Stateless authentication with cryptographic verification</p>
+          </div>
+          <div class="auth-card">
+            <h3>OAuth 2.0 Integration</h3>
+            <p>Connect Google, GitHub, Microsoft, and custom providers</p>
+          </div>
+          <div class="auth-card">
+            <h3>SAML 2.0 Support</h3>
+            <p>Enterprise SSO integration for multi-tenant deployments</p>
+          </div>
+          <div class="auth-card">
+            <h3>MFA/2FA</h3>
+            <p>TOTP and SMS-based multi-factor authentication</p>
+          </div>
+          <div class="auth-card">
+            <h3>API Keys</h3>
+            <p>Secure service-to-service authentication</p>
+          </div>
+          <div class="auth-card">
+            <h3>Session Management</h3>
+            <p>Automatic session handling with configurable expiration</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Database -->
+      <section id="database" class="docs-section">
+        <h2>💾 Database Integration</h2>
+
+        <p>
+          Clodo abstracts database operations with a type-safe query builder:
+        </p>
+
+        <pre><code>{`// Query builder example
+const users = await db.table('users')
+  .where('status', '=', 'active')
+  .orderBy('createdAt', 'DESC')
+  .limit(10)
+  .select();
+
+// Mutations are always transactional
+await db.transaction(async (tx) => {
+  await tx.table('orders').insert({ userId: 1, amount: 99.99 });
+  await tx.table('users').increment('totalSpent', 99.99);
+});`}</code></pre>
+
+        <div class="db-support">
+          <strong>Supported Databases:</strong> PostgreSQL, MySQL, SQLite, D1 (Cloudflare)
+        </div>
+      </section>
+
+      <!-- Deployment -->
+      <section id="deployment" class="docs-section">
+        <h2>🚀 Deployment</h2>
+
+        <p>
+          Deploy to Cloudflare with a single command:
+        </p>
+
+        <pre><code>{'npm run deploy'}</code></pre>
+
+        <div class="deployment-steps">
+          <div class="step">
+            <strong>1. Build</strong> - Bundles your service with all dependencies
+          </div>
+          <div class="step">
+            <strong>2. Validate</strong> - Runs security and configuration checks
+          </div>
+          <div class="step">
+            <strong>3. Upload</strong> - Pushes to Cloudflare infrastructure
+          </div>
+          <div class="step">
+            <strong>4. Activate</strong> - Routes traffic to new deployment
+          </div>
+          <div class="step">
+            <strong>5. Monitor</strong> - Tracks health and performance metrics
+          </div>
+        </div>
+
+        <div class="deployment-info">
+          <p><strong>Zero-Downtime Deployments:</strong> New versions activate simultaneously across all edge locations</p>
+          <p><strong>Automatic Rollback:</strong> Failed deployments revert to last known good version</p>
+          <p><strong>Environment Variables:</strong> Manage secrets securely via CLI</p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="docs-cta">
+        <h2>Ready to Build?</h2>
+        <p>Start building your next SaaS application on Clodo Framework.</p>
+        <a href="/pricing/" class="btn btn--primary btn--large">View Pricing</a>
+        <a href="https://github.com/tamylaa/clodo-framework" class="btn btn--secondary btn--large">View on GitHub</a>
+      </section>
+    </main>
+
+    <!-- Sidebar (on desktop) -->
+    <aside class="docs-sidebar">
+      <TableOfContents headings={headings} title="On This Page" />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb-item a {
+    color: var(--link-color, #1d4ed8);
+    text-decoration: none;
+  }
+
+  .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary, #475569);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .docs-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+  }
+
+  .docs-main {
+    min-width: 0;
+  }
+
+  .docs-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .docs-section:last-child {
+    border-bottom: none;
+  }
+
+  .docs-section h2 {
+    font-size: 1.875rem;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .docs-section h3 {
+    font-size: 1.125rem;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--heading-color, #0f172a);
+  }
+
+  .docs-section p {
+    line-height: 1.6;
+    color: var(--text-secondary, #475569);
+    margin-bottom: 1rem;
+  }
+
+  .docs-subsection {
+    margin-bottom: 1.5rem;
+  }
+
+  pre {
+    background-color: #0b1220;
+    color: #e0e7ff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .concept-card {
+    padding: 1.5rem;
+    background-color: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+
+  .concept-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .feature-item {
+    padding: 1rem;
+    background-color: var(--feature-bg, #f0f9ff);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.25rem;
+    color: var(--text-secondary, #475569);
+  }
+
+  .feature-item strong {
+    color: var(--primary-color, #1d4ed8);
+  }
+
+  .auth-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    background-color: var(--card-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .auth-card h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .db-support {
+    padding: 1rem;
+    background-color: var(--info-bg, #eff6ff);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .deployment-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .step {
+    padding: 1rem;
+    background-color: var(--step-bg, #f0f9ff);
+    border-left: 4px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.25rem;
+  }
+
+  .deployment-info {
+    background-color: var(--info-bg, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .deployment-info p {
+    margin: 0.5rem 0;
+  }
+
+  .docs-cta {
+    background-color: var(--cta-bg, #f0f9ff);
+    border: 2px solid var(--primary-color, #1d4ed8);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .docs-cta h2 {
+    margin-top: 0;
+  }
+
+  .docs-cta a {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn--large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .btn--primary {
+    background-color: var(--primary-color, #1d4ed8);
+    color: white;
+  }
+
+  .btn--primary:hover {
+    background-color: var(--primary-hover, #1e40af);
+  }
+
+  .btn--secondary {
+    background-color: var(--btn-secondary-bg, #f3f4f6);
+    color: var(--btn-secondary-text, #111827);
+    border: 1px solid var(--btn-secondary-border, #e5e7eb);
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--btn-secondary-hover, #e5e7eb);
+  }
+
+  .docs-sidebar {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  @media (max-width: 1024px) {
+    .docs-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .docs-sidebar {
+      position: static;
+      top: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 2rem 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 1.75rem;
+    }
+
+    .docs-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .docs-cta {
+      padding: 1.5rem;
+    }
+
+    .docs-cta a {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  }
+</style>
