@@ -525,15 +525,15 @@ p.hero-subtitle {
 }
 
 .code-preview__dot--red {
-    background: linear-gradient(135deg, #ff5f57 0%, #ff3b30 100%);
+    background: linear-gradient(135deg, var(--accent-red-500) 0%, var(--accent-red-600) 100%);
 }
 
 .code-preview__dot--yellow {
-    background: linear-gradient(135deg, #ffbd2e 0%, #ffa000 100%);
+    background: linear-gradient(135deg, var(--accent-yellow-500) 0%, var(--accent-yellow-600) 100%);
 }
 
 .code-preview__dot--green {
-    background: linear-gradient(135deg, #28ca42 0%, #00c853 100%);
+    background: linear-gradient(135deg, var(--accent-green-500) 0%, var(--accent-green-600) 100%);
 }
 
 .code-preview__title {

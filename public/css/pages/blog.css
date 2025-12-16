@@ -1690,7 +1690,7 @@ sup a:hover {
 }
 
 .author-bio-box__link:hover {
-    color: var(--primary-hover, #4338ca);
+    color: var(--primary-hover, var(--color-4338ca));
     text-decoration: underline;
 }
 
@@ -1740,7 +1740,7 @@ sup a:hover {
 }
 
 .credential-separator {
-    color: var(--text-tertiary, #9ca3af);
+    color: var(--text-tertiary, var(--color-9ca3af));
 }
 
 .author-social {
@@ -1973,7 +1973,7 @@ sup a:hover {
 .planned-badge {
     display: inline-block;
     background: rgb(245 158 11 / 20%);
-    color: #b45309;
+    color: var(--color-b45309);
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
