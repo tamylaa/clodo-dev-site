@@ -117,7 +117,7 @@
 
 .path-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
 .path-card h3 {
@@ -176,7 +176,7 @@
 
 .channel-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
 .channel-header {
@@ -259,7 +259,7 @@
 }
 
 .discord-channel {
-  background: rgba(88, 101, 242, 0.1);
+  background: rgb(88 101 242 / 10%);
   color: #5865f2;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
@@ -285,7 +285,7 @@
 
 .value-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
 .value-icon {
@@ -478,7 +478,7 @@
 
 .recognition-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
 .recognition-item h3 {

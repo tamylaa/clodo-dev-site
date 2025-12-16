@@ -19,8 +19,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 80%, rgb(255 255 255 / 10%) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgb(255 255 255 / 10%) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -50,8 +50,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.625rem 1.25rem;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 15%);
+    border: 1px solid rgb(255 255 255 / 20%);
     border-radius: 50px;
     backdrop-filter: blur(10px);
     font-size: 0.8rem;
@@ -83,12 +83,12 @@
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--color-white);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
 }
 
 .cta-stats .stat-label {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 500;
@@ -121,7 +121,7 @@
 
 .cta-subtitle p {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
     line-height: 1.6;
     margin: 0;
 }
@@ -144,7 +144,7 @@
     align-items: center;
     gap: 0.75rem;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
 }
 
 .feature-item svg {
@@ -167,21 +167,21 @@
     font-weight: 600;
     padding: 0.875rem 1.75rem;
     transition: all var(--transition-normal);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
     border-radius: var(--radius-md);
     font-size: 1rem;
 }
 
 .cta-primary-btn:hover {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(255 255 255 / 95%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
 }
 
 .cta-secondary-btn {
     position: relative;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgb(255 255 255 / 30%);
+    background: rgb(255 255 255 / 10%);
     backdrop-filter: blur(10px);
     color: var(--color-white);
     font-weight: 600;
@@ -192,8 +192,8 @@
 }
 
 .cta-secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgb(255 255 255 / 20%);
+    border-color: rgb(255 255 255 / 50%);
     transform: translateY(-2px);
 }
 

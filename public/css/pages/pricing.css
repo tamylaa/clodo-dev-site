@@ -224,7 +224,7 @@
 
 .pricing-card.featured li {
     border-bottom-color: rgb(255 255 255 / 10%);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
 }
 
 .pricing-card .btn {
