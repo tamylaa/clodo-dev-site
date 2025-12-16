@@ -57,7 +57,6 @@
 .stat-number--highlight {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, var(--primary-color)));
     background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
@@ -379,7 +378,6 @@
     }
 
     .stat-card {
-        break-inside: avoid;
         break-inside: avoid;
         box-shadow: none;
         border: 1px solid var(--color-black);

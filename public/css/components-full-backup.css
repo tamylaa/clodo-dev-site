@@ -2786,7 +2786,6 @@ dd {
     overflow: visible;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
     font-size: 0.875rem;
     line-height: 1.6;
@@ -2875,7 +2874,6 @@ footer::before {
     font-weight: 800;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }

@@ -179,7 +179,6 @@
 
     /* Gradient overlay for supporting browsers */
     background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-purple) 100%);
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
@@ -353,7 +352,6 @@ p.hero-subtitle {
     background: rgb(255 255 255 / 80%);
     color: var(--text-primary);
     border: 1.5px solid rgb(59 130 246 / 20%);
-    backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 
         0 2px 10px rgb(0 0 0 / 5%),

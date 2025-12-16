@@ -103,7 +103,6 @@ header {
 .logo-text {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, var(--primary-color)));
     background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
