@@ -62,7 +62,7 @@
 
 .highlight:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
 @media (min-width: 768px) {
@@ -125,7 +125,7 @@
 
 .pricing-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgb(0 0 0 / 15%);
     border-color: var(--primary-color);
 }
 
@@ -198,7 +198,7 @@
 }
 
 .pricing-card.featured .pricing-subtitle {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
 }
 
 .pricing-card ul {
@@ -223,7 +223,7 @@
 }
 
 .pricing-card.featured li {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgb(255 255 255 / 10%);
     color: rgba(255, 255, 255, 0.9);
 }
 
@@ -287,7 +287,7 @@
 .form-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
 }
 
 .form-textarea {
