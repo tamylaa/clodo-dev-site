@@ -1,4 +1,4 @@
-﻿/* ===========================================
+/* ===========================================
    CLOUDO FRAMEWORK - LAYOUT
    ===========================================
    
@@ -525,6 +525,7 @@
 }
 
 /* ===== SUBSCRIPTION PAGE ===== */
+
 /* Styles moved to css/pages/subscribe.css */
 
 
@@ -651,6 +652,7 @@
         transform: translateY(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -662,6 +664,7 @@
         transform: translateY(0);
         opacity: 1;
     }
+
     to {
         transform: translateY(-100%);
         opacity: 0;
@@ -669,7 +672,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .announcement-content {
         flex-direction: column;
         text-align: center;
@@ -690,7 +693,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .announcement-banner {
         padding: var(--spacing-md) 0;
     }
@@ -708,7 +711,8 @@
 /* ===== ORIENTATION-BASED MEDIA QUERIES ===== */
 
 /* Landscape orientation optimization for tablets and phones */
-@media (orientation: landscape) and (max-height: 600px) {
+@media (orientation: landscape) and (height <= 600px) {
+
     /* Reduce vertical padding in landscape mode on small devices */
     .hero-section,
     #hero,
@@ -732,7 +736,7 @@
 }
 
 /* Tablet in landscape mode */
-@media (orientation: landscape) and (min-width: 768px) and (max-width: 1024px) {
+@media (orientation: landscape) and (width >= 768px) and (width <= 1024px) {
     .container {
         padding: 0 var(--spacing-lg);
     }
@@ -746,6 +750,7 @@
 
 /* Portrait mode adjustments */
 @media (orientation: portrait) {
+
     /* Standard portrait mode - mobile first */
     body {
         overflow-x: hidden;
@@ -753,7 +758,8 @@
 }
 
 /* Large landscape (desktop-like) */
-@media (orientation: landscape) and (min-height: 700px) {
+@media (orientation: landscape) and (height >= 700px) {
+
     /* Allow full spacing on large landscape screens */
     .hero-section,
     #hero {

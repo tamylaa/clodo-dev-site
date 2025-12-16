@@ -10,6 +10,7 @@
 
 .blog-index {
     padding: 3rem 0;
+
     /* Reduced padding on mobile */
 }
 
@@ -18,12 +19,14 @@
 .blog-index__header {
     text-align: center;
     margin-bottom: 3rem;
+
     /* Reduced on mobile */
     padding: 0 var(--spacing-md);
 }
 
 .blog-index__header h1 {
     font-size: clamp(2rem, 6vw, 3rem);
+
     /* Fluid typography */
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -43,6 +46,7 @@
 
 .blog-index__featured {
     margin-bottom: 3rem;
+
     /* Reduced on mobile */
     padding: 0 var(--spacing-md);
 }
@@ -55,6 +59,7 @@
 .blog-index h2 {
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 1.5rem;
+
     /* Reduced on mobile */
     color: var(--text-primary);
     font-weight: 700;
@@ -64,9 +69,11 @@
 
 .blog-cards {
     display: grid;
+
     /* Mobile: Single column */
     grid-template-columns: 1fr;
     gap: 1.5rem;
+
     /* Reduced gap on mobile */
     padding: 0 var(--spacing-md);
 }
@@ -109,6 +116,7 @@
     cursor: pointer;
     transition: all var(--transition-fast);
     min-height: 44px;
+
     /* Touch target */
 }
 
@@ -142,6 +150,7 @@
 .pagination__btn {
     min-width: 44px;
     min-height: 44px;
+
     /* WCAG touch target */
     padding: 0.75rem 1rem;
     background: var(--bg-primary);
@@ -246,6 +255,7 @@
 .blog-index__cta {
     text-align: center;
     padding: 2rem;
+
     /* Reduced on mobile */
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border: 1px solid var(--border-color);
@@ -260,6 +270,7 @@
 
 .blog-index__cta p {
     font-size: 1rem;
+
     /* Adjusted for mobile */
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
@@ -295,7 +306,7 @@
 
 /* ===== TABLET: 768px+ ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .blog-index {
         padding: var(--space-section-y-standard) 0;
     }
@@ -316,6 +327,7 @@
     }
 
     .blog-cards {
+
         /* Tablet: 2 columns */
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
@@ -342,8 +354,9 @@
 
 /* ===== DESKTOP: 1024px+ ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .blog-cards {
+
         /* Desktop: 3 columns */
         grid-template-columns: repeat(3, 1fr);
         gap: 2.5rem;
@@ -356,8 +369,9 @@
 
 /* ===== LARGE DESKTOP: 1200px+ ===== */
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .blog-cards {
+
         /* Larger screens: Optimize card width */
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     }

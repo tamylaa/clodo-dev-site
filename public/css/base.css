@@ -1,4 +1,4 @@
-﻿/* ===========================================
+/* ===========================================
    CLOUDO FRAMEWORK - BASE STYLES
    ===========================================
    
@@ -42,6 +42,7 @@ img {
 }
 
 :root {
+
     /* ===== ENHANCED COLOR SYSTEM ===== */
 
     /* Primary Brand Colors - Improved contrast and accessibility */
@@ -87,7 +88,6 @@ img {
     --success-800: rgb(6 95 70);
     --success-900: rgb(6 78 59);
     --success-950: rgb(2 44 34);
-
     --warning-50: rgb(255 251 235);
     --warning-100: rgb(254 243 199);
     --warning-200: rgb(253 230 138);
@@ -99,7 +99,6 @@ img {
     --warning-800: rgb(146 64 14);
     --warning-900: rgb(120 53 15);
     --warning-950: rgb(69 26 3);
-
     --error-50: rgb(254 242 242);
     --error-100: rgb(254 226 226);
     --error-200: rgb(254 202 202);
@@ -111,7 +110,6 @@ img {
     --error-800: rgb(153 27 27);
     --error-900: rgb(127 29 29);
     --error-950: rgb(69 10 10);
-
     --info-50: rgb(239 246 255);
     --info-100: rgb(219 234 254);
     --info-200: rgb(191 219 254);
@@ -151,12 +149,12 @@ img {
     --border-dark: var(--gray-300);
 
     /* Enhanced Shadow System */
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
 
     /* Legacy shadow variables for backward compatibility */
     --shadow-sm: var(--shadow-sm);
@@ -195,6 +193,7 @@ img {
     --error-color-light: var(--error-200);
 
     /* ===== SPACING SYSTEM ===== */
+
     /* Consistent spacing scale using powers of 2 for harmony */
     --spacing-xs: 0.25rem;   /* 4px */
     --spacing-sm: 0.5rem;    /* 8px */
@@ -207,6 +206,7 @@ img {
     --spacing-5xl: 8rem;     /* 128px */
 
     /* ===== SEMANTIC SPACING ===== */
+
     /* Content-aware spacing for optimal UX */
     --space-hero-y: clamp(2rem, 6vh, 4rem);        /* 32px to 64px - tighter for better content density */
     --space-section-y-standard: clamp(2rem, 8vh, 5rem);  /* 32px to 80px - responsive section spacing */
@@ -300,8 +300,9 @@ img {
 /* ===== HTML & BODY ===== */
 body {
     margin: 0;
+
     /* Inter font for better LCP performance with display=swap */
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-primary);
@@ -309,11 +310,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+
     /* animation: fadeIn 0.6s ease-out forwards; - REMOVED for LCP optimization */
 }
 
 /* ===== MOBILE TYPOGRAPHY OPTIMIZATIONS ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     body {
         line-height: 1.7; /* Slightly increased for mobile readability */
         font-size: 16px; /* Prevent zoom on iOS */
@@ -348,8 +350,10 @@ body {
 /* ===== ENHANCED TYPOGRAPHY SYSTEM ===== */
 
 /* ===== TYPOGRAPHY SCALE ===== */
+
 /* Using a modular scale based on 1.25 ratio for better harmony */
 :root {
+
     /* Base font size and line height */
     --font-size-base: 1rem; /* 16px */
     --line-height-base: 1.6;
@@ -395,12 +399,13 @@ body {
 }
 
 .font-sans {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 .font-display {
+
     /* Use Inter for display text - better performance than system fonts */
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-weight: 700;
 }
 
@@ -509,7 +514,7 @@ p {
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
 .text-var(--color-white) { color: var(--color-white); }
-.text-current { color: currentColor; }
+.text-current { color: currentcolor; }
 
 /* ===== TEXT ALIGNMENT ===== */
 .text-left { text-align: left; }
@@ -702,14 +707,14 @@ blockquote cite::before {
 }
 
 /* ===== RESPONSIVE TYPOGRAPHY ===== */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     h1 { font-size: var(--font-size-3xl); }
     h2 { font-size: var(--font-size-2xl); }
     h3 { font-size: var(--font-size-xl); }
     h4 { font-size: var(--font-size-lg); }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     h1 { font-size: var(--font-size-2xl); }
     h2 { font-size: var(--font-size-xl); }
     h3 { font-size: var(--font-size-lg); }
@@ -723,7 +728,7 @@ blockquote cite::before {
     .text-9xl { font-size: var(--font-size-8xl); }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     h1 { font-size: var(--font-size-xl); }
     h2 { font-size: var(--font-size-lg); }
     h3 { font-size: var(--font-size-base); }
@@ -740,7 +745,7 @@ blockquote cite::before {
 /* Improve text rendering */
 body {
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -767,6 +772,7 @@ p, li {
 /* High contrast mode support - maintain theme compatibility */
 @media (prefers-contrast: high) {
     :root {
+
         /* Increase border and shadow visibility */
         --border-color: rgb(0 0 0);
         --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 50%);
@@ -815,6 +821,7 @@ p, li {
 }
 
 /* ===== FOCUS STYLES ===== */
+
 /* Enhanced focus indicators for WCAG 2.1 AA compliance */
 *:focus-visible {
     outline: 3px solid var(--primary-color);

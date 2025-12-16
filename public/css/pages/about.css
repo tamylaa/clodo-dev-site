@@ -13,7 +13,7 @@ main section:nth-child(even) {
   background: var(--bg-secondary);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   main section {
     padding: 4rem 0;
   }
@@ -32,7 +32,7 @@ main section:nth-child(even) {
   color: var(--text-primary);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   #game-changer {
     padding: 4rem 0;
   }
@@ -227,6 +227,7 @@ main section:nth-child(even) {
 }
 
 /* ===== CONTACT SECTION - Minimal page-specific overrides ===== */
+
 /* Base #contact styles inherit from global styles/shared patterns */
 
 #contact {
@@ -271,7 +272,7 @@ main section:nth-child(even) {
   opacity: 0.8;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   #contact {
     padding: 6rem 0;
   }
@@ -304,7 +305,7 @@ main section:nth-child(even) {
   line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   #roadmap {
     padding: 6rem 0;
   }
@@ -328,12 +329,12 @@ main section:nth-child(even) {
     }
 
     a {
-        color: #0066cc;
+        color: #06c;
         text-decoration: underline;
     }
 
     h1, h2, h3 {
-        page-break-after: avoid;
+        break-after: avoid;
         color: var(--color-black);
     }
 

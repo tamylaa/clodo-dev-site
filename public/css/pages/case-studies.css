@@ -13,7 +13,7 @@
   font-weight: 700;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple) 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -86,10 +86,7 @@
 .case-study-card--coming-soon::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(45deg, transparent 30%, rgb(255 255 255 / 80%) 50%, transparent 70%);
   pointer-events: none;
 }
@@ -584,7 +581,7 @@ cite {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .case-studies-hero h1 {
     font-size: 2.5rem;
   }

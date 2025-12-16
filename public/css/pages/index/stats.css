@@ -58,7 +58,7 @@
     font-weight: 800;
     background: linear-gradient(135deg, var(--primary-color), var(--gradient-secondary));
     background-clip: text;
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -72,7 +72,7 @@
 
 /* ===== TABLET (768px+) ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
@@ -100,7 +100,7 @@
 
 /* ===== DESKTOP (1024px+) ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .stats {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         padding: 3rem 2rem;

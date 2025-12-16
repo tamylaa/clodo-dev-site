@@ -18,6 +18,7 @@
 .subscribe-form {
     background: var(--bg-secondary, var(--color-background-alt, var(--color-white)));
     padding: 2rem 1.5rem;
+
     /* Reduced on mobile */
     border-radius: var(--radius-xl, 0.75rem);
     border: 1px solid var(--border-color, var(--color-border));
@@ -54,6 +55,7 @@
     font-family: inherit;
     transition: all var(--transition-fast, 0.2s ease);
     min-height: 48px;
+
     /* WCAG touch target */
 }
 
@@ -171,6 +173,7 @@
     width: 100%;
     justify-content: center;
     min-height: 48px;
+
     /* WCAG touch target */
     font-weight: 600;
     font-size: 1rem;
@@ -245,6 +248,7 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -278,7 +282,7 @@
 
 /* ===== TABLET: 768px+ ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .subscribe-form {
         padding: 2.5rem 2rem;
     }
@@ -290,7 +294,7 @@
 
 /* ===== DESKTOP: 1024px+ ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .subscribe-form {
         padding: 3rem 2.5rem;
     }
@@ -330,7 +334,7 @@
     }
 
     .btn--primary {
-        border: 2px solid currentColor;
+        border: 2px solid currentcolor;
     }
 }
 
@@ -339,6 +343,7 @@
 @media print {
     .subscribe-form {
         display: none;
+
         /* Hide form in print */
     }
 }

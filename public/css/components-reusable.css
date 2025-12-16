@@ -109,6 +109,7 @@
 }
 
 /* ===== INLINE STYLES FOR FAQ/COMPARISON PAGES ===== */
+
 /* These maintain the original inline styling for pages that use different layouts */
 .related-content-inline {
     background: var(--bg-secondary);

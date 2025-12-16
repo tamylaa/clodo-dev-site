@@ -15,10 +15,7 @@
 .cta-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(circle at 20% 80%, rgb(255 255 255 / 10%) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgb(255 255 255 / 10%) 0%, transparent 50%);
     pointer-events: none;
@@ -63,8 +60,7 @@
 
 .cta-stats {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: 1rem;
     justify-content: center;
     text-align: center;
@@ -199,7 +195,7 @@
 
 /* ===== TABLET (768px+) ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #cta {
         padding: 80px 0;
     }
@@ -267,7 +263,7 @@
 
 /* ===== DESKTOP (1024px+) ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     #cta {
         padding: 100px 0;
     }

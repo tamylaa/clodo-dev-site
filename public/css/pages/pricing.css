@@ -25,7 +25,7 @@
     line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .hero-section {
         padding: 6rem 0 4rem;
     }
@@ -39,7 +39,7 @@
     padding: 0 var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .pricing-highlights {
         gap: 2rem;
         padding: 0;
@@ -65,7 +65,7 @@
     box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .highlight {
         padding: 1rem 1.5rem;
         font-size: 1rem;
@@ -92,7 +92,7 @@
     padding: 0 var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #pricing {
         padding: 6rem 0;
     }
@@ -104,7 +104,7 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .pricing-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
@@ -138,7 +138,7 @@
     padding-top: 3.5rem;  /* Extra padding for "MOST POPULAR" banner */
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .pricing-card {
         padding: 2.5rem;
     }
@@ -296,7 +296,7 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .pricing-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
@@ -315,7 +315,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .hero-section {
         padding: 4rem 0 3rem;
     }
@@ -369,7 +369,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -415,7 +415,7 @@
 
     .pricing-card {
         border: 2px solid var(--color-black);
-        page-break-inside: avoid;
+        break-inside: avoid;
     }
 
     .pricing-card.featured {
@@ -425,7 +425,7 @@
 
     h1, h2, h3 {
         color: var(--color-black);
-        page-break-after: avoid;
+        break-after: avoid;
     }
 
     .price {

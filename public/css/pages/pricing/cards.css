@@ -15,6 +15,7 @@
 
 .pricing-grid {
     display: grid;
+
     /* Mobile: Single column */
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -30,6 +31,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-xl);
     padding: 2rem;
+
     /* Slightly reduced on mobile */
     text-align: center;
     transition: all var(--transition-fast);
@@ -56,8 +58,10 @@
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark, var(--primary-color)) 100%);
     color: var(--color-white);
     border: 2px solid var(--primary-color);
+
     /* Mobile: no scale transform */
     order: -1;
+
     /* Show first on mobile */
 }
 
@@ -79,6 +83,7 @@
 
 .pricing-card.featured:hover {
     transform: translateY(-8px);
+
     /* No scale on mobile */
 }
 
@@ -86,16 +91,19 @@
 
 .pricing-card h2 {
     font-size: 1.5rem;
+
     /* Smaller on mobile */
     font-weight: 700;
     margin-bottom: 1rem;
     margin-top: 2rem;
+
     /* Space for badge */
     color: inherit;
 }
 
 .pricing-card .price {
     font-size: 2.5rem;
+
     /* Smaller on mobile */
     font-weight: 800;
     color: var(--primary-color);
@@ -109,6 +117,7 @@
 
 .pricing-card .pricing-subtitle {
     font-size: 0.8125rem;
+
     /* Slightly smaller on mobile */
     color: var(--text-muted, var(--text-secondary));
     margin-bottom: 2rem;
@@ -127,17 +136,21 @@
     list-style: none;
     padding: 0;
     margin: 0 0 2rem;
+
     /* Reduced on mobile */
     text-align: left;
     flex-grow: 1;
+
     /* Push CTA to bottom */
 }
 
 .pricing-card li {
     padding: 0.625rem 0;
+
     /* Slightly reduced on mobile */
     border-bottom: 1px solid var(--border-color);
     font-size: 0.8125rem;
+
     /* Smaller on mobile */
     line-height: 1.5;
     display: flex;
@@ -173,8 +186,10 @@
     font-size: 1rem;
     font-weight: 600;
     min-height: 48px;
+
     /* WCAG touch target */
     margin-top: auto;
+
     /* Push to bottom of card */
 }
 
@@ -185,12 +200,13 @@
 
 /* ===== TABLET: 768px+ ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #pricing {
         padding: 5rem 0;
     }
 
     .pricing-grid {
+
         /* Tablet: 2 columns */
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
@@ -226,20 +242,23 @@
 
 /* ===== DESKTOP: 1024px+ ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     #pricing {
         padding: 6rem 0;
     }
 
     .pricing-grid {
+
         /* Desktop: 3 columns */
         grid-template-columns: repeat(3, 1fr);
     }
 
     .pricing-card.featured {
+
         /* Desktop: show scale */
         transform: scale(1.05);
         order: 0;
+
         /* Normal order on desktop */
     }
 
@@ -250,7 +269,7 @@
 
 /* ===== LARGE DESKTOP: 1200px+ ===== */
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .pricing-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
@@ -295,7 +314,6 @@
     }
 
     .pricing-card {
-        break-inside: avoid;
         break-inside: avoid;
         box-shadow: none;
         border: 1px solid var(--color-black);

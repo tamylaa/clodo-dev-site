@@ -10,6 +10,7 @@
 
 .hero-section {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+
     /* Use hero + standard alias for consistent system spacing */
     padding: var(--space-hero-y) 0 var(--space-section-y-standard);
     text-align: center;
@@ -24,6 +25,7 @@
 
 .hero-content h1 {
     font-size: clamp(2rem, 8vw, 3.5rem);
+
     /* Fluid typography */
     font-weight: 700;
     color: var(--text-primary);
@@ -36,6 +38,7 @@
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto 2.5rem;
+
     /* Reduced on mobile */
     line-height: 1.6;
 }
@@ -46,6 +49,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+
     /* Reduced gap on mobile */
     flex-wrap: wrap;
     padding: 0 var(--spacing-sm);
@@ -56,6 +60,7 @@
     align-items: center;
     gap: 0.625rem;
     padding: 0.875rem 1.25rem;
+
     /* Slightly smaller on mobile */
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
@@ -63,9 +68,11 @@
     font-weight: 500;
     color: var(--text-primary);
     font-size: 0.875rem;
+
     /* Smaller on mobile */
     transition: all var(--transition-fast);
     min-height: 44px;
+
     /* WCAG touch target */
 }
 
@@ -82,13 +89,14 @@
 
 .highlight-icon {
     font-size: 1.25rem;
+
     /* Slightly smaller on mobile */
     flex-shrink: 0;
 }
 
 /* ===== TABLET: 768px+ ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .hero-section {
         padding: 5rem 0 4rem;
     }
@@ -117,7 +125,7 @@
 
 /* ===== DESKTOP: 1024px+ ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .hero-section {
         padding: 6rem 0 4rem;
     }
@@ -154,6 +162,7 @@
 
     .pricing-highlights {
         display: none;
+
         /* Hide decorative elements */
     }
 }

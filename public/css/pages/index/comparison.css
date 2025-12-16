@@ -259,7 +259,7 @@
 
 /* ===== TABLET (768px+) ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #comparison {
         padding: 80px 0;
     }
@@ -332,7 +332,7 @@
 
 /* ===== DESKTOP (1024px+) ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .comparison-section .section-header {
         margin-bottom: 4rem;
     }

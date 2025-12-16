@@ -1,4 +1,4 @@
-﻿/* ===========================================
+/* ===========================================
    CLOUDO FRAMEWORK - COMPONENTS
    ===========================================
    
@@ -967,6 +967,7 @@ input:disabled {
         transform: scale(0);
         opacity: 0.5;
     }
+
     40% {
         transform: scale(1);
         opacity: 1;
@@ -982,6 +983,7 @@ input:disabled {
     0%, 100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -1004,6 +1006,7 @@ input:disabled {
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -1129,10 +1132,7 @@ input:disabled {
 /* ===== LOADING OVERLAYS ===== */
 .loading-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgb(255 255 255 / 90%);
     backdrop-filter: blur(4px);
     display: flex;
@@ -1193,10 +1193,12 @@ input:disabled {
         width: 0%;
         transform: translateX(0%);
     }
+
     50% {
         width: 50%;
         transform: translateX(50%);
     }
+
     100% {
         width: 0%;
         transform: translateX(100%);
@@ -1218,7 +1220,7 @@ input:disabled {
     transform: translate(-50%, -50%);
     width: 16px;
     height: 16px;
-    border: 2px solid currentColor;
+    border: 2px solid currentcolor;
     border-radius: 50%;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
@@ -1351,7 +1353,7 @@ input:disabled {
     height: 16px;
     margin: -8px 0 0 -8px;
     border: 2px solid transparent;
-    border-top: 2px solid currentColor;
+    border-top: 2px solid currentcolor;
     border-radius: 50%;
     animation: buttonSpin 1s linear infinite;
 }
@@ -1469,7 +1471,7 @@ input:disabled {
 }
 
 /* ===== RESPONSIVE NOTIFICATIONS ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .notification-container {
         top: 1rem;
         right: 1rem;
@@ -1488,12 +1490,13 @@ input:disabled {
     .notification__close {
         min-width: 44px;
         min-height: 44px;
+
         /* WCAG touch target */
     }
 }
 
 /* ===== RESPONSIVE LOADING STATES ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .loading-overlay .loading-content {
         margin: 1rem;
         padding: 1.5rem;
@@ -1841,6 +1844,7 @@ img.lazy-loaded {
 }
 
 /* ===== FEATURE GRIDS ===== */
+
 /* Note: .features-grid is now handled specifically in features.css for better control */
 .enterprise-features,
 .development-workflow,
@@ -2514,7 +2518,7 @@ img.lazy-loaded {
 .code-example pre {
     margin: 0;
     color: var(--color-gray-100);
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
     font-size: 0.875rem;
     line-height: 1.5;
 }
@@ -2545,7 +2549,7 @@ dd {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .further-reading,
     .features-grid,
     .enterprise-features,
@@ -2781,7 +2785,6 @@ dd {
     border-radius: 0;
     overflow: visible;
     var(--color-white)-space: pre-wrap;
-    overflow-wrap: anywhere;
     overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
     font-size: 0.875rem;
@@ -2871,7 +2874,7 @@ footer::before {
     font-weight: 800;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
@@ -3201,7 +3204,7 @@ footer::before {
 }
 
 /* Improve tap targets on mobile */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .btn {
         min-height: 44px;
         padding: 0.75rem 1.5rem;
@@ -3224,7 +3227,7 @@ footer::before {
 }
 
 /* Better mobile scrolling and performance */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     * {
         -webkit-overflow-scrolling: touch;
     }
@@ -3242,7 +3245,7 @@ footer::before {
 
     /* Better text rendering on mobile */
     h1, h2, h3, h4, h5, h6 {
-        text-rendering: optimizeLegibility;
+        text-rendering: optimizelegibility;
     }
 
     /* Improve button touch feedback */
@@ -3253,14 +3256,13 @@ footer::before {
 }
 
 /* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (min-device-pixel-ratio: 2), (resolution >= 192dpi) {
     .logo-icon {
-        image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }
 
     .social-links svg {
-        shape-rendering: crispEdges;
+        shape-rendering: crispedges;
     }
 }
 
@@ -3287,7 +3289,7 @@ footer::before {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .btn {
-        border: 2px solid currentColor;
+        border: 2px solid currentcolor;
     }
 
     .card {
@@ -3321,7 +3323,7 @@ footer::before {
         --bg-primary: #0a0a0a;
         --bg-secondary: #1a1a1a;
         --text-primary: var(--color-white)fff;
-        --text-secondary: #cccccc;
-        --border-color: #333333;
+        --text-secondary: #ccc;
+        --border-color: #333;
     }
 }
