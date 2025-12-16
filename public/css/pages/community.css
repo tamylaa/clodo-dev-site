@@ -204,7 +204,7 @@
 }
 
 .channel-card--discord .channel-badge {
-  background: #5865f2;
+  background: var(--community-500);
 }
 
 .channel-card p {
@@ -239,14 +239,14 @@
 }
 
 .channel-link--primary {
-  background: #5865f2;
+  background: var(--community-500);
   color: var(--color-white);
-  border-color: #5865f2;
+  border-color: var(--community-500);
 }
 
 .channel-link--primary:hover {
-  background: #4752c4;
-  border-color: #4752c4;
+  background: var(--community-400);
+  border-color: var(--community-400);
 }
 
 .discord-channels {
@@ -257,7 +257,7 @@
 
 .discord-channel {
   background: rgb(88 101 242 / 10%);
-  color: #5865f2;
+  color: var(--community-500);
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   font-size: 0.75rem;
