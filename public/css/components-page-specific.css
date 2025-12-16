@@ -1079,7 +1079,7 @@ dd {
 
 /* ===== FOOTER ===== */
 footer {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(11, 18, 32, 0.95) 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgb(11 18 32 / 95%) 100%);
     border-top: 1px solid var(--border-color);
     margin-top: 6rem;
     position: relative;
@@ -1228,7 +1228,7 @@ footer::before {
     border-color: var(--primary-color);
     color: var(--color-white);
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 25px rgb(59 130 246 / 30%);
 }
 
 .social-links a:hover::before {
@@ -1342,7 +1342,7 @@ footer::before {
 .footer-newsletter .form-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
     background: var(--bg-primary);
 }
 
@@ -1356,7 +1356,7 @@ footer::before {
 
 .footer-newsletter .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 6px 20px rgb(59 130 246 / 30%);
 }
 
 .footer-newsletter .reassurance {
@@ -1399,15 +1399,15 @@ footer::before {
 }
 
 .footer-newsletter .form-message.success {
-    background: rgba(34, 197, 94, 0.1);
+    background: rgb(34 197 94 / 10%);
     color: var(--success-color);
-    border: 1px solid rgba(34, 197, 94, 0.2);
+    border: 1px solid rgb(34 197 94 / 20%);
 }
 
 .footer-newsletter .form-message.error {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgb(239 68 68 / 10%);
     color: var(--error-color);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    border: 1px solid rgb(239 68 68 / 20%);
 }
 
 /* ===== MOBILE OPTIMIZATIONS ===== */
@@ -1420,7 +1420,7 @@ footer::before {
 
     .card:hover {
         transform: none;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
     }
 
     .social-links a:hover {
