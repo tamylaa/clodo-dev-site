@@ -173,11 +173,32 @@ function copyHtml() {
                 console.log(`   ℹ️  Header auto-injected into ${file} (no SSI includes present)`);
             }
 
-            // Inject critical theme script into <head> to prevent FOUC
-            // This MUST be inline before CSS loads - handled automatically by build process
+            // Inject critical header CSS and theme script into <head> to prevent FOUC
+            // Header CSS is inlined to ensure nav styles are applied immediately (reduces layout shift)
+            const headerCssPath = join('public', 'css', 'global', 'header.css');
+            let headerCriticalCss = '';
+            if (existsSync(headerCssPath)) {
+                headerCriticalCss = readFileSync(headerCssPath, 'utf8')
+                    .replace(/\/\*[\s\S]*?\*\//g, '') // remove comments
+                    .split('\n').map(l => l.trim()).filter(l => l.length > 0).join('');
+            }
+            // Minimal breadcrumb styles inlined as well to avoid flash-of-unstyled breadcrumbs
+            const breadcrumbCss = `.breadcrumbs{max-width:1280px;margin:0 auto;padding:1rem;font-size:.875rem;color:var(--text-muted)}.breadcrumbs ol{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;margin:0;padding:0}.breadcrumbs li{display:flex;align-items:center}.breadcrumbs li:not(:last-child):after{content:"/";margin-left:.5rem}.breadcrumbs a{color:var(--primary-color);text-decoration:none}.breadcrumbs a:hover{text-decoration:underline}.navbar{transition:none !important}.css-ready .navbar{transition:all var(--transition-fast)}`;
+            if (headerCriticalCss) {
+                headerCriticalCss = headerCriticalCss + breadcrumbCss;
+            } else {
+                headerCriticalCss = breadcrumbCss;
+            }
+
+            // Page-specific critical tweaks: e.g., blog index header spacing to avoid layout shifts
+            if (file.includes('blog/')) {
+                const blogCritical = `.blog-index__header{margin-bottom:3rem}.blog-index__header h1{margin-bottom:.75rem}.blog-index__header p{font-size:1.1rem;margin:0 auto;line-height:1.6}`;
+                headerCriticalCss = headerCriticalCss + blogCritical;
+            }
             if (content.includes('</head>')) {
-                content = content.replace('</head>', `    ${themeScriptTemplate}\n</head>`);
-                console.log(`   ✅ Theme script injected in ${file}`);
+                const headerStyleTag = headerCriticalCss ? `<style>${headerCriticalCss}</style>\n    ` : '';
+                content = content.replace('</head>', `    ${headerStyleTag}${themeScriptTemplate}\n</head>`);
+                console.log(`   ✅ Theme script (and header critical CSS) injected in ${file}`);
             } else {
                 console.warn(`   ⚠️  No </head> tag found in ${file} - theme script NOT injected!`);
             }
@@ -337,6 +358,36 @@ function copyHtml() {
                         );
                     }
                 }
+            }
+
+            // Add defer attribute to non-critical scripts to reduce main-thread blocking & improve LCP
+            // Skip scripts that must run early (theme/init-preload) or are module scripts (type="module")
+            try {
+                const deferScriptNames = [
+                    'component-nav.js',
+                    'analytics.js',
+                    'github-integration.js',
+                    'lazy-loading.js',
+                    'scroll-animations.js',
+                    'main.js',
+                    'defer-css.js',
+                    'config/features.js',
+                    'features/index.js',
+                    'features/newsletter.js',
+                    'features/brevo-chat.js',
+                    'ui/index.js'
+                ];
+
+                deferScriptNames.forEach((name) => {
+                    const regex = new RegExp(`<script([^>]*)src=["'](?:\\.|\\/|)js\\/${name}["']([^>]*)><\\/script>`, 'g');
+                    content = content.replace(regex, (m) => {
+                        if (/\bdefer\b|\basync\b/.test(m)) return m; // already deferred/async
+                        if (/type=["']module["']/.test(m)) return m; // module scripts are deferred by default
+                        return m.replace('<script', '<script defer');
+                    });
+                });
+            } catch (e) {
+                // Non-fatal - leave scripts as-is if anything goes wrong
             }
 
             // Remove redundant security meta tags (already set via HTTP headers in _headers file)
