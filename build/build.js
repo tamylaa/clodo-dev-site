@@ -166,6 +166,13 @@ function copyHtml() {
             // Replace header placeholder with actual header content
             content = content.replace('<!-- HEADER_PLACEHOLDER -->', adjustedHeaderTemplate);
 
+            // If the HTML file does not use SSI includes and doesn't already have a <header>,
+            // auto-inject the header template so pages authored as standalone still get the nav.
+            if (!content.includes('<!--#include file="') && !(/<header[\s>]/i).test(content) && !content.includes('<!-- HEADER_PLACEHOLDER -->')) {
+                content = content.replace(/<body>/, `<body>\n    ${adjustedHeaderTemplate}`);
+                console.log(`   ℹ️  Header auto-injected into ${file} (no SSI includes present)`);
+            }
+
             // Inject critical theme script into <head> to prevent FOUC
             // This MUST be inline before CSS loads - handled automatically by build process
             if (content.includes('</head>')) {
@@ -207,6 +214,13 @@ function copyHtml() {
 
             // Replace footer placeholder with actual footer content (legacy support)
             content = content.replace('<!-- FOOTER_PLACEHOLDER -->', adjustedFooterTemplate);
+
+            // Safety fallback: if after processing there is still no navbar inserted, inject header/nav
+            if (!(/<nav\s+class=["']navbar["']/i).test(content)) {
+                // wrap nav in <header> for semantics
+                content = content.replace(/<body>/, `<body>\n    <header>\n${adjustedHeaderTemplate}\n    </header>`);
+                console.log(`   ℹ️  Header (nav) injected into ${file} (post-processing fallback)`);
+            }
 
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
@@ -338,6 +352,12 @@ function copyHtml() {
             const destDir = dirname(destPath);
             if (!existsSync(destDir)) {
                 mkdirSync(destDir, { recursive: true });
+            }
+
+            // Final safety: ensure the navbar exists in the final content; if not, inject it
+            if (!(/<nav\s+class=["']navbar["']/i).test(content)) {
+                content = content.replace(/<body>/, `<body>\n    <header>\n${adjustedHeaderTemplate}\n    </header>`);
+                console.log(`   ℹ️  Header (nav) injected into ${file} (final fallback before write)`);
             }
 
             writeFileSync(destPath, content);
