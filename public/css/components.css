@@ -27,7 +27,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-fast);
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
     position: relative;
     overflow: hidden;
 }
@@ -2784,7 +2784,7 @@ dd {
     border: none;
     border-radius: 0;
     overflow: visible;
-    var(--color-white)-space: pre-wrap;
+    white-space: pre-wrap;
     overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
     font-size: 0.875rem;
@@ -3115,7 +3115,7 @@ footer::before {
 
 .footer-newsletter .btn {
     padding: 1rem 2rem;
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
     font-weight: 600;
     border-radius: 12px;
     transition: all var(--transition-fast);

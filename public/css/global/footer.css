@@ -437,7 +437,7 @@ footer > * {
 .footer-newsletter .newsletter-note {
     color: var(--text-muted);
     font-size: 0.875rem;
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
 }
 
 .footer-newsletter .form-group {
