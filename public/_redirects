@@ -1,5 +1,6 @@
 # Cloudflare Pages Redirects for Clodo Framework
 # Enterprise SEO and user experience optimization
+# Updated to fix redirect loops
 
 # Legacy URL redirects (maintain SEO value)
 /old-framework/* /:splat 301
