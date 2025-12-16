@@ -188,12 +188,15 @@ img {
     --color-333: rgb(51 51 51);
     --color-1e293b: rgb(30 41 59);
     --bg-light-100: rgb(241 245 249);
+
     /* Community brand tokens */
     --community-500: rgb(88 101 242); /* #5865f2 */
     --community-400: rgb(71 82 196);  /* #4752c4 */
+
     /* Case studies specific tokens */
     --case-muted: rgb(100 116 139);   /* #64748b */
     --case-deep: rgb(11 18 32);       /* #0b1220 */
+
     /* Blog & Hero tokens */
     --color-1f2937: rgb(31 41 55);    /* #1f2937 */
     --color-374151: rgb(55 65 81);    /* #374151 */
