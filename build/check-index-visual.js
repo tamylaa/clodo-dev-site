@@ -12,7 +12,7 @@ import { chromium } from 'playwright';
   let heroDisplay = 'missing';
   try {
     heroDisplay = await page.$eval('#hero-title', (el) => getComputedStyle(el).getPropertyValue('display'));
-  } catch (e) {}
+  } catch (e) { void e; }
 
   console.log({ links, styleCount, heroDisplay });
   await browser.close();

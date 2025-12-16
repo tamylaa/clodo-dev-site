@@ -14,7 +14,7 @@ import { chromium } from 'playwright';
     headerDisplay = await page.$eval('.blog-post__header', (el) =>
       getComputedStyle(el).getPropertyValue('display')
     );
-  } catch (e) {}
+  } catch (e) { void e; }
 
   const headHTML = await page.$eval('head', h => h.innerHTML.slice(0,2000));
 

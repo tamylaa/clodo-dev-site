@@ -275,8 +275,8 @@ function copyHtml() {
                         // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
                         const fileDir = dirname(file);
                         const isSubdirectory = fileDir !== '.' && fileDir !== '';
-                        const pathPrefix = isSubdirectory ? '../' : '';
-                        console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${pathPrefix}'`);
+                        const _pathPrefix = isSubdirectory ? '../' : '';
+                        console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${_pathPrefix}'`);
                         
                         const commonCss = `<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>`;
                         const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
@@ -301,7 +301,7 @@ function copyHtml() {
                     // Adjust paths for subdirectory files (blog/*, case-studies/*, community/*)
                     const fileDir = dirname(file);
                     const isSubdirectory = fileDir !== '.' && fileDir !== '';
-                    const pathPrefix = isSubdirectory ? '../' : '';
+                    const _pathPrefix = isSubdirectory ? '../' : '';
                     
                     const commonCss = `<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>`;
                     const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
