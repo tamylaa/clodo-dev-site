@@ -338,7 +338,7 @@ main section:nth-child(even) {
     }
 
     p {
-        page-break-inside: avoid;
+        break-inside: avoid;
         orphans: 3;
         widows: 3;
     }

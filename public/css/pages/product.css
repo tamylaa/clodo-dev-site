@@ -43,7 +43,7 @@
 
     .assessment-quote {
         border-left: 4px solid #000;
-        page-break-inside: avoid;
+        break-inside: avoid;
     }
 
     ul {

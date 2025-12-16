@@ -363,7 +363,6 @@
     .content-item,
     .faq-item {
         break-inside: avoid;
-        page-break-inside: avoid;
     }
 
     .content-tag {

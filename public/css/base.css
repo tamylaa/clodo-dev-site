@@ -745,8 +745,7 @@ body {
 /* Better hyphenation for long words */
 p, li, dd {
     hyphens: auto;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* Prevent widows and orphans */
