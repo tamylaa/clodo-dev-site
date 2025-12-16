@@ -482,12 +482,12 @@
 }
 
 /* Enhanced form input animations */
-.form-input {
+.form-group .form-input {
     position: relative;
     transition: all var(--transition-fast);
 }
 
-.form-input:focus {
+.form-group .form-input:focus {
     transform: translateY(-1px);
     box-shadow: 0 0 0 3px rgb(0 102 204 / 10%), 0 4px 12px rgb(0 102 204 / 15%);
 }
@@ -498,7 +498,7 @@
 }
 
 /* Floating label animation */
-.form-label {
+.form-group .form-label {
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-md);

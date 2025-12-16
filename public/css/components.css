@@ -59,56 +59,9 @@
 }
 
 /* ===== FORMS ===== */
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
 
-.form-label {
-    display: block;
-    margin-bottom: var(--spacing-sm);
-    font-weight: 500;
-    color: var(--text-primary);
-}
+/* Forms canonicalized in `components-common.css`. Keep page-specific overrides here only (do not duplicate core rules). */
 
-.form-input {
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgb(0 102 204 / 10%);
-    outline: none;
-}
-
-.form-input::placeholder {
-    color: var(--text-muted);
-}
-
-.form-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-error {
-    margin-top: var(--spacing-xs);
-    font-size: 0.875rem;
-    color: var(--error-color);
-}
-
-.form-helper {
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    margin-bottom: var(--spacing-md);
-}
 
 /* Field error states (from Forms module) */
 .field-error {
