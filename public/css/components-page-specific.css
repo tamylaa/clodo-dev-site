@@ -1557,6 +1557,6 @@ footer::before {
         --bg-secondary: #1a1a1a;
         --text-primary: var(--color-white)fff;
         --text-secondary: #ccc;
-        --border-color: #333;
+        --border-color: var(--color-333);
     }
 }
