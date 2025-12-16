@@ -353,19 +353,7 @@
     display: inline-block !important;
 }
 
-/* Navigation styles moved to header.css */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    font-size: 1rem;
-    line-height: 1;
-    color: currentcolor;
-    transition: color var(--transition-fast), transform var(--transition-fast);
-}
+/* Icons canonicalized in components-common.css */
 
 /* Icon sizes */
 .icon--xs { font-size: 0.75rem; }
@@ -906,34 +894,7 @@ input:disabled {
 
 /* ===== ENHANCED LOADING STATES ===== */
 
-/* ===== SPINNERS ===== */
-.spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    border-top-color: var(--primary-color);
-    animation: spin 1s ease-in-out infinite;
-}
-
-.spinner--sm {
-    width: 16px;
-    height: 16px;
-    border-width: 1.5px;
-}
-
-.spinner--lg {
-    width: 32px;
-    height: 32px;
-    border-width: 3px;
-}
-
-.spinner--xl {
-    width: 48px;
-    height: 48px;
-    border-width: 4px;
-}
+/* Spinners canonicalized in components-common.css */
 
 @keyframes spin {
     to {

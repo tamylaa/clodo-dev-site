@@ -827,32 +827,7 @@ dd {
     }
 }
 
-/* ===== LOADING STATES & SPINNERS ===== */
-.spinner {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border: 2px solid currentcolor;
-    border-radius: 50%;
-    border-right-color: transparent;
-    animation: spin 1s linear infinite;
-}
-
-.spinner--sm {
-       width: 0.75em;
-    height: 0.75em;
-    border-width: 1px;
-}
-
-.spinner--var(--color-white) {
-    color: var(--color-white);
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+/* Spinners canonicalized in components-common.css */
 
 .state-loading {
     opacity: 0.7;

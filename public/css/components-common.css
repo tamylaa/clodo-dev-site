@@ -44,78 +44,78 @@
 }
 
 /* Primary button - standard */
-.btn-primary {
+.btn-primary, .btn--primary {
     background-color: var(--primary-color);
     color: var(--color-white);
     border-color: var(--primary-color);
 }
 
-.btn-primary:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled), .btn--primary:hover:not(:disabled) {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
 
-.btn-primary:active:not(:disabled) {
+.btn-primary:active:not(:disabled), .btn--primary:active:not(:disabled) {
     transform: translateY(0);
     box-shadow: var(--shadow-sm);
 }
 
 /* Secondary button - standard */
-.btn-secondary {
+.btn-secondary, .btn--secondary {
     background-color: transparent;
     color: var(--text-primary);
     border-color: var(--border-color);
 }
 
-.btn-secondary:hover:not(:disabled) {
+.btn-secondary:hover:not(:disabled), .btn--secondary:hover:not(:disabled) {
     background-color: var(--bg-secondary);
     border-color: var(--text-secondary);
     transform: translateY(-1px);
 }
 
-.btn-secondary:active:not(:disabled) {
+.btn-secondary:active:not(:disabled), .btn--secondary:active:not(:disabled) {
     transform: translateY(0);
 }
 
 /* Outline button */
-.btn-outline {
+.btn-outline, .btn--outline {
     background-color: transparent;
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
 
-.btn-outline:hover:not(:disabled) {
+.btn-outline:hover:not(:disabled), .btn--outline:hover:not(:disabled) {
     background-color: var(--primary-color);
     color: var(--color-white);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
 }
 
-.btn-outline:active:not(:disabled) {
+.btn-outline:active:not(:disabled), .btn--outline:active:not(:disabled) {
     transform: translateY(0);
 }
 
 /* Size variants */
-.btn-large {
+.btn-large, .btn--large, .btn--lg {
     width: 100%;
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.btn-sm {
+.btn-sm, .btn--sm {
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: 0.75rem;
 }
 
-.btn-block {
+.btn-block, .btn--block {
     width: 100%;
     justify-content: center;
 }
 
-.btn-full {
+.btn-full, .btn--full {
     width: 100%;
 }
 
@@ -148,86 +148,9 @@
     display: inline;
 }
 
-/* Double-dash BEM variants (matching HTML usage) */
-.btn--primary {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    border-color: var(--primary-color);
-}
+/* Double-dash BEM variants consolidated above */
 
-.btn--primary:hover:not(:disabled) {
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn--primary:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn--secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--border-color);
-}
-
-.btn--secondary:hover:not(:disabled) {
-    background-color: var(--bg-secondary);
-    border-color: var(--text-secondary);
-    transform: translateY(-1px);
-}
-
-.btn--secondary:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-.btn--outline {
-    background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn--outline:hover:not(:disabled) {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
-}
-
-.btn--outline:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-/* Size variants with double-dash */
-.btn--large {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.btn--lg {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.btn--sm {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.75rem;
-}
-
-.btn--block {
-    width: 100%;
-    justify-content: center;
-}
-
-.btn--full {
-    width: 100%;
-}
+/* ===== CARDS ===== */
 
 /* ===== CARDS ===== */
 .card {

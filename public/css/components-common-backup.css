@@ -144,16 +144,6 @@
     display: none;
 }
 
-.btn[aria-busy="true"] .btn-spinner {
-    display: inline;
-}
-
-/* Double-dash BEM variants (matching HTML usage) */
-.btn--primary {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    border-color: var(--primary-color);
-}
 
 .btn--primary:hover:not(:disabled) {
     background-color: var(--primary-dark);
@@ -349,23 +339,12 @@
     pointer-events: none;
 }
 
-.btn--loading .btn-spinner {
+.btn--loading .btn-spinner,
+.btn[aria-busy="true"] .btn-spinner {
     display: inline-block !important;
 }
 
-/* Navigation styles moved to header.css */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    font-size: 1rem;
-    line-height: 1;
-    color: currentcolor;
-    transition: color var(--transition-fast), transform var(--transition-fast);
-}
+/* Icons canonicalized in components-common.css */
 
 /* Icon sizes */
 .icon--xs { font-size: 0.75rem; }
@@ -534,10 +513,6 @@
 /* ===== MICRO-INTERACTIONS ===== */
 
 /* Enhanced button ripple effect */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
 
 .btn::before {
     content: '';
@@ -865,74 +840,11 @@ input:disabled {
     }
 }
 
-/* Spinner variants */
-.spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    border-top-color: var(--primary-color);
-    animation: spin 1s linear infinite;
-}
-
-.spinner--sm {
-    width: 16px;
-    height: 16px;
-    border-width: 1.5px;
-}
-
-.spinner--lg {
-    width: 32px;
-    height: 32px;
-    border-width: 3px;
-}
-
-.spinner--var(--color-white) {
-    border-color: rgb(255 255 255 / 30%);
-    border-top-color: var(--color-white);
-}
-
-.spinner--primary {
-    border-color: rgb(0 102 204 / 30%);
-    border-top-color: var(--primary-color);
-}
-
-.spinner--demo {
-    background: var(--color-333);
-    border-radius: 8px;
-}
+/* Spinners canonicalized in components-common.css */
 
 /* ===== ENHANCED LOADING STATES ===== */
 
-/* ===== SPINNERS ===== */
-.spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    border-top-color: var(--primary-color);
-    animation: spin 1s ease-in-out infinite;
-}
-
-.spinner--sm {
-    width: 16px;
-    height: 16px;
-    border-width: 1.5px;
-}
-
-.spinner--lg {
-    width: 32px;
-    height: 32px;
-    border-width: 3px;
-}
-
-.spinner--xl {
-    width: 48px;
-    height: 48px;
-    border-width: 4px;
-}
+/* Spinners canonicalized in components-common.css */
 
 @keyframes spin {
     to {
@@ -1764,3 +1676,4 @@ img.lazy-loaded {
     }
 }
 
+}
