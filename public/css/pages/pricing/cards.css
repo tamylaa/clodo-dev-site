@@ -41,7 +41,7 @@
 
 .pricing-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgb(0 0 0 / 15%);
     border-color: var(--primary-color);
 }
 
@@ -118,7 +118,7 @@
 }
 
 .pricing-card.featured .pricing-subtitle {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
 }
 
 /* ===== FEATURES LIST ===== */
@@ -161,8 +161,8 @@
 }
 
 .pricing-card.featured li {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
+    border-bottom-color: rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 90%);
 }
 
 /* ===== CTA BUTTON ===== */

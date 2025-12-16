@@ -18,7 +18,7 @@ header {
 .navbar {
     background-color: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
 }
 
 .nav-container {
@@ -179,7 +179,7 @@ header {
     right: 0;
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 10%);
 }
 
 /* Explicitly hide when closed (defensive programming) */
@@ -296,7 +296,7 @@ header {
     font-weight: 600 !important;
     color: var(--text-primary) !important;
     cursor: pointer;
-    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-bottom: 1px solid var(--border-color, rgb(255 255 255 / 10%));
     margin-bottom: var(--spacing-xs);
 }
 
@@ -398,7 +398,7 @@ header {
         background: var(--bg-primary);
         border: 1px solid var(--border-color);
         border-radius: var(--radius-md);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgb(0 0 0 / 10%);
         margin-top: 0.5rem;
     }
 
