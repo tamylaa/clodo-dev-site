@@ -528,7 +528,7 @@
 
 .roi-calculation p {
   margin-bottom: 0.5rem;
-  color: #374151;
+  color: var(--gray-700);
   line-height: 1.6;
 }
 
@@ -544,7 +544,7 @@ blockquote {
 
 blockquote p {
   margin: 0;
-  color: #374151;
+  color: var(--gray-700);
   font-size: 1.125rem;
   line-height: 1.6;
 }

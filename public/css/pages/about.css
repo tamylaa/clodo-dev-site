@@ -329,7 +329,7 @@ main section:nth-child(even) {
     }
 
     a {
-        color: #06c;
+        color: var(--color-06c);
         text-decoration: underline;
     }
 
