@@ -241,7 +241,7 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, #1d4ed8, #6366f1);
+            background: linear-gradient(90deg, #1d4ed8, var(--primary-500));
             z-index: 9999;
             transition: width 0.1s ease-out;
         }
@@ -251,8 +251,8 @@
             right: 2rem;
             width: 48px;
             height: 48px;
-            background: var(--color-primary, #4F46E5);
-            color: white;
+            background: var(--color-primary, var(--primary-600));
+            color: var(--color-white);
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -755,7 +755,7 @@ export default {
                 
                 <!-- Author Bio Box -->
                 <aside class="author-bio-box" id="author-bio" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E" alt="Tamyla" class="author-bio-box__avatar" loading="lazy" decoding="async">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='60' font-size='40' font-weight='bold' text-anchor='middle' fill='var(--color-white)'%3ET%3C/text%3E%3C/svg%3E" alt="Tamyla" class="author-bio-box__avatar" loading="lazy" decoding="async">
                     <div class="author-bio-box__content">
                         <p class="author-bio-box__label">Written by</p>
                         <h3 class="author-bio-box__name" itemprop="name">Tamyla</h3>

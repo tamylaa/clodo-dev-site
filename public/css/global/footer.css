@@ -437,7 +437,7 @@ footer > * {
 .footer-newsletter .newsletter-note {
     color: var(--text-muted);
     font-size: 0.875rem;
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
 }
 
 .footer-newsletter .form-group {
@@ -495,7 +495,7 @@ footer > * {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;

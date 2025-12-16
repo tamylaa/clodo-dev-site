@@ -169,9 +169,9 @@
 
 .hero-title__highlight {
     /* Solid fallback color with high contrast */
-    color: #2563eb;
+    color: var(--primary-dark);
     /* Gradient overlay for supporting browsers */
-    background: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%);
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-purple) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -185,7 +185,7 @@
 @supports not (background-clip: text) {
     .hero-title__highlight {
         background: none;
-        color: #2563eb;
+        color: var(--primary-dark);
     }
 }
 
@@ -289,7 +289,7 @@ p.hero-subtitle {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-    color: white;
+    color: var(--color-white);
     box-shadow: 
         0 4px 20px rgb(59 130 246 / 30%),
         0 1px 3px rgb(59 130 246 / 20%),
@@ -397,7 +397,7 @@ p.hero-subtitle {
 }
 
 .hero-trust__item svg {
-    color: var(--success-500, #10b981);
+    color: var(--success-500, var(--success-500));
     flex-shrink: 0;
 }
 
@@ -630,7 +630,7 @@ p.hero-subtitle {
 
 /* Code Syntax Highlighting */
 .code-comment {
-    color: #6b7280;
+    color: var(--gray-500);
     font-style: italic;
 }
 
@@ -644,7 +644,7 @@ p.hero-subtitle {
 }
 
 .code-flag {
-    color: #8b5cf6;
+    color: var(--accent-purple);
 }
 
 .code-value {

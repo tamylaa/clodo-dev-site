@@ -32,17 +32,17 @@
     }
 
     body {
-        background: white;
-        color: black;
+        background: var(--color-white);
+        color: var(--color-black);
     }
 
     h1, h2, h3 {
         page-break-after: avoid;
-        color: black;
+        color: var(--color-black);
     }
 
     .assessment-quote {
-        border-left: 4px solid #000;
+        border-left: 4px solid var(--color-black);
         break-inside: avoid;
     }
 
@@ -59,7 +59,7 @@
     }
 
     .assessment-quote {
-        border-left: 4px solid #000;
+        border-left: 4px solid var(--color-black);
     }
 }
 

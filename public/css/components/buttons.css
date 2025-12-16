@@ -24,7 +24,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-fast);
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
     position: relative;
     overflow: hidden;
 }
@@ -209,8 +209,8 @@
 
 @media print {
     .btn {
-        border: 1px solid #000;
-        color: #000;
+        border: 1px solid var(--color-black);
+        color: var(--color-black);
         background: transparent;
     }
 }

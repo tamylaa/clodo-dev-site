@@ -27,7 +27,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-fast);
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
     position: relative;
     overflow: hidden;
 }
@@ -888,7 +888,7 @@ input:disabled {
     border-width: 3px;
 }
 
-.spinner--white {
+.spinner--var(--color-white) {
     border-color: rgb(255 255 255 / 30%);
     border-top-color: var(--color-white);
 }
@@ -1318,7 +1318,7 @@ input:disabled {
     left: 9px;
     width: 6px;
     height: 10px;
-    border: solid white;
+    border: solid var(--color-white);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg) scale(0);
     animation: checkmarkDraw 0.4s ease-out 0.2s forwards;
@@ -2607,7 +2607,7 @@ dd {
     border-width: 1px;
 }
 
-.spinner--white {
+.spinner--var(--color-white) {
     color: var(--color-white);
 }
 
@@ -2622,11 +2622,11 @@ dd {
 }
 
 .state-success {
-    color: var(--color-success, #10b981);
+    color: var(--color-success, var(--success-500));
 }
 
 .state-error {
-    color: var(--color-error, #ef4444);
+    color: var(--color-error, var(--error-500));
 }
 
 /* ===== NEWSLETTER FORM ===== */
@@ -2780,7 +2780,7 @@ dd {
     border: none;
     border-radius: 0;
     overflow: visible;
-    white-space: pre-wrap;
+    var(--color-white)-space: pre-wrap;
     overflow-wrap: anywhere;
     overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
@@ -3112,7 +3112,7 @@ footer::before {
 
 .footer-newsletter .btn {
     padding: 1rem 2rem;
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
     font-weight: 600;
     border-radius: 12px;
     transition: all var(--transition-fast);
@@ -3320,7 +3320,7 @@ footer::before {
     :root {
         --bg-primary: #0a0a0a;
         --bg-secondary: #1a1a1a;
-        --text-primary: #ffffff;
+        --text-primary: var(--color-white)fff;
         --text-secondary: #cccccc;
         --border-color: #333333;
     }

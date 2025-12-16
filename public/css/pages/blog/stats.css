@@ -106,7 +106,7 @@
     margin-top: 1rem;
     padding: 0.5rem 1rem;
     background: var(--success-color);
-    color: var(--color-white, white);
+    color: var(--color-white);
     border-radius: var(--radius-full, 2rem);
     font-size: 0.75rem;
     /* Smaller on mobile */
@@ -365,7 +365,7 @@
         break-inside: avoid;
         page-break-inside: avoid;
         box-shadow: none;
-        border: 1px solid #000;
+        border: 1px solid var(--color-black);
     }
 
     .stat-card:hover {
@@ -373,9 +373,9 @@
     }
 
     .stat-number--highlight {
-        -webkit-text-fill-color: #000;
+        -webkit-text-fill-color: var(--color-black);
         background: none;
-        color: #000;
+        color: var(--color-black);
     }
 
     .impact-table,
