@@ -24,7 +24,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-fast);
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
     position: relative;
     overflow: hidden;
 }

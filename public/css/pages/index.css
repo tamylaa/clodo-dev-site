@@ -341,7 +341,7 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-wrap: break-word;
-    var(--color-white)-space: pre-wrap;
+    white-space: pre-wrap;
     hyphens: auto;
     width: 100%;
     box-sizing: border-box;

@@ -30,7 +30,7 @@
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
     border-width: 0;
     z-index: 1000;
     opacity: 0;
@@ -51,7 +51,7 @@
     font-weight: 500;
     overflow: visible;
     clip: auto;
-    var(--color-white)-space: normal;
+    white-space: normal;
 }
 
 /* ===== NOSCRIPT OVERLAY (replaces inline styles) ===== */
