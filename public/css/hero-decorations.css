@@ -9,7 +9,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(59, 130, 246, 0.1);
+    background: rgb(59 130 246 / 10%);
     border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;

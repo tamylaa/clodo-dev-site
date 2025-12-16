@@ -992,7 +992,7 @@ input:disabled {
     background: linear-gradient(
         90deg,
         var(--bg-secondary) 25%,
-        rgba(255, 255, 255, 0.1) 50%,
+        rgb(255 255 255 / 10%) 50%,
         var(--bg-secondary) 75%
     );
     background-size: 200% 100%;
@@ -1133,7 +1133,7 @@ input:disabled {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255 255 255 / 90%);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -1154,7 +1154,7 @@ input:disabled {
     padding: 2rem;
     background: var(--bg-primary);
     border-radius: var(--radius-lg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
     border: 1px solid var(--border-color);
 }
 
@@ -1266,8 +1266,8 @@ input:disabled {
 
 .state-error {
     color: var(--error-color);
-    background-color: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    background-color: rgb(239 68 68 / 10%);
+    border: 1px solid rgb(239 68 68 / 20%);
     border-radius: var(--radius-md);
     padding: var(--spacing-sm);
     animation: shake 0.5s ease-in-out;
@@ -1275,8 +1275,8 @@ input:disabled {
 
 .state-success {
     color: var(--success-color);
-    background-color: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background-color: rgb(16 185 129 / 10%);
+    border: 1px solid rgb(16 185 129 / 20%);
     border-radius: var(--radius-md);
     padding: var(--spacing-sm);
     animation: slide-in 0.3s ease-out;
@@ -1284,16 +1284,16 @@ input:disabled {
 
 .state-warning {
     color: var(--warning-color);
-    background-color: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background-color: rgb(245 158 11 / 10%);
+    border: 1px solid rgb(245 158 11 / 20%);
     border-radius: var(--radius-md);
     padding: var(--spacing-sm);
 }
 
 .state-info {
     color: var(--info-color);
-    background-color: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background-color: rgb(59 130 246 / 10%);
+    border: 1px solid rgb(59 130 246 / 20%);
     border-radius: var(--radius-md);
     padding: var(--spacing-sm);
 }
@@ -1394,7 +1394,7 @@ input:disabled {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
     transform: translateX(100%);
     opacity: 0;
     transition: all var(--transition-fast);
@@ -1408,22 +1408,22 @@ input:disabled {
 
 .notification--success {
     border-color: var(--success-color);
-    background: rgba(16, 185, 129, 0.05);
+    background: rgb(16 185 129 / 5%);
 }
 
 .notification--error {
     border-color: var(--error-color);
-    background: rgba(239, 68, 68, 0.05);
+    background: rgb(239 68 68 / 5%);
 }
 
 .notification--warning {
     border-color: var(--warning-color);
-    background: rgba(245, 158, 11, 0.05);
+    background: rgb(245 158 11 / 5%);
 }
 
 .notification--info {
     border-color: var(--info-color);
-    background: rgba(59, 130, 246, 0.05);
+    background: rgb(59 130 246 / 5%);
 }
 
 .notification__content {

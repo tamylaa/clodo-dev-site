@@ -83,7 +83,7 @@
 }
 
 .toc-categories-grid li a:hover {
-    background: rgba(0, 102, 204, 0.1);
+    background: rgb(0 102 204 / 10%);
 }
 
 /* ===== RELATED CONTENT GRID ===== */
