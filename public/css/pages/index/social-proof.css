@@ -17,10 +17,7 @@
 #social-proof::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background:
         radial-gradient(circle at 15% 25%, rgb(102 126 234 / 8%) 0%, transparent 40%),
         radial-gradient(circle at 85% 75%, rgb(240 147 251 / 8%) 0%, transparent 40%),
@@ -226,7 +223,7 @@
 
 /* ===== TABLET (768px+) ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #social-proof {
         padding: 80px 0;
     }
@@ -293,7 +290,7 @@
 
 /* ===== DESKTOP (1024px+) ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     #social-proof {
         padding: 100px 0;
     }

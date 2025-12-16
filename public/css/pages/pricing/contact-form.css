@@ -16,10 +16,12 @@
 
 #contact h2 {
     font-size: clamp(1.75rem, 6vw, 2.5rem);
+
     /* Fluid typography */
     font-weight: 700;
     text-align: center;
     margin-bottom: 2.5rem;
+
     /* Reduced on mobile */
     color: var(--text-primary);
 }
@@ -34,9 +36,11 @@
 
 .form-row {
     display: grid;
+
     /* Mobile: Single column */
     grid-template-columns: 1fr;
     gap: 0;
+
     /* No gap on mobile (margin-bottom handles spacing) */
     margin-bottom: 0;
 }
@@ -74,6 +78,7 @@
     font-family: inherit;
     transition: all var(--transition-fast);
     min-height: 48px;
+
     /* WCAG touch target */
 }
 
@@ -171,6 +176,7 @@
     font-size: 1rem;
     font-weight: 600;
     min-height: 48px;
+
     /* WCAG touch target */
     margin-top: 0.5rem;
 }
@@ -231,7 +237,7 @@
 
 /* ===== TABLET: 768px+ ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #contact {
         padding: 5rem 0;
     }
@@ -245,6 +251,7 @@
     }
 
     .form-row {
+
         /* Tablet: 2 columns */
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
@@ -254,7 +261,7 @@
 
 /* ===== DESKTOP: 1024px+ ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     #contact {
         padding: 6rem 0;
     }
@@ -294,6 +301,7 @@
 @media print {
     #contact {
         display: none;
+
         /* Hide form in print */
     }
 }

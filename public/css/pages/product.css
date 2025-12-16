@@ -12,7 +12,7 @@
   padding: 0 var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   #expert-assessment {
     padding: 4rem 0;
   }
@@ -37,7 +37,7 @@
     }
 
     h1, h2, h3 {
-        page-break-after: avoid;
+        break-after: avoid;
         color: var(--color-black);
     }
 
@@ -47,7 +47,7 @@
     }
 
     ul {
-        page-break-inside: avoid;
+        break-inside: avoid;
     }
 }
 

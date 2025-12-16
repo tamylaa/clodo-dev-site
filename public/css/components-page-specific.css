@@ -77,6 +77,7 @@
 }
 
 /* ===== FEATURE GRIDS ===== */
+
 /* Note: .features-grid is now handled specifically in features.css for better control */
 .enterprise-features,
 .development-workflow,
@@ -750,7 +751,7 @@
 .code-example pre {
     margin: 0;
     color: var(--color-gray-100);
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
     font-size: 0.875rem;
     line-height: 1.5;
 }
@@ -781,7 +782,7 @@ dd {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .further-reading,
     .features-grid,
     .enterprise-features,
@@ -1017,7 +1018,6 @@ dd {
     border-radius: 0;
     overflow: visible;
     var(--color-white)-space: pre-wrap;
-    overflow-wrap: anywhere;
     overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
     font-size: 0.875rem;
@@ -1107,7 +1107,7 @@ footer::before {
     font-weight: 800;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
@@ -1437,7 +1437,7 @@ footer::before {
 }
 
 /* Improve tap targets on mobile */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .btn {
         min-height: 44px;
         padding: 0.75rem 1.5rem;
@@ -1460,7 +1460,7 @@ footer::before {
 }
 
 /* Better mobile scrolling and performance */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     * {
         -webkit-overflow-scrolling: touch;
     }
@@ -1478,7 +1478,7 @@ footer::before {
 
     /* Better text rendering on mobile */
     h1, h2, h3, h4, h5, h6 {
-        text-rendering: optimizeLegibility;
+        text-rendering: optimizelegibility;
     }
 
     /* Improve button touch feedback */
@@ -1489,14 +1489,13 @@ footer::before {
 }
 
 /* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (min-device-pixel-ratio: 2), (resolution >= 192dpi) {
     .logo-icon {
-        image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }
 
     .social-links svg {
-        shape-rendering: crispEdges;
+        shape-rendering: crispedges;
     }
 }
 
@@ -1523,7 +1522,7 @@ footer::before {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .btn {
-        border: 2px solid currentColor;
+        border: 2px solid currentcolor;
     }
 
     .card {
@@ -1557,7 +1556,7 @@ footer::before {
         --bg-primary: #0a0a0a;
         --bg-secondary: #1a1a1a;
         --text-primary: var(--color-white)fff;
-        --text-secondary: #cccccc;
-        --border-color: #333333;
+        --text-secondary: #ccc;
+        --border-color: #333;
     }
 }

@@ -129,7 +129,7 @@
     color: var(--text-primary);
     border: 1.5px solid var(--border-primary);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .btn-secondary::before {
@@ -258,14 +258,13 @@
     color: var(--text-primary);
     border: 1.5px solid var(--border-primary);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .hero-stats {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     gap: 1.5rem;
-    flex-wrap: wrap;
     margin-top: 1.5rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-secondary);
@@ -283,7 +282,7 @@
     font-size: 2rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: block;
@@ -380,7 +379,7 @@
 
 .code-preview__content {
     padding: 1rem;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: Consolas, Monaco, 'Courier New', monospace;
     font-size: 0.75rem;
     line-height: 1.6;
     color: var(--text-secondary);
@@ -484,7 +483,7 @@
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, var(--primary-400), var(--primary-500));
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1;
@@ -544,7 +543,7 @@
 
 .hero-title .highlight {
     background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
@@ -596,7 +595,7 @@
     border-radius: 16px;
     padding: 2rem;
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -718,7 +717,7 @@
     color: var(--color-white);
     border: 1px solid rgb(255 255 255 / 20%);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .btn-hero-secondary:hover {
@@ -792,6 +791,7 @@
         opacity: 1;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.5;
         transform: scale(1.2);
@@ -803,6 +803,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -814,6 +815,7 @@
         opacity: 0;
         transform: scale(0.95) translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -824,6 +826,7 @@
     0%, 100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
@@ -834,6 +837,7 @@
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -845,6 +849,7 @@
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -855,6 +860,7 @@
     0%, 100% {
         background-position: -200% center;
     }
+
     50% {
         background-position: 200% center;
     }
@@ -865,6 +871,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -873,15 +880,16 @@
 
 @keyframes float {
     0%, 100% {
-        transform: translateY(0px);
+        transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
 }
 
 /* ===== MOBILE OPTIMIZATIONS ===== */
-@media (max-width: 767px) {
+@media (width <= 767px) {
     #hero {
         padding: clamp(40px, 8vh, 80px) 0 clamp(32px, 6vh, 60px);
     }
@@ -950,7 +958,7 @@
 
 /* ===== TABLET (768px+) ===== */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     #hero {
         padding: clamp(60px, 12vh, 100px) 0 clamp(30px, 8vh, 60px);
     }
@@ -1038,7 +1046,7 @@
 
 /* ===== DESKTOP (1024px+) ===== */
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
         gap: clamp(3rem, 8vh, 5rem);
@@ -1078,7 +1086,7 @@
 
 /* ===== LARGE DESKTOP (1200px+) ===== */
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .hero-container {
         grid-template-columns: 1.2fr 0.8fr;
         gap: clamp(4rem, 10vw, 8rem);
@@ -1251,7 +1259,7 @@
 
 /* ===== HIGHLIGHTS RESPONSIVE ===== */
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
     .highlights-section {
         padding: clamp(40px, 8vh, 60px) 0;
     }
@@ -1282,13 +1290,13 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .highlights-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .highlights-title {
         font-size: clamp(2.25rem, 3vw, 3.5rem);
     }

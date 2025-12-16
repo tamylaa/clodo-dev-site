@@ -12,9 +12,11 @@
 /* Page-specific CSS vars */
 
 /* ===== HERO SECTION ===== */
+
 /* #hero styles moved to hero.css to prevent conflicts and ensure critical rendering */
 
 /* Hero styles moved to hero.css */
+
 /* Note: .code-preview styles are now exclusively in hero.css (above-fold) 
    to ensure the hero code demo is styled immediately on page load */
 
@@ -31,10 +33,7 @@
 #key-benefits::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: 
         radial-gradient(circle at 20% 20%, rgb(102 126 234 / 4%) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgb(240 147 251 / 4%) 0%, transparent 50%);
@@ -49,7 +48,7 @@
     padding: 0 var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
@@ -57,7 +56,7 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
     .benefits-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -86,7 +85,7 @@
     overflow: hidden;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .benefit-item {
         padding: 2.5rem;
     }
@@ -189,21 +188,21 @@
 }
 
 /* Responsive benefits grid */
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
     .benefits-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
     }
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .benefits-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -855,10 +854,7 @@
 #social-proof::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background:
         radial-gradient(circle at 15% 25%, rgb(102 126 234 / 8%) 0%, transparent 40%),
         radial-gradient(circle at 85% 75%, rgb(240 147 251 / 8%) 0%, transparent 40%),
@@ -896,7 +892,7 @@
 }
 
 /* Mobile responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     #social-proof {
         padding: 60px 0;
     }
@@ -925,7 +921,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .testimonial {
         padding: 1.5rem;
         margin: 0 0.5rem;
@@ -1132,10 +1128,7 @@
 .cta-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(circle at 20% 80%, rgb(255 255 255 / 10%) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgb(255 255 255 / 10%) 0%, transparent 50%);
     pointer-events: none;
@@ -1466,7 +1459,7 @@
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Large Desktop */
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
     .edge-grid,
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1474,7 +1467,7 @@
 }
 
 /* Desktop */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .edge-grid,
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1495,7 +1488,7 @@
 }
 
 /* Tablet */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .edge-grid,
     .features-grid {
         grid-template-columns: 1fr;
@@ -1552,7 +1545,7 @@
 }
 
 /* Mobile */
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .benefits-grid {
         grid-template-columns: 1fr;
     }
@@ -1756,6 +1749,7 @@ pre code {
 
 /* ===== PRINT STYLES ===== */
 @media print {
+
     /* Hide interactive elements */
     .mobile-menu-toggle,
     .nav-dropdown-menu,
@@ -1773,12 +1767,12 @@ pre code {
     }
 
     a {
-        color: #0066cc;
+        color: #06c;
         text-decoration: underline;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        page-break-after: avoid;
+        break-after: avoid;
         color: var(--color-black);
     }
 

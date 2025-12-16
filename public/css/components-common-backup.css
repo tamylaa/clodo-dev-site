@@ -967,6 +967,7 @@ input:disabled {
         transform: scale(0);
         opacity: 0.5;
     }
+
     40% {
         transform: scale(1);
         opacity: 1;
@@ -982,6 +983,7 @@ input:disabled {
     0%, 100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -1004,6 +1006,7 @@ input:disabled {
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -1129,10 +1132,7 @@ input:disabled {
 /* ===== LOADING OVERLAYS ===== */
 .loading-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgb(255 255 255 / 90%);
     backdrop-filter: blur(4px);
     display: flex;
@@ -1193,10 +1193,12 @@ input:disabled {
         width: 0%;
         transform: translateX(0%);
     }
+
     50% {
         width: 50%;
         transform: translateX(50%);
     }
+
     100% {
         width: 0%;
         transform: translateX(100%);
@@ -1218,7 +1220,7 @@ input:disabled {
     transform: translate(-50%, -50%);
     width: 16px;
     height: 16px;
-    border: 2px solid currentColor;
+    border: 2px solid currentcolor;
     border-radius: 50%;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
@@ -1351,7 +1353,7 @@ input:disabled {
     height: 16px;
     margin: -8px 0 0 -8px;
     border: 2px solid transparent;
-    border-top: 2px solid currentColor;
+    border-top: 2px solid currentcolor;
     border-radius: 50%;
     animation: buttonSpin 1s linear infinite;
 }
@@ -1469,7 +1471,7 @@ input:disabled {
 }
 
 /* ===== RESPONSIVE NOTIFICATIONS ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .notification-container {
         top: 1rem;
         right: 1rem;
@@ -1488,12 +1490,13 @@ input:disabled {
     .notification__close {
         min-width: 44px;
         min-height: 44px;
+
         /* WCAG touch target */
     }
 }
 
 /* ===== RESPONSIVE LOADING STATES ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .loading-overlay .loading-content {
         margin: 1rem;
         padding: 1.5rem;
