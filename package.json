@@ -18,6 +18,7 @@
     "validate:blog": "node build/generate-blog-post.mjs --validate-all",
     "generate:blog": "node build/generate-blog-post.mjs --all",
     "check-links": "node build/check-links.js",
+    "check-page-loading": "node build/check-page-loading.js",
     "pretest": "npm run lint",
     "test": "cd tests && npm test",
     "test:unit": "cd tests && npm run test:unit",

@@ -80,11 +80,11 @@ class ThemeManager {
         const darkIcon = toggleBtn.querySelector('.theme-icon--dark');
 
         if (this.currentTheme === 'dark') {
-            lightIcon?.style.display = 'none';
-            darkIcon?.style.display = 'inline';
+            if (lightIcon) lightIcon.style.display = 'none';
+            if (darkIcon) darkIcon.style.display = 'inline';
         } else {
-            lightIcon?.style.display = 'inline';
-            darkIcon?.style.display = 'none';
+            if (lightIcon) lightIcon.style.display = 'inline';
+            if (darkIcon) darkIcon.style.display = 'none';
         }
     }
 
