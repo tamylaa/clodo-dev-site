@@ -1368,7 +1368,7 @@
 
 /* Code Block Styling Enhancement */
 .blog-post__content pre {
-    background: #1e293b;
+    background: var(--color-1e293b);
     color: var(--gray-200);
     padding: 1.5rem;
     border-radius: 8px;
@@ -1457,7 +1457,7 @@
 .breadcrumbs li:not(:last-child)::after {
     content: '/';
     margin: 0 0.5rem;
-    color: var(--text-muted, #9ca3af);
+    color: var(--text-muted);
     font-size: 0.7rem;
 }
 
@@ -1649,7 +1649,7 @@ sup a:hover {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text-tertiary, #9ca3af);
+    color: var(--text-tertiary);
     margin: 0 0 0.25rem;
 }
 
@@ -1840,7 +1840,7 @@ sup a:hover {
 }
 
 .methodology-details summary:hover {
-    background: var(--bg-hover, #f1f5f9);
+    background: var(--bg-hover);
 }
 
 .methodology-details[open] summary {
@@ -1996,8 +1996,8 @@ sup a:hover {
 
 /* Tutorial Styles */
 .code-filename {
-    background: #1e293b;
-    color: #94a3b8;
+    background: var(--color-1e293b);
+    color: var(--text-muted);
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     border-radius: 0.5rem 0.5rem 0 0;
@@ -2052,8 +2052,8 @@ sup a:hover {
 }
 
 .code-filename {
-    background: #1e293b;
-    color: #94a3b8;
+    background: var(--color-1e293b);
+    color: var(--text-muted);
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     border-radius: 0.5rem 0.5rem 0 0;

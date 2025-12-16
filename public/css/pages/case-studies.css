@@ -428,7 +428,7 @@
 
 .cost-item li {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-light-100);
   color: #64748b;
 }
 

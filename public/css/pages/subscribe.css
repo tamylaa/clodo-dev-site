@@ -252,7 +252,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, var(--success-500) 0%, #059669 100%);
+    background: linear-gradient(135deg, var(--success-500) 0%, var(--success-600) 100%);
     color: var(--color-white);
     border-radius: 2rem;
     font-size: 0.875rem;
@@ -269,7 +269,7 @@
     display: flex;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
     border-left: 4px solid var(--primary-500);
     border-radius: 0.5rem;
     margin: 2rem 0;
@@ -282,13 +282,13 @@
 
 .callout-text strong {
     display: block;
-    color: #1e40af;
+    color: var(--primary-800);
     margin-bottom: 0.5rem;
 }
 
 .callout-text ul {
     margin: 0.5rem 0 0 1.5rem;
-    color: #1e3a8a;
+    color: var(--primary-900);
 }
 
 .callout-text li {

@@ -184,6 +184,11 @@ img {
     --success-color-light: var(--success-200);
     --error-color-light: var(--error-200);
 
+    /* Newly added tokens (for codemod replacements) */
+    --color-333: rgb(51 51 51);
+    --color-1e293b: rgb(30 41 59);
+    --bg-light-100: rgb(241 245 249);
+
     /* ===== SPACING SYSTEM ===== */
 
     /* Consistent spacing scale using powers of 2 for harmony */

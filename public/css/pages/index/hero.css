@@ -654,7 +654,7 @@ p.hero-subtitle {
 }
 
 .code-arg {
-    color: #059669;
+    color: var(--success-600);
 }
 
 .code-flag {
@@ -672,7 +672,7 @@ p.hero-subtitle {
 }
 
 .code-success {
-    color: #059669;
+    color: var(--success-600);
     font-weight: 600;
 }
 

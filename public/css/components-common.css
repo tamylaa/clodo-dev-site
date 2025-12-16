@@ -899,7 +899,7 @@ input:disabled {
 }
 
 .spinner--demo {
-    background: #333;
+    background: var(--color-333);
     padding: 1rem;
     border-radius: 8px;
 }
