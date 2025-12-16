@@ -89,8 +89,8 @@
 
 .hero-code-content .comment { color: var(--gray-500); }
 .hero-code-content .command { color: var(--primary-dark); font-weight: 600; }
-.hero-code-content .argument { color: #34d399; }
-.hero-code-content .success { color: #374151; }
+.hero-code-content .argument { color: var(--accent-green-500); }
+.hero-code-content .success { color: var(--gray-700); }
 
 /* Floating elements animations */
 @keyframes fadeInDown {

@@ -604,15 +604,15 @@ p.hero-subtitle {
 }
 
 .code-window-dot--red {
-    background: linear-gradient(135deg, #ff5f57 0%, #ff3b30 100%);
+    background: linear-gradient(135deg, var(--accent-red-500) 0%, var(--accent-red-600) 100%);
 }
 
 .code-window-dot--yellow {
-    background: linear-gradient(135deg, #ffbd2e 0%, #ffa000 100%);
+    background: linear-gradient(135deg, var(--accent-yellow-500) 0%, var(--accent-yellow-600) 100%);
 }
 
 .code-window-dot--green {
-    background: linear-gradient(135deg, #28ca42 0%, #00c853 100%);
+    background: linear-gradient(135deg, var(--accent-green-500) 0%, var(--accent-green-600) 100%);
 }
 
 .code-window-title {
@@ -660,11 +660,11 @@ p.hero-subtitle {
 }
 
 .code-value {
-    color: #db2777;
+    color: var(--color-db2777);
 }
 
 .code-output {
-    color: #374151;
+    color: var(--color-374151);
     display: block;
     margin-top: 0.25rem;
 }

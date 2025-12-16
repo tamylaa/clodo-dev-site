@@ -194,6 +194,22 @@ img {
     /* Case studies specific tokens */
     --case-muted: rgb(100 116 139);   /* #64748b */
     --case-deep: rgb(11 18 32);       /* #0b1220 */
+    /* Blog & Hero tokens */
+    --color-1f2937: rgb(31 41 55);    /* #1f2937 */
+    --color-374151: rgb(55 65 81);    /* #374151 */
+    --bg-0f172a: rgb(15 23 42);       /* #0f172a */
+    --color-4338ca: rgb(67 56 202);   /* #4338ca */
+    --color-9ca3af: rgb(156 163 175); /* #9ca3af */
+    --color-b45309: rgb(180 83 9);    /* #b45309 */
+    --color-db2777: rgb(219 39 119);  /* #db2777 */
+    --accent-red-500: rgb(255 95 87); /* #ff5f57 */
+    --accent-red-600: rgb(255 59 48); /* #ff3b30 */
+    --accent-yellow-500: rgb(255 189 46); /* #ffbd2e */
+    --accent-yellow-600: rgb(255 160 0);  /* #ffa000 */
+    --accent-green-500: rgb(40 202 66); /* #28ca42 */
+    --accent-green-600: rgb(0 200 83);  /* #00c853 */
+    --color-fbbf24: rgb(251 191 36); /* #fbbf24 */
+    --color-06c: rgb(0 102 204); /* #06c */
 
     /* ===== SPACING SYSTEM ===== */
 
