@@ -495,7 +495,7 @@ footer > * {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    var(--color-white)-space: nowrap;
+    white-space: nowrap;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
