@@ -252,8 +252,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--success-500) 0%, #059669 100%);
+    color: var(--color-white);
     border-radius: 2rem;
     font-size: 0.875rem;
     margin-bottom: 1.5rem;
@@ -270,7 +270,7 @@
     gap: 1.5rem;
     padding: 1.5rem;
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid var(--primary-500);
     border-radius: 0.5rem;
     margin: 2rem 0;
 }
@@ -317,14 +317,14 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-purple) 100%);
+    color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 600;
-    border: 2px solid white;
+    border: 2px solid var(--color-white);
     margin-left: -0.5rem;
 }
 
@@ -343,7 +343,7 @@
     justify-content: center;
     font-size: 0.625rem;
     font-weight: 600;
-    border: 2px solid white;
+    border: 2px solid var(--color-white);
     margin-left: -0.5rem;
 }
 
@@ -408,7 +408,7 @@
 .preview-card {
     max-width: 700px;
     margin: 0 auto;
-    background: white;
+    background: var(--color-white);
     border-radius: 0.5rem;
     border: 1px solid var(--color-border);
     overflow: hidden;
@@ -417,7 +417,7 @@
 
 .preview-header {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -516,7 +516,7 @@
 .content-tag {
     padding: 0.25rem 0.75rem;
     background: var(--color-primary);
-    color: white;
+    color: var(--color-white);
     border-radius: 0.25rem;
     font-size: 0.75rem;
     font-weight: 500;
@@ -549,8 +549,8 @@
 /* Final CTA */
 .final-cta {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-purple) 100%);
+    color: var(--color-white);
 }
 
 .cta-content {
@@ -560,7 +560,7 @@
 }
 
 .cta-content h2 {
-    color: white;
+    color: var(--color-white);
     margin-bottom: 1rem;
 }
 
@@ -570,8 +570,8 @@
 }
 
 .cta-content .btn {
-    background: white;
-    color: #3b82f6;
+    background: var(--color-white);
+    color: var(--primary-500);
 }
 
 .cta-content .btn:hover {

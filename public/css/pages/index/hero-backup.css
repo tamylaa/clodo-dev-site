@@ -102,7 +102,7 @@
 
 .btn-primary {
     background: linear-gradient(var(--primary-500), var(--primary-600));
-    color: white;
+    color: var(--color-white);
     box-shadow: 0 4px 16px rgb(59 130 246 / 25%);
 }
 
@@ -234,7 +234,7 @@
 /* ===== ENHANCED BUTTONS ===== */
 .btn-hero-primary {
     background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
-    color: white;
+    color: var(--color-white);
     box-shadow: 0 4px 16px rgb(59 130 246 / 25%);
     position: relative;
     overflow: hidden;
@@ -533,7 +533,7 @@
     line-height: 1.1;
     font-weight: 900;
     margin-bottom: 0;
-    color: white;
+    color: var(--color-white);
     text-wrap: balance;
     text-align: center;
     animation: slideInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -632,12 +632,12 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    color: white;
+    color: var(--color-white);
     box-shadow: 0 8px 24px rgb(59 130 246 / 30%);
 }
 
 .value-prop-content {
-    color: white;
+    color: var(--color-white);
 }
 
 .value-prop-title {
@@ -686,7 +686,7 @@
 
 .btn-hero-primary {
     background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
-    color: white;
+    color: var(--color-white);
     box-shadow:
         0 8px 32px rgb(59 130 246 / 40%),
         0 0 0 1px rgb(59 130 246 / 20%);
@@ -715,7 +715,7 @@
 
 .btn-hero-secondary {
     background: rgb(255 255 255 / 10%);
-    color: white;
+    color: var(--color-white);
     border: 1px solid rgb(255 255 255 / 20%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -751,7 +751,7 @@
 .trust-icon {
     width: 20px;
     height: 20px;
-    color: #10b981;
+    color: var(--success-500);
     flex-shrink: 0;
 }
 
@@ -782,7 +782,7 @@
 .urgency-pulse {
     width: 8px;
     height: 8px;
-    background: #ef4444;
+    background: var(--error-500);
     border-radius: 50%;
     animation: pulse 2s infinite;
 }

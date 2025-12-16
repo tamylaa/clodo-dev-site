@@ -74,7 +74,7 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
+    var(--color-white)-space: pre-wrap;
     hyphens: auto;
     width: 100%;
     box-sizing: border-box;
@@ -111,7 +111,7 @@
     content: '⭐ Featured';
     display: inline-block;
     background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-    color: white;
+    color: var(--color-white);
     padding: 0.5rem 1.25rem;
     border-radius: var(--radius-full);
     font-size: 0.8rem;
@@ -134,7 +134,7 @@
 .feature-badge {
     display: inline-block;
     background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-    color: white;
+    color: var(--color-white);
     padding: 0.5rem 1.25rem;
     border-radius: var(--radius-full);
     font-size: 0.8rem;

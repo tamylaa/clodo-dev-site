@@ -148,8 +148,8 @@
 @media print {
     .hero-section {
         padding: 2rem 0;
-        background: white;
-        border-bottom: 2px solid #000;
+        background: var(--color-white);
+        border-bottom: 2px solid var(--color-black);
     }
 
     .pricing-highlights {

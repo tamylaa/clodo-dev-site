@@ -58,7 +58,7 @@
 
 .comparison-header {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
+    color: var(--color-white);
     padding: 1.5rem 1.5rem 1rem;
     text-align: center;
     position: relative;
@@ -86,7 +86,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: white;
+    color: var(--color-white);
 }
 
 .comparison-badge {
@@ -103,17 +103,17 @@
 
 .comparison-badge--improvement {
     background: rgb(34 197 94 / 90%);
-    color: white;
+    color: var(--color-white);
 }
 
 .comparison-badge--security {
     background: rgb(168 85 247 / 90%);
-    color: white;
+    color: var(--color-white);
 }
 
 .comparison-badge--performance {
     background: rgb(59 130 246 / 90%);
-    color: white;
+    color: var(--color-white);
 }
 
 .comparison-content {

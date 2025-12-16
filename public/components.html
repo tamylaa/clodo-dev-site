@@ -138,7 +138,7 @@
             line-height: 1.6;
             color: var(--text-primary);
             overflow-x: auto;
-            white-space: pre-wrap;
+            var(--color-white)-space: pre-wrap;
             word-break: break-word;
         }
 
@@ -660,7 +660,7 @@
                 <h3>Spinner Variants</h3>
                 <div class="component-showcase">
                     <div class="spinner spinner--primary"></div>
-                    <div class="spinner spinner--white spinner--demo"></div>
+                    <div class="spinner spinner--var(--color-white) spinner--demo"></div>
                 </div>
             </div>
 
@@ -675,7 +675,7 @@
 
 &lt;!-- Color variants --&gt;
 &lt;div class="spinner spinner--primary"&gt;&lt;/div&gt;
-&lt;div class="spinner spinner--white"&gt;&lt;/div&gt;</div>
+&lt;div class="spinner spinner--var(--color-white)"&gt;&lt;/div&gt;</div>
             </div>
         </section>
 

@@ -185,7 +185,7 @@
 }
 
 .pricing-card.featured .price {
-    color: var(--color-white);  /* White text on blue background */
+    color: var(--color-white);  /* var(--color-white) text on blue background */
 }
 
 .pricing-card .pricing-subtitle {
@@ -403,33 +403,33 @@
     }
 
     body {
-        background: white;
-        color: black;
+        background: var(--color-white);
+        color: var(--color-black);
     }
 
     .hero-section {
-        background: white;
-        color: black;
-        border-bottom: 2px solid #000;
+        background: var(--color-white);
+        color: var(--color-black);
+        border-bottom: 2px solid var(--color-black);
     }
 
     .pricing-card {
-        border: 2px solid #000;
+        border: 2px solid var(--color-black);
         page-break-inside: avoid;
     }
 
     .pricing-card.featured {
-        background: white;
-        color: black;
+        background: var(--color-white);
+        color: var(--color-black);
     }
 
     h1, h2, h3 {
-        color: black;
+        color: var(--color-black);
         page-break-after: avoid;
     }
 
     .price {
-        color: black;
+        color: var(--color-black);
     }
 }
 

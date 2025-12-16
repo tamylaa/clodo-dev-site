@@ -16,7 +16,7 @@
 }
 
 .subscribe-form {
-    background: var(--bg-secondary, var(--color-background-alt, white));
+    background: var(--bg-secondary, var(--color-background-alt, var(--color-white)));
     padding: 2rem 1.5rem;
     /* Reduced on mobile */
     border-radius: var(--radius-xl, 0.75rem);
@@ -40,7 +40,7 @@
 
 .form-label--required::after {
     content: " *";
-    color: var(--error-color, #ef4444);
+    color: var(--error-color, var(--error-500));
 }
 
 .form-input {
@@ -48,7 +48,7 @@
     padding: 1rem;
     border: 1px solid var(--border-color, var(--color-border));
     border-radius: var(--radius-md, 0.5rem);
-    background: var(--bg-primary, white);
+    background: var(--bg-primary, var(--color-white));
     color: var(--text-primary, var(--color-text-primary));
     font-size: 1rem;
     font-family: inherit;
@@ -73,7 +73,7 @@
 }
 
 .form-input:disabled {
-    background: var(--bg-hover, #f3f4f6);
+    background: var(--bg-hover, var(--gray-100));
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -81,24 +81,24 @@
 /* ===== VALIDATION STATES ===== */
 
 .form-input:invalid:not(:placeholder-shown) {
-    border-color: var(--error-color, #ef4444);
+    border-color: var(--error-color, var(--error-500));
 }
 
 .form-input[aria-invalid="true"] {
-    border-color: var(--error-color, #ef4444);
+    border-color: var(--error-color, var(--error-500));
 }
 
 .form-input:valid:not(:placeholder-shown) {
-    border-color: var(--success-color, #10b981);
+    border-color: var(--success-color, var(--success-500));
 }
 
 .form-input[aria-invalid="false"] {
-    border-color: var(--success-color, #10b981);
+    border-color: var(--success-color, var(--success-500));
 }
 
 .form-error {
     font-size: 0.8125rem;
-    color: var(--error-color, #ef4444);
+    color: var(--error-color, var(--error-500));
     margin-top: 0.5rem;
     display: flex;
     align-items: center;
@@ -112,7 +112,7 @@
 
 .form-success {
     font-size: 0.8125rem;
-    color: var(--success-color, #10b981);
+    color: var(--success-color, var(--success-500));
     margin-top: 0.5rem;
     display: flex;
     align-items: center;
@@ -178,7 +178,7 @@
 
 .btn--primary {
     background: var(--primary-color, var(--color-primary));
-    color: var(--color-white, white);
+    color: var(--color-white);
     border: none;
     padding: 1rem 2rem;
     border-radius: var(--radius-md, 0.5rem);
@@ -187,7 +187,7 @@
 }
 
 .btn--primary:hover {
-    background: var(--primary-dark, #2563eb);
+    background: var(--primary-dark, var(--primary-dark));
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgb(59 130 246 / 30%);
 }
@@ -215,7 +215,7 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    border: 2px solid var(--color-white, white);
+    border: 2px solid var(--color-white);
     border-top-color: transparent;
     border-radius: 50%;
     animation: spinner 0.6s linear infinite;
@@ -253,14 +253,14 @@
 
 .form-message--success {
     background: rgb(34 197 94 / 10%);
-    border: 1px solid var(--success-color, #10b981);
-    color: var(--success-color, #10b981);
+    border: 1px solid var(--success-color, var(--success-500));
+    color: var(--success-color, var(--success-500));
 }
 
 .form-message--error {
     background: rgb(239 68 68 / 10%);
-    border: 1px solid var(--error-color, #ef4444);
-    color: var(--error-color, #ef4444);
+    border: 1px solid var(--error-color, var(--error-500));
+    color: var(--error-color, var(--error-500));
 }
 
 .form-message::before {
@@ -310,7 +310,7 @@
 
     .btn--primary[aria-busy="true"]::after {
         animation: none;
-        border-top-color: var(--color-white, white);
+        border-top-color: var(--color-white);
     }
 
     .form-message {
@@ -322,11 +322,11 @@
 
 @media (prefers-contrast: high) {
     .form-input {
-        border: 2px solid var(--border-color, #000);
+        border: 2px solid var(--border-color, var(--color-black));
     }
 
     .form-input:focus {
-        border: 2px solid var(--primary-color, #000);
+        border: 2px solid var(--primary-color, var(--color-black));
     }
 
     .btn--primary {

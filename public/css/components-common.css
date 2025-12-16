@@ -27,7 +27,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-fast);
-    white-space: nowrap;
+    var(--color-white)-space: nowrap;
     position: relative;
     overflow: hidden;
 }
@@ -888,7 +888,7 @@ input:disabled {
     border-width: 3px;
 }
 
-.spinner--white {
+.spinner--var(--color-white) {
     border-color: rgb(255 255 255 / 30%);
     border-top-color: var(--color-white);
 }
