@@ -71,3 +71,31 @@ jobs:
           name: build-artifacts
           path: dist/
           retention-days: 7
+
+      - name: Start built site (background)
+        run: |
+          npm run serve:dist &
+          # Wait for server at http://localhost:8000
+          for i in {1..30}; do
+            if curl -sSf http://localhost:8000 >/dev/null; then
+              echo "Server is up"; break
+            fi
+            echo "Waiting for server... ($i)"
+            sleep 2
+          done
+
+      - name: Run page loading checks
+        run: npm run check-page-loading http://localhost:8000
+
+      - name: Stop server
+        if: always()
+        run: |
+          ps aux | grep 'node build/dev-server' | awk '{print $2}' | xargs -r kill || true
+
+      - name: Upload page-check logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: page-check-logs
+          path: .
+          retention-days: 7
