@@ -2781,7 +2781,7 @@ dd {
     border-radius: 0;
     overflow: visible;
     white-space: pre-wrap;
-    word-wrap: break-word;
+    overflow-wrap: anywhere;
     overflow-wrap: break-word;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
     font-size: 0.875rem;

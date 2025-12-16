@@ -318,7 +318,7 @@
 @media print {
     .blog-card {
         break-inside: avoid;
-        page-break-inside: avoid;
+        break-inside: avoid;
         box-shadow: none;
         border: 1px solid #000;
     }

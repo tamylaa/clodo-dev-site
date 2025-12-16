@@ -260,7 +260,6 @@
 
     .testimonial-card {
         break-inside: avoid;
-        page-break-inside: avoid;
         box-shadow: none;
         border: 1px solid #000;
     }

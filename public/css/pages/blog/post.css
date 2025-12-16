@@ -120,8 +120,7 @@
     line-height: 1.75;
     /* Optimal: 1.6-1.8 */
     color: var(--text-primary);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .blog-post__content h2 {
@@ -262,7 +261,7 @@
     border: 1px solid var(--border-color);
     text-align: left;
     font-size: 0.9375rem;
-    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .blog-post__content th {
@@ -552,7 +551,7 @@
     }
 
     .blog-post__content pre {
-        page-break-inside: avoid;
+        break-inside: avoid;
         border: 1px solid #000;
     }
 }
