@@ -4,7 +4,9 @@
 <!-- <link rel="dns-prefetch" href="//www.googletagmanager.com"> -->
 
 <!-- Preload Critical Resources ONLY -->
-<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="styles.css"></noscript>
+<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>
+<!-- Script swaps preloaded style links to stylesheet using an external script so it works with strict CSP (no inline handlers) -->
+<script src="/js/init-preload.js"></script>
 
 <!-- Future: Module Preload (for ES6 modules migration) -->
 <!-- <link rel="modulepreload" href="js/main.js"> -->

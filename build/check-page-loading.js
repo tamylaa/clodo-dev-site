@@ -90,12 +90,36 @@ async function checkPage(browser, url, filePath) {
             results.canonicalIssues.push({ url: finalUrl, file: filePath, canonical, expected: finalUrl });
         }
 
+        // Check that stylesheets were applied (avoid pages relying on inline onload handlers that CSP blocks)
+        const sheetCount = await page.evaluate(() => (document.styleSheets || []).length);
+        const hasStylesheetLink = await page.evaluate(() => !!document.querySelector('link[rel="stylesheet"]'));
+        const preloadStyles = await page.evaluate(() => Array.from(document.querySelectorAll('link[rel="preload"][as="style"]')).map(l => ({ href: l.getAttribute('href'), rel: l.rel })));
+
+        if (sheetCount === 0 && !hasStylesheetLink && preloadStyles.length > 0) {
+            // likely CSS was not applied because preload pattern depends on inline onload which may be blocked by CSP
+            results.failed.push({ url: finalUrl, file: filePath, reason: 'No stylesheet applied (preload present but no stylesheet)', details: { preloadStyles } });
+            await context.close();
+            return;
+        }
+
         // Success
         results.successful++;
 
     } catch (error) {
-        results.failed.push({ url, file: filePath, reason: error.message });
-    } finally {
+        const errMsg = error && error.message ? error.message : String(error);
+        // If it's a redirect loop, capture the redirect chain using curl for diagnostics
+        if (errMsg.includes('ERR_TOO_MANY_REDIRECTS') || errMsg.includes('too many redirects')) {
+            try {
+                const { execSync } = await import('child_process');
+                const curlCmd = `curl -I -v -L --max-redirs 10 ${url}`;
+                const curlOut = execSync(curlCmd, { encoding: 'utf8', stdio: 'pipe' });
+                results.failed.push({ url, file: filePath, reason: errMsg, redirectTrace: curlOut });
+            } catch (cErr) {
+                results.failed.push({ url, file: filePath, reason: errMsg + ' (also failed to run curl for trace: ' + String(cErr) + ')' });
+            }
+        } else {
+            results.failed.push({ url, file: filePath, reason: errMsg });
+        }
         await context.close();
     }
 }

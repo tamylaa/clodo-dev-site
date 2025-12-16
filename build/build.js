@@ -255,8 +255,8 @@ function copyHtml() {
                         // 1. In Head: Inline Critical CSS + Preload common CSS + Preload page CSS
                         // 2. In Footer: Apply both CSS files
                         
-                        const headInjection = `${criticalCssInline}\n    <link rel="preload" href="styles.css" as="style">\n    <link rel="preload" href="${cssFile}" as="style">`;
-                        const footerInjection = `<link rel="stylesheet" href="styles.css">\n    <link rel="stylesheet" href="${cssFile}">`;
+                        const headInjection = `${criticalCssInline}\n    <link rel="preload" href="/styles.css" as="style">\n    <link rel="preload" href="/${cssFile}" as="style">\n    <script src="/js/init-preload.js"></script>`;
+                        const footerInjection = `<link rel="stylesheet" href="/styles.css">\n    <link rel="stylesheet" href="/${cssFile}">`;
                         
                         // Replace in head
                         if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
@@ -278,9 +278,9 @@ function copyHtml() {
                         const pathPrefix = isSubdirectory ? '../' : '';
                         console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${pathPrefix}'`);
                         
-                        const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;
-                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${pathPrefix}${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}${cssFile}"></noscript>` : '';
-                        const asyncCssLink = commonCss + pageCss;
+                        const commonCss = `<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>`;
+                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
+                        const asyncCssLink = commonCss + pageCss + '\n    <script src="/js/init-preload.js"></script>';
                         
                         if ((content.includes('href="styles.css"') || content.includes('href="../styles.css"')) && content.match(cssLinkPatternMultiple)) {
                             content = content.replace(
@@ -303,9 +303,9 @@ function copyHtml() {
                     const isSubdirectory = fileDir !== '.' && fileDir !== '';
                     const pathPrefix = isSubdirectory ? '../' : '';
                     
-                    const commonCss = `<link rel="preload" href="${pathPrefix}styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}styles.css"></noscript>`;
-                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="${pathPrefix}${cssFile}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${pathPrefix}${cssFile}"></noscript>` : '';
-                    const asyncCssLink = commonCss + pageCss;
+                    const commonCss = `<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>`;
+                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
+                    const asyncCssLink = commonCss + pageCss + '\n    <script src="/js/init-preload.js"></script>';
                     
                     const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
