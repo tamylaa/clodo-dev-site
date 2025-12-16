@@ -25,6 +25,49 @@
     color: var(--text-color);
 }
 
+/* NAV SECTION (moved) */
+
+/* NAV SECTION (moved) */
+.nav-section h4 {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-section li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.nav-section a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+    display: block;
+    padding: var(--spacing-xs) 0;
+}
+
+.nav-section a:hover {
+    color: var(--primary-color);
+}
+
+.nav-section a:focus {
+    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
 .table-of-contents nav ul {
     list-style: none;
     padding: 0;
@@ -85,6 +128,8 @@
 .toc-categories-grid li a:hover {
     background: rgb(0 102 204 / 10%);
 }
+
+/* toc nav hover/focus moved earlier */
 
 /* ===== RELATED CONTENT GRID ===== */
 .related-content-grid {
@@ -186,42 +231,4 @@
     gap: var(--spacing-xl);
 }
 
-.nav-section h4 {
-    margin: 0 0 var(--spacing-md) 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-color);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.nav-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-section li {
-    margin-bottom: var(--spacing-xs);
-}
-
-.nav-section a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.875rem;
-    line-height: 1.4;
-    transition: color var(--transition-fast);
-    display: block;
-    padding: var(--spacing-xs) 0;
-}
-
-.nav-section a:hover {
-    color: var(--primary-color);
-}
-
-.nav-section a:focus {
-    color: var(--primary-color);
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
-}
+/* nav-section defined earlier */
