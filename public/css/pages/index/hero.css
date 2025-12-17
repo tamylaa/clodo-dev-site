@@ -9,6 +9,7 @@
    to prevent parent-level text-align cascading issues.
    ========================================= */
 
+
 /* Override generic layout.css hero rules */
 /* text-align is declared in the canonical #hero block further below */
 
@@ -736,12 +737,8 @@ p.hero-subtitle {
         margin: 0 auto;
     }
 
-    .hero-visual {
-        grid-area: visual;
-        justify-self: center;
-        max-width: 550px;
-        width: 100%;
-    }
+    /* .hero-visual — canonical styles are in the .hero-visual block above
+       See: public/css/pages/index/hero.css */
 
     .hero-content {
         grid-area: content;
@@ -792,8 +789,8 @@ p.hero-subtitle {
         align-items: flex-start !important;
     }
 
-    /* .hero-title font-size moved to the canonical definition earlier in this file */
-    /* See the main .hero-title block for responsive sizing */
+    /* .hero-title font-size moved to the canonical definition earlier in this file
+       See the main .hero-title block for responsive sizing */
 
     .hero-actions {
         flex-direction: column;
@@ -825,9 +822,8 @@ p.hero-subtitle {
         padding: var(--spacing-xl) 0;
     }
 
-    .hero-visual {
-        max-width: 420px;
-    }
+    /* .hero-visual — canonical styles are in the .hero-visual block above */
+    /* See: public/css/pages/index/hero.css */
 
     .hero-badge-group {
         align-items: flex-start;  /* Left-align badges */
@@ -948,8 +944,8 @@ p.hero-subtitle {
         transform: translateX(0);
     }
 }
-/* .hero-title consolidated above — media-specific sizing removed in favor of a single responsive clamp */
-/* See the canonical .hero-title block near the top of this file. */
+/* .hero-title consolidated above — media-specific sizing removed in favor of a single responsive clamp
+   See the canonical .hero-title block near the top of this file. */
 
 .hero-title span:not(.highlight) {
     display: block;
@@ -1148,7 +1144,7 @@ p.hero-subtitle {
         gap: 1rem;
     }
 
-    .code-preview {
+    .hero-container .code-preview {
         max-width: 500px;
         margin: 0 auto;
     }
@@ -1215,7 +1211,7 @@ p.hero-subtitle {
         max-width: 320px;
     }
 
-    .code-preview {
+    .hero-container .code-preview {
         max-width: 100%;
         transform: none;
     }
