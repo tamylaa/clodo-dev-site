@@ -20,7 +20,7 @@
     "check-links": "node build/check-links.js",
     "check-page-loading": "node build/check-page-loading.js",
     "check-nav-stability": "node build/check-nav-stability.js",
-    "fix-canonicals": "node build/fix-canonicals.js" ,
+    "fix-canonicals": "node build/fix-canonicals.js",
     "pretest": "npm run lint",
     "test": "cd tests && npm test",
     "test:unit": "cd tests && npm run test:unit",
@@ -119,6 +119,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@tamyla/clodo-framework": "^4.0.12",
     "jsdom": "^27.2.0"
   }
 }

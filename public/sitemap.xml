@@ -45,6 +45,32 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Cloudflare Workers Development Guide - HIGH PRIORITY SEO -->
+    <url>
+        <loc>https://clodo.dev/cloudflare-workers-development-guide.html</loc>
+        <lastmod>2025-12-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:title>Cloudflare Workers Development Guide 2025</image:title>
+            <image:caption>Complete tutorial for Cloudflare Workers development with D1, KV, and edge computing</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Serverless Architecture Best Practices - HIGH PRIORITY SEO -->
+    <url>
+        <loc>https://clodo.dev/serverless-architecture-best-practices.html</loc>
+        <lastmod>2025-12-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:title>Serverless Architecture Best Practices 2025</image:title>
+            <image:caption>Complete guide to serverless design patterns, cost optimization, and performance</image:caption>
+        </image:image>
+    </url>
+
     <!-- API Simplification -->
     <url>
         <loc>https://clodo.dev/clodo-framework-api-simplification.html</loc>
