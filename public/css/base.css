@@ -951,32 +951,8 @@ select:focus-visible {
 /* List styles consolidated in the "Improved List Styles" section earlier in this file. See that block for primary list rules. */
 
 
-/* ===== CODE ===== */
-code {
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-size: 0.875em;
-    background-color: var(--bg-secondary);
-    padding: 0.125rem 0.25rem;
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-}
-
-pre {
-    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-size: 0.875em;
-    background-color: var(--bg-secondary);
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    overflow-x: auto;
-    margin: 0 0 var(--spacing-md) 0;
-    border: 1px solid var(--border-color);
-}
-
-pre code {
-    background: none;
-    padding: 0;
-    border-radius: 0;
-}
+/* ===== CODE (see canonical block above) ===== */
+/* The canonical `code` and `pre` styles are defined in the "IMPROVED CODE STYLES (CANONICAL)" block earlier in this file. Avoid duplicating top-level `code`/`pre` selectors — use page/component-specific selectors for overrides. */
 
 /* ===== FORM ELEMENTS ===== */
 input, textarea, select, button {
