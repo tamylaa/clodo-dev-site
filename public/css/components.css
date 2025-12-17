@@ -14,49 +14,7 @@
 /* Buttons consolidated in components-common.css */
 
 /* ===== CARDS ===== */
-
-/* ===== CARDS ===== */
-.card {
-    background-color: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: box-shadow var(--transition-normal);
-}
-
-.card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.card__header {
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--border-light);
-}
-
-.card__body {
-    padding: var(--spacing-lg);
-}
-
-.card__footer {
-    padding: var(--spacing-lg);
-    border-top: 1px solid var(--border-light);
-    background-color: var(--bg-secondary);
-}
-
-.card__title {
-    margin: 0 0 var(--spacing-sm) 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.card__subtitle {
-    margin: 0 0 var(--spacing-md) 0;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-}
+/* Card styles are canonicalized in `public/css/components-common.css` — removed duplicate rules here. */
 
 /* ===== FORMS ===== */
 
@@ -88,41 +46,12 @@
     pointer-events: none;
 }
 
-.btn--loading .btn-spinner {
-    display: inline-block !important;
-}
+/* `.btn--loading .btn-spinner` behavior is canonical in `public/css/components-common.css` — reference that file instead of duplicating. */
 
 /* Navigation styles moved to header.css */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    font-size: 1rem;
-    line-height: 1;
-    color: currentcolor;
-    transition: color var(--transition-fast), transform var(--transition-fast);
-}
+/* Icon styles are canonicalized in `public/css/components-common.css` — removed duplicate rules here. */
 
-/* Icon sizes */
-.icon--xs { font-size: 0.75rem; }
-.icon--sm { font-size: 0.875rem; }
-.icon--md { font-size: 1rem; }
-.icon--lg { font-size: 1.25rem; }
-.icon--xl { font-size: 1.5rem; }
-.icon--2xl { font-size: 2rem; }
-.icon--3xl { font-size: 3rem; }
-
-/* Icon variants */
-.icon--primary { color: var(--primary-color); }
-.icon--secondary { color: var(--text-secondary); }
-.icon--muted { color: var(--text-muted); }
-.icon--success { color: var(--success-color); }
-.icon--warning { color: var(--warning-color); }
-.icon--error { color: var(--error-color); }
-.icon--info { color: var(--info-color); }
+/* Icon sizes & variants canonicalized in `public/css/components-common.css` — use the Icon System (`.icon` and `.icon--*` modifiers) there to avoid duplicates. */
 
 /* Logo icon component */
 .logo-icon {
@@ -142,36 +71,7 @@
     filter: drop-shadow(0 3px 12px rgb(255 215 0 / 40%));
 }
 
-/* Theme toggle icons */
-.theme-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
-    position: absolute;
-}
-
-.theme-icon--light {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.theme-icon--dark {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
-
-[data-theme="dark"] .theme-icon--light {
-    opacity: 0;
-    transform: rotate(90deg);
-}
-
-[data-theme="dark"] .theme-icon--dark {
-    opacity: 1;
-    transform: rotate(0deg);
-}
+/* Theme toggle icons are canonicalized in `public/css/components-common.css` — removed duplicate rules here */
 
 /* GitHub button icon */
 .github-icon {
@@ -222,36 +122,9 @@
     color: currentcolor;
 }
 
-/* Status icons */
-.status-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    margin-right: 0.5rem;
-    flex-shrink: 0;
-}
+/* Status icons canonicalized in `public/css/components-common.css` — please use `.status-icon` and modifiers from the canonical file. */
 
-.status-icon--success { color: var(--success-color); }
-.status-icon--warning { color: var(--warning-color); }
-.status-icon--error { color: var(--error-color); }
-.status-icon--info { color: var(--info-color); }
-
-/* Interactive icon states */
-.icon:hover {
-    transform: scale(1.05);
-}
-
-.icon:active {
-    transform: scale(0.95);
-}
-
-/* Accessibility: Focus states for interactive icons */
-.icon:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
+/* Interactive & focus states for icons consolidated in `public/css/components-common.css` — avoid duplicating `.icon:hover`, `.icon:active`, and `.icon:focus` here. */
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
@@ -272,30 +145,7 @@
 
 /* ===== MICRO-INTERACTIONS ===== */
 
-/* Enhanced button ripple effect */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgb(255 255 255 / 30%);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-    pointer-events: none;
-}
-
-.btn:active:not(:disabled)::before {
-    width: 300px;
-    height: 300px;
-}
+/* Buttons & micro-interactions are canonicalized in `public/css/components-common.css`. Keep page-level button overrides here only; do not duplicate base `.btn` or ripple pseudo-element. */
 
 /* Enhanced form input animations */
 .form-input {
@@ -2991,13 +2841,6 @@ footer::before {
     }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: var(--bg-darker);
-        --bg-secondary: var(--bg-dark);
-        --text-primary: var(--color-white);
-        --text-secondary: var(--text-muted);
-        --border-color: var(--border-color);
-    }
-}
+/* Dark mode tokens are centralized in `public/css/base.css` :root to avoid duplicate declarations */
+/* Removed duplicate dark-mode :root block - prefer tokens in base.css for consistency */
+
