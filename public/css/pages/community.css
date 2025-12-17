@@ -200,7 +200,7 @@
 }
 
 .channel-card--github .channel-badge {
-  background: #24292f;
+  background: var(--dark-24292f);
 }
 
 .channel-card--discord .channel-badge {

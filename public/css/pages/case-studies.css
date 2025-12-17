@@ -151,8 +151,8 @@
 }
 
 .tag {
-  background: #e0f2fe;
-  color: #0277bd;
+  background: var(--light-blue-e0f2fe);
+  color: var(--deep-blue-0277bd);
   padding: 0.25rem 0.75rem;
   border-radius: 16px;
   font-size: 0.75rem;
