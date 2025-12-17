@@ -1605,35 +1605,6 @@ img.lazy-loaded {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
-}
-
-.hybrid-step {
-    background-color: var(--color-white);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-    position: relative;
-}
-
-.hybrid-step::before {
-    content: counter(hybrid-counter);
-    counter-increment: hybrid-counter;
-    position: absolute;
-    top: -12px;
-    left: var(--spacing-lg);
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.hybrid-approach {
     counter-reset: hybrid-counter;
 }
 
