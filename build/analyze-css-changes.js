@@ -30,7 +30,6 @@ const MODIFIED_CSS_FILES = [
 // New CSS files created (not in git)
 const NEW_CSS_FILES = [
     'public/css/components-common.css',
-    'public/css/components-common-backup.css',
     'public/css/components-page-specific.css',
     'public/css/critical-base.css',
     'public/css/hero-decorations.css',
