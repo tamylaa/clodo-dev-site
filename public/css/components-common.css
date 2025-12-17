@@ -278,36 +278,7 @@
 }
 
 /* Navigation styles moved to header.css */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    font-size: 1rem;
-    line-height: 1;
-    color: currentcolor;
-    transition: color var(--transition-fast), transform var(--transition-fast);
-}
-
-/* Icon sizes */
-.icon--xs { font-size: 0.75rem; }
-.icon--sm { font-size: 0.875rem; }
-.icon--md { font-size: 1rem; }
-.icon--lg { font-size: 1.25rem; }
-.icon--xl { font-size: 1.5rem; }
-.icon--2xl { font-size: 2rem; }
-.icon--3xl { font-size: 3rem; }
-
-/* Icon variants */
-.icon--primary { color: var(--primary-color); }
-.icon--secondary { color: var(--text-secondary); }
-.icon--muted { color: var(--text-muted); }
-.icon--success { color: var(--success-color); }
-.icon--warning { color: var(--warning-color); }
-.icon--error { color: var(--error-color); }
-.icon--info { color: var(--info-color); }
+/* NOTE: Icon sizing/variants are canonicalized in the Icon System section below; prefer the `.icon` sizing system there and use `icon--*` modifiers defined later. */
 
 /* Logo icon component */
 .logo-icon {
