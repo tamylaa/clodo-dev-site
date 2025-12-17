@@ -202,7 +202,7 @@
     display: flex;
     gap: 1rem;
     margin-top: 0.75rem;
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
 
     /* Smaller on mobile */
     color: var(--color-text-secondary, var(--text-secondary));

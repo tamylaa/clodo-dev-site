@@ -213,7 +213,7 @@
 }
 
 .hero-subtitle {
-    font-size: clamp(1.0625rem, 4.5vw, 1.25rem);
+    font-size: clamp(1.063rem, 4.5vw, 1.25rem);
     line-height: 1.6;
     color: var(--text-secondary);
     max-width: none;
@@ -257,7 +257,7 @@ p.hero-subtitle {
 
 .btn {
     padding: 1rem 2rem;
-    font-size: 1.0625rem;
+    font-size: 1.063rem;
     font-weight: 600;
     border-radius: 12px;
     border: none;
@@ -540,7 +540,7 @@ p.hero-subtitle {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
     font-weight: 600;
     color: var(--text-secondary);
     font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
@@ -619,7 +619,7 @@ p.hero-subtitle {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
     font-weight: 600;
     color: var(--text-secondary);
     font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;

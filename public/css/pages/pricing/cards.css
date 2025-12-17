@@ -116,7 +116,7 @@
 }
 
 .pricing-card .pricing-subtitle {
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
 
     /* Slightly smaller on mobile */
     color: var(--text-muted, var(--text-secondary));
@@ -149,7 +149,7 @@
 
     /* Slightly reduced on mobile */
     border-bottom: 1px solid var(--border-color);
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
 
     /* Smaller on mobile */
     line-height: 1.5;

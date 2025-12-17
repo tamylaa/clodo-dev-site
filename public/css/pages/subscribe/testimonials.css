@@ -142,12 +142,12 @@
     display: block;
     color: var(--color-text-primary, var(--text-primary));
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 0.938rem;
 }
 
 .testimonial-card cite span {
     display: block;
-    font-size: 0.8125rem;
+    font-size: 0.813rem;
 
     /* Smaller on mobile */
     color: var(--color-text-secondary, var(--text-secondary));

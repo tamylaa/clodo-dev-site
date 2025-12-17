@@ -283,7 +283,7 @@
     }
 
     .stat-label {
-        font-size: 0.9375rem;
+        font-size: 0.938rem;
     }
 
     .stat-improvement {
@@ -292,7 +292,7 @@
 
     .impact-table,
     .economics-table {
-        font-size: 0.9375rem;
+        font-size: 0.938rem;
         display: table;
 
         /* Normal table display on tablet+ */
