@@ -229,6 +229,16 @@ img {
     --green-6a9955: rgb(106 153 85);  /* #6a9955 */
     --muted-dcdcaa: rgb(220 220 170); /* #dcdcaa */
     --teal-4ec9b0: rgb(78 201 176);   /* #4ec9b0 */
+    --blue-3b82f6: rgb(59 130 246);   /* #3b82f6 */
+    --purple-8b5cf6: rgb(139 92 246); /* #8b5cf6 */
+    --light-blue-eff6ff: rgb(239 246 255); /* #eff6ff */
+    --light-blue-dbeafe: rgb(219 234 254); /* #dbeafe */
+    --indigo-1e40af: rgb(30 64 175); /* #1e40af */
+    --indigo-1e3a8a: rgb(30 58 138); /* #1e3a8a */
+    --gray-f9fafb: rgb(249 250 251); /* #f9fafb */
+    --gray-f3f4f6: rgb(243 244 246); /* #f3f4f6 */
+    --green-10b981: rgb(16 185 129); /* #10b981 */
+    --green-059669: rgb(5 150 105);  /* #059669 */
 
     /* ===== SPACING SYSTEM ===== */
 
