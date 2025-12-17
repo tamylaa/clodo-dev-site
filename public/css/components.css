@@ -185,24 +185,7 @@
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Enhanced loading states */
-.btn[aria-busy="true"] {
-    position: relative;
-}
-
-.btn[aria-busy="true"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentcolor;
-    border-radius: 50%;
-    animation: buttonSpin 1s linear infinite;
-}
+/* `.btn[aria-busy]` behavior is canonicalized in `public/css/components-common.css` — reference that file instead of duplicating the busy indicator. */
 
 @keyframes buttonSpin {
     to { transform: rotate(360deg); }
@@ -730,20 +713,7 @@ input:disabled {
     }
 }
 
-/* ===== LOADING STATES FOR COMPONENTS ===== */
-.btn[aria-busy="true"] {
-    position: relative;
-    color: transparent !important;
-    pointer-events: none;
-}
-
-.btn[aria-busy="true"]::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 16px;
+/* Loading state behaviors for `.btn[aria-busy]` are canonical in `public/css/components-common.css` — use the canonical definition there. */
     height: 16px;
     border: 2px solid currentcolor;
     border-radius: 50%;
@@ -769,61 +739,7 @@ input:disabled {
     animation: spin 1s linear infinite;
 }
 
-/* ===== STATE INDICATORS ===== */
-.state-loading {
-    position: relative;
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.state-loading::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s linear infinite;
-    z-index: 1;
-}
-
-.state-error {
-    color: var(--error-color);
-    background-color: rgb(239 68 68 / 10%);
-    border: 1px solid rgb(239 68 68 / 20%);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
-    animation: shake 0.5s ease-in-out;
-}
-
-.state-success {
-    color: var(--success-color);
-    background-color: rgb(16 185 129 / 10%);
-    border: 1px solid rgb(16 185 129 / 20%);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
-    animation: slide-in 0.3s ease-out;
-}
-
-.state-warning {
-    color: var(--warning-color);
-    background-color: rgb(245 158 11 / 10%);
-    border: 1px solid rgb(245 158 11 / 20%);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
-}
-
-.state-info {
-    color: var(--info-color);
-    background-color: rgb(59 130 246 / 10%);
-    border: 1px solid rgb(59 130 246 / 20%);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
-}
+/* State indicators canonicalized in `public/css/components-common.css` — use `.state-loading`, `.state-error`, `.state-success`, `.state-warning`, and `.state-info` from that file. */
 
 /* ===== ENHANCED MICRO-INTERACTIONS ===== */
 
@@ -1036,10 +952,7 @@ input:disabled {
         padding: 0.75rem;
     }
 
-    .btn[aria-busy="true"]::before {
-        width: 14px;
-        height: 14px;
-    }
+    /* Size override for `btn[aria-busy]::before` removed — use canonical sizing in `public/css/components-common.css` or add a small page-specific override if necessary. */
 }
 
 /* ===== ICON SYSTEM ===== */
@@ -2146,17 +2059,7 @@ dd {
     }
 }
 
-.state-loading {
-    opacity: 0.7;
-}
-
-.state-success {
-    color: var(--color-success, var(--success-500));
-}
-
-.state-error {
-    color: var(--color-error, var(--error-500));
-}
+/* State indicators canonicalized in `public/css/components-common.css` — please reference `.state-*` from that file. */
 
 /* ===== NEWSLETTER FORM ===== */
 .newsletter-form {

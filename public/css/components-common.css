@@ -413,6 +413,62 @@
     }
 }
 
+/* ===== STATE INDICATORS ===== */
+.state-loading {
+    position: relative;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.state-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+.state-error {
+    color: var(--error-color);
+    background-color: rgb(239 68 68 / 10%);
+    border: 1px solid rgb(239 68 68 / 20%);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    animation: shake 0.5s ease-in-out;
+}
+
+.state-success {
+    color: var(--success-color);
+    background-color: rgb(16 185 129 / 10%);
+    border: 1px solid rgb(16 185 129 / 20%);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    animation: slide-in 0.3s ease-out;
+}
+
+.state-warning {
+    color: var(--warning-color);
+    background-color: rgb(245 158 11 / 10%);
+    border: 1px solid rgb(245 158 11 / 20%);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+}
+
+.state-info {
+    color: var(--info-color);
+    background-color: rgb(59 130 246 / 10%);
+    border: 1px solid rgb(59 130 246 / 20%);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+}
+
 /* ===== MICRO-INTERACTIONS ===== */
 
 /* Enhanced button ripple effect — base `.btn` already defines `position` and `overflow` above; leaving ripple pseudo-element here. */

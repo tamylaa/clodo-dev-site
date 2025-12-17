@@ -827,19 +827,7 @@ dd {
     }
 }
 
-/* Spinners canonicalized in components-common.css */
-
-.state-loading {
-    opacity: 0.7;
-}
-
-.state-success {
-    color: var(--color-success, var(--success-500));
-}
-
-.state-error {
-    color: var(--color-error, var(--error-500));
-}
+/* Spinners and state indicators are canonicalized in `public/css/components-common.css` — use `.state-*` from that file instead of duplicating. */
 
 /* ===== NEWSLETTER FORM ===== */
 .newsletter-form {
@@ -1524,13 +1512,6 @@ footer::before {
     }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: var(--bg-darker);
-        --bg-secondary: var(--bg-dark);
-        --text-primary: var(--color-white);
-        --text-secondary: var(--text-muted);
-        --border-color: var(--border-color);
-    }
-}
+/* Dark mode tokens are centralized in `public/css/base.css` :root to avoid duplicate declarations */
+/* Removed duplicate dark-mode :root block - prefer tokens in base.css for consistency */
+
