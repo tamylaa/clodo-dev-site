@@ -10,9 +10,7 @@
    ========================================= */
 
 /* Override generic layout.css hero rules */
-#hero {
-    text-align: left !important;
-}
+/* text-align is declared in the canonical #hero block further below */
 
 #hero * {
     text-align: inherit;
@@ -22,6 +20,7 @@
 
 #hero {
     position: relative;
+    text-align: left !important;
 
     /* Use semantic hero alias for top/bottom spacing */
     padding: var(--space-hero-y) 0 var(--space-section-y-standard) 0;
@@ -1055,7 +1054,7 @@ p.hero-subtitle {
     margin-top: 0.25rem;
 }
 
-.hero-visual {
+.hero-container .hero-visual {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1078,7 +1077,7 @@ p.hero-subtitle {
     }
 }
 
-.code-preview {
+.hero-container .code-preview {
     background: rgb(0 0 0 / 85%);
     border-radius: var(--radius-2xl);
     overflow: hidden;
