@@ -163,9 +163,10 @@
 }
 
 .card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
+    /* merged enhanced hover: slightly larger lift and stronger shadow */
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
+} 
 
 .card__header {
     padding: var(--spacing-lg);
@@ -422,20 +423,7 @@
 .status-icon--error { color: var(--error-color); }
 .status-icon--info { color: var(--info-color); }
 
-/* Interactive icon states */
-.icon:hover {
-    transform: scale(1.05);
-}
-
-.icon:active {
-    transform: scale(0.95);
-}
-
-/* Accessibility: Focus states for interactive icons */
-.icon:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
+/* Interactive/focus states for icons consolidated in the Icon System section below. */ 
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
@@ -456,11 +444,7 @@
 
 /* ===== MICRO-INTERACTIONS ===== */
 
-/* Enhanced button ripple effect */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
+/* Enhanced button ripple effect — base `.btn` already defines `position` and `overflow` above; leaving ripple pseudo-element here. */
 
 .btn::before {
     content: '';
@@ -479,7 +463,7 @@
 .btn:active:not(:disabled)::before {
     width: 300px;
     height: 300px;
-}
+} 
 
 /* Enhanced form input animations */
 .form-group .form-input {
@@ -542,17 +526,9 @@
     to { transform: rotate(360deg); }
 }
 
-/* Enhanced card hover with staggered animation */
-.card {
-    transition: all var(--transition-normal);
-}
+/* Enhanced card hover merged into canonical `.card` above — removed duplicate rules here */
 
-.card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
-}
-
-/* Icon bounce animation for success states */
+/* Icon bounce animation for success states */ 
 .icon--animated {
     animation: iconBounce 2s ease-in-out infinite;
 }
@@ -671,23 +647,7 @@ a:not(.btn, .nav-link):active {
     transform: scale(0.95);
 }
 
-.theme-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
-    position: absolute;
-}
-
-.theme-toggle[data-theme="dark"] .theme-icon--light {
-    display: none;
-}
-
-.theme-toggle[data-theme="dark"] .theme-icon--dark {
-    display: block;
-}
+/* Theme toggle icons are canonicalized earlier in this file — removed duplicate theme-icon block here */
 
 /* Enhanced interactive element states */
 button:not(:disabled),
@@ -835,6 +795,8 @@ input:disabled {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    color: currentcolor;
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .icon svg {
@@ -843,7 +805,7 @@ input:disabled {
     height: 100%;
 }
 
-/* Icon sizes */
+/* Icon sizes */ 
 .icon--xs {
     width: 12px;
     height: 12px;
