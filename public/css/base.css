@@ -223,6 +223,12 @@ img {
     --deep-blue-0277bd: rgb(2 119 189); /* #0277bd */
     --dark-24292f: rgb(36 41 47); /* #24292f */
     --light-red-fca5a5: rgb(252 165 165); /* #fca5a5 */
+    --red-ff5f56: rgb(255 95 86);    /* #ff5f56 */
+    --red-e74c3c: rgb(231 76 60);    /* #e74c3c */
+    --green-27c93f: rgb(39 201 63);  /* #27c93f */
+    --green-6a9955: rgb(106 153 85);  /* #6a9955 */
+    --muted-dcdcaa: rgb(220 220 170); /* #dcdcaa */
+    --teal-4ec9b0: rgb(78 201 176);   /* #4ec9b0 */
 
     /* ===== SPACING SYSTEM ===== */
 
