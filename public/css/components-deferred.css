@@ -9,10 +9,6 @@
    ======================================== */
 
 .code-preview:hover {
-  transform: perspective(1000px) rotateY(0deg);
-}
-
-.code-preview:hover {
   transform: none;
 }
 
@@ -108,23 +104,13 @@
     gap: var(--spacing-lg);
 }
 
-.subscribe-content h1 {
-  font-size: 2rem;
-}
+/* See canonical .subscribe-content h1 at line 48 for base styles */
 
-.subscribe-subtitle {
-  font-size: 1.1rem;
-}
+/* See canonical .subscribe-subtitle at line 55 for base styles */
 
-.subscribe-form-card {
-  padding: var(--spacing-lg);
-}
+/* See canonical .subscribe-form-card at line 69 for base styles */
 
-.footer-simple .footer-content {
-  flex-direction: column;
-        gap: var(--spacing-md);
-        text-align: center;
-}
+/* See canonical .footer-simple .footer-content at line 90 for base styles */
 
 /* ========================================
    ANIMATIONS & TRANSITIONS
