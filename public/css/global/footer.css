@@ -63,12 +63,7 @@ footer > * {
     }
 }
 
-/* Staggered entrance animation for footer sections */
-.footer-section {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.1s);
-    margin-bottom: var(--spacing-lg);
-}
+/* Staggered entrance animation for footer sections — animation & spacing consolidated in the canonical `.footer-section` block below to avoid duplication. */
 
 @keyframes fadeInUp {
     from {
@@ -114,18 +109,7 @@ footer > * {
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-section a:hover {
-    color: var(--bg-secondary-light);
-    transform: translateX(2px);
-}
-
-.footer-section a:hover::before {
-    width: 100%;
-}
-
-.footer-section a:hover::after {
-    opacity: 0.08;
-}
+/* .footer-section link hover behavior canonicalized further below — prefer the canonical `.footer-section a:hover` block to avoid duplicates. */
 
 .footer-section a:focus-visible {
     outline: none;
@@ -201,6 +185,10 @@ footer > * {
 }
 
 .footer-section {
+    /* entrance animation consolidated here */
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+
     margin-bottom: var(--spacing-md);
     display: flex;
     flex-direction: column;
@@ -328,13 +316,7 @@ footer > * {
     z-index: -1;
 }
 
-.footer-section .social-links a:hover {
-    background: linear-gradient(135deg, var(--primary-color), var(--gradient-primary));
-    color: var(--color-white);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgb(0 102 204 / 30%);
-    border-color: transparent;
-}
+/* Social-links hover behavior canonicalized further below — prefer the canonical `.footer-section .social-links a:hover` block to avoid duplicates. */
 
 .footer-section .social-links a:hover::before {
     opacity: 1;
@@ -691,6 +673,7 @@ footer > * {
     color: var(--color-white);
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgb(0 102 204 / 30%);
+    border-color: transparent;
 }
 
 /* ===== FOOTER RESPONSIVE STYLES ===== */
