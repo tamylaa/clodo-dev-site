@@ -141,7 +141,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9375rem;
+    font-size: 0.938rem;
     color: var(--text-secondary);
     width: fit-content;
 }
@@ -435,7 +435,10 @@ p.hero-subtitle {
 
 /* Constrain preview height on small screens to avoid tall whitespace */
 @media (width <= 767px) {
-    .code-preview__content { max-height: 50vh; overflow: auto; }
+    .code-preview__content {
+        max-height: 50vh;
+        overflow: auto;
+    }
 }
 
 /* Hero Stats */
@@ -635,7 +638,7 @@ p.hero-subtitle {
     padding: 2rem 1.5rem;
     margin: 0;
     font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
-    font-size: 0.9375rem;
+    font-size: 0.938rem;
     line-height: 1.8;
     overflow-x: auto;
     background: transparent;
@@ -737,6 +740,7 @@ p.hero-subtitle {
         margin: 0 auto;
     }
 
+
     /* .hero-visual — canonical styles are in the .hero-visual block above
        See: public/css/pages/index/hero.css */
 
@@ -747,6 +751,7 @@ p.hero-subtitle {
         align-items: flex-start;
     }
 
+    
     /* .hero-title font-size moved to the canonical definition earlier in this file */
     /* See the main .hero-title block for responsive sizing */
 
@@ -853,7 +858,7 @@ p.hero-subtitle {
     }
 
     .code-preview__content {
-        font-size: 0.9375rem;
+        font-size: 0.938rem;
         padding: 2rem 1.5rem;
     }
 
@@ -947,6 +952,16 @@ p.hero-subtitle {
 /* .hero-title consolidated above — media-specific sizing removed in favor of a single responsive clamp
    See the canonical .hero-title block near the top of this file. */
 
+.btn-primary span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-secondary span {
+    position: relative;
+    z-index: 1;
+}
+
 .hero-title span:not(.highlight) {
     display: block;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
@@ -1031,16 +1046,6 @@ p.hero-subtitle {
     border-color: rgb(255 255 255 / 50%);
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
-}
-
-.btn-primary span {
-    position: relative;
-    z-index: 1;
-}
-
-.btn-secondary span {
-    position: relative;
-    z-index: 1;
 }
 
 .btn-small-text {
