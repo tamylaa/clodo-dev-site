@@ -157,15 +157,21 @@
 
 /* Premium Typography */
 .hero-title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
+    /* Responsive single definition; replaces multiple duplicate blocks across breakpoints */
+    font-size: clamp(2rem, 5vw, 4.25rem);
     line-height: 1.1;
-    font-weight: normal;
+    font-weight: 400;
     font-synthesis: none;
     letter-spacing: -0.02em;
     margin: 0;  /* Remove margins - container gap handles spacing */
+    margin-bottom: clamp(1rem, 3vw, 2rem);
     padding: 0;
     color: var(--text-primary);
     text-align: left;
+    text-shadow: 
+        0 2px 8px rgb(0 0 0 / 40%),
+        0 4px 16px rgb(0 0 0 / 30%);
+    text-wrap: balance;
     max-width: none;
     opacity: 1; /* Ensure visible immediately for LCP */
     transform: translateY(0); /* Prevent layout shift */
@@ -745,9 +751,8 @@ p.hero-subtitle {
         align-items: flex-start;
     }
 
-    .hero-title {
-        font-size: clamp(2.5rem, 6vw, 3.25rem);
-    }
+    /* .hero-title font-size moved to the canonical definition earlier in this file */
+    /* See the main .hero-title block for responsive sizing */
 
     .hero-subtitle {
         font-size: clamp(1.125rem, 2vw, 1.25rem);
@@ -788,9 +793,8 @@ p.hero-subtitle {
         align-items: flex-start !important;
     }
 
-    .hero-title {
-        font-size: clamp(2rem, 7vw, 2.75rem);
-    }
+    /* .hero-title font-size moved to the canonical definition earlier in this file */
+    /* See the main .hero-title block for responsive sizing */
 
     .hero-actions {
         flex-direction: column;
@@ -945,19 +949,8 @@ p.hero-subtitle {
         transform: translateX(0);
     }
 }
-
-.hero-title {
-    font-size: clamp(2.5rem, 4vw, 4.25rem);
-    font-weight: 400;
-    line-height: 1.05;
-    margin-bottom: clamp(1rem, 3vw, 2rem);
-    text-shadow: 
-        0 2px 8px rgb(0 0 0 / 40%),
-        0 4px 16px rgb(0 0 0 / 30%);
-    letter-spacing: -0.015em;
-    text-wrap: balance;
-    max-width: none;
-}
+/* .hero-title consolidated above — media-specific sizing removed in favor of a single responsive clamp */
+/* See the canonical .hero-title block near the top of this file. */
 
 .hero-title span:not(.highlight) {
     display: block;
