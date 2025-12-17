@@ -6,7 +6,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, var(--green-10b981) 0%, var(--green-059669) 100%);
     color: white;
     border-radius: 2rem;
     font-size: 0.875rem;
@@ -23,8 +23,8 @@
     display: flex;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    border-left: 4px solid #3b82f6;
+    background: linear-gradient(135deg, var(--light-blue-eff6ff) 0%, var(--light-blue-dbeafe) 100%);
+    border-left: 4px solid var(--blue-3b82f6);
     border-radius: 0.5rem;
     margin: 2rem 0;
 }
@@ -36,13 +36,13 @@
 
 .callout-text strong {
     display: block;
-    color: #1e40af;
+    color: var(--indigo-1e40af);
     margin-bottom: 0.5rem;
 }
 
 .callout-text ul {
     margin: 0.5rem 0 0 1.5rem;
-    color: #1e3a8a;
+    color: var(--indigo-1e3a8a);
 }
 
 .callout-text li {
@@ -71,7 +71,7 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, var(--blue-3b82f6) 0%, var(--purple-8b5cf6) 100%);
     color: white;
     display: flex;
     align-items: center;
@@ -171,7 +171,7 @@
 
 .preview-header {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    background: linear-gradient(135deg, var(--gray-f9fafb) 0%, var(--gray-f3f4f6) 100%);
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -303,7 +303,7 @@
 /* Final CTA */
 .final-cta {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, var(--blue-3b82f6) 0%, var(--purple-8b5cf6) 100%);
     color: white;
 }
 
@@ -325,7 +325,7 @@
 
 .cta-content .btn {
     background: white;
-    color: #3b82f6;
+    color: var(--blue-3b82f6);
 }
 
 .cta-content .btn:hover {
