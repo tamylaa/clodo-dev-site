@@ -2286,7 +2286,7 @@ dd {
     border-width: 1px;
 }
 
-.spinner--var(--color-white) {
+.spinner--white {
     color: var(--color-white);
 }
 
