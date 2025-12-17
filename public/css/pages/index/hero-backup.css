@@ -14,23 +14,9 @@
     animation: gradientShift 15s ease infinite;
 }
 
-.hero-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-    padding: 0 var(--spacing-sm);
-    min-height: auto;
-    overflow-x: hidden;
-}
+/* Layout for `.hero` is canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 100%;
-    justify-self: center;
-}
+/* Hero content styles are canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
 .hero-visual {
     justify-self: center;
@@ -58,28 +44,9 @@
     letter-spacing: 0.01em;
 }
 
-.hero-subtitle {
-    font-size: clamp(0.85rem, 4vw, 1rem);
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 600px;
-    text-wrap: balance;
-    animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.3s;
-}
+/* Hero subtitle is canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
-/* Action Buttons */
-.hero-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.4s;
-}
+/* Action buttons are canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
 .btn {
     padding: 1rem 1.5rem;
@@ -202,12 +169,7 @@
     font-weight: 500;
 }
 
-.value-prop-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--primary-500);
-    flex-shrink: 0;
-}
+/* Value prop icon sizing is canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
 /* ===== TRUST INDICATORS ===== */
 .hero-trust-indicators {
@@ -413,37 +375,13 @@
 
 /* ===== BASE STYLES (Mobile: 0-767px) ===== */
 
-/* Premium hero styles are canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
+/* Premium hero layout is canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
-.hero-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(3rem, 8vh, 6rem);
-    align-items: center;
-    padding: 0 var(--spacing-sm);
-    min-height: auto;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(2.5rem, 6vh, 4rem);
-    max-width: 100%;
-    justify-self: center;
-}
+/* Premium hero content is canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
 /* ===== PREMIUM SOCIAL PROOF ===== */
 
-.hero-social-proof {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.1s;
-}
+/* Premium social-proof styles are canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
 .social-proof-badges {
     display: flex;
@@ -503,19 +441,7 @@
 
 /* ===== PREMIUM TYPOGRAPHY ===== */
 
-.hero-title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    line-height: 1.1;
-    font-weight: 900;
-    margin-bottom: 0;
-    color: var(--color-white);
-    text-wrap: balance;
-    text-align: center;
-    animation: slideInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.2s;
-    transform: scale(0.95);
-}
+/* Premium hero typography is canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
 .hero-title .highlight {
     background: linear-gradient(135deg, var(--blue-60a5fa), var(--purple-a78bfa), var(--teal-34d399));
@@ -628,104 +554,13 @@
 
 /* ===== PREMIUM CTA BUTTONS ===== */
 
-.hero-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.6s;
-}
+/* Premium hero action layout is canonicalized in `public/css/pages/index/hero.css` — see that file instead of duplicating. */
 
-.btn {
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    min-width: 200px;
-    text-align: center;
-}
-
-.btn-hero-primary {
-    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
-    color: var(--color-white);
-    box-shadow:
-        0 8px 32px rgb(59 130 246 / 40%),
-        0 0 0 1px rgb(59 130 246 / 20%);
-    position: relative;
-}
-
-.btn-hero-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgb(255 255 255 / 20%) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.btn-hero-primary:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 16px 48px rgb(59 130 246 / 50%),
-        0 0 0 1px rgb(59 130 246 / 30%);
-}
-
-.btn-hero-primary:hover::before {
-    opacity: 1;
-}
-
-.btn-hero-secondary {
-    background: rgb(255 255 255 / 10%);
-    color: var(--color-white);
-    border: 1px solid rgb(255 255 255 / 20%);
-    backdrop-filter: blur(10px);
-}
-
-.btn-hero-secondary:hover {
-    background: rgb(255 255 255 / 15%);
-    border-color: rgb(255 255 255 / 30%);
-    transform: translateY(-2px);
-}
+/* Button styles (hero CTA) are canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
 /* ===== PREMIUM TRUST SIGNALS ===== */
 
-.hero-trust-signals {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-delay: 0.7s;
-}
-
-.trust-signal {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    color: rgb(255 255 255 / 90%);
-    font-weight: 500;
-}
-
-.trust-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--success-500);
-    flex-shrink: 0;
-}
+/* Premium trust-signal styles are canonicalized in `public/css/pages/index/hero.css` — reference that file instead of duplicating. */
 
 /* ===== URGENCY ELEMENT ===== */
 
@@ -908,15 +743,9 @@
         padding: 1.5rem;
     }
 
-    .hero-actions {
-        width: 100%;
-        max-width: 320px;
-    }
+    /* hero-actions — canonical styles are in public/css/pages/index/hero.css */
 
-    .btn {
-        width: 100%;
-        min-width: auto;
-    }
+    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css */
 
     .hero-trust-signals {
         flex-direction: column;
@@ -953,15 +782,11 @@
         margin-bottom: 2.5rem;
     }
 
-    .hero-actions {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 1rem;
-    }
+    /* hero-actions — canonical styles are in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
-    .btn {
-        width: auto;
-    }
+    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
     .code-preview {
         max-width: 100%;
@@ -995,17 +820,11 @@
         height: 14px;
     }
 
-    .hero-actions {
-        flex-direction: row;
-        gap: 1rem;
-        width: auto;
-        max-width: none;
-    }
+    /* hero-actions — canonical styles are in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
-    .btn {
-        width: auto;
-        min-width: 160px;
-    }
+    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
     .hero-trust-signals {
         flex-direction: row;
@@ -1028,9 +847,8 @@
         margin: 0 auto;
     }
 
-    .hero-content {
-        justify-self: center;
-    }
+    /* hero-content — canonical styles are in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
     .hero-title {
         font-size: clamp(3rem, 6vw, 4.5rem);
@@ -1068,10 +886,8 @@
         margin: 0 auto;
     }
 
-    .hero-content {
-        justify-self: start;
-        text-align: left;
-    }
+    /* hero-content — canonical styles are in public/css/pages/index/hero.css */
+    /* See: public/css/pages/index/hero.css */
 
     .hero-title {
         text-align: left;
