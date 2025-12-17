@@ -42,6 +42,12 @@
     "no-irregular-whitespace": true,
     "selector-class-pattern": null,
     "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*$",
-    "selector-id-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*$"
+    "selector-id-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*$",
+    "time-min-milliseconds": null,
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "alpha-value-notation": null,
+    "media-feature-name-value-no-unknown": null,
+    "font-family-no-missing-generic-family-keyword": null
   }
 }
