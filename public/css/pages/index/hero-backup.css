@@ -782,11 +782,11 @@
         margin-bottom: 2.5rem;
     }
 
-    /* hero-actions — canonical styles are in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero-actions — canonical styles are in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
-    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
     .code-preview {
         max-width: 100%;
@@ -820,11 +820,11 @@
         height: 14px;
     }
 
-    /* hero-actions — canonical styles are in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero-actions — canonical styles are in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
-    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero .btn sizing is canonicalized in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
     .hero-trust-signals {
         flex-direction: row;
@@ -847,8 +847,8 @@
         margin: 0 auto;
     }
 
-    /* hero-content — canonical styles are in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero-content — canonical styles are in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
     .hero-title {
         font-size: clamp(3rem, 6vw, 4.5rem);
@@ -886,8 +886,8 @@
         margin: 0 auto;
     }
 
-    /* hero-content — canonical styles are in public/css/pages/index/hero.css */
-    /* See: public/css/pages/index/hero.css */
+    /* hero-content — canonical styles are in public/css/pages/index/hero.css
+       See: public/css/pages/index/hero.css */
 
     .hero-title {
         text-align: left;
