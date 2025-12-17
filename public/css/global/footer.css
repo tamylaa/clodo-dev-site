@@ -63,6 +63,69 @@ footer > * {
     }
 }
 
+@media (width <= 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        padding: var(--spacing-xl) 1rem 0;
+    }
+
+    .footer-logo {
+        text-align: center;
+    }
+
+    .footer-logo .logo-text {
+        font-size: 1.75rem;
+    }
+
+    /* Footer responsive adjustments (centering, hiding decorative after bars, social-links alignment and newsletter layout) moved to the canonical `public/css/global/footer.css` to avoid duplication. */
+
+    .footer-bottom p {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+@media (width <= 480px) {
+    .footer-content {
+        padding: var(--spacing-lg) 1rem 0;
+    }
+
+    .footer-logo .logo-icon {
+        font-size: 2rem;
+    }
+
+    .footer-logo .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .footer-section h4 {
+        font-size: 1.125rem;
+    }
+
+    .footer-section ul {
+        padding-left: 0;
+    }
+
+    .footer-section li {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-section .social-links {
+        gap: 0.75rem;
+    }
+
+    .footer-section .social-links a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-newsletter {
+        padding: var(--spacing-lg);
+    }
+}
+
 /* Staggered entrance animation for footer sections — animation & spacing consolidated in the canonical `.footer-section` block below to avoid duplication. */
 
 @keyframes fadeInUp {
