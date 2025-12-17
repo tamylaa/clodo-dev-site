@@ -214,6 +214,16 @@ img {
     --color-fbbf24: rgb(251 191 36); /* #fbbf24 */
     --color-06c: rgb(0 102 204); /* #06c */
 
+    /* Tokenized additional commons */
+    --blue-60a5fa: rgb(96 165 250);   /* #60a5fa */
+    --purple-a78bfa: rgb(167 139 250);/* #a78bfa */
+    --teal-34d399: rgb(52 211 153);   /* #34d399 */
+    --green-27ae60: rgb(39 174 96);   /* #27ae60 */
+    --light-blue-e0f2fe: rgb(224 242 254); /* #e0f2fe */
+    --deep-blue-0277bd: rgb(2 119 189); /* #0277bd */
+    --dark-24292f: rgb(36 41 47); /* #24292f */
+    --light-red-fca5a5: rgb(252 165 165); /* #fca5a5 */
+
     /* ===== SPACING SYSTEM ===== */
 
     /* Consistent spacing scale using powers of 2 for harmony */
