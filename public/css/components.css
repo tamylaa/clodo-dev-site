@@ -1939,28 +1939,7 @@ img.lazy-loaded {
 }
 
 /* ===== CODE EXAMPLE ===== */
-.code-example {
-    background-color: var(--color-gray-900);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    overflow-x: auto;
-}
-
-.code-example pre {
-    margin: 0;
-    color: var(--color-gray-100);
-    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-.code-example code {
-    background: none;
-    color: inherit;
-    padding: 0;
-    border-radius: 0;
-}
+/* .code-example is canonicalized in `public/css/components.css` — see the main `.code-example` block further below to avoid duplication. */
 
 /* ===== DL DEFINITIONS ===== */
 dl {

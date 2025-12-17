@@ -740,28 +740,7 @@
 }
 
 /* ===== CODE EXAMPLE ===== */
-.code-example {
-    background-color: var(--color-gray-900);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    overflow-x: auto;
-}
-
-.code-example pre {
-    margin: 0;
-    color: var(--color-gray-100);
-    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-.code-example code {
-    background: none;
-    color: inherit;
-    padding: 0;
-    border-radius: 0;
-}
+/* .code-example is canonicalized in `public/css/components.css` — prefer that block instead of duplicating here. */
 
 /* ===== DL DEFINITIONS ===== */
 dl {
@@ -963,40 +942,7 @@ dd {
 }
 
 /* ===== CODE EXAMPLES ===== */
-.code-example {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    overflow-x: auto;
-    position: relative;
-}
-
-.code-example pre {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--text-primary);
-}
-
-.code-example code {
-    background: transparent;
-    color: var(--text-primary);
-    padding: 0;
-    border-radius: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
+/* .code-example is canonicalized in `public/css/components.css` — prefer that block instead of duplicating here. */
 
 .code-caption {
     margin-top: var(--spacing-sm);
