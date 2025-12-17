@@ -10,8 +10,8 @@
    ========================================= */
 
 
-/* Override generic layout.css hero rules */
-/* text-align is declared in the canonical #hero block further below */
+/* Override generic layout.css hero rules
+   text-align is declared in the canonical #hero block further below */
 
 #hero * {
     text-align: inherit;
@@ -752,8 +752,8 @@ p.hero-subtitle {
     }
 
     
-    /* .hero-title font-size moved to the canonical definition earlier in this file */
-    /* See the main .hero-title block for responsive sizing */
+    /* .hero-title font-size moved to the canonical definition earlier in this file
+       See the main .hero-title block for responsive sizing */
 
     .hero-subtitle {
         font-size: clamp(1.125rem, 2vw, 1.25rem);
@@ -949,6 +949,7 @@ p.hero-subtitle {
         transform: translateX(0);
     }
 }
+
 /* .hero-title consolidated above — media-specific sizing removed in favor of a single responsive clamp
    See the canonical .hero-title block near the top of this file. */
 
