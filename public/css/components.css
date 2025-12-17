@@ -714,12 +714,6 @@ input:disabled {
 }
 
 /* Loading state behaviors for `.btn[aria-busy]` are canonical in `public/css/components-common.css` — use the canonical definition there. */
-    height: 16px;
-    border: 2px solid currentcolor;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s linear infinite;
-}
 
 .form-input[aria-busy="true"] {
     position: relative;
