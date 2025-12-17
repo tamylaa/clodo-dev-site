@@ -422,6 +422,7 @@
 
 /* Tablet */
 @media (width <= 768px) {
+    /* Keep layout-level adjustments here; footer-specific visual and sizing rules live in `public/css/global/footer.css` */
     .footer-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-xl);
@@ -436,30 +437,7 @@
         font-size: 1.75rem;
     }
 
-    .footer-section {
-        text-align: center;
-    }
-
-    .footer-section h4::after {
-        display: none;
-    }
-
-    .footer-section .social-links {
-        justify-content: center;
-    }
-
-    .footer-newsletter {
-        margin-top: var(--spacing-lg);
-    }
-
-    .footer-newsletter .newsletter-row1,
-    .footer-newsletter .newsletter-row2 {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-newsletter .newsletter-highlights {
-        grid-template-columns: 1fr; /* 4 rows, 1 column */
-    }
+    /* Footer visual details (social links, h4 decorative after, newsletter arrangement) moved to `public/css/global/footer.css` to avoid selector duplication. */
 
     .footer-bottom p {
         flex-direction: column;
@@ -473,6 +451,8 @@
     .footer-content {
         padding: var(--spacing-lg) 1rem 0;
     }
+
+    /* Footer mobile visual adjustments (h4 size, list spacing, social-links sizing and newsletter padding) moved to `public/css/global/footer.css` to keep footer behavior canonical. */
 
     .footer-logo .logo-icon {
         font-size: 2rem;
