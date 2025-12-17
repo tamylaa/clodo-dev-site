@@ -12,222 +12,10 @@
    =========================================== */
 
 /* ===== BUTTONS ===== */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    min-height: 44px;
-    font-weight: 500;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgb(0 102 204 / 10%);
-}
-
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* Primary button - standard */
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover:not(:disabled) {
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-primary:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Secondary button - standard */
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--border-color);
-}
-
-.btn-secondary:hover:not(:disabled) {
-    background-color: var(--bg-secondary);
-    border-color: var(--text-secondary);
-    transform: translateY(-1px);
-}
-
-.btn-secondary:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-/* Outline button */
-.btn-outline {
-    background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-outline:hover:not(:disabled) {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
-}
-
-.btn-outline:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-/* Size variants */
-.btn-large {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.btn-sm {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.75rem;
-}
-
-.btn-block {
-    width: 100%;
-    justify-content: center;
-}
-
-.btn-full {
-    width: 100%;
-}
-
-/* Text button */
-.btn-text {
-    display: inline;
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--primary-color);
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.btn-text:hover {
-    text-decoration: underline;
-}
-
-/* Button states and accessibility */
-.btn-spinner {
-    display: none;
-}
-
-.btn[aria-busy="true"] .btn-text {
-    display: none;
-}
-
-.btn[aria-busy="true"] .btn-spinner {
-    display: inline;
-}
-
-/* Double-dash BEM variants (matching HTML usage) */
-.btn--primary {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    border-color: var(--primary-color);
-}
-
-.btn--primary:hover:not(:disabled) {
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn--primary:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn--secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--border-color);
-}
-
-.btn--secondary:hover:not(:disabled) {
-    background-color: var(--bg-secondary);
-    border-color: var(--text-secondary);
-    transform: translateY(-1px);
-}
-
-.btn--secondary:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-.btn--outline {
-    background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn--outline:hover:not(:disabled) {
-    background-color: var(--primary-color);
-    color: var(--color-white);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
-}
-
-.btn--outline:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-/* Size variants with double-dash */
-.btn--large {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.btn--lg {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.btn--sm {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.75rem;
-}
-
-.btn--block {
-    width: 100%;
-    justify-content: center;
-}
-
-.btn--full {
-    width: 100%;
-}
+/* NOTE: Button styles are canonicalized in `public/css/components-common.css`.
+   Purposefully removed duplicated rules here to avoid cascade and specificity
+   conflicts. If you need to add page-specific button tweaks, create a tiny
+   selector below or add the change to `components-common.css` with tests. */
 
 /* ===== CARDS ===== */
 .card {
@@ -353,25 +141,7 @@
     display: inline-block !important;
 }
 
-/* Icons canonicalized in components-common.css */
-
-/* Icon sizes */
-.icon--xs { font-size: 0.75rem; }
-.icon--sm { font-size: 0.875rem; }
-.icon--md { font-size: 1rem; }
-.icon--lg { font-size: 1.25rem; }
-.icon--xl { font-size: 1.5rem; }
-.icon--2xl { font-size: 2rem; }
-.icon--3xl { font-size: 3rem; }
-
-/* Icon variants */
-.icon--primary { color: var(--primary-color); }
-.icon--secondary { color: var(--text-secondary); }
-.icon--muted { color: var(--text-muted); }
-.icon--success { color: var(--success-color); }
-.icon--warning { color: var(--warning-color); }
-.icon--error { color: var(--error-color); }
-.icon--info { color: var(--info-color); }
+/* Icons and their variants are canonicalized in `public/css/components-common.css` — removed duplicate inline definitions here */
 
 /* Logo icon component */
 .logo-icon {
@@ -391,36 +161,7 @@
     filter: drop-shadow(0 3px 12px rgb(255 215 0 / 40%));
 }
 
-/* Theme toggle icons */
-.theme-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
-    position: absolute;
-}
-
-.theme-icon--light {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.theme-icon--dark {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
-
-[data-theme="dark"] .theme-icon--light {
-    opacity: 0;
-    transform: rotate(90deg);
-}
-
-[data-theme="dark"] .theme-icon--dark {
-    opacity: 1;
-    transform: rotate(0deg);
-}
+/* Theme toggle icons are canonicalized in `public/css/components-common.css` — removed duplicate rules here */
 
 /* GitHub button icon */
 .github-icon {
@@ -521,41 +262,9 @@
 
 /* ===== MICRO-INTERACTIONS ===== */
 
-/* Enhanced button ripple effect */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
+/* Enhanced button ripple effect is maintained in `public/css/components-common.css` — removed duplicate micro-interaction here. */
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgb(255 255 255 / 30%);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-    pointer-events: none;
-}
-
-.btn:active:not(:disabled)::before {
-    width: 300px;
-    height: 300px;
-}
-
-/* Enhanced form input animations */
-.form-input {
-    position: relative;
-    transition: all var(--transition-fast);
-}
-
-.form-input:focus {
-    transform: translateY(-1px);
-    box-shadow: 0 0 0 3px rgb(0 102 204 / 10%), 0 4px 12px rgb(0 102 204 / 15%);
-}
+/* Form micro-interactions and focus styles are centralized in `public/css/components-common.css` — removed duplicate rules here. */
 
 .form-group--focused .form-label {
     transform: translateY(-20px) scale(0.85);
@@ -563,7 +272,7 @@
 }
 
 /* Floating label animation */
-.form-label {
+.form-group--floating .form-label {
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-md);
@@ -584,38 +293,10 @@
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Enhanced loading states */
-.btn[aria-busy="true"] {
-    position: relative;
-}
+/* Loading states are canonicalized in `public/css/components-common.css` — removed duplicate rules here */
 
-.btn[aria-busy="true"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentcolor;
-    border-radius: 50%;
-    animation: buttonSpin 1s linear infinite;
-}
 
-@keyframes buttonSpin {
-    to { transform: rotate(360deg); }
-}
-
-/* Enhanced card hover with staggered animation */
-.card {
-    transition: all var(--transition-normal);
-}
-
-.card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
-}
+/* Enhanced card hover moved to `public/css/components-common.css` — removed duplicate rules here */
 
 /* Icon bounce animation for success states */
 .icon--animated {
@@ -735,24 +416,7 @@ a:not(.btn, .nav-link):active {
 .theme-toggle:active {
     transform: scale(0.95);
 }
-
-.theme-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
-    position: absolute;
-}
-
-.theme-toggle[data-theme="dark"] .theme-icon--light {
-    display: none;
-}
-
-.theme-toggle[data-theme="dark"] .theme-icon--dark {
-    display: block;
-}
+/* Theme toggle icons are canonicalized in `public/css/components-common.css` — removed duplicate rules here */
 
 /* Enhanced interactive element states */
 button:not(:disabled),
@@ -853,44 +517,7 @@ input:disabled {
     }
 }
 
-/* Spinner variants */
-.spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    border-top-color: var(--primary-color);
-    animation: spin 1s linear infinite;
-}
-
-.spinner--sm {
-    width: 16px;
-    height: 16px;
-    border-width: 1.5px;
-}
-
-.spinner--lg {
-    width: 32px;
-    height: 32px;
-    border-width: 3px;
-}
-
-.spinner--white {
-    border-color: rgb(255 255 255 / 30%);
-    border-top-color: var(--color-white);
-}
-
-.spinner--primary {
-    border-color: rgb(0 102 204 / 30%);
-    border-top-color: var(--primary-color);
-}
-
-.spinner--demo {
-    background: #333;
-    padding: 1rem;
-    border-radius: 8px;
-}
+/* Spinners canonicalized in `public/css/components-common.css` — removed duplicate spinner variants here */
 
 /* ===== ENHANCED LOADING STATES ===== */
 
@@ -1167,25 +794,7 @@ input:disabled {
 }
 
 /* ===== LOADING STATES FOR COMPONENTS ===== */
-.btn[aria-busy="true"] {
-    position: relative;
-    color: transparent !important;
-    pointer-events: none;
-}
-
-.btn[aria-busy="true"]::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 16px;
-    height: 16px;
-    border: 2px solid currentcolor;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s linear infinite;
-}
+/* Loading states are canonicalized in `public/css/components-common.css` — removed duplicate rules here */
 
 .form-input[aria-busy="true"] {
     position: relative;
@@ -1478,92 +1087,7 @@ input:disabled {
     }
 }
 
-/* ===== ICON SYSTEM ===== */
-
-/* Icon sizing system (sm: 16px, md: 24px, lg: 32px, xl: 48px) */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.icon svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/* Icon sizes */
-.icon--xs {
-    width: 12px;
-    height: 12px;
-}
-
-.icon--sm {
-    width: 16px;
-    height: 16px;
-}
-
-.icon--md {
-    width: 24px;
-    height: 24px;
-}
-
-.icon--lg {
-    width: 32px;
-    height: 32px;
-}
-
-.icon--xl {
-    width: 48px;
-    height: 48px;
-}
-
-/* Icon color variants */
-.icon--primary {
-    color: var(--primary-color);
-}
-
-.icon--success {
-    color: var(--success-color);
-}
-
-.icon--warning {
-    color: var(--warning-color);
-}
-
-.icon--error {
-    color: var(--error-color);
-}
-
-.icon--info {
-    color: var(--info-color);
-}
-
-.icon--muted {
-    color: var(--text-muted);
-}
-
-/* Icon with background */
-.icon--bg {
-    background: linear-gradient(135deg, var(--primary-color), var(--gradient-secondary));
-    color: var(--color-white);
-    border-radius: var(--radius-md);
-    padding: 0.5rem;
-}
-
-.icon--bg.icon--sm {
-    padding: 0.25rem;
-}
-
-.icon--bg.icon--lg {
-    padding: 0.75rem;
-}
-
-.icon--bg.icon--xl {
-    padding: 1rem;
-}
+/* Icons are canonicalized in `public/css/components-common.css` — removed duplicate icon system here */
 
 /* Animated icon */
 @media (prefers-reduced-motion: no-preference) {
@@ -2555,32 +2079,7 @@ dd {
     }
 }
 
-/* ===== LOADING STATES & SPINNERS ===== */
-.spinner {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border: 2px solid currentcolor;
-    border-radius: 50%;
-    border-right-color: transparent;
-    animation: spin 1s linear infinite;
-}
-
-.spinner--sm {
-       width: 0.75em;
-    height: 0.75em;
-    border-width: 1px;
-}
-
-.spinner--white {
-    color: var(--color-white);
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+/* Spinner variants are canonicalized in `public/css/components-common.css` — removed duplicate spinner definitions here */
 
 .state-loading {
     opacity: 0.7;
@@ -3275,13 +2774,6 @@ footer::before {
     }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: #0a0a0a;
-        --bg-secondary: var(--bg-dark);
-        --text-primary: var(--color-white);
-        --text-secondary: var(--text-muted);
-        --border-color: var(--color-333);
-    }
-}
+/* Dark mode tokens are centralized in `public/css/base.css` :root to avoid duplicate declarations */
+/* Removed duplicate dark-mode :root block - prefer tokens in base.css for consistency */
+
