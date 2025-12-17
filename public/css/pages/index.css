@@ -1650,14 +1650,9 @@ pre {
     margin: 1rem 0;
 }
 
-code {
-    font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.875em;
-}
+/* Inline `code` styles are canonicalized in `public/css/base.css` — prefer the canonical `code` block there instead of duplicating here. */
+
+/* Page-specific `pre code` overrides may remain if needed; keep only targeted overrides where necessary. */
 
 pre code {
     background: none;
