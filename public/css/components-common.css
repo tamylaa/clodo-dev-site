@@ -151,8 +151,6 @@
 /* Double-dash BEM variants consolidated above */
 
 /* ===== CARDS ===== */
-
-/* ===== CARDS ===== */
 .card {
     background-color: var(--bg-primary);
     border-radius: var(--radius-lg);
@@ -278,6 +276,7 @@
 }
 
 /* Navigation styles moved to header.css */
+
 /* NOTE: Icon sizing/variants are canonicalized in the Icon System section below; prefer the `.icon` sizing system there and use `icon--*` modifiers defined later. */
 
 /* Logo icon component */
