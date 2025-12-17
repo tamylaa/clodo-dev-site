@@ -31,7 +31,7 @@
 
 .btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgb(0 102 204 / 10%);
+    box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgba(0,102,204,0.1);
 }
 
 .btn:disabled {
@@ -89,7 +89,7 @@
     background-color: var(--primary-color);
     color: var(--color-white);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgb(0 102 204 / 25%);
+    box-shadow: 0 4px 12px rgba(0,102,204,0.25);
 }
 
 .btn-outline:active:not(:disabled) {
@@ -163,7 +163,7 @@
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgb(255 255 255 / 50%);
+    background: rgba(255,255,255,0.5);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
@@ -177,7 +177,7 @@
 /* Enhanced hover: lift effect */
 .btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* Enhanced active: press effect */

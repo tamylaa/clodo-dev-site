@@ -471,9 +471,9 @@ footer > * {
 .footer-newsletter input:focus {
     outline: none;
     border-color: var(--primary-color);
-    background: rgb(255 255 255 / 12%);
-    box-shadow: 0 0 0 3px rgb(6, 182, 212 / 20%),
-                inset 0 1px 2px rgb(255 255 255 / 5%);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 3px rgba(6,182,212,0.20),
+                inset 0 1px 2px rgba(255,255,255,0.05);
 }
 
 .footer-newsletter input:focus::placeholder {
@@ -499,7 +499,7 @@ footer > * {
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgb(6, 182, 212 / 30%);
+    box-shadow: 0 4px 15px rgba(6,182,212,0.30);
 }
 
 .footer-newsletter button::before {
