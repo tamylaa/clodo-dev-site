@@ -152,8 +152,7 @@ module.exports = {
 
 - **[Full Documentation](docs.html)** - Complete API reference
 - **[Examples](examples.html)** - Real-world use cases
-- **[Migration Guide](migrate.html)** - Move from other platforms
-
+- **[Migration Guide](migrate.html)** - Move from other platforms- **[Consume Clodo Framework](./CONSUME_CLODO_FRAMEWORK_SITE.html)** - Quick guide for how to use the framework (CLI & programmatic examples)
 ## 🆘 Need Help?
 
 - **GitHub Issues** - [Report bugs](https://github.com/tamylaa/clodo-framework/issues)
