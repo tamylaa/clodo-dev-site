@@ -571,24 +571,7 @@
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Enhanced loading states */
-.btn[aria-busy="true"] {
-    position: relative;
-}
-
-.btn[aria-busy="true"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentcolor;
-    border-radius: 50%;
-    animation: buttonSpin 1s linear infinite;
-}
+/* Enhanced loading states are canonicalized in `public/css/components-common.css` — reference that file instead of duplicating. */
 
 @keyframes buttonSpin {
     to { transform: rotate(360deg); }
@@ -1428,104 +1411,8 @@ input:disabled {
     }
 }
 
-/* ===== ICON SYSTEM ===== */
+/* Icons are canonicalized in `public/css/components-common.css` — removed duplicate icon system from backup */
 
-/* Icon sizing system (sm: 16px, md: 24px, lg: 32px, xl: 48px) */
-.icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.icon svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/* Icon sizes */
-.icon--xs {
-    width: 12px;
-    height: 12px;
-}
-
-.icon--sm {
-    width: 16px;
-    height: 16px;
-}
-
-.icon--md {
-    width: 24px;
-    height: 24px;
-}
-
-.icon--lg {
-    width: 32px;
-    height: 32px;
-}
-
-.icon--xl {
-    width: 48px;
-    height: 48px;
-}
-
-/* Icon color variants */
-.icon--primary {
-    color: var(--primary-color);
-}
-
-.icon--success {
-    color: var(--success-color);
-}
-
-.icon--warning {
-    color: var(--warning-color);
-}
-
-.icon--error {
-    color: var(--error-color);
-}
-
-.icon--info {
-    color: var(--info-color);
-}
-
-.icon--muted {
-    color: var(--text-muted);
-}
-
-/* Icon with background */
-.icon--bg {
-    background: linear-gradient(135deg, var(--primary-color), var(--gradient-secondary));
-    color: var(--color-white);
-    border-radius: var(--radius-md);
-    padding: 0.5rem;
-}
-
-.icon--bg.icon--sm {
-    padding: 0.25rem;
-}
-
-.icon--bg.icon--lg {
-    padding: 0.75rem;
-}
-
-.icon--bg.icon--xl {
-    padding: 1rem;
-}
-
-/* Animated icon */
-@media (prefers-reduced-motion: no-preference) {
-    .icon--animated {
-        animation: iconBounce 2s ease-in-out infinite;
-    }
-    
-    @keyframes iconBounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-4px); }
-    }
-}
 
 
 @media (width >= 769px) {
