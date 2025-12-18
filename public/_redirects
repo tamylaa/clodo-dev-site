@@ -20,23 +20,9 @@
 /multi-tenant-framework / 301
 /cloudflare-orchestration / 301
 
-# Extensionless URL redirects (SEO-friendly canonical URLs)
-/subscribe /subscribe.html 301
-/cloudflare-workers-development-guide /cloudflare-workers-development-guide.html 301
-/serverless-architecture-best-practices /serverless-architecture-best-practices.html 301
-/cloudflare-pages-setup /cloudflare-pages-setup.html 301
-/clodo-framework-guide /clodo-framework-guide.html 301
-/docs /docs.html 301
-/about /about.html 301
-/product /product.html 301
-/pricing /pricing.html 301
-/faq /faq.html 301
-/cloudflare-workers-guide /cloudflare-workers-guide.html 301
-/clodo-vs-lambda /clodo-vs-lambda.html 301
-/what-is-cloudflare-workers /what-is-cloudflare-workers.html 301
-/what-is-edge-computing /what-is-edge-computing.html 301
-/clodo-framework-promise-to-reality /clodo-framework-promise-to-reality.html 301
-/clodo-framework-api-simplification /clodo-framework-api-simplification.html 301
+# Note: Cloudflare Pages automatically strips .html extensions and serves extensionless URLs.
+# Manual redirects from extensionless to .html are NOT needed and cause redirect loops.
+# Pages handles /page.html -> /page internally, so we don't add explicit redirects here.
 
 # Developer-focused redirects
 /cloudflare-workers-framework / 301
@@ -60,33 +46,33 @@
 
 # Newsletter and contact
 /contact /#newsletter 301
-/newsletter /subscribe.html 301
+/newsletter /subscribe 301
 
 # Product pages
 /features /product.html 301
 /benefits /product.html 301
 
 # Documentation sections
-/getting-started /clodo-framework-guide.html 301
-/quick-start /clodo-framework-guide.html 301
-/installation /clodo-framework-guide.html 301
-/setup /clodo-framework-guide.html 301
+/getting-started /clodo-framework-guide 301
+/quick-start /clodo-framework-guide 301
+/installation /clodo-framework-guide 301
+/setup /clodo-framework-guide 301
 
 # Migration and integration
-/integration /migrate.html 301
+/integration /migrate 301
 
 # Examples and demos
-/demo /examples.html 301
-/demos /examples.html 301
-/samples /examples.html 301
-/code-examples /examples.html 301
+/demo /examples 301
+/demos /examples 301
+/samples /examples 301
+/code-examples /examples 301
 
 # Support and help
-/support /docs.html 301
-/help /docs.html 301
-/troubleshooting /docs.html 301
+/support /docs 301
+/help /docs 301
+/troubleshooting /docs 301
 
 # Legal and compliance
-/terms /privacy.html 301
-/legal /privacy.html 301
-/compliance /privacy.html 301
+/terms /privacy 301
+/legal /privacy 301
+/compliance /privacy 301
