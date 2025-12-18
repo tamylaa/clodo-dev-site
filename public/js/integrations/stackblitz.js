@@ -33,9 +33,10 @@ export function init() {
                 }
             } catch (e) {
                 // Ignored - optimization only
+                void e;
             }
             // Mark this element as having had preconnect bound/fired
-            try { btn.__sbPreconnectBound = true; } catch (e) {}
+            try { btn.__sbPreconnectBound = true; } catch (e) { (void e); }
         };
 
         ['pointerenter', 'mouseenter'].forEach(evt => btn.addEventListener(evt, preconnectHandler, { once: true }));
@@ -65,8 +66,9 @@ export function init() {
             }
         } catch (e) {
             // ignored
+            void e;
         }
-        try { el.__sbPreconnectBound = true; } catch (e) {}
+        try { el.__sbPreconnectBound = true; } catch (e) { (void e); }
     };
 
     // Use pointerover/mouseover which bubble and are reliable in headless envs
