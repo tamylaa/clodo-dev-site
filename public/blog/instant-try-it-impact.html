@@ -140,6 +140,65 @@
             .reading-progress, .back-to-top, .blog-cta, .blog-post__share, .newsletter-form { display: none !important; }
         }
     </style>
+    
+    <!-- BlogPosting Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "30x Faster Developer Onboarding: The Impact of Instant Try-It Experiences",
+        "description": "How reducing time-to-first-code from 30 minutes to 60 seconds transformed developer engagement, conversion rates, and product perception.",
+        "image": "https://clodo.dev/og-image.png",
+        "datePublished": "2024-11-15T08:00:00Z",
+        "dateModified": "2024-11-15T08:00:00Z",
+        "author": {
+            "@type": "Person",
+            "name": "Tamyla",
+            "url": "https://clodo.dev/about",
+            "jobTitle": "Founder & Principal Engineer"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://clodo.dev/blog/instant-try-it-impact"
+        },
+        "articleSection": "Impact Analysis",
+        "keywords": "developer onboarding, try-it experience, developer engagement",
+        "isAccessibleForFree": true
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.clodo.dev/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.clodo.dev/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "30x Faster Developer Onboarding",
+                "item": "https://www.clodo.dev/blog/instant-try-it-impact"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->

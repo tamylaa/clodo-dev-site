@@ -143,6 +143,65 @@
             .reading-progress, .back-to-top, .blog-cta, .blog-post__share, .newsletter-form { display: none !important; }
         }
     </style>
+    
+    <!-- BlogPosting Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Building Developer Communities: From Code to Culture",
+        "description": "How successful open source projects build thriving developer communities. Lessons from building Clodo Framework's community of 500+ developers and enterprise adopters.",
+        "image": "https://clodo.dev/og-image.png",
+        "datePublished": "2024-11-20T10:00:00Z",
+        "dateModified": "2024-11-20T10:00:00Z",
+        "author": {
+            "@type": "Person",
+            "name": "Tamyla",
+            "url": "https://clodo.dev/about",
+            "jobTitle": "Founder & Community Lead"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://clodo.dev/blog/building-developer-communities"
+        },
+        "articleSection": "Community",
+        "keywords": "developer community, open source, community building",
+        "isAccessibleForFree": true
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.clodo.dev/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.clodo.dev/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Building Developer Communities",
+                "item": "https://www.clodo.dev/blog/building-developer-communities"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->

@@ -144,6 +144,65 @@
             .reading-progress, .back-to-top, .blog-cta, .blog-post__share, .newsletter-form { display: none !important; }
         }
     </style>
+    
+    <!-- BlogPosting Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Debugging Silent Build Failures: How to Catch Errors Before Production",
+        "description": "A comprehensive guide to identifying and fixing silent build failures that can ship broken code to production. Includes real-world examples and debugging strategies.",
+        "image": "https://clodo.dev/og-image.png",
+        "datePublished": "2024-11-12T11:00:00Z",
+        "dateModified": "2024-11-12T11:00:00Z",
+        "author": {
+            "@type": "Person",
+            "name": "Tamyla",
+            "url": "https://clodo.dev/about",
+            "jobTitle": "Founder & Principal Engineer"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://clodo.dev/blog/debugging-silent-build-failures"
+        },
+        "articleSection": "Debugging",
+        "keywords": "debugging, build failures, error detection",
+        "isAccessibleForFree": true
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.clodo.dev/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.clodo.dev/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Debugging Silent Build Failures",
+                "item": "https://www.clodo.dev/blog/debugging-silent-build-failures"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->

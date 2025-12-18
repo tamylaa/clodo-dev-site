@@ -248,6 +248,65 @@
             a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
         }
     </style>
+    
+    <!-- BlogPosting Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The Cloudflare Infrastructure Myth: Debunking 5 Common Misconceptions",
+        "description": "Explore common myths about Cloudflare infrastructure and discover the reality behind edge computing, security, and global deployment.",
+        "image": "https://clodo.dev/og-image.png",
+        "datePublished": "2024-11-18T09:00:00Z",
+        "dateModified": "2024-11-18T09:00:00Z",
+        "author": {
+            "@type": "Person",
+            "name": "Tamyla",
+            "url": "https://clodo.dev/about",
+            "jobTitle": "Founder & Principal Engineer"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://clodo.dev/blog/cloudflare-infrastructure-myth"
+        },
+        "articleSection": "Infrastructure",
+        "keywords": "cloudflare, infrastructure, edge computing, myths",
+        "isAccessibleForFree": true
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.clodo.dev/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.clodo.dev/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "The Cloudflare Infrastructure Myth",
+                "item": "https://www.clodo.dev/blog/cloudflare-infrastructure-myth"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->
