@@ -39,9 +39,9 @@ const FEATURES = {
   },
   
   NEWSLETTER_MODULE: {
-    enabled: false,
+    enabled: true,
     description: 'Modular newsletter form handler',
-    rollout: 0,
+    rollout: 100,
     dependencies: ['ES6_MODULES'],
   },
   

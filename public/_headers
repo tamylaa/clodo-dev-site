@@ -27,7 +27,7 @@
 # Lighthouse audit bypass - allow bot for performance auditing
 # This prevents rate-limiting from blocking legitimate performance metrics
 /*.html
-  cf-bot-management-score: 100
+  # cf-bot-management-score: 100
 
 # Default for all other pages
 /*
@@ -107,6 +107,6 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Service Worker (if implemented)
-sw.js
+/sw.js
   Cache-Control: public, max-age=0, must-revalidate
   Service-Worker-Allowed: /
