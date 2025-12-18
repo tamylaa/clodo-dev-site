@@ -135,7 +135,7 @@ npm run build
 In Google Search Console:
 1. Wait for verification (24-48 hours)
 2. Go to Sitemaps section
-3. Enter: https://clodo.dev/sitemap.xml
+3. Enter: https://www.clodo.dev/sitemap.xml
 4. Click "Submit"
 
 In Bing Webmaster Tools:

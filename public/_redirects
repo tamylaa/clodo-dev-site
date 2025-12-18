@@ -20,6 +20,24 @@
 /multi-tenant-framework / 301
 /cloudflare-orchestration / 301
 
+# Extensionless URL redirects (SEO-friendly canonical URLs)
+/subscribe /subscribe.html 301
+/cloudflare-workers-development-guide /cloudflare-workers-development-guide.html 301
+/serverless-architecture-best-practices /serverless-architecture-best-practices.html 301
+/cloudflare-pages-setup /cloudflare-pages-setup.html 301
+/clodo-framework-guide /clodo-framework-guide.html 301
+/docs /docs.html 301
+/about /about.html 301
+/product /product.html 301
+/pricing /pricing.html 301
+/faq /faq.html 301
+/cloudflare-workers-guide /cloudflare-workers-guide.html 301
+/clodo-vs-lambda /clodo-vs-lambda.html 301
+/what-is-cloudflare-workers /what-is-cloudflare-workers.html 301
+/what-is-edge-computing /what-is-edge-computing.html 301
+/clodo-framework-promise-to-reality /clodo-framework-promise-to-reality.html 301
+/clodo-framework-api-simplification /clodo-framework-api-simplification.html 301
+
 # Developer-focused redirects
 /cloudflare-workers-framework / 301
 /edge-computing-framework / 301

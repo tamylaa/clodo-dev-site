@@ -137,7 +137,7 @@
                         <h2>Start Your Free Subscription</h2>
                         <p class="form-description">Join 2,000+ developers. No credit card required. Unsubscribe anytime.</p>
 
-                        <form class="newsletter-form" action="#" method="post" data-newsletter-form>
+                        <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
                             <!-- Honeypot spam protection (hidden from users) -->
                             <div class="form-group honeypot-group">
                                 <label for="honeypot">Leave this field empty</label>
@@ -156,6 +156,12 @@
                             <!-- Cloudflare Turnstile (invisible CAPTCHA - better than reCAPTCHA) -->
                             <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light" data-size="normal"></div>
                             <p class="form-help turnstile-help">Protected by Cloudflare to prevent spam</p>
+
+                            <noscript>
+                                <input type="hidden" name="noscript" value="1">
+                                <p class="form-help">If JavaScript is disabled, you can still subscribe by clicking the button below. You will be redirected to a confirmation page.</p>
+                                <button type="submit" class="btn btn--primary btn--large btn--block">Subscribe (no JavaScript)</button>
+                            </noscript>
 
                             <!-- Simplified consent - no checkbox friction -->
                             <p class="form-consent-text">

@@ -54,22 +54,23 @@
     white-space: normal;
 }
 
-/* ===== NOSCRIPT OVERLAY (replaces inline styles) ===== */
-.noscript-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgb(0 0 0 / 80%);
-    color: var(--color-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+/* ===== NOSCRIPT BANNER (non-blocking) ===== */
+.noscript-banner {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255,248,225,1), rgba(255,255,255,1));
+    color: var(--color-text, #111);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     text-align: center;
-    padding: 20px;
+    z-index: 999;
+    font-size: .95rem;
 }
-
-.noscript-link {
-    color: rgb(0 102 204);
+.noscript-banner .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.noscript-link, .noscript-banner a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 /* ===== UTILITY: HEART TEXT COLOR (replaces inline style) ===== */
