@@ -10,7 +10,7 @@ import { test, expect } from '@playwright/test';
 test.describe('System Integration Tests', () => {
     test.beforeEach(async ({ page }) => {
         // Load the HTML file via webServer
-        await page.goto('/index.html');
+        await page.goto('http://localhost:8000/index.html');
         await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(process.env.CI ? 500 : 1000);
     });
@@ -459,7 +459,7 @@ test.describe('System Integration Tests', () => {
             });
             const page = await context.newPage();
 
-            const response = await page.goto('/index.html');
+            const response = await page.goto('http://localhost:8000/index.html');
             expect(response.status()).toBe(200);
 
             // Content should still be visible - use innerHTML instead of evaluate
