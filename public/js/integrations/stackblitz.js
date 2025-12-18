@@ -3,9 +3,12 @@
 // using data-stackblitz-url="...".
 
 export function openStackBlitz(url) {
-    // Basic open behavior - keep noopener and noreferrer for security
+    // Open in popup window with appropriate dimensions for StackBlitz
     try {
-        const w = window.open(url, '_blank', 'noopener,noreferrer');
+        const popupFeatures = 'width=1200,height=800,left=100,top=100,resizable=yes,scrollbars=yes,status=yes';
+        const w = window.open(url, 'stackblitz-demo', popupFeatures);
+        // Focus the popup window
+        if (w) w.focus();
         return w;
     } catch (e) {
         // Fallback to location change only as last resort
