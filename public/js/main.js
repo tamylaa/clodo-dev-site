@@ -38,6 +38,30 @@ function loadScript(src) {
     });
 }
 
+// Backwards-compatible global for inline 'Try It Live' buttons
+// Some templates still use: <button onclick="openStackBlitz(url)">
+// Provide a safe fallback: try to dynamically import the stackblitz integration,
+// otherwise open the URL in a new tab (ensures the CTA always works).
+window.openStackBlitz = async function openStackBlitzFallback(url) {
+    try {
+        const mod = await import('./integrations/stackblitz.js').catch(() => null);
+        if (mod && typeof mod.openStackBlitz === 'function') {
+            return mod.openStackBlitz(url);
+        }
+    } catch (e) {
+        // Ignore dynamic import errors, fall through to fallback
+        console.warn('[openStackBlitz] dynamic import failed, falling back to window.open', e);
+    }
+
+    // Fallback behavior: open in new tab without referrer
+    try {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+        // Last resort: change location
+        window.location.href = url;
+    }
+};
+
 /**
  * Initialize accessibility enhancements
  * Accessibility is auto-initialized by the IIFE in accessibility.js
@@ -181,6 +205,18 @@ async function initFeatures() {
         } catch (error) {
             console.error('[Main.js] Failed to load navigation:', error);
         }
+    }
+
+    // StackBlitz integration: initialize if page contains data-stackblitz-url or hero CTA
+    try {
+        const hasTryIt = document.querySelector('[data-stackblitz-url]') !== null || document.querySelector('[onclick*="openStackBlitz("]') !== null;
+        if (hasTryIt) {
+            const { init: sbInit } = await import('./integrations/stackblitz.js');
+            if (typeof sbInit === 'function') sbInit();
+            console.log('[Main.js] ✓ StackBlitz integration initialized');
+        }
+    } catch (err) {
+        console.warn('[Main.js] StackBlitz integration load failed:', err);
     }
 }
 

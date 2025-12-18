@@ -1,8 +1,37 @@
 export async function onRequestPost({ request, env }) {
     try {
-        // Get the request body
-        const requestBody = await request.json();
-        const { email, _listIds, _updateEnabled, attributes, honeypot } = requestBody;
+        // Parse request body based on content-type (JSON or form submissions)
+        const contentType = (request.headers.get('content-type') || '').toLowerCase();
+        let requestBody = {};
+        let isFormSubmission = false;
+
+        if (contentType.includes('application/json')) {
+            requestBody = await request.json().catch(() => ({}));
+        } else if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
+            const text = await request.text();
+            const params = new URLSearchParams(text);
+            requestBody = Object.fromEntries(params.entries());
+            isFormSubmission = true;
+        } else {
+            // Try parsing as JSON first, then fallback to urlencoded
+            const text = await request.text();
+            try {
+                requestBody = text ? JSON.parse(text) : {};
+            } catch (e) {
+                const params = new URLSearchParams(text);
+                requestBody = Object.fromEntries(params.entries());
+                isFormSubmission = true;
+            }
+        }
+
+        const email = requestBody.email;
+        const _listIds = requestBody._listIds || requestBody.listIds;
+        const _updateEnabled = requestBody._updateEnabled || requestBody.updateEnabled;
+        const attributes = requestBody.attributes || {};
+        const honeypot = requestBody.honeypot || requestBody.website || '';
+
+        // Determine if this was a non-JS (form) submission
+        const isNoScript = isFormSubmission || requestBody.noscript === '1' || (request.headers.get('accept') || '').includes('text/html');
 
         // Check for honeypot spam protection
         if (honeypot && honeypot.trim() !== '') {
@@ -41,6 +70,18 @@ export async function onRequestPost({ request, env }) {
 
         if (!apiKey || !listId) {
             console.error('Missing Brevo API credentials');
+
+            // If this was a non-JS form submission, redirect to a friendly error page instead of
+            // returning a 500 JSON response so users submitting without JS get proper UX.
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/subscribe.html?error=1'
+                    }
+                });
+            }
+
             return new Response(JSON.stringify({
                 error: 'Service configuration error'
             }), {
@@ -100,7 +141,18 @@ export async function onRequestPost({ request, env }) {
             }
         }
 
-        // Return the response with CORS headers
+        // If this was a non-JS form submission, redirect to a static thank-you or error page
+        if (isNoScript) {
+            const location = response.ok ? '/subscribe/thanks.html' : '/subscribe.html?error=1';
+            return new Response(null, {
+                status: 303,
+                headers: {
+                    'Location': location
+                }
+            });
+        }
+
+        // Return the response with CORS headers (for JSON/XHR clients)
         return new Response(JSON.stringify(data), {
             status: response.ok ? 200 : response.status,
             headers: {
@@ -114,6 +166,18 @@ export async function onRequestPost({ request, env }) {
     } catch (error) {
         console.error('Newsletter subscription error:', error);
         console.error('Error details:', error.message, error.stack);
+
+        // If this was a non-JS (HTML-accepting) request, redirect to a friendly error page
+        const acceptHeader = (request.headers.get('accept') || '').toLowerCase();
+        if (acceptHeader.includes('text/html')) {
+            return new Response(null, {
+                status: 303,
+                headers: {
+                    'Location': '/subscribe.html?error=1'
+                }
+            });
+        }
+
         return new Response(JSON.stringify({
             error: 'Internal server error',
             message: error.message || 'Unknown error'

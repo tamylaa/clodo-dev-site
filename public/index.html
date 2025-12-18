@@ -484,14 +484,12 @@
 <body>
     <a href="#main-content" class="skip-link" tabindex="0">Skip to main content</a>
     <noscript>
-        <div class="noscript-overlay">
-            <div>
-                <h2>JavaScript Required</h2>
-                <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page.</p>
-                <p>Alternatively, you can visit our <a class="noscript-link" href="https://github.com/tamylaa/clodo-framework">GitHub repository</a> for documentation.</p>
+        <div class="noscript-banner" role="note" aria-live="polite">
+            <div class="container">
+                <p><strong>Note:</strong> This site uses JavaScript for interactive features, but core content is available without it. If you experience issues (for example, subscribing), try emailing <a class="noscript-link" href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
             </div>
         </div>
-    </noscript>
+    </noscript>"},{
     <header><!--#include file="../templates/nav-main.html" -->
     </header>
 
@@ -1373,6 +1371,45 @@ const token = clodo.generateToken({
     </main><!--#include file="../templates/footer.html" -->
 
     <!-- Defer JavaScript - load after LCP for better performance -->
+    <!-- Inline fallback: ensure global openStackBlitz exists immediately for inline onclicks -->
+    <script nonce="N0Nc3Cl0d0">
+        (function(){
+            function addPreconnectOnce() {
+                if (!document.querySelector('link[data-preconnect="stackblitz"]')) {
+                    try {
+                        const link = document.createElement('link');
+                        link.rel = 'preconnect';
+                        link.href = 'https://stackblitz.com';
+                        link.setAttribute('data-preconnect','stackblitz');
+                        link.crossOrigin = '';
+                        document.head.appendChild(link);
+                    } catch(e){}
+                }
+            }
+            function bindPreconnectToButton(btn){
+                if (btn.__sbPreconnectBound) return;
+                ['pointerenter','mouseenter'].forEach(evt => btn.addEventListener(evt, () => addPreconnectOnce(), { once: true }));
+                btn.__sbPreconnectBound = true;
+            }
+            // Attach to existing buttons on DOMContentLoaded or now
+            const attach = () => {
+                const buttons = document.querySelectorAll('[data-stackblitz-url], button[onclick*="openStackBlitz"]');
+                buttons.forEach(bindPreconnectToButton);
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attach);
+            } else {
+                attach();
+            }
+
+            if (typeof window.openStackBlitz !== 'function') {
+                window.openStackBlitz = function(url) {
+                    try { window.open(url, '_blank', 'noopener,noreferrer'); }
+                    catch (e) { window.location.href = url; }
+                };
+            }
+        })();
+    </script>
     <script src="js/init-systems.js" defer nonce="N0Nc3Cl0d0"></script>
     <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
     <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
