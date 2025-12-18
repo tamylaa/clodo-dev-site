@@ -1,7 +1,7 @@
 import { createServer } from 'http';
 import { readFileSync, existsSync, statSync } from 'fs';
 import { join, resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -42,6 +42,62 @@ function getPublicFile(name) {
 let server = createServer((req, res) => {
     // Parse URL to remove query parameters
     const urlPath = req.url.split('?')[0];
+
+    // If a function exists for this path (e.g., /newsletter-subscribe -> functions/newsletter-subscribe.js)
+    const funcFile = join(projectRoot, 'functions', (urlPath || '/').replace(/^\//, '') + '.js');
+    if (existsSync(funcFile)) {
+        // Route to the Cloudflare Pages Function file
+        (async () => {
+            try {
+                const mod = await import(pathToFileURL(funcFile).href);
+
+                // Helper to convert a Web Response into Node's http response
+                const flushResponse = async (webRes) => {
+                    const status = webRes.status || 200;
+                    const headers = {};
+                    for (const [k, v] of webRes.headers.entries()) headers[k] = v;
+                    res.writeHead(status, headers);
+                    const buf = await webRes.arrayBuffer().catch(() => null);
+                    if (buf) res.end(Buffer.from(buf)); else res.end();
+                };
+
+                if (req.method === 'OPTIONS' && typeof mod.onRequestOptions === 'function') {
+                    const webRes = await mod.onRequestOptions();
+                    await flushResponse(webRes);
+                    return;
+                }
+
+                if (req.method === 'POST' && typeof mod.onRequestPost === 'function') {
+                    const chunks = [];
+                    req.on('data', c => chunks.push(c));
+                    req.on('end', async () => {
+                        const raw = Buffer.concat(chunks).toString();
+                        const url = `http://localhost:${PORT}${req.url}`;
+                        const webReq = new Request(url, {
+                            method: 'POST',
+                            headers: req.headers,
+                            body: raw
+                        });
+                        const webRes = await mod.onRequestPost({ request: webReq, env: process.env });
+                        await flushResponse(webRes);
+                    });
+                    return;
+                }
+
+                // Unsupported method
+                res.writeHead(405, { 'Content-Type': 'text/plain' });
+                res.end('Method Not Allowed');
+                return;
+            } catch (e) {
+                console.error('Function router error:', e);
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Internal Server Error');
+                return;
+            }
+        })();
+        return;
+    }
+
     let filePath = join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
 
     // Check if path is a directory and serve index.html from it

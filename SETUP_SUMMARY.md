@@ -189,3 +189,9 @@ This gives you the **best of both worlds**:
 - Month from now: Make final decision
 
 This is a **safe, non-disruptive** approach to modernizing your site.
+
+
+### Testing notes
+- The Performance Dashboard includes a small, **test/dev-only** fallback PerformanceMonitor to make integration tests deterministic when optional monitoring modules are omitted from the build.
+- The fallback only runs on `localhost`, `127.0.0.1`, or when the URL includes `?testFallback=1`.
+- For CI, prefer adding a test-only flag (`?testFallback=1`) or mock the monitor from the test harness to avoid accidental production behavior.

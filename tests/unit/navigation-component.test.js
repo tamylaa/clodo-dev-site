@@ -206,11 +206,11 @@ describe('NavigationComponent', () => {
             
             click(toggle);
             assert.strictEqual(toggle.getAttribute('aria-expanded'), 'true');
-            assert.strictEqual(menu.classList.contains('active'), true);
+            assert.strictEqual(menu.getAttribute('data-visible'), 'true');
             
             click(toggle);
             assert.strictEqual(toggle.getAttribute('aria-expanded'), 'false');
-            assert.strictEqual(menu.classList.contains('active'), false);
+            assert.strictEqual(menu.getAttribute('data-visible'), 'false');
         });
 
         it('should emit toggle event when opening/closing', async () => {
