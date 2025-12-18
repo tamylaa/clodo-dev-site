@@ -135,4 +135,17 @@
             Made with <span class="text-heart">♥</span> for developers
         </p>
     </div>
+
+    <!-- Global fallback for Try It Live CTA (ensures inline onclick works even if modules are disabled) -->
+    <script>
+        if (typeof window.openStackBlitz !== 'function') {
+            window.openStackBlitz = function(url) {
+                try {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } catch (e) {
+                    window.location.href = url;
+                }
+            };
+        }
+    </script>
 </footer>
