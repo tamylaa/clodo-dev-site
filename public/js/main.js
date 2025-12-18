@@ -18,6 +18,10 @@
 //     isBrowserSupported
 // } from './config/features.js';
 
+// Static imports for critical features to avoid CSP issues with dynamic imports
+// import { init as newsletterInit } from './features/newsletter.js';
+import { init as stackblitzInit } from './integrations/stackblitz.js';
+
 // Core modules are loaded as IIFEs and available on window object
 // import PerformanceMonitor from './core/performance-monitor.js';
 // import SEO from './core/seo.js';
@@ -43,19 +47,32 @@ function loadScript(src) {
 // Provide a safe fallback: try to dynamically import the stackblitz integration,
 // otherwise open the URL in a new tab (ensures the CTA always works).
 window.openStackBlitz = async function openStackBlitzFallback(url) {
+    console.log('[openStackBlitz] Called with URL:', url);
     try {
-        const mod = await import('./integrations/stackblitz.js').catch(() => null);
+        console.log('[openStackBlitz] Attempting dynamic import...');
+        const mod = await import('./integrations/stackblitz.js').catch((importErr) => {
+            console.error('[openStackBlitz] Import failed:', importErr);
+            return null;
+        });
+        console.log('[openStackBlitz] Import result:', mod);
         if (mod && typeof mod.openStackBlitz === 'function') {
+            console.log('[openStackBlitz] Using module function');
             return mod.openStackBlitz(url);
+        } else {
+            console.warn('[openStackBlitz] Module not available or missing function');
         }
     } catch (e) {
         // Ignore dynamic import errors, fall through to fallback
         console.warn('[openStackBlitz] dynamic import failed, falling back to window.open', e);
     }
 
-    // Fallback behavior: open in new tab without referrer
+    // Fallback behavior: open in popup window
+    console.log('[openStackBlitz] Using fallback window.open');
     try {
-        window.open(url, '_blank', 'noopener,noreferrer');
+        const popupFeatures = 'width=1200,height=800,left=100,top=100,resizable=yes,scrollbars=yes,status=yes';
+        const w = window.open(url, 'stackblitz-demo', popupFeatures);
+        if (w) w.focus();
+        return w;
     } catch (err) {
         // Last resort: change location
         window.location.href = url;
@@ -195,6 +212,39 @@ async function initCore() {
  */
 async function initFeatures() {
     console.log('[Main.js] Initializing page features...');
+    console.log('[Main.js] DOM ready state:', document.readyState);
+    console.log('[Main.js] Current URL:', window.location.href);
+    
+    // Wait for FeatureFlags to be available
+    if (!window.FeatureFlags) {
+        console.log('[Main.js] Waiting for FeatureFlags to load...');
+        await new Promise((resolve) => {
+            const checkFlags = () => {
+                if (window.FeatureFlags) {
+                    resolve();
+                } else {
+                    setTimeout(checkFlags, 10);
+                }
+            };
+            checkFlags();
+        });
+        console.log('[Main.js] FeatureFlags loaded');
+    }
+    
+    // Debug feature flags
+    console.log('[Main.js] FeatureFlags object:', window.FeatureFlags);
+    console.log('[Main.js] Enabled features:', window.FeatureFlags ? window.FeatureFlags.getEnabledFeatures() : 'FeatureFlags not loaded');
+    console.log('[Main.js] NEWSLETTER_MODULE enabled:', window.FeatureFlags ? window.FeatureFlags.isFeatureEnabled('NEWSLETTER_MODULE') : 'FeatureFlags not loaded');
+    console.log('[Main.js] Enabled features:', window.FeatureFlags.getEnabledFeatures().join(', '));
+    
+    // Debug DOM elements
+    const newsletterForms = document.querySelectorAll('[data-newsletter-form]');
+    const stackblitzButtons = document.querySelectorAll('[data-stackblitz-url]');
+    const onclickButtons = document.querySelectorAll('[onclick*="openStackBlitz"]');
+    
+    console.log('[Main.js] Found newsletter forms:', newsletterForms.length);
+    console.log('[Main.js] Found StackBlitz buttons:', stackblitzButtons.length);
+    console.log('[Main.js] Found onclick buttons:', onclickButtons.length);
     
     // Navigation component
     if (window.FeatureFlags.isFeatureEnabled('NAVIGATION_MODULE')) {
@@ -210,13 +260,50 @@ async function initFeatures() {
     // Newsletter form handler: initialize if page contains newsletter form
     try {
         const hasNewsletterForm = document.querySelector('[data-newsletter-form]') !== null;
+        console.log('[Main.js] Newsletter form check:', hasNewsletterForm, 'NEWSLETTER_MODULE enabled:', window.FeatureFlags.isFeatureEnabled('NEWSLETTER_MODULE'));
         if (hasNewsletterForm && window.FeatureFlags.isFeatureEnabled('NEWSLETTER_MODULE')) {
-            const { init: newsletterInit } = await import('./features/newsletter.js');
-            if (typeof newsletterInit === 'function') newsletterInit();
-            console.log('[Main.js] ✓ Newsletter form handler initialized');
+            console.log('[Main.js] Importing newsletter module...');
+            try {
+                const { init: newsletterInit } = await import('./features/newsletter.js');
+                console.log('[Main.js] Newsletter import successful, init function:', typeof newsletterInit);
+                if (typeof newsletterInit === 'function') {
+                    newsletterInit();
+                    console.log('[Main.js] ✓ Newsletter form handler initialized');
+                } else {
+                    console.error('[Main.js] Newsletter init is not a function:', newsletterInit);
+                }
+            } catch (importError) {
+                console.error('[Main.js] Newsletter import failed:', importError);
+                console.error('[Main.js] Import error details:', {
+                    message: importError.message,
+                    stack: importError.stack,
+                    name: importError.name
+                });
+            }
+        } else {
+            console.log('[Main.js] Newsletter conditions not met - forms:', hasNewsletterForm, 'module enabled:', window.FeatureFlags.isFeatureEnabled('NEWSLETTER_MODULE'));
         }
     } catch (err) {
-        console.warn('[Main.js] Newsletter form handler load failed:', err);
+        console.error('[Main.js] Newsletter form handler setup failed:', err);
+    }
+
+    // StackBlitz integration: initialize if page contains data-stackblitz-url or hero CTA
+    try {
+        const hasTryIt = document.querySelector('[data-stackblitz-url]') !== null || document.querySelector('[onclick*="openStackBlitz("]') !== null;
+        console.log('[Main.js] StackBlitz check:', hasTryIt, 'Elements found:', document.querySelectorAll('[data-stackblitz-url]').length);
+        if (hasTryIt) {
+            console.log('[Main.js] Initializing StackBlitz module...');
+            try {
+                stackblitzInit();
+                console.log('[Main.js] ✓ StackBlitz integration initialized');
+            } catch (initError) {
+                console.error('[Main.js] StackBlitz init failed:', initError);
+            }
+        } else {
+            console.log('[Main.js] No StackBlitz elements found, skipping module load');
+        }
+    } catch (err) {
+        console.error('[Main.js] StackBlitz integration setup failed:', err);
     }
 }
 
@@ -268,7 +355,23 @@ async function initDeferred() {
  * Main initialization
  * Called when DOM is ready
  */
-function init() {
+async function init() {
+    // Wait for FeatureFlags to be available
+    if (!window.FeatureFlags) {
+        console.log('[Main.js] Waiting for FeatureFlags to load...');
+        await new Promise((resolve) => {
+            const checkFlags = () => {
+                if (window.FeatureFlags) {
+                    resolve();
+                } else {
+                    setTimeout(checkFlags, 10);
+                }
+            };
+            checkFlags();
+        });
+        console.log('[Main.js] FeatureFlags loaded');
+    }
+    
     // Check if ES6 modules are enabled
     if (!window.FeatureFlags.isFeatureEnabled('ES6_MODULES')) {
         console.log('[Main.js] Module system disabled. Using legacy script.js');
@@ -282,7 +385,6 @@ function init() {
     }
 
     console.log('[Main.js] 🚀 Initializing Clodo Framework modules...');
-    console.log('[Main.js] Enabled features:', window.FeatureFlags.getEnabledFeatures().join(', '));
     
     // Initialize core features immediately
     initCore();
