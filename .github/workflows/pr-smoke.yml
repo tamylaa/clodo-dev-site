@@ -1,0 +1,27 @@
+name: PR Smoke (SEO + Newsletter + Try-It)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install deps
+        run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Start dev server (background)
+        run: npm run serve --silent &
+      - name: Wait for server
+        run: npx wait-on http://localhost:8000
+      - name: Run smoke tests (Playwright)
+        run: npx playwright test tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
+        env:
+          CI: true
