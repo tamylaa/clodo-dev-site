@@ -69,11 +69,11 @@ Disallow: /.env
 Disallow: /.git/
 
 # Sitemap locations
-Sitemap: https://clodo.dev/sitemap.xml
+Sitemap: https://www.clodo.dev/sitemap.xml
 
 # Additional sitemaps (when implemented)
-# Sitemap: https://clodo.dev/blog/sitemap.xml
-# Sitemap: https://clodo.dev/docs/sitemap.xml
+# Sitemap: https://www.clodo.dev/blog/sitemap.xml
+# Sitemap: https://www.clodo.dev/docs/sitemap.xml
 
 # Host directive for canonical domain
-Host: https://clodo.dev
+Host: https://www.clodo.dev

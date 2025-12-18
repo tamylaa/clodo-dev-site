@@ -45,7 +45,7 @@ https://www.bing.com/webmasters/
 ```bash
 # In Google Search Console:
 1. Go to Sitemaps section
-2. Enter: https://clodo.dev/sitemap.xml
+2. Enter: https://www.clodo.dev/sitemap.xml
 3. Click Submit
 
 # In Bing Webmaster:

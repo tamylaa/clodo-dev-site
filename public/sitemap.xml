@@ -8,12 +8,12 @@
 
     <!-- Homepage -->
     <url>
-        <loc>https://clodo.dev/</loc>
+        <loc>https://www.clodo.dev/</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
             <image:title>Clodo Framework - Pre-Flight Checker for Cloudflare Workers</image:title>
             <image:caption>Enterprise orchestration framework that reduces custom software costs by 60%</image:caption>
         </image:image>
@@ -21,7 +21,7 @@
 
     <!-- Documentation Pages -->
     <url>
-        <loc>https://clodo.dev/docs.html</loc>
+        <loc>https://www.clodo.dev/docs.html</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -39,7 +39,7 @@
 
     <!-- Framework Guide -->
     <url>
-        <loc>https://clodo.dev/clodo-framework-guide.html</loc>
+        <loc>https://www.clodo.dev/clodo-framework-guide.html</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -47,12 +47,12 @@
 
     <!-- Cloudflare Workers Development Guide - HIGH PRIORITY SEO -->
     <url>
-        <loc>https://clodo.dev/cloudflare-workers-development-guide.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-workers-development-guide.html</loc>
         <lastmod>2025-12-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
-            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
             <image:title>Cloudflare Workers Development Guide 2025</image:title>
             <image:caption>Complete tutorial for Cloudflare Workers development with D1, KV, and edge computing</image:caption>
         </image:image>
@@ -60,12 +60,12 @@
 
     <!-- Serverless Architecture Best Practices - HIGH PRIORITY SEO -->
     <url>
-        <loc>https://clodo.dev/serverless-architecture-best-practices.html</loc>
+        <loc>https://www.clodo.dev/serverless-architecture-best-practices.html</loc>
         <lastmod>2025-12-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
-            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
             <image:title>Serverless Architecture Best Practices 2025</image:title>
             <image:caption>Complete guide to serverless design patterns, cost optimization, and performance</image:caption>
         </image:image>
@@ -89,7 +89,7 @@
 
     <!-- Cloudflare Pages Setup -->
     <url>
-        <loc>https://clodo.dev/cloudflare-pages-setup.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-pages-setup.html</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -97,7 +97,7 @@
 
     <!-- Cloudflare Workers Guide -->
     <url>
-        <loc>https://clodo.dev/cloudflare-workers-guide.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-workers-guide.html</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -105,7 +105,7 @@
 
     <!-- Development Deployment Guide -->
     <url>
-        <loc>https://clodo.dev/development-deployment-guide.html</loc>
+        <loc>https://www.clodo.dev/development-deployment-guide.html</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -113,7 +113,7 @@
 
     <!-- Edge Computing Guide -->
     <url>
-        <loc>https://clodo.dev/edge-computing-guide.html</loc>
+        <loc>https://www.clodo.dev/edge-computing-guide.html</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
