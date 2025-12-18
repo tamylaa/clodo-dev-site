@@ -1,0 +1,28 @@
+name: Ping sitemap
+
+on:
+  push:
+    paths:
+      - 'public/sitemap.xml'
+  schedule:
+    - cron: '0 2 * * *' # daily at 02:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run sitemap pinger
+        env:
+          SITEMAP_URL: ${{ secrets.SITEMAP_URL || 'https://www.clodo.dev/sitemap.xml' }}
+        run: |
+          chmod +x tools/ping-sitemap.js
+          node tools/ping-sitemap.js
