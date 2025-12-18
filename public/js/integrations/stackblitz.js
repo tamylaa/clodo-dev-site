@@ -80,14 +80,5 @@ export function init() {
         window.openStackBlitz = openStackBlitz;
     }
 
-    return { init: true };
-}
-
-// Auto-init if module loaded directly (defensive)
-if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    return { init, openStackBlitz };
 }

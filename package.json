@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run check-links",
+    "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run check-links",
     "build": "node build/build.js",
     "start": "npm run serve",
     "dev": "npm run serve",
@@ -16,6 +16,7 @@
     "clean:tests": "node -e \"import('fs').then(fs=>import('path').then(path=>{const dir='.test-output';if(fs.existsSync(dir)){fs.rmSync(dir,{recursive:true,force:true});fs.mkdirSync(dir,{recursive:true});fs.mkdirSync(path.join(dir,'lighthouse'),{recursive:true});fs.mkdirSync(path.join(dir,'playwright'),{recursive:true});console.log('✓ Test outputs cleaned');}}))\"",
     "clean:all": "npm run clean && npm run clean:tests",
     "validate:blog": "node build/generate-blog-post.mjs --validate-all",
+    "validate:headers": "node build/validate-headers.js",
     "generate:blog": "node build/generate-blog-post.mjs --all",
     "check-links": "node build/check-links.js",
     "check-page-loading": "node build/check-page-loading.js",

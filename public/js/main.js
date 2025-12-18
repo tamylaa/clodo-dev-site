@@ -207,16 +207,16 @@ async function initFeatures() {
         }
     }
 
-    // StackBlitz integration: initialize if page contains data-stackblitz-url or hero CTA
+    // Newsletter form handler: initialize if page contains newsletter form
     try {
-        const hasTryIt = document.querySelector('[data-stackblitz-url]') !== null || document.querySelector('[onclick*="openStackBlitz("]') !== null;
-        if (hasTryIt) {
-            const { init: sbInit } = await import('./integrations/stackblitz.js');
-            if (typeof sbInit === 'function') sbInit();
-            console.log('[Main.js] ✓ StackBlitz integration initialized');
+        const hasNewsletterForm = document.querySelector('[data-newsletter-form]') !== null;
+        if (hasNewsletterForm && window.FeatureFlags.isFeatureEnabled('NEWSLETTER_MODULE')) {
+            const { init: newsletterInit } = await import('./features/newsletter.js');
+            if (typeof newsletterInit === 'function') newsletterInit();
+            console.log('[Main.js] ✓ Newsletter form handler initialized');
         }
     } catch (err) {
-        console.warn('[Main.js] StackBlitz integration load failed:', err);
+        console.warn('[Main.js] Newsletter form handler load failed:', err);
     }
 }
 
