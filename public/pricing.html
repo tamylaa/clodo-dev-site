@@ -183,6 +183,101 @@
             </div>
         </section>
 
+        <section id="cost-comparison" style="padding: var(--spacing-3xl) 0; border-top: 1px solid var(--border-color);">
+            <div class="container" style="max-width: 1000px;">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Workers vs Lambda: Real Cost Comparison</h2>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-2xl); max-width: 700px; margin-left: auto; margin-right: auto;">
+                    See how Clodo on Cloudflare Workers can reduce your infrastructure costs compared to AWS Lambda.
+                </p>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-2xl);">
+                    <thead>
+                        <tr style="background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);">
+                            <th style="padding: var(--spacing-md); text-align: left; font-weight: 600;">Scale</th>
+                            <th style="padding: var(--spacing-md); text-align: center; font-weight: 600; color: #667eea;">Clodo (Workers)</th>
+                            <th style="padding: var(--spacing-md); text-align: center; font-weight: 600;">AWS Lambda</th>
+                            <th style="padding: var(--spacing-md); text-align: center; font-weight: 600; color: #10b981;">Annual Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: var(--spacing-md); font-weight: 600;">100K req/month</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #667eea;"><strong>$0.50</strong></td>
+                            <td style="padding: var(--spacing-md); text-align: center;">$8.50</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #10b981; font-weight: 600;">$96</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: var(--spacing-md); font-weight: 600;">1M req/month</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #667eea;"><strong>$5</strong></td>
+                            <td style="padding: var(--spacing-md); text-align: center;">$25</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #10b981; font-weight: 600;">$240</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: var(--spacing-md); font-weight: 600;">10M req/month</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #667eea;"><strong>$50</strong></td>
+                            <td style="padding: var(--spacing-md); text-align: center;">$150</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #10b981; font-weight: 600;">$1,200</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: var(--spacing-md); font-weight: 600;">100M req/month</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #667eea;"><strong>$500</strong></td>
+                            <td style="padding: var(--spacing-md); text-align: center;">$1,500</td>
+                            <td style="padding: var(--spacing-md); text-align: center; color: #10b981; font-weight: 600;">$12,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: var(--spacing-2xl); border-radius: var(--radius-lg); text-align: center; margin-bottom: var(--spacing-2xl);">
+                    <h3 style="margin-top: 0; margin-bottom: var(--spacing-sm);">Plus Additional Benefits</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-xl); margin-top: var(--spacing-xl);">
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+                            <strong>Zero Cold Starts</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.9;">Instant global scaling vs 500-2000ms on Lambda</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌍</div>
+                            <strong>Global Distribution</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.9;">Requests served from 300+ edge locations</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💾</div>
+                            <strong>Durable Objects</strong><br>
+                            <span style="font-size: 0.9rem; opacity: 0.9;">Per-tenant state without external databases</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 style="margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-md);">Real-World Example: Startup SaaS</h3>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                    A typical SaaS startup with 100K active users making 5M API requests/month would pay:
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); margin-bottom: var(--spacing-2xl);">
+                    <div style="background: #f0f4ff; padding: var(--spacing-2xl); border-radius: var(--radius-lg); border-left: 4px solid #667eea;">
+                        <div style="font-size: 0.875rem; color: #667eea; font-weight: 600; margin-bottom: var(--spacing-md);">CLOUDFLARE WORKERS</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: #667eea; margin-bottom: var(--spacing-sm);">$25/month</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">✅ Compute: $25</li>
+                            <li style="margin-bottom: 0.5rem;">✅ Database: Included (D1)</li>
+                            <li style="margin-bottom: 0.5rem;">✅ Storage: Included (KV)</li>
+                            <li>✅ Data transfer: Free</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fff5f5; padding: var(--spacing-2xl); border-radius: var(--radius-lg); border-left: 4px solid #ef4444;">
+                        <div style="font-size: 0.875rem; color: #b91c1c; font-weight: 600; margin-bottom: var(--spacing-md);">AWS LAMBDA</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: #b91c1c; margin-bottom: var(--spacing-sm);">$125+/month</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">❌ Compute: $75</li>
+                            <li style="margin-bottom: 0.5rem;">❌ Database: $30 (RDS)</li>
+                            <li style="margin-bottom: 0.5rem;">❌ Storage: $10 (S3)</li>
+                            <li>❌ Data transfer: $10</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: var(--radius-lg); padding: var(--spacing-2xl); text-align: center;">
+                    <strong style="color: #065f46; font-size: 1.125rem;">💰 Annual savings: $1,200 per SaaS startup</strong><br>
+                    <span style="color: #047857; font-size: 0.95rem;">That's 80% cost reduction while improving performance!</span>
+                </div>
+            </div>
+        </section>
+
         <section id="case-studies" style="background: var(--bg-secondary); padding: var(--spacing-3xl) 0;">
             <div class="container" style="text-align: center; max-width: 1000px;">
                 <h2 style="margin-bottom: var(--spacing-md);">Trusted by Enterprise Teams</h2>
