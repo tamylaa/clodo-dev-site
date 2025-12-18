@@ -54,9 +54,10 @@ let server = createServer((req, res) => {
                 // Helper to convert a Web Response into Node's http response
                 const flushResponse = async (webRes) => {
                     const status = webRes.status || 200;
+                    /** @type {Record<string, string | number | readonly string[]>} */
                     const headers = {};
                     for (const [k, v] of webRes.headers.entries()) headers[k] = v;
-                    res.writeHead(status, headers);
+                    res.writeHead(status, /** @type {any} */ (headers));
                     const buf = await webRes.arrayBuffer().catch(() => null);
                     if (buf) res.end(Buffer.from(buf)); else res.end();
                 };
@@ -73,9 +74,14 @@ let server = createServer((req, res) => {
                     req.on('end', async () => {
                         const raw = Buffer.concat(chunks).toString();
                         const url = `http://localhost:${PORT}${req.url}`;
+                        /** @type {Record<string, string | number | readonly string[]>} */
+                        const headerMap = {};
+                        for (const [k, v] of Object.entries(req.headers)) {
+                            if (v !== undefined) headerMap[k] = v;
+                        }
                         const webReq = new Request(url, {
                             method: 'POST',
-                            headers: req.headers,
+                            headers: /** @type {any} */ (headerMap),
                             body: raw
                         });
                         const webRes = await mod.onRequestPost({ request: webReq, env: process.env });
