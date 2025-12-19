@@ -83,19 +83,28 @@ window.openStackBlitz = async function openStackBlitzFallback(url) {
  * Initialize accessibility enhancements
  * Accessibility is auto-initialized by the IIFE in accessibility.js
  */
-function initAccessibility() {
+async function initAccessibility() {
     try {
-        // Accessibility is already initialized by the IIFE
-        // Just verify it's working
+        // Accessibility is already initialized by the IIFE - verify and attempt dynamic load if missing
         if (window.a11y && typeof window.a11y.generateReport === 'function') {
             if (window.location.hostname === 'localhost') {
                 console.log('[Accessibility] Already initialized. Use window.a11y to access methods');
                 console.log('[Accessibility] Run window.a11y.generateReport() for compliance report');
             }
-        } else {
-            console.warn('[Accessibility] Not available - accessibility.js may not have loaded');
+            return;
         }
-        
+
+        console.warn('[Accessibility] Not available - attempting dynamic import of accessibility module...');
+        try {
+            await import('./core/accessibility.js');
+            if (window.a11y && typeof window.a11y.generateReport === 'function') {
+                console.log('[Accessibility] accessibility.js loaded dynamically');
+            } else {
+                console.warn('[Accessibility] Module loaded but window.a11y is not available');
+            }
+        } catch (importErr) {
+            console.warn('[Main.js] Failed to dynamically load accessibility module:', importErr);
+        }
     } catch (error) {
         console.error('[Main.js] Failed to verify accessibility:', error);
     }
@@ -105,20 +114,74 @@ function initAccessibility() {
  * Initialize performance monitoring
  * Starts tracking immediately for accurate metrics
  */
-function initPerformanceMonitoring() {
+async function initPerformanceMonitoring() {
     try {
-        window.PerformanceMonitor.init({
-            debug: window.location.hostname === 'localhost',
-            sampleRate: 1.0, // 100% on localhost, adjust for production
-            analytics: {
-                enabled: false, // Enable when analytics is set up
-                provider: null,
-            },
-        });
+        // If the global PerformanceMonitor is available, use it directly
+        if (window.PerformanceMonitor && typeof window.PerformanceMonitor.init === 'function') {
+            window.PerformanceMonitor.init({
+                debug: window.location.hostname === 'localhost',
+                sampleRate: 1.0, // 100% on localhost, adjust for production
+                analytics: {
+                    enabled: false, // Enable when analytics is set up
+                    provider: null,
+                },
+            });
+        } else {
+            // Try to dynamically import the module (will execute the IIFE and attach to window)
+            console.warn('[Main.js] PerformanceMonitor not found on window, attempting dynamic import...');
+            try {
+                await import('./core/performance-monitor.js');
+                if (window.PerformanceMonitor && typeof window.PerformanceMonitor.init === 'function') {
+                    window.PerformanceMonitor.init({
+                        debug: window.location.hostname === 'localhost',
+                        sampleRate: 1.0,
+                        analytics: { enabled: false, provider: null },
+                    });
+                } else {
+                    console.warn('[Main.js] PerformanceMonitor module loaded but did not register global. Attaching shim to avoid runtime errors.');
+                    // Attach a minimal shim so other code and tests that expect the global do not crash
+                    window.PerformanceMonitor = window.PerformanceMonitor || {
+                        init: () => {},
+                        getReport: () => ({}),
+                        getMetrics: () => ({}),
+                        getErrors: () => [],
+                        getTimings: () => [],
+                        getLongTasks: () => [],
+                        getTrends: () => ({}),
+                        getResourceBreakdown: () => ({}),
+                        getOptimizationRecommendations: () => [],
+                        enableDebug: () => {},
+                        disableDebug: () => {},
+                        stop: () => {},
+                        sendBeacon: () => {},
+                    };
+                    console.warn('[Main.js] Attached PerformanceMonitor shim to prevent runtime errors.');
+                    return;
+                }
+            } catch (importErr) {
+                console.warn('[Main.js] Dynamic import of PerformanceMonitor failed. Attaching shim and skipping performance monitoring.', importErr);
+                window.PerformanceMonitor = window.PerformanceMonitor || {
+                    init: () => {},
+                    getReport: () => ({}),
+                    getMetrics: () => ({}),
+                    getErrors: () => [],
+                    getTimings: () => [],
+                    getLongTasks: () => [],
+                    getTrends: () => ({}),
+                    getResourceBreakdown: () => ({}),
+                    getOptimizationRecommendations: () => [],
+                    enableDebug: () => {},
+                    disableDebug: () => {},
+                    stop: () => {},
+                    sendBeacon: () => {},
+                };
+                return;
+            }
+        }
         
-        // Log initial report after 5 seconds
+        // Log initial report after 5 seconds if available
         setTimeout(() => {
-            if (window.location.hostname === 'localhost') {
+            if (window.location.hostname === 'localhost' && window.PerformanceMonitor && typeof window.PerformanceMonitor.getReport === 'function') {
                 console.log('[Performance Report]', window.PerformanceMonitor.getReport());
             }
         }, 5000);
@@ -132,15 +195,44 @@ function initPerformanceMonitoring() {
  * Initialize SEO system
  * Sets up structured data and meta tags
  */
-function initSEO() {
+async function initSEO() {
     try {
+        const ensureSEOInit = async () => {
+            if (window.SEO && typeof window.SEO.init === 'function') return true;
+            console.warn('[Main.js] SEO not found on window, attempting dynamic import...');
+            try {
+                await import('./core/seo.js');
+                return !!(window.SEO && typeof window.SEO.init === 'function');
+            } catch (importErr) {
+                console.warn('[Main.js] Dynamic import of SEO failed. Skipping SEO initialization.', importErr);
+                return false;
+            }
+        };
+
+        const available = await ensureSEOInit();
+        if (!available) {
+            console.warn('[Main.js] SEO not available; attaching minimal shim to prevent runtime errors.');
+            window.SEO = window.SEO || {
+                init: () => {},
+                addOrganizationSchema: () => {},
+                addWebSiteSchema: () => {},
+                addSoftwareSchema: () => {},
+                addStructuredData: () => {},
+                setPageMeta: () => {},
+                makeAbsoluteUrl: (u) => (u || ''),
+                getCurrentMeta: () => ({ title: document.title, description: '', url: window.location.href }),
+            };
+            return;
+        }
+
+        // Initialize with defaults
         window.SEO.init({
             baseUrl: window.location.origin,
             defaultImage: '/assets/images/og-default.jpg',
             defaultAuthor: 'Clodo Framework Team',
             twitterHandle: '@clodoframework',
         });
-        
+
         // Add Organization schema (global)
         window.SEO.addOrganizationSchema({
             name: 'Clodo Framework',
@@ -152,16 +244,16 @@ function initSEO() {
                 'https://twitter.com/clodoframework',
             ],
         });
-        
+
         // Add WebSite schema with search
         window.SEO.addWebSiteSchema({
             name: 'Clodo Framework',
             description: 'Transform 6-month development cycles into 6 weeks with production-ready components',
         });
-        
+
         // Page-specific schemas based on current page
         const path = window.location.pathname;
-        
+
         if (path === '/' || path === '/index.html') {
             // Homepage - Add Software schema
             window.SEO.addSoftwareSchema({
@@ -171,7 +263,7 @@ function initSEO() {
                 downloadUrl: window.location.origin + '/docs/quick-start',
             });
         }
-        
+
         console.log('[SEO] Initialized with structured data');
     } catch (error) {
         console.error('[Main.js] Failed to initialize SEO:', error);
@@ -186,13 +278,13 @@ async function initCore() {
     console.log('[Main.js] Initializing core features...');
     
     // Initialize performance monitoring
-    initPerformanceMonitoring();
+    await initPerformanceMonitoring();
     
     // Initialize SEO
-    initSEO();
+    await initSEO();
     
     // Initialize accessibility
-    initAccessibility();
+    await initAccessibility();
     
     // Theme manager - always available, but can be modular
     if (window.FeatureFlags.isFeatureEnabled('THEME_MANAGER_MODULE')) {

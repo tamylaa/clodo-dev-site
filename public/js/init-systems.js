@@ -24,3 +24,8 @@ console.log('ℹ️ init-systems.js: Core module loading has been disabled (unus
 // Removed: Module initialization is no longer needed
 
 // Removed: Module loading functionality
+// NOTE: As of recent changes, `public/js/main.js` will attempt to dynamically import core modules
+// (PerformanceMonitor, SEO, Accessibility) when they are missing and will attach minimal no-op
+// shims to prevent runtime TypeErrors if the modules are intentionally omitted from the build.
+// If you prefer to always load these modules, re-enable loading in the build or include them
+// in your main bundle.
