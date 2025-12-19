@@ -51,6 +51,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clodo-dev-site
+          projectName: clododev
           directory: dist
           wranglerVersion: '3'
