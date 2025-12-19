@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- CRITICAL: Early shims to prevent TypeErrors if core modules fail to load or are cached -->
+    <script>window.PerformanceMonitor=window.PerformanceMonitor||{init:function(){},getReport:function(){return{}},getMetrics:function(){return{}},getErrors:function(){return[]},getTimings:function(){return[]},getLongTasks:function(){return[]},getTrends:function(){return[]},getResourceBreakdown:function(){return{}},getOptimizationRecommendations:function(){return[]},enableDebug:function(){},disableDebug:function(){},stop:function(){},sendBeacon:function(){}};window.SEO=window.SEO||{init:function(){},addOrganizationSchema:function(){},addWebSiteSchema:function(){},addSoftwareSchema:function(){},addStructuredData:function(){},setPageMeta:function(){},makeAbsoluteUrl:function(u){return u||''},getCurrentMeta:function(){return{}}};window.a11y=window.a11y||{init:function(){},generateReport:function(){return{}}};</script>
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta charset="UTF-8">
@@ -1333,7 +1335,6 @@ const token = clodo.generateToken({
                             <button 
                                 type="button"
                                 data-stackblitz-url="https://stackblitz.com/github/tamylaa/clodo-starter-template?embed=1&file=index.js"
-                                onclick="window.openStackBlitz(this.getAttribute('data-stackblitz-url'))"
                                 class="btn btn-primary btn-large cta-primary-btn"
                                 aria-describedby="cta-primary-desc"
                                 title="Open Clodo Framework starter in StackBlitz"
