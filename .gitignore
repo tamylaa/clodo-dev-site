@@ -48,6 +48,9 @@ playwright/.cache/
 # SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
 docs/clodo-framework-docs/
 docs/clodo-framework-i-docs/
+
+# GitHub Actions deployment (disabled - using Cloudflare native Git integration)
+.github/workflows/deploy.yml
 docs/ADVANCED_DIGITAL_GROWTH_PLAYBOOK.md
 docs/ANALYTICS.md
 docs/ORGANIC_TRAFFIC_GROWTH_PLAN.md
