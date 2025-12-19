@@ -75,6 +75,20 @@ test.describe('System Integration Tests', () => {
         }
     });
 
+    test('does not throw TypeError when core modules are not present', async ({ page }) => {
+        const errors = [];
+        page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
+        page.on('pageerror', err => errors.push(err.message));
+        // Load page and wait for initialization
+        await page.goto('http://localhost:8000/index.html');
+        await page.waitForTimeout(process.env.CI ? 1500 : 2500);
+        const typeErrors = errors.filter(e => /Cannot read properties of undefined \(reading 'init'\)/i.test(e) || /Cannot read properties of undefined.*init/i.test(e));
+        expect(typeErrors.length).toBe(0);
+        if (typeErrors.length > 0) {
+            console.error('Found TypeErrors related to missing modules:', typeErrors);
+        }
+    });
+
     test('should track Web Vitals without errors', async ({ page }) => {
             // Wait for performance monitor to initialize
             await page.waitForTimeout(process.env.CI ? 1000 : 2000);

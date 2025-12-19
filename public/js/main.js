@@ -28,6 +28,64 @@ import { init as stackblitzInit } from './integrations/stackblitz.js';
 // import AccessibilityManager from './core/accessibility.js';
 
 /**
+ * Global production error reporter
+ * Captures unhandled errors and sends diagnostic data to internal endpoint
+ */
+function setupProductionErrorReporter() {
+    // Only enable on production (not localhost)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return;
+    }
+
+    // Track errors to avoid duplicates
+    const reportedErrors = new Set();
+
+    function reportError(errorData) {
+        const errorKey = `${errorData.message}_${errorData.filename}_${errorData.line}`;
+        if (reportedErrors.has(errorKey)) return;
+        reportedErrors.add(errorKey);
+
+        // Send to analytics endpoint (fire-and-forget)
+        fetch('/api/analytics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: 'client-error',
+                ...errorData,
+                timestamp: new Date().toISOString(),
+                page: window.location.href,
+                userAgent: navigator.userAgent
+            })
+        }).catch(() => {}); // Ignore reporting failures
+    }
+
+    // Catch synchronous errors
+    window.addEventListener('error', (event) => {
+        reportError({
+            message: event.message || 'Unknown error',
+            filename: event.filename || 'unknown',
+            line: event.lineno || 0,
+            column: event.colno || 0,
+            stack: event.error?.stack || 'No stack trace'
+        });
+    });
+
+    // Catch unhandled promise rejections
+    window.addEventListener('unhandledrejection', (event) => {
+        reportError({
+            message: `Unhandled Promise Rejection: ${event.reason}`,
+            filename: 'promise',
+            line: 0,
+            column: 0,
+            stack: event.reason?.stack || String(event.reason)
+        });
+    });
+}
+
+// Initialize error reporting immediately
+setupProductionErrorReporter();
+
+/**
  * Dynamically load a script
  * @param {string} src - Script source URL
  * @returns {Promise} Resolves when script is loaded
@@ -43,41 +101,70 @@ function loadScript(src) {
 }
 
 // Backwards-compatible global for inline 'Try It Live' buttons
-// Some templates still use: <button onclick="openStackBlitz(url)">
-// Provide a safe fallback: try to dynamically import the stackblitz integration,
-// otherwise open the URL in a new tab (ensures the CTA always works).
-window.openStackBlitz = async function openStackBlitzFallback(url) {
+// IMPORTANT: Must be synchronous (not async) because inline onclick="openStackBlitz()" cannot await
+// Strategy: Try sync module access first, fall back to dynamic import promise, always return immediately
+window.openStackBlitz = function openStackBlitzFallback(url) {
     console.log('[openStackBlitz] Called with URL:', url);
+    
+    // Fast path: if module already loaded synchronously, use it
     try {
-        console.log('[openStackBlitz] Attempting dynamic import...');
-        const mod = await import('./integrations/stackblitz.js').catch((importErr) => {
-            console.error('[openStackBlitz] Import failed:', importErr);
-            return null;
-        });
-        console.log('[openStackBlitz] Import result:', mod);
-        if (mod && typeof mod.openStackBlitz === 'function') {
-            console.log('[openStackBlitz] Using module function');
-            return mod.openStackBlitz(url);
-        } else {
-            console.warn('[openStackBlitz] Module not available or missing function');
+        const stackblitzModule = window.__stackblitzModule;
+        if (stackblitzModule && typeof stackblitzModule.openStackBlitz === 'function') {
+            console.log('[openStackBlitz] Using cached module');
+            return stackblitzModule.openStackBlitz(url);
         }
     } catch (e) {
-        // Ignore dynamic import errors, fall through to fallback
-        console.warn('[openStackBlitz] dynamic import failed, falling back to window.open', e);
+        console.warn('[openStackBlitz] Cached module access failed', e);
     }
 
-    // Fallback behavior: open in popup window
-    console.log('[openStackBlitz] Using fallback window.open');
+    // Fallback: open immediately with window.open (don't wait for dynamic import)
+    console.log('[openStackBlitz] Opening with window.open fallback');
     try {
         const popupFeatures = 'width=1200,height=800,left=100,top=100,resizable=yes,scrollbars=yes,status=yes';
         const w = window.open(url, 'stackblitz-demo', popupFeatures);
         if (w) w.focus();
         return w;
     } catch (err) {
+        console.error('[openStackBlitz] window.open failed', err);
         // Last resort: change location
         window.location.href = url;
+        return null;
     }
 };
+
+/**
+ * Lightweight runtime diagnostic: watch for resource load errors (images, scripts, links, iframes)
+ * If a resource fails to load, attempt a HEAD request to detect HTTP status (e.g., 503)
+ */
+function initResourceFailureMonitoring() {
+    // Use capture phase to catch resource errors (they don't bubble)
+    window.addEventListener('error', (event) => {
+        try {
+            const target = event?.target || event?.srcElement;
+            if (!target || !target.tagName) return;
+            const tag = target.tagName.toLowerCase();
+            if (!['img', 'script', 'link', 'iframe'].includes(tag)) return;
+
+            const url = target.currentSrc || target.href || target.src;
+            if (!url) return;
+
+            // Fire-and-forget HEAD request to surface status code (may be blocked by CORS in production)
+            fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(res => {
+                    if (res && res.status === 503) {
+                        console.warn(`[Main.js] Diagnostic: resource returned 503 for ${url}`);
+                    }
+                })
+                .catch(err => {
+                    // Network or CORS error; log for diagnostics
+                    console.warn('[Main.js] Diagnostic fetch failed for', url, err);
+                });
+        } catch (err) {
+            // Defensive: do not let this handler throw
+            console.warn('[Main.js] Resource failure monitoring encountered an error', err);
+        }
+    }, true);
+}
 
 /**
  * Initialize accessibility enhancements
@@ -306,6 +393,9 @@ async function initFeatures() {
     console.log('[Main.js] Initializing page features...');
     console.log('[Main.js] DOM ready state:', document.readyState);
     console.log('[Main.js] Current URL:', window.location.href);
+
+    // Start resource failure diagnostics (detect 503s and other resource-level errors)
+    initResourceFailureMonitoring();
     
     // Wait for FeatureFlags to be available
     if (!window.FeatureFlags) {

@@ -2,7 +2,13 @@
 // Exposes openStackBlitz(url) and init() which attaches click handlers for elements
 // using data-stackblitz-url="...".
 
+// Cache this module globally so inline onclick handlers can access it synchronously
+window.__stackblitzModule = window.__stackblitzModule || {};
+
 export function openStackBlitz(url) {
+    // Cache this function globally for sync access
+    window.__stackblitzModule.openStackBlitz = openStackBlitz;
+    
     // Open in popup window with appropriate dimensions for StackBlitz
     try {
         const popupFeatures = 'width=1200,height=800,left=100,top=100,resizable=yes,scrollbars=yes,status=yes';
