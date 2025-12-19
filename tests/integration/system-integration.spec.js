@@ -150,8 +150,13 @@ test.describe('System Integration Tests', () => {
             await page.waitForLoadState('load');
 
             const timings = await page.evaluate(() => {
-                if (window.PerformanceMonitor) return window.PerformanceMonitor.getTimings();
-                // Fallback: use native resource timings if PerformanceMonitor not available
+                // Check if PerformanceMonitor is loaded AND is not just the shim
+                if (window.PerformanceMonitor && typeof window.PerformanceMonitor.getTimings === 'function') {
+                    const pmTimings = window.PerformanceMonitor.getTimings();
+                    // If shim returns empty array, fall back to native API
+                    if (pmTimings && pmTimings.length > 0) return pmTimings;
+                }
+                // Fallback: use native resource timings if PerformanceMonitor not available or returns empty
                 return performance.getEntriesByType('resource').map(r => ({ name: r.name.split('/').pop(), duration: r.duration }));
             });
 
