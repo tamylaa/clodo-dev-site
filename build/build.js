@@ -42,6 +42,11 @@ function copyHtml() {
     const announcementBannerTemplate = readFileSync(join('templates', 'announcement-banner.html'), 'utf8');
     const themeScriptTemplate = readFileSync(join('templates', 'theme-script.html'), 'utf8'); // Critical theme initialization
 
+    // Read component templates
+    const newsletterFormFooterTemplate = readFileSync(join('templates', 'components', 'newsletter-form-footer.html'), 'utf8');
+    const newsletterCtaBlogMidTemplate = readFileSync(join('templates', 'components', 'newsletter-cta-blog-mid.html'), 'utf8');
+    const newsletterCtaBlogFooterTemplate = readFileSync(join('templates', 'components', 'newsletter-cta-blog-footer.html'), 'utf8');
+
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
@@ -138,6 +143,11 @@ function copyHtml() {
             const adjustedRelatedContentComparisonTemplate = adjustTemplatePaths(relatedContentComparisonTemplate, pathPrefix);
             const adjustedRelatedContentWorkersTemplate = adjustTemplatePaths(relatedContentWorkersTemplate, pathPrefix);
 
+            // Create adjusted component templates for this file's directory level
+            const adjustedNewsletterFormFooterTemplate = adjustTemplatePaths(newsletterFormFooterTemplate, pathPrefix);
+            const adjustedNewsletterCtaBlogMidTemplate = adjustTemplatePaths(newsletterCtaBlogMidTemplate, pathPrefix);
+            const adjustedNewsletterCtaBlogFooterTemplate = adjustTemplatePaths(newsletterCtaBlogFooterTemplate, pathPrefix);
+
             // Add skip link and announcement container after body tag if not already present
             // Skip announcement banner for index.html to optimize LCP (hero title should be LCP)
             const isIndexPage = file === 'index.html';
@@ -223,6 +233,17 @@ function copyHtml() {
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
+
+            // Process component SSI includes
+            content = content.replace(/<!--#include file="components\/newsletter-form-footer\.html" -->/g, adjustedNewsletterFormFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/components\/newsletter-form-footer\.html" -->/g, adjustedNewsletterFormFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/components\/newsletter-form-footer\.html" -->/g, adjustedNewsletterFormFooterTemplate);
+            content = content.replace(/<!--#include file="components\/newsletter-cta-blog-mid\.html" -->/g, adjustedNewsletterCtaBlogMidTemplate);
+            content = content.replace(/<!--#include file="\.\.\/components\/newsletter-cta-blog-mid\.html" -->/g, adjustedNewsletterCtaBlogMidTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/components\/newsletter-cta-blog-mid\.html" -->/g, adjustedNewsletterCtaBlogMidTemplate);
+            content = content.replace(/<!--#include file="components\/newsletter-cta-blog-footer\.html" -->/g, adjustedNewsletterCtaBlogFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/components\/newsletter-cta-blog-footer\.html" -->/g, adjustedNewsletterCtaBlogFooterTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/components\/newsletter-cta-blog-footer\.html" -->/g, adjustedNewsletterCtaBlogFooterTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
 
             // Replace hero placeholder with actual hero content
