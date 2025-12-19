@@ -34,6 +34,10 @@ const config = {
         alreadySubscribed: 'This email is already subscribed.',
         networkError: 'Network error. Please check your connection.',
         spamDetected: 'Spam detected. Please try again.',
+        authFailed: 'Email service authentication failed. Please try again later.',
+        rateLimited: 'Too many requests. Please wait a moment and try again.',
+        serviceUnavailable: 'Email service temporarily unavailable. Please try again later.',
+        serverError: 'Server error. Please try again later.',
     },
     
     // Timing
@@ -206,6 +210,22 @@ async function subscribeToNewsletter(email, options = {}) {
             throw new Error('spam');
         }
         
+        if (response.status === 401) {
+            throw new Error('auth_failed');
+        }
+        
+        if (response.status === 429) {
+            throw new Error('rate_limited');
+        }
+        
+        if (response.status === 503 || errorData.code === 'SERVICE_UNAVAILABLE') {
+            throw new Error('service_unavailable');
+        }
+        
+        if (response.status >= 500) {
+            throw new Error('server_error');
+        }
+        
         throw new Error('api_error');
     }
     
@@ -294,6 +314,18 @@ async function handleSubmit(event) {
         } else if (error.message === 'spam') {
             errorMessage = config.messages.spamDetected;
             errorType = 'spam';
+        } else if (error.message === 'auth_failed') {
+            errorMessage = config.messages.authFailed;
+            errorType = 'auth_failed';
+        } else if (error.message === 'rate_limited') {
+            errorMessage = config.messages.rateLimited;
+            errorType = 'rate_limited';
+        } else if (error.message === 'service_unavailable') {
+            errorMessage = config.messages.serviceUnavailable;
+            errorType = 'service_unavailable';
+        } else if (error.message === 'server_error') {
+            errorMessage = config.messages.serverError;
+            errorType = 'server_error';
         } else if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
             errorMessage = config.messages.networkError;
             errorType = 'network';

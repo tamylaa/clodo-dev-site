@@ -109,15 +109,43 @@ export async function onRequestPost({ request, env }) {
         };
 
         // Make the API call to Brevo
-        const response = await fetch('https://api.brevo.com/v3/contacts', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'api-key': apiKey
-            },
-            body: JSON.stringify(payload)
-        });
+        let response;
+        try {
+            response = await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': apiKey
+                },
+                body: JSON.stringify(payload)
+            });
+        } catch (fetchError) {
+            console.error('Network error calling Brevo API:', fetchError);
+            
+            // If this was a non-JS form submission, redirect to error page
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/subscribe.html?error=1'
+                    }
+                });
+            }
+
+            return new Response(JSON.stringify({
+                error: 'Email service temporarily unavailable. Please try again later.',
+                code: 'SERVICE_UNAVAILABLE'
+            }), {
+                status: 503,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+            });
+        }
 
         let data;
         
@@ -135,9 +163,22 @@ export async function onRequestPost({ request, env }) {
                 data = { error: 'Invalid response from email service' };
             }
 
-            // If Brevo returns an error, log it
+            // If Brevo returns an error, log it and provide specific error messages
             if (!response.ok) {
                 console.error('Brevo API error:', response.status, data);
+                
+                // Handle specific Brevo error codes
+                if (response.status === 401) {
+                    data.error = 'Email service authentication failed';
+                } else if (response.status === 429) {
+                    data.error = 'Too many requests. Please try again later';
+                } else if (response.status >= 500) {
+                    data.error = 'Email service temporarily unavailable';
+                } else if (data.code === 'invalid_parameter' && data.message?.includes('email')) {
+                    data.error = 'Invalid email address format';
+                } else if (data.code === 'duplicate_parameter') {
+                    data.error = 'This email is already subscribed';
+                }
             }
         }
 
