@@ -9,6 +9,20 @@ const projectRoot = resolve(__dirname, '..');
 
 // Serve root: dist (production build) by default, or public if --public flag provided
 const usePublic = process.argv.includes('--public');
+
+// Parse port from command line arguments
+let portArg = 8000; // default
+const portIndex = process.argv.indexOf('--port');
+if (portIndex !== -1 && portIndex + 1 < process.argv.length) {
+    const parsedPort = parseInt(process.argv[portIndex + 1], 10);
+    if (!isNaN(parsedPort) && parsedPort > 0 && parsedPort < 65536) {
+        portArg = parsedPort;
+    } else {
+        console.error(`❌ Invalid port number: ${process.argv[portIndex + 1]}`);
+        process.exit(1);
+    }
+}
+
 const publicDir = join(projectRoot, usePublic ? 'public' : 'dist');
 
 // Cache templates
@@ -200,7 +214,7 @@ let server = createServer((req, res) => {
     }
 });
 
-let PORT = parseInt(process.env.PORT, 10) || 8000;
+let PORT = portArg || parseInt(process.env.PORT, 10) || 8000;
 let isShuttingDown = false;
 
 function startServer(startPort, attemptsLeft = 20) {

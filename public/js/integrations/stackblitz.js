@@ -18,8 +18,8 @@ export function openStackBlitz(url) {
 }
 
 export function init() {
-    // Attach to any button with data-stackblitz-url
-    const buttons = document.querySelectorAll('[data-stackblitz-url]');
+    // Attach to any button with data-stackblitz-url or data-action="open-stackblitz"
+    const buttons = document.querySelectorAll('[data-stackblitz-url], [data-action="open-stackblitz"]');
     buttons.forEach(btn => {
         if (btn.__stackblitzBound) return;
 
@@ -55,7 +55,7 @@ export function init() {
     // Delegated fallback: listen for pointerover/mouseover at document level to handle cases
     // where elements are dynamically added after init or per-element binding failed.
     const delegatedOverHandler = (e) => {
-        const el = e.target.closest && (e.target.closest('[data-stackblitz-url]') || e.target.closest('button[onclick*="openStackBlitz"]'));
+        const el = e.target.closest && (e.target.closest('[data-stackblitz-url]') || e.target.closest('[data-action="open-stackblitz"]') || e.target.closest('button[onclick*="openStackBlitz"]'));
         if (!el) return;
         if (el.__sbPreconnectBound) return;
         try {
