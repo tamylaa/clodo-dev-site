@@ -217,7 +217,7 @@ test('Try It Live button has proper accessibility attributes', async ({ page }) 
     // Button should be accessible
     expect(attributes.disabled).toBe(false);
     expect(attributes.text.length).toBeGreaterThan(0);
-    expect(attributes.text.toLowerCase()).toContain('try it live');
+    expect(attributes.text.toLowerCase()).toContain('try live demo');
 });
 
 test('Try It Live preconnect optimization works on hover', async ({ page }) => {
