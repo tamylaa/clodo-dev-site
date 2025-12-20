@@ -22,14 +22,17 @@ import { dirname } from 'path';
 
 // Dynamically attempt to load jsdom; if it's unavailable or incompatible (e.g., older Node),
 // fall back to a regex-based HTML link extractor.
-let JSDOM;
-try {
-  const jsdomModule = await import('jsdom');
-  JSDOM = jsdomModule.JSDOM;
-} catch (err) {
-  JSDOM = null;
-  console.warn('⚠️ jsdom unavailable or incompatible - falling back to a regex-based link parser.');
-} 
+let JSDOM = null;
+async function initJSDOM() {
+  try {
+    const jsdomModule = await import('jsdom');
+    JSDOM = jsdomModule.JSDOM;
+  } catch (err) {
+    JSDOM = null;
+    console.warn('⚠️ jsdom unavailable or incompatible - falling back to a regex-based link parser.');
+  }
+}
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -269,7 +272,8 @@ function generateReport() {
 /**
  * Main execution
  */
-function main() {
+async function main() {
+    await initJSDOM();
     console.log('🔍 Scanning for HTML files...');
 
     const htmlFiles = findHtmlFiles(PUBLIC_DIR);
@@ -302,7 +306,10 @@ function main() {
 
 // Run if called directly
 if (process.argv[1] && process.argv[1].endsWith('check-links.js')) {
-    main();
+    main().catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
 }
 
 export { main as checkLinks, linkAnalytics };
