@@ -1,0 +1,49 @@
+name: Ping Sitemap
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'public/sitemap.xml'
+  schedule:
+    # Run daily at 02:00 UTC to keep search engines updated
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      sitemap_url:
+        description: 'Sitemap URL to ping'
+        required: false
+        default: 'https://www.clodo.dev/sitemap.xml'
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Notify Search Engines (IndexNow)
+        env:
+          SITEMAP_URL: ${{ github.event.inputs.sitemap_url || 'https://www.clodo.dev/sitemap.xml' }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          chmod +x tools/ping-sitemap.js
+          node tools/ping-sitemap.js
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 🔔 Sitemap Notification Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Sitemap:** ${{ github.event.inputs.sitemap_url || 'https://www.clodo.dev/sitemap.xml' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Method:** IndexNow API (Bing, Yandex, Seznam, Naver)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Note:** Google deprecated ping endpoint in 2023. Submit to Google Search Console manually." >> $GITHUB_STEP_SUMMARY
