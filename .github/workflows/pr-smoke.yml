@@ -29,6 +29,8 @@ jobs:
             tail -n +1 dev-server.log || true;
             exit 1;
           fi
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
       - name: Run smoke tests (Playwright)
         run: npx playwright test --config=config/playwright.config.js tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
         env:
