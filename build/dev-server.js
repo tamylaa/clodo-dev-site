@@ -118,7 +118,9 @@ let server = createServer((req, res) => {
         return;
     }
 
-    let filePath = join(publicDir, urlPath === '/' ? 'index.html' : urlPath);
+    // Normalize the requested path to avoid absolute path injection via leading slash
+    const cleanPath = urlPath === '/' ? 'index.html' : urlPath.replace(/^\//, '');
+    let filePath = join(publicDir, cleanPath);
 
     // Check if path is a directory and serve index.html from it
     if (existsSync(filePath) && statSync(filePath).isDirectory()) {
@@ -135,19 +137,25 @@ let server = createServer((req, res) => {
 
     // Check if file exists
     if (!existsSync(filePath)) {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end(`
-            <!DOCTYPE html>
-            <html>
-            <head><title>404 - File Not Found</title></head>
-            <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
-                <h1>404 - File Not Found</h1>
-                <p>The requested file <code>${req.url}</code> was not found.</p>
-                <p><a href="/">Go back to home</a></p>
-            </body>
-            </html>
-        `);
-        return;
+        // Developer convenience: try adding a `.html` extension for extensionless URLs (e.g., /docs -> /docs.html)
+        const altHtml = filePath + '.html';
+        if (existsSync(altHtml)) {
+            filePath = altHtml;
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end(`
+                <!DOCTYPE html>
+                <html>
+                <head><title>404 - File Not Found</title></head>
+                <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+                    <h1>404 - File Not Found</h1>
+                    <p>The requested file <code>${req.url}</code> was not found.</p>
+                    <p><a href="/">Go back to home</a></p>
+                </body>
+                </html>
+            `);
+            return;
+        }
     }
 
     // Get file extension
