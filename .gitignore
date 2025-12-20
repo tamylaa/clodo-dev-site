@@ -41,6 +41,10 @@ playwright/.cache/
 # Lighthouse CI
 .lighthouseci/
 
+# Temporary diagnostic files
+tmp_*.html
+tmp_*.txt
+
 # Internal documentation (keep in repo but separate)
 # Uncomment below if you want to ignore internal docs:
 # .docs/
