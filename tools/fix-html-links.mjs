@@ -19,8 +19,16 @@ async function walk(dir) {
 
 (async function main() {
   try {
-    await walk(PUBLIC_DIR);
-    await walk(DIST_DIR);
+    // Only walk directories that exist to support CI runs where ./dist may not be present yet
+    async function exists(dir) {
+      try { await fs.access(dir); return true; } catch (e) { return false; }
+    }
+
+    if (await exists(PUBLIC_DIR)) await walk(PUBLIC_DIR);
+    else console.log('Skipping missing public dir:', PUBLIC_DIR);
+
+    if (await exists(DIST_DIR)) await walk(DIST_DIR);
+    else console.log('Skipping missing dist dir:', DIST_DIR);
 
     console.log('Files to process:', fileList.length);
 
