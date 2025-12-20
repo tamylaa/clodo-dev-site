@@ -12,16 +12,26 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - name: Install deps
         run: npm ci
       - name: Build site
         run: npm run build
       - name: Start dev server (background)
-        run: npm run serve --silent &
+        run: |
+          nohup npm run serve --silent > dev-server.log 2>&1 &
       - name: Wait for server
-        run: npx wait-on http://localhost:8000
+        run: |
+          if npx wait-on http://localhost:8000; then
+            echo "Server is up";
+          else
+            echo "❌ Server failed to start. dev-server.log:";
+            tail -n +1 dev-server.log || true;
+            exit 1;
+          fi
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
       - name: Run smoke tests (Playwright)
-        run: npx playwright test tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
+        run: npx playwright test --config=config/playwright.config.js tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
         env:
           CI: true

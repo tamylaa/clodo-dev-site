@@ -1,0 +1,85 @@
+name: Pre-merge Sanity Checks
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  premerge:
+    name: Normalize + Static + Smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-ms-playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-ms-playwright-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Normalize links & inject nav
+        run: npm run normalize
+
+      - name: Run static navigation tests
+        run: npm run test:navigation:static
+
+      - name: Start dev server for Playwright
+        run: nohup npm run serve -- --port 8000 > dev-server.log 2>&1 &
+
+      - name: Wait for dev server (with retries)
+        run: |
+          set -e
+          for i in 1 2 3 4 5; do
+            if curl -sSf http://localhost:8000/ > /dev/null; then
+              echo "Server ready"
+              exit 0
+            fi
+            echo "Waiting for server... retry $i"
+            sleep $(( i * 2 ))
+          done
+          echo "Server failed to start; printing dev-server.log"
+          tail -n 200 dev-server.log
+          exit 1
+
+      - name: Install Playwright browsers (with retries)
+        run: |
+          set -e
+          n=0
+          until [ $n -ge 3 ]; do
+            npx playwright install --with-deps && break
+            n=$((n+1))
+            echo "playwright install failed — retry #$n"
+            sleep $((2 ** n))
+          done
+
+      - name: Run Playwright smoke tests
+        run: npx playwright test --config=config/playwright.config.js tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
+
+      - name: Run runtime smoke checks
+        run: npm run test:smoke
