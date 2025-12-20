@@ -103,7 +103,7 @@ export default defineConfig({
   webServer: {
     command: `node ${join(rootDir, 'build', 'dev-server.js')}`,
     url: 'http://localhost:8000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     timeout: 120000,
     stdout: 'ignore',
     stderr: 'pipe',

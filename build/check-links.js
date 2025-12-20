@@ -17,9 +17,22 @@
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
-import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
+// Dynamically attempt to load jsdom; if it's unavailable or incompatible (e.g., older Node),
+// fall back to a regex-based HTML link extractor.
+let JSDOM = null;
+async function initJSDOM() {
+  try {
+    const jsdomModule = await import('jsdom');
+    JSDOM = jsdomModule.JSDOM;
+  } catch (err) {
+    JSDOM = null;
+    console.warn('⚠️ jsdom unavailable or incompatible - falling back to a regex-based link parser.');
+  }
+}
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,23 +57,49 @@ let linkAnalytics = {
  * Extract links from HTML content
  */
 function extractLinks(html, filePath) {
+    // Prefer jsdom when available for robust parsing; otherwise use a conservative regex fallback.
     try {
-        const dom = new JSDOM(html);
-        const links = dom.window.document.querySelectorAll('a[href]');
+        if (JSDOM) {
+            const dom = new JSDOM(html);
+            const links = dom.window.document.querySelectorAll('a[href]');
 
-        return Array.from(links).map(link => ({
-            href: link.getAttribute('href'),
-            text: link.textContent.trim(),
-            file: filePath.replace(SITE_ROOT + '\\', '').replace(SITE_ROOT + '/', ''),
-            dataAttributes: {
-                linkType: link.getAttribute('data-link-type'),
-                contentCluster: link.getAttribute('data-content-cluster'),
-                linkPosition: link.getAttribute('data-link-position'),
-                contentType: link.getAttribute('data-content-type')
-            }
-        }));
+            return Array.from(links).map(link => ({
+                href: link.getAttribute('href'),
+                text: (link.textContent || '').trim(),
+                file: filePath.replace(SITE_ROOT + '\\', '').replace(SITE_ROOT + '/', ''),
+                dataAttributes: {
+                    linkType: link.getAttribute('data-link-type'),
+                    contentCluster: link.getAttribute('data-content-cluster'),
+                    linkPosition: link.getAttribute('data-link-position'),
+                    contentType: link.getAttribute('data-content-type')
+                }
+            }));
+        }
+
+        // Regex fallback: capture href and inner text, strip inner HTML tags from text.
+        const anchorRegex = /<a\b[^>]*\bhref=(?:'([^']*)'|"([^"]*)"|([^>\s]+))[^>]*>([\s\S]*?)<\/a>/gi;
+        const results = [];
+        let match;
+        while ((match = anchorRegex.exec(html)) !== null) {
+            const href = match[1] || match[2] || match[3] || '';
+            const rawText = match[4] || '';
+            const text = rawText.replace(/<[^>]+>/g, '').trim();
+            results.push({
+                href,
+                text,
+                file: filePath.replace(SITE_ROOT + '\\', '').replace(SITE_ROOT + '/', ''),
+                dataAttributes: {
+                    linkType: null,
+                    contentCluster: null,
+                    linkPosition: null,
+                    contentType: null
+                }
+            });
+        }
+
+        return results;
     } catch (error) {
-        console.error(`Error parsing HTML in ${filePath}:`, error.message);
+        console.warn(`Error parsing HTML in ${filePath}:`, error && error.message ? error.message : error);
         return [];
     }
 }
@@ -233,7 +272,8 @@ function generateReport() {
 /**
  * Main execution
  */
-function main() {
+async function main() {
+    await initJSDOM();
     console.log('🔍 Scanning for HTML files...');
 
     const htmlFiles = findHtmlFiles(PUBLIC_DIR);
@@ -266,7 +306,10 @@ function main() {
 
 // Run if called directly
 if (process.argv[1] && process.argv[1].endsWith('check-links.js')) {
-    main();
+    main().catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
 }
 
 export { main as checkLinks, linkAnalytics };
