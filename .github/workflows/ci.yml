@@ -51,20 +51,6 @@ jobs:
           path: dist/
           key: build-${{ runner.os }}-${{ hashFiles('public/**', 'build.js') }}
 
-      - name: Run E2E tests
-        run: npm run test:e2e
-        continue-on-error: true
-        env:
-          CI: true
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results
-          path: tests/playwright-report/
-          retention-days: 30
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -95,6 +81,21 @@ jobs:
             echo "--- end dev-server.log ---"
             exit 1
           fi
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+        continue-on-error: true
+        env:
+          CI: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: tests/playwright-report/
+          retention-days: 30
+
 
       - name: Run page loading checks
         run: npm run check-page-loading -- http://localhost:8000

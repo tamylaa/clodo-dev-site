@@ -101,11 +101,12 @@ export default defineConfig({
   
   // Web server configuration for build-time testing
   webServer: {
-    command: `node ${join(rootDir, 'build', 'dev-server.js')}`,
+    // Use dev server locally, but use the built dist server in CI for stability
+    command: process.env.CI ? 'npm run serve:dist' : `node ${join(rootDir, 'build', 'dev-server.js')}`,
     url: 'http://localhost:8000',
     reuseExistingServer: true,
     timeout: 120000,
-    stdout: 'ignore',
+    stdout: 'pipe',
     stderr: 'pipe',
   },
 });
