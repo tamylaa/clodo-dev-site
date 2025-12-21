@@ -1,12 +1,185 @@
 /* ===== PRICING PAGE STYLES ===== */
 
-/* ===== PRICING HERO SECTION ===== */
-.hero-section {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    padding: 3rem 1.5rem 2rem;
-    text-align: center;
+/* ===== SOCIAL PROOF SECTION ===== */
+.social-proof-section {
+    background: var(--bg-primary);
+    padding: 3rem 0;
     border-bottom: 1px solid var(--border-color);
+}
+
+.social-proof-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.social-proof-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     color: var(--text-primary);
+}
+
+.social-proof-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+}
+
+.social-proof-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.customer-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    align-items: center;
+}
+
+.logo-placeholder {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.logo-placeholder:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+@media (width >= 768px) {
+    .social-proof-section {
+        padding: 4rem 0;
+    }
+
+    .social-proof-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .customer-logos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* ===== TRUST SIGNALS SECTION ===== */
+.trust-signals-section {
+    background: var(--bg-secondary);
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.trust-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.trust-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.trust-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+}
+
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.badge {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.badge:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 8%);
+}
+
+.badge-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.badge-text {
+    text-align: left;
+}
+
+.badge-text strong {
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.badge-text span {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+@media (width >= 768px) {
+    .trust-signals-section {
+        padding: 4rem 0;
+    }
+
+    .trust-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .trust-badges {
+        gap: 2rem;
+    }
+
+    .badge {
+        padding: 2rem;
+    }
 }
 
 .hero-content h1 {
@@ -121,6 +294,8 @@
     position: relative;
     overflow: hidden;
     color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-card:hover {
@@ -138,19 +313,8 @@
     padding-top: 3.5rem;  /* Extra padding for "MOST POPULAR" banner */
 }
 
-@media (width >= 768px) {
-    .pricing-card {
-        padding: 2.5rem;
-    }
-
-    .pricing-card.featured {
-        transform: scale(1.05);
-        padding-top: 4rem;
-    }
-}
-
-.pricing-card.featured::before {
-    content: "MOST POPULAR";
+.pricing-card.featured .pricing-badge {
+    content: "Most Popular";
     position: absolute;
     top: 0;
     left: 0;
@@ -162,7 +326,19 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    z-index: 1;  /* Ensure banner stays on top */
+    z-index: 1;
+    border-radius: 12px 12px 0 0;
+}
+
+@media (width >= 768px) {
+    .pricing-card {
+        padding: 2.5rem;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1.05);
+        padding-top: 4rem;
+    }
 }
 
 .pricing-card.featured:hover {
@@ -185,7 +361,7 @@
 }
 
 .pricing-card.featured .price {
-    color: var(--color-white);  /* var(--color-white) text on blue background */
+    color: var(--color-white);
 }
 
 .pricing-card .pricing-subtitle {
@@ -199,6 +375,77 @@
 
 .pricing-card.featured .pricing-subtitle {
     color: rgb(255 255 255 / 80%);
+}
+
+/* ===== PRICING FEATURES ===== */
+.pricing-features {
+    margin-bottom: 1.5rem;
+}
+
+.feature-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+    font-weight: 500;
+}
+
+.feature-highlight:last-child {
+    border-bottom: none;
+}
+
+.feature-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.pricing-benefits {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.pricing-benefits strong {
+    color: var(--color-white);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.pricing-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-benefits li {
+    padding: 0.375rem 0;
+    font-size: 0.85rem;
+    color: rgb(255 255 255 / 90%);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* ===== CONSULTING NOTICE ===== */
+.consulting-notice {
+    background: rgb(255 255 255 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.consulting-notice p {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.consulting-subtitle {
+    font-size: 0.75rem !important;
+    opacity: 0.8;
+    font-weight: 400 !important;
 }
 
 .pricing-card ul {
@@ -232,6 +479,23 @@
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
+}
+
+/* ===== PRICING CTA ===== */
+.pricing-cta {
+    text-align: center;
+}
+
+.btn--large {
+    padding: 1.25rem 2rem !important;
+    font-size: 1.125rem !important;
+}
+
+.cta-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-weight: 400;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -367,6 +631,45 @@
         grid-template-columns: 1fr;
         gap: 0;
     }
+
+    /* Mobile pricing card adjustments */
+    .pricing-card {
+        padding: 1.5rem;
+    }
+
+    .pricing-card h2 {
+        font-size: 1.25rem;
+    }
+
+    .pricing-card .price {
+        font-size: 2rem;
+    }
+
+    .pricing-card li {
+        font-size: 0.8125rem;
+        padding: 0.5rem 0;
+    }
+
+    /* Mobile trust badges */
+    .trust-badges {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .badge {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .badge-icon {
+        align-self: center;
+    }
+
+    .badge-text {
+        text-align: center;
+    }
 }
 
 @media (width <= 480px) {
@@ -450,4 +753,705 @@
     button {
         border-width: 2px;
     }
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-section {
+    background: var(--bg-primary);
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.testimonials-content {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.testimonials-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1.125rem;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.testimonial-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: left;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
+    border-color: var(--primary-color);
+}
+
+.testimonial-card.featured {
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+    border: 2px solid var(--primary-color);
+    transform: scale(1.02);
+}
+
+.testimonial-quote {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial-quote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    top: -0.5rem;
+    left: -1rem;
+    opacity: 0.3;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.author-title {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.author-metrics {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.testimonials-cta {
+    margin-top: 2rem;
+}
+
+@media (width >= 768px) {
+    .testimonials-section {
+        padding: 5rem 0;
+    }
+
+    .testimonials-content h2 {
+        font-size: 3rem;
+    }
+
+    .testimonials-grid {
+        gap: 2.5rem;
+    }
+
+    .testimonial-card {
+        padding: 2.5rem;
+    }
+}
+
+/* ===== COST COMPARISON SECTION ===== */
+#cost-comparison {
+    padding: var(--spacing-3xl) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.cost-comparison-container {
+    max-width: 1000px;
+}
+
+.cost-comparison-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cost-comparison-description {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cost-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cost-comparison-table thead tr {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.cost-comparison-table th {
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+}
+
+.cost-comparison-table th:nth-child(2) {
+    text-align: center;
+    color: #667eea;
+}
+
+.cost-comparison-table th:nth-child(3) {
+    text-align: center;
+}
+
+.cost-comparison-table th:nth-child(4) {
+    text-align: center;
+    color: #10b981;
+}
+
+.cost-comparison-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cost-comparison-table td {
+    padding: var(--spacing-md);
+}
+
+.cost-comparison-table td:first-child {
+    font-weight: 600;
+}
+
+.cost-comparison-table td:nth-child(2) {
+    text-align: center;
+    color: #667eea;
+}
+
+.cost-comparison-table td:nth-child(3) {
+    text-align: center;
+}
+
+.cost-comparison-table td:nth-child(4) {
+    text-align: center;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.cost-comparison-benefits {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cost-comparison-benefits h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.benefit-item {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.benefit-item span {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.cost-comparison-example h3 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.cost-comparison-example p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.pricing-comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.pricing-card {
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    text-align: left;
+}
+
+.pricing-card--clodo {
+    background: #f0f4ff;
+    border-left: 4px solid #667eea;
+}
+
+.pricing-card--aws {
+    background: #fff5f5;
+    border-left: 4px solid #ef4444;
+}
+
+.pricing-card-header {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing-card--clodo .pricing-card-header {
+    color: #667eea;
+}
+
+.pricing-card--aws .pricing-card-header {
+    color: #b91c1c;
+}
+
+.pricing-card-price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pricing-card--clodo .pricing-card-price {
+    color: #667eea;
+}
+
+.pricing-card--aws .pricing-card-price {
+    color: #b91c1c;
+}
+
+.pricing-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.pricing-card-features li {
+    margin-bottom: 0.5rem;
+}
+
+.savings-highlight {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    text-align: center;
+}
+
+.savings-highlight strong {
+    color: #065f46;
+    font-size: 1.125rem;
+}
+
+.savings-highlight span {
+    color: #047857;
+    font-size: 0.95rem;
+}
+
+.savings-highlight .savings-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #a7f3d0;
+}
+
+.savings-footer-link {
+    color: #047857;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ===== PROGRESSIVE DISCLOSURE ===== */
+.details-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+
+.details-toggle:hover {
+    color: var(--primary-dark);
+}
+
+.details-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.details-content {
+    display: none;
+    margin-top: var(--spacing-lg);
+}
+
+.details-content.is-open {
+    display: block;
+}
+
+.details-summary {
+    cursor: pointer;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    transition: all var(--transition-fast);
+}
+
+.details-summary:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-50);
+}
+
+.details-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.details-summary-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.details-summary-toggle:hover {
+    background: var(--primary-100);
+    color: var(--primary-dark);
+}
+
+.details-summary-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.details-summary-content {
+    margin-top: var(--spacing-md);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ===== USAGE CALCULATOR ===== */
+.usage-calculator {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    margin: var(--spacing-2xl) 0;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.calculator-header h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.calculator-header p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.calculator-form {
+    display: grid;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.calculator-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.calculator-field label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.calculator-field input {
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+}
+
+.calculator-field input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
+}
+
+.calculator-results {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.results-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.results-subtitle {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.cost-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.cost-option {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    border: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.cost-option--clodo {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+    border-color: #667eea;
+}
+
+.cost-option--aws {
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+    border-color: #ef4444;
+}
+
+.cost-option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.cost-option-title {
+    font-weight: 700;
+    margin: 0;
+}
+
+.cost-option-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.cost-option--clodo .cost-option-title,
+.cost-option--clodo .cost-option-price {
+    color: #667eea;
+}
+
+.cost-option--aws .cost-option-title,
+.cost-option--aws .cost-option-price {
+    color: #b91c1c;
+}
+
+.cost-option-details {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.savings-comparison {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.savings-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #065f46;
+    margin-bottom: var(--spacing-sm);
+}
+
+.savings-description {
+    color: #047857;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+@media (width >= 768px) {
+    .calculator-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cost-breakdown {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ===== USAGE CALCULATOR SECTION ===== */
+.usage-calculator-section {
+    background: var(--bg-primary);
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+@media (width >= 768px) {
+    .pricing-comparison-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ===== CASE STUDIES SECTION ===== */
+#case-studies {
+    background: var(--bg-secondary);
+    padding: var(--spacing-3xl) 0;
+}
+
+.case-studies-container {
+    text-align: center;
+    max-width: 1000px;
+}
+
+.case-studies-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.case-studies-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.case-study-card {
+    text-decoration: none;
+    background: var(--bg-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+    display: block;
+}
+
+.case-study-card:hover {
+    transform: translateY(-2px);
+}
+
+.case-study-badge {
+    display: inline-block;
+    color: var(--color-white);
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.case-study-badge--healthcare {
+    background: var(--success-color);
+}
+
+.case-study-badge--fintech {
+    background: var(--primary-color);
+}
+
+.case-study-title {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.case-study-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.case-study-link {
+    color: var(--primary-color);
+    font-weight: 600;
 }
