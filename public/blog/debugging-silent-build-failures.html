@@ -13,7 +13,7 @@
     <meta property="og:site_name" content="Clodo Framework">
     <meta property="og:title" content="Debugging Production: When Git Submodules Fail Silently">
     <meta property="og:description" content="A forensic analysis of how a broken git submodule caused Cloudflare Pages builds to fail without error messages.">
-    <meta property="og:url" content="https://clodo.dev/blog/debugging-silent-build-failures.html">
+    <meta property="og:url" content="https://clodo.dev/blog/debugging-silent-build-failures">
     <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -60,7 +60,7 @@
         "dateModified": "2024-11-28",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/debugging-silent-build-failures.html"
+            "@id": "https://clodo.dev/blog/debugging-silent-build-failures"
         },
         "articleSection": "Technical Deep-Dive",
         "keywords": ["git submodules", "debugging", "Cloudflare Pages", "deployment"]
@@ -215,11 +215,11 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <ol itemscope itemtype="https://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
                         <meta itemprop="position" content="1">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="index.html" itemprop="item"><span itemprop="name">Blog</span></a>
+                        <a href="/blog" itemprop="item"><span itemprop="name">Blog</span></a>
                         <meta itemprop="position" content="2">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -397,7 +397,7 @@ $ git commit
                         </div>
                         <div class="consent">
                             <input type="checkbox" id="mid-newsletter-consent" name="consent" required>
-                            <label for="mid-newsletter-consent">I agree to receive emails and accept the <a href="../privacy.html">Privacy Policy</a>.</label>
+                            <label for="mid-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
                         </div>
                         <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
                     </form>
@@ -665,9 +665,9 @@ jobs:
 
                 <h2 id="related">Related Reading</h2>
                 <ul>
-                    <li><a href="/blog/stackblitz-integration-journey.html">Building an Instant "Try Now" Experience</a> - The full integration story</li>
-                    <li><a href="/blog/cloudflare-infrastructure-myth.html">The Cloudflare Infrastructure Myth</a> - Understanding Cloudflare's architecture</li>
-                    <li><a href="/blog/instant-try-it-impact.html">How Instant Try-It Demos Boost Developer Adoption</a> - Measuring the impact</li>
+                    <li><a href="/blog/stackblitz-integration-journey">Building an Instant "Try Now" Experience</a> - The full integration story</li>
+                    <li><a href="/blog/cloudflare-infrastructure-myth">The Cloudflare Infrastructure Myth</a> - Understanding Cloudflare's architecture</li>
+                    <li><a href="/blog/instant-try-it-impact">How Instant Try-It Demos Boost Developer Adoption</a> - Measuring the impact</li>
                 </ul>
 
                 <!-- Sources Section -->
@@ -720,7 +720,7 @@ jobs:
                 <div class="share-section">
                     <h3>Share This Article</h3>
                     <div class="share-buttons">
-                        <a href="https://twitter.com/intent/tweet?url=https://clodo.dev/blog/debugging-silent-build-failures.html&text=Debugging%20Silent%20Build%20Failures%20-%20Git%20Submodule%20Case%20Study" 
+                        <a href="https://twitter.com/intent/tweet?url=https://clodo.dev/blog/debugging-silent-build-failures&text=Debugging%20Silent%20Build%20Failures%20-%20Git%20Submodule%20Case%20Study" 
                            target="_blank" 
                            rel="nofollow noopener" 
                            class="share-btn share-btn--twitter" 
@@ -730,7 +730,7 @@ jobs:
                             </svg>
                             Twitter
                         </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://clodo.dev/blog/debugging-silent-build-failures.html" 
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://clodo.dev/blog/debugging-silent-build-failures" 
                            target="_blank" 
                            rel="nofollow noopener" 
                            class="share-btn share-btn--linkedin" 
@@ -773,7 +773,7 @@ jobs:
                         </div>
                         <div class="consent">
                             <input type="checkbox" id="footer-newsletter-consent" name="consent" required>
-                            <label for="footer-newsletter-consent">I agree to receive emails and accept the <a href="/privacy.html">Privacy Policy</a>.</label>
+                            <label for="footer-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
                         </div>
                         <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
                     </form>
@@ -783,17 +783,17 @@ jobs:
                 <div class="related-articles">
                     <h3>Continue Reading</h3>
                     <div class="related-articles__grid">
-                        <a href="/blog/stackblitz-integration-journey.html" class="related-article">
+                        <a href="/blog/stackblitz-integration-journey" class="related-article">
                             <span class="related-article__tag">Integration</span>
                             <h4>Building an Instant "Try Now" Experience</h4>
                             <p>The complete story of integrating StackBlitz into Clodo's developer experience.</p>
                         </a>
-                        <a href="/blog/instant-try-it-impact.html" class="related-article">
+                        <a href="/blog/instant-try-it-impact" class="related-article">
                             <span class="related-article__tag">Analytics</span>
                             <h4>How Instant Try-It Demos Boost Developer Adoption</h4>
                             <p>Real metrics showing how instant demos improve developer engagement by 250%.</p>
                         </a>
-                        <a href="/blog/cloudflare-infrastructure-myth.html" class="related-article">
+                        <a href="/blog/cloudflare-infrastructure-myth" class="related-article">
                             <span class="related-article__tag">Infrastructure</span>
                             <h4>The Cloudflare Infrastructure Myth</h4>
                             <p>Understanding Cloudflare's real architecture and working around its limitations.</p>
@@ -806,8 +806,8 @@ jobs:
                     <h3>Building on Cloudflare Workers?</h3>
                     <p>Clodo Framework handles deployment complexity so you can focus on building great products.</p>
                     <div class="cta-buttons">
-                        <a href="/docs.html" class="btn btn--primary">Read Documentation</a>
-                        <a href="/index.html" class="btn btn--secondary">Try It Now</a>
+                        <a href="/docs" class="btn btn--primary">Read Documentation</a>
+                        <a href="/" class="btn btn--secondary">Try It Now</a>
                     </div>
                 </div>
             </footer>

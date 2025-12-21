@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="Clodo Framework">
     <meta property="og:title" content="Cloudflare Workers Tutorial for Beginners: Build Your First API in 10 Minutes">
     <meta property="og:description" content="Learn Cloudflare Workers step-by-step. Build and deploy your first serverless API with code examples. Perfect for developers coming from Node.js or AWS Lambda.">
-    <meta property="og:url" content="https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html">
+    <meta property="og:url" content="https://clodo.dev/blog/cloudflare-workers-tutorial-beginners">
     <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -87,7 +87,7 @@
         "dateModified": "2024-11-25",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html"
+            "@id": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners"
         },
         "articleSection": "Tutorial",
         "keywords": ["cloudflare workers tutorial", "cloudflare workers for beginners", "serverless tutorial", "edge computing", "API development"],
@@ -192,42 +192,42 @@
                 "position": 1,
                 "name": "Install Wrangler CLI",
                 "text": "Open your terminal and run: npm install -g wrangler. This installs Cloudflare's command-line tool for Workers development.",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-1"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-1"
             },
             {
                 "@type": "HowToStep",
                 "position": 2,
                 "name": "Authenticate with Cloudflare",
                 "text": "Run: wrangler login. This opens your browser to authenticate with your Cloudflare account.",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-2"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-2"
             },
             {
                 "@type": "HowToStep",
                 "position": 3,
                 "name": "Create a new Worker project",
                 "text": "Run: npm create cloudflare@latest my-first-worker. Select 'Hello World' template and TypeScript when prompted.",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-3"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-3"
             },
             {
                 "@type": "HowToStep",
                 "position": 4,
                 "name": "Write your Worker code",
                 "text": "Open src/index.ts and modify the fetch handler to return JSON responses, handle routes, and process request data.",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-4"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-4"
             },
             {
                 "@type": "HowToStep",
                 "position": 5,
                 "name": "Test locally",
                 "text": "Run: wrangler dev. Your Worker runs locally at localhost:8787. Make changes and see instant updates.",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-5"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-5"
             },
             {
                 "@type": "HowToStep",
                 "position": 6,
                 "name": "Deploy to production",
                 "text": "Run: wrangler deploy. Your Worker is now live at https://my-first-worker.<your-subdomain>.workers.dev",
-                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-6"
+                "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-6"
             }
         ]
     }
@@ -351,11 +351,11 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <ol itemscope itemtype="https://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
                         <meta itemprop="position" content="1">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="index.html" itemprop="item"><span itemprop="name">Blog</span></a>
+                        <a href="/blog" itemprop="item"><span itemprop="name">Blog</span></a>
                         <meta itemprop="position" content="2">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -552,7 +552,7 @@ app.get('*', (req, res) =&gt; {
                 <aside class="blog-cta blog-cta--newsletter" aria-label="Try it now">
                     <h3>⚡ Want to Skip Setup?</h3>
                     <p>Try the Clodo Framework starter template—pre-configured with routing, authentication, and database. Start coding in 60 seconds.</p>
-                    <a href="../docs.html" class="btn btn--primary">Try Clodo Framework →</a>
+                    <a href="/docs" class="btn btn--primary">Try Clodo Framework →</a>
                 </aside>
 
                 <!-- Step 5 -->
@@ -709,12 +709,12 @@ export default {
                             <h3>🗄️ Add a Database (D1)</h3>
                             <p>SQLite at the edge. Store and query data globally with sub-10ms latency.</p>
                             <pre><code>wrangler d1 create my-database</code></pre>
-                            <a href="../cloudflare-workers-guide.html#d1">Learn D1 →</a>
+                            <a href="/cloudflare-workers-guide#d1">Learn D1 →</a>
                         </div>
                         <div class="feature-card">
                             <h3>🔐 Add Authentication</h3>
                             <p>JWT validation, session management, OAuth flows—all at the edge.</p>
-                            <a href="../docs.html">Clodo Auth Guide →</a>
+                            <a href="/docs">Clodo Auth Guide →</a>
                         </div>
                         <div class="feature-card">
                             <h3>🤖 Add AI (Workers AI)</h3>
@@ -796,7 +796,7 @@ export default {
                         <li><a href="https://developers.cloudflare.com/workers/" rel="nofollow noopener" target="_blank">Official Cloudflare Workers Documentation</a> — Comprehensive API reference</li>
                         <li><a href="https://developers.cloudflare.com/workers/wrangler/" rel="nofollow noopener" target="_blank">Wrangler CLI Documentation</a> — Full command reference</li>
                         <li><a href="https://developers.cloudflare.com/workers/examples/" rel="nofollow noopener" target="_blank">Workers Examples Gallery</a> — Production-ready code snippets</li>
-                        <li><a href="cloudflare-infrastructure-myth.html">Cloudflare Workers: The Infrastructure Revolution</a> — Deep dive into the platform architecture</li>
+                        <li><a href="/blog/cloudflare-infrastructure-myth">Cloudflare Workers: The Infrastructure Revolution</a> — Deep dive into the platform architecture</li>
                     </ol>
                 </section>
 
@@ -836,10 +836,10 @@ export default {
                 <!-- Share Buttons -->
                 <div class="blog-post__share">
                     <span>Share this tutorial:</span>
-                    <a href="https://twitter.com/intent/tweet?text=Just%20learned%20how%20to%20build%20my%20first%20Cloudflare%20Worker%20API!&url=https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html" target="_blank" rel="noopener" class="share-btn share-btn--twitter" aria-label="Share on Twitter">
+                    <a href="https://twitter.com/intent/tweet?text=Just%20learned%20how%20to%20build%20my%20first%20Cloudflare%20Worker%20API!&url=https://clodo.dev/blog/cloudflare-workers-tutorial-beginners" target="_blank" rel="noopener" class="share-btn share-btn--twitter" aria-label="Share on Twitter">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html&title=Cloudflare%20Workers%20Tutorial%20for%20Beginners" target="_blank" rel="noopener" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn">
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://clodo.dev/blog/cloudflare-workers-tutorial-beginners&title=Cloudflare%20Workers%20Tutorial%20for%20Beginners" target="_blank" rel="noopener" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                     <button class="share-btn share-btn--copy" onclick="navigator.clipboard.writeText(window.location.href)" aria-label="Copy link">
@@ -852,17 +852,17 @@ export default {
             <section class="related-articles" aria-label="Related articles">
                 <h2>Continue Learning</h2>
                 <div class="related-grid">
-                    <a href="cloudflare-infrastructure-myth.html" class="related-card">
+                    <a href="/blog/cloudflare-infrastructure-myth" class="related-card">
                         <span class="related-card__tag">Infrastructure</span>
                         <h3>Cloudflare Workers: The Infrastructure Revolution</h3>
                         <p>Why the misconception that Cloudflare is "just a CDN" is costing enterprises millions.</p>
                     </a>
-                    <a href="stackblitz-integration-journey.html" class="related-card">
+                    <a href="/blog/stackblitz-integration-journey" class="related-card">
                         <span class="related-card__tag">Integration</span>
                         <h3>Building an Instant 'Try Now' Experience</h3>
                         <p>How we transformed developer onboarding from 30 minutes to 60 seconds.</p>
                     </a>
-                    <a href="debugging-silent-build-failures.html" class="related-card">
+                    <a href="/blog/debugging-silent-build-failures" class="related-card">
                         <span class="related-card__tag">Debugging</span>
                         <h3>When Git Submodules Fail Silently</h3>
                         <p>A forensic analysis of silent Cloudflare Pages build failures.</p>
