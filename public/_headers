@@ -75,7 +75,8 @@
 
 # HTML Pages - Short Cache for Fresh Content
 /*.html
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Vary: Accept-Encoding
   # Note: Cloudflare automatically gzips content - enable in dashboard
 
 # Admin pages override (more specific rules above take precedence)
