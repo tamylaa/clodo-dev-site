@@ -58,10 +58,10 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         await page.goto(`${BASE}/index.html`);
 
         // Prefer the first visible newsletter form to avoid interacting with hidden copies
-        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
-        const emailLocator = form.locator('input[name="email"]');
-        const submitLocator = form.locator('button[type="submit"]');
-        const consentLocator = form.locator('input[name="consent"]');
+        const formLocator = page.locator('form[data-newsletter-form]:visible');
+        const emailLocator = formLocator.locator('input[name="email"]');
+        const submitLocator = formLocator.locator('button[type="submit"]');
+        const consentLocator = formLocator.locator('input[name="consent"]');
 
         // Wait for the input to be attached and visible to avoid intermittent timing issues
         await emailLocator.waitFor({ state: 'visible', timeout: 5000 });
