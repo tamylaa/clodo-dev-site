@@ -32,6 +32,7 @@ function copyHtml() {
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
     const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
     const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
+const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'), 'utf8');
     const heroMinimalTemplate = readFileSync(join('templates', 'hero-minimal.html'), 'utf8'); // Minimal hero for critical path
     const tocTemplate = readFileSync(join('templates', 'table-of-contents.html'), 'utf8');
     const tocFaqTemplate = readFileSync(join('templates', 'table-of-contents-faq.html'), 'utf8');
@@ -136,6 +137,7 @@ function copyHtml() {
             const adjustedFooterTemplate = adjustTemplatePaths(footerTemplate, pathPrefix);
             const adjustedHeaderTemplate = adjustTemplatePaths(headerTemplate, pathPrefix);
             const adjustedHeroTemplate = adjustTemplatePaths(heroTemplate, pathPrefix);
+            const adjustedHeroPricingTemplate = adjustTemplatePaths(heroPricingTemplate, pathPrefix);
             const adjustedTocTemplate = adjustTemplatePaths(tocTemplate, pathPrefix);
             const adjustedTocFaqTemplate = adjustTemplatePaths(tocFaqTemplate, pathPrefix);
             const adjustedRelatedContentTemplate = adjustTemplatePaths(relatedContentTemplate, pathPrefix);
@@ -248,10 +250,13 @@ function copyHtml() {
 
             // Replace hero placeholder with actual hero content
             // For index.html, use minimal hero (critical path only)
+            // For pricing, use a pricing-specific hero template
             if (file === 'index.html') {
                 content = content.replace('<!-- HERO_PLACEHOLDER -->', heroMinimalTemplate);
+            } else if (file === 'pricing.html') {
+                content = content.replace('<!-- HERO_PLACEHOLDER -->', adjustedHeroPricingTemplate);
             } else {
-                content = content.replace('<!-- HERO_PLACEHOLDER -->', heroTemplate);
+                content = content.replace('<!-- HERO_PLACEHOLDER -->', adjustedHeroTemplate);
             }
 
             // Replace footer placeholder with actual footer content (legacy support)
