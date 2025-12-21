@@ -21,7 +21,7 @@
 
     <!-- Documentation Pages -->
     <url>
-        <loc>https://www.clodo.dev/docs.html</loc>
+        <loc>https://www.clodo.dev/docs</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -29,7 +29,7 @@
     
     <!-- Structured Data Hub (AI Agent Resource) - HIGH PRIORITY -->
     <url>
-        <loc>https://clodo.dev/structured-data.html</loc>
+        <loc>https://clodo.dev/structured-data</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -39,7 +39,7 @@
 
     <!-- Framework Guide -->
     <url>
-        <loc>https://www.clodo.dev/clodo-framework-guide.html</loc>
+        <loc>https://www.clodo.dev/clodo-framework-guide</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -47,7 +47,7 @@
 
     <!-- Cloudflare Workers Development Guide - HIGH PRIORITY SEO -->
     <url>
-        <loc>https://www.clodo.dev/cloudflare-workers-development-guide.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-workers-development-guide</loc>
         <lastmod>2025-12-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -60,7 +60,7 @@
 
     <!-- Serverless Architecture Best Practices - HIGH PRIORITY SEO -->
     <url>
-        <loc>https://www.clodo.dev/serverless-architecture-best-practices.html</loc>
+        <loc>https://www.clodo.dev/serverless-architecture-best-practices</loc>
         <lastmod>2025-12-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -73,7 +73,7 @@
 
     <!-- API Simplification -->
     <url>
-        <loc>https://clodo.dev/clodo-framework-api-simplification.html</loc>
+        <loc>https://clodo.dev/clodo-framework-api-simplification</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -81,7 +81,7 @@
 
     <!-- Promise to Reality -->
     <url>
-        <loc>https://clodo.dev/clodo-framework-promise-to-reality.html</loc>
+        <loc>https://clodo.dev/clodo-framework-promise-to-reality</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -89,7 +89,7 @@
 
     <!-- Cloudflare Pages Setup -->
     <url>
-        <loc>https://www.clodo.dev/cloudflare-pages-setup.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-pages-setup</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -97,7 +97,7 @@
 
     <!-- Cloudflare Workers Guide -->
     <url>
-        <loc>https://www.clodo.dev/cloudflare-workers-guide.html</loc>
+        <loc>https://www.clodo.dev/cloudflare-workers-guide</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -105,7 +105,7 @@
 
     <!-- Development Deployment Guide -->
     <url>
-        <loc>https://www.clodo.dev/development-deployment-guide.html</loc>
+        <loc>https://www.clodo.dev/development-deployment-guide</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -113,7 +113,7 @@
 
     <!-- Edge Computing Guide -->
     <url>
-        <loc>https://www.clodo.dev/edge-computing-guide.html</loc>
+        <loc>https://www.clodo.dev/edge-computing-guide</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -121,7 +121,7 @@
 
     <!-- What is Edge Computing -->
     <url>
-        <loc>https://clodo.dev/what-is-edge-computing.html</loc>
+        <loc>https://clodo.dev/what-is-edge-computing</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -129,7 +129,7 @@
 
     <!-- What is Cloudflare Workers -->
     <url>
-        <loc>https://clodo.dev/what-is-cloudflare-workers.html</loc>
+        <loc>https://clodo.dev/what-is-cloudflare-workers</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -137,7 +137,7 @@
 
     <!-- Workers vs Lambda -->
     <url>
-        <loc>https://clodo.dev/workers-vs-lambda.html</loc>
+        <loc>https://clodo.dev/workers-vs-lambda</loc>
         <lastmod>2025-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -145,7 +145,7 @@
 
     <!-- Clodo vs Lambda (Comparison) -->
     <url>
-        <loc>https://clodo.dev/clodo-vs-lambda.html</loc>
+        <loc>https://clodo.dev/clodo-vs-lambda</loc>
         <lastmod>2025-11-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -153,7 +153,7 @@
 
     <!-- Migration Guide -->
     <url>
-        <loc>https://clodo.dev/migrate.html</loc>
+        <loc>https://clodo.dev/migrate</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -161,7 +161,7 @@
 
     <!-- Examples -->
     <url>
-        <loc>https://clodo.dev/examples.html</loc>
+        <loc>https://clodo.dev/examples</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -169,7 +169,7 @@
 
     <!-- Components -->
     <url>
-        <loc>https://clodo.dev/components.html</loc>
+        <loc>https://clodo.dev/components</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -177,7 +177,7 @@
 
     <!-- Pricing -->
     <url>
-        <loc>https://clodo.dev/pricing.html</loc>
+        <loc>https://clodo.dev/pricing</loc>
         <lastmod>2025-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -185,7 +185,7 @@
 
     <!-- Framework Comparison - HIGH PRIORITY AEO -->
     <url>
-        <loc>https://www.clodo.dev/framework-comparison.html</loc>
+        <loc>https://www.clodo.dev/framework-comparison</loc>
         <lastmod>2025-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -193,7 +193,7 @@
 
     <!-- Multi-Tenant SaaS Guide - HIGH PRIORITY AEO -->
     <url>
-        <loc>https://www.clodo.dev/multi-tenant-saas.html</loc>
+        <loc>https://www.clodo.dev/multi-tenant-saas</loc>
         <lastmod>2025-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -201,7 +201,7 @@
 
     <!-- FAQ -->
     <url>
-        <loc>https://clodo.dev/faq.html</loc>
+        <loc>https://clodo.dev/faq</loc>
         <lastmod>2025-11-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -209,7 +209,7 @@
 
     <!-- Product -->
     <url>
-        <loc>https://clodo.dev/product.html</loc>
+        <loc>https://clodo.dev/product</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -217,7 +217,7 @@
 
     <!-- About -->
     <url>
-        <loc>https://clodo.dev/about.html</loc>
+        <loc>https://clodo.dev/about</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -225,7 +225,7 @@
 
     <!-- Privacy -->
     <url>
-        <loc>https://clodo.dev/privacy.html</loc>
+        <loc>https://clodo.dev/privacy</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -233,7 +233,7 @@
 
     <!-- Newsletter Subscribe -->
     <url>
-        <loc>https://clodo.dev/subscribe.html</loc>
+        <loc>https://clodo.dev/subscribe</loc>
         <lastmod>2025-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -241,7 +241,7 @@
 
     <!-- Community -->
     <url>
-        <loc>https://clodo.dev/community/welcome.html</loc>
+        <loc>https://clodo.dev/community/welcome</loc>
         <lastmod>2025-11-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -257,7 +257,7 @@
 
     <!-- Case Study: Fintech Payment Platform -->
     <url>
-        <loc>https://clodo.dev/case-studies/fintech-payment-platform.html</loc>
+        <loc>https://clodo.dev/case-studies/fintech-payment-platform</loc>
         <lastmod>2025-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -265,7 +265,7 @@
 
     <!-- Case Study: Healthcare SaaS Platform -->
     <url>
-        <loc>https://clodo.dev/case-studies/healthcare-saas-platform.html</loc>
+        <loc>https://clodo.dev/case-studies/healthcare-saas-platform</loc>
         <lastmod>2025-11-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -281,7 +281,7 @@
 
     <!-- Blog: Cloudflare Infrastructure Myth -->
     <url>
-        <loc>https://clodo.dev/blog/cloudflare-infrastructure-myth.html</loc>
+        <loc>https://clodo.dev/blog/cloudflare-infrastructure-myth</loc>
         <lastmod>2025-12-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -289,15 +289,14 @@
 
     <!-- Blog: StackBlitz Integration Journey -->
     <url>
-        <loc>https://clodo.dev/blog/stackblitz-integration-journey.html</loc>
-        <lastmod>2025-11-11</lastmod>
+        <loc>https://clodo.dev/blog/stackblitz-integration-journey</newString>        <lastmod>2025-11-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- Blog: Instant Try It Impact -->
     <url>
-        <loc>https://clodo.dev/blog/instant-try-it-impact.html</loc>
+        <loc>https://clodo.dev/blog/instant-try-it-impact</loc>
         <lastmod>2025-11-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -305,7 +304,7 @@
 
     <!-- Blog: Debugging Silent Build Failures -->
     <url>
-        <loc>https://clodo.dev/blog/debugging-silent-build-failures.html</loc>
+        <loc>https://clodo.dev/blog/debugging-silent-build-failures</loc>
         <lastmod>2025-11-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -313,7 +312,7 @@
 
     <!-- Blog: Building Developer Communities -->
     <url>
-        <loc>https://clodo.dev/blog/building-developer-communities.html</loc>
+        <loc>https://clodo.dev/blog/building-developer-communities</loc>
         <lastmod>2025-11-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

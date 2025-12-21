@@ -7,7 +7,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         await page.goto(`${BASE}/index.html`);
 
         // Find newsletter form
-        const form = await page.$('form[data-newsletter-form]');
+        // Use the first visible newsletter form for reliable assertions
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         expect(form).toBeTruthy();
 
         // Check required form elements exist
@@ -36,7 +37,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form validates email input', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        // Prefer the visible instance of the newsletter form
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
 
@@ -55,27 +57,32 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form requires consent checkbox', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
-        const emailInput = await form.$('input[name="email"]');
-        const submitButton = await form.$('button[type="submit"]');
-        const consentCheckbox = await form.$('input[name="consent"]');
+        // Prefer the first visible newsletter form to avoid interacting with hidden copies
+        const formLocator = page.locator('form[data-newsletter-form]:visible');
+        const emailLocator = formLocator.locator('input[name="email"]');
+        const submitLocator = formLocator.locator('button[type="submit"]');
+        const consentLocator = formLocator.locator('input[name="consent"]');
 
-        // Fill valid email but don't check consent
-        await emailInput.fill('test@example.com');
-        await submitButton.click();
+        // Wait for the input to be attached and visible to avoid intermittent timing issues
+        await emailLocator.waitFor({ state: 'visible', timeout: 5000 });
+        await emailLocator.fill('test@example.com');
 
-        // Wait for validation
+        // Submit the form without checking consent
+        await submitLocator.click();
+
+        // Small wait for validation UI to appear
         await page.waitForTimeout(500);
 
-        // Check if consent is required
-        const consentValid = await consentCheckbox.evaluate(el => el.checkValidity());
+        // Check if consent is required (HTML5 constraint validation)
+        const consentValid = await consentLocator.evaluate(el => el.checkValidity());
         expect(consentValid).toBe(false);
     });
 
     test('Subscribe form submission shows loading state', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        // Use a visible newsletter form to interact with real inputs
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
         const consentCheckbox = await form.$('input[name="consent"]');
@@ -96,8 +103,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         // Submit form
         await submitButton.click();
 
-        // Wait for loading state to be set
-        await page.waitForTimeout(500);
+        // Wait for loading state to be set (tolerate scheduling differences)
+        await submitButton.waitForElementState('disabled', { timeout: 2000 });
 
         // Check loading state
         const isDisabled = await submitButton.evaluate(el => el.disabled);
@@ -115,7 +122,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form handles successful API response', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        // Use a visible newsletter form to interact with real inputs
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
         const consentCheckbox = await form.$('input[name="consent"]');
@@ -161,7 +169,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form handles API error response', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        // Use a visible newsletter form to interact with real inputs
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
         const consentCheckbox = await form.$('input[name="consent"]');
@@ -243,7 +252,7 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form prevents spam via honeypot', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
         const consentCheckbox = await form.$('input[name="consent"]');
@@ -283,12 +292,21 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form handles multiple forms on page', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        // Check that at least one form exists on the page
-        const forms = await page.$$('form[data-newsletter-form]');
-        expect(forms.length).toBeGreaterThanOrEqual(1);
+        // Check that at least one visible form exists on the page
+        const allForms = await page.$$('form[data-newsletter-form]');
+        const visibleForms = [];
+        for (const f of allForms) {
+            const isVisible = await f.evaluate(el => {
+                const style = window.getComputedStyle(el);
+                return style && style.display !== 'none' && style.visibility !== 'hidden' && el.offsetParent !== null;
+            });
+            if (isVisible) visibleForms.push(f);
+        }
 
-        // If there are multiple forms, test that they can all be initialized
-        if (forms.length > 1) {
+        expect(visibleForms.length).toBeGreaterThanOrEqual(1);
+
+        // If there are multiple visible forms, test the second visible one
+        if (visibleForms.length > 1) {
             // Mock successful response
             await page.evaluate(() => {
                 window.originalFetch = window.fetch;
@@ -298,8 +316,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
                 });
             });
 
-            // Test the second form on the page
-            const secondForm = forms[1];
+            // Test the second visible form on the page
+            const secondForm = visibleForms[1];
             const emailInput = await secondForm.$('input[name="email"]');
             const consentCheckbox = await secondForm.$('input[name="consent"]');
             const submitButton = await secondForm.$('button[type="submit"]');
@@ -322,8 +340,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
                 window.fetch = window.originalFetch;
             });
         } else {
-            // If only one form, just verify it exists and has proper structure
-            const form = forms[0];
+            // If only one visible form, just verify it exists and has proper structure
+            const form = visibleForms[0];
             const emailInput = await form.$('input[name="email"]');
             const submitButton = await form.$('button[type="submit"]');
             const messageArea = await form.$('.form-message');
@@ -337,7 +355,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
     test('Subscribe form has proper accessibility attributes', async ({ page }) => {
         await page.goto(`${BASE}/index.html`);
 
-        const form = await page.$('form[data-newsletter-form]');
+        // Target a visible form for accessibility checks
+        const form = await page.waitForSelector('form[data-newsletter-form]', { state: 'visible' });
         const emailInput = await form.$('input[name="email"]');
         const submitButton = await form.$('button[type="submit"]');
         const consentCheckbox = await form.$('input[name="consent"]');

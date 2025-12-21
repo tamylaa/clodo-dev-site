@@ -107,37 +107,37 @@
       "position": 1,
       "name": "Install Wrangler CLI",
       "text": "Open your terminal and run: npm install -g wrangler. This installs Cloudflare's command-line tool for Workers development.",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-1"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-1"
     },
     {
       "position": 2,
       "name": "Authenticate with Cloudflare",
       "text": "Run: wrangler login. This opens your browser to authenticate with your Cloudflare account.",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-2"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-2"
     },
     {
       "position": 3,
       "name": "Create a new Worker project",
       "text": "Run: npm create cloudflare@latest my-first-worker. Select 'Hello World' template and TypeScript when prompted.",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-3"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-3"
     },
     {
       "position": 4,
       "name": "Write your Worker code",
       "text": "Open src/index.ts and modify the fetch handler to return JSON responses, handle routes, and process request data.",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-4"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-4"
     },
     {
       "position": 5,
       "name": "Test locally",
       "text": "Run: wrangler dev. Your Worker runs locally at localhost:8787. Make changes and see instant updates.",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-5"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-5"
     },
     {
       "position": 6,
       "name": "Deploy to production",
       "text": "Run: wrangler deploy. Your Worker is now live at https://my-first-worker.<your-subdomain>.workers.dev",
-      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners.html#step-6"
+      "url": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners#step-6"
     }
   ],
   "sources": [

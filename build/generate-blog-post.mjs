@@ -146,7 +146,7 @@ export function generateArticleSchema(post, author) {
         "dateModified": post.modifiedDate || post.publishedDate,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://clodo.dev/blog/${post.slug}.html`
+            "@id": `https://clodo.dev/blog/${post.slug}`
         },
         "articleSection": post.category,
         "keywords": post.seo?.keywords || post.tags,
