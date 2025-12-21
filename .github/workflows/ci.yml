@@ -63,9 +63,9 @@ jobs:
           cd dist
           nohup python3 -m http.server 8000 > ../dev-server.log 2>&1 &
 
-          # Wait up to ~60s for the server to respond on http://localhost:8000
+          # Wait up to ~60s for the server to respond on http://127.0.0.1:8000
           for i in {1..30}; do
-            if curl -sSf http://localhost:8000 >/dev/null; then
+            if curl -f http://127.0.0.1:8000 >/dev/null 2>&1; then
               echo "Server is up"; break
             fi
             echo "Waiting for server... ($i)"
@@ -74,7 +74,7 @@ jobs:
 
           # If the server still isn't responding, print the server log and fail so the workflow
           # artifacts step can capture the log for debugging.
-          if ! curl -sSf http://localhost:8000 >/dev/null; then
+          if ! curl -f http://127.0.0.1:8000 >/dev/null 2>&1; then
             echo "❌ Server failed to start within timeout. Printing dev-server.log for diagnostics:"
             echo "--- dev-server.log ---"
             tail -n +1 ../dev-server.log || true
