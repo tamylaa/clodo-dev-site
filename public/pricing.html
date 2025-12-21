@@ -309,11 +309,15 @@
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">🚀</span>
+                        <span>Enterprise-Grade Framework</span>
+                    </div>
                     <h1>Simple, Transparent Pricing</h1>
                     <p>Start free with our enterprise-grade framework. Scale with confidence as your business grows.</p>
                     <div class="pricing-highlights">
                         <div class="highlight">
-                            <span class="highlight-icon">🚀</span>
+                            <span class="highlight-icon">⚡</span>
                             <span>10x Faster Development</span>
                         </div>
                         <div class="highlight">
@@ -325,15 +329,40 @@
                             <span>Enterprise Security</span>
                         </div>
                     </div>
+                    <div class="hero-cta">
+                        <a href="#pricing" class="btn btn--primary btn--large">View Pricing Plans</a>
+                        <a href="/docs" class="btn btn--secondary btn--large">Start Free</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-code-preview">
+                        <div class="code-header">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                            <span class="code-title">Clodo Framework - 5min Setup</span>
+                        </div>
+                        <pre class="code-content"><code>import { ClodoApp } from '@tamyla/clodo-framework';
+
+const app = new ClodoApp({
+  name: 'MyEnterpriseApp',
+  database: 'd1',
+  auth: 'enterprise',
+  security: 'auto'
+});
+
+// Deploy instantly
+app.deploy();</code></pre>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Social Proof Section -->
+        <!-- Social Proof & Testimonials Section -->
         <section class="social-proof-section">
             <div class="container">
                 <div class="social-proof-content">
-                    <h2>Trusted by Enterprise Teams</h2>
+                    <h2>Trusted by Enterprise Teams Worldwide</h2>
                     <p>Join 500+ developers and companies already building with Clodo Framework</p>
                     <div class="social-proof-stats">
                         <div class="stat">
@@ -349,11 +378,49 @@
                             <div class="stat-label">Cost Savings</div>
                         </div>
                     </div>
+
+                    <!-- Customer Logos -->
                     <div class="customer-logos">
                         <div class="logo-placeholder">🏥 Healthcare Co.</div>
                         <div class="logo-placeholder">🏦 FinTech Corp</div>
                         <div class="logo-placeholder">🏭 Manufacturing Inc</div>
                         <div class="logo-placeholder">🚀 SaaS Startup</div>
+                    </div>
+
+                    <!-- Testimonials -->
+                    <div class="testimonials-preview">
+                        <h3>What Developers Say</h3>
+                        <div class="testimonials-grid">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    "Clodo Framework reduced our development time by 60% and infrastructure costs by 80%. The enterprise features and TypeScript support made it perfect for our healthcare platform."
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">🏥</div>
+                                    <div class="author-info">
+                                        <div class="author-name">Sarah Chen</div>
+                                        <div class="author-title">VP of Engineering, Fortune 500 Healthcare</div>
+                                        <div class="author-metrics">67% cost reduction • 60% faster development</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">
+                                    "Migrating from AWS Lambda to Clodo on Cloudflare Workers saved us $50K annually. Zero cold starts and global performance made our fintech platform lightning fast."
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">🏦</div>
+                                    <div class="author-info">
+                                        <div class="author-name">Marcus Rodriguez</div>
+                                        <div class="author-title">CTO, Regional FinTech Bank</div>
+                                        <div class="author-metrics">80% cost savings • Zero downtime migration</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonials-cta">
+                            <a href="/case-studies" class="btn btn--secondary">Read Full Case Studies →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -401,24 +468,31 @@
 
         <section id="pricing">
             <div class="container">
+                <div class="pricing-header">
+                    <h2>Choose Your Path to Success</h2>
+                    <p>From open source framework to enterprise consulting - we have the right solution for every team</p>
+                </div>
                 <div class="pricing-grid">
                     <div class="pricing-card">
-                        <h2>Clodo Framework (Free)</h2>
-                        <p class="price">$0</p>
-                        <p class="pricing-subtitle">Open Source - MIT License</p>
-                        <ul>
-                            <li>✅ Enterprise Deployment System</li>
-                            <li>✅ Security-by-Default Architecture</li>
-                            <li>✅ Domain Configuration Management</li>
-                            <li>✅ Service Autonomy & Orchestration</li>
-                            <li>✅ Feature Flag Management</li>
-                            <li>✅ Multi-tenant Customer Support</li>
-                            <li>✅ TypeScript Support</li>
-                            <li>✅ Performance Caching</li>
-                            <li>✅ Template-based Onboarding</li>
-                            <li>✅ Community Support via GitHub</li>
-                            <li>✅ Self-hosted on Cloudflare Workers</li>
-                        </ul>
+                        <div class="pricing-card-header">
+                            <div class="pricing-icon">🆓</div>
+                            <h2>Clodo Framework (Free)</h2>
+                            <p class="price">$0</p>
+                            <p class="pricing-subtitle">Open Source - MIT License</p>
+                        </div>
+                        <div class="pricing-features">
+                            <div class="feature-item">✅ Enterprise Deployment System</div>
+                            <div class="feature-item">✅ Security-by-Default Architecture</div>
+                            <div class="feature-item">✅ Domain Configuration Management</div>
+                            <div class="feature-item">✅ Service Autonomy & Orchestration</div>
+                            <div class="feature-item">✅ Feature Flag Management</div>
+                            <div class="feature-item">✅ Multi-tenant Customer Support</div>
+                            <div class="feature-item">✅ TypeScript Support</div>
+                            <div class="feature-item">✅ Performance Caching</div>
+                            <div class="feature-item">✅ Template-based Onboarding</div>
+                            <div class="feature-item">✅ Community Support via GitHub</div>
+                            <div class="feature-item">✅ Self-hosted on Cloudflare Workers</div>
+                        </div>
                         <div class="pricing-cta">
                             <a href="/docs" class="btn btn--primary btn--large">Start Building Now</a>
                             <p class="cta-subtitle">No credit card required • Free forever</p>
@@ -427,9 +501,12 @@
 
                     <div class="pricing-card featured">
                         <div class="pricing-badge">Most Popular</div>
-                        <h2>Expert Consulting</h2>
-                        <p class="price">Starting at $5,000</p>
-                        <p class="pricing-subtitle">Accelerate Your Workers Development</p>
+                        <div class="pricing-card-header">
+                            <div class="pricing-icon">👨‍💼</div>
+                            <h2>Expert Consulting</h2>
+                            <p class="price">Starting at $5,000</p>
+                            <p class="pricing-subtitle">Accelerate Your Workers Development</p>
+                        </div>
                         <div class="pricing-features">
                             <div class="feature-highlight">
                                 <span class="feature-icon">🚀</span>
@@ -467,21 +544,24 @@
                     </div>
 
                     <div class="pricing-card">
-                        <h2>Enterprise Support</h2>
-                        <p class="price">Custom Pricing</p>
-                        <p class="pricing-subtitle">Dedicated Support & Development</p>
-                        <ul>
-                            <li>🏗️ Custom feature development</li>
-                            <li>📞 Dedicated Slack channel</li>
-                            <li>⚡ 24/7 priority support</li>
-                            <li>🏛️ Architecture consulting</li>
-                            <li>🔄 Migration assistance</li>
-                            <li>🎓 Training workshops</li>
-                            <li>📊 Performance optimization</li>
-                            <li>🔐 Security audits & compliance</li>
-                            <li>📈 Scaling guidance</li>
-                            <li>🤝 SLA guarantees</li>
-                        </ul>
+                        <div class="pricing-card-header">
+                            <div class="pricing-icon">🏢</div>
+                            <h2>Enterprise Support</h2>
+                            <p class="price">Custom Pricing</p>
+                            <p class="pricing-subtitle">Dedicated Support & Development</p>
+                        </div>
+                        <div class="pricing-features">
+                            <div class="feature-item">🏗️ Custom feature development</div>
+                            <div class="feature-item">📞 Dedicated Slack channel</div>
+                            <div class="feature-item">⚡ 24/7 priority support</div>
+                            <div class="feature-item">🏛️ Architecture consulting</div>
+                            <div class="feature-item">🔄 Migration assistance</div>
+                            <div class="feature-item">🎓 Training workshops</div>
+                            <div class="feature-item">📊 Performance optimization</div>
+                            <div class="feature-item">🔐 Security audits & compliance</div>
+                            <div class="feature-item">📈 Scaling guidance</div>
+                            <div class="feature-item">🤝 SLA guarantees</div>
+                        </div>
                         <a href="#contact" class="btn btn--secondary">Contact Sales</a>
                     </div>
                 </div>
@@ -633,21 +713,14 @@
                             <em>* Time estimates based on typical enterprise development cycles. Clodo Framework includes all these features pre-built and production-tested.</em>
                         </p>
                     </div>
-                                    <li><strong>Database:</strong> $30 (RDS t3.micro)</li>
-                                    <li><strong>Storage:</strong> $10 (S3 + CloudFront)</li>
-                                    <li><strong>Bandwidth:</strong> $10 (CloudFront)</li>
-                                    <li><strong>Monitoring:</strong> $15 (CloudWatch)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; color: var(--text-secondary);">
-                            <em>* Costs are estimates based on typical usage patterns. Actual costs may vary based on region, data transfer volumes, and specific service configurations.</em>
-                        </p>
-                    </div>
                 </div>
                 <div class="savings-highlight">
                     <strong>⚡ Development time savings: 3-4 months per project</strong><br>
                     <span>That's 75-90% faster time-to-market with enterprise-grade features built-in!</span><br><br>
+                    <div class="savings-footer">
+                        <a href="/docs" class="savings-footer-link">→ Start building with Clodo Framework</a>
+                    </div>
+                </div>
                     <div class="savings-footer">
                         <a href="/docs" class="savings-footer-link">→ Start building with Clodo Framework</a>
                     </div>
@@ -716,84 +789,6 @@
                             <div class="savings-amount" id="monthly-savings">Save $0 in development costs</div>
                             <p class="savings-description" id="savings-percentage">0% time savings</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="case-studies" class="case-studies-section">
-            <div class="container case-studies-container">
-                <h2 class="case-studies-header">Trusted by Enterprise Teams</h2>
-                <p class="case-studies-description">
-                    See how leading companies are reducing costs and improving performance with Clodo Framework.
-                </p>
-                <div class="case-studies-grid">
-                    <a href="/case-studies/healthcare-saas-platform" class="case-study-card">
-                        <div class="case-study-badge case-study-badge--healthcare">Healthcare</div>
-                        <h3 class="case-study-title">67% Cost Reduction</h3>
-                        <p class="case-study-description">Fortune 500 healthcare company reduces custom software costs from $180K to $60K.</p>
-                        <span class="case-study-link">Read Case Study →</span>
-                    </a>
-                    <a href="/case-studies/fintech-payment-platform" class="case-study-card">
-                        <div class="case-study-badge case-study-badge--fintech">FinTech</div>
-                        <h3 class="case-study-title">80% Cost Reduction</h3>
-                        <p class="case-study-description">Regional bank achieves zero-downtime migration with 80% operational cost savings.</p>
-                        <span class="case-study-link">Read Case Study →</span>
-                    </a>
-                </div>
-                <a href="case-studies/" class="btn btn--primary">View All Case Studies</a>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials-section">
-            <div class="container">
-                <div class="testimonials-content">
-                    <h2>What Developers Say About Clodo</h2>
-                    <p>Real results from teams using Clodo Framework in production</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-quote">
-                                "Clodo Framework reduced our development time by 60% and infrastructure costs by 80%. The enterprise features and TypeScript support made it perfect for our healthcare platform."
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">🏥</div>
-                                <div class="author-info">
-                                    <div class="author-name">Sarah Chen</div>
-                                    <div class="author-title">VP of Engineering, Fortune 500 Healthcare</div>
-                                    <div class="author-metrics">67% cost reduction • 60% faster development</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-quote">
-                                "Migrating from AWS Lambda to Clodo on Cloudflare Workers saved us $50K annually. Zero cold starts and global performance made our fintech platform lightning fast."
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">🏦</div>
-                                <div class="author-info">
-                                    <div class="author-name">Marcus Rodriguez</div>
-                                    <div class="author-title">CTO, Regional FinTech Bank</div>
-                                    <div class="author-metrics">80% cost savings • Zero downtime migration</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card featured">
-                            <div class="testimonial-quote">
-                                "The open source nature and MIT license gave us the confidence to adopt Clodo for our enterprise SaaS. The framework's security-by-default approach exceeded our compliance requirements."
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">🚀</div>
-                                <div class="author-info">
-                                    <div class="author-name">Dr. Emily Watson</div>
-                                    <div class="author-title">Head of Technology, SaaS Startup</div>
-                                    <div class="author-metrics">HIPAA compliant • SOC 2 ready</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonials-cta">
-                        <a href="/case-studies" class="btn btn--secondary">Read Full Case Studies →</a>
                     </div>
                 </div>
             </div>
