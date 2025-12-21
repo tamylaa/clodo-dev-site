@@ -43,6 +43,49 @@
     line-height: 1.6;
 }
 
+/* Layout grid for hero that mirrors the index hero but tuned for pricing */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.hero-visual {
+    width: 100%;
+    max-width: 480px;
+    justify-self: center;
+}
+
+@media (width >= 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .hero-content {
+        text-align: left;
+        max-width: 640px;
+    }
+
+    .hero-visual {
+        justify-self: end;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        line-height: 1.05;
+    }
+
+    .hero-actions .btn--primary {
+        box-shadow: 0 12px 30px rgb(59 130 246 / 22%);
+        transform: translateZ(0);
+    }
+}
+
 /* ===== PRICING HIGHLIGHTS ===== */
 
 .pricing-highlights {

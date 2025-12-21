@@ -211,7 +211,11 @@ let server = createServer((req, res) => {
             // Process FOOTER_PLACEHOLDER
             data = data.replace(/<!-- FOOTER_PLACEHOLDER -->/g, getTemplate('footer.html'));
             // Process HERO_PLACEHOLDER (if needed)
-            data = data.replace(/<!-- HERO_PLACEHOLDER -->/g, getTemplate('hero.html'));
+            if (urlPath === '/pricing' || urlPath === '/pricing.html' || urlPath === '/pricing/') {
+                data = data.replace(/<!-- HERO_PLACEHOLDER -->/g, getTemplate('hero-pricing.html'));
+            } else {
+                data = data.replace(/<!-- HERO_PLACEHOLDER -->/g, getTemplate('hero.html'));
+            }
         }
 
         res.writeHead(200, { 'Content-Type': contentType });
