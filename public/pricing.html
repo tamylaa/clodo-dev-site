@@ -461,6 +461,8 @@
 
         <!-- HERO_PLACEHOLDER -->
 
+
+
         <!-- Value Proposition Section -->
         <section class="value-proposition-section">
             <div class="container">
@@ -619,11 +621,11 @@
                     <h2>Choose Your Path to Success</h2>
                     <p>From open source framework to enterprise consulting - we have the right solution for every team</p>
                 </div>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
+                <div class="pricing-grid" role="list" aria-label="Pricing options">
+                    <div class="pricing-card" role="article" aria-labelledby="plan-free">
                         <div class="pricing-card-header">
                             <div class="pricing-icon">🆓</div>
-                            <h2>Clodo Framework (Free)</h2>
+                            <h2 id="plan-free">Clodo Framework (Free)</h2>
                             <p class="price">$0</p>
                             <p class="pricing-subtitle">Open Source - MIT License</p>
                         </div>
@@ -646,11 +648,11 @@
                         </div>
                     </div>
 
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-card featured" role="article" aria-labelledby="plan-consulting">
+                        <div class="pricing-badge" aria-hidden="true">Most Popular</div>
                         <div class="pricing-card-header">
                             <div class="pricing-icon">👨‍💼</div>
-                            <h2>Expert Consulting</h2>
+                            <h2 id="plan-consulting">Expert Consulting</h2>
                             <p class="price">Starting at $5,000</p>
                             <p class="pricing-subtitle">Accelerate Your Workers Development</p>
                         </div>
@@ -690,10 +692,10 @@
                         <a href="#contact" class="btn btn--primary btn--large">Get Started</a>
                     </div>
 
-                    <div class="pricing-card">
+                    <div class="pricing-card" role="article" aria-labelledby="plan-enterprise">
                         <div class="pricing-card-header">
                             <div class="pricing-icon">🏢</div>
-                            <h2>Enterprise Support</h2>
+                            <h2 id="plan-enterprise">Enterprise Support</h2>
                             <p class="price">Custom Pricing</p>
                             <p class="pricing-subtitle">Dedicated Support & Development</p>
                         </div>
@@ -710,6 +712,79 @@
                             <div class="feature-item">🤝 SLA guarantees</div>
                         </div>
                         <a href="#contact" class="btn btn--secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Savings Visualization -->
+        <section id="savings-visualization" class="savings-visualization-section">
+            <div class="container">
+                <div class="savings-visualization-header">
+                    <h2>See Your Savings Come to Life</h2>
+                    <p>Watch how Clodo Framework transforms development economics</p>
+                </div>
+
+                <div class="savings-animator">
+                    <div class="animation-controls">
+                        <button class="control-btn active" data-scenario="startup">🚀 Startup Project</button>
+                        <button class="control-btn" data-scenario="enterprise">🏢 Enterprise App</button>
+                        <button class="control-btn" data-scenario="saas">☁️ SaaS Platform</button>
+                    </div>
+
+                    <div class="animation-display">
+                        <div class="comparison-metrics">
+                            <div class="metric-card metric-traditional">
+                                <div class="metric-header">
+                                    <h3>Traditional Development</h3>
+                                    <div class="metric-icon">🐌</div>
+                                </div>
+                                <div class="metric-value" id="traditional-time">12 weeks</div>
+                                <div class="metric-cost" id="traditional-cost">$45,000</div>
+                                <div class="metric-bars">
+                                    <div class="time-bar" style="width: 100%"></div>
+                                    <div class="cost-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="vs-divider">
+                                <span>VS</span>
+                            </div>
+
+                            <div class="metric-card metric-clodo">
+                                <div class="metric-header">
+                                    <h3>With Clodo Framework</h3>
+                                    <div class="metric-icon">⚡</div>
+                                </div>
+                                <div class="metric-value" id="clodo-time">3 weeks</div>
+                                <div class="metric-cost" id="clodo-cost">$0</div>
+                                <div class="metric-bars">
+                                    <div class="time-bar" style="width: 25%"></div>
+                                    <div class="cost-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="savings-results">
+                            <div class="savings-highlight">
+                                <div class="savings-icon">💰</div>
+                                <div class="savings-text">
+                                    <div class="savings-amount" id="time-saved">75% faster development</div>
+                                    <div class="savings-subtitle" id="cost-saved">$45,000 cost savings</div>
+                                </div>
+                            </div>
+
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="120" height="120">
+                                    <circle class="progress-bg" cx="60" cy="60" r="50"></circle>
+                                    <circle class="progress-fill" cx="60" cy="60" r="50" id="progress-circle"></circle>
+                                </svg>
+                                <div class="progress-text">
+                                    <div class="progress-percentage" id="efficiency-percentage">75%</div>
+                                    <div class="progress-label">More Efficient</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -983,78 +1058,6 @@
             </div>
         </section>
 
-        <!-- Animated Savings Visualization -->
-        <section id="savings-visualization" class="savings-visualization-section">
-            <div class="container">
-                <div class="savings-visualization-header">
-                    <h2>See Your Savings Come to Life</h2>
-                    <p>Watch how Clodo Framework transforms development economics</p>
-                </div>
-
-                <div class="savings-animator">
-                    <div class="animation-controls">
-                        <button class="control-btn active" data-scenario="startup">🚀 Startup Project</button>
-                        <button class="control-btn" data-scenario="enterprise">🏢 Enterprise App</button>
-                        <button class="control-btn" data-scenario="saas">☁️ SaaS Platform</button>
-                    </div>
-
-                    <div class="animation-display">
-                        <div class="comparison-metrics">
-                            <div class="metric-card metric-traditional">
-                                <div class="metric-header">
-                                    <h3>Traditional Development</h3>
-                                    <div class="metric-icon">🐌</div>
-                                </div>
-                                <div class="metric-value" id="traditional-time">12 weeks</div>
-                                <div class="metric-cost" id="traditional-cost">$45,000</div>
-                                <div class="metric-bars">
-                                    <div class="time-bar" style="width: 100%"></div>
-                                    <div class="cost-bar" style="width: 100%"></div>
-                                </div>
-                            </div>
-
-                            <div class="vs-divider">
-                                <span>VS</span>
-                            </div>
-
-                            <div class="metric-card metric-clodo">
-                                <div class="metric-header">
-                                    <h3>With Clodo Framework</h3>
-                                    <div class="metric-icon">⚡</div>
-                                </div>
-                                <div class="metric-value" id="clodo-time">3 weeks</div>
-                                <div class="metric-cost" id="clodo-cost">$0</div>
-                                <div class="metric-bars">
-                                    <div class="time-bar" style="width: 25%"></div>
-                                    <div class="cost-bar" style="width: 0%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="savings-results">
-                            <div class="savings-highlight">
-                                <div class="savings-icon">💰</div>
-                                <div class="savings-text">
-                                    <div class="savings-amount" id="time-saved">75% faster development</div>
-                                    <div class="savings-subtitle" id="cost-saved">$45,000 cost savings</div>
-                                </div>
-                            </div>
-
-                            <div class="progress-ring">
-                                <svg class="progress-circle" width="120" height="120">
-                                    <circle class="progress-bg" cx="60" cy="60" r="50"></circle>
-                                    <circle class="progress-fill" cx="60" cy="60" r="50" id="progress-circle"></circle>
-                                </svg>
-                                <div class="progress-text">
-                                    <div class="progress-percentage" id="efficiency-percentage">75%</div>
-                                    <div class="progress-label">More Efficient</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
             <div class="container">
                 <div class="usage-calculator">
                     <div class="calculator-header">
