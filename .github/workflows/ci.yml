@@ -60,8 +60,8 @@ jobs:
 
       - name: Start built site (background)
         run: |
-          # Start the built site in background and capture stdout/stderr to dev-server.log
-          nohup node build/dev-server.js > dev-server.log 2>&1 &
+          cd dist
+          nohup python3 -m http.server 8000 > ../dev-server.log 2>&1 &
 
           # Wait up to ~60s for the server to respond on http://localhost:8000
           for i in {1..30}; do
@@ -77,7 +77,7 @@ jobs:
           if ! curl -sSf http://localhost:8000 >/dev/null; then
             echo "❌ Server failed to start within timeout. Printing dev-server.log for diagnostics:"
             echo "--- dev-server.log ---"
-            tail -n +1 dev-server.log || true
+            tail -n +1 ../dev-server.log || true
             echo "--- end dev-server.log ---"
             exit 1
           fi
