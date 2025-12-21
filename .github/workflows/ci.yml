@@ -61,7 +61,7 @@ jobs:
       - name: Start built site (background)
         run: |
           # Start the built site in background and capture stdout/stderr to dev-server.log
-          nohup npm run serve:dist > dev-server.log 2>&1 &
+          nohup node build/dev-server.js > dev-server.log 2>&1 &
 
           # Wait up to ~60s for the server to respond on http://localhost:8000
           for i in {1..30}; do
