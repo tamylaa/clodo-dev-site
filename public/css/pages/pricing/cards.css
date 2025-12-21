@@ -193,6 +193,22 @@
     /* Push to bottom of card */
 }
 
+/* Make primary CTAs more prominent inside pricing cards */
+.pricing-card .btn--primary {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-500));
+    color: var(--color-white);
+    border: none;
+    box-shadow: 0 12px 28px rgb(59 130 246 / 18%);
+}
+
+/* Featured card CTA should invert for emphasis */
+.pricing-card.featured .btn--primary {
+    background: var(--color-white);
+    color: var(--primary-600);
+    font-weight: 700;
+    box-shadow: 0 12px 34px rgb(2 6 23 / 12%);
+}
+
 .pricing-card .btn:focus-visible {
     outline: 2px solid var(--color-white);
     outline-offset: 2px;
@@ -206,15 +222,18 @@
     }
 
     .pricing-grid {
-
         /* Tablet: 3 columns for better display */
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 2.25rem;
         padding: 0 var(--spacing-lg);
+        align-items: start;          /* align items to top for consistent layout */
+        justify-items: stretch;      /* ensure cards stretch to fill columns */
+        grid-auto-rows: 1fr;         /* allow equal height rows */
     }
 
     .pricing-card {
         padding: 2.5rem;
+        min-height: 420px; /* ensure cards have consistent visual height on tablet */
     }
 
     .pricing-card h2 {
@@ -238,7 +257,7 @@
     .pricing-card ul {
         margin-bottom: 2.5rem;
     }
-}
+} 
 
 /* ===== DESKTOP: 1024px+ ===== */
 
@@ -248,30 +267,42 @@
     }
 
     .pricing-grid {
-
         /* Maintain 3 columns */
-        gap: 2.5rem;
+        gap: 3rem;
+    }
+
+    .pricing-card {
+        min-height: 460px; /* ensure visual balance on desktop */
     }
 
     .pricing-card.featured {
-
-        /* Desktop: show scale */
-        transform: scale(1.05);
+        /* Desktop: show scale and emphasis */
+        transform: scale(1.06);
         order: 0;
-
-        /* Normal order on desktop */
+        z-index: 2;
+        box-shadow: 0 28px 60px rgb(2 6 23 / 18%);
     }
 
     .pricing-card.featured:hover {
-        transform: scale(1.05) translateY(-8px);
+        transform: scale(1.08) translateY(-10px);
     }
-}
+
+    /* Center featured card in the middle column on wide screens */
+    .pricing-grid .pricing-card.featured { grid-column: 2 / span 1; }
+} 
 
 /* ===== LARGE DESKTOP: 1200px+ ===== */
 
 @media (width >= 1200px) {
     .pricing-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    /* Ensure featured stays visually centered when columns expand */
+    .pricing-grid .pricing-card.featured {
+        grid-column: 2 / span 1;
     }
 }
 
