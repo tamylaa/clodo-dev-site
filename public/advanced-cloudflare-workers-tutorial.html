@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Cloudflare Workers: Enterprise Patterns & Best Practices | Clodo Framework</title>
+    <meta name="description" content="Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.">
+    <meta name="keywords" content="advanced cloudflare workers, worker patterns, enterprise workers, distributed systems, service mesh, performance optimization">
+    <meta name="author" content="Clodo Framework Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+    <meta property="og:title" content="Advanced Cloudflare Workers: Enterprise Patterns & Best Practices">
+    <meta property="og:description" content="Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+    <meta property="og:image" content="https://www.clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advanced Cloudflare Workers: Enterprise Patterns & Best Practices">
+    <meta name="twitter:description" content="Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+
+    <!-- Hreflang tags for internationalization -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="de" href="https://www.clodo.dev/i18n/de/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="it" href="https://www.clodo.dev/i18n/it/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="x-default" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices",
+        "description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
+        "url": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial",
+        "datePublished": "2025-12-21",
+        "dateModified": "2025-12-21",
+        "author": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://www.clodo.dev"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.clodo.dev/icons/icon-512.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial"
+        },
+        "articleSection": "Advanced Tutorials",
+        "keywords": ["advanced cloudflare workers", "worker patterns", "enterprise workers", "distributed systems", "service mesh", "performance optimization"],
+        "programmingLanguage": "JavaScript",
+        "isAccessibleForFree": true,
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "Cloudflare Workers",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform"
+        }
+    }
+    </script>
+
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="modulepreload" href="js/main.js">
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS inlined for performance */
+        body { margin: 0; font-family: Inter, system-ui, sans-serif; }
+        .navbar { background: #0b1220; padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; color: #fff; }
+        .logo-text { font-weight: 600; margin-left: 0.5rem; }
+        .article-header { text-align: center; margin-bottom: 2rem; }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!--#include file="../templates/nav-main.html" -->
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/docs"><span itemprop="name">Documentation</span></a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Advanced Cloudflare Workers Tutorial</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </nav>
+
+    <main id="main-content">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="container">
+                <h1>Advanced Cloudflare Workers Tutorial: Enterprise Patterns & Best Practices</h1>
+                <div class="article-meta">
+                    <time datetime="2025-12-21">December 21, 2025</time>
+                    <span class="reading-time">18 min read</span>
+                    <span class="article-category">Advanced Tutorial</span>
+                </div>
+                <p class="article-description">Master advanced Cloudflare Workers patterns including service mesh, multi-tenant architecture, performance optimization, and enterprise deployment strategies.</p>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="toc-sidebar">
+            <div class="toc-container">
+                <h3>Table of Contents</h3>
+                <nav aria-label="Article contents">
+                    <ol>
+                        <li><a href="#service-mesh">Service Mesh Architecture</a></li>
+                        <li><a href="#multi-tenant">Multi-Tenant Applications</a></li>
+                        <li><a href="#performance">Performance Optimization</a></li>
+                        <li><a href="#caching">Advanced Caching Strategies</a></li>
+                        <li><a href="#security">Enterprise Security</a></li>
+                        <li><a href="#monitoring">Monitoring & Observability</a></li>
+                        <li><a href="#deployment">Production Deployment</a></li>
+                        <li><a href="#scaling">Scaling Strategies</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </aside>
+                    <defs>
+                        <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1d4ed8"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                    <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+                </svg>
+                <span class="logo-text">Clodo</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <article class="content-article">
+            <header class="article-header">
+                <h1>Advanced Cloudflare Workers: Enterprise Patterns & Best Practices</h1>
+                <p class="article-subtitle">Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.</p>
+                <div class="article-meta">
+                    <time datetime="2025-12-21">December 21, 2025</time>
+                    <span class="reading-time">8 min read</span>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <section id="service-mesh">
+                    <h2>Service Mesh Architecture</h2>
+                    <p>Build scalable, resilient distributed systems using Cloudflare Workers as microservices.</p>
+
+                    <div class="architecture-diagram">
+                        <h3>Service Mesh Topology</h3>
+                        <pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   API Gateway   │────│ Service Router  │────│   Auth Service  │
+│   (Worker)      │    │   (Worker)      │    │   (Worker)      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         └────────────────────────┴────────────────────────┘
+                          Service Discovery
+                                 │
+                    ┌─────────────────┐    ┌─────────────────┐
+                    │  User Service  │────│Product Service  │
+                    │   (Worker)     │    │  (Worker)       │
+                    └─────────────────┘    └─────────────────┘</code></pre>
+                    </div>
+
+                    <div class="code-example">
+                        <h3>Service Router Implementation</h3>
+                        <pre><code>export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // Service discovery
+    const services = {
+      '/api/users': env.USER_SERVICE,
+      '/api/products': env.PRODUCT_SERVICE,
+      '/api/auth': env.AUTH_SERVICE
+    };
+
+    // Route to appropriate service
+    for (const [path, serviceUrl] of Object.entries(services)) {
+      if (url.pathname.startsWith(path)) {
+        return await routeToService(request, serviceUrl, path);
+      }
+    }
+
+    return new Response('Service not found', { status: 404 });
+  }
+};
+
+async function routeToService(request, serviceUrl, basePath) {
+  const url = new URL(request.url);
+  const targetUrl = new URL(serviceUrl + url.pathname.replace(basePath, ''));
+
+  // Forward headers and body
+  const response = await fetch(targetUrl, {
+    method: request.method,
+    headers: request.headers,
+    body: request.body
+  });
+
+  return response;
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="distributed-state">
+                    <h2>Distributed State Management</h2>
+                    <p>Manage state across multiple Workers using Durable Objects and coordination patterns.</p>
+
+                    <div class="code-example">
+                        <h3>Durable Object Coordinator</h3>
+                        <pre><code>export class StateCoordinator {
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async handleSession(sessionId, data) {
+    // Distributed locking
+    const lock = await this.acquireLock(sessionId);
+
+    try {
+      // Update state atomically
+      const currentState = await this.getState(sessionId);
+      const newState = this.mergeState(currentState, data);
+
+      await this.setState(sessionId, newState);
+      return newState;
+    } finally {
+      await this.releaseLock(lock);
+    }
+  }
+
+  async acquireLock(key) {
+    // Implement distributed locking using Durable Objects
+    return await this.env.LOCK_MANAGER.acquire(key);
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="performance-patterns">
+                    <h2>Performance Optimization Patterns</h2>
+                    <div class="performance-grid">
+                        <div class="pattern-card">
+                            <h3>Edge Caching Strategy</h3>
+                            <pre><code>// Smart caching with stale-while-revalidate
+async function handleRequest(request, env) {
+  const cache = caches.default;
+  const cacheKey = new Request(request.url);
+
+  let response = await cache.match(cacheKey);
+
+  if (!response) {
+    response = await fetch(request);
+    response = new Response(response.body, response);
+
+    // Cache for 5 minutes, serve stale for 1 hour
+    response.headers.set('Cache-Control',
+      'max-age=300, stale-while-revalidate=3600');
+    await cache.put(cacheKey, response.clone());
+  }
+
+  return response;
+}</code></pre>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h3>Request Batching</h3>
+                            <pre><code>// Batch multiple API calls
+class RequestBatcher {
+  constructor(batchSize = 10, timeout = 100) {
+    this.batchSize = batchSize;
+    this.timeout = timeout;
+    this.queue = [];
+    this.timer = null;
+  }
+
+  async add(request) {
+    return new Promise((resolve, reject) => {
+      this.queue.push({ request, resolve, reject });
+
+      if (this.queue.length >= this.batchSize) {
+        this.flush();
+      } else if (!this.timer) {
+        this.timer = setTimeout(() => this.flush(), this.timeout);
+      }
+    });
+  }
+
+  async flush() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+
+    const batch = this.queue.splice(0);
+    if (batch.length === 0) return;
+
+    try {
+      const results = await this.processBatch(batch.map(b => b.request));
+      batch.forEach((item, index) => item.resolve(results[index]));
+    } catch (error) {
+      batch.forEach(item => item.reject(error));
+    }
+  }
+}</code></pre>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h3>Connection Pooling</h3>
+                            <pre><code>// Database connection pooling
+class ConnectionPool {
+  constructor(maxConnections = 10) {
+    this.maxConnections = maxConnections;
+    this.connections = [];
+    this.waitingQueue = [];
+  }
+
+  async getConnection() {
+    if (this.connections.length > 0) {
+      return this.connections.pop();
+    }
+
+    if (this.connections.length < this.maxConnections) {
+      return await this.createConnection();
+    }
+
+    return new Promise((resolve) => {
+      this.waitingQueue.push(resolve);
+    });
+  }
+
+  releaseConnection(connection) {
+    if (this.waitingQueue.length > 0) {
+      const waiting = this.waitingQueue.shift();
+      waiting(connection);
+    } else {
+      this.connections.push(connection);
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="observability">
+                    <h2>Enterprise Observability</h2>
+                    <p>Implement comprehensive monitoring, logging, and tracing across your Worker ecosystem.</p>
+
+                    <div class="code-example">
+                        <h3>Distributed Tracing</h3>
+                        <pre><code>class Tracer {
+  constructor(serviceName) {
+    this.serviceName = serviceName;
+    this.traces = new Map();
+  }
+
+  startSpan(name, parentSpanId = null) {
+    const spanId = crypto.randomUUID();
+    const span = {
+      id: spanId,
+      name,
+      startTime: Date.now(),
+      parentSpanId,
+      tags: {},
+      events: []
+    };
+
+    this.traces.set(spanId, span);
+    return spanId;
+  }
+
+  endSpan(spanId) {
+    const span = this.traces.get(spanId);
+    if (span) {
+      span.endTime = Date.now();
+      span.duration = span.endTime - span.startTime;
+
+      // Send to tracing service
+      this.exportSpan(span);
+    }
+  }
+
+  addTag(spanId, key, value) {
+    const span = this.traces.get(spanId);
+    if (span) {
+      span.tags[key] = value;
+    }
+  }
+
+  async exportSpan(span) {
+    // Export to your tracing backend
+    await fetch('https://tracing.example.com/spans', {
+      method: 'POST',
+      body: JSON.stringify(span)
+    });
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="security-patterns">
+                    <h2>Advanced Security Patterns</h2>
+                    <div class="security-patterns">
+                        <div class="security-card">
+                            <h3>Zero Trust Architecture</h3>
+                            <pre><code>// Continuous authentication
+async function authenticateRequest(request, env) {
+  const token = request.headers.get('Authorization');
+
+  if (!token) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  // Verify JWT with rotation
+  const payload = await verifyJWT(token, env.JWT_SECRET);
+
+  // Check token freshness (not older than 5 minutes)
+  if (Date.now() - payload.iat * 1000 > 300000) {
+    return new Response('Token expired', { status: 401 });
+  }
+
+  // Additional context validation
+  const userContext = await getUserContext(payload.sub);
+  if (!userContext.active) {
+    return new Response('Account disabled', { status: 403 });
+  }
+
+  return payload;
+}</code></pre>
+                        </div>
+
+                        <div class="security-card">
+                            <h3>Rate Limiting with Redis</h3>
+                            <pre><code>// Distributed rate limiting
+class RateLimiter {
+  constructor(env, windowMs = 60000, maxRequests = 100) {
+    this.env = env;
+    this.windowMs = windowMs;
+    this.maxRequests = maxRequests;
+  }
+
+  async checkLimit(identifier) {
+    const key = `rate_limit:${identifier}`;
+    const now = Date.now();
+    const windowStart = now - this.windowMs;
+
+    // Use Redis for distributed counting
+    const requests = await this.env.REDIS.zrangebyscore(key, windowStart, now);
+
+    if (requests.length >= this.maxRequests) {
+      return { allowed: false, resetTime: windowStart + this.windowMs };
+    }
+
+    // Add current request
+    await this.env.REDIS.zadd(key, now, crypto.randomUUID());
+
+    // Clean old entries
+    await this.env.REDIS.zremrangebyscore(key, 0, windowStart);
+
+    return { allowed: true };
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="deployment-strategies">
+                    <h2>Advanced Deployment Strategies</h2>
+                    <div class="deployment-strategies">
+                        <div class="strategy-card">
+                            <h3>Blue-Green Deployment</h3>
+                            <pre><code>// Blue-green deployment with traffic shifting
+class TrafficManager {
+  constructor(env) {
+    this.env = env;
+    this.versions = { blue: 'v1.0', green: 'v1.1' };
+    this.active = 'blue';
+  }
+
+  async shiftTraffic(version, percentage) {
+    // Update route configuration
+    await this.env.KV.put('traffic_config', JSON.stringify({
+      blue: version === 'blue' ? percentage : 100 - percentage,
+      green: version === 'green' ? percentage : 100 - percentage
+    }));
+  }
+
+  async routeRequest(request) {
+    const config = JSON.parse(await this.env.KV.get('traffic_config'));
+    const random = Math.random() * 100;
+
+    const target = random < config.blue ? 'blue' : 'green';
+    const workerUrl = this.env[`${target.toUpperCase()}_WORKER`];
+
+    return await fetch(`${workerUrl}${request.url.pathname}`, request);
+  }
+}</code></pre>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h3>Canary Releases</h3>
+                            <pre><code>// Gradual rollout with feature flags
+class FeatureFlagManager {
+  constructor(env) {
+    this.env = env;
+  }
+
+  async isFeatureEnabled(feature, userId) {
+    const rollout = await this.getRolloutPercentage(feature);
+    const userHash = this.hashUserId(userId);
+
+    return userHash % 100 < rollout;
+  }
+
+  async getRolloutPercentage(feature) {
+    const config = await this.env.KV.get(`feature:${feature}`);
+    return config ? parseInt(config) : 0;
+  }
+
+  hashUserId(userId) {
+    // Consistent hashing for canary targeting
+    let hash = 0;
+    for (let i = 0; i < userId.length; i++) {
+      hash = ((hash << 5) - hash + userId.charCodeAt(i)) & 0xffffffff;
+    }
+    return Math.abs(hash) % 100;
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="scaling-patterns">
+                    <h2>Scaling Patterns</h2>
+                    <div class="scaling-patterns">
+                        <div class="pattern-card">
+                            <h3>Auto-scaling Workers</h3>
+                            <p>Use Durable Objects for stateful scaling and Queue for async processing.</p>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h3>Global Load Balancing</h3>
+                            <p>Leverage Cloudflare's edge network for automatic global distribution.</p>
+                        </div>
+
+                        <div class="pattern-card">
+                            <h3>Circuit Breaker Pattern</h3>
+                            <p>Implement fault tolerance with automatic failure detection and recovery.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="resources">
+                    <h2>Additional Resources & References</h2>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <h3>📚 Official Documentation</h3>
+                            <ul>
+                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener">Cloudflare Workers Docs</a></li>
+                                <li><a href="https://developers.cloudflare.com/durable-objects/" target="_blank" rel="noopener">Durable Objects Guide</a></li>
+                                <li><a href="https://developers.cloudflare.com/queues/" target="_blank" rel="noopener">Cloudflare Queues</a></li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🔬 Research & Best Practices</h3>
+                            <ul>
+                                <li><a href="https://web.dev/service-workers-cache-storage/" target="_blank" rel="noopener">Service Worker Caching</a></li>
+                                <li><a href="https://microservices.io/patterns/" target="_blank" rel="noopener">Microservices Patterns</a></li>
+                                <li><a href="https://aws.amazon.com/builders-library/" target="_blank" rel="noopener">AWS Builders Library</a></li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🛠️ Tools & Frameworks</h3>
+                            <ul>
+                                <li><a href="https://hono.dev/" target="_blank" rel="noopener">Hono Framework</a></li>
+                                <li><a href="https://itty-router.dev/" target="_blank" rel="noopener">Itty Router</a></li>
+                                <li><a href="https://miniflare.dev/" target="_blank" rel="noopener">Miniflare (Local Dev)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="related-content">
+                    <h2>Further Reading & Implementation</h2>
+                    <div class="related-content-grid">
+                        <div class="related-card">
+                            <h3><a href="/serverless-framework-comparison">Serverless Platform Comparison</a></h3>
+                            <p>Compare AWS Lambda, Cloudflare Workers, and Clodo Framework to choose the right platform for enterprise applications.</p>
+                            <a href="/serverless-framework-comparison" class="related-link">Read Comparison →</a>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="/worker-scaffolding-tools">Worker Scaffolding Tools</a></h3>
+                            <p>Automate the implementation of enterprise patterns with our scaffolding tools that generate production-ready services.</p>
+                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding →</a>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="/wrangler-to-clodo-migration">Migrate from Wrangler</a></h3>
+                            <p>Learn how to migrate existing Cloudflare Workers projects to Clodo Framework with enterprise features.</p>
+                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cta">
+                    <div class="cta-box">
+                        <h3>Master Enterprise Worker Development</h3>
+                        <p>Build scalable, secure, and performant distributed systems with advanced Cloudflare Workers patterns.</p>
+                        <a href="/quick-start" class="btn btn-primary">Get Started</a>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer><!--#include file="../templates/footer.html" --></footer>
+</body>
+</html>

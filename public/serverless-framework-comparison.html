@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo | 2025</title>
+    <meta name="description" content="Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.">
+    <meta name="keywords" content="serverless, serverless framework, aws lambda, cloudflare workers, serverless comparison, serverless platforms">
+    <meta name="author" content="Clodo Framework Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.clodo.dev/serverless-framework-comparison">
+    <meta property="og:title" content="Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo">
+    <meta property="og:description" content="Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.clodo.dev/serverless-framework-comparison">
+    <meta property="og:image" content="https://www.clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo">
+    <meta name="twitter:description" content="Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+
+    <!-- Hreflang tags for internationalization -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/serverless-framework-comparison">
+    <link rel="alternate" hreflang="de" href="https://www.clodo.dev/i18n/de/serverless-framework-comparison">
+    <link rel="alternate" hreflang="it" href="https://www.clodo.dev/i18n/it/serverless-framework-comparison">
+    <link rel="alternate" hreflang="x-default" href="https://www.clodo.dev/serverless-framework-comparison">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo",
+        "description": "Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.",
+        "url": "https://www.clodo.dev/serverless-framework-comparison",
+        "datePublished": "2025-12-21",
+        "dateModified": "2025-12-21",
+        "author": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://www.clodo.dev"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.clodo.dev/icons/icon-512.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.clodo.dev/serverless-framework-comparison"
+        },
+        "articleSection": "Comparisons",
+        "keywords": ["serverless", "aws lambda", "cloudflare workers", "clodo framework", "serverless comparison", "edge computing"],
+        "programmingLanguage": "JavaScript",
+        "isAccessibleForFree": true,
+        "about": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "AWS Lambda",
+                "applicationCategory": "DeveloperApplication"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": "Cloudflare Workers",
+                "applicationCategory": "DeveloperApplication",
+                "operatingSystem": "Cross-platform"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": "Clodo Framework",
+                "applicationCategory": "DeveloperApplication",
+                "operatingSystem": "Cross-platform"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="modulepreload" href="js/main.js">
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS inlined for performance */
+        body { margin: 0; font-family: Inter, system-ui, sans-serif; }
+        .navbar { background: #0b1220; padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; color: #fff; }
+        .logo-text { font-weight: 600; margin-left: 0.5rem; }
+        .article-header { text-align: center; margin-bottom: 2rem; }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!--#include file="../templates/nav-main.html" -->
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/docs"><span itemprop="name">Documentation</span></a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Serverless Framework Comparison</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </nav>
+
+    <main id="main-content">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="container">
+                <h1>Serverless Framework Comparison: Clodo vs. Alternatives (2025)</h1>
+                <div class="article-meta">
+                    <time datetime="2025-12-21">December 21, 2025</time>
+                    <span class="reading-time">15 min read</span>
+                    <span class="article-category">Framework Comparison</span>
+                </div>
+                <p class="article-description">Comprehensive comparison of Clodo Framework with Vercel, Netlify, AWS Lambda, and other serverless platforms. Features, performance, and migration guides.</p>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="toc-sidebar">
+            <div class="toc-container">
+                <h3>Table of Contents</h3>
+                <nav aria-label="Article contents">
+                    <ol>
+                        <li><a href="#framework-overview">Framework Overview</a></li>
+                        <li><a href="#feature-comparison">Feature Comparison</a></li>
+                        <li><a href="#performance-metrics">Performance Metrics</a></li>
+                        <li><a href="#pricing-analysis">Pricing Analysis</a></li>
+                        <li><a href="#migration-guides">Migration Guides</a></li>
+                        <li><a href="#enterprise-features">Enterprise Features</a></li>
+                        <li><a href="#recommendations">Recommendations</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </aside>
+                    <defs>
+                        <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1d4ed8"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                    <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+                </svg>
+                <span class="logo-text">Clodo</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <article class="content-article">
+            <header class="article-header">
+                <h1>Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo (2025)</h1>
+                <p class="article-subtitle">Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.</p>
+                <div class="article-meta">
+                    <time datetime="2025-12-21">December 21, 2025</time>
+                    <span class="reading-time">12 min read</span>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <section id="overview">
+                    <h2>Serverless Platforms Overview</h2>
+                    <p>Choosing the right serverless platform can make or break your application's performance, cost, and developer experience. Here's how the major players stack up in 2025.</p>
+                </section>
+
+                <section id="performance-comparison">
+                    <h2>Performance Comparison</h2>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>AWS Lambda</th>
+                                    <th>Cloudflare Workers</th>
+                                    <th>Clodo Framework</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cold Start</td>
+                                    <td>1-10 seconds</td>
+                                    <td>&lt;5ms</td>
+                                    <td>&lt;5ms</td>
+                                </tr>
+                                <tr>
+                                    <td>P95 Latency</td>
+                                    <td>100-500ms</td>
+                                    <td>~12ms</td>
+                                    <td>~12ms</td>
+                                </tr>
+                                <tr>
+                                    <td>Global Reach</td>
+                                    <td>25 regions</td>
+                                    <td>300+ locations</td>
+                                    <td>300+ locations</td>
+                                </tr>
+                                <tr>
+                                    <td>Runtime</td>
+                                    <td>V8/Node.js</td>
+                                    <td>V8 Isolates</td>
+                                    <td>V8 Isolates</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="cost-comparison">
+                    <h2>Cost Comparison</h2>
+                    <div class="cost-comparison">
+                        <div class="platform-cost">
+                            <h3>AWS Lambda</h3>
+                            <div class="cost-breakdown">
+                                <div class="cost-item">
+                                    <span class="cost-label">Compute:</span>
+                                    <span class="cost-value">$0.0000167/GB-second</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Requests:</span>
+                                    <span class="cost-value">$0.20/million</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Data Transfer:</span>
+                                    <span class="cost-value">$0.09/GB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="platform-cost">
+                            <h3>Cloudflare Workers</h3>
+                            <div class="cost-breakdown">
+                                <div class="cost-item">
+                                    <span class="cost-label">Compute:</span>
+                                    <span class="cost-value">$0.30/million requests</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Data Transfer:</span>
+                                    <span class="cost-value">Free up to 100GB</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Storage:</span>
+                                    <span class="cost-value">$0.50/GB-month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="platform-cost featured">
+                            <h3>Clodo Framework</h3>
+                            <div class="cost-breakdown">
+                                <div class="cost-item">
+                                    <span class="cost-label">Everything Included:</span>
+                                    <span class="cost-value">$99/month</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Free Tier:</span>
+                                    <span class="cost-value">1M requests</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">Enterprise:</span>
+                                    <span class="cost-value">Custom pricing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="developer-experience">
+                    <h2>Developer Experience</h2>
+                    <div class="devex-comparison">
+                        <div class="platform-devex">
+                            <h3>AWS Lambda</h3>
+                            <ul>
+                                <li>✅ Mature ecosystem</li>
+                                <li>✅ Extensive documentation</li>
+                                <li>❌ Complex configuration</li>
+                                <li>❌ Vendor lock-in</li>
+                                <li>❌ Cold start issues</li>
+                            </ul>
+                        </div>
+
+                        <div class="platform-devex">
+                            <h3>Cloudflare Workers</h3>
+                            <ul>
+                                <li>✅ Edge-native</li>
+                                <li>✅ Simple deployment</li>
+                                <li>✅ Global by default</li>
+                                <li>❌ Limited ecosystem</li>
+                                <li>❌ Basic tooling</li>
+                            </ul>
+                        </div>
+
+                        <div class="platform-devex featured">
+                            <h3>Clodo Framework</h3>
+                            <ul>
+                                <li>✅ Zero cold starts</li>
+                                <li>✅ Enterprise features</li>
+                                <li>✅ Automated scaffolding</li>
+                                <li>✅ Multi-tenant ready</li>
+                                <li>✅ Migration tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="enterprise-features">
+                    <h2>Enterprise Features</h2>
+                    <div class="enterprise-comparison">
+                        <div class="feature-comparison">
+                            <h3>Security & Compliance</h3>
+                            <ul>
+                                <li><strong>AWS Lambda:</strong> SOC 2, HIPAA, extensive compliance</li>
+                                <li><strong>Cloudflare Workers:</strong> Enterprise-grade security</li>
+                                <li><strong>Clodo:</strong> SOC 2 compliant, automated validation</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-comparison">
+                            <h3>Multi-Tenant</h3>
+                            <ul>
+                                <li><strong>AWS Lambda:</strong> Manual implementation</li>
+                                <li><strong>Cloudflare Workers:</strong> Basic support</li>
+                                <li><strong>Clodo:</strong> Built-in multi-tenant architecture</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-comparison">
+                            <h3>Monitoring & Observability</h3>
+                            <ul>
+                                <li><strong>AWS Lambda:</strong> CloudWatch, X-Ray</li>
+                                <li><strong>Cloudflare Workers:</strong> Basic analytics</li>
+                                <li><strong>Clodo:</strong> Real-time monitoring, automated alerts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="use-cases">
+                    <h2>When to Choose Each Platform</h2>
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <h3>Choose AWS Lambda when:</h3>
+                            <ul>
+                                <li>You need deep AWS ecosystem integration</li>
+                                <li>You have existing AWS infrastructure</li>
+                                <li>You need GPU workloads or containers</li>
+                                <li>Cost is less critical than ecosystem maturity</li>
+                            </ul>
+                        </div>
+
+                        <div class="use-case">
+                            <h3>Choose Cloudflare Workers when:</h3>
+                            <ul>
+                                <li>You need global edge computing</li>
+                                <li>You want simple deployment</li>
+                                <li>You prioritize performance over ecosystem</li>
+                                <li>You need CDN integration</li>
+                            </ul>
+                        </div>
+
+                        <div class="use-case featured">
+                            <h3>Choose Clodo Framework when:</h3>
+                            <ul>
+                                <li>You want enterprise features out-of-the-box</li>
+                                <li>You need rapid development and deployment</li>
+                                <li>You require multi-tenant applications</li>
+                                <li>You want zero cold starts and global performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="migration-paths">
+                    <h2>Migration Paths</h2>
+                    <div class="migration-paths">
+                        <div class="migration-path">
+                            <h3>From AWS Lambda to Clodo</h3>
+                            <ol>
+                                <li>Analyze your Lambda functions</li>
+                                <li>Use automated migration tools</li>
+                                <li>Deploy to Cloudflare Workers</li>
+                                <li>Monitor performance improvements</li>
+                            </ol>
+                        </div>
+
+                        <div class="migration-path">
+                            <h3>From Cloudflare Workers to Clodo</h3>
+                            <ol>
+                                <li>Import existing worker code</li>
+                                <li>Add enterprise features</li>
+                                <li>Enable multi-tenant support</li>
+                                <li>Deploy with enhanced monitoring</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="conclusion">
+                    <h2>Conclusion: The Future of Serverless</h2>
+                    <p>In 2025, the serverless landscape is evolving rapidly. While AWS Lambda offers maturity and Cloudflare Workers provide edge performance, Clodo Framework combines the best of both worlds with enterprise-ready features and developer-friendly tooling.</p>
+
+                    <p>For modern applications requiring global scale, zero cold starts, and rapid development, Clodo Framework represents the next evolution of serverless computing.</p>
+                </section>
+
+                <section id="resources">
+                    <h2>Platform Documentation & Resources</h2>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <h3>🏗️ Clodo Framework</h3>
+                            <ul>
+                                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub Repository</a></li>
+                                <li><a href="/docs" target="_blank" rel="noopener">Documentation</a></li>
+                                <li><a href="/quick-start" target="_blank" rel="noopener">Quick Start Guide</a></li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h3>☁️ Cloudflare Workers</h3>
+                            <ul>
+                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener">Official Documentation</a></li>
+                                <li><a href="https://blog.cloudflare.com/tag/serverless/" target="_blank" rel="noopener">Cloudflare Blog</a></li>
+                                <li><a href="https://wrangler.dev/" target="_blank" rel="noopener">Wrangler CLI</a></li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🟡 AWS Lambda</h3>
+                            <ul>
+                                <li><a href="https://docs.aws.amazon.com/lambda/" target="_blank" rel="noopener">Lambda Documentation</a></li>
+                                <li><a href="https://aws.amazon.com/serverless/" target="_blank" rel="noopener">Serverless on AWS</a></li>
+                                <li><a href="https://serverless.com/framework/" target="_blank" rel="noopener">Serverless Framework</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="related-content">
+                    <h2>Deep Dive into Implementation</h2>
+                    <div class="related-content-grid">
+                        <div class="related-card">
+                            <h3><a href="/advanced-cloudflare-workers-tutorial">Advanced Worker Patterns</a></h3>
+                            <p>Master enterprise patterns, service meshes, and performance optimization techniques for production deployments.</p>
+                            <a href="/advanced-cloudflare-workers-tutorial" class="related-link">Learn Patterns →</a>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="/worker-scaffolding-tools">Automated Scaffolding</a></h3>
+                            <p>Generate enterprise-ready services with authentication, databases, and APIs using our scaffolding tools.</p>
+                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding →</a>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="/wrangler-to-clodo-migration">Migrate to Clodo</a></h3>
+                            <p>Seamlessly migrate from AWS Lambda or Cloudflare Wrangler to Clodo Framework with zero downtime.</p>
+                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cta">
+                    <div class="cta-box">
+                        <h3>Ready to Experience Better Serverless?</h3>
+                        <p>Migrate from Lambda or upgrade from Workers. Get enterprise features with edge performance.</p>
+                        <a href="/quick-start" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer><!--#include file="../templates/footer.html" --></footer>
+</body>
+</html>
