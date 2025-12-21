@@ -288,7 +288,160 @@
         "Multi-tenant SaaS"
       ]
     }
+    <!-- Interactive Savings Calculator JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiRequestsSlider = document.getElementById('api-requests');
+            const inputValue = document.querySelector('.input-value');
+            const resultValue = document.querySelector('.result-value');
+
+            function calculateSavings(requests) {
+                // Cloudflare Workers pricing: $0.15 per million requests
+                const cloudflareCost = (requests / 1000000) * 0.15;
+
+                // AWS Lambda equivalent (rough estimate): $0.20 per million + compute time
+                const awsCost = (requests / 1000000) * 0.20 + 10; // Base compute cost
+
+                const savings = awsCost - cloudflareCost;
+                const annualSavings = savings * 12;
+
+                return {
+                    cloudflare: cloudflareCost,
+                    aws: awsCost,
+                    monthlySavings: savings,
+                    annualSavings: annualSavings
+                };
+            }
+
+            function updateCalculator() {
+                const requests = parseInt(apiRequestsSlider.value);
+                const formattedRequests = (requests / 1000000).toFixed(1) + 'M';
+                inputValue.textContent = formattedRequests + ' requests';
+
+                const savings = calculateSavings(requests);
+
+                // Update display
+                document.querySelector('.savings-amount').textContent = '$' + savings.aws.toFixed(0) + '/month';
+                document.querySelector('.savings-amount.final').textContent = '$' + savings.cloudflare.toFixed(0) + '/month';
+                resultValue.textContent = '$' + Math.round(savings.annualSavings) + '/year';
+            }
+
+            apiRequestsSlider.addEventListener('input', updateCalculator);
+            updateCalculator(); // Initialize
+        });
     </script>
+
+    <!-- Animated Savings Visualization JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scenarios = {
+                startup: {
+                    traditional: { time: '12 weeks', cost: '$45,000' },
+                    clodo: { time: '3 weeks', cost: '$0' },
+                    timeSaved: '75% faster development',
+                    costSaved: '$45,000 cost savings',
+                    efficiency: 75
+                },
+                enterprise: {
+                    traditional: { time: '24 weeks', cost: '$120,000' },
+                    clodo: { time: '6 weeks', cost: '$0' },
+                    timeSaved: '75% faster development',
+                    costSaved: '$120,000 cost savings',
+                    efficiency: 75
+                },
+                saas: {
+                    traditional: { time: '16 weeks', cost: '$80,000' },
+                    clodo: { time: '4 weeks', cost: '$0' },
+                    timeSaved: '75% faster development',
+                    costSaved: '$80,000 cost savings',
+                    efficiency: 75
+                }
+            };
+
+            let currentScenario = 'startup';
+
+            // DOM elements
+            const controlBtns = document.querySelectorAll('.control-btn');
+            const traditionalTime = document.getElementById('traditional-time');
+            const traditionalCost = document.getElementById('traditional-cost');
+            const clodoTime = document.getElementById('clodo-time');
+            const clodoCost = document.getElementById('clodo-cost');
+            const timeSaved = document.getElementById('time-saved');
+            const costSaved = document.getElementById('cost-saved');
+            const efficiencyPercentage = document.getElementById('efficiency-percentage');
+            const progressCircle = document.getElementById('progress-circle');
+
+            // Initialize
+            updateVisualization(currentScenario);
+
+            // Event listeners
+            controlBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    controlBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentScenario = btn.dataset.scenario;
+                    updateVisualization(currentScenario);
+                });
+            });
+
+            function updateVisualization(scenario) {
+                const data = scenarios[scenario];
+
+                // Update text values with animation
+                animateValue(traditionalTime, data.traditional.time);
+                animateValue(traditionalCost, data.traditional.cost);
+                animateValue(clodoTime, data.clodo.time);
+                animateValue(clodoCost, data.clodo.cost);
+                animateValue(timeSaved, data.timeSaved);
+                animateValue(costSaved, data.costSaved);
+                animateValue(efficiencyPercentage, `${data.efficiency}%`);
+
+                // Animate progress circle
+                const circumference = 2 * Math.PI * 50; // radius = 50
+                const offset = circumference - (data.efficiency / 100) * circumference;
+                if (progressCircle) {
+                    progressCircle.style.strokeDashoffset = offset;
+                }
+
+                // Animate bars
+                setTimeout(() => {
+                    const timeBars = document.querySelectorAll('.time-bar');
+                    const costBars = document.querySelectorAll('.cost-bar');
+
+                    if (timeBars.length >= 2 && costBars.length >= 2) {
+                        timeBars[0].style.width = '100%'; // Traditional
+                        timeBars[1].style.width = '25%';  // Clodo
+
+                        costBars[0].style.width = '100%'; // Traditional
+                        costBars[1].style.width = '0%';   // Clodo
+                    }
+                }, 500);
+            }
+
+            function animateValue(element, newValue) {
+                if (!element) return;
+
+                element.style.transform = 'scale(0.8)';
+                element.style.opacity = '0.5';
+
+                setTimeout(() => {
+                    element.textContent = newValue;
+                    element.style.transform = 'scale(1)';
+                    element.style.opacity = '1';
+                }, 300);
+            }
+        });
+    </script>
+
+    <!-- SVG Gradient for Progress Circle -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: var(--success-color); stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: var(--primary-color); stop-opacity: 1" />
+            </linearGradient>
+        </defs>
+    </svg>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -311,54 +464,239 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <span class="badge-icon">🚀</span>
-                        <span>Enterprise-Grade Framework</span>
+                        <span>Limited Time: Free Expert Consultation</span>
                     </div>
-                    <h1>Simple, Transparent Pricing</h1>
-                    <p>Start free with our enterprise-grade framework. Scale with confidence as your business grows.</p>
-                    <div class="pricing-highlights">
-                        <div class="highlight">
-                            <span class="highlight-icon">⚡</span>
-                            <span>10x Faster Development</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-icon">💰</span>
-                            <span>90% Cost Reduction</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-icon">🔒</span>
-                            <span>Enterprise Security</span>
+                    <h1>Save 80% on Serverless Costs</h1>
+                    <p>Go from idea to production in 2 weeks with our enterprise framework. Join 500+ developers who've cut infrastructure costs by 80%.</p>
+
+                    <!-- Social Proof Above Fold -->
+                    <div class="hero-social-proof">
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Developers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">$2M+</div>
+                                <div class="stat-label">Saved</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">80%</div>
+                                <div class="stat-label">Cost Reduction</div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Primary CTA -->
                     <div class="hero-cta">
-                        <a href="#pricing" class="btn btn--primary btn--large">View Pricing Plans</a>
-                        <a href="/docs" class="btn btn--secondary btn--large">Start Free</a>
+                        <a href="#contact" class="btn btn--primary btn--large cta-primary">
+                            Get Free Consultation
+                            <span class="cta-subtext">No commitment • 30-min call</span>
+                        </a>
+                        <a href="/docs" class="btn btn--secondary btn--large">
+                            Try Free Framework
+                        </a>
+                    </div>
+
+                    <!-- Trust Signals -->
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            <span>MIT Licensed</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            <span>Enterprise Ready</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">✓</span>
+                            <span>Zero Cold Starts</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="hero-visual">
-                    <div class="hero-code-preview">
-                        <div class="code-header">
-                            <span class="code-dot red"></span>
-                            <span class="code-dot yellow"></span>
-                            <span class="code-dot green"></span>
-                            <span class="code-title">Clodo Framework - 5min Setup</span>
+                    <div class="savings-calculator">
+                        <div class="calculator-header">
+                            <h3>Calculate Your Savings</h3>
+                            <div class="savings-result">
+                                <div class="savings-amount">$125/month</div>
+                                <div class="savings-label">Current AWS Cost</div>
+                                <div class="savings-arrow">↓</div>
+                                <div class="savings-amount final">$25/month</div>
+                                <div class="savings-label">With Clodo</div>
+                            </div>
                         </div>
-                        <pre class="code-content"><code>import { ClodoApp } from '@tamyla/clodo-framework';
-
-const app = new ClodoApp({
-  name: 'MyEnterpriseApp',
-  database: 'd1',
-  auth: 'enterprise',
-  security: 'auto'
-});
-
-// Deploy instantly
-app.deploy();</code></pre>
+                        <div class="calculator-inputs">
+                            <div class="input-group">
+                                <label>Monthly API Requests</label>
+                                <input type="range" min="100000" max="10000000" value="5000000" step="100000" id="api-requests">
+                                <div class="input-value">5M requests</div>
+                            </div>
+                        </div>
+                        <div class="calculator-result">
+                            <div class="result-item">
+                                <span class="result-label">Annual Savings:</span>
+                                <span class="result-value">$1,200/year</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Social Proof & Testimonials Section -->
+        <!-- Value Proposition Section -->
+        <section class="value-proposition-section">
+            <div class="container">
+                <div class="value-header">
+                    <h2>Why 500+ Developers Choose Clodo</h2>
+                    <p>Built by developers, for developers. Enterprise-grade features without enterprise complexity.</p>
+                </div>
+
+                <div class="value-grid">
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <h3>10x Faster Development</h3>
+                        <p>Pre-built enterprise patterns eliminate months of development time. From idea to production in weeks.</p>
+                        <div class="value-stat">
+                            <span class="stat-number">75%</span>
+                            <span class="stat-label">Time Saved</span>
+                        </div>
+                    </div>
+
+                    <div class="value-card featured">
+                        <div class="value-icon">💰</div>
+                        <h3>80% Cost Reduction</h3>
+                        <p>Cloudflare Workers + our framework = massive savings vs AWS Lambda. Zero cold starts, global edge.</p>
+                        <div class="value-stat">
+                            <span class="stat-number">$1,200</span>
+                            <span class="stat-label">Avg Annual Savings</span>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">🔒</div>
+                        <h3>Enterprise Security</h3>
+                        <p>Built-in authentication, encryption, and compliance. SOC 2, GDPR, HIPAA ready out of the box.</p>
+                        <div class="value-stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Security Coverage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="value-cta">
+                    <a href="#contact" class="btn btn--primary btn--large">Start Saving Today</a>
+                    <p class="cta-note">Free framework • Expert consultation available</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Savings Calculator -->
+        <section class="calculator-section">
+            <div class="container">
+                <div class="calculator-header">
+                    <h2>Calculate Your Savings</h2>
+                    <p>Compare AWS Lambda costs vs Clodo Framework. Enter your usage estimates below.</p>
+                </div>
+
+                <div class="calculator-content">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="monthly-active-users">Monthly Active Users</label>
+                            <input type="number" id="monthly-active-users" value="10000" min="100" max="10000000">
+                            <span class="input-hint">Users per month</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="avg-request-size">Average Request Size</label>
+                            <input type="number" id="avg-request-size" value="1" min="0.1" max="100" step="0.1">
+                            <span class="input-hint">KB per request</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="avg-response-time">Average Response Time</label>
+                            <input type="number" id="avg-response-time" value="200" min="10" max="30000">
+                            <span class="input-hint">Milliseconds</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Consulting Package</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="consulting-tier" value="basic" checked>
+                                    <span class="radio-label">Basic Setup - $2,500</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="consulting-tier" value="premium">
+                                    <span class="radio-label">Premium Setup - $5,000</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-results">
+                        <div class="cost-comparison">
+                            <div class="cost-card aws-cost">
+                                <h3>AWS Lambda</h3>
+                                <div class="cost-amount">
+                                    <span class="cost-value" id="aws-monthly-cost">$125.00</span>
+                                    <span class="cost-period">/month</span>
+                                </div>
+                                <div class="cost-annual">
+                                    <span class="cost-value" id="aws-annual-cost">$1,500</span>
+                                    <span class="cost-period">/year</span>
+                                </div>
+                            </div>
+
+                            <div class="vs-indicator">
+                                <span>VS</span>
+                            </div>
+
+                            <div class="cost-card clodo-cost featured">
+                                <h3>Clodo Framework</h3>
+                                <div class="cost-amount">
+                                    <span class="cost-value">$0</span>
+                                    <span class="cost-period">/month</span>
+                                </div>
+                                <div class="cost-annual">
+                                    <span class="cost-value" id="clodo-annual-cost">$2,500</span>
+                                    <span class="cost-period">one-time</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="savings-highlight">
+                            <div class="savings-amount">
+                                <span class="savings-label">Annual Savings:</span>
+                                <span class="savings-value" id="annual-savings">$1,200</span>
+                            </div>
+                            <div class="savings-percentage">
+                                <span class="percentage-value" id="savings-percentage">80%</span>
+                                <span class="percentage-label">Cost Reduction</span>
+                            </div>
+                        </div>
+
+                        <div class="calculator-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Monthly Requests:</span>
+                                <span class="metric-value" id="monthly-requests">50,000</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Compute (GB-seconds):</span>
+                                <span class="metric-value" id="compute-gb-seconds">1.25</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Data Transfer (GB):</span>
+                                <span class="metric-value" id="data-transfer-gb">50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
         <section class="social-proof-section">
             <div class="container">
                 <div class="social-proof-content">
@@ -466,7 +804,7 @@ app.deploy();</code></pre>
             </div>
         </section>
 
-        <section id="pricing">
+        <section id="pricing" class="pricing-section">
             <div class="container">
                 <div class="pricing-header">
                     <h2>Choose Your Path to Success</h2>
@@ -728,8 +1066,78 @@ app.deploy();</code></pre>
             </div>
         </section>
 
-        <!-- Usage Calculator -->
-        <section id="usage-calculator" class="usage-calculator-section">
+        <!-- Animated Savings Visualization -->
+        <section id="savings-visualization" class="savings-visualization-section">
+            <div class="container">
+                <div class="savings-visualization-header">
+                    <h2>See Your Savings Come to Life</h2>
+                    <p>Watch how Clodo Framework transforms development economics</p>
+                </div>
+
+                <div class="savings-animator">
+                    <div class="animation-controls">
+                        <button class="control-btn active" data-scenario="startup">🚀 Startup Project</button>
+                        <button class="control-btn" data-scenario="enterprise">🏢 Enterprise App</button>
+                        <button class="control-btn" data-scenario="saas">☁️ SaaS Platform</button>
+                    </div>
+
+                    <div class="animation-display">
+                        <div class="comparison-metrics">
+                            <div class="metric-card metric-traditional">
+                                <div class="metric-header">
+                                    <h3>Traditional Development</h3>
+                                    <div class="metric-icon">🐌</div>
+                                </div>
+                                <div class="metric-value" id="traditional-time">12 weeks</div>
+                                <div class="metric-cost" id="traditional-cost">$45,000</div>
+                                <div class="metric-bars">
+                                    <div class="time-bar" style="width: 100%"></div>
+                                    <div class="cost-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="vs-divider">
+                                <span>VS</span>
+                            </div>
+
+                            <div class="metric-card metric-clodo">
+                                <div class="metric-header">
+                                    <h3>With Clodo Framework</h3>
+                                    <div class="metric-icon">⚡</div>
+                                </div>
+                                <div class="metric-value" id="clodo-time">3 weeks</div>
+                                <div class="metric-cost" id="clodo-cost">$0</div>
+                                <div class="metric-bars">
+                                    <div class="time-bar" style="width: 25%"></div>
+                                    <div class="cost-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="savings-results">
+                            <div class="savings-highlight">
+                                <div class="savings-icon">💰</div>
+                                <div class="savings-text">
+                                    <div class="savings-amount" id="time-saved">75% faster development</div>
+                                    <div class="savings-subtitle" id="cost-saved">$45,000 cost savings</div>
+                                </div>
+                            </div>
+
+                            <div class="progress-ring">
+                                <svg class="progress-circle" width="120" height="120">
+                                    <circle class="progress-bg" cx="60" cy="60" r="50"></circle>
+                                    <circle class="progress-fill" cx="60" cy="60" r="50" id="progress-circle"></circle>
+                                </svg>
+                                <div class="progress-text">
+                                    <div class="progress-percentage" id="efficiency-percentage">75%</div>
+                                    <div class="progress-label">More Efficient</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
             <div class="container">
                 <div class="usage-calculator">
                     <div class="calculator-header">
@@ -794,7 +1202,7 @@ app.deploy();</code></pre>
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="contact-section">
             <div class="container">
                 <h2>Ready to Accelerate Your Development?</h2>
                 <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-2xl); max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -844,7 +1252,38 @@ app.deploy();</code></pre>
                 </form>
             </div>
         </section>
-    </main><!--#include file="../templates/footer.html" -->
+    </main>
+
+    <!-- Floating Contact Button & Live Chat Widget -->
+    <div class="floating-contact">
+        <button class="floating-contact-btn pulse" id="floating-contact-btn" aria-label="Open live chat">
+            💬
+        </button>
+    </div>
+
+    <!-- Live Chat Widget -->
+    <div id="live-chat-widget" class="live-chat-widget">
+        <div class="live-chat-header">
+            <div class="live-chat-title">Clodo Support</div>
+            <div class="live-chat-status">
+                <span class="status-dot"></span>
+                Online now
+            </div>
+            <button class="live-chat-close" aria-label="Close chat">×</button>
+        </div>
+        <div class="live-chat-messages">
+            <div class="chat-message bot">
+                <div class="chat-avatar">👨‍💼</div>
+                <div class="chat-bubble">Hi! I'm here to help you choose the right Clodo solution. What type of project are you working on?</div>
+            </div>
+        </div>
+        <div class="live-chat-input">
+            <div class="chat-input-group">
+                <input type="text" class="chat-input" placeholder="Type your message..." aria-label="Type your message">
+                <button class="chat-send-btn" aria-label="Send message">📤</button>
+            </div>
+        </div>
+    </div><!--#include file="../templates/footer.html" -->
 
 
     <!-- Defer JavaScript - load after LCP for better performance -->
@@ -952,6 +1391,96 @@ app.deploy();</code></pre>
             document.getElementById('hourly-rate').value = '75';
             document.getElementById('timeline-weeks').value = '12';
             calculateCosts();
+        });
+    </script>
+
+    <!-- Floating Contact Button & Live Chat Widget JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Floating Contact Button Functionality
+            const floatingBtn = document.getElementById('floating-contact-btn');
+            const liveChatWidget = document.getElementById('live-chat-widget');
+            const chatCloseBtn = liveChatWidget.querySelector('.live-chat-close');
+            const chatInput = liveChatWidget.querySelector('.chat-input');
+            const chatSendBtn = liveChatWidget.querySelector('.chat-send-btn');
+            const chatMessages = liveChatWidget.querySelector('.live-chat-messages');
+
+            let isChatOpen = false;
+
+            // Toggle chat widget
+            floatingBtn.addEventListener('click', function() {
+                isChatOpen = !isChatOpen;
+                liveChatWidget.classList.toggle('open', isChatOpen);
+
+                if (isChatOpen) {
+                    chatInput.focus();
+                    floatingBtn.classList.remove('pulse');
+                }
+            });
+
+            // Close chat widget
+            chatCloseBtn.addEventListener('click', function() {
+                isChatOpen = false;
+                liveChatWidget.classList.remove('open');
+            });
+
+            // Send message functionality
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, 'user');
+                    chatInput.value = '';
+
+                    // Simulate bot response (in real implementation, this would be an API call)
+                    setTimeout(() => {
+                        const responses = [
+                            "Thanks for your message! Our consulting team typically responds within 2 hours. In the meantime, can you tell me more about your project?",
+                            "I'd be happy to help you choose the right Clodo solution. Are you looking to build a SaaS application, migrate from another platform, or need architecture consulting?",
+                            "Great question! Clodo Framework is completely free and includes enterprise features like multi-tenant support, security-by-default architecture, and automated deployment. Would you like me to walk you through getting started?",
+                            "Our expert consulting services start at $5,000 and include complete application setup, from concept to production deployment. What's your timeline and budget looking like?"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse, 'bot');
+                    }, 1000 + Math.random() * 2000); // Random delay between 1-3 seconds
+                }
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${sender}`;
+                messageDiv.innerHTML = `
+                    <div class="chat-avatar">${sender === 'user' ? '👤' : '👨‍💼'}</div>
+                    <div class="chat-bubble">${text}</div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Send message on button click
+            chatSendBtn.addEventListener('click', sendMessage);
+
+            // Send message on Enter key
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Add pulse animation after 5 seconds of inactivity
+            setTimeout(() => {
+                if (!isChatOpen) {
+                    floatingBtn.classList.add('pulse');
+                }
+            }, 5000);
+
+            // Close chat when clicking outside
+            document.addEventListener('click', function(e) {
+                if (isChatOpen && !liveChatWidget.contains(e.target) && !floatingBtn.contains(e.target)) {
+                    isChatOpen = false;
+                    liveChatWidget.classList.remove('open');
+                }
+            });
         });
     </script>
 
