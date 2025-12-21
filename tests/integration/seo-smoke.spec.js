@@ -1,6 +1,16 @@
 import { test, expect } from '@playwright/test';
 
-const PAGES = ['/', '/how-to-migrate-from-wrangler.html', '/faq.html', '/examples.html'];
+const PAGES = [
+    '/',
+    '/how-to-migrate-from-wrangler.html',
+    '/faq.html',
+    '/examples.html',
+    '/wrangler-to-clodo-migration.html',
+    '/ruby-on-rails-cloudflare-integration.html',
+    '/serverless-framework-comparison.html',
+    '/worker-scaffolding-tools.html',
+    '/advanced-cloudflare-workers-tutorial.html'
+];
 
 test.describe('SEO Smoke Tests', () => {
     for (const path of PAGES) {

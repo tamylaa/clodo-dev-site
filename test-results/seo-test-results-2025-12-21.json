@@ -1,0 +1,313 @@
+{
+  "timestamp": "2025-12-21T09:18:17.842Z",
+  "tests": [
+    {
+      "name": "Meta Tags",
+      "results": [
+        {
+          "page": "/",
+          "status": "ERROR",
+          "error": "File not found: g:/coding/clodo-dev-site/public/",
+          "score": 0
+        },
+        {
+          "page": "/wrangler-to-clodo-migration",
+          "status": "PASS",
+          "metaTags": {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "description": "Migrate from Cloudflare Wrangler to Clodo Framework in 5 steps. Automated migration tools, zero-downtime deployment, and enterprise-ready features.",
+            "keywords": "wrangler, cloudflare wrangler, clodo migration, wrangler to clodo, cloudflare workers migration, serverless migration",
+            "author": "Clodo Framework Team",
+            "robots": "index, follow",
+            "og:title": "Wrangler to Clodo Migration: Complete Guide (2025)",
+            "og:description": "Migrate from Cloudflare Wrangler to Clodo Framework in 5 steps. Automated migration tools, zero-downtime deployment, and enterprise-ready features.",
+            "og:type": "article",
+            "og:url": "https://www.clodo.dev/wrangler-to-clodo-migration",
+            "og:image": "https://www.clodo.dev/og-image.png",
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Wrangler to Clodo Migration: Complete Guide (2025)",
+            "twitter:description": "Migrate from Cloudflare Wrangler to Clodo Framework in 5 steps. Automated migration tools, zero-downtime deployment, and enterprise-ready features.",
+            "theme-color": "#0b1220",
+            "title": "Wrangler to Clodo Migration: Complete Guide (2025) | Clodo Framework",
+            "canonical": "https://www.clodo.dev/wrangler-to-clodo-migration"
+          },
+          "missingTags": [],
+          "score": 100
+        },
+        {
+          "page": "/ruby-on-rails-cloudflare-integration",
+          "status": "PASS",
+          "metaTags": {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "description": "Deploy Ruby on Rails applications on Cloudflare Workers with Clodo Framework. Database integration, API routes, and edge computing.",
+            "keywords": "ruby on rails, cloudflare workers, ruby cloudflare, rails serverless, edge computing rails",
+            "author": "Clodo Framework Team",
+            "robots": "index, follow",
+            "og:title": "Ruby on Rails + Cloudflare Workers: Full-Stack Serverless",
+            "og:description": "Deploy Ruby on Rails applications on Cloudflare Workers with Clodo Framework. Database integration, API routes, and edge computing.",
+            "og:type": "article",
+            "og:url": "https://www.clodo.dev/ruby-on-rails-cloudflare-integration",
+            "og:image": "https://www.clodo.dev/og-image.png",
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Ruby on Rails + Cloudflare Workers: Full-Stack Serverless",
+            "twitter:description": "Deploy Ruby on Rails applications on Cloudflare Workers with Clodo Framework. Database integration, API routes, and edge computing.",
+            "theme-color": "#0b1220",
+            "title": "Ruby on Rails + Cloudflare Workers: Full-Stack Serverless | Clodo Framework",
+            "canonical": "https://www.clodo.dev/ruby-on-rails-cloudflare-integration"
+          },
+          "missingTags": [],
+          "score": 100
+        },
+        {
+          "page": "/serverless-framework-comparison",
+          "status": "PASS",
+          "metaTags": {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "description": "Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.",
+            "keywords": "serverless, serverless framework, aws lambda, cloudflare workers, serverless comparison, serverless platforms",
+            "author": "Clodo Framework Team",
+            "robots": "index, follow",
+            "og:title": "Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo",
+            "og:description": "Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.",
+            "og:type": "article",
+            "og:url": "https://www.clodo.dev/serverless-framework-comparison",
+            "og:image": "https://www.clodo.dev/og-image.png",
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo",
+            "twitter:description": "Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.",
+            "theme-color": "#0b1220",
+            "title": "Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo | 2025",
+            "canonical": "https://www.clodo.dev/serverless-framework-comparison"
+          },
+          "missingTags": [],
+          "score": 100
+        },
+        {
+          "page": "/worker-scaffolding-tools",
+          "status": "PASS",
+          "metaTags": {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "description": "Automated scaffolding tools for Cloudflare Workers. Generate complete services with authentication, database, and API endpoints.",
+            "keywords": "worker scaffolding, cloudflare workers scaffolding, automated code generation, worker templates, enterprise scaffolding",
+            "author": "Clodo Framework Team",
+            "robots": "index, follow",
+            "og:title": "Cloudflare Worker Scaffolding: Generate Enterprise-Ready Services",
+            "og:description": "Automated scaffolding tools for Cloudflare Workers. Generate complete services with authentication, database, and API endpoints.",
+            "og:type": "article",
+            "og:url": "https://www.clodo.dev/worker-scaffolding-tools",
+            "og:image": "https://www.clodo.dev/og-image.png",
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Cloudflare Worker Scaffolding: Generate Enterprise-Ready Services",
+            "twitter:description": "Automated scaffolding tools for Cloudflare Workers. Generate complete services with authentication, database, and API endpoints.",
+            "theme-color": "#0b1220",
+            "title": "Cloudflare Worker Scaffolding: Generate Enterprise-Ready Services | Clodo Framework",
+            "canonical": "https://www.clodo.dev/worker-scaffolding-tools"
+          },
+          "missingTags": [],
+          "score": 100
+        },
+        {
+          "page": "/advanced-cloudflare-workers-tutorial",
+          "status": "PASS",
+          "metaTags": {
+            "viewport": "width=device-width, initial-scale=1.0",
+            "description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
+            "keywords": "advanced cloudflare workers, worker patterns, enterprise workers, distributed systems, service mesh, performance optimization",
+            "author": "Clodo Framework Team",
+            "robots": "index, follow",
+            "og:title": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices",
+            "og:description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
+            "og:type": "article",
+            "og:url": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial",
+            "og:image": "https://www.clodo.dev/og-image.png",
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices",
+            "twitter:description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
+            "theme-color": "#0b1220",
+            "title": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices | Clodo Framework",
+            "canonical": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial"
+          },
+          "missingTags": [],
+          "score": 100
+        }
+      ],
+      "averageScore": 83.33333333333333
+    },
+    {
+      "name": "Structured Data",
+      "results": [
+        {
+          "page": "/",
+          "status": "ERROR",
+          "error": "File not found: g:/coding/clodo-dev-site/public/",
+          "score": 0
+        },
+        {
+          "page": "/wrangler-to-clodo-migration",
+          "hasStructuredData": true,
+          "hasRequiredTypes": false,
+          "dataCount": 2,
+          "score": 50
+        }
+      ],
+      "averageScore": 25
+    },
+    {
+      "name": "Hreflang Tags",
+      "results": [
+        {
+          "page": "/wrangler-to-clodo-migration",
+          "hreflangCount": 4,
+          "presentLocales": [
+            "en",
+            "de",
+            "it",
+            "x-default"
+          ],
+          "hasRequiredLocales": true,
+          "score": 100
+        },
+        {
+          "page": "/ruby-on-rails-cloudflare-integration",
+          "hreflangCount": 4,
+          "presentLocales": [
+            "en",
+            "de",
+            "it",
+            "x-default"
+          ],
+          "hasRequiredLocales": true,
+          "score": 100
+        }
+      ],
+      "averageScore": 100
+    },
+    {
+      "name": "Sitemap",
+      "sitemapUrl": "https://www.clodo.dev/sitemap.xml",
+      "totalUrls": 47,
+      "expectedUrls": 6,
+      "missingUrls": [],
+      "extraUrls": [
+        "https://www.clodo.dev/docs",
+        "https://clodo.dev/structured-data",
+        "https://www.clodo.dev/clodo-framework-guide",
+        "https://www.clodo.dev/cloudflare-workers-development-guide",
+        "https://www.clodo.dev/serverless-architecture-best-practices",
+        "https://clodo.dev/clodo-framework-api-simplification",
+        "https://clodo.dev/clodo-framework-promise-to-reality",
+        "https://www.clodo.dev/cloudflare-pages-setup",
+        "https://www.clodo.dev/cloudflare-workers-guide",
+        "https://www.clodo.dev/development-deployment-guide",
+        "https://www.clodo.dev/edge-computing-guide",
+        "https://clodo.dev/what-is-edge-computing",
+        "https://clodo.dev/what-is-cloudflare-workers",
+        "https://clodo.dev/workers-vs-lambda",
+        "https://clodo.dev/clodo-vs-lambda",
+        "https://clodo.dev/migrate",
+        "https://clodo.dev/examples",
+        "https://clodo.dev/components",
+        "https://clodo.dev/pricing",
+        "https://www.clodo.dev/framework-comparison",
+        "https://www.clodo.dev/multi-tenant-saas",
+        "https://clodo.dev/faq",
+        "https://clodo.dev/product",
+        "https://clodo.dev/about",
+        "https://clodo.dev/privacy",
+        "https://clodo.dev/subscribe",
+        "https://clodo.dev/community/welcome",
+        "https://clodo.dev/case-studies/",
+        "https://clodo.dev/case-studies/fintech-payment-platform",
+        "https://clodo.dev/case-studies/healthcare-saas-platform",
+        "https://clodo.dev/blog/",
+        "https://clodo.dev/blog/cloudflare-infrastructure-myth",
+        "https://clodo.dev/blog/instant-try-it-impact",
+        "https://clodo.dev/blog/debugging-silent-build-failures",
+        "https://clodo.dev/blog/building-developer-communities",
+        "https://www.clodo.dev/i18n/de/clodo-framework-api-simplification",
+        "https://www.clodo.dev/i18n/de/clodo-framework-promise-to-reality",
+        "https://www.clodo.dev/i18n/de/how-to-migrate-from-wrangler",
+        "https://www.clodo.dev/i18n/it/clodo-framework-api-simplification",
+        "https://www.clodo.dev/i18n/it/clodo-framework-promise-to-reality",
+        "https://www.clodo.dev/i18n/it/how-to-migrate-from-wrangler"
+      ],
+      "isValid": true,
+      "score": 100
+    },
+    {
+      "name": "Performance",
+      "results": [
+        {
+          "page": "/",
+          "status": "ERROR",
+          "error": "File not found: g:/coding/clodo-dev-site/public/",
+          "score": 0
+        },
+        {
+          "page": "/wrangler-to-clodo-migration",
+          "loadTime": 1,
+          "sizeKB": "16.03",
+          "statusCode": 200,
+          "score": 100
+        }
+      ],
+      "averageScore": 50
+    },
+    {
+      "name": "Content Quality",
+      "results": [
+        {
+          "page": "/wrangler-to-clodo-migration",
+          "wordCount": 287,
+          "minWords": 800,
+          "hasHeadings": true,
+          "hasImages": false,
+          "hasLinks": true,
+          "score": 57.9375
+        },
+        {
+          "page": "/ruby-on-rails-cloudflare-integration",
+          "wordCount": 409,
+          "minWords": 600,
+          "hasHeadings": true,
+          "hasImages": false,
+          "hasLinks": true,
+          "score": 74.08333333333333
+        },
+        {
+          "page": "/serverless-framework-comparison",
+          "wordCount": 511,
+          "minWords": 700,
+          "hasHeadings": true,
+          "hasImages": false,
+          "hasLinks": true,
+          "score": 76.5
+        },
+        {
+          "page": "/worker-scaffolding-tools",
+          "wordCount": 501,
+          "minWords": 500,
+          "hasHeadings": true,
+          "hasImages": false,
+          "hasLinks": true,
+          "score": 90
+        },
+        {
+          "page": "/advanced-cloudflare-workers-tutorial",
+          "wordCount": 1061,
+          "minWords": 600,
+          "hasHeadings": true,
+          "hasImages": false,
+          "hasLinks": true,
+          "score": 90
+        }
+      ],
+      "averageScore": 77.70416666666667
+    }
+  ],
+  "summary": {
+    "overallScore": 72.67291666666667,
+    "testCount": 6,
+    "timestamp": "2025-12-21T09:18:17.842Z"
+  }
+}

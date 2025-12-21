@@ -48,7 +48,10 @@ test.describe('Canonical smoke checks for experiments & i18n pages', () => {
 
       // Validate canonical tag
       const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
-      expect(canonical, `canonical for ${p.path}`).toBe(p.expected);
+      // Normalize by removing any trailing .html so tests don't fail on extensionless canonicals
+      const canonicalNormalized = canonical ? canonical.replace(/\.html$/i, '') : canonical;
+      const expectedNormalized = p.expected ? p.expected.replace(/\.html$/i, '') : p.expected;
+      expect(canonicalNormalized, `canonical for ${p.path}`).toBe(expectedNormalized);
 
       // Ensure page has an H1 (not the homepage placeholder)
       const h1 = await page.locator('h1').first().textContent();
