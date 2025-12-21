@@ -27,15 +27,15 @@ async function setupDOM() {
                     
                     <ul class="nav-menu" id="mobile-menu">
                         <li><a href="/" class="nav-link">Home</a></li>
-                        <li><a href="/about.html" class="nav-link">About</a></li>
+                        <li><a href="/about" class="nav-link">About</a></li>
                         
                         <li class="nav-dropdown">
                             <a href="#" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                                 Docs
                             </a>
                             <ul class="nav-dropdown-menu" role="menu">
-                                <li><a href="/docs.html">Getting Started</a></li>
-                                <li><a href="/guide.html">Guide</a></li>
+                                <li><a href="/docs">Getting Started</a></li>
+                                <li><a href="/guide">Guide</a></li>
                             </ul>
                         </li>
                         
@@ -44,7 +44,7 @@ async function setupDOM() {
                                 Examples
                             </a>
                             <ul class="nav-dropdown-menu" role="menu">
-                                <li><a href="/examples.html">All Examples</a></li>
+                                <li><a href="/examples">All Examples</a></li>
                             </ul>
                         </li>
                     </ul>

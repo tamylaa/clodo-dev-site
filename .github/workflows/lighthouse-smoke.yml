@@ -1,0 +1,29 @@
+name: Lighthouse smoke checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lighthouse-smoke:
+    name: Lighthouse smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lighthouse (mobile emulation)
+        run: |
+          node scripts/perf/run_lighthouse.js --urls=public/how-to-migrate-from-wrangler,public/clodo-framework-api-simplification,public/clodo-framework-promise-to-reality
+
+      - name: Smoke check reports
+        run: |
+          node scripts/perf/check_lighthouse_smoke.js --reportsDir=reports/lighthouse --serverThreshold=1200 --redirectThreshold=200 --lcpThreshold=3500

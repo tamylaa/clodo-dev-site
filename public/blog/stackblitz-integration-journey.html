@@ -13,7 +13,7 @@
     <meta property="og:site_name" content="Clodo Framework">
     <meta property="og:title" content="Building an Instant Try Now Experience: Our StackBlitz Integration Journey">
     <meta property="og:description" content="How we built a one-click coding environment using StackBlitz, npm packages, and smart cache-busting.">
-    <meta property="og:url" content="https://clodo.dev/blog/stackblitz-integration-journey.html">
+    <meta property="og:url" content="https://clodo.dev/blog/stackblitz-integration-journey">
     <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -82,7 +82,7 @@
         "dateModified": "2024-11-28",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/stackblitz-integration-journey.html"
+            "@id": "https://clodo.dev/blog/stackblitz-integration-journey"
         },
         "articleSection": "Technical",
         "keywords": ["StackBlitz", "developer experience", "npm", "ESM", "cache busting"]
@@ -241,11 +241,11 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <ol itemscope itemtype="https://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a>
+                        <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
                         <meta itemprop="position" content="1">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="index.html" itemprop="item"><span itemprop="name">Blog</span></a>
+                        <a href="/blog" itemprop="item"><span itemprop="name">Blog</span></a>
                         <meta itemprop="position" content="2">
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -287,7 +287,7 @@
 
             <section class="blog-post__content" itemprop="articleBody">
                 <h2 id="challenge">The Challenge: Friction Kills Adoption</h2>
-                <p>We had a problem. Developers landing on <a href="../index.html">clodo.dev</a> were intrigued by our enterprise-grade framework for <a href="cloudflare-infrastructure-myth.html">Cloudflare Workers</a>, but there was a massive gap between interest and actually trying it.</p>
+                <p>We had a problem. Developers landing on <a href="/">clodo.dev</a> were intrigued by our enterprise-grade framework for <a href="/blog/cloudflare-infrastructure-myth">Cloudflare Workers</a>, but there was a massive gap between interest and actually trying it.</p>
                 
                 <p>The traditional developer experience looked like this:</p>
                 <ol>
@@ -347,7 +347,7 @@
                 <p>Button fixed! But production wasn't updating. Commits pushed successfully, but the live site showed old code.</p>
 
                 <h3>The Culprit: Broken Git Submodule</h3>
-                <p>Our <code>clodo-starter-template</code> was tracked as a git submodule, but without a proper <code>.gitmodules</code> file. Git showed it as mode 160000 (submodule commit reference), causing <a href="../docs.html">Cloudflare Pages</a> builds to fail <strong>silently</strong>. Read our full <a href="debugging-silent-build-failures.html">debugging guide</a> for the technical details.</p>
+                <p>Our <code>clodo-starter-template</code> was tracked as a git submodule, but without a proper <code>.gitmodules</code> file. Git showed it as mode 160000 (submodule commit reference), causing <a href="/docs">Cloudflare Pages</a> builds to fail <strong>silently</strong>. Read our full <a href="/blog/debugging-silent-build-failures">debugging guide</a> for the technical details.</p>
 
                 <pre><code class="language-bash"># Diagnosis
 $ git ls-tree HEAD | grep clodo-starter-template
@@ -408,7 +408,7 @@ import { createService } from '@tamyla/clodo-framework';</code></pre>
                         </div>
                         <div class="consent">
                             <input type="checkbox" id="mid-newsletter-consent" name="consent" required>
-                            <label for="mid-newsletter-consent">I agree to receive emails and accept the <a href="../privacy.html">Privacy Policy</a>.</label>
+                            <label for="mid-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
                         </div>
                         <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
                     </form>
@@ -433,7 +433,7 @@ https://stackblitz.com/github/tamylaa/clodo-starter-template/tree/bedd21a</code>
                 <h2 id="implementation">The Final Implementation</h2>
                 <p>Here's what we shipped:</p>
 
-                <h3>1. The Button (index.html)</h3>
+                <h3>1. The Button (index)</h3>
                 <pre><code class="language-html">&lt;button type="button" 
         id="try-live-btn" 
         class="btn btn-primary"
@@ -574,7 +574,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                     </div>
                 </div>
 
-                <p>Learn more about the business impact in our <a href="instant-try-it-impact.html">30x Faster Developer Onboarding</a> analysis.</p>
+                <p>Learn more about the business impact in our <a href="/blog/instant-try-it-impact">30x Faster Developer Onboarding</a> analysis.</p>
 
                 <h2 id="takeaways">Key Takeaways</h2>
                 <ol>
@@ -624,7 +624,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                 </ul>
 
                 <h2>Try It Yourself</h2>
-                <p>The "Try Now" button is live on <a href="../index.html">clodo.dev</a>. Click it and you'll be coding with Clodo Framework in 60 seconds.</p>
+                <p>The "Try Now" button is live on <a href="/">clodo.dev</a>. Click it and you'll be coding with Clodo Framework in 60 seconds.</p>
 
                 <p>Want to build something similar for your project?</p>
                 <ul>
@@ -634,7 +634,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                 </ul>
 
                 <h2>Conclusion</h2>
-                <p>Building a friction-free <a href="../docs.html">developer experience</a> isn't just about good UX—it's about respecting developers' time. Every minute spent on setup is a minute not spent evaluating your framework.</p>
+                <p>Building a friction-free <a href="/docs">developer experience</a> isn't just about good UX—it's about respecting developers' time. Every minute spent on setup is a minute not spent evaluating your framework.</p>
 
                 <p>By investing in instant gratification, we transformed our developer onboarding from a 30-60 minute commitment to a 60-second experiment. That's a 30-60x improvement in time-to-value.</p>
 
@@ -647,19 +647,19 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
             <footer class="blog-post__footer">
                 <div class="blog-post__tags">
                     <span class="tags-label">Topics:</span>
-                    <a href="index.html?tag=developer-experience" class="tag">Developer Experience</a>
-                    <a href="index.html?tag=stackblitz" class="tag">StackBlitz</a>
-                    <a href="index.html?tag=technical" class="tag">Technical Deep-Dive</a>
-                    <a href="index.html?tag=npm" class="tag">npm</a>
-                    <a href="index.html?tag=esm" class="tag">ESM</a>
+                    <a href="/blog?tag=developer-experience" class="tag">Developer Experience</a>
+                    <a href="/blog?tag=stackblitz" class="tag">StackBlitz</a>
+                    <a href="/blog?tag=technical" class="tag">Technical Deep-Dive</a>
+                    <a href="/blog?tag=npm" class="tag">npm</a>
+                    <a href="/blog?tag=esm" class="tag">ESM</a>
                 </div>
 
                 <div class="blog-post__cta">
                     <h3>Ready to experience Clodo Framework yourself?</h3>
                     <p>Try our instant coding environment—no installation required.</p>
                     <div class="cta-buttons">
-                        <a href="../index.html" class="btn btn--primary">Try Now - 60 Seconds</a>
-                        <a href="../docs.html" class="btn btn--secondary">Read the Docs</a>
+                        <a href="/" class="btn btn--primary">Try Now - 60 Seconds</a>
+                        <a href="/docs" class="btn btn--secondary">Read the Docs</a>
                     </div>
                 </div>
 
@@ -686,11 +686,11 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
 
                 <div class="blog-post__share">
                     <p>Share this article:</p>
-                    <a href="https://twitter.com/intent/tweet?text=Building%20an%20Instant%20Try%20Now%20Experience%20with%20StackBlitz&url=https://clodo.dev/blog/stackblitz-integration-journey.html&via=clodoframework" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+                    <a href="https://twitter.com/intent/tweet?text=Building%20an%20Instant%20Try%20Now%20Experience%20with%20StackBlitz&url=https://clodo.dev/blog/stackblitz-integration-journey&via=clodoframework" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
                         Twitter
                     </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://clodo.dev/blog/stackblitz-integration-journey.html" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://clodo.dev/blog/stackblitz-integration-journey" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         LinkedIn
                     </a>
@@ -713,7 +713,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                                 <time datetime="2024-11-15">November 15, 2024</time>
                                 <span class="blog-card__tag">Impact Analysis</span>
                             </div>
-                            <h3><a href="instant-try-it-impact.html">30x Faster Developer Onboarding</a></h3>
+                            <h3><a href="/blog/instant-try-it-impact">30x Faster Developer Onboarding</a></h3>
                             <p>The business impact of reducing time-to-first-code from 30 minutes to 60 seconds.</p>
                             <span class="blog-card__reading-time">8 min read</span>
                         </div>
@@ -724,7 +724,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                                 <time datetime="2024-11-15">November 15, 2024</time>
                                 <span class="blog-card__tag">Debugging</span>
                             </div>
-                            <h3><a href="debugging-silent-build-failures.html">Debugging Silent Build Failures</a></h3>
+                            <h3><a href="/blog/debugging-silent-build-failures">Debugging Silent Build Failures</a></h3>
                             <p>When Git Submodules Fail Silently on Cloudflare Pages.</p>
                             <span class="blog-card__reading-time">10 min read</span>
                         </div>
@@ -735,7 +735,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                                 <time datetime="2024-11-22">November 22, 2024</time>
                                 <span class="blog-card__tag">Infrastructure</span>
                             </div>
-                            <h3><a href="cloudflare-infrastructure-myth.html">The Cloudflare Workers Infrastructure Myth</a></h3>
+                            <h3><a href="/blog/cloudflare-infrastructure-myth">The Cloudflare Workers Infrastructure Myth</a></h3>
                             <p>Why traditional thinking misses the architectural revolution.</p>
                             <span class="blog-card__reading-time">15 min read</span>
                         </div>
@@ -759,7 +759,7 @@ console.log('✅ Ready to code! Edit the service logic above.');</code></pre>
                     </div>
                     <div class="consent">
                         <input type="checkbox" id="footer-newsletter-consent" name="consent" required>
-                        <label for="footer-newsletter-consent">I agree to receive emails and accept the <a href="../privacy.html">Privacy Policy</a>.</label>
+                        <label for="footer-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
                     </div>
                     <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
                     <p class="form-message" aria-live="polite" role="status"></p>

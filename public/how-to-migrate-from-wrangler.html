@@ -7,9 +7,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Migrate from Wrangler to Clodo - Step-by-Step Guide</title>
+    <title>Migrate from Wrangler to Clodo — 5‑Step Automated Migration (Safe & Reversible) | Clodo</title>
     <link rel="canonical" href="https://www.clodo.dev/how-to-migrate-from-wrangler">
-    <meta name="description" content="Complete step-by-step guide to migrate from Cloudflare Wrangler CLI to Clodo Framework. Automated migration tools and best practices included.">
+    <meta name="description" content="Migrate your Cloudflare Workers from Wrangler to Clodo in 5 safe steps — automated analyzer, reversible plan, and deployment checklist.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,35 +17,29 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
-    <meta property="og:title" content="How to Migrate from Wrangler to Clodo - Complete Guide">
-    <meta property="og:description" content="Step-by-step migration guide from Cloudflare Wrangler CLI to Clodo Framework with automated tools.">
+    <meta property="og:title" content="Migrate from Wrangler to Clodo — 5-Step Automated Migration">
+    <meta property="og:description" content="Migrate your Cloudflare Workers from Wrangler to Clodo in 5 safe steps — automated analyzer and reversible plan.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://clodo.dev/how-to-migrate-from-wrangler.html">
     <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to Migrate from Wrangler to Clodo - Complete Guide">
-    <meta name="twitter:description" content="Step-by-step migration guide from Cloudflare Wrangler CLI to Clodo Framework with automated tools.">
+    <meta name="twitter:title" content="Migrate from Wrangler to Clodo — 5-Step Automated Migration">
+    <meta name="twitter:description" content="Migrate your Cloudflare Workers from Wrangler to Clodo in 5 safe steps — automated analyzer and reversible plan.">
     <meta name="twitter:image" content="https://clodo.dev/og-image.png">
     <script type="application/ld+json" nonce="N0Nc3Cl0d0">
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "How to Migrate from Wrangler CLI to Clodo Framework",
-      "description": "Complete step-by-step guide to migrate your Cloudflare Workers project from Wrangler CLI to Clodo Framework",
+      "name": "Migrate from Wrangler CLI to Clodo Framework",
+      "description": "Complete step-by-step migration with automated analyzer and a reversible migration plan.",
       "totalTime": "PT30M",
+      "tool": [
+        {"@type":"HowToTool","name":"Clodo CLI"},
+        {"@type":"HowToTool","name":"Node.js & npm"}
+      ],
       "supply": [
-        {
-          "@type": "HowToSupply",
-          "name": "Existing Wrangler project"
-        },
-        {
-          "@type": "HowToSupply",
-          "name": "Clodo Framework CLI"
-        },
-        {
-          "@type": "HowToSupply",
-          "name": "Node.js and npm"
-        }
+        {"@type":"HowToSupply","name":"Existing Wrangler project"},
+        {"@type":"HowToSupply","name":"Clodo Framework CLI"}
       ],
       "step": [
         {
@@ -81,6 +75,17 @@
       ]
     }
     </script>
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"How long does migration take?","acceptedAnswer":{"@type":"Answer","text":"Most small projects migrate in under 30 minutes using our automated analyzer."}},
+        {"@type":"Question","name":"Do I need to change config files manually?","acceptedAnswer":{"@type":"Answer","text":"Clodo converts most configuration automatically; manual checks are recommended for custom bindings."}},
+        {"@type":"Question","name":"Is migration reversible?","acceptedAnswer":{"@type":"Answer","text":"Yes — Clodo generates a reversible migration plan and provides rollback steps."}}
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -89,7 +94,7 @@
     <main>
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <div class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="/">Home</a>
             </div>
             <span class="breadcrumb-separator">/</span>
             <div class="breadcrumb-item">
@@ -102,9 +107,18 @@
                 <div class="hero-content">
                     <h1>How to Migrate from Wrangler to Clodo</h1>
                     <p>Automated migration tools and step-by-step guide to transition from Cloudflare Wrangler CLI to Clodo Framework seamlessly.</p>
+                    <div class="quick-answers">
+                        <h2>Quick Overview</h2>
+                        <p><strong>TL;DR:</strong> Migrate from Wrangler to Clodo in ~30 minutes using our automated analyzer — safe, reversible, and tested.</p>
+                        <ul>
+                            <li><strong>Time:</strong> ~30 minutes</li>
+                            <li><strong>Tools:</strong> Clodo CLI, Node.js</li>
+                            <li><strong>Rollback:</strong> Supported</li>
+                        </ul>
+                    </div>
                     <div class="hero-actions">
-                        <a href="migrate.html" class="btn btn--primary">Start Migration</a>
-                        <a href="docs.html" class="btn btn--secondary">View Migration Docs</a>
+                        <a href="/migrate" class="btn btn--primary">Start Migration</a>
+                        <a href="/docs" class="btn btn--secondary">View Migration Docs</a>
                     </div>
                 </div>
             </div>
@@ -190,7 +204,7 @@ clodo migrate analyze --source wrangler</code></pre>
                         <div class="cta-section">
                             <h3>Ready to Migrate?</h3>
                             <p>Get started with our automated migration tools today.</p>
-                            <a href="migrate.html" class="btn btn--primary">Begin Migration</a>
+                            <a href="/migrate" class="btn btn--primary">Begin Migration</a>
                         </div>
                     </article>
 
@@ -198,9 +212,9 @@ clodo migrate analyze --source wrangler</code></pre>
                         <div class="sidebar-section">
                             <h3>Migration Resources</h3>
                             <ul>
-                                <li><a href="migrate.html">Full Migration Guide</a></li>
-                                <li><a href="docs.html#migration">Migration Documentation</a></li>
-                                <li><a href="examples.html">Migration Examples</a></li>
+                                <li><a href="/migrate">Full Migration Guide</a></li>
+                                <li><a href="/docs#migration">Migration Documentation</a></li>
+                                <li><a href="/examples">Migration Examples</a></li>
                             </ul>
                         </div>
 

@@ -74,8 +74,10 @@ jobs:
 
       - name: Start built site (background)
         run: |
-          npm run serve:dist &
-          # Wait for server at http://localhost:8000
+          # Start the built site in background and capture stdout/stderr to dev-server.log
+          nohup npm run serve:dist > dev-server.log 2>&1 &
+
+          # Wait up to ~60s for the server to respond on http://localhost:8000
           for i in {1..30}; do
             if curl -sSf http://localhost:8000 >/dev/null; then
               echo "Server is up"; break
@@ -83,6 +85,16 @@ jobs:
             echo "Waiting for server... ($i)"
             sleep 2
           done
+
+          # If the server still isn't responding, print the server log and fail so the workflow
+          # artifacts step can capture the log for debugging.
+          if ! curl -sSf http://localhost:8000 >/dev/null; then
+            echo "❌ Server failed to start within timeout. Printing dev-server.log for diagnostics:"
+            echo "--- dev-server.log ---"
+            tail -n +1 dev-server.log || true
+            echo "--- end dev-server.log ---"
+            exit 1
+          fi
 
       - name: Run page loading checks
         run: npm run check-page-loading -- http://localhost:8000
