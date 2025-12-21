@@ -66,20 +66,31 @@
 }
 
 .pricing-card.featured::before {
-    content: "MOST POPULAR";
+    /* Replaced with explicit .pricing-badge element for accessibility and easier styling */
+    display: none;
+}
+
+/* Use the HTML badge element (present in pricing markup) for consistent placement */
+.pricing-card .pricing-badge,
+.pricing-card.featured .pricing-badge {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
     background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark, var(--success-color)) 100%);
     color: var(--color-white);
-    padding: 0.5rem;
+    padding: 0.375rem 0.75rem;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    z-index: 1;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    z-index: 3;
+    box-shadow: 0 6px 18px rgb(2 6 23 / 10%);
 }
+
+/* Add a bit more top padding to avoid content overlap with the badge */
+.pricing-card { padding-top: 2.5rem; } 
 
 .pricing-card.featured:hover {
     transform: translateY(-8px);
@@ -158,6 +169,20 @@
     gap: 0.625rem;
 }
 
+/* Feature items used in the pricing cards (divs) */
+.pricing-card .feature-item,
+.pricing-card .feature-highlight {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.pricing-card .feature-item:last-child,
+.pricing-card .feature-highlight:last-child {
+    border-bottom: none;
+}
 .pricing-card li::before {
     content: "✓";
     color: var(--success-color);
@@ -210,9 +235,23 @@
 }
 
 .pricing-card .btn:focus-visible {
-    outline: 2px solid var(--color-white);
-    outline-offset: 2px;
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+    box-shadow: 0 6px 20px rgb(2 6 23 / 12%);
 }
+
+.pricing-card.featured .btn--primary:focus-visible {
+    /* Featured card uses inverted CTA - ensure contrast on focus */
+    outline: 3px solid rgba(255,255,255,0.95);
+    outline-offset: 3px;
+    box-shadow: 0 8px 28px rgb(2 6 23 / 14%);
+}
+
+.pricing-card .btn--secondary:focus-visible {
+    outline: 3px solid rgba(0,0,0,0.12);
+    outline-offset: 3px;
+    box-shadow: 0 6px 14px rgb(2 6 23 / 8%);
+} 
 
 /* ===== TABLET: 768px+ ===== */
 
