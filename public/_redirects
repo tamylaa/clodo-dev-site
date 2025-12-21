@@ -75,4 +75,5 @@
 # Legal and compliance
 /terms /privacy 301
 /legal /privacy 301
-/compliance /privacy 301
+/compliance /privacy 301# SPA fallback for client-side routing
+/* /index.html 200
