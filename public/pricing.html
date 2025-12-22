@@ -632,14 +632,11 @@
                 <div class="value-header">
                     <h2>Why Developers Choose Clodo</h2>
                     <p>Purpose-built for Cloudflare Workers with enterprise-grade wrangler features out of the box</p>
+                    <a class="btn btn--secondary value-cta" href="#calculator-heading">Calculate your savings</a>
                 </div>
 
                 <div class="value-grid-wrapper">
-                    <div class="value-header">
-                        <h2>Why Developers Choose Clodo</h2>
-                        <p>Purpose-built for Cloudflare Workers with enterprise-grade wrangler features out of the box</p>
-                        <a class="btn btn--secondary value-cta" href="#calculator-heading">Calculate your savings</a>
-                    </div>
+
 
                     <ul class="value-grid" role="list">
                         <li class="value-card" role="listitem" tabindex="0">
@@ -649,11 +646,10 @@
                             </div>
                             <h3>10x Faster Development</h3>
                             <p><strong>vs building from scratch:</strong> Pre-built patterns, security, and deployment automation get you to production in weeks instead of months.</p>
-                            <div class="value-stat" aria-hidden="true">
-                                <span class="stat-number">75%</span>
-                                <span class="stat-label">Time Saved</span>
-                                <span class="visually-hidden">Estimated reduction in development time</span>
-                            </div>
+                            <dl class="value-stat" aria-labelledby="time-saved-label">
+                                <dt class="stat-number">75%</dt>
+                                <dd id="time-saved-label" class="stat-label">Estimated reduction in development time</dd>
+                            </dl>
                         </li>
 
                         <li class="value-card featured" role="listitem" tabindex="0" aria-label="Most impactful: cost savings">
@@ -663,10 +659,10 @@
                             </div>
                             <h3>80% Cost Reduction</h3>
                             <p><strong>vs AWS Lambda:</strong> Cloudflare Workers + Clodo Framework eliminates compute costs, cold starts, and expensive infrastructure.</p>
-                            <div class="value-stat">
-                                <span class="stat-number">$1,200 <span class="visually-hidden">annual savings in US dollars</span></span>
-                                <span class="stat-label">Annual Savings</span>
-                            </div>
+                            <dl class="value-stat" aria-labelledby="annual-savings-label">
+                                <dt class="stat-number">$1,200</dt>
+                                <dd id="annual-savings-label" class="stat-label">Estimated annual savings (USD)</dd>
+                            </dl>
                         </li>
 
                         <li class="value-card" role="listitem" tabindex="0">
@@ -676,12 +672,13 @@
                             </div>
                             <h3>Enterprise Security</h3>
                             <p><strong>built-in:</strong> Authentication, encryption, rate limiting, HIPAA/GDPR/SOC2 compliance features included from day one.</p>
-                            <div class="value-stat" aria-hidden="true">
-                                <span class="stat-number">100%</span>
-                                <span class="stat-label">Security Coverage</span>
-                            </div>
+                            <dl class="value-stat" aria-labelledby="security-features-label">
+                                <dt class="stat-number">Comprehensive</dt>
+                                <dd id="security-features-label" class="stat-label">Security features to help meet HIPAA/GDPR/SOC2 requirements</dd>
+                            </dl>
                         </li>
                     </ul>
+                    <p class="value-footnote" aria-hidden="false"><small>*Estimates depend on workload and configuration. Contact sales for methodology.</small></p>
                 </div>
 
             </div>

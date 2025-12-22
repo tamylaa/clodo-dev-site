@@ -245,6 +245,7 @@
 .value-card p { color: var(--text-secondary); margin: 0; }
 
 .value-stat { margin-top: 0.5rem; display:flex; align-items:baseline; gap:0.5rem; }
+.value-stat dt, .value-stat dd { margin: 0; }
 .stat-number { font-size: 1.375rem; font-weight:800; color:var(--primary-color); }
 .stat-label { font-size: 0.875rem; color:var(--text-secondary); }
 
