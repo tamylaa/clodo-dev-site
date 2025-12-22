@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync, statSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import * as crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -55,6 +56,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
+    // Load asset manifest (content-hashed filenames)
+    const manifestPath = join('dist', 'asset-manifest.json');
+    const assetManifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {};
     // Function to adjust template paths for subdirectory files
     function adjustTemplatePaths(template, prefix) {
         if (!prefix) return template;
@@ -305,8 +309,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'migrate';
                 }
                 
-                const cssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
-                console.log(`   📄 Loading CSS bundle: ${cssFile}`);
+                const origCssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
+                const cssFile = assetManifest[origCssFile] || origCssFile;
+                console.log(`   📄 Loading CSS bundle: ${cssFile} (resolved from ${origCssFile})`);
                 
                 // Only inline if critical CSS is actually small (< 50KB)
                 if (criticalCssLength < maxInlineSize) {
@@ -513,6 +518,9 @@ function copyStandaloneHtml() {
 function bundleCss() {
     console.log('🎨 Bundling CSS...');
 
+    // Asset manifest for content-hashed filenames
+    const assetManifest = {};
+
     // Critical CSS files (needed for initial render - above-the-fold only)
     const criticalCssFiles = [
         'css/critical-base.css', // Optimized variables & resets
@@ -647,10 +655,13 @@ function bundleCss() {
             }
         });
         
-        // Minify and write page-specific CSS
+        // Minify and write page-specific CSS with content hash
         const minifiedPage = minifyCss(pageBundled);
-        writeFileSync(join('dist', `styles-${pageName}.css`), minifiedPage);
-        console.log(`   📦 ${pageName} CSS: ${minifiedPage.length} bytes`);
+        const pageHash = crypto.createHash('sha256').update(minifiedPage).digest('hex').slice(0,8);
+        const pageFileName = `styles-${pageName}.${pageHash}.css`;
+        writeFileSync(join('dist', pageFileName), minifiedPage);
+        assetManifest[`styles-${pageName}.css`] = pageFileName;
+        console.log(`   📦 ${pageName} CSS: ${minifiedPage.length} bytes -> ${pageFileName}`);
     });
 
     // Bundle deferred CSS (lazy-loaded after initial render)
@@ -667,10 +678,13 @@ function bundleCss() {
             }
         });
         
-        // Minify and write deferred CSS
+        // Minify and write deferred CSS with content hash
         const minifiedDeferred = minifyCss(deferredBundled);
-        writeFileSync(join('dist', `styles-${bundleName}.css`), minifiedDeferred);
-        console.log(`   📦 ${bundleName} CSS (deferred): ${minifiedDeferred.length} bytes`);
+        const deferredHash = crypto.createHash('sha256').update(minifiedDeferred).digest('hex').slice(0,8);
+        const deferredFileName = `styles-${bundleName}.${deferredHash}.css`;
+        writeFileSync(join('dist', deferredFileName), minifiedDeferred);
+        assetManifest[`styles-${bundleName}.css`] = deferredFileName;
+        console.log(`   📦 ${bundleName} CSS (deferred): ${minifiedDeferred.length} bytes -> ${deferredFileName}`);
     });
 
     // Minify and write critical CSS
@@ -678,10 +692,17 @@ function bundleCss() {
     writeFileSync(join('dist', 'critical.css'), minifiedCritical);
     console.log(`📦 Critical CSS: ${minifiedCritical.length} bytes`);
 
-    // Minify and write common CSS (shared bundle)
+    // Minify and write common CSS (shared bundle) with content hash
     const minifiedCommon = minifyCss(commonBundled);
-    writeFileSync(join('dist', 'styles.css'), minifiedCommon);
-    console.log(`📦 Common CSS: ${minifiedCommon.length} bytes`);
+    const commonHash = crypto.createHash('sha256').update(minifiedCommon).digest('hex').slice(0,8);
+    const commonFileName = `styles.${commonHash}.css`;
+    writeFileSync(join('dist', commonFileName), minifiedCommon);
+    assetManifest['styles.css'] = commonFileName;
+    console.log(`📦 Common CSS: ${minifiedCommon.length} bytes -> ${commonFileName}`);
+
+    // Write asset manifest
+    writeFileSync(join('dist', 'asset-manifest.json'), JSON.stringify(assetManifest, null, 2));
+    console.log('📦 Wrote asset-manifest.json');
 }
 
 function minifyCss() {
