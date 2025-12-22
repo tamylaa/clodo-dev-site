@@ -42,12 +42,9 @@ jobs:
         env:
           CI: true
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clododev
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          wranglerVersion: '3'
+      - name: Deploy to Cloudflare Pages (via wrangler)
+        run: |
+          npm install -g wrangler@3
+          npx wrangler pages deploy "dist" --project-name="clododev" --commit-hash ${{ github.sha }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
