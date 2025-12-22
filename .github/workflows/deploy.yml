@@ -48,3 +48,12 @@ jobs:
           npx wrangler pages deploy "dist" --project-name="clododev" --commit-hash ${{ github.sha }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Purge Cloudflare cache for pricing CSS
+        run: |
+          ZONE_ID=$(curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" "https://api.cloudflare.com/client/v4/zones?name=clodo.dev" | jq -r '.result[0].id')
+          if [ "$ZONE_ID" = "null" ] || [ -z "$ZONE_ID" ]; then echo "Zone not found or token lacks permission"; exit 1; fi
+          echo "Purging https://www.clodo.dev/styles-pricing.css from zone $ZONE_ID"
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" --data '{"files":["https://www.clodo.dev/styles-pricing.css"]}' | jq .
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
