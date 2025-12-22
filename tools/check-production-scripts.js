@@ -45,10 +45,13 @@ https.get(url, (res) => {
       console.log('\n⚠️  FOUND: Cloudflare Web Analytics (beacon.min.js)');
     }
     if (data.includes('gtag/js')) {
-      console.log('⚠️  FOUND: Google Analytics');
+      console.log('⚠️  FOUND: Google Analytics (gtag)');
     }
     if (data.includes('analytics.js')) {
       console.log('✅ FOUND: Custom analytics.js');
+    }
+    if (data.includes('cdn-cgi/challenge-platform')) {
+      console.log('\n⚠️  FOUND: Cloudflare challenge platform script (cdn-cgi). Lighthouse reported a deprecation (StorageType.persistent) originating from this script. This is a Cloudflare-managed script — file an ops ticket if it impacts Best Practices.');
     }
   });
 }).on('error', (err) => {
