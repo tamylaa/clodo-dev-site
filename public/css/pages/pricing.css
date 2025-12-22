@@ -172,6 +172,91 @@
     font-weight: bold;
 }
 
+/* ===== VALUE PROPOSITION (WHY DEVELOPERS CHOOSE CLODO) ===== */
+.value-proposition-section {
+    padding: 3.5rem 0;
+    background: transparent;
+}
+.value-proposition-section .value-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+.value-proposition-section .value-header h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+.value-proposition-section .value-header p {
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: 0 auto;
+}
+.value-proposition-section .value-cta {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.value-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    list-style: none;
+    padding: 0;
+    margin: 2rem auto 0;
+    max-width: 1100px;
+}
+
+.value-card {
+    background: var(--bg-secondary);
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 200ms var(--transition-fast), box-shadow 200ms var(--transition-fast);
+    outline: none;
+}
+
+.value-card:focus-within,
+.value-card:focus {
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+    transform: translateY(-4px);
+}
+
+.value-card.featured {
+    transform: translateY(-6px);
+    border-color: var(--primary-color);
+    box-shadow: 0 18px 40px rgba(2,6,23,0.12);
+}
+
+.value-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+.value-icon svg { width: 40px; height: 40px; }
+
+.value-card h3 { font-size: 1.125rem; margin: 0; color: var(--text-primary); }
+.value-card p { color: var(--text-secondary); margin: 0; }
+
+.value-stat { margin-top: 0.5rem; display:flex; align-items:baseline; gap:0.5rem; }
+.stat-number { font-size: 1.375rem; font-weight:800; color:var(--primary-color); }
+.stat-label { font-size: 0.875rem; color:var(--text-secondary); }
+
+@media (min-width: 768px) {
+    .value-grid { grid-template-columns: repeat(3, 1fr); }
+    .value-card { min-height: 220px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .value-card, .value-card.featured { transition: none; transform: none; }
+}
+
 /* ===== SAVINGS CALCULATOR ===== */
 .savings-calculator {
     background: var(--bg-primary);
