@@ -261,18 +261,19 @@
     }
 
     .pricing-grid {
-        /* Tablet: 3 columns for better display */
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.25rem;
-        padding: 0 var(--spacing-lg);
+        /* Tablet: ensure 3 columns with tighter minimum width to avoid wrapping */
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+        gap: 1.5rem;
+        padding: 0 var(--spacing-md);
+        max-width: 1100px;            /* slightly narrower container to keep 3 columns on smaller tablets */
         align-items: start;          /* align items to top for consistent layout */
         justify-items: stretch;      /* ensure cards stretch to fill columns */
         grid-auto-rows: 1fr;         /* allow equal height rows */
     }
 
     .pricing-card {
-        padding: 2.5rem;
-        min-height: 420px; /* ensure cards have consistent visual height on tablet */
+        padding: 2rem;
+        min-height: 380px; /* slightly reduced on tablet to fit 3 columns comfortably */
     }
 
     .pricing-card h2 {
