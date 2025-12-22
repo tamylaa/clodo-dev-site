@@ -13,10 +13,7 @@
 .social-proof-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: 
         radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
@@ -85,10 +82,12 @@
 .stat-number {
     font-size: clamp(2.25rem, 6vw, 3.5rem);
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-background-clip: text;
     line-height: 1;
     margin-bottom: 0.5rem;
     transition: transform var(--transition-base);
@@ -322,7 +321,7 @@
     padding: 5rem 1rem;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
     border-bottom: 2px solid var(--border-color);
-    margin: 5rem 0 0 0;
+    margin: 5rem 0 0;
     overflow: hidden;
 }
 
@@ -419,7 +418,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.5rem;
 }
 
 .badge-description {
@@ -444,7 +443,7 @@
 
 /* ===== RESPONSIVE DESIGN ===== */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .social-proof-section {
         padding: 3rem 1rem;
         margin: 3rem 0;
@@ -565,7 +564,7 @@
 
     .trust-signals-section {
         padding: 3rem 1rem;
-        margin: 3rem 0 0 0;
+        margin: 3rem 0 0;
     }
 
     .trust-header h2 {
@@ -601,7 +600,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .social-proof-stats {
         gap: 1rem;
         padding: 1.5rem 1rem;
@@ -631,7 +630,7 @@
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
     white-space: nowrap;
     border-width: 0;
 }
