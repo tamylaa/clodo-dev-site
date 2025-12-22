@@ -1,7 +1,9 @@
 <!-- PERFORMANCE RESOURCE HINTS - OPTIMIZED FOR LCP -->
 <!-- DNS Prefetch for analytics only (not fonts - we use system fonts now!) -->
-<!-- Temporarily disabled Google Tag Manager prefetch for LCP optimization -->
-<!-- <link rel="dns-prefetch" href="//www.googletagmanager.com"> -->
+<!-- Preconnect to analytics origins used after LCP to reduce connection latency -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
 
 <!-- CRITICAL: Early shims to prevent TypeErrors if core modules fail to load or are cached -->
 <script>
