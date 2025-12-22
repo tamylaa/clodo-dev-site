@@ -212,13 +212,21 @@ class AccessibilityManager {
     enhanceFormAccessibility() {
         // Ensure all form inputs have labels
         document.querySelectorAll('input, textarea, select').forEach(input => {
-            // Skip hidden fields and honeypot fields (intentionally unlabeled)
-            if (input.type === 'hidden' || input.classList.contains('hp-field')) {
+            // Skip hidden fields, aria-hidden elements, and honeypot fields (intentionally unlabeled)
+            if (input.type === 'hidden' || input.hidden || input.getAttribute('aria-hidden') === 'true' || input.classList.contains('hp-field') || input.getAttribute('data-honeypot') === 'true') {
                 return;
             }
-            
+
+            // Helper for concise selector in logs
+            const getSimpleSelector = (el) => {
+                if (el.id) return `#${el.id}`;
+                if (el.name) return `${el.tagName.toLowerCase()}[name="${el.name}"]`;
+                if (el.placeholder) return `${el.tagName.toLowerCase()}[placeholder="${el.placeholder}"]`;
+                return el.tagName.toLowerCase();
+            };
+
             if (!input.id && !input.getAttribute('aria-label') && !input.getAttribute('aria-labelledby')) {
-                console.warn('Form input without label:', input);
+                console.warn('Form input without label (selector):', getSimpleSelector(input));
             }
 
             // Add required indicators

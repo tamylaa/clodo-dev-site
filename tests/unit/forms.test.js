@@ -258,7 +258,7 @@ describe('Forms Module', () => {
             form.innerHTML = `
                 <input type="text" name="username" id="username" required>
                 <input type="email" name="email" id="email" required>
-                <input type="text" name="website" class="hp-field">
+                <input type="text" name="website" class="hp-field" data-honeypot="true">
                 <button type="submit">Submit</button>
             `;
         });
