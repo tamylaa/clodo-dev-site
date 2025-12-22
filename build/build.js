@@ -48,6 +48,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const newsletterCtaBlogMidTemplate = readFileSync(join('templates', 'components', 'newsletter-cta-blog-mid.html'), 'utf8');
     const newsletterCtaBlogFooterTemplate = readFileSync(join('templates', 'components', 'newsletter-cta-blog-footer.html'), 'utf8');
 
+    // Read partial templates
+    const pricingCardsTemplate = readFileSync(join('templates', 'partials', 'pricing-cards.html'), 'utf8');
+
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
@@ -144,6 +147,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             const adjustedRelatedContentFaqTemplate = adjustTemplatePaths(relatedContentFaqTemplate, pathPrefix);
             const adjustedRelatedContentComparisonTemplate = adjustTemplatePaths(relatedContentComparisonTemplate, pathPrefix);
             const adjustedRelatedContentWorkersTemplate = adjustTemplatePaths(relatedContentWorkersTemplate, pathPrefix);
+            const adjustedPricingCardsTemplate = adjustTemplatePaths(pricingCardsTemplate, pathPrefix);
 
             // Create adjusted component templates for this file's directory level
             const adjustedNewsletterFormFooterTemplate = adjustTemplatePaths(newsletterFormFooterTemplate, pathPrefix);
@@ -235,6 +239,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
 
             // Process component SSI includes
             content = content.replace(/<!--#include file="components\/newsletter-form-footer\.html" -->/g, adjustedNewsletterFormFooterTemplate);
@@ -536,6 +542,7 @@ function bundleCss() {
         'pricing': [
             'css/pages/pricing/hero.css',
             'css/pages/pricing/cards.css',
+            'css/pages/pricing/social-proof.css',
             'css/pages/pricing/contact-form.css'
         ],
         'blog': [
