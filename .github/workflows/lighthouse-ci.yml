@@ -1,0 +1,40 @@
+name: Lighthouse Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    paths: [ "**/*.html", "public/**", "build/**", "src/**", "public/js/**", "public/css/**" ]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build --if-present
+
+      - name: Start http-server (background)
+        run: npx http-server ./dist -p 3000 & sleep 2
+
+      - name: Run Lighthouse audit (local)
+        run: node ./tools/run-lighthouse-audit-ci.mjs --url http://localhost:3000/ --outputPath ./lighthouse-results/ci-local.json
+
+      - name: Fail on Best Practices or Console Errors
+        run: node ./tools/check-lighthouse-ci.mjs ./lighthouse-results/ci-local.json
+
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report-local
+          path: ./lighthouse-results/ci-local.json
