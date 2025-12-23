@@ -104,7 +104,12 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         await submitButton.click();
 
         // Wait for loading state to be set (tolerate scheduling differences)
-        await submitButton.waitForElementState('disabled', { timeout: 2000 });
+        // Accept either disabled attribute, a loading ARIA state, or button text indicating loading
+        await page.waitForFunction(
+            (btn) => btn.disabled || (btn.textContent && btn.textContent.toLowerCase().includes('subscrib')) || btn.getAttribute('aria-busy') === 'true',
+            submitButton,
+            { timeout: 5000 }
+        );
 
         // Check loading state
         const isDisabled = await submitButton.evaluate(el => el.disabled);

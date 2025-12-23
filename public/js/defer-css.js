@@ -1,15 +1,19 @@
 /**
  * Defer CSS Loading
  * Loads below-the-fold CSS after initial page render to improve LCP
+ * Uses asset manifest to handle content-hashed filenames
  */
 
 (function() {
     'use strict';
 
-    // CSS files to load after initial render
+    // Asset manifest with hashed filenames (injected during build)
+    const assetManifest = window.__assetManifest__ || {};
+
+    // CSS files to load after initial render (maps to asset manifest keys)
     const deferredStyles = {
-        'index': '/styles-index-deferred.css',  // Homepage below-fold sections
-        'common': '/css/components-deferred.css'  // Common interactive styles (hover, focus, animations)
+        'index': assetManifest['styles-index-deferred.css'] ? '/' + assetManifest['styles-index-deferred.css'] : '/styles-index-deferred.css',  // Homepage below-fold sections
+        'common': assetManifest['css/components-deferred.css'] ? '/' + assetManifest['css/components-deferred.css'] : '/css/components-deferred.css'  // Common interactive styles
     };
 
     /**

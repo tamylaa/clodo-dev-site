@@ -16,7 +16,6 @@
     <meta name="bingbot" content="index, follow">
     <link rel="canonical" href="https://www.clodo.dev/community/welcome">
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../css/pages/community.css">
     <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="../site.webmanifest">
     <meta name="theme-color" content="#0b1220">
@@ -55,8 +54,12 @@
     </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Announcement Banner Container -->
+    <div class="announcement-container"></div>
+    <header><!--#include file="../../templates/nav-main.html" --></header>
 
-    <main>
+    <main id="main-content">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <div class="breadcrumb-item">
                 <a href="/">Home</a>
@@ -357,7 +360,7 @@ const optimizedHandler = async (request) => {
                     <h3>Direct Support</h3>
                     <ul>
                         <li><strong>Enterprise:</strong> Contact your account manager</li>
-                        <li><strong>General:</strong> <a href="mailto:hello@clodo.dev">hello@clodo.dev</a></li>
+                        <li><strong>General:</strong> <a href="mailto:product@clodo.dev">product@clodo.dev</a></li>
                         <li><strong>Security:</strong> <a href="mailto:security@clodo.dev">security@clodo.dev</a></li>
                     </ul>
                 </div>
@@ -382,8 +385,6 @@ const optimizedHandler = async (request) => {
     </main><!--#include file="../../templates/footer.html" -->
 
 <script src="../script.js" nonce="N0Nc3Cl0d0" defer></script>
-
-<!--#include file="../../templates/nav-main.html" -->
 
 </body>
 </html>

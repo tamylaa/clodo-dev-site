@@ -42,16 +42,6 @@ jobs:
         env:
           CI: true
 
-      - name: Add cache-busting query to pricing CSS references
-        run: |
-          echo "Adding ?v=${GITHUB_SHA} to /styles-pricing.css references in dist HTML files"
-          FILES=$(grep -rl '/styles-pricing.css' dist || true)
-          if [ -n "$FILES" ]; then
-            echo "Files to update: $FILES"
-            sed -i "s|/styles-pricing.css|/styles-pricing.css?v=${GITHUB_SHA}|g" $FILES || true
-          else
-            echo "No files reference /styles-pricing.css"
-          fi
 
       - name: Deploy to Cloudflare Pages (via wrangler)
         run: |

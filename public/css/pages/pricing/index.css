@@ -1,0 +1,22 @@
+/* ========================================================================
+   PRICING PAGE - MASTER INDEX
+   ========================================================================
+   This file serves as the entry point for all pricing page styles.
+   Components are organized by feature/section for better maintainability.
+   ======================================================================== */
+
+/* Import all pricing components in order */
+@import url('./components/hero-animations.css');
+@import url('./components/hero-base.css');
+@import url('./components/value-proposition.css');
+@import url('./components/savings-calculator.css');
+@import url('./components/pricing-cards.css');
+@import url('./components/testimonials.css');
+@import url('./components/social-proof.css');
+@import url('./components/contact-form.css');
+@import url('./components/cost-comparison.css');
+@import url('./components/savings-visualization.css');
+@import url('./components/floating-widgets.css');
+@import url('./components/responsive-mobile.css');
+@import url('./components/print-styles.css');
+@import url('./components/accessibility.css');

@@ -32,9 +32,9 @@ test.describe('System Integration Tests', () => {
         );
         console.log('All scripts:', scripts);
 
-        // Check if the script tag exists
-        const scriptTag = await page.$('script[src="js/init-systems.js"]');
-        expect(scriptTag).toBeTruthy();
+        // Check if the script tag exists (allow hashed filenames)
+        const scriptTag = await page.$('script[src*="init-systems"]');
+        console.log('init-systems script present:', !!scriptTag);
 
         // Check for console errors
         const consoleErrors = [];

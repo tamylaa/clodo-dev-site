@@ -10,14 +10,15 @@ async function main() {
   if (!pageRes.ok) throw new Error(`Failed to fetch page: ${pageRes.status}`);
   const html = await pageRes.text();
 
-  // Find the first styles-pricing.css link
-  const match = html.match(/href=["']([^"']*styles-pricing\.css[^"']*)["']/i);
-  if (!match) throw new Error('No styles-pricing.css link found in page HTML');
+  // Find the first styles-pricing link (supports hashed filename like styles-pricing.<hash>.css)
+  const match = html.match(/href=["']([^"']*styles-pricing(?:\.[0-9a-f]{6,})?\.css[^"']*)["']/i);
+  if (!match) throw new Error('No styles-pricing CSS link found in page HTML');
   const cssUrl = match[1].startsWith('http') ? match[1] : new URL(match[1], url).toString();
   console.log(`Found CSS link: ${cssUrl}`);
 
-  if (!/styles-pricing\.css\?v=/i.test(cssUrl)) {
-    throw new Error('CSS link does not include cache-busting query param (?v=), deploy may not have applied cache-busting');
+  // Accept either a cache-busting query param or a content-hashed filename
+  if (!/styles-pricing\.css\?v=/i.test(cssUrl) && !/styles-pricing\.[0-9a-f]{6,}\.css/i.test(cssUrl)) {
+    throw new Error('CSS link does not include cache-busting query param (?v=) or a content-hashed filename, deploy may not have applied cache-busting');
   }
 
   // Fetch the CSS

@@ -58,6 +58,8 @@
     --bg-secondary: var(--gray-100);
     --bg-tertiary: var(--gray-200);
     --bg-accent: var(--primary-50);
+    --bg-dark: var(--gray-800);
+    --bg-darker: var(--gray-900);
     --border-color: var(--gray-200);
 
     /* Shadows */
