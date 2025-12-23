@@ -116,22 +116,39 @@ function showMessage(form, message, type = 'success') {
  * @param {boolean} isLoading - Loading state
  */
 function setLoadingState(form, isLoading) {
-    const submitBtn = form.querySelector('button[type="submit"]');
+    // Support both <button type="submit"> and <input type="submit">
+    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
     const emailInput = form.querySelector('input[type="email"]');
     const consentCheckbox = form.querySelector('input[type="checkbox"]');
     
     if (submitBtn) {
+        // For <input>, disabled and aria-busy behave similarly; text content is in value
         submitBtn.disabled = isLoading;
+        // Ensure attribute reflects property for environments that read attributes
+        if (isLoading) {
+            submitBtn.setAttribute('disabled', 'disabled');
+        } else {
+            submitBtn.removeAttribute('disabled');
+        }
         submitBtn.setAttribute('aria-busy', isLoading.toString());
         
         if (isLoading) {
-            submitBtn.dataset.originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Subscribing...';
+            if (submitBtn.tagName.toLowerCase() === 'button') {
+                submitBtn.dataset.originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Subscribing...';
+            } else if (submitBtn.tagName.toLowerCase() === 'input') {
+                submitBtn.dataset.originalText = submitBtn.value;
+                submitBtn.value = 'Subscribing...';
+            }
             submitBtn.classList.add('btn-loading');
         } else {
             submitBtn.classList.remove('btn-loading');
             if (submitBtn.dataset.originalText) {
-                submitBtn.textContent = submitBtn.dataset.originalText;
+                if (submitBtn.tagName.toLowerCase() === 'button') {
+                    submitBtn.textContent = submitBtn.dataset.originalText;
+                } else if (submitBtn.tagName.toLowerCase() === 'input') {
+                    submitBtn.value = submitBtn.dataset.originalText;
+                }
             }
         }
     }

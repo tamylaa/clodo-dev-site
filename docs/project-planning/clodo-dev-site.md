@@ -454,7 +454,7 @@ Roadmap:
 - Community contributions
 
 Contact:
-- Email: hello@clodo.dev
+- Email: product@clodo.dev
 - GitHub: github.com/tamylaa/clodo-framework
 - Discord: (link)
 - Twitter: @clodoframework
@@ -583,7 +583,7 @@ export default {
       
       // Send email
       await EmailService.send({
-        to: 'hello@clodo.dev',
+        to: 'product@clodo.dev',
         from: data.email,
         subject: `Contact Form: ${data.subject}`,
         body: data.message
@@ -785,7 +785,7 @@ NEW (Month 2):
 ### **Week 2 Success Criteria**
 
 - ✅ Contact form working (test submission)
-- ✅ Emails delivered to hello@clodo.dev
+- ✅ Emails delivered to product@clodo.dev
 - ✅ Framework api-gateway template validated
 - ✅ Multi-domain routing works
 - ✅ No CORS issues

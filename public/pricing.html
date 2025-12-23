@@ -580,8 +580,8 @@
         <section class="hero-section pricing-hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Build Production-Ready Cloudflare Workers Applications</h1>
-                    <p class="hero-subtitle">Start free with our open-source framework. Add expert consulting to accelerate development. Scale with enterprise support.</p>
+                    <h1>Build Production-Ready Cloudflare Workers for Free</h1>
+                    <p class="hero-subtitle">Start Serverless Application with our open-source clodo framework. Accelerate development with Enterprise Wrangler Automation</p>
                     
                     <div class="hero-paths" role="presentation">
                         <div class="path-card" aria-label="Start with the free tier: Open-source framework for learning and prototyping">
@@ -626,61 +626,81 @@
             </div>
         </section>
 
-        <!-- Value Proposition Section -->
-        <section class="value-proposition-section">
+        <!-- Value Proposition Section: Core Reasons to Choose Clodo -->
+        <section class="value-proposition-section" id="value-proposition" aria-labelledby="value-prop-heading">
             <div class="container">
-                <div class="value-header">
-                    <h2>Why Developers Choose Clodo</h2>
-                    <p>Purpose-built for Cloudflare Workers with enterprise-grade wrangler features out of the box</p>
-                    <a class="btn btn--secondary value-cta" href="#calculator-heading">Calculate your savings</a>
-                </div>
+                <header class="value-header">
+                    <h2 id="value-prop-heading" class="section-title">Why Developers Choose Clodo</h2>
+                    <p class="section-subtitle">Purpose-built for Cloudflare Workers with enterprise-grade features out of the box</p>
+                </header>
 
                 <div class="value-grid-wrapper">
-
-
                     <ul class="value-grid" role="list">
-                        <li class="value-card" role="listitem" tabindex="0">
-                            <div class="value-icon" aria-hidden="true">
-                                <!-- Lightning SVG -->
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2L3 14h7l-1 8L21 10h-7l-1-8z" fill="currentColor"/></svg>
+                        <!-- Value Proposition Card 1: Development Speed -->
+                        <li class="value-card value-card--speed" role="listitem">
+                            <header class="value-card-header">
+                                <div class="value-icon" aria-hidden="true">
+                                    <!-- Lightning Icon: Speed/Fast Development -->
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2L3 14h7l-1 8L21 10h-7l-1-8z" fill="currentColor"/></svg>
+                                </div>
+                                <h3 class="value-card-title">10x Faster Development</h3>
+                            </header>
+                            <div class="value-card-content">
+                                <p class="value-card-description">Pre-built patterns, security, and deployment automation get you to production in <strong>weeks instead of months</strong>.</p>
+                                <div class="value-stat value-stat--speed" aria-label="Development time savings">
+                                    <div class="stat-number" aria-label="percentage value">75%</div>
+                                    <div class="stat-label">Estimated reduction in development time</div>
+                                </div>
                             </div>
-                            <h3>10x Faster Development</h3>
-                            <p><strong>vs building from scratch:</strong> Pre-built patterns, security, and deployment automation get you to production in weeks instead of months.</p>
-                            <dl class="value-stat" aria-labelledby="time-saved-label">
-                                <dt class="stat-number">75%</dt>
-                                <dd id="time-saved-label" class="stat-label">Estimated reduction in development time</dd>
-                            </dl>
+                            <span class="value-comparison">vs building from scratch</span>
                         </li>
 
-                        <li class="value-card featured" role="listitem" tabindex="0" aria-label="Most impactful: cost savings">
-                            <div class="value-icon" aria-hidden="true">
-                                <!-- Money SVG -->
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 1v22M5 7h14M5 17h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <!-- Value Proposition Card 2: Cost Savings (Featured) -->
+                        <li class="value-card value-card--cost featured" role="listitem" aria-label="Featured: Largest cost savings benefit">
+                            <header class="value-card-header">
+                                <div class="value-icon" aria-hidden="true">
+                                    <!-- Dollar Icon: Cost Savings -->
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 1v22M5 7h14M5 17h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                <h3 class="value-card-title">80% Cost Reduction</h3>
+                            </header>
+                            <div class="value-card-content">
+                                <p class="value-card-description">Cloudflare Workers + Clodo Framework eliminates <strong>compute costs, cold starts, and expensive infrastructure</strong>.</p>
+                                <div class="value-stat value-stat--cost" aria-label="Annual cost savings">
+                                    <div class="stat-number" aria-label="dollar value">$1,200</div>
+                                    <div class="stat-label">Estimated annual savings (USD)</div>
+                                </div>
                             </div>
-                            <h3>80% Cost Reduction</h3>
-                            <p><strong>vs AWS Lambda:</strong> Cloudflare Workers + Clodo Framework eliminates compute costs, cold starts, and expensive infrastructure.</p>
-                            <dl class="value-stat" aria-labelledby="annual-savings-label">
-                                <dt class="stat-number">$1,200</dt>
-                                <dd id="annual-savings-label" class="stat-label">Estimated annual savings (USD)</dd>
-                            </dl>
+                            <span class="value-comparison">vs AWS Lambda</span>
                         </li>
 
-                        <li class="value-card" role="listitem" tabindex="0">
-                            <div class="value-icon" aria-hidden="true">
-                                <!-- Shield SVG -->
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l7 4v6c0 5-3.8 9-7 10-3.2-1-7-5-7-10V6l7-4z" fill="currentColor"/></svg>
+                        <!-- Value Proposition Card 3: Enterprise Security -->
+                        <li class="value-card value-card--security" role="listitem">
+                            <header class="value-card-header">
+                                <div class="value-icon" aria-hidden="true">
+                                    <!-- Shield Icon: Security -->
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l7 4v6c0 5-3.8 9-7 10-3.2-1-7-5-7-10V6l7-4z" fill="currentColor"/></svg>
+                                </div>
+                                <h3 class="value-card-title">Enterprise Security</h3>
+                            </header>
+                            <div class="value-card-content">
+                                <p class="value-card-description">Authentication, encryption, rate limiting, and <strong>HIPAA/GDPR/SOC2 compliance features included from day one</strong>.</p>
+                                <div class="value-stat value-stat--security" aria-label="Security features">
+                                    <div class="stat-number" aria-label="completeness">Full</div>
+                                    <div class="stat-label">Security features to help meet HIPAA/GDPR/SOC2 requirements</div>
+                                </div>
                             </div>
-                            <h3>Enterprise Security</h3>
-                            <p><strong>built-in:</strong> Authentication, encryption, rate limiting, HIPAA/GDPR/SOC2 compliance features included from day one.</p>
-                            <dl class="value-stat" aria-labelledby="security-features-label">
-                                <dt class="stat-number">Comprehensive</dt>
-                                <dd id="security-features-label" class="stat-label">Security features to help meet HIPAA/GDPR/SOC2 requirements</dd>
-                            </dl>
+                            <span class="value-comparison">built-in</span>
                         </li>
                     </ul>
-                    <p class="value-footnote" aria-hidden="false"><small>*Estimates depend on workload and configuration. Contact sales for methodology.</small></p>
-                </div>
 
+                    <footer class="value-footer">
+                        <p class="value-footnote">
+                            <small>*Estimates depend on workload and configuration. Contact sales for detailed methodology.</small>
+                        </p>
+                        <a class="btn btn--primary value-cta" href="#calculator-heading">Calculate your savings →</a>
+                    </footer>
+                </div>
             </div>
         </section>
 
@@ -1063,36 +1083,7 @@
         </section>
     </main>
 
-    <!-- Floating Contact Button & Live Chat Widget -->
-    <div class="floating-contact">
-        <button class="floating-contact-btn pulse" id="floating-contact-btn" aria-label="Open live chat">
-            💬
-        </button>
-    </div>
-
-    <!-- Live Chat Widget -->
-    <div id="live-chat-widget" class="live-chat-widget">
-        <div class="live-chat-header">
-            <div class="live-chat-title">Clodo Support</div>
-            <div class="live-chat-status">
-                <span class="status-dot"></span>
-                Online now
-            </div>
-            <button class="live-chat-close" aria-label="Close chat">×</button>
-        </div>
-        <div class="live-chat-messages">
-            <div class="chat-message bot">
-                <div class="chat-avatar">👨‍💼</div>
-                <div class="chat-bubble">Hi! I'm here to help you choose the right Clodo solution. What type of project are you working on?</div>
-            </div>
-        </div>
-        <div class="live-chat-input">
-            <div class="chat-input-group">
-                <input type="text" class="chat-input" placeholder="Type your message..." aria-label="Type your message">
-                <button class="chat-send-btn" aria-label="Send message">📤</button>
-            </div>
-        </div>
-    </div><!--#include file="../templates/footer.html" -->
+    <!--#include file="../templates/footer.html" -->
 
 
     <!-- Defer JavaScript - load after LCP for better performance -->

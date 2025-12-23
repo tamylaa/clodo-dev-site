@@ -162,7 +162,7 @@ clodo preflight --security
 
 - **Security Team**: security@clodo.dev
 - **Enterprise Support**: enterprise@clodo.dev
-- **General Inquiries**: hello@clodo.dev
+- **General Inquiries**: product@clodo.dev
 
 ## Recognition
 
