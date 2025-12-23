@@ -26,7 +26,7 @@ export async function onRequestPost(context) {
         }
 
         // Forward beacon to Cloudflare with retry logic
-        const beaconResponse = await sendBeaconWithRetry(body.token, body.data);
+        const _beaconResponse = await sendBeaconWithRetry(body.token, body.data);
         
         // Return success response to client (doesn't matter if beacon succeeds server-side)
         return new Response(JSON.stringify({ success: true }), {
@@ -94,7 +94,7 @@ async function sendBeaconWithRetry(token, data, retries = 3) {
     }
 }
 
-export async function onRequestGet(context) {
+export async function onRequestGet(_context) {
     return new Response('Analytics proxy endpoint - POST only', {
         status: 405,
         headers: { 'Allow': 'POST' }

@@ -134,7 +134,7 @@ function setLoadingState(form, isLoading) {
     });
 
     // Set a form-level indication (useful for tests and CSS hooks)
-    try { form.setAttribute('data-loading', isLoading ? 'true' : 'false'); } catch (e) {}
+    try { form.setAttribute('data-loading', isLoading ? 'true' : 'false'); } catch (e) { /* ignore */ }
 
     if (submitBtn) {
         // For <input>, disabled and aria-busy behave similarly; text content is in value

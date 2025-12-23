@@ -14,7 +14,7 @@ if (!API_TOKEN || !SITE_NAME) {
   process.exit(1);
 }
 
-function makeRequest(method, path, data = null) {
+function _makeRequest(method, path, data = null) {
   return new Promise((resolve, reject) => {
     const options = {
       hostname: 'api.cloudflare.com',
