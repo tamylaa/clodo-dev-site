@@ -120,18 +120,24 @@ function setLoadingState(form, isLoading) {
     const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
     const emailInput = form.querySelector('input[type="email"]');
     const consentCheckbox = form.querySelector('input[type="checkbox"]');
-    
+
+    // Defensive: ensure all submit-like controls in the form are updated (handles dynamic replacements)
+    const submitControls = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+    submitControls.forEach(btn => {
+        try {
+            btn.disabled = isLoading;
+            if (isLoading) btn.setAttribute('disabled', 'disabled'); else btn.removeAttribute('disabled');
+            btn.setAttribute('aria-busy', isLoading.toString());
+        } catch (e) {
+            // ignore stale nodes
+        }
+    });
+
+    // Set a form-level indication (useful for tests and CSS hooks)
+    try { form.setAttribute('data-loading', isLoading ? 'true' : 'false'); } catch (e) {}
+
     if (submitBtn) {
         // For <input>, disabled and aria-busy behave similarly; text content is in value
-        submitBtn.disabled = isLoading;
-        // Ensure attribute reflects property for environments that read attributes
-        if (isLoading) {
-            submitBtn.setAttribute('disabled', 'disabled');
-        } else {
-            submitBtn.removeAttribute('disabled');
-        }
-        submitBtn.setAttribute('aria-busy', isLoading.toString());
-        
         if (isLoading) {
             if (submitBtn.tagName.toLowerCase() === 'button') {
                 submitBtn.dataset.originalText = submitBtn.textContent;
