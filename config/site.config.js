@@ -281,5 +281,3 @@ if (siteConfig.schema?.organization) {
 }
 
 export default siteConfig;
-
-export { config };
