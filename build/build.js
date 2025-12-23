@@ -57,6 +57,10 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
 
     // Read partial templates
     const pricingCardsTemplate = readFileSync(join('templates', 'partials', 'pricing-cards.html'), 'utf8');
+    
+    // Read schema template (for base Organization/WebSite schema)
+    const schemaBasePath = join('templates', 'partials', 'schema-base.html');
+    const schemaBaseTemplate = existsSync(schemaBasePath) ? readFileSync(schemaBasePath, 'utf8') : '';
 
     // Read critical CSS for inlining
     const criticalCssPath = join('dist', 'critical.css');
@@ -221,8 +225,16 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             }
             if (content.includes('</head>')) {
                 const headerStyleTag = headerCriticalCss ? `<style>${headerCriticalCss}</style>\n    ` : '';
-                content = content.replace('</head>', `    ${headerStyleTag}${themeScriptTemplate}\n</head>`);
-                console.log(`   ✅ Theme script (and header critical CSS) injected in ${file}`);
+                
+                // Inject base schema.org only if page doesn't already have schema data
+                // This provides default Organization/WebSite schema for new pages
+                const hasExistingSchema = content.includes('application/ld+json');
+                const schemaTag = (!hasExistingSchema && schemaBaseTemplate) 
+                    ? `\n    ${schemaBaseTemplate}\n    ` 
+                    : '';
+                
+                content = content.replace('</head>', `    ${headerStyleTag}${schemaTag}${themeScriptTemplate}\n</head>`);
+                console.log(`   ✅ Theme script (and header critical CSS) injected in ${file}${schemaTag ? ' + base schema' : ''}`);
             } else {
                 console.warn(`   ⚠️  No </head> tag found in ${file} - theme script NOT injected!`);
             }

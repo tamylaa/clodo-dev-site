@@ -1,0 +1,45 @@
+<!-- Base Schema.org - Organization & WebSite -->
+<!-- Auto-populated from site.config.js during build -->
+<!-- Include: <!--#include file="partials/schema-base.html" --> -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "{{siteUrl}}/#organization",
+            "name": "{{siteName}}",
+            "url": "{{siteUrl}}",
+            "description": "{{siteDescription}}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{siteUrl}}{{branding.logo.path}}",
+                "width": 512,
+                "height": 512
+            },
+            "sameAs": [
+                "{{social.github.url}}",
+                "{{social.twitter.url}}",
+                "{{social.linkedin.url}}"
+            ],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "{{contact.email.general}}",
+                "contactType": "customer support"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "{{siteUrl}}/#website",
+            "url": "{{siteUrl}}",
+            "name": "{{siteName}}",
+            "description": "{{siteDescription}}",
+            "publisher": {
+                "@id": "{{siteUrl}}/#organization"
+            },
+            "inLanguage": "{{language}}"
+        }
+    ]
+}
+</script>
