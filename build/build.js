@@ -4,16 +4,22 @@ import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
+import loadConfig from './config-loader.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Global config - will be populated by loadConfig()
+let CONFIG = null;
+
 /**
- * Simple build script for Clodo Framework website
+ * Build script for website
  * Minifies CSS and JS, copies assets to dist folder
+ * Configuration-driven for easy customization
  */
 
-console.log('🚀 Building Clodo Framework website...');
+const siteName = () => CONFIG?.site?.site?.name || 'Website';
+console.log('🚀 Building website...');
 
 // Clean dist directory
 function cleanDist() {
@@ -289,35 +295,13 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
                 const criticalCssLength = criticalCss.length;
-                const maxInlineSize = 50000; // 50KB max for inlining
+                const maxInlineSize = CONFIG?.pages?.optimization?.criticalCss?.maxInlineSize || 50000; // 50KB max for inlining
                 
                 console.log(`   📊 CSS Size Check: critical=${(criticalCssLength / 1024).toFixed(1)}KB (max=${(maxInlineSize / 1024).toFixed(0)}KB)`);
                 
-                // Determine which page-specific CSS bundle to load
-                let pageBundle = 'common'; // Default to common CSS
-                const fileName = file.split(/[\\/]/).pop().replace('.html', '');
-                
-                // Map file to page bundle (check full path for subdirectories)
-                // Use regex to handle both forward slashes (Unix) and backslashes (Windows)
-                if (file.match(/blog[\\/]/)) {
-                    pageBundle = 'blog';
-                } else if (file.match(/case-studies[\\/]/)) {
-                    pageBundle = 'case-studies';
-                } else if (file.match(/community[\\/]/)) {
-                    pageBundle = 'community';
-                } else if (fileName === 'index') {
-                    pageBundle = 'index';
-                } else if (fileName.includes('pricing')) {
-                    pageBundle = 'pricing';
-                } else if (fileName.includes('subscribe')) {
-                    pageBundle = 'subscribe';
-                } else if (fileName.includes('product')) {
-                    pageBundle = 'product';
-                } else if (fileName.includes('about')) {
-                    pageBundle = 'about';
-                } else if (fileName.includes('migrate')) {
-                    pageBundle = 'migrate';
-                }
+                // Determine which page-specific CSS bundle to load using config
+                // CONFIG.getPageBundle uses rules from pages.config.json
+                const pageBundle = CONFIG?.getPageBundle ? CONFIG.getPageBundle(file) : 'common';
                 
                 const origCssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
                 const cssFile = assetManifest[origCssFile] || origCssFile;
@@ -492,6 +476,15 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 console.log(`   ℹ️  Header (nav) injected into ${file} (final fallback before write)`);
             }
 
+            // Process template variables ({{siteName}}, {{baseUrl}}, etc.)
+            // This replaces placeholders with values from site.config.js
+            if (CONFIG?.processTemplateVariables) {
+                content = CONFIG.processTemplateVariables(content, {
+                    currentPage: file,
+                    currentYear: new Date().getFullYear()
+                });
+            }
+
             writeFileSync(destPath, content);
         }
     });
@@ -566,6 +559,7 @@ function bundleCss() {
     const assetManifest = {};
 
     // Critical CSS files (needed for initial render - above-the-fold only)
+    // These are hardcoded as they are structural, not content-dependent
     const criticalCssFiles = [
         'css/critical-base.css', // Optimized variables & resets
         'css/global/header.css', // Header/navigation (always visible)
@@ -573,16 +567,24 @@ function bundleCss() {
     ];
 
     // Common CSS (shared across all pages, loaded asynchronously)
-    const commonCssFiles = [
+    // Can be overridden via config/pages.config.json commonCss.files
+    const defaultCommonCssFiles = [
         'css/base.css',        // Full base styles (overrides critical-base)
         'css/layout.css',      // Grid, containers, basic layout
         'css/components/buttons.css',  // Button component
         'css/components-common.css',  // Truly reusable components (buttons, cards, forms, icons, alerts, badges, loading)
         'css/global/footer.css'  // Footer styling (loaded with common CSS - below-the-fold)
     ];
+    
+    // Use config-driven common CSS if available, otherwise use defaults
+    const commonCssFiles = CONFIG?.getCommonCssFiles?.()?.length > 0 
+        ? CONFIG.getCommonCssFiles() 
+        : defaultCommonCssFiles;
 
-    // Page-specific CSS bundles (reduces unused CSS by 60%+)
-    const pageBundles = {
+    // Page-specific CSS bundles from config (reduces unused CSS by 60%+)
+    // Falls back to hardcoded bundles if config not available
+    const configPageBundles = CONFIG?.pages?.pageBundles || {};
+    const defaultPageBundles = {
         'index': [
             'css/pages/index/hero.css',
             'css/hero-decorations.css',
@@ -621,9 +623,18 @@ function bundleCss() {
             'css/pages/community.css'
         ]
     };
+    
+    // Merge config bundles with defaults (config takes precedence)
+    const pageBundles = { ...defaultPageBundles };
+    for (const [bundleName, bundleConfig] of Object.entries(configPageBundles)) {
+        if (bundleConfig?.css) {
+            pageBundles[bundleName] = bundleConfig.css;
+        }
+    }
 
     // Deferred CSS bundles - loaded after initial page render
-    const deferredBundles = {
+    // Build from config if available
+    const defaultDeferredBundles = {
         'index-deferred': [
             'css/components-page-specific.css',              // Below-the-fold homepage sections
             'css/pages/index/benefits.css',                  // Benefits section
@@ -636,6 +647,14 @@ function bundleCss() {
             'css/pages/index.css'                           // Additional index page styles
         ]
     };
+    
+    // Build deferred bundles from config
+    const deferredBundles = { ...defaultDeferredBundles };
+    for (const [bundleName, bundleConfig] of Object.entries(configPageBundles)) {
+        if (bundleConfig?.deferred?.length > 0) {
+            deferredBundles[`${bundleName}-deferred`] = bundleConfig.deferred;
+        }
+    }
 
     // Proper CSS minification function that preserves @keyframes and CSS syntax
     const minifyCss = (css) => {
@@ -985,7 +1004,8 @@ function generateBuildInfo() {
     const buildInfo = {
         buildTime: new Date().toISOString(),
         version: packageJson.version,
-        commit: process.env.GITHUB_SHA || 'local-build'
+        commit: process.env.GITHUB_SHA || 'local-build',
+        siteName: CONFIG?.site?.site?.name || 'Unknown'
     };
 
     writeFileSync(
@@ -994,44 +1014,51 @@ function generateBuildInfo() {
     );
 }
 
-// Main build process
-try {
-    cleanDist();
-    const cssManifest = bundleCss();  // Must run before copyHtml since HTML processing needs critical.css, returns CSS asset manifest
-    const jsManifest = copyJs();      // Extract JS manifest early so it can be passed to copyHtml
-    
-    // Merge CSS and JS manifests into single asset manifest
-    const assetManifest = { ...cssManifest, ...jsManifest };
-    
-    // Pass merged manifest to copyHtml so it can inject hashed filenames
-    copyHtml(assetManifest);
-    
-    // Write final combined asset manifest
-    writeFileSync(
-        join('dist', 'asset-manifest.json'),
-        JSON.stringify(assetManifest, null, 2)
-    );
-    console.log('📦 Asset manifest written with', Object.keys(assetManifest).length, 'entries');
-    
-    copyStandaloneHtml();
-    minifyCss();
-    copyJsConfigs();
-    copyAssets();
-    generateBuildInfo();
+// Main build process - wrapped in async IIFE to support config loading
+(async () => {
+    try {
+        // Load configuration first
+        CONFIG = await loadConfig();
+        console.log(`🚀 Building ${CONFIG?.site?.site?.name || 'website'}...`);
+        
+        cleanDist();
+        const cssManifest = bundleCss();  // Must run before copyHtml since HTML processing needs critical.css, returns CSS asset manifest
+        const jsManifest = copyJs();      // Extract JS manifest early so it can be passed to copyHtml
+        
+        // Merge CSS and JS manifests into single asset manifest
+        const assetManifest = { ...cssManifest, ...jsManifest };
+        
+        // Pass merged manifest to copyHtml so it can inject hashed filenames
+        copyHtml(assetManifest);
+        
+        // Write final combined asset manifest
+        writeFileSync(
+            join('dist', 'asset-manifest.json'),
+            JSON.stringify(assetManifest, null, 2)
+        );
+        console.log('📦 Asset manifest written with', Object.keys(assetManifest).length, 'entries');
+        
+        copyStandaloneHtml();
+        minifyCss();
+        copyJsConfigs();
+        copyAssets();
+        generateBuildInfo();
 
-    // Run link health check
-    console.log('🔗 Running link health check...');
-    import('./check-links.js').then(({ checkLinks }) => {
-        checkLinks();
-        console.log('✅ Build completed successfully!');
-        console.log('📁 Output directory: ./dist');
-        console.log('🚀 Ready for deployment');
-    }).catch(error => {
-        console.error('❌ Link check failed:', error.message);
+        // Run link health check
+        console.log('🔗 Running link health check...');
+        import('./check-links.js').then(({ checkLinks }) => {
+            checkLinks();
+            console.log('✅ Build completed successfully!');
+            console.log('📁 Output directory: ./dist');
+            console.log('🚀 Ready for deployment');
+        }).catch(error => {
+            console.error('❌ Link check failed:', error.message);
+            process.exit(1);
+        });
+
+    } catch (error) {
+        console.error('❌ Build failed:', error.message);
+        console.error(error.stack);
         process.exit(1);
-    });
-
-} catch (error) {
-    console.error('❌ Build failed:', error.message);
-    process.exit(1);
-}
+    }
+})();

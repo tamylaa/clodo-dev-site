@@ -8,7 +8,7 @@
  * or edit the values below manually.
  */
 
-export default {
+const siteConfig = {
   // ============================================
   // CORE SITE IDENTITY
   // ============================================
@@ -271,16 +271,15 @@ export default {
   }
 };
 
-// ============================================
-// HELPER: Generate sameAs array from social config
-// ============================================
-const config = await import('./site.config.js').then(m => m.default);
-
 // Auto-populate schema.organization.sameAs from social links
-if (config.schema?.organization) {
-  config.schema.organization.sameAs = Object.values(config.social || {})
-    .filter(s => s?.url)
-    .map(s => s.url);
+const socialUrls = Object.values(siteConfig.social || {})
+  .filter(s => s?.url)
+  .map(s => s.url);
+  
+if (siteConfig.schema?.organization) {
+  siteConfig.schema.organization.sameAs = socialUrls;
 }
+
+export default siteConfig;
 
 export { config };
