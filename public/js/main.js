@@ -90,7 +90,7 @@ setupProductionErrorReporter();
  * @param {string} src - Script source URL
  * @returns {Promise} Resolves when script is loaded
  */
-function loadScript(src) {
+function _loadScript(src) {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
