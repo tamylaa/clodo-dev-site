@@ -15,11 +15,11 @@
         <div class="reassurance">No spam. Unsubscribe anytime.</div>
         <div class="consent">
             <input type="checkbox" id="newsletter-consent" name="consent" required>
-            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="/privacy">Privacy Policy</a>.</label>
+            <label for="newsletter-consent">I agree to receive emails from {{siteName}} and accept the <a href="/privacy">Privacy Policy</a>.</label>
         </div>
         <p class="form-message" aria-live="polite" role="status"></p>
         <noscript>
-            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:product@clodo.dev">product@clodo.dev</a>.</p>
+            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:{{contact.email.product}}">{{contact.email.product}}</a>.</p>
         </noscript>
     </form>
 </div>

@@ -223,6 +223,7 @@ function processTemplateVariables(content, siteConfig, extraVars = {}) {
         'contact.email.general': siteConfig?.contact?.email?.general || '',
         'contact.email.support': siteConfig?.contact?.email?.support || '',
         'contact.email.sales': siteConfig?.contact?.email?.sales || '',
+        'contact.email.product': siteConfig?.contact?.email?.product || siteConfig?.contact?.email?.general || '',
         
         // Schema.org
         'schema.organization.name': siteConfig?.schema?.organization?.name || siteConfig?.site?.name || '',

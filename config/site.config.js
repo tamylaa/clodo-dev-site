@@ -104,7 +104,8 @@ const siteConfig = {
     email: {
       general: 'contact@example.com',
       support: 'support@example.com',
-      sales: 'sales@example.com'
+      sales: 'sales@example.com',
+      product: 'product@example.com'  // For newsletter noscript fallback
     },
     // Physical address (optional, for schema.org)
     address: {
