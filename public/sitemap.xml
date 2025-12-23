@@ -248,6 +248,19 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Clodo Cloud Service - HIGH PRIORITY SEO -->
+    <url>
+        <loc>https://www.clodo.dev/clodo-cloud-service</loc>
+        <lastmod>2025-12-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
+            <image:title>Clodo Cloud Service: Managed Cloudflare Workers Hosting</image:title>
+            <image:caption>Managed hosting, monitoring, and expert support for Cloudflare Workers applications</image:caption>
+        </image:image>
+    </url>
+
     <!-- Framework Comparison - HIGH PRIORITY AEO -->
     <url>
         <loc>https://www.clodo.dev/framework-comparison</loc>
