@@ -1,0 +1,159 @@
+{
+  "$schema": "./navigation.schema.json",
+  "_comment": "Navigation configuration - Edit this file to customize your site navigation",
+
+  "header": {
+    "logo": {
+      "href": "/",
+      "ariaLabel": "{{siteName}} home"
+    },
+    "mainNav": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Product",
+        "href": "/product",
+        "dropdown": [
+          { "label": "Overview", "href": "/product" },
+          { "label": "Features", "href": "/features" },
+          { "label": "Pricing", "href": "/pricing" }
+        ]
+      },
+      {
+        "label": "Resources",
+        "href": "#",
+        "dropdown": [
+          {
+            "section": "Documentation",
+            "icon": "📚",
+            "items": [
+              { "label": "Getting Started", "href": "/docs" },
+              { "label": "API Reference", "href": "/docs/api" },
+              { "label": "Examples", "href": "/examples" }
+            ]
+          },
+          {
+            "divider": true
+          },
+          {
+            "section": "Community",
+            "icon": "👥",
+            "items": [
+              { "label": "Blog", "href": "/blog" },
+              { "label": "Discussions", "href": "{{social.github.url}}/discussions", "external": true },
+              { "label": "Support", "href": "/support" }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      }
+    ],
+    "cta": {
+      "label": "Get Started",
+      "href": "/docs",
+      "variant": "primary"
+    }
+  },
+
+  "footer": {
+    "sections": [
+      {
+        "title": "Product",
+        "id": "footer-product",
+        "links": [
+          { "label": "Product Overview", "href": "/product" },
+          { "label": "Documentation", "href": "/docs" },
+          { "label": "Examples", "href": "/examples" },
+          { "label": "Pricing", "href": "/pricing" },
+          { "label": "GitHub", "href": "{{social.github.url}}", "external": true }
+        ]
+      },
+      {
+        "title": "Developers",
+        "id": "footer-developers",
+        "links": [
+          { "label": "Getting Started", "href": "/docs#getting-started" },
+          { "label": "API Reference", "href": "/docs#api" },
+          { "label": "Deployment", "href": "/docs#deployment" },
+          { "label": "Troubleshooting", "href": "/docs#troubleshooting" },
+          { "label": "Release Notes", "href": "{{social.github.url}}/releases", "external": true }
+        ]
+      },
+      {
+        "title": "Resources",
+        "id": "footer-resources",
+        "links": [
+          { "label": "Blog", "href": "/blog" },
+          { "label": "Case Studies", "href": "/case-studies" },
+          { "label": "FAQ", "href": "/faq" },
+          { "label": "Support", "href": "/support" }
+        ]
+      },
+      {
+        "title": "Company",
+        "id": "footer-company",
+        "links": [
+          { "label": "About Us", "href": "/about" },
+          { "label": "Contact", "href": "/contact" },
+          { "label": "Privacy Policy", "href": "/privacy" },
+          { "label": "Terms of Service", "href": "/terms" }
+        ]
+      },
+      {
+        "title": "Community",
+        "id": "footer-community",
+        "links": [
+          { "label": "GitHub Discussions", "href": "{{social.github.url}}/discussions", "external": true },
+          { "label": "Twitter", "href": "{{social.twitter.url}}", "external": true },
+          { "label": "Discord", "href": "{{social.discord.url}}", "external": true },
+          { "label": "Contribute", "href": "{{social.github.url}}/blob/main/CONTRIBUTING.md", "external": true }
+        ]
+      }
+    ],
+    "socialLinks": [
+      {
+        "platform": "twitter",
+        "href": "{{social.twitter.url}}",
+        "ariaLabel": "Follow us on Twitter"
+      },
+      {
+        "platform": "github",
+        "href": "{{social.github.url}}",
+        "ariaLabel": "View on GitHub"
+      },
+      {
+        "platform": "discord",
+        "href": "{{social.discord.url}}",
+        "ariaLabel": "Join our Discord"
+      },
+      {
+        "platform": "linkedin",
+        "href": "{{social.linkedin.url}}",
+        "ariaLabel": "Connect on LinkedIn"
+      }
+    ],
+    "legal": [
+      { "label": "Privacy", "href": "/privacy" },
+      { "label": "Terms", "href": "/terms" },
+      { "label": "Cookies", "href": "/cookies" }
+    ],
+    "copyright": "© {{copyright.year}} {{copyright.holder}}. All rights reserved."
+  },
+
+  "mobile": {
+    "breakpoint": "768px",
+    "menuToggle": {
+      "ariaLabel": "Toggle mobile menu",
+      "ariaControls": "mobile-menu"
+    }
+  }
+}

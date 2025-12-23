@@ -1,0 +1,171 @@
+{
+  "$schema": "./pages.schema.json",
+  "_comment": "Page-to-CSS bundle mappings. This replaces hardcoded logic in build.js",
+
+  "bundleDetection": {
+    "_comment": "Rules for automatically detecting which CSS bundle to use based on file path",
+    "rules": [
+      {
+        "pattern": "blog/",
+        "bundle": "blog",
+        "priority": 10
+      },
+      {
+        "pattern": "case-studies/",
+        "bundle": "case-studies",
+        "priority": 10
+      },
+      {
+        "pattern": "community/",
+        "bundle": "community",
+        "priority": 10
+      },
+      {
+        "pattern": "index.html",
+        "exact": true,
+        "bundle": "index",
+        "priority": 20
+      },
+      {
+        "pattern": "pricing",
+        "bundle": "pricing",
+        "priority": 5
+      },
+      {
+        "pattern": "subscribe",
+        "bundle": "subscribe",
+        "priority": 5
+      },
+      {
+        "pattern": "product",
+        "bundle": "product",
+        "priority": 5
+      },
+      {
+        "pattern": "about",
+        "bundle": "about",
+        "priority": 5
+      },
+      {
+        "pattern": "migrate",
+        "bundle": "migrate",
+        "priority": 5
+      }
+    ],
+    "defaultBundle": "common"
+  },
+
+  "commonCss": {
+    "_comment": "CSS files loaded on every page",
+    "files": [
+      "css/critical.css",
+      "css/variables.css",
+      "css/global/base.css",
+      "css/global/typography.css",
+      "css/global/layout.css",
+      "css/global/header.css",
+      "css/global/navigation.css",
+      "css/components-common.css",
+      "css/global/footer.css"
+    ]
+  },
+
+  "pageBundles": {
+    "_comment": "Page-specific CSS bundles - reduces unused CSS significantly",
+    
+    "index": {
+      "css": [
+        "css/pages/index/hero.css",
+        "css/hero-decorations.css",
+        "css/pages/index/hero-animations.css"
+      ],
+      "deferred": [
+        "css/components-page-specific.css",
+        "css/pages/index/benefits.css",
+        "css/pages/index/cloudflare-edge.css",
+        "css/pages/index/comparison.css",
+        "css/pages/index/cta.css",
+        "css/pages/index/features.css",
+        "css/pages/index/social-proof.css",
+        "css/pages/index/stats.css",
+        "css/pages/index.css"
+      ]
+    },
+    
+    "pricing": {
+      "css": [
+        "css/pages/pricing/index.css"
+      ]
+    },
+    
+    "blog": {
+      "css": [
+        "css/pages/blog/header.css",
+        "css/pages/blog/index.css",
+        "css/pages/blog/card.css",
+        "css/pages/blog/stats.css",
+        "css/pages/blog/post.css"
+      ]
+    },
+    
+    "subscribe": {
+      "css": [
+        "css/pages/subscribe/hero.css",
+        "css/pages/subscribe/form.css",
+        "css/pages/subscribe/preview.css",
+        "css/pages/subscribe/testimonials.css"
+      ]
+    },
+    
+    "product": {
+      "css": [
+        "css/pages/product.css"
+      ]
+    },
+    
+    "about": {
+      "css": [
+        "css/pages/about.css"
+      ]
+    },
+    
+    "migrate": {
+      "css": [
+        "css/pages/migrate.css"
+      ]
+    },
+    
+    "case-studies": {
+      "css": [
+        "css/pages/case-studies.css"
+      ]
+    },
+    
+    "community": {
+      "css": [
+        "css/pages/community.css"
+      ]
+    }
+  },
+
+  "outputFiles": {
+    "_comment": "Naming convention for bundled CSS files",
+    "common": "styles.css",
+    "pageBundle": "styles-{{bundle}}.css",
+    "deferred": "styles-{{bundle}}-deferred.css"
+  },
+
+  "optimization": {
+    "criticalCss": {
+      "enabled": true,
+      "maxInlineSize": 50000
+    },
+    "contentHashing": {
+      "enabled": true,
+      "hashLength": 8
+    },
+    "minification": {
+      "enabled": true
+    }
+  }
+}
