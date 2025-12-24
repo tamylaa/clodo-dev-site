@@ -1,4 +1,8 @@
-name = "clododev"
+# Cloudflare Pages Configuration
+# Update 'name' to match your Cloudflare Pages project name
+# This should match the value in config/site.config.js cloudflare.project
+
+name = "my-website"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
 

@@ -330,6 +330,17 @@ export default siteConfig;
     logSuccess('Created config/site.config.js');
 
     // ============================================
+    // UPDATE wrangler.toml
+    // ============================================
+    const wranglerPath = join(ROOT_DIR, 'config', 'wrangler.toml');
+    if (existsSync(wranglerPath)) {
+        let wranglerContent = readFileSync(wranglerPath, 'utf8');
+        wranglerContent = wranglerContent.replace(/name = "[^"]*"/, `name = "${cfProjectName}"`);
+        writeFileSync(wranglerPath, wranglerContent, 'utf8');
+        logSuccess('Updated config/wrangler.toml');
+    }
+
+    // ============================================
     // CREATE .env FILE
     // ============================================
     const envExamplePath = join(ROOT_DIR, '.env.example');

@@ -10,18 +10,19 @@
  * - Canonical URL correctness
  *
  * Usage: node build/check-page-loading.js [baseUrl]
- * Default baseUrl: https://www.clodo.dev
+ * Uses config/tooling.config.js for defaults
  */
 
 import { chromium } from 'playwright';
 import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
+import { getBaseUrl, getConfig } from '../config/tooling.config.js';
 
-const BASE_URL = process.argv[2] || 'https://www.clodo.dev';
+const BASE_URL = process.argv[2] || getBaseUrl();
 
 // Determine if we're in development mode
 const IS_DEVELOPMENT = BASE_URL.includes('localhost') || BASE_URL.includes('127.0.0.1');
-const PRODUCTION_DOMAIN = 'https://www.clodo.dev';
+const PRODUCTION_DOMAIN = getConfig('urls.production', 'https://example.com');
 
 const results = {
     total: 0,

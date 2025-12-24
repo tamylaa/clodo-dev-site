@@ -1,11 +1,12 @@
 import { chromium } from 'playwright';
+import { getBaseUrl } from '../config/tooling.config.js';
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
-  // Allow overriding base URL via CLI arg: `node build/check-nav-stability.js http://localhost:8000`
-  const base = process.argv[2] || process.env.BASE_URL || 'https://www.clodo.dev';
+  // Get base URL from config (supports CLI arg, env var, or config)
+  const base = process.argv[2] || getBaseUrl();
   const urls = [
     `${base}/`,
     `${base}/community/welcome`,

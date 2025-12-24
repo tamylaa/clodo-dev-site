@@ -55,9 +55,24 @@ function makeRequest(method, path, data = null) {
   });
 }
 
+// Import config - use dynamic import since this is a standalone tool
+let toolingConfig;
+try {
+  const configModule = await import('../config/tooling.config.js');
+  toolingConfig = configModule.default;
+} catch (e) {
+  // Fallback if config not available
+  toolingConfig = {
+    urls: { domain: process.env.DOMAIN || 'example.com', production: process.env.PRODUCTION_URL || 'https://example.com' }
+  };
+}
+
+const DOMAIN = toolingConfig.urls.domain;
+const PRODUCTION_URL = toolingConfig.urls.production;
+
 async function getZoneId() {
-  console.log('🔍 Finding zone for clodo.dev...');
-  const response = await makeRequest('GET', '/client/v4/zones?name=clodo.dev');
+  console.log(`🔍 Finding zone for ${DOMAIN}...`);
+  const response = await makeRequest('GET', `/client/v4/zones?name=${DOMAIN.replace('www.', '')}`);
   
   if (!response.result || response.result.length === 0) {
     throw new Error('Zone not found');
@@ -72,15 +87,16 @@ async function purgeCache() {
   try {
     const zoneId = await getZoneId();
     
-    console.log('🧹 Purging entire cache for www.clodo.dev...');
+    console.log(`🧹 Purging entire cache for ${DOMAIN}...`);
     console.log('   This will force fresh content without auto-injected scripts\n');
     
-    // Purge specific URLs
+    // Purge specific URLs - use configured domain
+    const baseDomain = DOMAIN.replace('www.', '');
     const urls = [
-      'https://www.clodo.dev',
-      'https://www.clodo.dev/',
-      'https://clodo.dev',
-      'https://clodo.dev/'
+      `https://www.${baseDomain}`,
+      `https://www.${baseDomain}/`,
+      `https://${baseDomain}`,
+      `https://${baseDomain}/`
     ];
     
     await makeRequest('POST', `/client/v4/zones/${zoneId}/purge_cache`, {

@@ -4,17 +4,18 @@
  * fix-canonicals.js
  *
  * Normalize canonical links in built HTML files under `public/`:
- * - Ensure canonical host is https://www.clodo.dev
+ * - Ensure canonical host matches site config
  * - Use clean URLs (no .html) for canonical where applicable
- * - For index.html, canonical should be https://www.clodo.dev/
+ * - For index.html, canonical should be site root with trailing slash
  *
  * Usage: node build/fix-canonicals.js [baseUrl]
  */
 
 import { readdirSync, statSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
+import { getConfig } from '../config/tooling.config.js';
 
-const BASE = process.argv[2] || 'https://www.clodo.dev';
+const BASE = process.argv[2] || getConfig('seo.canonicalBase', 'https://example.com');
 const publicDir = join(process.cwd(), 'public');
 
 function getAllHtmlFiles(dir, rel = '') {

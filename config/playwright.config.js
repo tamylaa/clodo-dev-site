@@ -6,8 +6,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 
+// Load tooling config for test URLs
+let testBaseUrl = 'http://localhost:8000';
+try {
+  const toolingModule = await import('./tooling.config.js');
+  testBaseUrl = toolingModule.getConfig?.('testing.baseUrl') || testBaseUrl;
+} catch (e) {
+  // Use default if config not available
+}
+
 /**
- * Playwright Configuration for Clodo Framework Website
+ * Playwright Configuration
  * 
  * Testing Strategy:
  * - E2E tests for critical user journeys
@@ -43,8 +52,8 @@ export default defineConfig({
   
   // Global test configuration
   use: {
-    // Base URL for tests
-    baseURL: 'http://localhost:8000',
+    // Base URL for tests - from config or env
+    baseURL: process.env.TEST_BASE_URL || testBaseUrl,
     
     // Collect trace on failure
     trace: 'on-first-retry',
