@@ -2,7 +2,7 @@
 
 /**
  * SEO Performance Testing Script
- * Tests and validates SEO improvements for Clodo Framework
+ * Tests and validates SEO improvements for your website
  */
 
 import fs from 'fs';
@@ -14,9 +14,18 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Import tooling config
+let baseUrl = 'https://www.example.com';
+try {
+  const { getBaseUrl } = await import('../config/tooling.config.js');
+  baseUrl = getBaseUrl();
+} catch (e) {
+  console.warn('⚠️  Could not load tooling config, using default URL');
+}
+
 class SEOTester {
     constructor() {
-        this.baseUrl = 'https://www.clodo.dev';
+        this.baseUrl = baseUrl;
         this.testResults = {
             timestamp: new Date().toISOString(),
             tests: [],
@@ -41,13 +50,12 @@ class SEOTester {
     async testMetaTags() {
         console.log('📋 Testing meta tags...');
 
+        // Pages to test - can be customized via config
         const pages = [
             '/',
-            '/wrangler-to-clodo-migration',
-            '/ruby-on-rails-cloudflare-integration',
-            '/serverless-framework-comparison',
-            '/worker-scaffolding-tools',
-            '/advanced-cloudflare-workers-tutorial'
+            '/about',
+            '/pricing',
+            '/blog'
         ];
 
         const results = [];
@@ -94,7 +102,7 @@ class SEOTester {
     async testStructuredData() {
         console.log('🏗️ Testing structured data...');
 
-        const pages = ['/', '/wrangler-to-clodo-migration'];
+        const pages = ['/', '/about'];
         const results = [];
 
         for (const page of pages) {
@@ -135,9 +143,10 @@ class SEOTester {
     async testHreflangTags() {
         console.log('🌍 Testing hreflang tags...');
 
+        // Test pages with i18n support
         const pages = [
-            '/wrangler-to-clodo-migration',
-            '/ruby-on-rails-cloudflare-integration'
+            '/',
+            '/about'
         ];
 
         const results = [];
@@ -184,17 +193,16 @@ class SEOTester {
         console.log('🗺️ Testing sitemap...');
 
         try {
-            const sitemapPath = 'g:/coding/clodo-dev-site/public/sitemap.xml';
+            const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
             const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
             const urls = this.parseSitemap(sitemapContent);
 
+            // Expected URLs should be generated dynamically based on your site
             const expectedUrls = [
-                'https://www.clodo.dev/',
-                'https://www.clodo.dev/wrangler-to-clodo-migration',
-                'https://www.clodo.dev/ruby-on-rails-cloudflare-integration',
-                'https://www.clodo.dev/serverless-framework-comparison',
-                'https://www.clodo.dev/worker-scaffolding-tools',
-                'https://www.clodo.dev/advanced-cloudflare-workers-tutorial'
+                `${this.baseUrl}/`,
+                `${this.baseUrl}/about`,
+                `${this.baseUrl}/pricing`,
+                `${this.baseUrl}/blog`
             ];
 
             const missingUrls = expectedUrls.filter(url => !urls.includes(url));
@@ -226,7 +234,7 @@ class SEOTester {
     async testPerformanceMetrics() {
         console.log('⚡ Testing performance metrics...');
 
-        const pages = ['/', '/wrangler-to-clodo-migration'];
+        const pages = ['/', '/about'];
         const results = [];
 
         for (const page of pages) {
@@ -267,12 +275,12 @@ class SEOTester {
     async testContentQuality() {
         console.log('📝 Testing content quality...');
 
+        // Pages and minimum word counts - customize for your site
         const pages = [
-            { path: '/wrangler-to-clodo-migration', minWords: 800 },
-            { path: '/ruby-on-rails-cloudflare-integration', minWords: 600 },
-            { path: '/serverless-framework-comparison', minWords: 700 },
-            { path: '/worker-scaffolding-tools', minWords: 500 },
-            { path: '/advanced-cloudflare-workers-tutorial', minWords: 600 }
+            { path: '/', minWords: 300 },
+            { path: '/about', minWords: 200 },
+            { path: '/pricing', minWords: 200 },
+            { path: '/blog', minWords: 100 }
         ];
 
         const results = [];
@@ -318,16 +326,16 @@ class SEOTester {
     }
 
     // Helper methods
-    async fetchPage(path, returnRaw = false) {
+    async fetchPage(pagePath, returnRaw = false) {
         // For local testing, read files directly instead of fetching
-        let filePath = path.startsWith('/') ? path.substring(1) : path;
+        let filePath = pagePath.startsWith('/') ? pagePath.substring(1) : pagePath;
 
         // Add .html extension if not present and not a root path
         if (!filePath.includes('.') && filePath !== '') {
             filePath += '.html';
         }
 
-        const fullPath = `g:/coding/clodo-dev-site/public/${filePath}`;
+        const fullPath = path.join(__dirname, '../public', filePath);
 
         try {
             const content = fs.readFileSync(fullPath, 'utf8');

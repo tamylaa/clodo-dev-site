@@ -7,6 +7,15 @@
 
 import https from 'https';
 
+// Import tooling config for domain
+let DOMAIN = 'example.com';
+try {
+  const { getConfig } = await import('../config/tooling.config.js');
+  DOMAIN = getConfig().project.domain;
+} catch (e) {
+  console.warn('⚠️  Could not load tooling config, using default domain');
+}
+
 const [,, API_TOKEN] = process.argv;
 
 if (!API_TOKEN) {
@@ -48,10 +57,10 @@ function makeRequest(method, path, data = null) {
 
 async function checkZoneAnalytics() {
   try {
-    console.log('🔍 Checking Zone-level Web Analytics for clodo.dev...\n');
+    console.log(`🔍 Checking Zone-level Web Analytics for ${DOMAIN}...\n`);
     
     // Get zone ID
-    const zonesResp = await makeRequest('GET', '/client/v4/zones?name=clodo.dev');
+    const zonesResp = await makeRequest('GET', `/client/v4/zones?name=${DOMAIN}`);
     if (!zonesResp.success || !zonesResp.data.result?.length) {
       console.log('❌ Zone not found');
       return;

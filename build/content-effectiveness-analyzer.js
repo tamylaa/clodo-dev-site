@@ -3,6 +3,8 @@
 /**
  * Content Effectiveness Analyzer
  * Measures how well proactive SEO content performs
+ * 
+ * Configure the contentPages array below with your own pages
  */
 
 import fs from 'fs';
@@ -14,37 +16,28 @@ const __dirname = path.dirname(__filename);
 
 class ContentAnalyzer {
     constructor() {
+        // Configure your content pages here
+        // These should be your key SEO-targeted landing pages
         this.contentPages = [
             {
-                path: '/wrangler-to-clodo-migration.html',
-                targetKeyword: 'wrangler',
-                publishDate: '2025-12-21',
-                expectedTraffic: 5400
+                path: '/index.html',
+                targetKeyword: 'your main keyword',
+                publishDate: '2025-01-01',
+                expectedTraffic: 1000
             },
             {
-                path: '/ruby-on-rails-cloudflare-integration.html',
-                targetKeyword: 'ruby on rails for cloudflare',
-                publishDate: '2025-12-21',
-                expectedTraffic: 320
+                path: '/about.html',
+                targetKeyword: 'about keyword',
+                publishDate: '2025-01-01',
+                expectedTraffic: 500
             },
             {
-                path: '/serverless-framework-comparison.html',
-                targetKeyword: 'serverless',
-                publishDate: '2025-12-21',
-                expectedTraffic: 12100
-            },
-            {
-                path: '/worker-scaffolding-tools.html',
-                targetKeyword: 'scaffolding for workers',
-                publishDate: '2025-12-21',
-                expectedTraffic: 210
-            },
-            {
-                path: '/advanced-cloudflare-workers-tutorial.html',
-                targetKeyword: 'cloudflare workers',
-                publishDate: '2025-12-21',
-                expectedTraffic: 2900
+                path: '/pricing.html',
+                targetKeyword: 'pricing keyword',
+                publishDate: '2025-01-01',
+                expectedTraffic: 300
             }
+            // Add more pages as needed
         ];
 
         this.results = {

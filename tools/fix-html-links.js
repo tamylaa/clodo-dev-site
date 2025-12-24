@@ -2,6 +2,20 @@
 const fs = require('fs');
 const path = require('path');
 
+// Load domain from config if available
+let DOMAIN = 'example.com';
+try {
+  // Try to load the ES module config synchronously via reading and parsing
+  const configPath = path.join(__dirname, '..', 'config', 'tooling.config.js');
+  const configContent = fs.readFileSync(configPath, 'utf8');
+  const domainMatch = configContent.match(/domain:\s*['"]([^'"]+)['"]/);
+  if (domainMatch) {
+    DOMAIN = domainMatch[1];
+  }
+} catch (e) {
+  // Use default
+}
+
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 
@@ -55,8 +69,10 @@ for (const file of fileList) {
     });
 
     // Replace absolute share URLs with .html
-    content = content.replace(/https:\/\/clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://clodo.dev/blog/$1');
-    content = content.replace(/https:\/\/www\.clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://clodo.dev/blog/$1');
+    const domainPattern = new RegExp(`https://${DOMAIN.replace('.', '\\.')}/blog/([a-z0-9-]+)\\.html`, 'g');
+    const wwwDomainPattern = new RegExp(`https://www\\.${DOMAIN.replace('.', '\\.')}/blog/([a-z0-9-]+)\\.html`, 'g');
+    content = content.replace(domainPattern, `https://${DOMAIN}/blog/$1`);
+    content = content.replace(wwwDomainPattern, `https://${DOMAIN}/blog/$1`);
   }
 
   // Also replace occurrences of /blog/<slug>.html in hrefs for any file

@@ -1,9 +1,11 @@
 import { chromium } from 'playwright';
+import { getBaseUrl } from '../config/tooling.config.js';
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  const url = 'https://www.clodo.dev/blog/building-developer-communities';
+  const baseUrl = getBaseUrl();
+  const url = `${baseUrl}/blog/building-developer-communities`;
   await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
   const links = await page.$$eval('link', (nodes) => nodes.map(n => ({rel: n.rel, href: n.getAttribute('href')})));

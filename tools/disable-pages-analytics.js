@@ -7,6 +7,15 @@
 
 import https from 'https';
 
+// Import tooling config for project name
+let PROJECT_NAME = 'my-website';
+try {
+  const { getConfig } = await import('../config/tooling.config.js');
+  PROJECT_NAME = getConfig().cloudflare.projectName;
+} catch (e) {
+  console.warn('⚠️  Could not load tooling config, using default project name');
+}
+
 const [,, API_TOKEN] = process.argv;
 
 if (!API_TOKEN) {
@@ -69,9 +78,9 @@ async function disablePagesAnalytics() {
       return;
     }
 
-    const project = projectsResp.data.result.find(p => p.name === 'clododev');
+    const project = projectsResp.data.result.find(p => p.name === PROJECT_NAME);
     if (!project) {
-      console.log('❌ clododev project not found');
+      console.log(`❌ ${PROJECT_NAME} project not found`);
       return;
     }
 
@@ -90,7 +99,7 @@ async function disablePagesAnalytics() {
     // Disable analytics
     const disableResp = await makeRequest(
       'PATCH',
-      `/client/v4/accounts/${ACCOUNT_ID}/pages/projects/clododev`,
+      `/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT_NAME}`,
       {
         web_analytics_enabled: false
       }

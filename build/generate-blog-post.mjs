@@ -17,6 +17,16 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load site config for dynamic values
+let siteConfig = { name: 'My Website', url: 'https://example.com', logo: '/icons/icon.svg' };
+try {
+  const configPath = path.join(__dirname, '../config/site.config.js');
+  const configModule = await import(`file://${configPath}`);
+  siteConfig = configModule.default;
+} catch (e) {
+  console.warn('⚠️  Could not load site config, using defaults');
+}
+
 // Paths
 const DATA_DIR = path.join(__dirname, '../data');
 const POSTS_DIR = path.join(DATA_DIR, 'posts');
@@ -120,12 +130,13 @@ export function validatePost(post, filePath) {
  * Generate Article Schema JSON-LD
  */
 export function generateArticleSchema(post, author) {
+    const baseUrl = siteConfig.url.replace(/\/$/, '');
     return {
         "@context": "https://schema.org",
         "@type": post.category === 'Tutorial' ? 'TechArticle' : 'Article',
         "headline": post.title,
         "description": post.description,
-        "image": post.featuredImage?.url || "https://clodo.dev/og-image.png",
+        "image": post.featuredImage?.url || `${baseUrl}/og-image.png`,
         "author": {
             "@type": "Person",
             "name": author.name,
@@ -135,18 +146,18 @@ export function generateArticleSchema(post, author) {
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev",
+            "name": siteConfig.name,
+            "url": baseUrl,
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://clodo.dev/icons/icon.svg"
+                "url": `${baseUrl}${siteConfig.logo || '/icons/icon.svg'}`
             }
         },
         "datePublished": post.publishedDate,
         "dateModified": post.modifiedDate || post.publishedDate,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://clodo.dev/blog/${post.slug}`
+            "@id": `${baseUrl}/blog/${post.slug}`
         },
         "articleSection": post.category,
         "keywords": post.seo?.keywords || post.tags,

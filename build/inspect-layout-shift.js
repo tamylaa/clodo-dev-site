@@ -1,9 +1,10 @@
 import { chromium } from 'playwright';
+import { getBaseUrl } from '../config/tooling.config.js';
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  const url = 'https://www.clodo.dev/blog/';
+  const url = `${getBaseUrl()}/blog/`;
   console.log('Inspecting', url);
   await page.goto(url, { waitUntil: 'domcontentloaded' });
 
