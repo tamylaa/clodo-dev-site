@@ -45,7 +45,8 @@ describe('Performance Tests', () => {
     starElement.setAttribute('aria-live', 'polite');
     starElement.setAttribute('aria-busy', 'true');
     
-    const response = await fetch('https://api.github.com/repos/tamylaa/clodo-framework');
+    // Note: Update this URL to match your GITHUB_REPO config in github-integration.js
+    const response = await fetch('https://api.github.com/repos/owner/repo');
     const data = await response.json();
     
     starElement.setAttribute('aria-busy', 'false');

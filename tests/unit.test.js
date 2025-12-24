@@ -31,8 +31,9 @@ describe('GitHub Stars Fetching', () => {
 
     await fetchGitHubStars();
 
+    // Note: Update this URL to match your GITHUB_REPO config in github-integration.js
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.github.com/repos/tamylaa/clodo-framework',
+      expect.stringMatching(/https:\/\/api\.github\.com\/repos\/[\w-]+\/[\w-]+/),
       expect.objectContaining({ timeout: 5000 })
     );
 

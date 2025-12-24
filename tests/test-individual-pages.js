@@ -1,6 +1,6 @@
 /**
  * Test individual pages separately to avoid rate limiting
- * Tests /docs.html, /pricing.html, /examples.html one at a time
+ * Tests key pages one at a time
  */
 
 import lighthouse from 'lighthouse';
@@ -11,11 +11,12 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Configure pages to test - update URLs for your site
 const pages = [
-  'https://www.clodo.dev/',
-  'https://www.clodo.dev/docs.html',
-  'https://www.clodo.dev/pricing.html',
-  'https://www.clodo.dev/examples.html'
+  'http://localhost:8000/',
+  'http://localhost:8000/about.html',
+  'http://localhost:8000/pricing.html',
+  'http://localhost:8000/blog.html'
 ];
 
 const resultsDir = path.join(__dirname, 'lighthouse-results');

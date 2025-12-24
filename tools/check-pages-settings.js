@@ -102,13 +102,22 @@ async function checkPagesSettings() {
       console.log('');
     }
     
-    const clodoProject = response.result.find(p => p.name === 'clododev' || p.name === 'clodo-dev-site');
+    // Load project name from config
+    let projectName = 'my-website';
+    try {
+      const { getConfig } = await import('../config/tooling.config.js');
+      projectName = getConfig().cloudflare.projectName;
+    } catch (e) {
+      // Use default
+    }
     
-    if (clodoProject && clodoProject.web_analytics_enabled) {
+    const targetProject = response.result.find(p => p.name === projectName);
+    
+    if (targetProject && targetProject.web_analytics_enabled) {
       console.log('⚠️  Web Analytics is ENABLED on your Pages project!');
       console.log('\n📝 To disable:');
       console.log('1. Go to: https://dash.cloudflare.com');
-      console.log('2. Navigate: Pages → clododev → Settings');
+      console.log(`2. Navigate: Pages → ${projectName} → Settings`);
       console.log('3. Find "Web Analytics" section');
       console.log('4. Toggle OFF or remove the integration');
       console.log('\nThis is different from Zone Web Analytics and must be disabled separately.');
