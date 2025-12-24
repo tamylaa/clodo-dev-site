@@ -76,4 +76,70 @@ export default {
 }
 </script>
 
-<!-- TODO: Add Turnstile integration snippet and full OAuth exchange example -->
+### OAuth: Server-side token exchange (example)
+
+```js
+// /auth/callback - Worker to exchange code for token
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const code = url.searchParams.get('code');
+    if (!code) return new Response('Missing code', { status: 400 });
+
+    const tokenResponse = await fetch('https://oauth.provider.com/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: 'https://your-site.com/auth/callback',
+        client_id: env.OAUTH_CLIENT_ID,
+        client_secret: env.OAUTH_CLIENT_SECRET
+      })
+    });
+
+    if (!tokenResponse.ok) {
+      const err = await tokenResponse.text();
+      return new Response(`Token exchange failed: ${err}`, { status: 502 });
+    }
+
+    const tokens = await tokenResponse.json();
+    // Store refresh token securely (D1/KV) and set short-lived cookie for access token
+    // Example: storeRefreshToken(tenantId, tokens.refresh_token)
+
+    const cookie = `access=${tokens.access_token}; HttpOnly; Secure; Path=/; Max-Age=${tokens.expires_in}`;
+    return new Response('Login successful', { status: 302, headers: { 'Set-Cookie': cookie, Location: '/' } });
+  }
+};
+```
+
+### Turnstile server-side verification (example)
+
+When your client posts the Turnstile token (`cf-turnstile-response`) to your Worker, verify it server-side:
+
+```js
+// Verify Turnstile token
+export async function verifyTurnstile(responseToken, secret) {
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ secret, response: responseToken })
+  });
+  if (!res.ok) return false;
+  const data = await res.json();
+  return data.success === true;
+}
+
+// Usage in a login route
+export default {
+  async fetch(request, env) {
+    const form = await request.formData();
+    const token = form.get('cf-turnstile-response');
+    const valid = await verifyTurnstile(token, env.TURNSTILE_SECRET);
+    if (!valid) return new Response('Failed bot verification', { status: 403 });
+    // Continue with authentication
+  }
+};
+```
+
+> **Note:** Keep Turnstile secret server-side only (do not expose in client JS). Use Turnstile for login & account-creation flows to reduce abusive signups and form spam.
