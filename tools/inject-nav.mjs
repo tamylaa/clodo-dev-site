@@ -4,18 +4,16 @@ import path from 'path';
 
 const ROOT = process.cwd();
 const TEMPLATE_NAV = path.join(ROOT, 'templates', 'nav-main.html');
+
+// List target HTML files that need navigation injected
+// Update this list for your specific pages
 const TARGETS = [
-  'public/experiments/clodo-framework-api-simplification-variant-a.html',
-  'public/experiments/clodo-framework-api-simplification-variant-b.html',
-  'public/experiments/clodo-framework-promise-to-reality-variant-a.html',
-  'public/experiments/clodo-framework-promise-to-reality-variant-b.html',
-  'public/experiments/how-to-migrate-from-wrangler-variant-a.html',
-  'public/experiments/how-to-migrate-from-wrangler-variant-b.html',
-  'public/framework-comparison.html',
-  'public/i18n/de/clodo-framework-api-simplification.html',
-  'public/i18n/de/clodo-framework-promise-to-reality.html',
-  'public/i18n/de/how-to-migrate-from-wrangler.html',
-  'public/multi-tenant-saas.html',
+  // Experiment pages
+  'public/experiments/variant-a.html',
+  'public/experiments/variant-b.html',
+  // i18n pages
+  'public/i18n/de/index.html',
+  // Other standalone pages
   'public/subscribe/thanks.html'
 ];
 

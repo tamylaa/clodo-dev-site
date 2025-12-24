@@ -44,8 +44,8 @@ async function walk(dir) {
       // Blog directory specific: ensure /blog/<slug> format (also covers fragments)
       if (file.includes(path.join('public', 'blog')) || file.includes(path.join('dist', 'blog'))) {
         content = content.replace(/href="([a-z0-9-]+)\.html(#.*?)?"/gi, (m, p1, p2) => `href="/blog/${p1}${p2 || ''}"`);
-        content = content.replace(/https:\/\/clodo\.dev\/blog\/([a-z0-9-]+)\.html/gi, 'https://clodo.dev/blog/$1');
-        content = content.replace(/https:\/\/www\.clodo\.dev\/blog\/([a-z0-9-]+)\.html/gi, 'https://clodo.dev/blog/$1');
+        // Remove .html from absolute blog URLs (update domain pattern as needed)
+        content = content.replace(/https:\/\/[a-z0-9.-]+\/blog\/([a-z0-9-]+)\.html/gi, (m, p1) => m.replace('.html', ''));
       }
 
       // Case studies folder local links -> /case-studies/<slug>
