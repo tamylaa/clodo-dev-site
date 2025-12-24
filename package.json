@@ -106,11 +106,11 @@
     "automated-testing",
     "production-readiness"
   ],
-  "author": "Clodo Framework",
+  "author": "Your Name",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tamylaa/clodo-framework.git"
+    "url": "https://github.com/your-username/your-repo.git"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^7.0.2",
@@ -136,7 +136,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@tamyla/clodo-framework": "^4.0.12",
     "jsdom": "^27.2.0"
+  },
+  "optionalDependencies": {
+    "@tamyla/clodo-framework": "^4.0.12"
   }
 }

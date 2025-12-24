@@ -31,12 +31,15 @@ public/brevo-secure-config.js
 # Coverage / reports
 coverage/
 *.lcov
+reports/
+lighthouse-results/
 
 # Test outputs
 .test-output/
 tests/playwright-report/
 tests/test-results/
 playwright/.cache/
+config/tests/playwright-report/
 
 # Lighthouse CI
 .lighthouseci/

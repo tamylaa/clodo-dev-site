@@ -5,10 +5,13 @@
 
 import { test, expect } from '@playwright/test';
 
+// Use the test server base URL
+const BASE = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8000';
+
 test.describe('Production Button Debug', () => {
     test('check if stackblitz module loads and attaches handlers', async ({ page }) => {
-        // Navigate to production site
-        await page.goto('https://www.clodo.dev/');
+        // Navigate to site
+        await page.goto(`${BASE}/`);
         
         // Wait for page to be fully loaded
         await page.waitForLoadState('networkidle');
@@ -92,7 +95,7 @@ test.describe('Production Button Debug', () => {
             });
         });
         
-        await page.goto('https://www.clodo.dev/');
+        await page.goto(`${BASE}/`);
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(2000);
         

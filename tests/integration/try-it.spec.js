@@ -151,7 +151,8 @@ test('Try It Live popup contains valid StackBlitz URL', async ({ page }) => {
     // Verify the URL was captured and is correct
     expect(openedUrl).toBeTruthy();
     expect(openedUrl).toContain('stackblitz.com');
-    expect(openedUrl).toContain('github/tamylaa/clodo-starter-template');
+    // Update this to match your GitHub repo
+    expect(openedUrl).toMatch(/github\/[\w-]+\/[\w-]+/);
 });
 
 test('Try It Live fallback works when module fails to load', async ({ page }) => {
