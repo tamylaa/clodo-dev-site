@@ -1043,6 +1043,15 @@ function generateBuildInfo() {
         // Pass merged manifest to copyHtml so it can inject hashed filenames
         copyHtml(assetManifest);
         
+        // Generate content-driven pages from JSON content files
+        console.log('📝 Generating content-driven pages...');
+        try {
+            const { generateAllPages } = await import('./page-generator.js');
+            await generateAllPages({ siteConfig: CONFIG?.site });
+        } catch (pageGenError) {
+            console.warn('⚠️  Page generation skipped:', pageGenError.message);
+        }
+        
         // Write final combined asset manifest
         writeFileSync(
             join('dist', 'asset-manifest.json'),

@@ -1,12 +1,14 @@
 {
-  "name": "clodo-dev-site",
+  "name": "clodo-web-starter",
   "version": "1.0.0",
-  "description": "Pre-Flight Checker for Cloudflare Workers - Reduce custom software costs by 60% with enterprise orchestration framework",
+  "description": "A reusable, content-driven website starter template - spin up new sites with JSON configuration",
   "type": "module",
   "main": "index.html",
   "scripts": {
     "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run check-links",
     "build": "node build/build.js",
+    "build:pages": "node build/page-generator.js",
+    "setup": "node scripts/setup.js",
     "start": "npm run serve",
     "dev": "npm run serve",
     "preview": "vite preview --config config/vite.config.js",
