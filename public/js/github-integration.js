@@ -1,4 +1,7 @@
 // GitHub integration - loaded after page load
+// Configure your GitHub repository here
+const GITHUB_REPO = 'owner/repo'; // Change this to your repo
+
 async function fetchGitHubStars() {
     const starElements = document.querySelectorAll('#star-count, #github-stars');
 
@@ -11,7 +14,7 @@ async function fetchGitHubStars() {
             element.innerHTML = '<span class="spinner spinner--sm" aria-hidden="true"></span>';
         });
 
-        const response = await fetch('https://api.github.com/repos/tamylaa/clodo-framework', {
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}`, {
             timeout: 5000 // 5 second timeout
         });
 

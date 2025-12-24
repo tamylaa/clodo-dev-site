@@ -24,15 +24,15 @@ const state = {
     initialized: false,
     baseUrl: '',
     defaultImage: '/assets/images/og-default.jpg',
-    defaultAuthor: 'Clodo Framework Team',
-    twitterHandle: '@clodoframework',
+    defaultAuthor: 'Site Team',
+    twitterHandle: '',
 };
 
 /**
  * Initialize SEO system
  *
  * @param {Object} options - Configuration options
- * @param {string} options.baseUrl - Site base URL (e.g., 'https://clodo.dev')
+ * @param {string} options.baseUrl - Site base URL (e.g., 'https://example.com')
  * @param {string} options.defaultImage - Default OG image path
  * @param {string} options.defaultAuthor - Default author name
  * @param {string} options.twitterHandle - Twitter handle
@@ -205,19 +205,15 @@ function addOrganizationSchema(options = {}) {
     const schema = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: options.name || 'Clodo Framework',
+        name: options.name || 'My Company',
         url: state.baseUrl,
         logo: makeAbsoluteUrl(options.logo || '/assets/images/logo.svg'),
-        description: options.description || 'Modern JavaScript framework for building scalable web applications',
-        sameAs: options.socialLinks || [
-            'https://github.com/clodoframework',
-            'https://twitter.com/clodoframework',
-            'https://linkedin.com/company/clodoframework',
-        ],
+        description: options.description || 'Your company description',
+        sameAs: options.socialLinks || [],
         contactPoint: {
             '@type': 'ContactPoint',
             contactType: 'Customer Support',
-            email: options.email || 'support@clodo.dev',
+            email: options.email || 'support@example.com',
         },
     };
 

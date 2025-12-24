@@ -1,15 +1,12 @@
 import { test, expect } from '@playwright/test';
 
+// Configure which pages to test for SEO - update these for your site
 const PAGES = [
     '/',
-    '/how-to-migrate-from-wrangler.html',
+    '/about.html',
+    '/pricing.html',
     '/faq.html',
-    '/examples.html',
-    '/wrangler-to-clodo-migration.html',
-    '/ruby-on-rails-cloudflare-integration.html',
-    '/serverless-framework-comparison.html',
-    '/worker-scaffolding-tools.html',
-    '/advanced-cloudflare-workers-tutorial.html'
+    '/blog.html'
 ];
 
 test.describe('SEO Smoke Tests', () => {
@@ -60,7 +57,7 @@ test.describe('SEO Smoke Tests', () => {
         const resp = await request.get('/sitemap.xml');
         expect(resp.status()).toBe(200);
         const text = await resp.text();
-        // Ensure sitemap references the canonical site root (www)
-        expect(text).toContain('<loc>https://www.clodo.dev/</loc>');
+        // Ensure sitemap references a root loc entry
+        expect(text).toMatch(/<loc>https?:\/\/[^<]+\/<\/loc>/);
     });
 });

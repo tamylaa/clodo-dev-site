@@ -9,7 +9,7 @@
 
 class ThemeManager {
     constructor() {
-        this.THEME_KEY = 'clodo-theme';
+        this.THEME_KEY = 'site-theme';
         // Prefer already-applied theme from inline script
         this.currentTheme = document.documentElement.getAttribute('data-theme') || 
                            this.getStoredTheme() || 

@@ -24,8 +24,9 @@ test.describe('Structured Data Hub Tests', () => {
         expect(orgSchema).toBeDefined();
 
         if (orgSchema) {
-            expect(orgSchema.name).toBe('Clodo Framework');
-            expect(orgSchema.url).toBe('https://clodo.dev');
+            // Organization name should be defined
+            expect(orgSchema.name).toBeTruthy();
+            expect(orgSchema.url).toBeTruthy();
             expect(orgSchema.logo).toBeTruthy();
             expect(orgSchema.description).toBeTruthy();
             console.log('Organization schema:', orgSchema);
@@ -42,8 +43,9 @@ test.describe('Structured Data Hub Tests', () => {
         expect(websiteSchema).toBeDefined();
 
         if (websiteSchema) {
-            expect(websiteSchema.name).toBe('Clodo Framework');
-            expect(websiteSchema.url).toBe('https://clodo.dev');
+            // Website name and URL should be defined
+            expect(websiteSchema.name).toBeTruthy();
+            expect(websiteSchema.url).toBeTruthy();
             expect(websiteSchema.potentialAction).toBeDefined();
             console.log('WebSite schema:', websiteSchema);
         }
@@ -87,8 +89,8 @@ test.describe('Structured Data Hub Tests', () => {
     });
 
     test('should inject BlogPosting schema on blog pages', async ({ page }) => {
-        // Try a blog post page (use correct port 8000)
-        await page.goto('/clodo-framework-guide.html');
+        // Try a blog post page - update this path for your site
+        await page.goto('/blog.html');
         await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(process.env.CI ? 500 : 1000);
 

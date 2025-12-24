@@ -27,7 +27,7 @@ const StorageType = {
  */
 const config = {
     debug: false,
-    prefix: 'clodo_', // Namespace all keys
+    prefix: 'site_', // Namespace all keys
     defaultTTL: null, // No expiry by default (ms)
     enableEvents: true,
 };

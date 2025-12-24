@@ -2,46 +2,33 @@ import { test, expect } from '@playwright/test';
 
 const BASE = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8000';
 
+// Load site config for expected canonical base
+let CANONICAL_BASE = 'https://www.example.com';
+try {
+  const configModule = await import('../../config/site.config.js');
+  CANONICAL_BASE = configModule.default?.url || CANONICAL_BASE;
+} catch (e) {
+  // Use default
+}
+
+// Configure test pages here - adjust paths and expected canonicals for your site
 const pages = [
   {
-    path: '/experiments/clodo-framework-api-simplification-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-api-simplification-variant-a',
+    path: '/index.html',
+    expected: `${CANONICAL_BASE}/`,
   },
   {
-    path: '/experiments/clodo-framework-api-simplification-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-api-simplification-variant-b',
+    path: '/about.html',
+    expected: `${CANONICAL_BASE}/about`,
   },
   {
-    path: '/experiments/clodo-framework-promise-to-reality-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-promise-to-reality-variant-a',
+    path: '/pricing.html',
+    expected: `${CANONICAL_BASE}/pricing`,
   },
-  {
-    path: '/experiments/clodo-framework-promise-to-reality-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-promise-to-reality-variant-b',
-  },
-  {
-    path: '/experiments/how-to-migrate-from-wrangler-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/how-to-migrate-from-wrangler-variant-a',
-  },
-  {
-    path: '/experiments/how-to-migrate-from-wrangler-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/how-to-migrate-from-wrangler-variant-b',
-  },
-  {
-    path: '/i18n/de/clodo-framework-api-simplification.html',
-    expected: 'https://www.clodo.dev/i18n/de/clodo-framework-api-simplification',
-  },
-  {
-    path: '/i18n/de/clodo-framework-promise-to-reality.html',
-    expected: 'https://www.clodo.dev/i18n/de/clodo-framework-promise-to-reality',
-  },
-  {
-    path: '/i18n/de/how-to-migrate-from-wrangler.html',
-    expected: 'https://www.clodo.dev/i18n/de/how-to-migrate-from-wrangler',
-  },
+  // Add more pages as needed
 ];
 
-test.describe('Canonical smoke checks for experiments & i18n pages', () => {
+test.describe('Canonical smoke checks for pages', () => {
   for (const p of pages) {
     test(p.path, async ({ page }) => {
       await page.goto(`${BASE}${p.path}`);

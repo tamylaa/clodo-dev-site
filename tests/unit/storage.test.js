@@ -346,7 +346,7 @@ describe('Storage Wrapper', () => {
             expect(sessionStore.get('key1')).toBe('value1');
             
             // Check it's actually in sessionStorage
-            expect(sessionStorage.getItem('clodo_key1')).toBeDefined();
+            expect(sessionStorage.getItem('site_key1')).toBeDefined();
         });
     });
     
@@ -358,7 +358,7 @@ describe('Storage Wrapper', () => {
             expect(memoryStore.get('key1')).toBe('value1');
             
             // Should not be in localStorage
-            expect(localStorage.getItem('clodo_key1')).toBe(null);
+            expect(localStorage.getItem('site_key1')).toBe(null);
         });
     });
     

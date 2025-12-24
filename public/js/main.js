@@ -312,30 +312,27 @@ async function initSEO() {
             return;
         }
 
-        // Initialize with defaults
+        // Initialize with defaults - these are overridden by page-specific data attributes
         window.SEO.init({
             baseUrl: window.location.origin,
             defaultImage: '/assets/images/og-default.jpg',
-            defaultAuthor: 'Clodo Framework Team',
-            twitterHandle: '@clodoframework',
+            defaultAuthor: 'Site Team',
+            twitterHandle: '',
         });
 
-        // Add Organization schema (global)
+        // Add Organization schema (global) - customize these values
         window.SEO.addOrganizationSchema({
-            name: 'Clodo Framework',
+            name: 'My Company',
             logo: '/assets/images/logo.svg',
-            description: 'Modern JavaScript framework for building enterprise-grade web applications with unprecedented speed',
-            email: 'support@clodo.dev',
-            socialLinks: [
-                'https://github.com/clodoframework',
-                'https://twitter.com/clodoframework',
-            ],
+            description: 'Your company description',
+            email: 'support@example.com',
+            socialLinks: [],
         });
 
         // Add WebSite schema with search
         window.SEO.addWebSiteSchema({
-            name: 'Clodo Framework',
-            description: 'Transform 6-month development cycles into 6 weeks with production-ready components',
+            name: 'My Website',
+            description: 'Your website description',
         });
 
         // Page-specific schemas based on current page
