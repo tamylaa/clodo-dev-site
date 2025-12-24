@@ -16,11 +16,20 @@ import { spawn } from 'child_process';
 console.log('🔍 Lighthouse Performance Audit Tool');
 console.log('=====================================');
 
+// Load production URL from config
+let productionUrl = 'https://www.example.com';
+try {
+  const { getBaseUrl } = await import('../config/tooling.config.js');
+  productionUrl = getBaseUrl();
+} catch (e) {
+  // Use default
+}
+
 // Configuration
 const config = {
   outputDir: './lighthouse-results',
   localUrl: 'http://localhost:3000',
-  productionUrl: 'https://www.clodo.dev',
+  productionUrl: productionUrl,
   chromeFlags: [
     '--headless',
     '--disable-gpu',
@@ -192,7 +201,7 @@ async function main() {
 
     // Run production audit
     console.log('\n╔═══════════════════════════════════════════════════════════╗');
-    console.log('║ PHASE 2: PRODUCTION AUDIT (www.clodo.dev)                ║');
+    console.log('║ PHASE 2: PRODUCTION AUDIT                                 ║');
     console.log('╚═══════════════════════════════════════════════════════════╝');
     const productionResult = runAudit(config.productionUrl, 'production');
 

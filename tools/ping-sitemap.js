@@ -17,7 +17,7 @@
  *   node tools/ping-sitemap.js
  * 
  * Environment Variables:
- *   SITEMAP_URL - Full URL to sitemap (default: https://www.clodo.dev/sitemap.xml)
+ *   SITEMAP_URL - Full URL to sitemap (required, or set via tooling.config.js)
  *   INDEXNOW_KEY - IndexNow API key (optional, will generate if not provided)
  */
 
@@ -25,7 +25,16 @@ import https from 'https';
 import { URL } from 'url';
 import crypto from 'crypto';
 
-const SITEMAP_URL = process.env.SITEMAP_URL || 'https://www.clodo.dev/sitemap.xml';
+// Load sitemap URL from config or environment
+let defaultSitemapUrl = 'https://www.example.com/sitemap.xml';
+try {
+  const { getBaseUrl } = await import('../config/tooling.config.js');
+  defaultSitemapUrl = `${getBaseUrl()}/sitemap.xml`;
+} catch (e) {
+  // Use default
+}
+
+const SITEMAP_URL = process.env.SITEMAP_URL || defaultSitemapUrl;
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || crypto.randomBytes(32).toString('hex');
 
 // IndexNow endpoint (supports Bing, Yandex, Seznam, Naver)
