@@ -1,0 +1,56 @@
+{
+  "$schema": "./announcement.schema.json",
+  
+  "enabled": true,
+  "id": "launch-2025",
+  "dismissible": true,
+  "expiresAt": "2025-03-01T00:00:00Z",
+  
+  "style": {
+    "backgroundColor": "#1d4ed8",
+    "textColor": "#ffffff",
+    "accentColor": "#fbbf24",
+    "position": "top"
+  },
+  
+  "content": {
+    "icon": "🚀",
+    "badge": "NEW",
+    "message": "We just launched! Get 50% off for the first 3 months.",
+    "link": {
+      "text": "Learn more →",
+      "href": "/launch-offer",
+      "external": false
+    }
+  },
+
+  "targeting": {
+    "pages": ["*"],
+    "excludePages": ["/checkout", "/signup"],
+    "showOnMobile": true,
+    "showOnDesktop": true,
+    "maxImpressions": null,
+    "cookieDuration": 7
+  },
+
+  "variants": [
+    {
+      "id": "default",
+      "weight": 100,
+      "content": {
+        "message": "We just launched! Get 50% off for the first 3 months.",
+        "link": {
+          "text": "Learn more →",
+          "href": "/launch-offer"
+        }
+      }
+    }
+  ],
+
+  "analytics": {
+    "trackImpressions": true,
+    "trackClicks": true,
+    "trackDismissals": true,
+    "eventCategory": "announcement_banner"
+  }
+}

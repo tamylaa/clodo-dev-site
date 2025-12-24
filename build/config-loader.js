@@ -278,6 +278,36 @@ async function loadConfig() {
         pagesConfig = defaultPagesConfig;
     }
     
+    // Load theme config
+    const themeConfig = loadJsonConfig('theme.json');
+    
+    // Load content files
+    const contentDir = join(rootDir, 'content');
+    let announcementConfig = null;
+    let servicesConfig = null;
+    let blogConfig = null;
+    
+    try {
+        const announcementPath = join(contentDir, 'announcement.json');
+        if (existsSync(announcementPath)) {
+            announcementConfig = JSON.parse(readFileSync(announcementPath, 'utf8'));
+        }
+    } catch (e) { /* optional file */ }
+    
+    try {
+        const servicesPath = join(contentDir, 'services.json');
+        if (existsSync(servicesPath)) {
+            servicesConfig = JSON.parse(readFileSync(servicesPath, 'utf8'));
+        }
+    } catch (e) { /* optional file */ }
+    
+    try {
+        const blogConfigPath = join(contentDir, 'blog', 'config.json');
+        if (existsSync(blogConfigPath)) {
+            blogConfig = JSON.parse(readFileSync(blogConfigPath, 'utf8'));
+        }
+    } catch (e) { /* optional file */ }
+    
     // Merge environment variables into config
     if (envVars.BREVO_API_KEY) {
         siteConfig.services = siteConfig.services || {};
@@ -298,11 +328,17 @@ async function loadConfig() {
     console.log(`   ✓ Site: ${siteConfig.site?.name || 'Not configured'}`);
     console.log(`   ✓ Navigation: ${navigationConfig ? 'Loaded' : 'Using defaults'}`);
     console.log(`   ✓ Pages: ${Object.keys(pagesConfig?.pageBundles || {}).length} bundles configured`);
+    console.log(`   ✓ Theme: ${themeConfig?.name || 'Default'}`);
+    console.log(`   ✓ Announcement: ${announcementConfig?.enabled ? 'Active' : 'Disabled'}`);
     
     return {
         site: siteConfig,
         navigation: navigationConfig,
         pages: pagesConfig,
+        theme: themeConfig,
+        announcement: announcementConfig,
+        services: servicesConfig,
+        blog: blogConfig,
         env: envVars,
         
         // Helper functions

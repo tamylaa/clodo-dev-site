@@ -1,0 +1,211 @@
+{
+  "$schema": "./services.schema.json",
+  "pageTitle": "Our Services",
+  "pageDescription": "Explore our comprehensive range of services designed to help your business succeed.",
+  
+  "hero": {
+    "title": "Solutions That Scale With You",
+    "subtitle": "From startups to enterprise, we have the right solution for your needs",
+    "backgroundImage": "/images/services-hero.jpg"
+  },
+
+  "categories": [
+    {
+      "id": "development",
+      "name": "Development",
+      "description": "Custom software solutions built for performance",
+      "icon": "💻"
+    },
+    {
+      "id": "consulting",
+      "name": "Consulting",
+      "description": "Expert guidance for your technical decisions",
+      "icon": "🎯"
+    },
+    {
+      "id": "support",
+      "name": "Support",
+      "description": "24/7 assistance when you need it most",
+      "icon": "🛟"
+    }
+  ],
+
+  "services": [
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "slug": "web-development",
+      "category": "development",
+      "shortDescription": "Modern, fast, and scalable web applications",
+      "fullDescription": "We build high-performance web applications using cutting-edge technologies. From static sites to complex SPAs, we deliver solutions that scale.",
+      "icon": "🌐",
+      "image": "/images/services/web-dev.jpg",
+      "features": [
+        "Responsive design for all devices",
+        "SEO-optimized from the ground up",
+        "Performance-first architecture",
+        "Accessibility compliant (WCAG 2.1)",
+        "Modern tech stack (React, Vue, Svelte)"
+      ],
+      "benefits": [
+        {
+          "title": "Faster Load Times",
+          "description": "Sub-second page loads improve conversions by 20%"
+        },
+        {
+          "title": "Better SEO Rankings",
+          "description": "Optimized code means higher search visibility"
+        },
+        {
+          "title": "Lower Maintenance",
+          "description": "Clean architecture reduces long-term costs"
+        }
+      ],
+      "pricing": {
+        "startingAt": 5000,
+        "currency": "USD",
+        "type": "project",
+        "note": "Final price depends on scope"
+      },
+      "cta": {
+        "text": "Get a Quote",
+        "href": "/contact?service=web-development"
+      },
+      "featured": true
+    },
+    {
+      "id": "api-development",
+      "name": "API Development",
+      "slug": "api-development",
+      "category": "development",
+      "shortDescription": "Robust APIs that power your applications",
+      "fullDescription": "Design and build RESTful and GraphQL APIs that are secure, scalable, and well-documented.",
+      "icon": "🔌",
+      "image": "/images/services/api-dev.jpg",
+      "features": [
+        "RESTful & GraphQL endpoints",
+        "Authentication & authorization",
+        "Rate limiting & caching",
+        "Comprehensive documentation",
+        "SDK generation"
+      ],
+      "benefits": [
+        {
+          "title": "Developer Experience",
+          "description": "Clear docs and SDKs speed up integration"
+        },
+        {
+          "title": "Scalability",
+          "description": "Handle millions of requests with ease"
+        }
+      ],
+      "pricing": {
+        "startingAt": 3000,
+        "currency": "USD",
+        "type": "project"
+      },
+      "cta": {
+        "text": "Discuss Your API",
+        "href": "/contact?service=api-development"
+      },
+      "featured": true
+    },
+    {
+      "id": "cloud-migration",
+      "name": "Cloud Migration",
+      "slug": "cloud-migration",
+      "category": "consulting",
+      "shortDescription": "Move to the cloud with zero downtime",
+      "fullDescription": "Expert guidance and execution for migrating your infrastructure to modern cloud platforms.",
+      "icon": "☁️",
+      "image": "/images/services/cloud.jpg",
+      "features": [
+        "Assessment & planning",
+        "Zero-downtime migration",
+        "Cost optimization",
+        "Security hardening",
+        "Team training"
+      ],
+      "benefits": [
+        {
+          "title": "Cost Savings",
+          "description": "Reduce infrastructure costs by up to 40%"
+        },
+        {
+          "title": "Reliability",
+          "description": "99.99% uptime with managed services"
+        }
+      ],
+      "pricing": {
+        "startingAt": 10000,
+        "currency": "USD",
+        "type": "engagement"
+      },
+      "cta": {
+        "text": "Plan Your Migration",
+        "href": "/contact?service=cloud-migration"
+      },
+      "featured": false
+    },
+    {
+      "id": "technical-support",
+      "name": "Technical Support",
+      "slug": "technical-support",
+      "category": "support",
+      "shortDescription": "Expert help when you need it",
+      "fullDescription": "Round-the-clock technical support to keep your systems running smoothly.",
+      "icon": "🔧",
+      "image": "/images/services/support.jpg",
+      "features": [
+        "24/7 availability",
+        "Multi-channel support",
+        "Dedicated account manager",
+        "SLA guarantees",
+        "Proactive monitoring"
+      ],
+      "benefits": [
+        {
+          "title": "Peace of Mind",
+          "description": "Expert help always available"
+        },
+        {
+          "title": "Faster Resolution",
+          "description": "Average response time under 15 minutes"
+        }
+      ],
+      "pricing": {
+        "startingAt": 500,
+        "currency": "USD",
+        "type": "monthly"
+      },
+      "cta": {
+        "text": "Get Support",
+        "href": "/contact?service=technical-support"
+      },
+      "featured": false
+    }
+  ],
+
+  "testimonial": {
+    "quote": "Their team transformed our outdated infrastructure into a modern, scalable platform. Highly recommended!",
+    "author": {
+      "name": "Sarah Johnson",
+      "title": "CTO",
+      "company": "TechCorp Inc.",
+      "avatar": "/images/testimonials/sarah.jpg"
+    }
+  },
+
+  "cta": {
+    "title": "Not Sure Which Service You Need?",
+    "description": "Let's talk about your project and find the perfect solution together.",
+    "primary": {
+      "text": "Schedule a Free Consultation",
+      "href": "/contact"
+    },
+    "secondary": {
+      "text": "View Our Work",
+      "href": "/portfolio"
+    }
+  }
+}

@@ -1065,6 +1065,24 @@ function generateBuildInfo() {
         copyAssets();
         generateBuildInfo();
 
+        // Generate theme CSS from config
+        console.log('🎨 Generating theme CSS...');
+        try {
+            const { writeThemeCss } = await import('./theme-generator.js');
+            writeThemeCss();
+        } catch (themeError) {
+            console.warn('⚠️  Theme generation skipped:', themeError.message);
+        }
+
+        // Generate sitemap and robots.txt
+        console.log('🗺️  Generating SEO files...');
+        try {
+            const { generateSeoFiles } = await import('./sitemap-generator.js');
+            await generateSeoFiles({ siteUrl: CONFIG?.site?.site?.url });
+        } catch (seoError) {
+            console.warn('⚠️  SEO file generation skipped:', seoError.message);
+        }
+
         // Run link health check
         console.log('🔗 Running link health check...');
         import('./check-links.js').then(({ checkLinks }) => {
