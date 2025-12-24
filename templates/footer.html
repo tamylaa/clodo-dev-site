@@ -127,4 +127,15 @@
             };
         }
     </script>
+
+    <!-- Performance: Add lazy-loading fallback for images not explicitly marked -->
+    <script nonce="N0Nc3Cl0d0" defer>
+        (function(){
+            try {
+                document.addEventListener('DOMContentLoaded', function(){
+                    document.querySelectorAll('img:not([loading])').forEach(img=>{ img.loading = 'lazy'; });
+                });
+            } catch (e) { /* fail silently */ }
+        })();
+    </script>
 </footer>
