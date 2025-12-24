@@ -2,7 +2,7 @@
 /**
  * run_webpagetest.js (ESM)
  * - Requires WEBPAGETEST_API_KEY env var. Uses webpagetest locations to run tests from multiple regions.
- * - Usage: node scripts/perf/run_webpagetest.js --url=https://www.clodo.dev/how-to-migrate-from-wrangler
+ * - Usage: node scripts/perf/run_webpagetest.js --url=https://www.example.com/page
  * - Example locations: Dulles: "Dulles:Chrome"; Frankfurt: "Frankfurt:Chrome"; Mumbai: "Mumbai:Chrome"; SaoPaulo: "SAO:Chrome"
  */
 import minimist from 'minimist';

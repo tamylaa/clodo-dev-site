@@ -11,6 +11,17 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load base URL from config
+let BASE_URL = 'https://www.example.com';
+try {
+  const configPath = path.join(__dirname, '..', '..', 'config', 'site.config.js');
+  const config = await import(`file://${configPath}`);
+  BASE_URL = config.default?.url || BASE_URL;
+} catch (e) {
+  console.warn('⚠️  Could not load site config, using default URL');
+}
+
 const variantsFile = path.join(__dirname, '..', '..', 'content', 'seo-experiments', 'meta-variants.json');
 const outDir = path.join(__dirname, '..', '..', 'public', 'experiments');
 
@@ -30,7 +41,7 @@ async function run() {
   <title>${meta.title}</title>
   <meta name="description" content="${meta.meta}">
   <!-- NOTE: Experiment page for ${slug}; canonical is the variant-specific URL -->
-  <link rel="canonical" href="https://www.clodo.dev/experiments/${slug}-variant-${key}">
+  <link rel="canonical" href="${BASE_URL}/experiments/${slug}-variant-${key}">
 </head>
 <body>
   <div style="background:#fffbeb;border-left:4px solid #f59e0b;padding:1rem;margin:.5rem 0;">

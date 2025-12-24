@@ -11,6 +11,17 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load base URL from config
+let BASE_URL = 'https://www.example.com';
+try {
+  const configPath = path.join(__dirname, '..', '..', 'config', 'site.config.js');
+  const config = await import(`file://${configPath}`);
+  BASE_URL = config.default?.url || BASE_URL;
+} catch (e) {
+  console.warn('⚠️  Could not load site config, using default URL');
+}
+
 const args = minimist(process.argv.slice(2));
 const locale = args.locale || 'de';
 const i18nFile = path.join(__dirname, '..', '..', 'content', 'i18n', `${locale}.json`);
@@ -35,7 +46,7 @@ async function run() {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${meta.title}</title>
   <meta name="description" content="${meta.meta}">
-  <link rel="canonical" href="https://www.clodo.dev/i18n/${locale}/${slug}">
+  <link rel="canonical" href="${BASE_URL}/i18n/${locale}/${slug}">
 </head>
 <body>
   <div style="padding:1rem; background:#f3f4f6; border-left:4px solid #3b82f6;">

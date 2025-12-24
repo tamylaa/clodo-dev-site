@@ -2,7 +2,7 @@
 /**
  * run_lighthouse.js (ESM)
  * - Simple Lighthouse runner that saves JSON reports to reports/lighthouse
- * - Usage: node scripts/perf/run_lighthouse.js --urls=public/how-to-migrate-from-wrangler.html,public/clodo-framework-api-simplification.html
+ * - Usage: node scripts/perf/run_lighthouse.js --urls=public/index.html,public/about.html
  * Note: Install lighthouse (npm i -D lighthouse) and run on a machine with Chrome.
  */
 import fs from 'fs/promises';
@@ -13,6 +13,16 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load base URL from tooling config
+let BASE_URL = 'http://localhost:8000';
+try {
+  const { getBaseUrl } = await import('../../config/tooling.config.js');
+  BASE_URL = getBaseUrl();
+} catch (e) {
+  console.warn('⚠️  Could not load tooling config, using localhost');
+}
+
 const args = minimist(process.argv.slice(2));
 const urlsArg = args.urls || '';
 if (!urlsArg) {
@@ -23,7 +33,7 @@ const urls = urlsArg.split(',');
 const outDir = path.join(__dirname, '..', '..', 'reports', 'lighthouse');
 await fs.mkdir(outDir, { recursive: true });
 for (const u of urls) {
-  const fullUrl = u.startsWith('http') ? u : `https://www.clodo.dev/${u.replace(/^public\//,'')}`;
+  const fullUrl = u.startsWith('http') ? u : `${BASE_URL}/${u.replace(/^public\//,'')}`;
   const safeName = u.replace(/[^a-z0-9]/gi, '_').toLowerCase();
   const outFile = path.join(outDir, `${safeName}.report.json`);
   console.log('Running lighthouse for', fullUrl);
