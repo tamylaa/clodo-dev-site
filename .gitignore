@@ -58,4 +58,6 @@ docs/clodo-framework-i-docs/
 docs/ADVANCED_DIGITAL_GROWTH_PLAYBOOK.md
 docs/ANALYTICS.md
 docs/ORGANIC_TRAFFIC_GROWTH_PLAN.md
-content/
+
+# Note: content/ is NOT ignored in the starter template
+# It contains sample content JSON files that users will customize

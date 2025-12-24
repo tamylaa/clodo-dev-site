@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Homepage Content",
+  "description": "Content configuration for the homepage",
+  
+  "hero": {
+    "title": "Build Amazing Products Faster",
+    "subtitle": "Your compelling value proposition goes here. Explain what makes your product unique in one sentence.",
+    "description": "A longer description that elaborates on the value proposition. This can be 2-3 sentences explaining the key benefits.",
+    "cta": {
+      "primary": {
+        "text": "Get Started",
+        "href": "/quick-start",
+        "icon": "rocket"
+      },
+      "secondary": {
+        "text": "View Demo",
+        "href": "/demo",
+        "icon": "play"
+      }
+    },
+    "stats": [
+      { "value": "60%", "label": "Cost Reduction", "description": "Average savings" },
+      { "value": "99.9%", "label": "Uptime", "description": "Reliability" },
+      { "value": "10x", "label": "Faster", "description": "Development speed" }
+    ],
+    "trustedBy": {
+      "title": "Trusted by innovative teams",
+      "logos": [
+        { "name": "Company 1", "src": "/images/logos/company1.svg" },
+        { "name": "Company 2", "src": "/images/logos/company2.svg" }
+      ]
+    }
+  },
+
+  "features": {
+    "sectionTitle": "Why Choose Us",
+    "sectionSubtitle": "Everything you need to build, deploy, and scale",
+    "items": [
+      {
+        "icon": "zap",
+        "title": "Lightning Fast",
+        "description": "Optimized performance with edge computing. Your users get sub-100ms response times globally.",
+        "link": { "text": "Learn more", "href": "/features/performance" }
+      },
+      {
+        "icon": "shield",
+        "title": "Enterprise Security",
+        "description": "Built-in security features including DDoS protection, SSL, and compliance certifications.",
+        "link": { "text": "Security details", "href": "/features/security" }
+      },
+      {
+        "icon": "code",
+        "title": "Developer First",
+        "description": "Clean APIs, comprehensive documentation, and tools that make developers productive.",
+        "link": { "text": "View docs", "href": "/docs" }
+      },
+      {
+        "icon": "globe",
+        "title": "Global Scale",
+        "description": "Deploy to 300+ edge locations worldwide with automatic scaling and load balancing.",
+        "link": { "text": "Infrastructure", "href": "/features/infrastructure" }
+      },
+      {
+        "icon": "refresh",
+        "title": "Zero Downtime",
+        "description": "Rolling deployments and instant rollbacks ensure your service stays available.",
+        "link": { "text": "Reliability", "href": "/features/reliability" }
+      },
+      {
+        "icon": "dollar",
+        "title": "Cost Effective",
+        "description": "Pay only for what you use. No upfront costs, no minimum commitments.",
+        "link": { "text": "Pricing", "href": "/pricing" }
+      }
+    ]
+  },
+
+  "benefits": {
+    "sectionTitle": "Key Benefits",
+    "sectionSubtitle": "Real results from real customers",
+    "items": [
+      {
+        "title": "Reduce Development Time",
+        "description": "Pre-built components and templates let you ship features in days, not months.",
+        "metric": { "value": "70%", "label": "faster time to market" },
+        "image": "/images/benefits/speed.svg"
+      },
+      {
+        "title": "Lower Infrastructure Costs",
+        "description": "Edge computing eliminates expensive origin servers and reduces bandwidth costs.",
+        "metric": { "value": "60%", "label": "cost reduction" },
+        "image": "/images/benefits/savings.svg"
+      },
+      {
+        "title": "Improve User Experience",
+        "description": "Global edge network ensures fast load times for users everywhere.",
+        "metric": { "value": "99.9%", "label": "uptime SLA" },
+        "image": "/images/benefits/performance.svg"
+      }
+    ]
+  },
+
+  "comparison": {
+    "sectionTitle": "How We Compare",
+    "sectionSubtitle": "See the difference",
+    "competitors": ["Traditional Hosting", "AWS Lambda", "Our Solution"],
+    "features": [
+      { "name": "Cold Start Time", "values": ["N/A", "100-500ms", "0ms"] },
+      { "name": "Global Edge Locations", "values": ["1-3", "24", "300+"] },
+      { "name": "Setup Time", "values": ["Days", "Hours", "Minutes"] },
+      { "name": "Scaling", "values": ["Manual", "Auto (slow)", "Instant"] },
+      { "name": "Pricing Model", "values": ["Fixed", "Per request", "Per request"] },
+      { "name": "Free Tier", "values": ["No", "Limited", "Generous"] }
+    ]
+  },
+
+  "testimonials": {
+    "sectionTitle": "What Our Customers Say",
+    "sectionSubtitle": "Join thousands of satisfied developers",
+    "items": [
+      {
+        "quote": "This platform transformed how we build and deploy applications. Our development velocity increased by 3x.",
+        "author": {
+          "name": "Sarah Chen",
+          "title": "CTO",
+          "company": "TechStartup Inc",
+          "avatar": "/images/testimonials/sarah.jpg"
+        },
+        "rating": 5
+      },
+      {
+        "quote": "The performance improvements were immediate. Our users noticed the difference on day one.",
+        "author": {
+          "name": "Michael Roberts",
+          "title": "Lead Developer",
+          "company": "Enterprise Corp",
+          "avatar": "/images/testimonials/michael.jpg"
+        },
+        "rating": 5
+      },
+      {
+        "quote": "Finally, a platform that understands developer experience. The docs are amazing and support is top-notch.",
+        "author": {
+          "name": "Emily Watson",
+          "title": "Engineering Manager",
+          "company": "ScaleUp Ltd",
+          "avatar": "/images/testimonials/emily.jpg"
+        },
+        "rating": 5
+      }
+    ]
+  },
+
+  "cta": {
+    "title": "Ready to Get Started?",
+    "description": "Join thousands of developers building better products faster.",
+    "primaryButton": {
+      "text": "Start Free Trial",
+      "href": "/signup"
+    },
+    "secondaryButton": {
+      "text": "Contact Sales",
+      "href": "/contact"
+    },
+    "note": "No credit card required. 14-day free trial."
+  },
+
+  "socialProof": {
+    "stats": [
+      { "value": "10,000+", "label": "Developers" },
+      { "value": "500+", "label": "Companies" },
+      { "value": "1M+", "label": "Requests/day" },
+      { "value": "99.99%", "label": "Uptime" }
+    ]
+  }
+}

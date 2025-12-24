@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Blog Configuration",
+  "description": "Blog settings and metadata",
+
+  "settings": {
+    "postsPerPage": 10,
+    "excerptLength": 160,
+    "dateFormat": "MMMM D, YYYY",
+    "showAuthor": true,
+    "showReadTime": true,
+    "showCategories": true,
+    "showTags": true,
+    "enableComments": false,
+    "enableSharing": true
+  },
+
+  "hero": {
+    "title": "Blog",
+    "subtitle": "Insights, tutorials, and updates from our team"
+  },
+
+  "categories": [
+    { "id": "tutorial", "name": "Tutorials", "description": "Step-by-step guides and how-tos" },
+    { "id": "news", "name": "News", "description": "Product updates and announcements" },
+    { "id": "engineering", "name": "Engineering", "description": "Technical deep-dives" },
+    { "id": "case-study", "name": "Case Studies", "description": "Real-world implementations" },
+    { "id": "community", "name": "Community", "description": "Community stories and highlights" }
+  ],
+
+  "authors": {
+    "default": {
+      "id": "team",
+      "name": "The Team",
+      "bio": "Official content from our team",
+      "avatar": "/images/authors/team.png"
+    },
+    "list": [
+      {
+        "id": "alex",
+        "name": "Alex Johnson",
+        "bio": "CEO & Co-founder. Writing about startups, developer tools, and building in public.",
+        "avatar": "/images/authors/alex.jpg",
+        "social": {
+          "twitter": "https://twitter.com/alexj"
+        }
+      },
+      {
+        "id": "sam",
+        "name": "Sam Williams",
+        "bio": "CTO & Co-founder. Passionate about distributed systems and edge computing.",
+        "avatar": "/images/authors/sam.jpg",
+        "social": {
+          "github": "https://github.com/samw"
+        }
+      }
+    ]
+  },
+
+  "newsletter": {
+    "enabled": true,
+    "title": "Subscribe to Our Newsletter",
+    "description": "Get the latest posts delivered straight to your inbox.",
+    "frequency": "Weekly digest, no spam"
+  },
+
+  "sidebar": {
+    "showCategories": true,
+    "showRecentPosts": true,
+    "recentPostsCount": 5,
+    "showNewsletter": true,
+    "showSearch": true
+  }
+}

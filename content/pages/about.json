@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "About Page Content",
+  "description": "About page configuration",
+
+  "hero": {
+    "title": "About Us",
+    "subtitle": "Building the future of web development"
+  },
+
+  "story": {
+    "title": "Our Story",
+    "paragraphs": [
+      "We started with a simple idea: web development should be fast, simple, and enjoyable. Too many teams were spending time on infrastructure instead of building great products.",
+      "Our platform was born from years of experience building and scaling web applications. We've taken everything we learned and packaged it into a developer-friendly platform.",
+      "Today, thousands of developers and companies use our platform to build faster, deploy easier, and scale without limits."
+    ],
+    "image": "/images/about/team.jpg"
+  },
+
+  "mission": {
+    "title": "Our Mission",
+    "statement": "To empower developers to build amazing products without infrastructure complexity.",
+    "values": [
+      {
+        "title": "Developer First",
+        "description": "Everything we build starts with the developer experience. Clean APIs, great docs, and tools that just work."
+      },
+      {
+        "title": "Performance Obsessed",
+        "description": "We're never satisfied with 'fast enough'. Every millisecond matters to us and to your users."
+      },
+      {
+        "title": "Radically Simple",
+        "description": "Complex problems deserve simple solutions. We hide the complexity so you can focus on what matters."
+      },
+      {
+        "title": "Open & Transparent",
+        "description": "We believe in open source, transparent pricing, and honest communication with our community."
+      }
+    ]
+  },
+
+  "team": {
+    "title": "Meet the Team",
+    "subtitle": "The people behind the platform",
+    "members": [
+      {
+        "name": "Alex Johnson",
+        "role": "CEO & Co-founder",
+        "bio": "Previously engineering lead at BigTech. Passionate about developer tools.",
+        "image": "/images/team/alex.jpg",
+        "social": {
+          "twitter": "https://twitter.com/alexj",
+          "linkedin": "https://linkedin.com/in/alexj",
+          "github": "https://github.com/alexj"
+        }
+      },
+      {
+        "name": "Sam Williams",
+        "role": "CTO & Co-founder",
+        "bio": "Former architect at CloudCorp. Loves distributed systems and edge computing.",
+        "image": "/images/team/sam.jpg",
+        "social": {
+          "twitter": "https://twitter.com/samw",
+          "github": "https://github.com/samw"
+        }
+      },
+      {
+        "name": "Jordan Lee",
+        "role": "Head of Product",
+        "bio": "Product leader with 10+ years in developer tools. User obsessed.",
+        "image": "/images/team/jordan.jpg",
+        "social": {
+          "linkedin": "https://linkedin.com/in/jordanl"
+        }
+      }
+    ]
+  },
+
+  "stats": [
+    { "value": "2020", "label": "Founded" },
+    { "value": "50+", "label": "Team Members" },
+    { "value": "10K+", "label": "Customers" },
+    { "value": "20M+", "label": "Deployments" }
+  ],
+
+  "investors": {
+    "title": "Backed By",
+    "logos": [
+      { "name": "Venture Capital", "src": "/images/investors/vc1.svg" },
+      { "name": "Angel Investor", "src": "/images/investors/angel1.svg" }
+    ]
+  },
+
+  "careers": {
+    "title": "Join Our Team",
+    "description": "We're always looking for talented people to help us build the future.",
+    "button": {
+      "text": "View Open Positions",
+      "href": "/careers"
+    }
+  },
+
+  "contact": {
+    "title": "Get in Touch",
+    "email": "hello@example.com",
+    "address": {
+      "street": "123 Tech Street",
+      "city": "San Francisco",
+      "state": "CA",
+      "zip": "94105",
+      "country": "USA"
+    }
+  }
+}
