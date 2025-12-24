@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page.meta.title}}</title>
+    <meta name="description" content="{{page.meta.description}}">
+    <link rel="canonical" href="{{site.url}}/pricing">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    {{> header}}
+    
+    <main class="pricing-page">
+        <!-- Pricing content from content/pages/pricing.json -->
+        <!-- CONTENT:pricing -->
+        
+        <!-- FAQ section specific to pricing -->
+        {{#if page.faq}}
+        <section class="pricing-faq" id="pricing-faq">
+            <div class="section-header">
+                <h2>{{page.faq.sectionTitle}}</h2>
+            </div>
+            <div class="faq-items">
+                {{#each page.faq.items}}
+                <details class="faq-item">
+                    <summary>{{question}}</summary>
+                    <div class="faq-answer">{{answer}}</div>
+                </details>
+                {{/each}}
+            </div>
+        </section>
+        {{/if}}
+        
+        <!-- Comparison table -->
+        {{#if page.comparison}}
+        <section class="pricing-comparison" id="comparison">
+            <div class="section-header">
+                <h2>{{page.comparison.sectionTitle}}</h2>
+            </div>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            {{#each page.comparison.headers}}
+                            <th>{{this}}</th>
+                            {{/each}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each page.comparison.rows}}
+                        <tr>
+                            <td>{{feature}}</td>
+                            {{#each values}}
+                            <td>{{this}}</td>
+                            {{/each}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {{/if}}
+        
+        <!-- CTA Section -->
+        {{#if page.cta}}
+        <section class="pricing-cta">
+            <h2>{{page.cta.title}}</h2>
+            <p>{{page.cta.subtitle}}</p>
+            <a href="{{page.cta.href}}" class="btn btn--primary btn--large">{{page.cta.text}}</a>
+        </section>
+        {{/if}}
+    </main>
+    
+    {{> footer}}
+    
+    <script src="/js/main.js" type="module"></script>
+</body>
+</html>

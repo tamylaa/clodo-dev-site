@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page.meta.title}}</title>
+    <meta name="description" content="{{page.meta.description}}">
+    <meta property="og:title" content="{{page.meta.ogTitle}}">
+    <meta property="og:description" content="{{page.meta.ogDescription}}">
+    <link rel="canonical" href="{{site.url}}">
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{site.name}}",
+        "url": "{{site.url}}",
+        "description": "{{site.tagline}}"
+    }
+    </script>
+</head>
+<body>
+    <!-- Header will be injected by build system -->
+    {{> header}}
+    
+    <main>
+        <!-- Dynamic content sections from content/pages/index.json -->
+        <!-- CONTENT:sections -->
+    </main>
+    
+    <!-- Footer will be injected by build system -->
+    {{> footer}}
+    
+    <script src="/js/main.js" type="module"></script>
+</body>
+</html>

@@ -223,6 +223,150 @@ npm run deploy
 └── .env.example            # Environment template
 ```
 
+## Content-Driven Pages
+
+The site supports fully configurable content via JSON files. **Edit the JSON, rebuild, done!**
+
+### Content Files
+
+```
+content/
+├── pages/
+│   ├── index.json      # Landing page sections
+│   ├── pricing.json    # Pricing plans & tiers
+│   ├── faq.json        # FAQ categories & items
+│   └── about.json      # About page content
+└── blog/
+    ├── config.json     # Blog settings, categories, authors
+    └── posts.json      # Blog post metadata
+```
+
+### Landing Page (`content/pages/index.json`)
+
+Configure hero, features, benefits, testimonials, and CTA:
+
+```json
+{
+  "sections": {
+    "hero": {
+      "title": "Your Amazing Product",
+      "subtitle": "The tagline that sells",
+      "cta": {
+        "primary": { "text": "Get Started", "href": "/signup" },
+        "secondary": { "text": "Learn More", "href": "#features" }
+      }
+    },
+    "features": {
+      "sectionTitle": "Why Choose Us",
+      "items": [
+        { "title": "Feature 1", "description": "Description", "icon": "🚀" }
+      ]
+    }
+  }
+}
+```
+
+### Pricing Page (`content/pages/pricing.json`)
+
+```json
+{
+  "plans": [
+    {
+      "name": "Free",
+      "price": { "monthly": 0 },
+      "features": [
+        { "text": "5 projects", "included": true },
+        { "text": "Priority support", "included": false }
+      ],
+      "cta": { "text": "Start Free", "href": "/signup" }
+    }
+  ]
+}
+```
+
+### FAQ Page (`content/pages/faq.json`)
+
+```json
+{
+  "categories": [
+    {
+      "name": "General",
+      "items": [
+        { "question": "What is this?", "answer": "..." }
+      ]
+    }
+  ]
+}
+```
+
+### Blog System (`content/blog/`)
+
+**config.json** - Global blog settings:
+```json
+{
+  "settings": { "postsPerPage": 10 },
+  "categories": [
+    { "name": "Tutorials", "slug": "tutorials" }
+  ],
+  "authors": [
+    { "id": "john", "name": "John Doe", "bio": "..." }
+  ]
+}
+```
+
+**posts.json** - Blog post metadata:
+```json
+{
+  "posts": [
+    {
+      "slug": "getting-started",
+      "title": "Getting Started Guide",
+      "excerpt": "Learn how to...",
+      "category": "tutorials",
+      "authorId": "john",
+      "publishedAt": "2025-01-15"
+    }
+  ]
+}
+```
+
+### Supported Sections
+
+The page generator supports these section types:
+
+| Section | Marker | Description |
+|---------|--------|-------------|
+| `hero` | `<!-- CONTENT:hero -->` | Hero with title, subtitle, CTA |
+| `features` | `<!-- CONTENT:features -->` | Feature cards grid |
+| `benefits` | `<!-- CONTENT:benefits -->` | Benefits cards grid |
+| `pricing` | `<!-- CONTENT:pricing -->` | Pricing cards |
+| `faq` | `<!-- CONTENT:faq -->` | FAQ accordion |
+| `testimonials` | `<!-- CONTENT:testimonials -->` | Testimonial cards |
+| `comparison` | `<!-- CONTENT:comparison -->` | Comparison table |
+| `cta` | `<!-- CONTENT:cta -->` | Call-to-action banner |
+
+Use `<!-- CONTENT:sections -->` to render ALL sections from the JSON in order.
+
+### Running the Page Generator
+
+```bash
+# Generate all content-driven pages
+node build/page-generator.js
+
+# Or run as part of the full build
+npm run build
+```
+
+## Spin Up a New Site Checklist
+
+1. **Clone the starter**: `git clone <repo> my-new-site`
+2. **Run setup wizard**: `node scripts/setup.js`
+3. **Edit content files**: Modify `content/pages/*.json`
+4. **Update assets**: Replace logo, favicon, OG image
+5. **Build & deploy**: `npm run build && npm run deploy`
+
+That's it! Your new site is live with zero code changes. 🚀
+
 ## Need Help?
 
 - Check the build output for errors

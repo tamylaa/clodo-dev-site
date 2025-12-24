@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page.meta.title}}</title>
+    <meta name="description" content="{{page.meta.description}}">
+    <link rel="canonical" href="{{site.url}}/faq">
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {{#each page.categories}}
+            {{#each items}}
+            {
+                "@type": "Question",
+                "name": "{{question}}",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{answer}}"
+                }
+            }{{#unless @last}},{{/unless}}
+            {{/each}}{{#unless @last}},{{/unless}}
+            {{/each}}
+        ]
+    }
+    </script>
+</head>
+<body>
+    {{> header}}
+    
+    <main class="faq-page">
+        <header class="faq-hero">
+            <h1>{{page.hero.title}}</h1>
+            <p>{{page.hero.subtitle}}</p>
+            
+            {{#if page.hero.search}}
+            <div class="faq-search">
+                <input type="search" placeholder="{{page.hero.searchPlaceholder}}" id="faq-search" aria-label="Search FAQ">
+            </div>
+            {{/if}}
+        </header>
+        
+        <!-- FAQ content from content/pages/faq.json -->
+        <!-- CONTENT:faq -->
+        
+        <!-- Contact CTA -->
+        {{#if page.contact}}
+        <section class="faq-contact">
+            <h2>{{page.contact.title}}</h2>
+            <p>{{page.contact.description}}</p>
+            <a href="{{page.contact.href}}" class="btn btn--primary">{{page.contact.text}}</a>
+        </section>
+        {{/if}}
+    </main>
+    
+    {{> footer}}
+    
+    <script src="/js/main.js" type="module"></script>
+    <script>
+        // FAQ search functionality
+        const searchInput = document.getElementById('faq-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    item.style.display = text.includes(query) ? '' : 'none';
+                });
+            });
+        }
+    </script>
+</body>
+</html>

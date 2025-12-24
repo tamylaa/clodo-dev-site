@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page.meta.title}}</title>
+    <meta name="description" content="{{page.meta.description}}">
+    <link rel="canonical" href="{{site.url}}/about">
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- About Page Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "{{site.name}}",
+            "description": "{{page.story.content}}",
+            "foundingDate": "{{page.story.founded}}"
+        }
+    }
+    </script>
+</head>
+<body>
+    {{> header}}
+    
+    <main class="about-page">
+        <!-- Hero -->
+        <header class="about-hero">
+            <h1>{{page.hero.title}}</h1>
+            <p class="about-hero-subtitle">{{page.hero.subtitle}}</p>
+        </header>
+        
+        <!-- Our Story -->
+        {{#if page.story}}
+        <section class="about-story">
+            <h2>{{page.story.title}}</h2>
+            <div class="about-story-content">
+                {{page.story.content}}
+            </div>
+            {{#if page.story.image}}
+            <img src="{{page.story.image.src}}" alt="{{page.story.image.alt}}" class="about-story-image">
+            {{/if}}
+        </section>
+        {{/if}}
+        
+        <!-- Mission & Values -->
+        {{#if page.mission}}
+        <section class="about-mission">
+            <h2>{{page.mission.title}}</h2>
+            <p class="mission-statement">{{page.mission.statement}}</p>
+            
+            {{#if page.mission.values}}
+            <div class="values-grid">
+                {{#each page.mission.values}}
+                <div class="value-card">
+                    {{#if icon}}<div class="value-icon">{{icon}}</div>{{/if}}
+                    <h3>{{title}}</h3>
+                    <p>{{description}}</p>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </section>
+        {{/if}}
+        
+        <!-- Stats -->
+        {{#if page.stats}}
+        <section class="about-stats">
+            <div class="stats-grid">
+                {{#each page.stats}}
+                <div class="stat-item">
+                    <span class="stat-value">{{value}}</span>
+                    <span class="stat-label">{{label}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </section>
+        {{/if}}
+        
+        <!-- Team -->
+        {{#if page.team}}
+        <section class="about-team">
+            <h2>{{page.team.title}}</h2>
+            {{#if page.team.subtitle}}<p class="team-subtitle">{{page.team.subtitle}}</p>{{/if}}
+            
+            <div class="team-grid">
+                {{#each page.team.members}}
+                <div class="team-member">
+                    {{#if image}}<img src="{{image}}" alt="{{name}}" class="team-member-photo">{{/if}}
+                    <h3>{{name}}</h3>
+                    <p class="team-member-role">{{role}}</p>
+                    {{#if bio}}<p class="team-member-bio">{{bio}}</p>{{/if}}
+                    {{#if social}}
+                    <div class="team-member-social">
+                        {{#if social.linkedin}}<a href="{{social.linkedin}}" aria-label="LinkedIn">LinkedIn</a>{{/if}}
+                        {{#if social.twitter}}<a href="{{social.twitter}}" aria-label="Twitter">Twitter</a>{{/if}}
+                        {{#if social.github}}<a href="{{social.github}}" aria-label="GitHub">GitHub</a>{{/if}}
+                    </div>
+                    {{/if}}
+                </div>
+                {{/each}}
+            </div>
+        </section>
+        {{/if}}
+        
+        <!-- Careers -->
+        {{#if page.careers}}
+        <section class="about-careers">
+            <h2>{{page.careers.title}}</h2>
+            <p>{{page.careers.description}}</p>
+            {{#if page.careers.positions}}
+            <div class="positions-list">
+                {{#each page.careers.positions}}
+                <div class="position-card">
+                    <h3>{{title}}</h3>
+                    <span class="position-type">{{type}}</span>
+                    <span class="position-location">{{location}}</span>
+                    <a href="{{href}}" class="btn btn--secondary">Apply</a>
+                </div>
+                {{/each}}
+            </div>
+            {{else}}
+            <a href="{{page.careers.href}}" class="btn btn--primary">{{page.careers.buttonText}}</a>
+            {{/if}}
+        </section>
+        {{/if}}
+        
+        <!-- CTA -->
+        {{#if page.cta}}
+        <section class="about-cta">
+            <h2>{{page.cta.title}}</h2>
+            <p>{{page.cta.subtitle}}</p>
+            <a href="{{page.cta.href}}" class="btn btn--primary btn--large">{{page.cta.text}}</a>
+        </section>
+        {{/if}}
+    </main>
+    
+    {{> footer}}
+    
+    <script src="/js/main.js" type="module"></script>
+</body>
+</html>
