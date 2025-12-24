@@ -4,6 +4,9 @@ node_modules/
 # Build output
 dist/
 dist-astro/
+build/prod-main-current.js
+build/production-main.js
+build/production-stackblitz.js
 
 # Astro cache
 .astro/
@@ -43,6 +46,11 @@ config/tests/playwright-report/
 
 # Lighthouse CI
 .lighthouseci/
+
+# Product-specific build scripts (remove these if not using Clodo Framework)
+build/demo-service-creation.js
+build/setup-clodo.js
+build/check-production-button.js
 
 # Temporary diagnostic files
 tmp_*.html
