@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -10,7 +10,7 @@
     <title>Serverless Architecture Best Practices 2025 - Complete Guide | Clodo Framework</title>
     <meta name="description" content="Master serverless architecture in 2025. Complete guide covering design patterns, cost optimization, performance, security, and deployment strategies for scalable applications.">
     <meta name="keywords" content="serverless architecture, serverless best practices, serverless design patterns, serverless cost optimization, serverless performance, serverless security, cloudflare workers serverless, aws lambda best practices, serverless deployment, serverless monitoring">
-    <link rel="canonical" href="https://www.clodo.dev/serverless-architecture-best-practices">
+    <link rel="canonical" href="https://clodo.dev/serverless-architecture-best-practices">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -137,7 +137,7 @@
                     <p>Master modern serverless development with proven patterns, cost optimization strategies, and enterprise-grade deployment techniques. Build scalable applications that perform and save money.</p>
                     <div class="article-meta">
                         <span class="article-date">Updated: December 17, 2025</span>
-                        <span class="article-reading-time">⏱️ 30 min read</span>
+                        <span class="article-reading-time">â±ï¸ 30 min read</span>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
         <!-- Table of Contents -->
         <section class="table-of-contents">
             <div class="container">
-                <h2>📋 Table of Contents</h2>
+                <h2>ðŸ“‹ Table of Contents</h2>
                 <nav aria-label="Article navigation">
                     <ol>
                         <li><a href="#fundamentals">Serverless Fundamentals</a></li>
@@ -164,7 +164,7 @@
         <article class="content-article">
             <div class="container">
                 <section id="fundamentals">
-                    <h2>🏗️ Serverless Fundamentals</h2>
+                    <h2>ðŸ—ï¸ Serverless Fundamentals</h2>
                     <p>Serverless architecture represents a paradigm shift from traditional infrastructure management to event-driven, pay-per-execution computing. Understanding these fundamentals is crucial for successful implementation.</p>
 
                     <h3>What is Serverless?</h3>
@@ -214,7 +214,7 @@
                 </section>
 
                 <section id="design-patterns">
-                    <h2>🎯 Design Patterns</h2>
+                    <h2>ðŸŽ¯ Design Patterns</h2>
 
                     <h3>Function Decomposition</h3>
                     <p>Break down monolithic applications into smaller, focused functions:</p>
@@ -225,14 +225,14 @@
                     </ul>
 
                     <h3>State Management</h3>
-                    <pre><code>// ❌ Bad: Storing state in function memory
+                    <pre><code>// âŒ Bad: Storing state in function memory
 let counter = 0;
 export async function handler() {
   counter++;
   return new Response(counter.toString());
 }
 
-// ✅ Good: Using external storage
+// âœ… Good: Using external storage
 export async function handler(request, env) {
   const counter = await env.KV.get('counter') || '0';
   const newCounter = parseInt(counter) + 1;
@@ -274,7 +274,7 @@ export default {
                 </section>
 
                 <section id="cost-optimization">
-                    <h2>💰 Cost Optimization</h2>
+                    <h2>ðŸ’° Cost Optimization</h2>
 
                     <h3>Right-Size Functions</h3>
                     <ul>
@@ -311,7 +311,7 @@ export default {
 
                     <h3>Cost Optimization Checklist</h3>
                     <div class="checklist">
-                        <h4>✅ Function-Level Optimizations</h4>
+                        <h4>âœ… Function-Level Optimizations</h4>
                         <ul>
                             <li>Minimize bundle size (< 5MB)</li>
                             <li>Use appropriate memory allocation</li>
@@ -319,7 +319,7 @@ export default {
                             <li>Implement proper error handling</li>
                         </ul>
 
-                        <h4>✅ Architecture-Level Optimizations</h4>
+                        <h4>âœ… Architecture-Level Optimizations</h4>
                         <ul>
                             <li>Use caching layers effectively</li>
                             <li>Implement request deduplication</li>
@@ -330,7 +330,7 @@ export default {
                 </section>
 
                 <section id="performance">
-                    <h2>⚡ Performance & Scaling</h2>
+                    <h2>âš¡ Performance & Scaling</h2>
 
                     <h3>Performance Best Practices</h3>
                     <ul>
@@ -373,7 +373,7 @@ export default {
                 </section>
 
                 <section id="security">
-                    <h2>🔒 Security Best Practices</h2>
+                    <h2>ðŸ”’ Security Best Practices</h2>
 
                     <h3>Authentication & Authorization</h3>
                     <ul>
@@ -384,7 +384,7 @@ export default {
                     </ul>
 
                     <h3>Secret Management</h3>
-                    <pre><code>// ✅ Good: Use environment variables
+                    <pre><code>// âœ… Good: Use environment variables
 export default {
   async fetch(request, env) {
     const apiKey = env.API_KEY; // Securely stored
@@ -392,7 +392,7 @@ export default {
   }
 };
 
-// ❌ Bad: Hardcode secrets
+// âŒ Bad: Hardcode secrets
 const API_KEY = 'sk-1234567890'; // Never do this!</code></pre>
 
                     <h3>Security Headers</h3>
@@ -420,7 +420,7 @@ export default {
                 </section>
 
                 <section id="monitoring">
-                    <h2>📊 Monitoring & Observability</h2>
+                    <h2>ðŸ“Š Monitoring & Observability</h2>
 
                     <h3>Logging Strategies</h3>
                     <ul>
@@ -466,7 +466,7 @@ export default {
                 </section>
 
                 <section id="clodo-solution">
-                    <h2>🎯 Why Clodo Framework?</h2>
+                    <h2>ðŸŽ¯ Why Clodo Framework?</h2>
                     <p>Building serverless applications from scratch requires implementing all these best practices manually. Clodo Framework provides enterprise-grade serverless infrastructure with built-in optimization.</p>
 
                     <div class="cta-box">
