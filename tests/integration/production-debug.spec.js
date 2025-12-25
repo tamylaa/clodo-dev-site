@@ -6,6 +6,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Production Button Debug', () => {
+    test.skip(process.env.CI, 'Production debug test skipped in CI environment');
+    
     test('check if stackblitz module loads and attaches handlers', async ({ page }) => {
         // Navigate to production site
         await page.goto('https://www.clodo.dev/');
