@@ -17,11 +17,16 @@
 
 # AI Agent Resources - ALLOW INDEXING (Critical for AI Discovery)
 /structured-data.html
-  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1
   Cache-Control: public, max-age=86400
   
 /sitemap.xml
   X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
+
+# Main content pages - FULL INDEXING for SEO
+/*.html
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1
   Cache-Control: public, max-age=3600
 
 # Lighthouse audit bypass - allow bot for performance auditing
