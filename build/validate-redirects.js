@@ -27,12 +27,8 @@ function validateRedirects() {
 
   // Required rules that must be present
   const requiredRules = [
-    {
-      pattern: '/*',
-      target: '/index.html',
-      status: '200',
-      description: 'SPA fallback for client-side routing'
-    }
+    // Removed SPA fallback redirect requirement as it causes SEO indexing issues
+    // by making all URLs serve homepage content (duplicate content)
   ];
 
   const missingRules = [];
@@ -63,7 +59,7 @@ function validateRedirects() {
 
   console.log('✅ _redirects file validation passed');
   console.log(`   Found ${lines.length} redirect rules`);
-  console.log('   SPA fallback rule is present');
+  console.log('   No problematic SPA fallback redirects detected');
 
   return true;
 }
