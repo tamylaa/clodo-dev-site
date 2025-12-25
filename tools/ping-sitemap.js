@@ -43,7 +43,10 @@ function fetchSitemap(sitemapUrl) {
       port: 443,
       path: url.pathname,
       method: 'GET',
-      timeout: 10000
+      timeout: 10000,
+      headers: {
+        'User-Agent': 'Clodo-Sitemap-Pinger/1.0'
+      }
     };
 
     const req = https.request(options, (res) => {
