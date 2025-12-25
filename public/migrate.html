@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="X-Frame-Options" content="DENY">
@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Migrate to Clodo - From Wrangler/Serverless to Enterprise</title>
-    <link rel="canonical" href="https://www.clodo.dev/migrate">
+    <link rel="canonical" href="https://clodo.dev/migrate">
   <meta name="description" content="Automated migrations from Vercel and Railway to Cloudflare Pages & Workers. Clodo provides mappings, scaffolding, validation, and data sync.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +86,7 @@
       {
         "@type": "HowToStep",
         "name": "Map Services",
-        "text": "Automatically map Vercel/Railway services to Cloudflare equivalents: KV → KV, Blob → R2, Edge Config → KV/DO, Cron → Triggers, Postgres → external PG or D1.",
+        "text": "Automatically map Vercel/Railway services to Cloudflare equivalents: KV â†’ KV, Blob â†’ R2, Edge Config â†’ KV/DO, Cron â†’ Triggers, Postgres â†’ external PG or D1.",
         "position": 2
       },
       {
@@ -121,13 +121,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.clodo.dev/"
+        "item": "https://clodo.dev/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Migrate",
-        "item": "https://www.clodo.dev/migrate"
+        "item": "https://clodo.dev/migrate"
       }
     ]
   }
@@ -155,7 +155,7 @@
       <div class="container">
         <div class="hero-content">
           <h1>Migrate to Cloudflare</h1>
-          <p>Automate your move from Vercel and Railway to Cloudflare Pages & Workers with Clodo’s mapping, scaffolding, and validation toolkit.</p>
+          <p>Automate your move from Vercel and Railway to Cloudflare Pages & Workers with Clodoâ€™s mapping, scaffolding, and validation toolkit.</p>
           <div class="hero-actions">
             <a class="btn btn--primary" href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">View the Framework</a>
             <a class="btn btn--secondary" href="mailto:product@clodo.dev">Talk to Us</a>
@@ -185,7 +185,7 @@
             <li><a href="#edge-cases">Known edge cases</a></li>
             <li><a href="#rollout">Rollout strategy</a></li>
             <li><a href="#capability-architecture">Capability architecture</a></li>
-            <li><a href="#railway">Railway → Cloudflare</a></li>
+            <li><a href="#railway">Railway â†’ Cloudflare</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </nav>
@@ -196,9 +196,9 @@
       <div class="container">
         <h2>What gets migrated</h2>
         <ul class="feature-list">
-          <li>Config: vercel.json/railway configs → wrangler.toml, routes, headers</li>
-          <li>Framework: Next.js Pages/App Router → Pages + Next plugin or Workers</li>
-          <li>Services: KV/Blob/Cron/Edge Config/Postgres → KV/R2/Cron/KV+DO/PG or D1</li>
+          <li>Config: vercel.json/railway configs â†’ wrangler.toml, routes, headers</li>
+          <li>Framework: Next.js Pages/App Router â†’ Pages + Next plugin or Workers</li>
+          <li>Services: KV/Blob/Cron/Edge Config/Postgres â†’ KV/R2/Cron/KV+DO/PG or D1</li>
           <li>Env & Secrets: exported, namespaced, and imported as Cloudflare secrets</li>
           <li>Data: KV copy and Blob sync tools with checksums</li>
           <li>Validation: route parity, SSR smoke tests, cache correctness</li>
@@ -239,7 +239,7 @@
         <h2 id="flow">Migration flow (CLI UX)</h2>
         <ol>
           <li>Detect framework, middleware, routes, and services (vercel.json, next.config.js, package.json, env)</li>
-          <li>Map services <em>(KV → KV, Blob → R2, Edge Config → KV/DO, Cron → Triggers, PG → external PG or D1)</em></li>
+          <li>Map services <em>(KV â†’ KV, Blob â†’ R2, Edge Config â†’ KV/DO, Cron â†’ Triggers, PG â†’ external PG or D1)</em></li>
           <li>Generate artifacts <em>(wrangler.toml, _routes.json, headers.json, functions/, bindings)</em></li>
           <li>Produce a parity report with warnings and remediation steps</li>
           <li>Optionally provision resources, run preview deploy, smoke tests, and ship</li>
@@ -247,8 +247,8 @@
 
         <h2 id="mapping-config">Config mapping</h2>
         <ul>
-          <li><strong>vercel.json → wrangler.toml</strong>: routes/rewrites/redirects to Pages/Workers routing or _routes.json; headers to headers.json or Workers handlers; env to [vars] + secrets</li>
-          <li><strong>next.config.js</strong>: images domains → Cloudflare Images/static fallback; experimental flags warned if unsupported</li>
+          <li><strong>vercel.json â†’ wrangler.toml</strong>: routes/rewrites/redirects to Pages/Workers routing or _routes.json; headers to headers.json or Workers handlers; env to [vars] + secrets</li>
+          <li><strong>next.config.js</strong>: images domains â†’ Cloudflare Images/static fallback; experimental flags warned if unsupported</li>
         </ul>
 
         <h2 id="mapping-framework">Framework mapping (Next.js)</h2>
@@ -262,10 +262,10 @@
 
         <h2 id="mapping-services">Services mapping</h2>
         <ul>
-          <li><strong>Vercel KV → Cloudflare KV</strong>: namespace mapping, TTL semantics, size limits, eventual consistency notes</li>
-          <li><strong>Vercel Blob → Cloudflare R2</strong>: public/private buckets, signed URLs, migration script with checksum</li>
-          <li><strong>Edge Config → KV/DO</strong>: hierarchical config with per-environment overrides</li>
-          <li><strong>Cron → Cloudflare Cron</strong>: schedule translation, prefixed names</li>
+          <li><strong>Vercel KV â†’ Cloudflare KV</strong>: namespace mapping, TTL semantics, size limits, eventual consistency notes</li>
+          <li><strong>Vercel Blob â†’ Cloudflare R2</strong>: public/private buckets, signed URLs, migration script with checksum</li>
+          <li><strong>Edge Config â†’ KV/DO</strong>: hierarchical config with per-environment overrides</li>
+          <li><strong>Cron â†’ Cloudflare Cron</strong>: schedule translation, prefixed names</li>
           <li><strong>Postgres</strong>: keep external PG (e.g., Neon) via HTTP/Prisma for parity, or migrate to D1 where constraints fit</li>
         </ul>
 
@@ -278,7 +278,7 @@
 
         <h2 id="images">Images and optimization</h2>
         <ul>
-          <li>Next/Image optimizer → Cloudflare Images or static generation</li>
+          <li>Next/Image optimizer â†’ Cloudflare Images or static generation</li>
           <li>Pages: use CF Images loader; Workers: route to Images API</li>
           <li>Document cache-control differences and transform limitations</li>
         </ul>
@@ -306,9 +306,9 @@
         <pre><code>Summary: 84% auto-mapped, 6 warnings, 2 blockers
 Routes: 51 pages mapped, 3 rewrites migrated, 1 custom header manual
 Middleware: migrated (matcher adjusted)
-Services: KV→KV done; Blob→R2 pending data copy
-Runtime: node:crypto.randomUUID → use global crypto
-Images: Next/Image → CF Images (update loader)
+Services: KVâ†’KV done; Blobâ†’R2 pending data copy
+Runtime: node:crypto.randomUUID â†’ use global crypto
+Images: Next/Image â†’ CF Images (update loader)
 Action items: listed with code pointers</code></pre>
 
         <h2 id="validation">Validation & tests</h2>
@@ -320,8 +320,8 @@ Action items: listed with code pointers</code></pre>
 
         <h2 id="data">Data migration helpers</h2>
         <ul>
-          <li>KV copy (Vercel KV → CF KV) with concurrency + retry/backoff</li>
-          <li>Blob sync (Vercel Blob → R2) with checksum verification</li>
+          <li>KV copy (Vercel KV â†’ CF KV) with concurrency + retry/backoff</li>
+          <li>Blob sync (Vercel Blob â†’ R2) with checksum verification</li>
           <li>DB export/import adapters for PG/D1; quota-aware, prepared statements</li>
         </ul>
 
@@ -335,7 +335,7 @@ Action items: listed with code pointers</code></pre>
 
         <h2 id="rollout">Rollout strategy</h2>
         <ul>
-          <li>Preview env dry run → compare metrics/errors</li>
+          <li>Preview env dry run â†’ compare metrics/errors</li>
           <li>Canary by domain or route path</li>
           <li>Clear rollback: DNS switchback, feature flag off</li>
         </ul>
@@ -369,7 +369,7 @@ Action items: listed with code pointers</code></pre>
         <ul>
           <li><strong>ISourceAdapter</strong>: detect, parse, extract</li>
           <li><strong>ITargetAdapter</strong>: plan, generate, provision, deploy</li>
-          <li><strong>Rule</strong>: applies(model) → transform(model)</li>
+          <li><strong>Rule</strong>: applies(model) â†’ transform(model)</li>
           <li><strong>ParityReport</strong>: coverage %, auto/manual, blockers, risk</li>
         </ul>
 
@@ -380,10 +380,10 @@ Action items: listed with code pointers</code></pre>
           <li>Delivery: OSS CLI core + commercial rule packs/support</li>
         </ul>
 
-        <h3>Example end-to-end (Vercel → Pages)</h3>
+        <h3>Example end-to-end (Vercel â†’ Pages)</h3>
         <ol>
           <li>Detect Next.js; parse vercel.json; extract rewrites/headers</li>
-          <li>Apply rules: KV→KV, Blob→R2, Edge Config→KV</li>
+          <li>Apply rules: KVâ†’KV, Blobâ†’R2, Edge Configâ†’KV</li>
           <li>Generate: wrangler.toml, _routes.json, functions/api/*, Next plugin config</li>
           <li>Provision KV/R2/D1; map env; optional seed</li>
           <li>Validate smoke tests; produce parity report; deploy preview</li>
@@ -391,16 +391,16 @@ Action items: listed with code pointers</code></pre>
 
         <hr>
 
-        <h2 id="railway">Railway → Cloudflare notes</h2>
+        <h2 id="railway">Railway â†’ Cloudflare notes</h2>
         <h3>Concepts mapping</h3>
         <ul>
-          <li>Services (web/worker) → Pages or Workers</li>
-          <li>Variables → wrangler.toml [vars] + secrets; env scoping mapped</li>
-          <li>Domains → Cloudflare DNS/Pages custom domains</li>
-          <li>Postgres → keep external PG or migrate to D1 (where feasible)</li>
-          <li>Redis → KV/DO-based cache patterns</li>
-          <li>Cron → Cloudflare Cron Triggers</li>
-          <li>Persistent Disk → use R2 or external storage</li>
+          <li>Services (web/worker) â†’ Pages or Workers</li>
+          <li>Variables â†’ wrangler.toml [vars] + secrets; env scoping mapped</li>
+          <li>Domains â†’ Cloudflare DNS/Pages custom domains</li>
+          <li>Postgres â†’ keep external PG or migrate to D1 (where feasible)</li>
+          <li>Redis â†’ KV/DO-based cache patterns</li>
+          <li>Cron â†’ Cloudflare Cron Triggers</li>
+          <li>Persistent Disk â†’ use R2 or external storage</li>
         </ul>
         <h3>Adapter actions</h3>
         <ul>
@@ -412,7 +412,7 @@ Action items: listed with code pointers</code></pre>
         <h3>Edge cases & validation</h3>
         <ul>
           <li>Native binaries, FS assumptions, stateful workloads</li>
-          <li>Long-lived connections → DO rooms or Queues</li>
+          <li>Long-lived connections â†’ DO rooms or Queues</li>
           <li>Probe health endpoints pre/post; export PG and sync blobs to R2</li>
         </ul>
 
@@ -457,4 +457,5 @@ Action items: listed with code pointers</code></pre>
 
 </body>
 </html>
+
 

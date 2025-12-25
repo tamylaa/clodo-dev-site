@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Security Headers -->
@@ -12,7 +12,7 @@
     <meta name="keywords" content="git submodules, debugging, cloudflare pages, build failures, deployment issues, CI/CD troubleshooting">
     <meta name="author" content="Clodo Framework">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://www.clodo.dev/blog/debugging-silent-build-failures">
+    <link rel="canonical" href="https://clodo.dev/blog/debugging-silent-build-failures">
     
 <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -192,19 +192,19 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://www.clodo.dev/"
+                "item": "https://clodo.dev/"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://www.clodo.dev/blog"
+                "item": "https://clodo.dev/blog"
             },
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Debugging Silent Build Failures",
-                "item": "https://www.clodo.dev/blog/debugging-silent-build-failures"
+                "item": "https://clodo.dev/blog/debugging-silent-build-failures"
             }
         ]
     }
@@ -249,7 +249,7 @@
 
             <!-- Table of Contents -->
             <nav class="table-of-contents" aria-label="Table of Contents">
-                <h2>📑 Quick Navigation</h2>
+                <h2>ðŸ“‘ Quick Navigation</h2>
                 <ol>
                     <li><a href="#mystery">The Mystery: Code Pushed, Production Unchanged</a></li>
                     <li><a href="#investigation">The Investigation Begins</a></li>
@@ -267,7 +267,7 @@
             <section class="blog-post__content" itemprop="articleBody">
                 
                 <div class="opinion-callout opinion-callout--strong">
-                    <p><strong>🔥 Hot Take:</strong> Git submodules are a mistake 90% of the time. They're a solution from an era before npm, yarn, and modern package managers. If you're using submodules for dependency management in 2025, you're creating technical debt. This article is proof.</p>
+                    <p><strong>ðŸ”¥ Hot Take:</strong> Git submodules are a mistake 90% of the time. They're a solution from an era before npm, yarn, and modern package managers. If you're using submodules for dependency management in 2025, you're creating technical debt. This article is proof.</p>
                 </div>
                 
                 <h2 id="mystery">The Mystery: Code Pushed, Production Unchanged</h2>
@@ -275,10 +275,10 @@
 
                 <p>You check again. Still old code. You clear your browser cache. Still old code. You wait 10 minutes. <strong>Still old code.</strong></p>
 
-                <p>This is every developer's nightmare—the silent failure. No error message, no warning, just... nothing happens.</p>
+                <p>This is every developer's nightmareâ€”the silent failure. No error message, no warning, just... nothing happens.</p>
 
                 <aside class="highlight-box highlight-box--warning">
-                    <h4>⚠️ The Worst Kind of Bug</h4>
+                    <h4>âš ï¸ The Worst Kind of Bug</h4>
                     <p>"The worst bugs are the ones that don't tell you they're bugs." Silent failures can waste hours of debugging time.</p>
                 </aside>
 
@@ -292,12 +292,12 @@ c2bad2d Revert unnecessary wrangler.toml build command
 2518aeb Remove all demo references
 97a6119 Add type=button to prevent form submission</code></pre>
 
-                <p>✅ Commits are there. Code is pushed. <code>origin/master</code> matches local.</p>
+                <p>âœ… Commits are there. Code is pushed. <code>origin/master</code> matches local.</p>
 
                 <h3>Step 2: Check Cloudflare Pages Dashboard</h3>
                 <p>Cloudflare Pages showed "Deployment successful" but the build output was using old code. The timestamp was recent, but the content was stale.</p>
 
-                <p>🤔 Something was wrong with the <strong>source</strong> being built, not the build process itself.</p>
+                <p>ðŸ¤” Something was wrong with the <strong>source</strong> being built, not the build process itself.</p>
 
                 <h3>Step 3: Inspect Git Status</h3>
                 <pre><code class="language-bash">$ git status
@@ -312,7 +312,7 @@ nothing to commit, working tree clean</code></pre>
                 <pre><code class="language-bash">$ git ls-tree HEAD | grep clodo-starter-template
 160000 commit 1c53a56d... clodo-starter-template</code></pre>
 
-                <p>🚨 <strong>There it is.</strong> Mode <code>160000</code> means git is tracking <code>clodo-starter-template</code> as a submodule commit reference, not as actual directory contents.</p>
+                <p>ðŸš¨ <strong>There it is.</strong> Mode <code>160000</code> means git is tracking <code>clodo-starter-template</code> as a submodule commit reference, not as actual directory contents.</p>
 
                 <h2 id="understanding">Understanding Git Submodules</h2>
                 
@@ -343,7 +343,7 @@ $ git submodule status
                 </ol>
 
                 <h3>Our Problem: The Half-Configured Submodule</h3>
-                <p>Our situation was worse—we had a submodule <strong>reference</strong> without the <strong>configuration</strong>:</p>
+                <p>Our situation was worseâ€”we had a submodule <strong>reference</strong> without the <strong>configuration</strong>:</p>
 
                 <pre><code class="language-bash">$ cat .gitmodules
 cat: .gitmodules: No such file or directory
@@ -356,10 +356,10 @@ drwxr-xr-x  clodo-starter-template/</code></pre>
 
                 <p>This created a nightmare scenario:</p>
                 <ul>
-                    <li>✅ Locally: Directory exists with full contents</li>
-                    <li>❌ In git: Only a commit reference is tracked</li>
-                    <li>❌ On Cloudflare Pages: Build fails to fetch submodule (no .gitmodules)</li>
-                    <li>❌ Build logs: No clear error message</li>
+                    <li>âœ… Locally: Directory exists with full contents</li>
+                    <li>âŒ In git: Only a commit reference is tracked</li>
+                    <li>âŒ On Cloudflare Pages: Build fails to fetch submodule (no .gitmodules)</li>
+                    <li>âŒ Build logs: No clear error message</li>
                 </ul>
 
                 <h2 id="how-happened">How Did This Happen?</h2>
@@ -370,7 +370,7 @@ drwxr-xr-x  clodo-starter-template/</code></pre>
                 <pre><code class="language-bash"># You accidentally add a directory that's already a git repo
 $ cd project
 $ git clone https://github.com/example/library.git
-$ git add library/  # ⚠️ git sees .git folder, treats as submodule
+$ git add library/  # âš ï¸ git sees .git folder, treats as submodule
 $ git commit -m "Add library"</code></pre>
 
                 <h3>Scenario 2: Manual .gitmodules Deletion</h3>
@@ -378,20 +378,20 @@ $ git commit -m "Add library"</code></pre>
 $ rm .gitmodules
 $ git add .gitmodules
 $ git commit -m "Remove submodules"
-# ⚠️ Submodule reference still exists in git index!</code></pre>
+# âš ï¸ Submodule reference still exists in git index!</code></pre>
 
                 <h3>Scenario 3: Incomplete Submodule Removal</h3>
                 <pre><code class="language-bash"># Wrong way to remove submodule
 $ rm -rf clodo-starter-template/
 $ git add .
 $ git commit
-# ⚠️ Reference remains, directory is gone</code></pre>
+# âš ï¸ Reference remains, directory is gone</code></pre>
 
                 <h2 id="fix">The Fix: Complete Submodule Removal</h2>
 
                 <!-- Mid-Article Newsletter CTA -->
                 <div class="blog-cta">
-                    <h4>📬 Get DevOps & Debugging Tips</h4>
+                    <h4>ðŸ“¬ Get DevOps & Debugging Tips</h4>
                     <p>Monthly insights on deployment, debugging, and production best practices.</p>
                     <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
                         <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
@@ -438,7 +438,7 @@ $ git status
 On branch master
 nothing to commit, working tree clean</code></pre>
 
-                <p>✅ Submodule reference gone. Directory now properly ignored.</p>
+                <p>âœ… Submodule reference gone. Directory now properly ignored.</p>
 
                 <h2 id="why-silent">Why Cloudflare Pages Failed Silently</h2>
 
@@ -454,7 +454,7 @@ nothing to commit, working tree clean</code></pre>
                 <p>The result: New commits are "deployed" but old code is served.</p>
 
                 <h3>Why No Error Message?</h3>
-                <p>The build system didn't consider missing submodule initialization a <strong>build failure</strong>—just a skipped step. The actual build command (<code>npm run build</code>) succeeded because it didn't reference the missing directory.</p>
+                <p>The build system didn't consider missing submodule initialization a <strong>build failure</strong>â€”just a skipped step. The actual build command (<code>npm run build</code>) succeeded because it didn't reference the missing directory.</p>
 
                 <h2 id="best-practices">Lessons Learned: Git Submodule Best Practices</h2>
 
@@ -484,7 +484,7 @@ $ git submodule init
 $ git submodule update</code></pre>
 
                 <aside class="highlight-box highlight-box--success">
-                    <h4>✅ Pro Tip</h4>
+                    <h4>âœ… Pro Tip</h4>
                     <p>Always use <code>git clone --recursive</code> when cloning repos with submodules, or run <code>git submodule update --init --recursive</code> after cloning.</p>
                 </aside>
 
@@ -515,7 +515,7 @@ $ git commit -m "Remove submodule: path/to/submodule"</code></pre>
                 <pre><code class="language-yaml">- name: Checkout code
   uses: actions/checkout@v3
   with:
-    submodules: recursive  # ← Important!</code></pre>
+    submodules: recursive  # â† Important!</code></pre>
 
                 <p><strong>Cloudflare Pages:</strong></p>
                 <pre><code class="language-toml"># wrangler.toml
@@ -546,10 +546,10 @@ command = "git submodule update --init --recursive && npm run build"</code></pre
 
                 <h3>Trade-offs</h3>
                 <ul>
-                    <li>❌ Manual sync if demo needs website changes</li>
-                    <li>❌ Can't test demo changes locally within website repo</li>
-                    <li>✅ But: Demo is deployed to StackBlitz, not our site</li>
-                    <li>✅ Simpler mental model and deployment</li>
+                    <li>âŒ Manual sync if demo needs website changes</li>
+                    <li>âŒ Can't test demo changes locally within website repo</li>
+                    <li>âœ… But: Demo is deployed to StackBlitz, not our site</li>
+                    <li>âœ… Simpler mental model and deployment</li>
                 </ul>
 
                 <h2>Debugging Checklist for Silent Build Failures</h2>
@@ -580,9 +580,9 @@ $ git submodule status</code></pre>
 
                 <h3>3. Inspect Build Logs</h3>
                 <ul>
-                    <li>Cloudflare Pages: Dashboard → Deployments → View build log</li>
-                    <li>Vercel: Deployment → View function logs</li>
-                    <li>Netlify: Deploys → Deploy log</li>
+                    <li>Cloudflare Pages: Dashboard â†’ Deployments â†’ View build log</li>
+                    <li>Vercel: Deployment â†’ View function logs</li>
+                    <li>Netlify: Deploys â†’ Deploy log</li>
                 </ul>
 
                 <h3>4. Test Build Locally</h3>
@@ -656,7 +656,7 @@ jobs:
 
                 <h2>Conclusion</h2>
 
-                <p>Silent failures are the worst kind of bugs. They don't crash, they don't error—they just quietly break your deployment pipeline.</p>
+                <p>Silent failures are the worst kind of bugs. They don't crash, they don't errorâ€”they just quietly break your deployment pipeline.</p>
 
                 <p>The broken git submodule issue taught us:</p>
                 <ol>
@@ -681,19 +681,19 @@ jobs:
                     <h2 id="sources-heading">Sources & References</h2>
                     <ol class="sources-list">
                         <li id="ref-1">
-                            <cite>Git - git-submodule Documentation</cite> — 
+                            <cite>Git - git-submodule Documentation</cite> â€” 
                             <a href="https://git-scm.com/docs/git-submodule" target="_blank" rel="nofollow noopener">git-scm.com</a>
                         </li>
                         <li id="ref-2">
-                            <cite>Git Tools - Submodules</cite> — Pro Git Book — 
+                            <cite>Git Tools - Submodules</cite> â€” Pro Git Book â€” 
                             <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="nofollow noopener">git-scm.com</a>
                         </li>
                         <li id="ref-3">
-                            <cite>Cloudflare Pages Build Configuration</cite> — Cloudflare Docs — 
+                            <cite>Cloudflare Pages Build Configuration</cite> â€” Cloudflare Docs â€” 
                             <a href="https://developers.cloudflare.com/pages/configuration/build-configuration/" target="_blank" rel="nofollow noopener">developers.cloudflare.com</a>
                         </li>
                         <li id="ref-4">
-                            <cite>actions/checkout - Submodules Support</cite> — GitHub — 
+                            <cite>actions/checkout - Submodules Support</cite> â€” GitHub â€” 
                             <a href="https://github.com/actions/checkout#checkout-submodules" target="_blank" rel="nofollow noopener">github.com</a>
                         </li>
                     </ol>
@@ -767,7 +767,7 @@ jobs:
 
                 <!-- Newsletter CTA -->
                 <div class="blog-cta blog-cta--footer">
-                    <h3>🚀 DevOps & Debugging Insights</h3>
+                    <h3>ðŸš€ DevOps & Debugging Insights</h3>
                     <p>Get monthly tips on deployment, debugging, and production best practices. Join developers who ship with confidence.</p>
                     <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
                         <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
@@ -849,4 +849,5 @@ jobs:
     <script src="../script.js" nonce="N0Nc3Cl0d0"></script>
 </body>
 </html>
+
 

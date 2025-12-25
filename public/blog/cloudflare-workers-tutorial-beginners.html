@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="X-Frame-Options" content="DENY">
@@ -11,7 +11,7 @@
     <meta name="keywords" content="cloudflare workers tutorial, cloudflare workers for beginners, how to use cloudflare workers, cloudflare workers example, cloudflare workers api, serverless tutorial, edge computing tutorial, cloudflare workers vs lambda">
     <meta name="author" content="Clodo Framework">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://www.clodo.dev/blog/cloudflare-workers-tutorial-beginners">
+    <link rel="canonical" href="https://clodo.dev/blog/cloudflare-workers-tutorial-beginners">
     <link rel="stylesheet" href="../styles.css">
 <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -112,7 +112,7 @@
                 "name": "What is Cloudflare Workers?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Cloudflare Workers is a serverless platform that runs JavaScript code at the edge—in 330+ data centers worldwide. Unlike AWS Lambda which runs in specific regions, Workers run close to your users everywhere, resulting in sub-50ms response times globally. Workers use V8 isolates (the same engine that powers Chrome) and start in under 5ms with no cold starts."
+                    "text": "Cloudflare Workers is a serverless platform that runs JavaScript code at the edgeâ€”in 330+ data centers worldwide. Unlike AWS Lambda which runs in specific regions, Workers run close to your users everywhere, resulting in sub-50ms response times globally. Workers use V8 isolates (the same engine that powers Chrome) and start in under 5ms with no cold starts."
                 }
             },
             {
@@ -321,19 +321,19 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://www.clodo.dev/"
+                "item": "https://clodo.dev/"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://www.clodo.dev/blog"
+                "item": "https://clodo.dev/blog"
             },
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Cloudflare Workers Tutorial for Beginners",
-                "item": "https://www.clodo.dev/blog/cloudflare-workers-tutorial-beginners"
+                "item": "https://clodo.dev/blog/cloudflare-workers-tutorial-beginners"
             }
         ]
     }
@@ -373,13 +373,13 @@
                     <span class="blog-post__byline">By <a href="#author-bio">Tamyla</a></span>
                 </div>
                 <h1 itemprop="headline">Cloudflare Workers Tutorial for Beginners: Build Your First API in 10 Minutes</h1>
-                <p class="blog-post__subtitle" itemprop="description">A practical, step-by-step guide to building and deploying your first serverless API. No prior serverless experience needed—if you know JavaScript, you can do this.</p>
-                <p class="last-updated">Last verified: <time datetime="2024-11-25" itemprop="dateModified">November 2024</time> • All code tested with Wrangler 3.x</p>
+                <p class="blog-post__subtitle" itemprop="description">A practical, step-by-step guide to building and deploying your first serverless API. No prior serverless experience neededâ€”if you know JavaScript, you can do this.</p>
+                <p class="last-updated">Last verified: <time datetime="2024-11-25" itemprop="dateModified">November 2024</time> â€¢ All code tested with Wrangler 3.x</p>
             </header>
 
             <!-- Table of Contents -->
             <nav class="table-of-contents" aria-label="Table of Contents">
-                <h2>📑 What You'll Learn</h2>
+                <h2>ðŸ“‘ What You'll Learn</h2>
                 <ol>
                     <li><a href="#what-is-workers">What is Cloudflare Workers? (30-Second Explanation)</a></li>
                     <li><a href="#prerequisites">Prerequisites</a></li>
@@ -402,22 +402,22 @@
                 <section id="what-is-workers">
                     <h2>What is Cloudflare Workers? (30-Second Explanation)</h2>
                     
-                    <p><strong>Cloudflare Workers</strong> lets you run JavaScript code on Cloudflare's global network—in <strong>330+ cities worldwide</strong>. When someone in Tokyo requests your API, the code runs in Tokyo. Someone in São Paulo? It runs in São Paulo.</p>
+                    <p><strong>Cloudflare Workers</strong> lets you run JavaScript code on Cloudflare's global networkâ€”in <strong>330+ cities worldwide</strong>. When someone in Tokyo requests your API, the code runs in Tokyo. Someone in SÃ£o Paulo? It runs in SÃ£o Paulo.</p>
                     
                     <div class="highlight-box highlight-box--info">
-                        <h3>🎯 Why Developers Choose Workers</h3>
+                        <h3>ðŸŽ¯ Why Developers Choose Workers</h3>
                         <ul>
-                            <li><strong>Zero cold starts</strong> — Code starts in under 5ms (Lambda: 500ms-10s)</li>
-                            <li><strong>Global by default</strong> — Deploy once, run everywhere</li>
-                            <li><strong>Generous free tier</strong> — 100,000 requests/day, no credit card needed</li>
-                            <li><strong>Pay for CPU only</strong> — Not billed while waiting on database/API calls</li>
+                            <li><strong>Zero cold starts</strong> â€” Code starts in under 5ms (Lambda: 500ms-10s)</li>
+                            <li><strong>Global by default</strong> â€” Deploy once, run everywhere</li>
+                            <li><strong>Generous free tier</strong> â€” 100,000 requests/day, no credit card needed</li>
+                            <li><strong>Pay for CPU only</strong> â€” Not billed while waiting on database/API calls</li>
                         </ul>
                     </div>
                     
                     <p>If you've used Express.js, AWS Lambda, or Vercel Edge Functions, you'll feel right at home. The concepts transfer directly.</p>
                     
                     <blockquote>
-                        <p>💡 <strong>Real Talk:</strong> Teams regularly report reducing API latency from 180ms to under 15ms just by moving from regional cloud to Workers. The code change takes hours. The performance improvement is permanent.</p>
+                        <p>ðŸ’¡ <strong>Real Talk:</strong> Teams regularly report reducing API latency from 180ms to under 15ms just by moving from regional cloud to Workers. The code change takes hours. The performance improvement is permanent.</p>
                     </blockquote>
                 </section>
 
@@ -427,16 +427,16 @@
                     
                     <p>You'll need:</p>
                     <ul>
-                        <li><strong>Node.js 18+</strong> — <a href="https://nodejs.org/" rel="nofollow noopener" target="_blank">Download here</a></li>
-                        <li><strong>A Cloudflare account</strong> — <a href="https://dash.cloudflare.com/sign-up" rel="nofollow noopener" target="_blank">Sign up free</a> (no credit card required)</li>
-                        <li><strong>Basic JavaScript knowledge</strong> — If you can write a function, you're ready</li>
-                        <li><strong>A code editor</strong> — VS Code recommended</li>
+                        <li><strong>Node.js 18+</strong> â€” <a href="https://nodejs.org/" rel="nofollow noopener" target="_blank">Download here</a></li>
+                        <li><strong>A Cloudflare account</strong> â€” <a href="https://dash.cloudflare.com/sign-up" rel="nofollow noopener" target="_blank">Sign up free</a> (no credit card required)</li>
+                        <li><strong>Basic JavaScript knowledge</strong> â€” If you can write a function, you're ready</li>
+                        <li><strong>A code editor</strong> â€” VS Code recommended</li>
                     </ul>
                     
                     <p>Check your Node.js version:</p>
                     <div class="terminal-output">
                         <span class="command">$</span> node --version<br>
-                        v20.10.0 ✓
+                        v20.10.0 âœ“
                     </div>
                 </section>
 
@@ -453,11 +453,11 @@
                     <p>Verify installation:</p>
                     <div class="terminal-output">
                         <span class="command">$</span> wrangler --version<br>
-                        ⛅️ wrangler 3.91.0
+                        â›…ï¸ wrangler 3.91.0
                     </div>
                     
                     <div class="highlight-box highlight-box--warning">
-                        <h3>⚠️ Permission Error on Mac/Linux?</h3>
+                        <h3>âš ï¸ Permission Error on Mac/Linux?</h3>
                         <p>If you get <code>EACCES</code> errors, either use <code>sudo npm install -g wrangler</code> or configure npm to use a different directory. See <a href="https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally" rel="nofollow noopener" target="_blank">npm's guide</a>.</p>
                     </div>
                 </section>
@@ -493,10 +493,10 @@
                     
                     <p>When prompted:</p>
                     <ul>
-                        <li><strong>What type of application?</strong> → Select <code>"Hello World" Worker</code></li>
-                        <li><strong>TypeScript or JavaScript?</strong> → Choose <code>TypeScript</code> (recommended) or JavaScript</li>
-                        <li><strong>Use git?</strong> → Yes (recommended)</li>
-                        <li><strong>Deploy now?</strong> → No (we'll explore the code first)</li>
+                        <li><strong>What type of application?</strong> â†’ Select <code>"Hello World" Worker</code></li>
+                        <li><strong>TypeScript or JavaScript?</strong> â†’ Choose <code>TypeScript</code> (recommended) or JavaScript</li>
+                        <li><strong>Use git?</strong> â†’ Yes (recommended)</li>
+                        <li><strong>Deploy now?</strong> â†’ No (we'll explore the code first)</li>
                     </ul>
                     
                     <p>Navigate into your project:</p>
@@ -506,11 +506,11 @@
                     
                     <p>Your project structure:</p>
                     <pre><code>my-first-worker/
-├── src/
-│   └── index.ts       ← Your Worker code lives here
-├── wrangler.toml      ← Configuration file
-├── package.json
-└── tsconfig.json</code></pre>
+â”œâ”€â”€ src/
+â”‚   â””â”€â”€ index.ts       â† Your Worker code lives here
+â”œâ”€â”€ wrangler.toml      â† Configuration file
+â”œâ”€â”€ package.json
+â””â”€â”€ tsconfig.json</code></pre>
                 </section>
 
                 <!-- Step 4 -->
@@ -529,13 +529,13 @@
                     <p><strong>Let's break this down:</strong></p>
                     
                     <div class="highlight-box">
-                        <h3>🔍 The Anatomy of a Worker</h3>
+                        <h3>ðŸ” The Anatomy of a Worker</h3>
                         <ul>
-                            <li><code>fetch()</code> — The main handler, called for every HTTP request</li>
-                            <li><code>request</code> — The incoming HTTP request (URL, headers, body)</li>
-                            <li><code>env</code> — Environment variables and bindings (KV, D1, R2)</li>
-                            <li><code>ctx</code> — Execution context for background tasks</li>
-                            <li><code>Response</code> — What you return to the client</li>
+                            <li><code>fetch()</code> â€” The main handler, called for every HTTP request</li>
+                            <li><code>request</code> â€” The incoming HTTP request (URL, headers, body)</li>
+                            <li><code>env</code> â€” Environment variables and bindings (KV, D1, R2)</li>
+                            <li><code>ctx</code> â€” Execution context for background tasks</li>
+                            <li><code>Response</code> â€” What you return to the client</li>
                         </ul>
                     </div>
                     
@@ -550,9 +550,9 @@ app.get('*', (req, res) =&gt; {
 
                 <!-- CTA: Mid-Article -->
                 <aside class="blog-cta blog-cta--newsletter" aria-label="Try it now">
-                    <h3>⚡ Want to Skip Setup?</h3>
-                    <p>Try the Clodo Framework starter template—pre-configured with routing, authentication, and database. Start coding in 60 seconds.</p>
-                    <a href="/docs" class="btn btn--primary">Try Clodo Framework →</a>
+                    <h3>âš¡ Want to Skip Setup?</h3>
+                    <p>Try the Clodo Framework starter templateâ€”pre-configured with routing, authentication, and database. Start coding in 60 seconds.</p>
+                    <a href="/docs" class="btn btn--primary">Try Clodo Framework â†’</a>
                 </aside>
 
                 <!-- Step 5 -->
@@ -572,7 +572,7 @@ app.get('*', (req, res) =&gt; {
 const users = [
   { id: 1, name: 'Alice', city: 'London' },
   { id: 2, name: 'Bob', city: 'Tokyo' },
-  { id: 3, name: 'Carlos', city: 'São Paulo' },
+  { id: 3, name: 'Carlos', city: 'SÃ£o Paulo' },
 ];
 
 export default {
@@ -633,7 +633,7 @@ export default {
 };</code></pre>
                     
                     <div class="highlight-box highlight-box--info">
-                        <h3>🌍 Notice <code>request.cf</code>?</h3>
+                        <h3>ðŸŒ Notice <code>request.cf</code>?</h3>
                         <p>Cloudflare automatically adds geo data to every request: city, country, timezone, ASN, and more. This is <strong>free</strong> and works globally. Perfect for personalization, compliance, and analytics.</p>
                     </div>
                 </section>
@@ -650,7 +650,7 @@ export default {
                     
                     <p>You'll see:</p>
                     <div class="terminal-output">
-                        ⎔ Starting local server...<br>
+                        âŽ” Starting local server...<br>
                         Ready on http://localhost:8787
                     </div>
                     
@@ -660,7 +660,7 @@ export default {
                         <span class="command">$</span> curl http://localhost:8787/<br>
                         {"message":"Welcome to my API!","endpoints":["/users","/users/:id","/health"]}<br><br>
                         <span class="command">$</span> curl http://localhost:8787/users<br>
-                        [{"id":1,"name":"Alice","city":"London"},{"id":2,"name":"Bob","city":"Tokyo"},{"id":3,"name":"Carlos","city":"São Paulo"}]<br><br>
+                        [{"id":1,"name":"Alice","city":"London"},{"id":2,"name":"Bob","city":"Tokyo"},{"id":3,"name":"Carlos","city":"SÃ£o Paulo"}]<br><br>
                         <span class="command">$</span> curl http://localhost:8787/users/1<br>
                         {"id":1,"name":"Alice","city":"London"}
                     </div>
@@ -685,10 +685,10 @@ export default {
                         &nbsp;&nbsp;https://my-first-worker.your-subdomain.workers.dev
                     </div>
                     
-                    <p><strong>That's it.</strong> Your API is now live on Cloudflare's global network. Try it from your phone, share the URL with a friend in another country—it works everywhere, instantly.</p>
+                    <p><strong>That's it.</strong> Your API is now live on Cloudflare's global network. Try it from your phone, share the URL with a friend in another countryâ€”it works everywhere, instantly.</p>
                     
                     <div class="highlight-box highlight-box--success">
-                        <h3>🎉 What Just Happened?</h3>
+                        <h3>ðŸŽ‰ What Just Happened?</h3>
                         <ul>
                             <li>Your code was bundled and uploaded to Cloudflare</li>
                             <li>It's now running in <strong>330+ data centers</strong> simultaneously</li>
@@ -706,23 +706,23 @@ export default {
                     
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <h3>🗄️ Add a Database (D1)</h3>
+                            <h3>ðŸ—„ï¸ Add a Database (D1)</h3>
                             <p>SQLite at the edge. Store and query data globally with sub-10ms latency.</p>
                             <pre><code>wrangler d1 create my-database</code></pre>
-                            <a href="/cloudflare-workers-guide#d1">Learn D1 →</a>
+                            <a href="/cloudflare-workers-guide#d1">Learn D1 â†’</a>
                         </div>
                         <div class="feature-card">
-                            <h3>🔐 Add Authentication</h3>
-                            <p>JWT validation, session management, OAuth flows—all at the edge.</p>
-                            <a href="/docs">Clodo Auth Guide →</a>
+                            <h3>ðŸ” Add Authentication</h3>
+                            <p>JWT validation, session management, OAuth flowsâ€”all at the edge.</p>
+                            <a href="/docs">Clodo Auth Guide â†’</a>
                         </div>
                         <div class="feature-card">
-                            <h3>🤖 Add AI (Workers AI)</h3>
+                            <h3>ðŸ¤– Add AI (Workers AI)</h3>
                             <p>Run LLMs, embeddings, and image models directly on the edge. No API keys needed.</p>
                             <pre><code>const result = await env.AI.run('@cf/meta/llama-2-7b', { prompt: '...' });</code></pre>
                         </div>
                         <div class="feature-card">
-                            <h3>📦 Add Storage (R2)</h3>
+                            <h3>ðŸ“¦ Add Storage (R2)</h3>
                             <p>S3-compatible object storage with zero egress fees. Store images, files, backups.</p>
                             <pre><code>wrangler r2 bucket create my-bucket</code></pre>
                         </div>
@@ -791,12 +791,12 @@ export default {
 
                 <!-- Sources -->
                 <section id="sources" class="blog-post__sources">
-                    <h2>📚 Sources & Further Reading</h2>
+                    <h2>ðŸ“š Sources & Further Reading</h2>
                     <ol>
-                        <li><a href="https://developers.cloudflare.com/workers/" rel="nofollow noopener" target="_blank">Official Cloudflare Workers Documentation</a> — Comprehensive API reference</li>
-                        <li><a href="https://developers.cloudflare.com/workers/wrangler/" rel="nofollow noopener" target="_blank">Wrangler CLI Documentation</a> — Full command reference</li>
-                        <li><a href="https://developers.cloudflare.com/workers/examples/" rel="nofollow noopener" target="_blank">Workers Examples Gallery</a> — Production-ready code snippets</li>
-                        <li><a href="/blog/cloudflare-infrastructure-myth">Cloudflare Workers: The Infrastructure Revolution</a> — Deep dive into the platform architecture</li>
+                        <li><a href="https://developers.cloudflare.com/workers/" rel="nofollow noopener" target="_blank">Official Cloudflare Workers Documentation</a> â€” Comprehensive API reference</li>
+                        <li><a href="https://developers.cloudflare.com/workers/wrangler/" rel="nofollow noopener" target="_blank">Wrangler CLI Documentation</a> â€” Full command reference</li>
+                        <li><a href="https://developers.cloudflare.com/workers/examples/" rel="nofollow noopener" target="_blank">Workers Examples Gallery</a> â€” Production-ready code snippets</li>
+                        <li><a href="/blog/cloudflare-infrastructure-myth">Cloudflare Workers: The Infrastructure Revolution</a> â€” Deep dive into the platform architecture</li>
                     </ol>
                 </section>
 
@@ -944,5 +944,6 @@ export default {
     <!--#include file="../../templates/footer.html" -->
 </body>
 </html>
+
 
 

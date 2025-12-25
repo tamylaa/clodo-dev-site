@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clodo Framework ROI Calculator - Calculate Your SaaS Development Savings</title>
+    <link rel="canonical" href="https://clodo.dev/roi-calculator">
+    <meta name="description" content="Calculate your potential savings with Clodo Framework. See how much you can save on enterprise SaaS development costs - from $180K to $15K projects.">
+    <meta name="keywords" content="clodo framework roi calculator, saas development cost calculator, enterprise software cost savings, cloudflare workers roi, development cost calculator">
+    <meta name="author" content="Clodo Framework">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clodo.dev/roi-calculator">
+    <meta property="og:title" content="Clodo Framework ROI Calculator - Calculate Your SaaS Savings">
+    <meta property="og:description" content="Interactive calculator: See how much you can save with Clodo Framework. From $180K to $15K - calculate your enterprise SaaS development ROI.">
+    <meta property="og:image" content="https://clodo.dev/og-image-calculator.png">
+    <meta property="og:site_name" content="Clodo Framework">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@clodoframework">
+    <meta name="twitter:title" content="Clodo Framework ROI Calculator">
+    <meta name="twitter:description" content="Calculate your SaaS development savings with our interactive ROI calculator">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header>
+<!--#include file="../templates/nav-main.html" -->
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>SaaS Development ROI Calculator</h1>
+                    <p>Calculate your potential savings with Clodo Framework. See the real numbers behind our 90% cost reduction claims.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="calculator-section">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-inputs">
+                        <h2>Your Current SaaS Project</h2>
+
+                        <div class="input-group">
+                            <label for="project-size">Project Size ($K)</label>
+                            <input type="range" id="project-size" min="50" max="500" value="180" step="10">
+                            <span class="input-value">$<span id="project-size-value">180</span>K</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="dev-time">Development Time (months)</label>
+                            <input type="range" id="dev-time" min="1" max="12" value="6" step="0.5">
+                            <span class="input-value"><span id="dev-time-value">6</span> months</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="dev-rate">Developer Rate ($/hour)</label>
+                            <input type="range" id="dev-rate" min="50" max="200" value="125" step="5">
+                            <span class="input-value">$<span id="dev-rate-value">125</span>/hour</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="team-size">Team Size</label>
+                            <input type="range" id="team-size" min="1" max="10" value="3" step="1">
+                            <span class="input-value"><span id="team-size-value">3</span> developers</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="infra-cost">Annual Infrastructure Cost ($K)</label>
+                            <input type="range" id="infra-cost" min="10" max="200" value="45" step="5">
+                            <span class="input-value">$<span id="infra-cost-value">45</span>K/year</span>
+                        </div>
+                    </div>
+
+                    <div class="calculator-results">
+                        <h2>Your Savings with Clodo</h2>
+
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <h3>Traditional Cost</h3>
+                                <div class="result-value" id="traditional-cost">$180K</div>
+                                <div class="result-breakdown">
+                                    <div>Development: $<span id="traditional-dev">135</span>K</div>
+                                    <div>Infrastructure: $<span id="traditional-infra">45</span>K</div>
+                                </div>
+                            </div>
+
+                            <div class="result-card result-card--clodo">
+                                <h3>Clodo Cost</h3>
+                                <div class="result-value" id="clodo-cost">$15K</div>
+                                <div class="result-breakdown">
+                                    <div>Development: $<span id="clodo-dev">12.5</span>K</div>
+                                    <div>Infrastructure: $<span id="clodo-infra">2.5</span>K</div>
+                                </div>
+                            </div>
+
+                            <div class="result-card result-card--savings">
+                                <h3>Your Savings</h3>
+                                <div class="result-value result-value--savings" id="total-savings">$165K</div>
+                                <div class="result-percentage" id="savings-percentage">92% savings</div>
+                            </div>
+                        </div>
+
+                        <div class="roi-timeline">
+                            <h3>ROI Timeline</h3>
+                            <div class="timeline-metrics">
+                                <div class="timeline-item">
+                                    <span class="timeline-period">Month 1-3</span>
+                                    <span class="timeline-saving" id="month-3-saving">$42.5K saved</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-period">Month 6</span>
+                                    <span class="timeline-saving" id="month-6-saving">$85K saved</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-period">Year 1</span>
+                                    <span class="timeline-saving" id="year-1-saving">$165K saved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study-section">
+            <div class="container">
+                <h2>Real Results from Our Customers</h2>
+                <div class="case-study-grid">
+                    <div class="case-study-card">
+                        <h3>Enterprise SaaS Platform</h3>
+                        <p>$250K traditional project â†’ $22K with Clodo</p>
+                        <div class="case-study-metrics">
+                            <span class="metric">91% savings</span>
+                            <span class="metric">8 weeks â†’ 2 weeks</span>
+                            <span class="metric">99.9% uptime</span>
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <h3>Fintech Application</h3>
+                        <p>$180K traditional project â†’ $15K with Clodo</p>
+                        <div class="case-study-metrics">
+                            <span class="metric">92% savings</span>
+                            <span class="metric">6 months â†’ 3 weeks</span>
+                            <span class="metric">SOC 2 compliant</span>
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <h3>E-commerce Platform</h3>
+                        <p>$120K traditional project â†’ $10K with Clodo</p>
+                        <div class="case-study-metrics">
+                            <span class="metric">92% savings</span>
+                            <span class="metric">4 months â†’ 2 weeks</span>
+                            <span class="metric">Global scale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Get Your Free ROI Assessment</h2>
+                <p>Ready to see how much you can save? Get a personalized ROI assessment for your specific project requirements.</p>
+                <a href="/pricing" class="btn btn--primary btn--large">Get Free Assessment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+<!--#include file="../templates/footer.html" -->
+    </footer>
+
+    <script>
+        // ROI Calculator Logic
+        function calculateROI() {
+            const projectSize = parseFloat(document.getElementById('project-size').value);
+            const devTime = parseFloat(document.getElementById('dev-time').value);
+            const devRate = parseFloat(document.getElementById('dev-rate').value);
+            const teamSize = parseFloat(document.getElementById('team-size').value);
+            const infraCost = parseFloat(document.getElementById('infra-cost').value);
+
+            // Calculate traditional costs
+            const devHours = devTime * 4 * 40; // months * weeks * hours
+            const traditionalDevCost = (devHours * devRate * teamSize) / 1000; // Convert to K
+            const traditionalInfraCost = infraCost;
+            const traditionalTotal = traditionalDevCost + traditionalInfraCost;
+
+            // Calculate Clodo costs (90% reduction)
+            const clodoDevCost = traditionalDevCost * 0.1; // 90% reduction
+            const clodoInfraCost = traditionalInfraCost * 0.05; // 95% reduction
+            const clodoTotal = clodoDevCost + clodoInfraCost;
+
+            // Calculate savings
+            const totalSavings = traditionalTotal - clodoTotal;
+            const savingsPercentage = ((totalSavings / traditionalTotal) * 100).toFixed(0);
+
+            // Update display
+            document.getElementById('traditional-cost').textContent = `$${traditionalTotal.toFixed(0)}K`;
+            document.getElementById('traditional-dev').textContent = traditionalDevCost.toFixed(0);
+            document.getElementById('traditional-infra').textContent = traditionalInfraCost.toFixed(0);
+
+            document.getElementById('clodo-cost').textContent = `$${clodoTotal.toFixed(1)}K`;
+            document.getElementById('clodo-dev').textContent = clodoDevCost.toFixed(1);
+            document.getElementById('clodo-infra').textContent = clodoInfraCost.toFixed(1);
+
+            document.getElementById('total-savings').textContent = `$${totalSavings.toFixed(0)}K`;
+            document.getElementById('savings-percentage').textContent = `${savingsPercentage}% savings`;
+
+            // Timeline calculations
+            const monthlySavings = totalSavings / 12;
+            document.getElementById('month-3-saving').textContent = `$${Math.round(monthlySavings * 3)}K saved`;
+            document.getElementById('month-6-saving').textContent = `$${Math.round(monthlySavings * 6)}K saved`;
+            document.getElementById('year-1-saving').textContent = `$${Math.round(monthlySavings)}K saved annually`;
+        }
+
+        // Update input values and recalculate
+        function updateInputValue(inputId, valueId) {
+            const input = document.getElementById(inputId);
+            const value = document.getElementById(valueId);
+
+            input.addEventListener('input', function() {
+                if (inputId.includes('time')) {
+                    value.textContent = this.value;
+                } else if (inputId.includes('rate') || inputId.includes('size') || inputId.includes('cost')) {
+                    value.textContent = this.value;
+                } else {
+                    value.textContent = this.value;
+                }
+                calculateROI();
+            });
+        }
+
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up input listeners
+            updateInputValue('project-size', 'project-size-value');
+            updateInputValue('dev-time', 'dev-time-value');
+            updateInputValue('dev-rate', 'dev-rate-value');
+            updateInputValue('team-size', 'team-size-value');
+            updateInputValue('infra-cost', 'infra-cost-value');
+
+            // Initial calculation
+            calculateROI();
+        });
+    </script>
+</body>
+</html>

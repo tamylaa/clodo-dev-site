@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -12,12 +12,12 @@
     <meta name="keywords" content="advanced cloudflare workers, worker patterns, enterprise workers, distributed systems, service mesh, performance optimization">
     <meta name="author" content="Clodo Framework Team">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+    <link rel="canonical" href="https://clodo.dev/advanced-cloudflare-workers-tutorial">
     <meta property="og:title" content="Advanced Cloudflare Workers: Enterprise Patterns & Best Practices">
     <meta property="og:description" content="Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
-    <meta property="og:image" content="https://www.clodo.dev/og-image.png">
+    <meta property="og:url" content="https://clodo.dev/advanced-cloudflare-workers-tutorial">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Advanced Cloudflare Workers: Enterprise Patterns & Best Practices">
     <meta name="twitter:description" content="Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.">
@@ -30,10 +30,10 @@
     <meta name="theme-color" content="#0b1220">
 
     <!-- Hreflang tags for internationalization -->
-    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
-    <link rel="alternate" hreflang="de" href="https://www.clodo.dev/i18n/de/advanced-cloudflare-workers-tutorial">
-    <link rel="alternate" hreflang="it" href="https://www.clodo.dev/i18n/it/advanced-cloudflare-workers-tutorial">
-    <link rel="alternate" hreflang="x-default" href="https://www.clodo.dev/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="en" href="https://clodo.dev/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/advanced-cloudflare-workers-tutorial">
+    <link rel="alternate" hreflang="x-default" href="https://clodo.dev/advanced-cloudflare-workers-tutorial">
 
     <!-- Schema.org Article Markup -->
     <script type="application/ld+json">
@@ -42,7 +42,7 @@
         "@type": "TechArticle",
         "headline": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices",
         "description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
-        "url": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial",
+        "url": "https://clodo.dev/advanced-cloudflare-workers-tutorial",
         "datePublished": "2025-12-21",
         "dateModified": "2025-12-21",
         "author": {
@@ -55,12 +55,12 @@
             "name": "Clodo Framework",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.clodo.dev/icons/icon-512.png"
+                "url": "https://clodo.dev/icons/icon-512.png"
             }
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial"
+            "@id": "https://clodo.dev/advanced-cloudflare-workers-tutorial"
         },
         "articleSection": "Advanced Tutorials",
         "keywords": ["advanced cloudflare workers", "worker patterns", "enterprise workers", "distributed systems", "service mesh", "performance optimization"],
@@ -180,18 +180,18 @@
 
                     <div class="architecture-diagram">
                         <h3>Service Mesh Topology</h3>
-                        <pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   API Gateway   │────│ Service Router  │────│   Auth Service  │
-│   (Worker)      │    │   (Worker)      │    │   (Worker)      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                        │                        │
-         └────────────────────────┴────────────────────────┘
+                        <pre><code>â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚   API Gateway   â”‚â”€â”€â”€â”€â”‚ Service Router  â”‚â”€â”€â”€â”€â”‚   Auth Service  â”‚
+â”‚   (Worker)      â”‚    â”‚   (Worker)      â”‚    â”‚   (Worker)      â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+         â”‚                        â”‚                        â”‚
+         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
                           Service Discovery
-                                 │
-                    ┌─────────────────┐    ┌─────────────────┐
-                    │  User Service  │────│Product Service  │
-                    │   (Worker)     │    │  (Worker)       │
-                    └─────────────────┘    └─────────────────┘</code></pre>
+                                 â”‚
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚  User Service  â”‚â”€â”€â”€â”€â”‚Product Service  â”‚
+                    â”‚   (Worker)     â”‚    â”‚  (Worker)       â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜</code></pre>
                     </div>
 
                     <div class="code-example">
@@ -587,7 +587,7 @@ class FeatureFlagManager {
                     <h2>Additional Resources & References</h2>
                     <div class="resources-grid">
                         <div class="resource-card">
-                            <h3>📚 Official Documentation</h3>
+                            <h3>ðŸ“š Official Documentation</h3>
                             <ul>
                                 <li><a href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener">Cloudflare Workers Docs</a></li>
                                 <li><a href="https://developers.cloudflare.com/durable-objects/" target="_blank" rel="noopener">Durable Objects Guide</a></li>
@@ -595,7 +595,7 @@ class FeatureFlagManager {
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h3>🔬 Research & Best Practices</h3>
+                            <h3>ðŸ”¬ Research & Best Practices</h3>
                             <ul>
                                 <li><a href="https://web.dev/service-workers-cache-storage/" target="_blank" rel="noopener">Service Worker Caching</a></li>
                                 <li><a href="https://microservices.io/patterns/" target="_blank" rel="noopener">Microservices Patterns</a></li>
@@ -603,7 +603,7 @@ class FeatureFlagManager {
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h3>🛠️ Tools & Frameworks</h3>
+                            <h3>ðŸ› ï¸ Tools & Frameworks</h3>
                             <ul>
                                 <li><a href="https://hono.dev/" target="_blank" rel="noopener">Hono Framework</a></li>
                                 <li><a href="https://itty-router.dev/" target="_blank" rel="noopener">Itty Router</a></li>
@@ -619,17 +619,17 @@ class FeatureFlagManager {
                         <div class="related-card">
                             <h3><a href="/serverless-framework-comparison">Serverless Platform Comparison</a></h3>
                             <p>Compare AWS Lambda, Cloudflare Workers, and Clodo Framework to choose the right platform for enterprise applications.</p>
-                            <a href="/serverless-framework-comparison" class="related-link">Read Comparison →</a>
+                            <a href="/serverless-framework-comparison" class="related-link">Read Comparison â†’</a>
                         </div>
                         <div class="related-card">
                             <h3><a href="/worker-scaffolding-tools">Worker Scaffolding Tools</a></h3>
                             <p>Automate the implementation of enterprise patterns with our scaffolding tools that generate production-ready services.</p>
-                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding →</a>
+                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding â†’</a>
                         </div>
                         <div class="related-card">
                             <h3><a href="/wrangler-to-clodo-migration">Migrate from Wrangler</a></h3>
                             <p>Learn how to migrate existing Cloudflare Workers projects to Clodo Framework with enterprise features.</p>
-                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration →</a>
+                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration â†’</a>
                         </div>
                     </div>
                 </section>
