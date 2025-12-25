@@ -29,6 +29,10 @@
 /edge-computing-framework / 301
 /serverless-orchestration / 301
 
+# SEO URL updates (keyword optimization)
+/d1-errors /cloudflare-d1-errors 301
+/workers-auth /cloudflare-workers-auth 301
+
 # API documentation redirects
 /api-docs /docs.html 301
 /api-reference /docs.html 301
