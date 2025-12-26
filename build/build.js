@@ -317,6 +317,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'about';
                 } else if (fileName.includes('migrate')) {
                     pageBundle = 'migrate';
+                } else if (fileName === 'clodo-framework-guide') {
+                    pageBundle = 'clodo-framework-guide';
                 }
                 
                 const origCssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
@@ -619,6 +621,9 @@ function bundleCss() {
         ],
         'community': [
             'css/pages/community.css'
+        ],
+        'clodo-framework-guide': [
+            'css/pages/clodo-framework-guide.css'
         ]
     };
 
