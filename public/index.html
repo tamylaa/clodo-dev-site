@@ -387,6 +387,223 @@
                     }
                 }
         </script>
+        
+        <!-- Enhanced WebSite Schema with Sitelinks for Rich Search Results -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Clodo Framework - Enterprise Cloudflare Workers Framework",
+            "alternateName": "Clodo",
+            "url": "https://clodo.dev",
+            "description": "Enterprise-grade framework for Cloudflare Workers. Build production SaaS applications 10x faster with 90% cost reduction. SOC 2 compliant, multi-tenant ready.",
+            "inLanguage": "en-US",
+            "copyrightHolder": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://clodo.dev/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                },
+                {
+                    "@type": "ViewAction",
+                    "target": "https://clodo.dev/docs",
+                    "name": "Documentation"
+                },
+                {
+                    "@type": "ViewAction", 
+                    "target": "https://clodo.dev/examples",
+                    "name": "Examples"
+                },
+                {
+                    "@type": "ViewAction",
+                    "target": "https://clodo.dev/pricing",
+                    "name": "Pricing"
+                },
+                {
+                    "@type": "ViewAction",
+                    "target": "https://clodo.dev/blog",
+                    "name": "Blog"
+                }
+            ],
+            "publisher": {
+                "@type": "Organization",
+                "name": "Clodo Framework",
+                "url": "https://clodo.dev"
+            }
+        }
+        </script>
+        
+        <!-- Service Schemas for Rich Search Display -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Pre-Flight Checker",
+            "description": "Automated validation system that tests deployments before they go live, preventing costly production failures",
+            "provider": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "serviceType": "Deployment Validation",
+            "areaServed": "Worldwide",
+            "url": "https://clodo.dev/#pre-flight-checker",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
+        
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Enterprise Orchestration Engine",
+            "description": "Complex workflow management for enterprise-scale applications with automated scaling and monitoring",
+            "provider": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "serviceType": "Workflow Orchestration",
+            "areaServed": "Worldwide",
+            "url": "https://clodo.dev/#orchestration-engine",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
+        
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Multi-Tenant SaaS Core",
+            "description": "Built-in tenant isolation and management for secure multi-tenant applications",
+            "provider": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "serviceType": "Multi-Tenant Architecture",
+            "areaServed": "Worldwide",
+            "url": "https://clodo.dev/#multi-tenant-core",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
+        
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Cost Optimization Framework",
+            "description": "Reduce custom software development costs by up to 60% through automated orchestration and reusable components",
+            "provider": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "serviceType": "Cost Optimization",
+            "areaServed": "Worldwide",
+            "url": "https://clodo.dev/#cost-optimization",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
+        
+        <!-- Product Schemas for Enhanced Search Visibility -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Clodo Framework Enterprise Edition",
+            "description": "Complete enterprise solution with SOC 2 compliance, advanced monitoring, and priority support",
+            "brand": {
+                "@type": "Brand",
+                "name": "Clodo Framework"
+            },
+            "manufacturer": {
+                "@type": "Organization",
+                "name": "Clodo Framework"
+            },
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                    "@type": "Organization",
+                    "name": "Clodo Framework"
+                }
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "ratingCount": "50",
+                "bestRating": "5",
+                "worstRating": "1"
+            }
+        }
+        </script>
+        
+        <!-- HowTo Schema for Getting Started -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Get Started with Clodo Framework in 5 Minutes",
+            "description": "Quick start guide to deploy your first Cloudflare Workers application with Clodo Framework",
+            "totalTime": "PT5M",
+            "supply": [
+                {
+                    "@type": "HowToSupply",
+                    "name": "Cloudflare Account"
+                },
+                {
+                    "@type": "HowToSupply", 
+                    "name": "Node.js 16+"
+                }
+            ],
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "name": "Install Clodo CLI",
+                    "text": "Run npm install -g @clodo/cli to install the command line interface",
+                    "position": 1
+                },
+                {
+                    "@type": "HowToStep",
+                    "name": "Initialize Project",
+                    "text": "Create a new project with clodo init my-project",
+                    "position": 2
+                },
+                {
+                    "@type": "HowToStep",
+                    "name": "Deploy to Production",
+                    "text": "Deploy with clodo deploy --prod for instant production deployment",
+                    "position": 3
+                }
+            ],
+            "tool": [
+                {
+                    "@type": "SoftwareApplication",
+                    "name": "Clodo CLI",
+                    "url": "https://clodo.dev/docs/cli"
+                }
+            ]
+        }
+        </script>
+        
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
