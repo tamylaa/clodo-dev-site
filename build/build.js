@@ -494,7 +494,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 console.log(`   ℹ️  Header (nav) injected into ${file} (final fallback before write)`);
             }
 
-            writeFileSync(destPath, content);
+            writeFileSync(destPath, content, 'utf8');
         }
     });
 }
@@ -730,7 +730,7 @@ function bundleCss() {
         const minifiedPage = minifyCss(pageBundled);
         const pageHash = crypto.createHash('sha256').update(minifiedPage).digest('hex').slice(0,8);
         const pageFileName = `styles-${pageName}.${pageHash}.css`;
-        writeFileSync(join('dist', pageFileName), minifiedPage);
+        writeFileSync(join('dist', pageFileName), minifiedPage, 'utf8');
         assetManifest[`styles-${pageName}.css`] = pageFileName;
         console.log(`   📦 ${pageName} CSS: ${minifiedPage.length} bytes -> ${pageFileName}`);
     });
@@ -753,21 +753,21 @@ function bundleCss() {
         const minifiedDeferred = minifyCss(deferredBundled);
         const deferredHash = crypto.createHash('sha256').update(minifiedDeferred).digest('hex').slice(0,8);
         const deferredFileName = `styles-${bundleName}.${deferredHash}.css`;
-        writeFileSync(join('dist', deferredFileName), minifiedDeferred);
+        writeFileSync(join('dist', deferredFileName), minifiedDeferred, 'utf8');
         assetManifest[`styles-${bundleName}.css`] = deferredFileName;
         console.log(`   📦 ${bundleName} CSS (deferred): ${minifiedDeferred.length} bytes -> ${deferredFileName}`);
     });
 
     // Minify and write critical CSS
     const minifiedCritical = minifyCss(criticalBundled);
-    writeFileSync(join('dist', 'critical.css'), minifiedCritical);
+    writeFileSync(join('dist', 'critical.css'), minifiedCritical, 'utf8');
     console.log(`📦 Critical CSS: ${minifiedCritical.length} bytes`);
 
     // Minify and write common CSS (shared bundle) with content hash
     const minifiedCommon = minifyCss(commonBundled);
     const commonHash = crypto.createHash('sha256').update(minifiedCommon).digest('hex').slice(0,8);
     const commonFileName = `styles.${commonHash}.css`;
-    writeFileSync(join('dist', commonFileName), minifiedCommon);
+    writeFileSync(join('dist', commonFileName), minifiedCommon, 'utf8');
     assetManifest['styles.css'] = commonFileName;
     console.log(`📦 Common CSS: ${minifiedCommon.length} bytes -> ${commonFileName}`);
 
@@ -812,7 +812,7 @@ function minifyCss() {
             .replace(/calc\s*\(\s*/g, 'calc(')
             .trim();
 
-        writeFileSync(join(distCssDir, file), minified);
+        writeFileSync(join(distCssDir, file), minified, 'utf8');
     });
 }
 
@@ -837,7 +837,7 @@ function copyJs() {
     if (existsSync(jsFile)) {
         const content = readFileSync(jsFile, 'utf8');
         const minified = minifyJs(content);
-        writeFileSync(distJsFile, minified);
+        writeFileSync(distJsFile, minified, 'utf8');
         console.log(`  ✓ Minified script.js (${(content.length/1024).toFixed(1)}KB -> ${(minified.length/1024).toFixed(1)}KB)`);
     }
     
@@ -874,7 +874,7 @@ function copyJs() {
                     const hashDestPath = join(destDir, hashFileName);
                     
                     // Write hashed file
-                    writeFileSync(hashDestPath, minified);
+                    writeFileSync(hashDestPath, minified, 'utf8');
                     
                     // Store in manifest (key is original path, value is hashed filename)
                     const manifestKey = `js/${relPath}`;
@@ -995,7 +995,8 @@ function generateBuildInfo() {
 
     writeFileSync(
         join('dist', 'build-info.json'),
-        JSON.stringify(buildInfo, null, 2)
+        JSON.stringify(buildInfo, null, 2),
+        'utf8'
     );
 }
 
@@ -1014,7 +1015,8 @@ try {
     // Write final combined asset manifest
     writeFileSync(
         join('dist', 'asset-manifest.json'),
-        JSON.stringify(assetManifest, null, 2)
+        JSON.stringify(assetManifest, null, 2),
+        'utf8'
     );
     console.log('📦 Asset manifest written with', Object.keys(assetManifest).length, 'entries');
     

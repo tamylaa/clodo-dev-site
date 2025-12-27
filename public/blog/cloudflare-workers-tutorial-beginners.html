@@ -379,7 +379,7 @@
 
             <!-- Table of Contents -->
             <nav class="table-of-contents" aria-label="Table of Contents">
-                <h2>ðŸ“‘ What You'll Learn</h2>
+                <h2>📝‘ What You'll Learn</h2>
                 <ol>
                     <li><a href="#what-is-workers">What is Cloudflare Workers? (30-Second Explanation)</a></li>
                     <li><a href="#prerequisites">Prerequisites</a></li>
@@ -405,7 +405,7 @@
                     <p><strong>Cloudflare Workers</strong> lets you run JavaScript code on Cloudflare's global networkâ€”in <strong>330+ cities worldwide</strong>. When someone in Tokyo requests your API, the code runs in Tokyo. Someone in SÃ£o Paulo? It runs in SÃ£o Paulo.</p>
                     
                     <div class="highlight-box highlight-box--info">
-                        <h3>ðŸŽ¯ Why Developers Choose Workers</h3>
+                        <h3>🎯 Why Developers Choose Workers</h3>
                         <ul>
                             <li><strong>Zero cold starts</strong> â€” Code starts in under 5ms (Lambda: 500ms-10s)</li>
                             <li><strong>Global by default</strong> â€” Deploy once, run everywhere</li>
@@ -417,7 +417,7 @@
                     <p>If you've used Express.js, AWS Lambda, or Vercel Edge Functions, you'll feel right at home. The concepts transfer directly.</p>
                     
                     <blockquote>
-                        <p>ðŸ’¡ <strong>Real Talk:</strong> Teams regularly report reducing API latency from 180ms to under 15ms just by moving from regional cloud to Workers. The code change takes hours. The performance improvement is permanent.</p>
+                        <p>💡 <strong>Real Talk:</strong> Teams regularly report reducing API latency from 180ms to under 15ms just by moving from regional cloud to Workers. The code change takes hours. The performance improvement is permanent.</p>
                     </blockquote>
                 </section>
 
@@ -633,7 +633,7 @@ export default {
 };</code></pre>
                     
                     <div class="highlight-box highlight-box--info">
-                        <h3>ðŸŒ Notice <code>request.cf</code>?</h3>
+                        <h3>🌍 Notice <code>request.cf</code>?</h3>
                         <p>Cloudflare automatically adds geo data to every request: city, country, timezone, ASN, and more. This is <strong>free</strong> and works globally. Perfect for personalization, compliance, and analytics.</p>
                     </div>
                 </section>
@@ -706,7 +706,7 @@ export default {
                     
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <h3>ðŸ—„ï¸ Add a Database (D1)</h3>
+                            <h3>🗄️ Add a Database (D1)</h3>
                             <p>SQLite at the edge. Store and query data globally with sub-10ms latency.</p>
                             <pre><code>wrangler d1 create my-database</code></pre>
                             <a href="/cloudflare-workers-guide#d1">Learn D1 â†’</a>
@@ -717,12 +717,12 @@ export default {
                             <a href="/docs">Clodo Auth Guide â†’</a>
                         </div>
                         <div class="feature-card">
-                            <h3>ðŸ¤– Add AI (Workers AI)</h3>
+                            <h3>🤖 Add AI (Workers AI)</h3>
                             <p>Run LLMs, embeddings, and image models directly on the edge. No API keys needed.</p>
                             <pre><code>const result = await env.AI.run('@cf/meta/llama-2-7b', { prompt: '...' });</code></pre>
                         </div>
                         <div class="feature-card">
-                            <h3>ðŸ“¦ Add Storage (R2)</h3>
+                            <h3>📦 Add Storage (R2)</h3>
                             <p>S3-compatible object storage with zero egress fees. Store images, files, backups.</p>
                             <pre><code>wrangler r2 bucket create my-bucket</code></pre>
                         </div>
@@ -791,7 +791,7 @@ export default {
 
                 <!-- Sources -->
                 <section id="sources" class="blog-post__sources">
-                    <h2>ðŸ“š Sources & Further Reading</h2>
+                    <h2>📚 Sources & Further Reading</h2>
                     <ol>
                         <li><a href="https://developers.cloudflare.com/workers/" rel="nofollow noopener" target="_blank">Official Cloudflare Workers Documentation</a> â€” Comprehensive API reference</li>
                         <li><a href="https://developers.cloudflare.com/workers/wrangler/" rel="nofollow noopener" target="_blank">Wrangler CLI Documentation</a> â€” Full command reference</li>
