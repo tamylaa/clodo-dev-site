@@ -146,7 +146,7 @@
         <!-- Table of Contents -->
         <section class="table-of-contents">
             <div class="container">
-                <h2>📋 Table of Contents</h2>
+                <h2>ðŸ“‹ Table of Contents</h2>
                 <nav aria-label="Article navigation">
                     <ol>
                         <li><a href="#fundamentals">Serverless Fundamentals</a></li>
@@ -214,7 +214,7 @@
                 </section>
 
                 <section id="design-patterns">
-                    <h2>🎯 Design Patterns</h2>
+                    <h2>ðŸŽ¯ Design Patterns</h2>
 
                     <h3>Function Decomposition</h3>
                     <p>Break down monolithic applications into smaller, focused functions:</p>
@@ -232,7 +232,7 @@ export async function handler() {
   return new Response(counter.toString());
 }
 
-// ✅ Good: Using external storage
+// âœ… Good: Using external storage
 export async function handler(request, env) {
   const counter = await env.KV.get('counter') || '0';
   const newCounter = parseInt(counter) + 1;
@@ -274,7 +274,7 @@ export default {
                 </section>
 
                 <section id="cost-optimization">
-                    <h2>💰 Cost Optimization</h2>
+                    <h2>ðŸ’° Cost Optimization</h2>
 
                     <h3>Right-Size Functions</h3>
                     <ul>
@@ -311,7 +311,7 @@ export default {
 
                     <h3>Cost Optimization Checklist</h3>
                     <div class="checklist">
-                        <h4>✅ Function-Level Optimizations</h4>
+                        <h4>âœ… Function-Level Optimizations</h4>
                         <ul>
                             <li>Minimize bundle size (< 5MB)</li>
                             <li>Use appropriate memory allocation</li>
@@ -319,7 +319,7 @@ export default {
                             <li>Implement proper error handling</li>
                         </ul>
 
-                        <h4>✅ Architecture-Level Optimizations</h4>
+                        <h4>âœ… Architecture-Level Optimizations</h4>
                         <ul>
                             <li>Use caching layers effectively</li>
                             <li>Implement request deduplication</li>
@@ -384,7 +384,7 @@ export default {
                     </ul>
 
                     <h3>Secret Management</h3>
-                    <pre><code>// ✅ Good: Use environment variables
+                    <pre><code>// âœ… Good: Use environment variables
 export default {
   async fetch(request, env) {
     const apiKey = env.API_KEY; // Securely stored
@@ -420,7 +420,7 @@ export default {
                 </section>
 
                 <section id="monitoring">
-                    <h2>📊 Monitoring & Observability</h2>
+                    <h2>ðŸ“Š Monitoring & Observability</h2>
 
                     <h3>Logging Strategies</h3>
                     <ul>
@@ -466,7 +466,7 @@ export default {
                 </section>
 
                 <section id="clodo-solution">
-                    <h2>🎯 Why Clodo Framework?</h2>
+                    <h2>ðŸŽ¯ Why Clodo Framework?</h2>
                     <p>Building serverless applications from scratch requires implementing all these best practices manually. Clodo Framework provides enterprise-grade serverless infrastructure with built-in optimization.</p>
 
                     <div class="cta-box">

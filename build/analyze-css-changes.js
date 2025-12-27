@@ -373,7 +373,7 @@ async function analyzeChanges() {
     
     // Save detailed report
     const reportPath = path.join(__dirname, 'css-changes-report.json');
-    fs.writeFileSync(reportPath, JSON.stringify(allAnalysis, null, 2), 'utf8');
+    fs.writeFileSync(reportPath, JSON.stringify(allAnalysis, null, 2));
     console.log(`\n\n📄 Detailed report saved to: ${reportPath}`);
     
     // Generate defer-load CSS file
