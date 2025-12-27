@@ -1,17 +1,6 @@
-﻿<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Clodo Framework â€” From Prototype to Production with 98.9% Test Success | Clodo</title>
-  <meta name="description" content="Read how Clodo became production-ready: validation process, automated tests, and practical lessons for Cloudflare developers.">
-  <!-- NOTE: Experiment page for clodo-framework-promise-to-reality; canonical is the variant-specific URL -->
-  <link rel="canonical" href="https://clodo.dev/experiments/clodo-framework-promise-to-reality-variant-a">
-</head>
-<body>
 <nav class="navbar" aria-label="Main navigation">
     <div class="nav-container">
-        <a href="/" class="logo" aria-label="Clodo Framework home">
+        <a href="..//" class="logo" aria-label="Clodo Framework home">
             <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
                 <defs>
                     <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
@@ -34,13 +23,27 @@
         </button>
 
         <ul class="nav-menu" id="mobile-menu" data-visible="false">
-            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="..//" class="nav-link">Home</a></li>
             <li class="nav-dropdown">
-                <a href="/product" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Product</a>
+                <a href="..//product" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Product</a>
                 <ul class="nav-dropdown-menu" role="menu">
-                    <li role="none"><a href="/product" class="nav-dropdown-link" role="menuitem">Overview</a></li>
-                    <li role="none"><a href="/migrate" class="nav-dropdown-link" role="menuitem">Migrate</a></li>
-                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link" role="menuitem">Community</a></li>
+                    <li role="none"><a href="..//product" class="nav-dropdown-link" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="..//migrate" class="nav-dropdown-link" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="..//community/welcome" class="nav-dropdown-link" role="menuitem">Community</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Comparisons Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>⚖️ Comparisons</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="..//edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="..//workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="..//clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="..//what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="..//what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Edge Computing</a></li>
                 </ul>
             </li>
             <li class="nav-dropdown">
@@ -48,14 +51,14 @@
                 <ul class="nav-dropdown-menu" role="menu">
                     <!-- Documentation Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                        <a href="..//docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
                             <strong>📚 Documentation</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
-                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Components</a></li>
-                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Development & Deployment</a></li>
-                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">API Simplification</a></li>
+                    <li role="none"><a href="..//docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="..//components" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Components</a></li>
+                    <li role="none"><a href="..//development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Development & Deployment</a></li>
+                    <li role="none"><a href="..//clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">API Simplification</a></li>
                     
                     <li class="nav-dropdown-divider" role="separator"></li>
                     
@@ -65,65 +68,42 @@
                             <strong>🚀 Guides</strong>
                         </span>
                     </li>
-                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
-                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge Computing Guide</a></li>
-                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Migration Guide</a></li>
-                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Framework Promise to Reality</a></li>
-                    
-                    <li class="nav-dropdown-divider" role="separator"></li>
-                    
-                    <!-- Comparisons Section -->
-                    <li class="nav-dropdown-section">
-                        <span class="nav-dropdown-link nav-dropdown-section-title">
-                            <strong>⚖️ Comparisons</strong>
-                        </span>
-                    </li>
-                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
-                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Workers vs Lambda</a></li>
-                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Clodo vs AWS Lambda</a></li>
-                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Cloudflare Workers</a></li>
-                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Edge Computing</a></li>
+                    <li role="none"><a href="..//cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="..//edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="..//how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Migration Guide</a></li>
+                    <li role="none"><a href="..//clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Framework Promise to Reality</a></li>
                     
                     <li class="nav-dropdown-divider" role="separator"></li>
                     
                     <!-- Examples Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                        <a href="..//examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
                             <strong>💡 Examples</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
+                    <li role="none"><a href="..//examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
                     
                     <li class="nav-dropdown-divider" role="separator"></li>
                     
                     <!-- Help & Support Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
-                            <strong>â“ Help & Support</strong>
+                            <strong>❓ Help & Support</strong>
                         </span>
                     </li>
-                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
+                    <li role="none"><a href="..//faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
                     
                     <!-- Case Studies Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>📝ˆ Case Studies</strong>
+                        <a href="..//case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>📈 Case Studies</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
-                    
-                    <li class="nav-dropdown-divider" role="separator"></li>
-                    
-                    <!-- Blog Section -->
-                    <li class="nav-dropdown-section">
-                        <a href="/blog" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>📝 Blog</strong>
-                        </a>
-                    </li>
-                    <li role="none"><a href="/blog" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Latest Articles & Updates</a></li>
+                    <li role="none"><a href="..//case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
                 </ul>
             </li>
-            <li><a href="/pricing" class="nav-link">Pricing</a></li>
+            <li><a href="..//blog" class="nav-link">Blog</a></li>
+            <li><a href="..//pricing" class="nav-link">Pricing</a></li>
             <!-- Scroll spy navigation for index page -->
             <li class="nav-scroll-spy hidden">
                 <a href="#key-benefits" class="nav-link">Benefits</a>
@@ -138,10 +118,10 @@
                 <a href="#architecture" class="nav-link">Architecture</a>
             </li>
             <li class="nav-dropdown">
-                <a href="/about" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
+                <a href="..//about" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
                 <ul class="nav-dropdown-menu" role="menu">
-                    <li role="none"><a href="/about" class="nav-dropdown-link" role="menuitem">About Us</a></li>
-                    <li role="none"><a href="/privacy" class="nav-dropdown-link" role="menuitem">Privacy Policy</a></li>
+                    <li role="none"><a href="..//about" class="nav-dropdown-link" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="..//privacy" class="nav-dropdown-link" role="menuitem">Privacy Policy</a></li>
                 </ul>
             </li>
         </ul>
@@ -172,15 +152,3 @@
         </div>
     </div>
 </nav>
-
-
-  <div style="background:#fffbeb;border-left:4px solid #f59e0b;padding:1rem;margin:.5rem 0;">
-    <strong>Experiment variant A</strong> â€” This is a generated experiment page for <code>clodo-framework-promise-to-reality</code> (variant a).
-  </div>
-  <main>
-    <h1>Clodo Framework â€” From Prototype to Production with 98.9% Test Success | Clodo</h1>
-    <p>Read how Clodo became production-ready: validation process, automated tests, and practical lessons for Cloudflare developers.</p>
-    <p><a href="/">Return to home</a></p>
-  </main>
-</body>
-</html>

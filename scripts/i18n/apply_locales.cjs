@@ -37,7 +37,7 @@ for (const [slug, meta] of Object.entries(i18n)) {
   </main>
 </body>
 </html>`;
-  fs.writeFileSync(path.join(outDir, `${slug}.html`), html);
+  fs.writeFileSync(path.join(outDir, `${slug}.html`), html, 'utf8');
   console.log('Wrote localized page for', slug);
 }
 console.log('Localization generation complete.');
