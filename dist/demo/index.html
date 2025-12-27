@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clodo Framework Live Demo</title>
+    <meta name="description" content="Interactive live demo of Clodo Framework. Try building Cloudflare Workers applications with our enterprise framework.">
+    <link rel="canonical" href="https://clodo.dev/demo">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple) 100%);
+            min-height: 100vh;
+            color: var(--color-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--color-white), #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .interactive-demo {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple));
+            color: var(--color-white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-output {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            white-space: pre-wrap;
+            min-height: 200px;
+            color: #333;
+        }
+
+        .feedback-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .feedback-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffd700;
+        }
+
+        .feedback-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .progression-cta {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .progression-cta h3 {
+            margin-bottom: 1rem;
+        }
+
+        .progression-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER_PLACEHOLDER -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header class="header">
+            <h1>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.5-3c.74 2.25 2 3.5 4 4 .74-2 3-2.5 4.5-5s-1.5-4-3-5.5c2.5-.5 4.5-2.5 3-5.5s-5-2-5.5-2c1.5 1.26 2 5 2 5s-3.74.5-5.5 3c-.74-2.25-2-3.5-4-4-.74 2-3 2.5-4.5 5z"/>
+                </svg>
+                Clodo Framework Live Demo
+            </h1>
+            <p>Experience enterprise-grade SaaS development in your browser. No setup required!</p>
+        </header>
+
+        <div class="demo-grid">
+            <div class="demo-card" onclick="showDemo('api')">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <path d="M13,2 3,14 12,14 11,22 11,22 11,22"/>
+                    </svg>
+                    API Endpoints
+                </h3>
+                <p>Create RESTful APIs with automatic validation, authentication, and database integration in minutes.</p>
+            </div>
+
+            <div class="demo-card" onclick="showDemo('database')">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                    </svg>
+                    Database Integration
+                </h3>
+                <p>Built-in D1 database support with automatic migrations, queries, and data validation.</p>
+            </div>
+
+            <div class="demo-card" onclick="showDemo('deployment')">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.5-3c.74 2.25 2 3.5 4 4 .74-2 3-2.5 4.5-5s-1.5-4-3-5.5c2.5-.5 4.5-2.5 3-5.5s-5-2-5.5-2c1.5 1.26 2 5 2 5s-3.74.5-5.5 3c-.74-2.25-2-3.5-4-4-.74 2-3 2.5-4.5 5z"/>
+                    </svg>
+                    One-Click Deployment
+                </h3>
+                <p>Deploy to Cloudflare Workers with zero configuration. Global CDN, auto-scaling included.</p>
+            </div>
+
+            <div class="demo-card" onclick="showDemo('security')">
+                <h3>ðŸ”’ Enterprise Security</h3>
+                <p>Security-by-default architecture with encryption, validation, and compliance features.</p>
+            </div>
+        </div>
+
+        <div class="interactive-demo" id="main-content">
+            <h2 id="demo-title">Select a demo above to get started!</h2>
+            <div class="demo-controls">
+                <button class="btn" onclick="runDemo()" aria-label="Run the selected demo">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <polygon points="5,3 19,12 5,21 5,3"/>
+                    </svg>
+                    Run Demo
+                </button>
+                <button class="btn btn-secondary" onclick="resetDemo()" aria-label="Reset the demo to initial state">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                        <path d="M21 3v5h-5"/>
+                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                        <path d="M8 16H3v5"/>
+                    </svg>
+                    Reset
+                </button>
+                <button class="btn btn-secondary" onclick="showCode()" aria-label="View the source code for this demo">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <polyline points="16,18 22,12 16,6"/>
+                        <polyline points="8,6 2,12 8,18"/>
+                        <line x1="10" y1="8" x2="14" y2="8"/>
+                        <line x1="10" y1="12" x2="14" y2="12"/>
+                        <line x1="10" y1="16" x2="12" y2="16"/>
+                    </svg>
+                    View Code
+                </button>
+            </div>
+            <div class="demo-output" id="demo-output">
+Welcome to Clodo Framework!
+
+This interactive demo shows how easy it is to build enterprise applications.
+
+Click on any demo card above to explore different features, then click "Run Demo" to see it in action.
+
+Features demonstrated:
+â€¢ RESTful API creation
+â€¢ Database operations
+â€¢ Authentication & security
+â€¢ Cloud deployment
+â€¢ Multi-tenant architecture
+            </div>
+        </div>
+
+        <div class="feedback-section" id="feedback-section" style="display: none;">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                    <path d="M5.8 11.3L2 22l10.7-3.8"/>
+                    <path d="M4 3l.01.01"/>
+                    <path d="M22 8h-6"/>
+                    <path d="M2 2l20 20"/>
+                    <path d="M12 12L2 22"/>
+                    <path d="M20 2L2 20"/>
+                    <path d="M22 2l-20 20"/>
+                </svg>
+                Enjoying the Demo?
+            </h2>
+            <p>Help us improve by sharing your experience!</p>
+
+            <div class="rating-stars" id="rating-stars">
+                <span class="star" data-rating="1">â˜…</span>
+                <span class="star" data-rating="2">â˜…</span>
+                <span class="star" data-rating="3">â˜…</span>
+                <span class="star" data-rating="4">â˜…</span>
+                <span class="star" data-rating="5">â˜…</span>
+            </div>
+
+            <form class="feedback-form" id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-text">What did you think? (Optional)</label>
+                    <textarea id="feedback-text" rows="4" placeholder="Share your thoughts about Clodo Framework..."></textarea>
+                </div>
+                <button type="submit" class="btn" aria-label="Submit feedback about Clodo Framework">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="progression-cta" id="progression-cta" style="display: none;">
+            <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.5-3c.74 2.25 2 3.5 4 4 .74-2 3-2.5 4.5-5s-1.5-4-3-5.5c2.5-.5 4.5-2.5 3-5.5s-5-2-5.5-2c1.5 1.26 2 5 2 5s-3.74.5-5.5 3c-.74-2.25-2-3.5-4-4-.74 2-3 2.5-4.5 5z"/>
+                </svg>
+                Ready to Build Your Own?
+            </h3>
+            <p>Experience the full power of Clodo Framework with these options:</p>
+            <div class="progression-options">
+                <button class="btn" onclick="runLiveSetup()" aria-label="Create a live Clodo Framework project">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <path d="M13,2 3,14 12,14 11,22 11,22 11,22"/>
+                    </svg>
+                    Create Live Project
+                </button>
+                <button class="btn btn-secondary" onclick="downloadScripts()" aria-label="Download setup scripts for Clodo Framework">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    Download Setup Scripts
+                </button>
+                <button class="btn btn-secondary" onclick="visitDocs()" aria-label="Read Clodo Framework documentation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.5rem;">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Read Documentation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="demo.js"></script>
+    <script src="modal.js"></script>
+</body>
+</html>
+<parameter name="filePath">C:\Users\Admin\Documents\coding\clodo-dev-site\public\demo\index.html

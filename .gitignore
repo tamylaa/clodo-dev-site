@@ -2,7 +2,7 @@
 node_modules/
 
 # Build output
-dist/
+# dist/  -- Keep committed for Cloudflare Pages deployment (npm run build generates it)
 dist-astro/
 
 # Astro cache

@@ -1,0 +1,1227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library - Clodo Framework</title>
+    <meta name="description" content="Comprehensive component documentation and showcase for Clodo Framework UI components.">
+    <link rel="canonical" href="https://clodo.dev/components">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-400:rgb(96 165 250);--primary-500:rgb(59 130 246);--primary-600:rgb(37 99 235);--primary-700:rgb(29 78 216);--primary-800:rgb(30 64 175);--primary-900:rgb(30 58 138);--primary-950:rgb(23 37 84);--primary-color:var(--primary-600);--primary-dark:var(--primary-700);--primary-light:var(--primary-400);--gray-50:rgb(249 250 251);--gray-100:rgb(243 244 246);--gray-200:rgb(229 231 235);--gray-300:rgb(209 213 219);--gray-400:rgb(156 163 175);--gray-500:rgb(107 114 128);--gray-600:rgb(75 85 99);--gray-700:rgb(55 65 81);--gray-800:rgb(31 41 55);--gray-900:rgb(17 24 39);--gray-950:rgb(3 7 18);--success-500:rgb(16 185 129);--success-600:rgb(5 150 105);--warning-500:rgb(245 158 11);--warning-600:rgb(217 119 6);--error-500:rgb(239 68 68);--error-600:rgb(220 38 38);--info-500:rgb(59 130 246);--info-600:rgb(37 99 235);--success-color:var(--success-600);--warning-color:var(--warning-600);--error-color:var(--error-600);--info-color:var(--info-600);--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-muted:var(--gray-600);--bg-primary:var(--gray-50);--bg-secondary:var(--gray-100);--bg-tertiary:var(--gray-200);--bg-accent:var(--primary-50);--bg-dark:var(--gray-800);--bg-darker:var(--gray-900);--border-color:var(--gray-200);--shadow-sm:0 1px 2px 0 rgb(0 0 0 / 5%);--shadow-md:0 4px 6px -1px rgb(0 0 0 / 10%),0 2px 4px -2px rgb(0 0 0 / 10%);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / 10%),0 4px 6px -4px rgb(0 0 0 / 10%);--spacing-xs:0.25rem;--spacing-sm:0.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4rem;--transition-fast:0.15s ease-out;--transition-normal:0.3s ease-out;--radius-sm:0.25rem;--radius-md:0.375rem;--radius-lg:0.5rem;--radius-xl:0.75rem}@media (prefers-color-scheme:dark){:root{--text-primary:rgb(243 244 246);--text-secondary:rgb(209 213 219);--text-muted:rgb(156 163 175);--bg-primary:rgb(17 24 39);--bg-secondary:rgb(31 41 55);--bg-tertiary:rgb(55 65 81);--bg-accent:rgb(30 58 95);--border-color:rgb(55 65 81)}}*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background-color:var(--bg-primary);-webkit-font-smoothing:antialiased}a{color:var(--primary-color);text-decoration:none;transition:all var(--transition-fast)}img{max-width:100%;height:auto}#hero-title{font-size:2.5rem;line-height:1.1;font-weight:700;margin:0 0 1.5rem;color:var(--text-primary)}@media (width >= 768px){#hero-title{font-size:3rem}}.hero-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;max-width:1200px;margin:0 auto;padding:0 1rem}.hero-content{order:1;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:100%}.hero-visual{order:2;text-align:center;max-width:100%;width:100%}.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}@media (width >= 1024px){.hero-grid{grid-template-columns:0.9fr 1.1fr;gap:4rem}.hero-visual{order:1;justify-self:end}.hero-content{order:2;align-items:flex-start !important;text-align:left !important;max-width:600px}.hero-buttons{justify-content:flex-start !important}}header{position:sticky;top:0;z-index:1000;background-color:var(--bg-primary)}.navbar{background-color:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 1px 3px rgb(0 0 0 / 5%)}.nav-container{display:flex;align-items:center;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);max-width:1200px;margin:0 auto;gap:var(--spacing-sm)}@media (width <= 767px){.nav-container{justify-content:space-between}.logo{order:1}.mobile-menu-toggle{order:3}.nav-menu{order:2}.nav-actions{order:4;display:flex;gap:var(--spacing-xs)}}@media (width >= 768px){.nav-container{padding:var(--spacing-sm) var(--spacing-lg)}}.logo{display:flex;align-items:center;gap:0.5rem;font-size:1.25rem;font-weight:700;color:var(--text-primary);text-decoration:none;transition:opacity var(--transition-fast);min-height:44px}.logo:hover{opacity:0.8}.logo:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.logo-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0}.logo-text{background:linear-gradient(135deg,var(--primary-color),var(--primary-dark,var(--primary-color)));background-clip:text;-webkit-text-fill-color:transparent}.mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--border-color);border-radius:var(--radius-md);cursor:pointer;transition:all var(--transition-fast)}.mobile-menu-toggle:hover{background:var(--bg-secondary);border-color:var(--primary-color)}.mobile-menu-toggle:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.mobile-menu-toggle[aria-expanded="true"]{background:var(--bg-secondary)}.hamburger{display:flex;flex-direction:column;gap:4px;width:20px}.hamburger__line{display:block;width:100%;height:2px;background:var(--text-primary);transition:all var(--transition-fast);border-radius:2px}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top{transform:translateY(6px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle{opacity:0}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:translateY(-6px) rotate(-45deg)}.nav-menu{display:none;list-style:none;margin:0;padding:0;position:absolute;top:100%;left:0;right:0;background:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 8px 16px rgb(0 0 0 / 10%)}.nav-menu[data-visible="false"]{display:none}.nav-menu[data-visible="true"]{display:flex;flex-direction:column}.nav-menu li{margin:0;border-bottom:1px solid var(--border-color)}.nav-menu li:last-child{border-bottom:none}.nav-link{display:flex;align-items:center;padding:var(--spacing-md);color:var(--text-primary);text-decoration:none;font-weight:500;font-size:1rem;transition:all var(--transition-fast);min-height:44px}.nav-link:hover{background:var(--bg-secondary);color:var(--primary-color)}.nav-link:focus-visible{outline:2px solid var(--primary-color);outline-offset:-2px}.nav-link[aria-current="page"]{color:var(--primary-color);font-weight:600;background:var(--bg-hover,var(--bg-secondary))}.nav-dropdown{position:relative}.nav-dropdown-toggle::after{content:"▾";margin-left:0.375rem;font-size:0.875rem;transition:transform var(--transition-fast)}.nav-dropdown-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}.nav-dropdown-menu{display:none;list-style:none;margin:0;padding:var(--spacing-sm) 0;background:var(--bg-secondary)}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu{display:block}.nav-dropdown-link{display:block;padding:var(--spacing-sm) var(--spacing-lg);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all var(--transition-fast)}.nav-dropdown-link:hover{background:var(--bg-hover,var(--bg-primary));color:var(--primary-color)}.nav-dropdown-divider{padding:var(--spacing-xs) var(--spacing-lg);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted,var(--text-secondary));margin-top:var(--spacing-sm)}.nav-dropdown-section{margin:var(--spacing-sm) 0 var(--spacing-xs) 0}.nav-dropdown-section-title{padding:var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size:0.875rem !important;font-weight:600 !important;color:var(--text-primary) !important;cursor:pointer;border-bottom:1px solid var(--border-color,rgb(255 255 255 / 10%));margin-bottom:var(--spacing-xs)}.nav-dropdown-section-title:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important}.nav-dropdown-subitem{padding:var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size:0.8125rem !important;color:var(--text-secondary) !important;border-left:2px solid transparent}.nav-dropdown-subitem:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important;border-left-color:var(--primary-color)}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}.github-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--text-primary);text-decoration:none;border:1px solid var(--border-color);border-radius:var(--radius-md);transition:all var(--transition-fast)}.github-btn:hover{background:var(--bg-secondary);border-color:var(--primary-color);color:var(--primary-color)}.github-btn:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}@media (width >= 768px){.nav-container{padding:var(--spacing-md) var(--spacing-lg)}.logo{font-size:1.5rem}.mobile-menu-toggle{display:none}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"]{display:flex !important;position:static;flex-direction:row;align-items:center;gap:var(--spacing-sm);background:transparent;border:none;box-shadow:none}.nav-menu li{border-bottom:none}.nav-link{padding:var(--spacing-sm) var(--spacing-md)}.nav-dropdown-menu{position:absolute;top:100%;left:0;min-width:250px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);box-shadow:0 8px 16px rgb(0 0 0 / 10%);margin-top:0.5rem}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}}@media (width >= 1024px){.nav-menu{gap:var(--spacing-md)}.nav-dropdown-menu{min-width:300px}}@media (prefers-reduced-motion:reduce){.hamburger__line,.nav-dropdown-toggle::after{transition:none}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:none}}@media (prefers-contrast:high){.navbar{border-bottom:2px solid var(--border-color)}.mobile-menu-toggle,.github-btn{border:2px solid var(--border-color)}}@media print{.navbar{position:static;border-bottom:2px solid var(--color-black)}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions{display:none}.nav-menu{display:flex;flex-direction:row;gap:1rem}}.error{border-color:var(--error-color) !important;background-color:rgb(239 68 68 / 10%) !important}.success{border-color:var(--success-color) !important;background-color:rgb(16 185 129 / 10%) !important}.skip-link{position:absolute;left:0;top:0;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;z-index:1000;opacity:0}.skip-link:focus{position:absolute;top:6px;left:6px;width:auto;height:auto;padding:8px;margin:0;background:var(--primary-color);color:var(--color-white);text-decoration:none;border-radius:4px;font-weight:500;overflow:visible;clip:auto;white-space:normal}.noscript-banner{position:relative;width:100%;background:linear-gradient(90deg,rgba(255,248,225,1),rgba(255,255,255,1));color:var(--color-text,#111);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);text-align:center;z-index:999;font-size:.95rem}.noscript-banner .container{max-width:1100px;margin:0 auto;padding:0 16px}.noscript-link,.noscript-banner a{color:var(--primary-color);text-decoration:underline;font-weight:600}.text-heart{color:rgb(226 85 85)}.theme-icon--dark{display:none}[data-theme="dark"] .theme-icon--dark{display:inline}.hidden{display:none !important}.visible{display:block !important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.font-normal{font-weight:400}.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}.text-sm{font-size:0.875rem}.text-base{font-size:1rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}.text-4xl{font-size:2.25rem}.text-5xl{font-size:3rem}</style>
+    <link rel="preload" href="/styles.2cff6a5a.css" as="style"><noscript><link rel="stylesheet" href="/styles.2cff6a5a.css"></noscript>
+    <script src="/js/init-preload.58026b79.js"></script>
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    
+    <style>
+        .breadcrumb-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .component-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(100, 200, 255, 0.05));
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .component-header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+        }
+
+        .component-header p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        .component-nav {
+            position: sticky;
+            top: 60px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 50;
+            padding: 1rem 2rem;
+        }
+
+        .component-nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .component-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .component-nav a:hover,
+        .component-nav a.active {
+            color: var(--primary-color);
+        }
+
+        .components-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .component-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 120px;
+        }
+
+        .component-section h2 {
+            font-size: 1.75rem;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .component-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .component-showcase {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .component-showcase.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .component-usage {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .component-usage h4 {
+            margin: 0 0 1rem 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .variant-group {
+            margin-bottom: 2rem;
+        }
+
+        .variant-group h3 {
+            font-size: 1.125rem;
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .properties-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .properties-table td {
+            color: var(--text-secondary);
+        }
+
+        .property-name {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .property-type {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            color: var(--text-primary);
+        }
+
+        .badge-demo {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .alert-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .icon-demo {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .icon-demo .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-demo .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .form-demo {
+            max-width: 400px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: 'âœ“ ';
+            color: var(--success-color);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .design-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .design-token {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .token-preview {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .token-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .token-value {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+
+        .accessibility-note {
+            background: rgb(59 130 246 / 0.1);
+            border-left: 4px solid var(--info-color);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .accessibility-note strong {
+            color: var(--info-color);
+        }
+
+        .accessibility-note--primary {
+            border-color: var(--primary-color);
+            background: rgba(0, 102, 204, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .component-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .component-nav ul {
+                gap: 1rem;
+            }
+
+            .button-grid,
+            .design-system {
+                grid-template-columns: 1fr;
+            }
+
+            .component-showcase.grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <style>header {position: sticky;top: 0;z-index: 1000;background-color: var(--bg-primary);}.navbar {background-color: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 1px 3px rgb(0 0 0 / 5%);}.nav-container {display: flex;align-items: center;justify-content: space-between;padding: var(--spacing-sm) var(--spacing-md);max-width: 1200px;margin: 0 auto;gap: var(--spacing-sm);}@media (width <= 767px) {.nav-container {justify-content: space-between;}.logo {order: 1;}.mobile-menu-toggle {order: 3;}.nav-menu {order: 2;}.nav-actions {order: 4;display: flex;gap: var(--spacing-xs);}}@media (width >= 768px) {.nav-container {padding: var(--spacing-sm) var(--spacing-lg);}}.logo {display: flex;align-items: center;gap: 0.5rem;font-size: 1.25rem;font-weight: 700;color: var(--text-primary);text-decoration: none;transition: opacity var(--transition-fast);min-height: 44px;}.logo:hover {opacity: 0.8;}.logo:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.logo-icon {display: inline-flex;align-items: center;justify-content: center;width: 24px;height: 24px;flex-shrink: 0;}.logo-text {background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, var(--primary-color)));background-clip: text;-webkit-text-fill-color: transparent;}.mobile-menu-toggle {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;background: transparent;border: 1px solid var(--border-color);border-radius: var(--radius-md);cursor: pointer;transition: all var(--transition-fast);}.mobile-menu-toggle:hover {background: var(--bg-secondary);border-color: var(--primary-color);}.mobile-menu-toggle:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.mobile-menu-toggle[aria-expanded="true"] {background: var(--bg-secondary);}.hamburger {display: flex;flex-direction: column;gap: 4px;width: 20px;}.hamburger__line {display: block;width: 100%;height: 2px;background: var(--text-primary);transition: all var(--transition-fast);border-radius: 2px;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top {transform: translateY(6px) rotate(45deg);}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle {opacity: 0;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: translateY(-6px) rotate(-45deg);}.nav-menu {display: none;list-style: none;margin: 0;padding: 0;position: absolute;top: 100%;left: 0;right: 0;background: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);}.nav-menu[data-visible="false"] {display: none;}.nav-menu[data-visible="true"] {display: flex;flex-direction: column;}.nav-menu li {margin: 0;border-bottom: 1px solid var(--border-color);}.nav-menu li:last-child {border-bottom: none;}.nav-link {display: flex;align-items: center;padding: var(--spacing-md);color: var(--text-primary);text-decoration: none;font-weight: 500;font-size: 1rem;transition: all var(--transition-fast);min-height: 44px;}.nav-link:hover {background: var(--bg-secondary);color: var(--primary-color);}.nav-link:focus-visible {outline: 2px solid var(--primary-color);outline-offset: -2px;}.nav-link[aria-current="page"] {color: var(--primary-color);font-weight: 600;background: var(--bg-hover, var(--bg-secondary));}.nav-dropdown {position: relative;}.nav-dropdown-toggle::after {content: "▾";margin-left: 0.375rem;font-size: 0.875rem;transition: transform var(--transition-fast);}.nav-dropdown-toggle[aria-expanded="true"]::after {transform: rotate(180deg);}.nav-dropdown-menu {display: none;list-style: none;margin: 0;padding: var(--spacing-sm) 0;background: var(--bg-secondary);}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu {display: block;}.nav-dropdown-link {display: block;padding: var(--spacing-sm) var(--spacing-lg);color: var(--text-secondary);text-decoration: none;font-size: 0.875rem;transition: all var(--transition-fast);}.nav-dropdown-link:hover {background: var(--bg-hover, var(--bg-primary));color: var(--primary-color);}.nav-dropdown-divider {padding: var(--spacing-xs) var(--spacing-lg);font-size: 0.75rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.05em;color: var(--text-muted, var(--text-secondary));margin-top: var(--spacing-sm);}.nav-dropdown-section {margin: var(--spacing-sm) 0 var(--spacing-xs) 0;}.nav-dropdown-section-title {padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size: 0.875rem !important;font-weight: 600 !important;color: var(--text-primary) !important;cursor: pointer;border-bottom: 1px solid var(--border-color, rgb(255 255 255 / 10%));margin-bottom: var(--spacing-xs);}.nav-dropdown-section-title:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;}.nav-dropdown-subitem {padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size: 0.8125rem !important;color: var(--text-secondary) !important;border-left: 2px solid transparent;}.nav-dropdown-subitem:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;border-left-color: var(--primary-color);}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}.github-btn {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;color: var(--text-primary);text-decoration: none;border: 1px solid var(--border-color);border-radius: var(--radius-md);transition: all var(--transition-fast);}.github-btn:hover {background: var(--bg-secondary);border-color: var(--primary-color);color: var(--primary-color);}.github-btn:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}@media (width >= 768px) {.nav-container {padding: var(--spacing-md) var(--spacing-lg);}.logo {font-size: 1.5rem;}.mobile-menu-toggle {display: none;}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"] {display: flex !important;position: static;flex-direction: row;align-items: center;gap: var(--spacing-sm);background: transparent;border: none;box-shadow: none;}.nav-menu li {border-bottom: none;}.nav-link {padding: var(--spacing-sm) var(--spacing-md);}.nav-dropdown-menu {position: absolute;top: 100%;left: 0;min-width: 250px;background: var(--bg-primary);border: 1px solid var(--border-color);border-radius: var(--radius-md);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);margin-top: 0.5rem;}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}}@media (width >= 1024px) {.nav-menu {gap: var(--spacing-md);}.nav-dropdown-menu {min-width: 300px;}}@media (prefers-reduced-motion: reduce) {.hamburger__line,.nav-dropdown-toggle::after {transition: none;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: none;}}@media (prefers-contrast: high) {.navbar {border-bottom: 2px solid var(--border-color);}.mobile-menu-toggle,.github-btn {border: 2px solid var(--border-color);}}@media print {.navbar {position: static;border-bottom: 2px solid var(--color-black);}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions {display: none;}.nav-menu {display: flex;flex-direction: row;gap: 1rem;}}.breadcrumbs{max-width:1280px;margin:0 auto;padding:1rem;font-size:.875rem;color:var(--text-muted)}.breadcrumbs ol{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;margin:0;padding:0}.breadcrumbs li{display:flex;align-items:center}.breadcrumbs li:not(:last-child):after{content:"/";margin-left:.5rem}.breadcrumbs a{color:var(--primary-color);text-decoration:none}.breadcrumbs a:hover{text-decoration:underline}.navbar{transition:none !important}.css-ready .navbar{transition:all var(--transition-fast)}</style>
+    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
+<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
+<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
+<script nonce="N0Nc3Cl0d0">
+(function() {
+    try {
+        // Get stored theme - ONLY use explicit user choice, never system preference
+        // This prevents dark theme from being applied by default on mobile devices
+        const stored = localStorage.getItem('clodo-theme');
+        const theme = (stored === 'dark') ? 'dark' : 'light';
+        // Apply BEFORE CSS renders to prevent FOUC
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+    } catch (e) {
+        // Fail silently - CSS defaults to light theme
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.style.colorScheme = 'light';
+    }
+})();
+</script>
+
+</head>
+<body>
+    <!-- Announcement Banner Container -->
+    <div class="announcement-container"><!-- ANNOUNCEMENT BANNER TEMPLATE -->
+<div class="announcement-banner announcement-info" data-banner-id="migration-2025" role="banner" aria-label="info announcement" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; padding: 8px 0; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border-bottom: 1px solid rgba(255,255,255,0.10);">
+    <div class="announcement-content" style="display: flex; align-items: center; justify-content: center; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 16px; flex-wrap: wrap;">
+        <div class="announcement-icon" style="font-size: 1.2rem; flex-shrink: 0;">
+            ℹ️
+        </div>
+        <div class="announcement-text" style="flex: 1; min-width: 200px; text-align: center;">
+            <strong class="announcement-title" style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 4px;">New: Migrate to Cloudflare</strong>
+            <span class="announcement-message" style="font-size: 0.9rem; font-weight: 400; opacity: 0.95;">Migrate from Vercel/Railway to Cloudflare with Clodo Framework. Get enterprise-grade performance and security.</span>
+        </div>
+        <div class="announcement-actions" style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+            <a href="/migrate" class="announcement-link" style="color: #ffffff; text-decoration: underline; font-weight: 600; padding: 4px 12px; border-radius: 6px; background: rgba(255,255,255,0.10); transition: opacity 0.15s ease-out;">Learn more</a>
+            <button class="announcement-close" aria-label="Dismiss announcement" data-banner-id="migration-2025" style="background: none; border: none; color: #ffffff; cursor: pointer; padding: 4px; border-radius: 6px; transition: background-color 0.15s ease-out; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; line-height: 1; width: 24px; height: 24px;">×</button>
+        </div>
+    </div>
+</div></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a><nav class="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="/" class="logo" aria-label="Clodo Framework home">
+            <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                <defs>
+                    <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1d4ed8"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                </defs>
+                <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+            </svg>
+            <span class="logo-text">Clodo</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="hamburger">
+                <span class="hamburger__line hamburger__line--top"></span>
+                <span class="hamburger__line hamburger__line--middle"></span>
+                <span class="hamburger__line hamburger__line--bottom"></span>
+            </span>
+        </button>
+
+        <ul class="nav-menu" id="mobile-menu" data-visible="false">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="/product" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Product</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/product" class="nav-dropdown-link" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="/migrate" class="nav-dropdown-link" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link" role="menuitem">Community</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Comparisons Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>⚖️ Comparisons</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Edge Computing</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Learn</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <!-- Documentation Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>📚 Documentation</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Components</a></li>
+                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Development & Deployment</a></li>
+                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">API Simplification</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Guides Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>🚀 Guides</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Migration Guide</a></li>
+                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Framework Promise to Reality</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Examples Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>💡 Examples</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Help & Support Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>❓ Help & Support</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
+                    
+                    <!-- Case Studies Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>📈 Case Studies</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
+                </ul>
+            </li>
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+            <li><a href="/pricing" class="nav-link">Pricing</a></li>
+            <!-- Scroll spy navigation for index page -->
+            <li class="nav-scroll-spy hidden">
+                <a href="#key-benefits" class="nav-link">Benefits</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#features" class="nav-link">Features</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#comparison" class="nav-link">Comparison</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#architecture" class="nav-link">Architecture</a>
+            </li>
+            <li class="nav-dropdown">
+                <a href="/about" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/about" class="nav-dropdown-link" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="/privacy" class="nav-dropdown-link" role="menuitem">Privacy Policy</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span id="star-count" aria-label="GitHub stars">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Component Library</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="component-header">
+        <h1>Component Library</h1>
+        <p>Comprehensive UI component documentation for Clodo Framework</p>
+    </div>
+
+    <!-- Component Navigation -->
+    <div class="component-nav">
+        <ul>
+            <li><a href="#buttons" class="nav-link">Buttons</a></li>
+            <li><a href="#cards" class="nav-link">Cards</a></li>
+            <li><a href="#forms" class="nav-link">Forms</a></li>
+            <li><a href="#badges" class="nav-link">Badges</a></li>
+            <li><a href="#alerts" class="nav-link">Alerts</a></li>
+            <li><a href="#loaders" class="nav-link">Loaders</a></li>
+            <li><a href="#design-tokens" class="nav-link">Design Tokens</a></li>
+        </ul>
+    </div>
+
+    <!-- Components Container -->
+    <div class="components-container">
+
+        <!-- Buttons Section -->
+        <section id="main-content" class="component-section">
+            <h2>Buttons</h2>
+            <p class="component-description">
+                Buttons are the primary call-to-action elements. They support multiple variants, sizes, and states.
+                All buttons follow the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standard.
+            </p>
+
+            <div class="accessibility-note">
+                <strong>â™¿ Accessibility:</strong> All buttons have focus states, appropriate ARIA labels, and minimum 44px height for touch targets.
+            </div>
+
+            <div class="variant-group">
+                <h3>Variants</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary">Primary Button</button>
+                    <button class="btn btn--secondary">Secondary Button</button>
+                    <button class="btn btn--outline">Outline Button</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Sizes</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary btn--sm">Small</button>
+                    <button class="btn btn--primary">Default</button>
+                    <button class="btn btn--primary btn--lg">Large</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>States</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary">Normal</button>
+                    <button class="btn btn--primary" disabled>Disabled</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Full Width</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary btn--full">Full Width Button</button>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;button class="btn btn--primary"&gt;Click Me&lt;/button&gt;
+&lt;button class="btn btn--secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn--outline"&gt;Outline&lt;/button&gt;
+
+&lt;!-- Sizes --&gt;
+&lt;button class="btn btn--primary btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn--primary btn--lg"&gt;Large&lt;/button&gt;
+
+&lt;!-- States --&gt;
+&lt;button class="btn btn--primary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="btn btn--primary btn--full"&gt;Full Width&lt;/button&gt;</div>
+            </div>
+
+            <table class="properties-table">
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Purpose</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="property-name">.btn</td>
+                        <td>Base button styles</td>
+                        <td>Required on all buttons</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--primary</td>
+                        <td>Primary action button</td>
+                        <td>Main CTAs and actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--secondary</td>
+                        <td>Secondary action button</td>
+                        <td>Alternative actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--outline</td>
+                        <td>Outline button</td>
+                        <td>Tertiary actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--lg</td>
+                        <td>Large button size</td>
+                        <td>Prominent CTAs</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--sm</td>
+                        <td>Small button size</td>
+                        <td>Compact layouts</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--full</td>
+                        <td>Full width button</td>
+                        <td>Form submissions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Cards Section -->
+        <section id="cards" class="component-section">
+            <h2>Cards</h2>
+            <p class="component-description">
+                Cards are container components for grouping related content. They support headers, bodies, and footers with
+                consistent spacing and hover effects.
+            </p>
+
+            <div class="component-showcase grid">
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Card Title</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__subtitle">This is a basic card with header, body, and content.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3 class="card__title">Simple Card</h3>
+                        <p class="card__subtitle">Card without header or footer sections.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Full Card</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__subtitle">This card has all three sections.</p>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn--primary btn--sm">Action</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;div class="card"&gt;
+    &lt;div class="card__header"&gt;
+        &lt;h3 class="card__title"&gt;Card Title&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="card__body"&gt;
+        &lt;p class="card__subtitle"&gt;Card content&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__footer"&gt;
+        &lt;button class="btn btn--primary"&gt;Action&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Forms Section -->
+        <section id="forms" class="component-section">
+            <h2>Forms</h2>
+            <p class="component-description">
+                Form components include text inputs, labels, error messages, and textarea fields.
+                All form elements are fully accessible with proper ARIA attributes.
+            </p>
+
+            <div class="accessibility-note">
+                <strong>â™¿ Accessibility:</strong> All form inputs include focus states, error messages, and are associated with labels.
+            </div>
+
+            <div class="component-showcase">
+                <form class="form-demo">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-input form-textarea" placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;form&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label class="form-label" for="input-id"&gt;Label&lt;/label&gt;
+        &lt;input type="text" id="input-id" class="form-input" placeholder="Placeholder"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label class="form-label" for="textarea-id"&gt;Message&lt;/label&gt;
+        &lt;textarea id="textarea-id" class="form-input form-textarea"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-error"&gt;This field is required&lt;/div&gt;
+&lt;/form&gt;</div>
+            </div>
+        </section>
+
+        <!-- Badges Section -->
+        <section id="badges" class="component-section">
+            <h2>Badges</h2>
+            <p class="component-description">
+                Badges are small inline labels for status, categories, or priority indicators.
+                They come in different colors and should be used sparingly.
+            </p>
+
+            <div class="component-showcase">
+                <div class="badge-demo">
+                    <span class="badge badge--primary">Primary</span>
+                    <span class="badge badge--success">Success</span>
+                    <span class="badge badge--warning">Warning</span>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;span class="badge badge--primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge badge--success"&gt;Success&lt;/span&gt;
+&lt;span class="badge badge--warning"&gt;Warning&lt;/span&gt;</div>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="component-section">
+            <h2>Alerts</h2>
+            <p class="component-description">
+                Alerts communicate messages to users. They come in four variants: success, warning, error, and info.
+                Use them to provide feedback about actions or inform users about important information.
+            </p>
+
+            <div class="component-showcase alert-demo">
+                <div class="alert alert--success">
+                    <strong>Success!</strong> Your changes have been saved successfully.
+                </div>
+                <div class="alert alert--warning">
+                    <strong>Warning:</strong> Please review your information before proceeding.
+                </div>
+                <div class="alert alert--error">
+                    <strong>Error:</strong> Something went wrong. Please try again.
+                </div>
+                <div class="alert alert--info">
+                    <strong>Info:</strong> This is an informational message for your attention.
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;div class="alert alert--success"&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--warning"&gt;
+    &lt;strong&gt;Warning:&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--error"&gt;
+    &lt;strong&gt;Error:&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--info"&gt;
+    &lt;strong&gt;Info:&lt;/strong&gt; Message content
+&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Loaders Section -->
+        <section id="loaders" class="component-section">
+            <h2>Loading States</h2>
+            <p class="component-description">
+                Loading indicators provide visual feedback when content is being processed or fetched.
+                They come in different sizes and colors.
+            </p>
+
+            <div class="variant-group">
+                <h3>Spinners</h3>
+                <div class="component-showcase">
+                    <div class="spinner spinner--sm"></div>
+                    <div class="spinner"></div>
+                    <div class="spinner spinner--lg"></div>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Spinner Variants</h3>
+                <div class="component-showcase">
+                    <div class="spinner spinner--primary"></div>
+                    <div class="spinner spinner--white spinner--demo"></div>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;!-- Basic spinner --&gt;
+&lt;div class="spinner"&gt;&lt;/div&gt;
+
+&lt;!-- Size variants --&gt;
+&lt;div class="spinner spinner--sm"&gt;&lt;/div&gt;
+&lt;div class="spinner spinner--lg"&gt;&lt;/div&gt;
+
+&lt;!-- Color variants --&gt;
+&lt;div class="spinner spinner--primary"&gt;&lt;/div&gt;
+&lt;div class="spinner spinner--white"&gt;&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Design Tokens Section -->
+        <section id="design-tokens" class="component-section">
+            <h2>Design Tokens</h2>
+            <p class="component-description">
+                Clodo Framework uses CSS custom properties (variables) for consistent styling across all components.
+                These tokens ensure visual consistency and make theming easier.
+            </p>
+
+            <div class="variant-group">
+                <h3>Color Tokens</h3>
+                <div class="design-system">
+                    <div class="design-token">
+                        <div class="token-preview token-preview--primary"></div>
+                        <div class="token-label">Primary</div>
+                        <div class="token-value">--primary-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview token-preview--primary-dark"></div>
+                        <div class="token-label">Primary Dark</div>
+                        <div class="token-value">--primary-dark</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview token-preview--success"></div>
+                        <div class="token-label">Success</div>
+                        <div class="token-value">--success-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview token-preview--warning"></div>
+                        <div class="token-label">Warning</div>
+                        <div class="token-value">--warning-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview token-preview--error"></div>
+                        <div class="token-label">Error</div>
+                        <div class="token-value">--error-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview token-preview--info"></div>
+                        <div class="token-label">Info</div>
+                        <div class="token-value">--info-color</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Spacing Tokens</h3>
+                <table class="properties-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="property-name">--spacing-xs</td>
+                            <td class="property-type">0.25rem (4px)</td>
+                            <td>Minimal spacing</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-sm</td>
+                            <td class="property-type">0.5rem (8px)</td>
+                            <td>Small gaps</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-md</td>
+                            <td class="property-type">1rem (16px)</td>
+                            <td>Default spacing</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-lg</td>
+                            <td class="property-type">1.5rem (24px)</td>
+                            <td>Large gaps</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-xl</td>
+                            <td class="property-type">2rem (32px)</td>
+                            <td>Extra large gaps</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="variant-group">
+                <h3>Border Radius Tokens</h3>
+                <table class="properties-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="property-name">--radius-sm</td>
+                            <td class="property-type">0.25rem (4px)</td>
+                            <td>Subtle curves</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-md</td>
+                            <td class="property-type">0.5rem (8px)</td>
+                            <td>Standard radius</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-lg</td>
+                            <td class="property-type">1rem (16px)</td>
+                            <td>Prominent radius</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-full</td>
+                            <td class="property-type">9999px</td>
+                            <td>Circular elements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="variant-group">
+                <h3>Typography Tokens</h3>
+                <ul class="feature-list">
+                    <li><strong>Font Family:</strong> var(--font-sans) = -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu...</li>
+                    <li><strong>Font Size Base:</strong> 1rem (16px)</li>
+                    <li><strong>Line Height Base:</strong> 1.5</li>
+                    <li><strong>Heading Font Size:</strong> Fluid scaling with clamp()</li>
+                    <li><strong>Letter Spacing:</strong> -0.02em for headings, normal for body</li>
+                </ul>
+            </div>
+
+            <div class="component-usage">
+                <h4>Using Design Tokens in CSS</h4>
+                <div class="code-block">.my-component {
+    /* Color tokens */
+    color: var(--text-primary);
+    background: var(--primary-color);
+    
+    /* Spacing tokens */
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    
+    /* Border radius tokens */
+    border-radius: var(--radius-md);
+    
+    /* Shadow tokens */
+    box-shadow: var(--shadow-md);
+    
+    /* Transition tokens */
+    transition: all var(--transition-fast);
+}</div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="component-section">
+            <h2>Design System Best Practices</h2>
+            <div class="accessibility-note accessibility-note--primary">
+                <strong>💡 Tip:</strong> Always use design tokens instead of hardcoded values to maintain consistency.
+            </div>
+
+            <ul class="feature-list">
+                <li><strong>Use Component Classes:</strong> Apply the appropriate component classes (btn, card, alert, etc.) rather than custom styling</li>
+                <li><strong>Mobile First:</strong> Design for mobile screens first, then enhance for larger viewports</li>
+                <li><strong>Accessibility First:</strong> Ensure all components have proper semantic HTML, ARIA labels, and focus states</li>
+                <li><strong>Consistent Spacing:</strong> Use spacing tokens consistently throughout your layouts</li>
+                <li><strong>Color Contrast:</strong> Maintain WCAG AA (4.5:1) or AAA (7:1) contrast ratios for text</li>
+                <li><strong>Touch Targets:</strong> Keep interactive elements at least 44px high for touch accessibility</li>
+                <li><strong>Dark Mode:</strong> All components support dark mode through CSS custom properties</li>
+                <li><strong>Responsive Design:</strong> Use media queries and fluid sizing for responsive components</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- Footer --><footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-logo">
+                <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                    <defs>
+                        <linearGradient id="footer-logo-g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1d4ed8"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                    <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#footer-logo-g)"/>
+                </svg>
+                <span class="logo-text">Clodo</span>
+            </div>
+            <p>Building the future of edge computing, one service at a time. Join thousands of developers deploying on Cloudflare Workers with enterprise-grade performance and security.</p>
+
+            <!-- Newsletter Form - Footer Variant -->
+<!-- Used in: templates/footer.html -->
+
+<div class="footer-newsletter" id="newsletter">
+    <h4>Stay Updated</h4>
+    <p id="newsletter-helper" class="form-helper">Product updates, engineering posts, and launch notes. <strong>1–2 emails/month.</strong></p>
+    <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
+        <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
+        <input type="hidden" name="source" value="footer">
+        <div class="form-group">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" inputmode="email" aria-describedby="newsletter-helper" required>
+            <button type="submit" class="btn btn--primary" aria-label="Subscribe to newsletter">Subscribe</button>
+        </div>
+        <div class="reassurance">No spam. Unsubscribe anytime.</div>
+        <div class="consent">
+            <input type="checkbox" id="newsletter-consent" name="consent" required>
+            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="/privacy">Privacy Policy</a>.</label>
+        </div>
+        <p class="form-message" aria-live="polite" role="status"></p>
+        <noscript>
+            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:product@clodo.dev">product@clodo.dev</a>.</p>
+        </noscript>
+    </form>
+</div>
+        </div>
+
+        <nav class="footer-section" aria-labelledby="footer-product">
+            <h4 id="footer-product">Product</h4>
+            <ul role="list">
+                <li><a href="/product">Product Overview</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/examples">Code Examples</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/migrate">Migration Guide</a></li>
+                <li><a href="/clodo-vs-lambda">Clodo vs AWS Lambda</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="/docs#api">API Reference</a></li>
+                <li><a href="/product#expert-assessment">Expert Review</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-developers">
+            <h4 id="footer-developers">Developers</h4>
+            <ul role="list">
+                <li><a href="/docs#getting-started">Getting Started</a></li>
+                <li><a href="/docs#deployment">Deployment</a></li>
+                <li><a href="/docs#security">Security Guide</a></li>
+                <li><a href="/docs#troubleshooting">Troubleshooting</a></li>
+                <li><a href="/examples">Example Projects</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/releases" target="_blank" rel="noopener">Release Notes</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-blog">
+            <h4 id="footer-blog">Resources</h4>
+            <ul role="list">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/blog/cloudflare-infrastructure-myth">Infrastructure Revolution</a></li>
+                <li><a href="/case-studies/">Case Studies</a></li>
+                <li><a href="/clodo-framework-promise-to-reality">From Promise to Reality</a></li>
+                <li><a href="/clodo-framework-api-simplification">API Complexity Crisis</a></li>
+                <li><a href="/faq">Frequently Asked Questions</a></li>
+                <li><a href="/about#game-changer">Our Story</a></li>
+                <li><a href="/about#roadmap">Product Roadmap</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-company">
+            <h4 id="footer-company">Company</h4>
+            <ul role="list">
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/about#vision">Our Mission</a></li>
+                <li><a href="/about#roadmap">Roadmap</a></li>
+                <li><a href="/about#game-changer">Our Story</a></li>
+                <li><a href="/pricing#contact">Contact</a></li>
+                <li><a href="/about#team">Team</a></li>
+                <li><a href="/about#careers">Careers</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-community">
+            <h4 id="footer-community">Community</h4>
+            <ul role="list">
+                <li><a href="/community/welcome">Community Welcome</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener">GitHub Discussions</a></li>
+                <li><a href="https://twitter.com/clodoframework" target="_blank" rel="noopener">Twitter</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/issues" target="_blank" rel="noopener">Report Issues</a></li>
+                <li><a href="/about#contact">Email Support</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://twitter.com/clodoframework" target="_blank" rel="noopener" aria-label="Follow us on Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener" aria-label="View on GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener" aria-label="Join GitHub Discussions">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.69-.22.69-.48v-1.62c-2.78.62-3.37-1.35-3.37-1.35-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.53.99 1.53.99.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.11 2.52.32 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.33 4.69-4.55 4.94.28.25.54.69.63 1.34.57.26 2.02.7 2.91.83.89-.53 1.53-.99 1.53-.99.91 0 .98.61.07.61-.45 0-1.11.31-1.11.62 0 0-.89 1.73-3.37 1.73v1.48c0 .26.19.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; 2025 Clodo Framework. Open source under MIT License.
+            <span aria-hidden="true">•</span>
+            <a href="/privacy">Privacy Policy</a>
+            <span aria-hidden="true">•</span>
+            <a href="/privacy#terms">Terms of Service</a>
+            <span aria-hidden="true">•</span>
+            Made with <span class="text-heart">♥</span> for developers
+        </p>
+    </div>
+
+    <!-- Global fallback for Try It Live CTA (ensures inline onclick works even if modules are disabled) -->
+    <script nonce="N0Nc3Cl0d0">
+        if (typeof window.openStackBlitz !== 'function') {
+            window.openStackBlitz = function(url) {
+                try {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } catch (e) {
+                    window.location.href = url;
+                }
+            };
+        }
+    </script>
+</footer>
+
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="/js/init-systems.84654b0f.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script defer src="/js/config/features.6fd0dbe9.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="/js/main.21b52c3e.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="/js/defer-css.400dfe70.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="/js/ui/navigation-component.2f87c94a.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="/js/analytics.cf47b86f.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+<script defer src="js/component-nav.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html>
+
