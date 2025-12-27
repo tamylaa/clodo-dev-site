@@ -188,7 +188,7 @@
                     <!-- Documentation Section -->
                     <li class="nav-dropdown-section">
                         <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>ðŸ“š Documentation</strong>
+                            <strong>📚 Documentation</strong>
                         </a>
                     </li>
                     <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
@@ -201,7 +201,7 @@
                     <!-- Guides Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
-                            <strong>ðŸš€ Guides</strong>
+                            <strong>🚀 Guides</strong>
                         </span>
                     </li>
                     <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
@@ -214,7 +214,7 @@
                     <!-- Comparisons Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
-                            <strong>âš–ï¸ Comparisons</strong>
+                            <strong>⚖️ Comparisons</strong>
                         </span>
                     </li>
                     <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
@@ -228,7 +228,7 @@
                     <!-- Examples Section -->
                     <li class="nav-dropdown-section">
                         <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>ðŸ’¡ Examples</strong>
+                            <strong>💡 Examples</strong>
                         </a>
                     </li>
                     <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
@@ -246,7 +246,7 @@
                     <!-- Case Studies Section -->
                     <li class="nav-dropdown-section">
                         <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>ðŸ“ˆ Case Studies</strong>
+                            <strong>📝ˆ Case Studies</strong>
                         </a>
                     </li>
                     <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
@@ -256,7 +256,7 @@
                     <!-- Blog Section -->
                     <li class="nav-dropdown-section">
                         <a href="/blog" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
-                            <strong>ðŸ“ Blog</strong>
+                            <strong>📝 Blog</strong>
                         </a>
                     </li>
                     <li role="none"><a href="/blog" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Latest Articles & Updates</a></li>
@@ -339,7 +339,7 @@
             </div>
 
             <div class="toc">
-                <h3>ðŸ“‘ In This Guide</h3>
+                <h3>📝‘ In This Guide</h3>
                 <ul>
                     <li><a href="#why-workers">Why Cloudflare Workers for SaaS?</a></li>
                     <li><a href="#isolation-strategies">Tenant Isolation Strategies</a></li>
@@ -401,7 +401,7 @@
             <p>All tenants use the same database and tables. Data is isolated by a <code>tenant_id</code> column.</p>
 
             <div class="step-box">
-                <h4>âœ… When to Use</h4>
+                <h4>✅ When to Use</h4>
                 <ul>
                     <li>Multiple tenants with similar schemas</li>
                     <li>Easy multi-tenancy within application</li>
@@ -424,7 +424,7 @@
             <p>Each tenant gets their own database schema or separate database instance.</p>
 
             <div class="step-box">
-                <h4>âœ… When to Use</h4>
+                <h4>✅ When to Use</h4>
                 <ul>
                     <li>Enterprise SaaS (high security requirements)</li>
                     <li>Different schemas per tenant</li>
@@ -653,25 +653,25 @@ export default app;</code></pre>
                     <tr>
                         <td><strong>Subdomain</strong></td>
                         <td><code>acme.saas.com</code></td>
-                        <td>âœ… Native, simple</td>
+                        <td>✅ Native, simple</td>
                         <td>âŒ Wildcard DNS</td>
                     </tr>
                     <tr>
                         <td><strong>Custom Domain</strong></td>
                         <td><code>acme.com</code></td>
-                        <td>âœ… Professional, branded</td>
+                        <td>✅ Professional, branded</td>
                         <td>âŒ DNS per tenant</td>
                     </tr>
                     <tr>
                         <td><strong>URL Path</strong></td>
                         <td><code>/acme/api/users</code></td>
-                        <td>âœ… Simple DNS</td>
+                        <td>✅ Simple DNS</td>
                         <td>âŒ URL uglier</td>
                     </tr>
                     <tr>
                         <td><strong>Header</strong></td>
                         <td><code>X-Tenant-ID: acme</code></td>
-                        <td>âœ… API-friendly</td>
+                        <td>✅ API-friendly</td>
                         <td>âŒ Less intuitive</td>
                     </tr>
                 </tbody>
@@ -765,10 +765,10 @@ CREATE TABLE tenants (
 
             <h3>Security</h3>
             <ul>
-                <li>âœ… Always filter by tenant_id in queries</li>
-                <li>âœ… Validate tenant ownership before updates/deletes</li>
-                <li>âœ… Use database foreign keys to enforce isolation</li>
-                <li>âœ… Audit all per-tenant data access</li>
+                <li>✅ Always filter by tenant_id in queries</li>
+                <li>✅ Validate tenant ownership before updates/deletes</li>
+                <li>✅ Use database foreign keys to enforce isolation</li>
+                <li>✅ Audit all per-tenant data access</li>
                 <li>âŒ Never trust client-provided tenant_id (always use authenticated identity)</li>
             </ul>
 

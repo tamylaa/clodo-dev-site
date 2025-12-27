@@ -249,7 +249,7 @@
 
             <!-- Table of Contents -->
             <nav class="table-of-contents" aria-label="Table of Contents">
-                <h2>ðŸ“‘ Quick Navigation</h2>
+                <h2>📝‘ Quick Navigation</h2>
                 <ol>
                     <li><a href="#mystery">The Mystery: Code Pushed, Production Unchanged</a></li>
                     <li><a href="#investigation">The Investigation Begins</a></li>
@@ -267,7 +267,7 @@
             <section class="blog-post__content" itemprop="articleBody">
                 
                 <div class="opinion-callout opinion-callout--strong">
-                    <p><strong>ðŸ”¥ Hot Take:</strong> Git submodules are a mistake 90% of the time. They're a solution from an era before npm, yarn, and modern package managers. If you're using submodules for dependency management in 2025, you're creating technical debt. This article is proof.</p>
+                    <p><strong>🔥 Hot Take:</strong> Git submodules are a mistake 90% of the time. They're a solution from an era before npm, yarn, and modern package managers. If you're using submodules for dependency management in 2025, you're creating technical debt. This article is proof.</p>
                 </div>
                 
                 <h2 id="mystery">The Mystery: Code Pushed, Production Unchanged</h2>
@@ -292,7 +292,7 @@ c2bad2d Revert unnecessary wrangler.toml build command
 2518aeb Remove all demo references
 97a6119 Add type=button to prevent form submission</code></pre>
 
-                <p>âœ… Commits are there. Code is pushed. <code>origin/master</code> matches local.</p>
+                <p>✅ Commits are there. Code is pushed. <code>origin/master</code> matches local.</p>
 
                 <h3>Step 2: Check Cloudflare Pages Dashboard</h3>
                 <p>Cloudflare Pages showed "Deployment successful" but the build output was using old code. The timestamp was recent, but the content was stale.</p>
@@ -356,7 +356,7 @@ drwxr-xr-x  clodo-starter-template/</code></pre>
 
                 <p>This created a nightmare scenario:</p>
                 <ul>
-                    <li>âœ… Locally: Directory exists with full contents</li>
+                    <li>✅ Locally: Directory exists with full contents</li>
                     <li>âŒ In git: Only a commit reference is tracked</li>
                     <li>âŒ On Cloudflare Pages: Build fails to fetch submodule (no .gitmodules)</li>
                     <li>âŒ Build logs: No clear error message</li>
@@ -391,7 +391,7 @@ $ git commit
 
                 <!-- Mid-Article Newsletter CTA -->
                 <div class="blog-cta">
-                    <h4>ðŸ“¬ Get DevOps & Debugging Tips</h4>
+                    <h4>📝¬ Get DevOps & Debugging Tips</h4>
                     <p>Monthly insights on deployment, debugging, and production best practices.</p>
                     <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
                         <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
@@ -438,7 +438,7 @@ $ git status
 On branch master
 nothing to commit, working tree clean</code></pre>
 
-                <p>âœ… Submodule reference gone. Directory now properly ignored.</p>
+                <p>✅ Submodule reference gone. Directory now properly ignored.</p>
 
                 <h2 id="why-silent">Why Cloudflare Pages Failed Silently</h2>
 
@@ -484,7 +484,7 @@ $ git submodule init
 $ git submodule update</code></pre>
 
                 <aside class="highlight-box highlight-box--success">
-                    <h4>âœ… Pro Tip</h4>
+                    <h4>✅ Pro Tip</h4>
                     <p>Always use <code>git clone --recursive</code> when cloning repos with submodules, or run <code>git submodule update --init --recursive</code> after cloning.</p>
                 </aside>
 
@@ -548,8 +548,8 @@ command = "git submodule update --init --recursive && npm run build"</code></pre
                 <ul>
                     <li>âŒ Manual sync if demo needs website changes</li>
                     <li>âŒ Can't test demo changes locally within website repo</li>
-                    <li>âœ… But: Demo is deployed to StackBlitz, not our site</li>
-                    <li>âœ… Simpler mental model and deployment</li>
+                    <li>✅ But: Demo is deployed to StackBlitz, not our site</li>
+                    <li>✅ Simpler mental model and deployment</li>
                 </ul>
 
                 <h2>Debugging Checklist for Silent Build Failures</h2>
@@ -767,7 +767,7 @@ jobs:
 
                 <!-- Newsletter CTA -->
                 <div class="blog-cta blog-cta--footer">
-                    <h3>ðŸš€ DevOps & Debugging Insights</h3>
+                    <h3>🚀 DevOps & Debugging Insights</h3>
                     <p>Get monthly tips on deployment, debugging, and production best practices. Join developers who ship with confidence.</p>
                     <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
                         <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
