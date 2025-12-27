@@ -223,7 +223,7 @@ function findHtmlFiles(dir) {
  * Generate analytics report
  */
 function generateReport() {
-    console.log('\n🔗 Link Health Check Report');
+    console.log('\n[REPORT] Link Health Check Report');
     console.log('=' .repeat(50));
     console.log(`Total Links Found: ${linkAnalytics.totalLinks}`);
     console.log(`Internal Links: ${linkAnalytics.internalLinks}`);
@@ -238,7 +238,7 @@ function generateReport() {
         });
     }
 
-    console.log('\n📊 Link Analytics:');
+    console.log('\n[ANALYTICS] Link Analytics:');
 
     console.log('\nContent Clusters:');
     Object.entries(linkAnalytics.linkClusters)
@@ -274,7 +274,7 @@ function generateReport() {
  */
 async function main() {
     await initJSDOM();
-    console.log('🔍 Scanning for HTML files...');
+    console.log('[SCAN] Scanning for HTML files...');
 
     const htmlFiles = findHtmlFiles(PUBLIC_DIR);
     console.log(`Found ${htmlFiles.length} HTML files`);
@@ -288,7 +288,7 @@ async function main() {
         }
     });
 
-    console.log(`\n📊 Link Analysis Results:`);
+    console.log(`\n[RESULTS] Link Analysis Results:`);
     console.log(`   Total links found: ${linkAnalytics.totalLinks}`);
     console.log(`   Internal links: ${linkAnalytics.internalLinks}`);
     console.log(`   External links: ${linkAnalytics.externalLinks}`);
@@ -300,7 +300,7 @@ async function main() {
         console.log('\n❌ Link health check failed - broken links found');
         process.exit(1);
     } else {
-        console.log('\n✅ All internal links are healthy!');
+        console.log('\n[SUCCESS] All internal links are healthy!');
     }
 }
 

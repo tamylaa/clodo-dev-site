@@ -13,11 +13,11 @@ const __dirname = dirname(__filename);
  * Minifies CSS and JS, copies assets to dist folder
  */
 
-console.log('🚀 Building Clodo Framework website...');
+console.log('[BUILD] Building Clodo Framework website...');
 
 // Clean dist directory
 function cleanDist() {
-    console.log('🧹 Cleaning dist directory...');
+    console.log('[CLEAN] Cleaning dist directory...');
     if (existsSync('dist')) {
         rmSync('dist', { recursive: true, force: true });
     }
@@ -501,7 +501,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
 
 // Copy HTML files that don't use SSI includes (standalone HTML pages)
 function copyStandaloneHtml() {
-    console.log('📄 Copying standalone HTML files...');
+    console.log('[COPY] Copying standalone HTML files...');
     
     function copyHtmlFiles(dir, relativePath = '') {
         const fullDirPath = join('public', dir);
@@ -562,7 +562,7 @@ function copyStandaloneHtml() {
 
 // Bundle CSS into critical and non-critical bundles for performance
 function bundleCss() {
-    console.log('🎨 Bundling CSS...');
+    console.log('[CSS] Bundling CSS...');
 
     // Asset manifest for content-hashed filenames
     const assetManifest = {};
@@ -776,7 +776,7 @@ function bundleCss() {
 }
 
 function minifyCss() {
-    console.log('🎨 Minifying individual CSS...');
+    console.log('[CSS] Minifying individual CSS...');
     const cssDir = join('public', 'css');
     const distCssDir = join('dist', 'css');
 
@@ -828,7 +828,7 @@ function minifyJs(code) {
 
 // Copy JavaScript with minification
 function copyJs() {
-    console.log('📋 Copying and Minifying JavaScript...');
+    console.log('[JS] Copying and Minifying JavaScript...');
     
     // Copy main script.js
     const jsFile = join('public', 'script.js');
@@ -847,7 +847,7 @@ function copyJs() {
     const jsManifest = {}; // Track JS file hashes
     
     if (existsSync(jsDir)) {
-        console.log('📦 Copying JS modules with hashing...');
+        console.log('[JS] Copying JS modules with hashing...');
         mkdirSync(distJsDir, { recursive: true });
         
         // Recursively copy all JS files and hash them
@@ -896,7 +896,7 @@ function copyJs() {
 
 // Copy JavaScript config files
 function copyJsConfigs() {
-    console.log('📋 Copying JavaScript config files...');
+    console.log('[CONFIG] Copying JavaScript config files...');
     
     // Note: Newsletter subscription now handled server-side via Cloudflare Functions
     // No client-side Brevo configuration needed
@@ -905,7 +905,7 @@ function copyJsConfigs() {
 
 // Copy other assets
 function copyAssets() {
-    console.log('📦 Copying assets...');
+    console.log('[ASSETS] Copying assets...');
     // Copy legacy stylesheet for any pages that may still reference it
     if (existsSync(join('public', 'styles-organized.css'))) {
         copyFileSync(
@@ -1018,7 +1018,7 @@ try {
         JSON.stringify(assetManifest, null, 2),
         'utf8'
     );
-    console.log('📦 Asset manifest written with', Object.keys(assetManifest).length, 'entries');
+    console.log('[MANIFEST] Asset manifest written with', Object.keys(assetManifest).length, 'entries');
     
     copyStandaloneHtml();
     minifyCss();
@@ -1027,12 +1027,12 @@ try {
     generateBuildInfo();
 
     // Run link health check
-    console.log('🔗 Running link health check...');
+    console.log('[CHECK] Running link health check...');
     import('./check-links.js').then(({ checkLinks }) => {
         checkLinks();
-        console.log('✅ Build completed successfully!');
-        console.log('📁 Output directory: ./dist');
-        console.log('🚀 Ready for deployment');
+        console.log('[SUCCESS] Build completed successfully!');
+        console.log('[OUTPUT] Output directory: ./dist');
+        console.log('[READY] Ready for deployment');
     }).catch(error => {
         console.error('❌ Link check failed:', error.message);
         process.exit(1);
