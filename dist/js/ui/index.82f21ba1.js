@@ -1,0 +1,1 @@
+if (typeof window !== 'undefined') {window.UI = {NavigationComponent: typeof window.NavigationComponent !== 'undefined' ? window.NavigationComponent : null,Modal: typeof window.Modal !== 'undefined' ? window.Modal : null,Tabs: typeof window.Tabs !== 'undefined' ? window.Tabs : null,TooltipAPI: typeof window.TooltipAPI !== 'undefined' ? window.TooltipAPI : null,};}

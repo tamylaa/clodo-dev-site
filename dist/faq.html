@@ -1,0 +1,988 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+    <title>Clodo Framework FAQ - Questions About Pricing, Features & Deployment</title>
+    <meta name="description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements. Get answers to help you decide.">
+    <meta name="keywords" content="clodo faq, cloudflare workers faq, serverless framework questions, multi-tenant SaaS">
+    <meta name="author" content="Clodo Framework">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <link rel="canonical" href="https://clodo.dev/faq">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Clodo Framework FAQ - Questions About Pricing, Features & Deployment">
+    <meta property="og:description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements.">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta property="og:url" content="https://clodo.dev/faq">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clodo Framework FAQ - Questions About Pricing, Features & Deployment">
+    <meta name="twitter:description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does Clodo Framework cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework uses a pay-as-you-go model; typical small deployments cost $20-50/month."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://clodo.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FAQ",
+          "item": "https://clodo.dev/faq"
+        }
+      ]
+    }
+    </script>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-400:rgb(96 165 250);--primary-500:rgb(59 130 246);--primary-600:rgb(37 99 235);--primary-700:rgb(29 78 216);--primary-800:rgb(30 64 175);--primary-900:rgb(30 58 138);--primary-950:rgb(23 37 84);--primary-color:var(--primary-600);--primary-dark:var(--primary-700);--primary-light:var(--primary-400);--gray-50:rgb(249 250 251);--gray-100:rgb(243 244 246);--gray-200:rgb(229 231 235);--gray-300:rgb(209 213 219);--gray-400:rgb(156 163 175);--gray-500:rgb(107 114 128);--gray-600:rgb(75 85 99);--gray-700:rgb(55 65 81);--gray-800:rgb(31 41 55);--gray-900:rgb(17 24 39);--gray-950:rgb(3 7 18);--success-500:rgb(16 185 129);--success-600:rgb(5 150 105);--warning-500:rgb(245 158 11);--warning-600:rgb(217 119 6);--error-500:rgb(239 68 68);--error-600:rgb(220 38 38);--info-500:rgb(59 130 246);--info-600:rgb(37 99 235);--success-color:var(--success-600);--warning-color:var(--warning-600);--error-color:var(--error-600);--info-color:var(--info-600);--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-muted:var(--gray-600);--bg-primary:var(--gray-50);--bg-secondary:var(--gray-100);--bg-tertiary:var(--gray-200);--bg-accent:var(--primary-50);--bg-dark:var(--gray-800);--bg-darker:var(--gray-900);--border-color:var(--gray-200);--shadow-sm:0 1px 2px 0 rgb(0 0 0 / 5%);--shadow-md:0 4px 6px -1px rgb(0 0 0 / 10%),0 2px 4px -2px rgb(0 0 0 / 10%);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / 10%),0 4px 6px -4px rgb(0 0 0 / 10%);--spacing-xs:0.25rem;--spacing-sm:0.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4rem;--transition-fast:0.15s ease-out;--transition-normal:0.3s ease-out;--radius-sm:0.25rem;--radius-md:0.375rem;--radius-lg:0.5rem;--radius-xl:0.75rem}@media (prefers-color-scheme:dark){:root{--text-primary:rgb(243 244 246);--text-secondary:rgb(209 213 219);--text-muted:rgb(156 163 175);--bg-primary:rgb(17 24 39);--bg-secondary:rgb(31 41 55);--bg-tertiary:rgb(55 65 81);--bg-accent:rgb(30 58 95);--border-color:rgb(55 65 81)}}*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background-color:var(--bg-primary);-webkit-font-smoothing:antialiased}a{color:var(--primary-color);text-decoration:none;transition:all var(--transition-fast)}img{max-width:100%;height:auto}#hero-title{font-size:2.5rem;line-height:1.1;font-weight:700;margin:0 0 1.5rem;color:var(--text-primary)}@media (width >= 768px){#hero-title{font-size:3rem}}.hero-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;max-width:1200px;margin:0 auto;padding:0 1rem}.hero-content{order:1;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:100%}.hero-visual{order:2;text-align:center;max-width:100%;width:100%}.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}@media (width >= 1024px){.hero-grid{grid-template-columns:0.9fr 1.1fr;gap:4rem}.hero-visual{order:1;justify-self:end}.hero-content{order:2;align-items:flex-start !important;text-align:left !important;max-width:600px}.hero-buttons{justify-content:flex-start !important}}header{position:sticky;top:0;z-index:1000;background-color:var(--bg-primary)}.navbar{background-color:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 1px 3px rgb(0 0 0 / 5%)}.nav-container{display:flex;align-items:center;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);max-width:1200px;margin:0 auto;gap:var(--spacing-sm)}@media (width <= 767px){.nav-container{justify-content:space-between}.logo{order:1}.mobile-menu-toggle{order:3}.nav-menu{order:2}.nav-actions{order:4;display:flex;gap:var(--spacing-xs)}}@media (width >= 768px){.nav-container{padding:var(--spacing-sm) var(--spacing-lg)}}.logo{display:flex;align-items:center;gap:0.5rem;font-size:1.25rem;font-weight:700;color:var(--text-primary);text-decoration:none;transition:opacity var(--transition-fast);min-height:44px}.logo:hover{opacity:0.8}.logo:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.logo-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0}.logo-text{background:linear-gradient(135deg,var(--primary-color),var(--primary-dark,var(--primary-color)));background-clip:text;-webkit-text-fill-color:transparent}.mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--border-color);border-radius:var(--radius-md);cursor:pointer;transition:all var(--transition-fast)}.mobile-menu-toggle:hover{background:var(--bg-secondary);border-color:var(--primary-color)}.mobile-menu-toggle:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.mobile-menu-toggle[aria-expanded="true"]{background:var(--bg-secondary)}.hamburger{display:flex;flex-direction:column;gap:4px;width:20px}.hamburger__line{display:block;width:100%;height:2px;background:var(--text-primary);transition:all var(--transition-fast);border-radius:2px}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top{transform:translateY(6px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle{opacity:0}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:translateY(-6px) rotate(-45deg)}.nav-menu{display:none;list-style:none;margin:0;padding:0;position:absolute;top:100%;left:0;right:0;background:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 8px 16px rgb(0 0 0 / 10%)}.nav-menu[data-visible="false"]{display:none}.nav-menu[data-visible="true"]{display:flex;flex-direction:column}.nav-menu li{margin:0;border-bottom:1px solid var(--border-color)}.nav-menu li:last-child{border-bottom:none}.nav-link{display:flex;align-items:center;padding:var(--spacing-md);color:var(--text-primary);text-decoration:none;font-weight:500;font-size:1rem;transition:all var(--transition-fast);min-height:44px}.nav-link:hover{background:var(--bg-secondary);color:var(--primary-color)}.nav-link:focus-visible{outline:2px solid var(--primary-color);outline-offset:-2px}.nav-link[aria-current="page"]{color:var(--primary-color);font-weight:600;background:var(--bg-hover,var(--bg-secondary))}.nav-dropdown{position:relative}.nav-dropdown-toggle::after{content:"▾";margin-left:0.375rem;font-size:0.875rem;transition:transform var(--transition-fast)}.nav-dropdown-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}.nav-dropdown-menu{display:none;list-style:none;margin:0;padding:var(--spacing-sm) 0;background:var(--bg-secondary)}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu{display:block}.nav-dropdown-link{display:block;padding:var(--spacing-sm) var(--spacing-lg);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all var(--transition-fast)}.nav-dropdown-link:hover{background:var(--bg-hover,var(--bg-primary));color:var(--primary-color)}.nav-dropdown-divider{padding:var(--spacing-xs) var(--spacing-lg);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted,var(--text-secondary));margin-top:var(--spacing-sm)}.nav-dropdown-section{margin:var(--spacing-sm) 0 var(--spacing-xs) 0}.nav-dropdown-section-title{padding:var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size:0.875rem !important;font-weight:600 !important;color:var(--text-primary) !important;cursor:pointer;border-bottom:1px solid var(--border-color,rgb(255 255 255 / 10%));margin-bottom:var(--spacing-xs)}.nav-dropdown-section-title:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important}.nav-dropdown-subitem{padding:var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size:0.8125rem !important;color:var(--text-secondary) !important;border-left:2px solid transparent}.nav-dropdown-subitem:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important;border-left-color:var(--primary-color)}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}.github-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--text-primary);text-decoration:none;border:1px solid var(--border-color);border-radius:var(--radius-md);transition:all var(--transition-fast)}.github-btn:hover{background:var(--bg-secondary);border-color:var(--primary-color);color:var(--primary-color)}.github-btn:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}@media (width >= 768px){.nav-container{padding:var(--spacing-md) var(--spacing-lg)}.logo{font-size:1.5rem}.mobile-menu-toggle{display:none}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"]{display:flex !important;position:static;flex-direction:row;align-items:center;gap:var(--spacing-sm);background:transparent;border:none;box-shadow:none}.nav-menu li{border-bottom:none}.nav-link{padding:var(--spacing-sm) var(--spacing-md)}.nav-dropdown-menu{position:absolute;top:100%;left:0;min-width:250px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);box-shadow:0 8px 16px rgb(0 0 0 / 10%);margin-top:0.5rem}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}}@media (width >= 1024px){.nav-menu{gap:var(--spacing-md)}.nav-dropdown-menu{min-width:300px}}@media (prefers-reduced-motion:reduce){.hamburger__line,.nav-dropdown-toggle::after{transition:none}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:none}}@media (prefers-contrast:high){.navbar{border-bottom:2px solid var(--border-color)}.mobile-menu-toggle,.github-btn{border:2px solid var(--border-color)}}@media print{.navbar{position:static;border-bottom:2px solid var(--color-black)}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions{display:none}.nav-menu{display:flex;flex-direction:row;gap:1rem}}.error{border-color:var(--error-color) !important;background-color:rgb(239 68 68 / 10%) !important}.success{border-color:var(--success-color) !important;background-color:rgb(16 185 129 / 10%) !important}.skip-link{position:absolute;left:0;top:0;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;z-index:1000;opacity:0}.skip-link:focus{position:absolute;top:6px;left:6px;width:auto;height:auto;padding:8px;margin:0;background:var(--primary-color);color:var(--color-white);text-decoration:none;border-radius:4px;font-weight:500;overflow:visible;clip:auto;white-space:normal}.noscript-banner{position:relative;width:100%;background:linear-gradient(90deg,rgba(255,248,225,1),rgba(255,255,255,1));color:var(--color-text,#111);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);text-align:center;z-index:999;font-size:.95rem}.noscript-banner .container{max-width:1100px;margin:0 auto;padding:0 16px}.noscript-link,.noscript-banner a{color:var(--primary-color);text-decoration:underline;font-weight:600}.text-heart{color:rgb(226 85 85)}.theme-icon--dark{display:none}[data-theme="dark"] .theme-icon--dark{display:inline}.hidden{display:none !important}.visible{display:block !important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.font-normal{font-weight:400}.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}.text-sm{font-size:0.875rem}.text-base{font-size:1rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}.text-4xl{font-size:2.25rem}.text-5xl{font-size:3rem}</style>
+    <link rel="preload" href="/styles.2cff6a5a.css" as="style"><noscript><link rel="stylesheet" href="/styles.2cff6a5a.css"></noscript>
+    <script src="/js/init-preload.58026b79.js"></script>
+    <style>
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .faq-item {
+            background: var(--bg-secondary);
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 4px solid var(--primary-color);
+        }
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        .faq-question:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            line-height: 1.8;
+            border-top: 1px solid var(--border-color);
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-answer ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+        .faq-category {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .faq-category h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .faq-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .faq-filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .faq-filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .faq-filter-btn.active {
+            background: var(--primary-color);
+            color: var(--color-white);
+            border-color: var(--primary-color);
+        }
+    </style>
+    <style>header {position: sticky;top: 0;z-index: 1000;background-color: var(--bg-primary);}.navbar {background-color: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 1px 3px rgb(0 0 0 / 5%);}.nav-container {display: flex;align-items: center;justify-content: space-between;padding: var(--spacing-sm) var(--spacing-md);max-width: 1200px;margin: 0 auto;gap: var(--spacing-sm);}@media (width <= 767px) {.nav-container {justify-content: space-between;}.logo {order: 1;}.mobile-menu-toggle {order: 3;}.nav-menu {order: 2;}.nav-actions {order: 4;display: flex;gap: var(--spacing-xs);}}@media (width >= 768px) {.nav-container {padding: var(--spacing-sm) var(--spacing-lg);}}.logo {display: flex;align-items: center;gap: 0.5rem;font-size: 1.25rem;font-weight: 700;color: var(--text-primary);text-decoration: none;transition: opacity var(--transition-fast);min-height: 44px;}.logo:hover {opacity: 0.8;}.logo:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.logo-icon {display: inline-flex;align-items: center;justify-content: center;width: 24px;height: 24px;flex-shrink: 0;}.logo-text {background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, var(--primary-color)));background-clip: text;-webkit-text-fill-color: transparent;}.mobile-menu-toggle {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;background: transparent;border: 1px solid var(--border-color);border-radius: var(--radius-md);cursor: pointer;transition: all var(--transition-fast);}.mobile-menu-toggle:hover {background: var(--bg-secondary);border-color: var(--primary-color);}.mobile-menu-toggle:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.mobile-menu-toggle[aria-expanded="true"] {background: var(--bg-secondary);}.hamburger {display: flex;flex-direction: column;gap: 4px;width: 20px;}.hamburger__line {display: block;width: 100%;height: 2px;background: var(--text-primary);transition: all var(--transition-fast);border-radius: 2px;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top {transform: translateY(6px) rotate(45deg);}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle {opacity: 0;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: translateY(-6px) rotate(-45deg);}.nav-menu {display: none;list-style: none;margin: 0;padding: 0;position: absolute;top: 100%;left: 0;right: 0;background: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);}.nav-menu[data-visible="false"] {display: none;}.nav-menu[data-visible="true"] {display: flex;flex-direction: column;}.nav-menu li {margin: 0;border-bottom: 1px solid var(--border-color);}.nav-menu li:last-child {border-bottom: none;}.nav-link {display: flex;align-items: center;padding: var(--spacing-md);color: var(--text-primary);text-decoration: none;font-weight: 500;font-size: 1rem;transition: all var(--transition-fast);min-height: 44px;}.nav-link:hover {background: var(--bg-secondary);color: var(--primary-color);}.nav-link:focus-visible {outline: 2px solid var(--primary-color);outline-offset: -2px;}.nav-link[aria-current="page"] {color: var(--primary-color);font-weight: 600;background: var(--bg-hover, var(--bg-secondary));}.nav-dropdown {position: relative;}.nav-dropdown-toggle::after {content: "▾";margin-left: 0.375rem;font-size: 0.875rem;transition: transform var(--transition-fast);}.nav-dropdown-toggle[aria-expanded="true"]::after {transform: rotate(180deg);}.nav-dropdown-menu {display: none;list-style: none;margin: 0;padding: var(--spacing-sm) 0;background: var(--bg-secondary);}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu {display: block;}.nav-dropdown-link {display: block;padding: var(--spacing-sm) var(--spacing-lg);color: var(--text-secondary);text-decoration: none;font-size: 0.875rem;transition: all var(--transition-fast);}.nav-dropdown-link:hover {background: var(--bg-hover, var(--bg-primary));color: var(--primary-color);}.nav-dropdown-divider {padding: var(--spacing-xs) var(--spacing-lg);font-size: 0.75rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.05em;color: var(--text-muted, var(--text-secondary));margin-top: var(--spacing-sm);}.nav-dropdown-section {margin: var(--spacing-sm) 0 var(--spacing-xs) 0;}.nav-dropdown-section-title {padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size: 0.875rem !important;font-weight: 600 !important;color: var(--text-primary) !important;cursor: pointer;border-bottom: 1px solid var(--border-color, rgb(255 255 255 / 10%));margin-bottom: var(--spacing-xs);}.nav-dropdown-section-title:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;}.nav-dropdown-subitem {padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size: 0.8125rem !important;color: var(--text-secondary) !important;border-left: 2px solid transparent;}.nav-dropdown-subitem:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;border-left-color: var(--primary-color);}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}.github-btn {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;color: var(--text-primary);text-decoration: none;border: 1px solid var(--border-color);border-radius: var(--radius-md);transition: all var(--transition-fast);}.github-btn:hover {background: var(--bg-secondary);border-color: var(--primary-color);color: var(--primary-color);}.github-btn:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}@media (width >= 768px) {.nav-container {padding: var(--spacing-md) var(--spacing-lg);}.logo {font-size: 1.5rem;}.mobile-menu-toggle {display: none;}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"] {display: flex !important;position: static;flex-direction: row;align-items: center;gap: var(--spacing-sm);background: transparent;border: none;box-shadow: none;}.nav-menu li {border-bottom: none;}.nav-link {padding: var(--spacing-sm) var(--spacing-md);}.nav-dropdown-menu {position: absolute;top: 100%;left: 0;min-width: 250px;background: var(--bg-primary);border: 1px solid var(--border-color);border-radius: var(--radius-md);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);margin-top: 0.5rem;}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}}@media (width >= 1024px) {.nav-menu {gap: var(--spacing-md);}.nav-dropdown-menu {min-width: 300px;}}@media (prefers-reduced-motion: reduce) {.hamburger__line,.nav-dropdown-toggle::after {transition: none;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: none;}}@media (prefers-contrast: high) {.navbar {border-bottom: 2px solid var(--border-color);}.mobile-menu-toggle,.github-btn {border: 2px solid var(--border-color);}}@media print {.navbar {position: static;border-bottom: 2px solid var(--color-black);}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions {display: none;}.nav-menu {display: flex;flex-direction: row;gap: 1rem;}}.breadcrumbs{max-width:1280px;margin:0 auto;padding:1rem;font-size:.875rem;color:var(--text-muted)}.breadcrumbs ol{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;margin:0;padding:0}.breadcrumbs li{display:flex;align-items:center}.breadcrumbs li:not(:last-child):after{content:"/";margin-left:.5rem}.breadcrumbs a{color:var(--primary-color);text-decoration:none}.breadcrumbs a:hover{text-decoration:underline}.navbar{transition:none !important}.css-ready .navbar{transition:all var(--transition-fast)}</style>
+    <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
+<!-- ⚠️ MUST be inline in <head> before CSS loads (performance blocker prevention) -->
+<!-- Uses localStorage key 'clodo-theme' (matches ThemeManager THEME_KEY) -->
+<script nonce="N0Nc3Cl0d0">
+(function() {
+    try {
+        // Get stored theme - ONLY use explicit user choice, never system preference
+        // This prevents dark theme from being applied by default on mobile devices
+        const stored = localStorage.getItem('clodo-theme');
+        const theme = (stored === 'dark') ? 'dark' : 'light';
+        // Apply BEFORE CSS renders to prevent FOUC
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+    } catch (e) {
+        // Fail silently - CSS defaults to light theme
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.style.colorScheme = 'light';
+    }
+})();
+</script>
+
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Announcement Banner Container -->
+    <div class="announcement-container"><!-- ANNOUNCEMENT BANNER TEMPLATE -->
+<div class="announcement-banner announcement-info" data-banner-id="migration-2025" role="banner" aria-label="info announcement" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; padding: 8px 0; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border-bottom: 1px solid rgba(255,255,255,0.10);">
+    <div class="announcement-content" style="display: flex; align-items: center; justify-content: center; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 16px; flex-wrap: wrap;">
+        <div class="announcement-icon" style="font-size: 1.2rem; flex-shrink: 0;">
+            ℹ️
+        </div>
+        <div class="announcement-text" style="flex: 1; min-width: 200px; text-align: center;">
+            <strong class="announcement-title" style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 4px;">New: Migrate to Cloudflare</strong>
+            <span class="announcement-message" style="font-size: 0.9rem; font-weight: 400; opacity: 0.95;">Migrate from Vercel/Railway to Cloudflare with Clodo Framework. Get enterprise-grade performance and security.</span>
+        </div>
+        <div class="announcement-actions" style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+            <a href="/migrate" class="announcement-link" style="color: #ffffff; text-decoration: underline; font-weight: 600; padding: 4px 12px; border-radius: 6px; background: rgba(255,255,255,0.10); transition: opacity 0.15s ease-out;">Learn more</a>
+            <button class="announcement-close" aria-label="Dismiss announcement" data-banner-id="migration-2025" style="background: none; border: none; color: #ffffff; cursor: pointer; padding: 4px; border-radius: 6px; transition: background-color 0.15s ease-out; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; line-height: 1; width: 24px; height: 24px;">×</button>
+        </div>
+    </div>
+</div></div>
+    <header><nav class="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="/" class="logo" aria-label="Clodo Framework home">
+            <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                <defs>
+                    <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1d4ed8"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                </defs>
+                <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+            </svg>
+            <span class="logo-text">Clodo</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="hamburger">
+                <span class="hamburger__line hamburger__line--top"></span>
+                <span class="hamburger__line hamburger__line--middle"></span>
+                <span class="hamburger__line hamburger__line--bottom"></span>
+            </span>
+        </button>
+
+        <ul class="nav-menu" id="mobile-menu" data-visible="false">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="/product" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Product</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/product" class="nav-dropdown-link" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="/migrate" class="nav-dropdown-link" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link" role="menuitem">Community</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Comparisons Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>⚖️ Comparisons</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Edge Computing</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Learn</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <!-- Documentation Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>📚 Documentation</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Components</a></li>
+                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Development & Deployment</a></li>
+                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">API Simplification</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Guides Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>🚀 Guides</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Migration Guide</a></li>
+                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Framework Promise to Reality</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Examples Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>💡 Examples</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
+                    
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    
+                    <!-- Help & Support Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>❓ Help & Support</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
+                    
+                    <!-- Case Studies Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                            <strong>📈 Case Studies</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
+                </ul>
+            </li>
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+            <li><a href="/pricing" class="nav-link">Pricing</a></li>
+            <!-- Scroll spy navigation for index page -->
+            <li class="nav-scroll-spy hidden">
+                <a href="#key-benefits" class="nav-link">Benefits</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#features" class="nav-link">Features</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#comparison" class="nav-link">Comparison</a>
+            </li>
+            <li class="nav-scroll-spy hidden">
+                <a href="#architecture" class="nav-link">Architecture</a>
+            </li>
+            <li class="nav-dropdown">
+                <a href="/about" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/about" class="nav-dropdown-link" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="/privacy" class="nav-dropdown-link" role="menuitem">Privacy Policy</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span id="star-count" aria-label="GitHub stars">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+</header>
+    
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">FAQ</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
+        <section class="hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #172554 100%); padding: 3rem 2rem; text-align: center; color: var(--color-white);">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Frequently Asked Questions</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Find answers to common questions about Clodo Framework</p>
+        </section>
+
+        <div class="faq-container">
+            <div class="table-of-contents" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem;">Table of Contents</h2>
+                <nav aria-label="FAQ table of contents">
+                    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <li><a href="#pricing-costs" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">💰 Pricing & Costs</a></li>
+                        <li><a href="#features-capabilities" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">âœ¨ Features & Capabilities</a></li>
+                        <li><a href="#deployment-operations" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">🚀 Deployment & Operations</a></li>
+                        <li><a href="#technical-questions" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">âš™ï¸ Technical Questions</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="faq-filter">
+                <button class="faq-filter-btn active" data-filter="all">All Questions</button>
+                <button class="faq-filter-btn" data-filter="pricing">Pricing</button>
+                <button class="faq-filter-btn" data-filter="features">Features</button>
+                <button class="faq-filter-btn" data-filter="deployment">Deployment</button>
+                <button class="faq-filter-btn" data-filter="technical">Technical</button>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="faq-category">
+                <h2 id="pricing-costs">💰 Pricing & Costs</h2>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>How much does Clodo Framework cost?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo Framework uses a pay-as-you-go model through Cloudflare:</p>
+                        <ul>
+                            <li><strong>Compute:</strong> $0.00001667 per request (first 100M/month free)</li>
+                            <li><strong>Storage (D1):</strong> Included (SQLite database)</li>
+                            <li><strong>KV Storage:</strong> $0.50/million operations</li>
+                            <li><strong>R2 Object Storage:</strong> $0.015/GB (first 10GB free)</li>
+                        </ul>
+                        <p><strong>Typical enterprise app (1M requests/month):</strong> $20-50/month infrastructure</p>
+                        <p>Compare to: Lambda ($200-300/month) + RDS ($50-100/month) + S3 ($5-20/month) = $255-420/month</p>
+                        <p><strong>Savings: 80-90% compared to traditional serverless</strong></p>
+                        <p>For detailed pricing breakdown and cost calculators, visit our <a href="/pricing">pricing page</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>Do you have paid plans with support?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo Framework is open-source and free. We offer optional commercial support tiers:</p>
+                        <ul>
+                            <li><strong>Community Support:</strong> GitHub Discussions (free)</li>
+                            <li><strong>Priority Support:</strong> Email + Slack (contact sales)</li>
+                            <li><strong>Enterprise Support:</strong> Dedicated engineer (contact sales)</li>
+                        </ul>
+                        <p>You only pay for Cloudflare's infrastructure, not the framework itself.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>Are there any hidden fees?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. You only pay Cloudflare for what you use:</p>
+                        <ul>
+                            <li>✅ Compute requests</li>
+                            <li>✅ Data storage (D1, KV, R2)</li>
+                            <li>✅ Analytics</li>
+                            <li>âŒ No platform fees</li>
+                            <li>âŒ No seat licenses</li>
+                            <li>âŒ No support fees (unless you opt in)</li>
+                        </ul>
+                        <p>You control costs by optimizing your code and usage patterns.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>What about scaling costs? Does price increase with traffic?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, but predictably and efficiently:</p>
+                        <ul>
+                            <li><strong>Linear pricing:</strong> 2x traffic = 2x cost</li>
+                            <li><strong>No overprovisioning:</strong> Pay only for actual requests</li>
+                            <li><strong>Free tier covers:</strong> 100M requests/month (enough for 1M users with average usage)</li>
+                            <li><strong>Rate limiting:</strong> Built-in, no surprise costs</li>
+                        </ul>
+                        <p>A service with 1B requests/month costs ~$200, not $20,000 like traditional servers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="faq-category">
+                <h2 id="features-capabilities">âœ¨ Features & Capabilities</h2>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>What is the "Pre-Flight Checker"?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Pre-Flight Checker is Clodo's deployment validation system:</p>
+                        <ul>
+                            <li><strong>Before deployment:</strong> Validates all worker rules, environment variables, database connections</li>
+                            <li><strong>Prevents crashes:</strong> Catches errors before they hit production</li>
+                            <li><strong>Reduces downtime:</strong> Failed deployments never go live</li>
+                            <li><strong>Enterprise-ready:</strong> Integrates with CI/CD pipelines</li>
+                        </ul>
+                        <p>Think of it as your deployment insurance policy.</p>
+                        <p>Learn more about deployment and the Pre-Flight Checker in our <a href="/development-deployment-guide">deployment guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>Does Clodo support multi-tenant applications?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, multi-tenant is built-in, not an afterthought:</p>
+                        <ul>
+                            <li><strong>Tenant isolation:</strong> Data automatically separated by tenant</li>
+                            <li><strong>Namespace management:</strong> Automatic routing by tenant ID</li>
+                            <li><strong>Database per tenant or shared:</strong> You choose the architecture</li>
+                            <li><strong>Cost per tenant:</strong> Transparent, automatic billing if needed</li>
+                        </ul>
+                        <p>Clodo was designed from day 1 for SaaS multi-tenant platforms.</p>
+                        <p>See our case studies for examples of <a href="/case-studies/healthcare-saas-platform">multi-tenant healthcare platforms</a> and <a href="/case-studies/fintech-payment-platform">fintech payment systems</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>What programming languages does Clodo support?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo currently supports:</p>
+                        <ul>
+                            <li>✅ <strong>JavaScript/TypeScript</strong> (primary, full support)</li>
+                            <li>✅ <strong>Python</strong> (via community packages)</li>
+                            <li>✅ <strong>Rust</strong> (via WebAssembly)</li>
+                            <li>🔄 <strong>Go, Java:</strong> Coming soon</li>
+                        </ul>
+                        <p>Cloudflare Workers natively supports JavaScript/TypeScript with excellent DX.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>Can I use Clodo for real-time applications?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Clodo excels at real-time:</p>
+                        <ul>
+                            <li>✅ <strong>WebSockets:</strong> Supported via Durable Objects</li>
+                            <li>✅ <strong>Real-time messaging:</strong> Low-latency global pub/sub</li>
+                            <li>✅ <strong>Chat applications:</strong> Built-in for multi-user sync</li>
+                            <li>✅ <strong>Live dashboards:</strong> Server-Sent Events (SSE)</li>
+                            <li>✅ <strong>Collaboration tools:</strong> CRDT support available</li>
+                        </ul>
+                        <p>Edge location means <10ms latency for real-time features.</p>
+                        <p>Compare Clodo's real-time capabilities with traditional serverless in our <a href="/workers-vs-lambda">Workers vs Lambda comparison</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deployment Section -->
+            <div class="faq-category">
+                <h2 id="deployment-operations">🚀 Deployment & Operations</h2>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>How long does it take to deploy a Clodo app?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Extremely fast:</p>
+                        <ul>
+                            <li><strong>Initial setup:</strong> 5 minutes</li>
+                            <li><strong>First deployment:</strong> 2-3 minutes</li>
+                            <li><strong>Subsequent deploys:</strong> 10-30 seconds</li>
+                            <li><strong>Zero downtime:</strong> Blue-green deployments automatic</li>
+                            <li><strong>Rollback:</strong> 1 click, instant</li>
+                        </ul>
+                        <p>Compare to: Traditional server (hours), Lambda (minutes), Clodo (seconds).</p>
+                        <p>For step-by-step deployment instructions, check our <a href="/development-deployment-guide">development and deployment guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>What's the uptime guarantee?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cloudflare provides:</p>
+                        <ul>
+                            <li>✅ <strong>99.99% SLA</strong> for Enterprise customers</li>
+                            <li>✅ <strong>200+ data centers</strong> worldwide (automatic failover)</li>
+                            <li>✅ <strong>DDoS protection</strong> included</li>
+                            <li>✅ <strong>Automatic scaling:</strong> No manual intervention needed</li>
+                            <li>✅ <strong>Zero cold starts:</strong> Always ready to serve</li>
+                        </ul>
+                        <p>Your app is as reliable as Cloudflare's global infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>Can I use Clodo with CI/CD pipelines?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, full CI/CD support:</p>
+                        <ul>
+                            <li>✅ <strong>GitHub Actions:</strong> Deploy on push</li>
+                            <li>✅ <strong>GitLab CI:</strong> Full integration</li>
+                            <li>✅ <strong>CircleCI:</strong> Pre-flight validation</li>
+                            <li>✅ <strong>Jenkins:</strong> Custom webhook support</li>
+                            <li>✅ <strong>Environment promotion:</strong> Dev â†’ Staging â†’ Production</li>
+                        </ul>
+                        <p>Pre-Flight Checker integrates directly into your CI/CD to prevent bad deployments.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>How do I monitor my Clodo application?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Comprehensive monitoring built-in:</p>
+                        <ul>
+                            <li><strong>Real-time logs:</strong> All requests/errors in Cloudflare dashboard</li>
+                            <li><strong>Metrics:</strong> CPU, memory, errors, latency</li>
+                            <li><strong>Analytics:</strong> Page views, geographic distribution, browser stats</li>
+                            <li><strong>Alerts:</strong> Set thresholds for errors, latency</li>
+                            <li><strong>Integrations:</strong> DataDog, New Relic, Grafana</li>
+                        </ul>
+                        <p>No separate monitoring service needed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Section -->
+            <div class="faq-category">
+                <h2 id="technical-questions">âš™ï¸ Technical Questions</h2>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>What are the execution time limits?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo on Cloudflare Workers has different limits depending on usage:</p>
+                        <ul>
+                            <li><strong>CPU time:</strong> 30 seconds for Workers, up to 15 minutes for Durable Objects</li>
+                            <li><strong>Memory:</strong> 128MB standard, up to 512MB available</li>
+                            <li><strong>Request timeout:</strong> 30 seconds default</li>
+                            <li><strong>File size:</strong> 25MB max upload size</li>
+                        </ul>
+                        <p><strong>Good for:</strong> API requests, web scraping, data processing</p>
+                        <p><strong>Not ideal for:</strong> Video encoding, large ML models (15+ seconds)</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Is there cold start latency like Lambda?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No cold starts with Clodo on Cloudflare Workers:</p>
+                        <ul>
+                            <li>✅ <strong>~0ms cold start:</strong> Code is pre-compiled at edge</li>
+                            <li>✅ <strong>Always hot:</strong> Replicated to 200+ locations globally</li>
+                            <li>✅ <strong>Instant response:</strong> No initialization delay</li>
+                            <li>✅ <strong>Perfect for:</strong> P99 latency matters (customer-facing apps)</li>
+                        </ul>
+                        <p>Lambda typically has 500ms-1000ms cold starts. Not an issue with Clodo.</p>
+                        <p>Compare cold start performance in our <a href="/workers-vs-lambda">Workers vs Lambda guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>What about CORS and security headers?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Full security control built-in:</p>
+                        <ul>
+                            <li>✅ <strong>CORS handling:</strong> Simple declarative syntax</li>
+                            <li>✅ <strong>Security headers:</strong> CSP, X-Frame-Options, HSTS</li>
+                            <li>✅ <strong>JWT validation:</strong> Built-in middleware</li>
+                            <li>✅ <strong>Rate limiting:</strong> Per-tenant or per-IP</li>
+                            <li>✅ <strong>WAF rules:</strong> Cloudflare WAF included</li>
+                        </ul>
+                        <p>Security-first architecture by default.</p>
+                        <p>Learn more about security features in our <a href="/docs">documentation</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Can I connect to external databases?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, multiple options:</p>
+                        <ul>
+                            <li>✅ <strong>D1 (SQLite):</strong> Built-in, recommended</li>
+                            <li>✅ <strong>PostgreSQL:</strong> Via Neon, Supabase</li>
+                            <li>✅ <strong>MySQL:</strong> Via PlanetScale</li>
+                            <li>✅ <strong>MongoDB:</strong> Via Atlas</li>
+                            <li>✅ <strong>Custom APIs:</strong> HTTP calls to any service</li>
+                        </ul>
+                        <p><strong>Best practice:</strong> Use D1 for 90% of cases, external DB only if needed.</p>
+                        <p>Check our <a href="/examples">code examples</a> for database integration patterns.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>How do I handle file uploads?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Multiple options for file handling:</p>
+                        <ul>
+                            <li>✅ <strong>R2 Object Storage:</strong> Store files permanently (recommended)</li>
+                            <li>✅ <strong>Base64 encoding:</strong> Small files in D1 database</li>
+                            <li>✅ <strong>Multipart form data:</strong> Full HTTP upload support</li>
+                            <li>✅ <strong>Signed URLs:</strong> Direct browser-to-R2 uploads</li>
+                            <li>✅ <strong>Size limits:</strong> Up to 25MB per request</li>
+                        </ul>
+                        <p>R2 is cheapest option for large-scale file storage ($0.015/GB).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Is the framework vendor-locked to Cloudflare?</span>
+                        <span class="faq-toggle">â–¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Flexible architecture:</p>
+                        <ul>
+                            <li>✅ <strong>Standard Web APIs:</strong> Most code runs anywhere</li>
+                            <li>âš ï¸ <strong>Cloudflare-specific:</strong> Durable Objects, D1, R2 (but documented)</li>
+                            <li>✅ <strong>Migration path:</strong> Can move to other platforms if needed</li>
+                            <li>✅ <strong>Open source:</strong> You own your code, not locked in</li>
+                        </ul>
+                        <p>Not as locked-in as AWS Lambda, not as portable as plain Node.js. Balanced approach.</p>
+                        <p>Compare vendor lock-in concerns in our <a href="/clodo-vs-lambda">Clodo vs AWS Lambda comparison</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Content Section --><!-- Related Content Component - FAQ Page Layout -->
+<div style="background: var(--bg-secondary); padding: 3rem 2rem; border-radius: 8px; margin-top: 4rem;">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Explore More Resources</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📚 Documentation</h3>
+            <p style="margin-bottom: 1rem;">Complete guides and API references</p>
+            <a href="/docs" class="btn btn--secondary" data-link-type="internal" data-content-cluster="framework" data-link-position="related-content" data-content-type="documentation">View Documentation</a>
+        </div>
+        <div style="text-align: center;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Comparisons</h3>
+            <p style="margin-bottom: 1rem;">Compare Clodo with other platforms</p>
+            <a href="/clodo-vs-lambda" class="btn btn--secondary" data-link-type="internal" data-content-cluster="workers" data-link-position="related-content" data-content-type="comparison">Clodo vs Lambda</a>
+        </div>
+        <div style="text-align: center;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">💡 Examples</h3>
+            <p style="margin-bottom: 1rem;">Code examples and templates</p>
+            <a href="/examples" class="btn btn--secondary" data-link-type="internal" data-content-cluster="development" data-link-position="related-content" data-content-type="examples">View Examples</a>
+        </div>
+        <div style="text-align: center;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📈 Case Studies</h3>
+            <p style="margin-bottom: 1rem;">Real-world implementation examples</p>
+            <a href="case-studies/" class="btn btn--secondary" data-link-type="internal" data-content-cluster="business" data-link-position="related-content" data-content-type="case-study">Read Case Studies</a>
+        </div>
+    </div>
+</div>
+
+            <!-- Getting Started CTA -->
+            <div style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--color-white); padding: 3rem 2rem; border-radius: 8px; text-align: center; margin-top: 4rem;">
+                <h2 style="margin-top: 0;">Ready to Get Started?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Have more questions? Check out our full documentation or start building.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="/docs" class="btn" style="background: var(--color-white); color: var(--primary-color); padding: 0.75rem 2rem; font-weight: 600; text-decoration: none; border-radius: 4px; display: inline-block;">View Documentation</a>
+                    <a href="/pricing" class="btn" style="background: transparent; color: var(--color-white); border: 2px solid var(--color-white); padding: 0.75rem 2rem; font-weight: 600; text-decoration: none; border-radius: 4px; display: inline-block;">View Pricing</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-logo">
+                <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                    <defs>
+                        <linearGradient id="footer-logo-g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1d4ed8"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                    <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#footer-logo-g)"/>
+                </svg>
+                <span class="logo-text">Clodo</span>
+            </div>
+            <p>Building the future of edge computing, one service at a time. Join thousands of developers deploying on Cloudflare Workers with enterprise-grade performance and security.</p>
+
+            <!-- Newsletter Form - Footer Variant -->
+<!-- Used in: templates/footer.html -->
+
+<div class="footer-newsletter" id="newsletter">
+    <h4>Stay Updated</h4>
+    <p id="newsletter-helper" class="form-helper">Product updates, engineering posts, and launch notes. <strong>1–2 emails/month.</strong></p>
+    <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
+        <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
+        <input type="hidden" name="source" value="footer">
+        <div class="form-group">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" inputmode="email" aria-describedby="newsletter-helper" required>
+            <button type="submit" class="btn btn--primary" aria-label="Subscribe to newsletter">Subscribe</button>
+        </div>
+        <div class="reassurance">No spam. Unsubscribe anytime.</div>
+        <div class="consent">
+            <input type="checkbox" id="newsletter-consent" name="consent" required>
+            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="/privacy">Privacy Policy</a>.</label>
+        </div>
+        <p class="form-message" aria-live="polite" role="status"></p>
+        <noscript>
+            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:product@clodo.dev">product@clodo.dev</a>.</p>
+        </noscript>
+    </form>
+</div>
+        </div>
+
+        <nav class="footer-section" aria-labelledby="footer-product">
+            <h4 id="footer-product">Product</h4>
+            <ul role="list">
+                <li><a href="/product">Product Overview</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/examples">Code Examples</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/migrate">Migration Guide</a></li>
+                <li><a href="/clodo-vs-lambda">Clodo vs AWS Lambda</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="/docs#api">API Reference</a></li>
+                <li><a href="/product#expert-assessment">Expert Review</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-developers">
+            <h4 id="footer-developers">Developers</h4>
+            <ul role="list">
+                <li><a href="/docs#getting-started">Getting Started</a></li>
+                <li><a href="/docs#deployment">Deployment</a></li>
+                <li><a href="/docs#security">Security Guide</a></li>
+                <li><a href="/docs#troubleshooting">Troubleshooting</a></li>
+                <li><a href="/examples">Example Projects</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/releases" target="_blank" rel="noopener">Release Notes</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-blog">
+            <h4 id="footer-blog">Resources</h4>
+            <ul role="list">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/blog/cloudflare-infrastructure-myth">Infrastructure Revolution</a></li>
+                <li><a href="/case-studies/">Case Studies</a></li>
+                <li><a href="/clodo-framework-promise-to-reality">From Promise to Reality</a></li>
+                <li><a href="/clodo-framework-api-simplification">API Complexity Crisis</a></li>
+                <li><a href="/faq">Frequently Asked Questions</a></li>
+                <li><a href="/about#game-changer">Our Story</a></li>
+                <li><a href="/about#roadmap">Product Roadmap</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-company">
+            <h4 id="footer-company">Company</h4>
+            <ul role="list">
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/about#vision">Our Mission</a></li>
+                <li><a href="/about#roadmap">Roadmap</a></li>
+                <li><a href="/about#game-changer">Our Story</a></li>
+                <li><a href="/pricing#contact">Contact</a></li>
+                <li><a href="/about#team">Team</a></li>
+                <li><a href="/about#careers">Careers</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer-section" aria-labelledby="footer-community">
+            <h4 id="footer-community">Community</h4>
+            <ul role="list">
+                <li><a href="/community/welcome">Community Welcome</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener">GitHub Discussions</a></li>
+                <li><a href="https://twitter.com/clodoframework" target="_blank" rel="noopener">Twitter</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/issues" target="_blank" rel="noopener">Report Issues</a></li>
+                <li><a href="/about#contact">Email Support</a></li>
+                <li><a href="https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://twitter.com/clodoframework" target="_blank" rel="noopener" aria-label="Follow us on Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener" aria-label="View on GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener" aria-label="Join GitHub Discussions">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.69-.22.69-.48v-1.62c-2.78.62-3.37-1.35-3.37-1.35-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.53.99 1.53.99.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.11 2.52.32 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.33 4.69-4.55 4.94.28.25.54.69.63 1.34.57.26 2.02.7 2.91.83.89-.53 1.53-.99 1.53-.99.91 0 .98.61.07.61-.45 0-1.11.31-1.11.62 0 0-.89 1.73-3.37 1.73v1.48c0 .26.19.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; 2025 Clodo Framework. Open source under MIT License.
+            <span aria-hidden="true">•</span>
+            <a href="/privacy">Privacy Policy</a>
+            <span aria-hidden="true">•</span>
+            <a href="/privacy#terms">Terms of Service</a>
+            <span aria-hidden="true">•</span>
+            Made with <span class="text-heart">♥</span> for developers
+        </p>
+    </div>
+
+    <!-- Global fallback for Try It Live CTA (ensures inline onclick works even if modules are disabled) -->
+    <script nonce="N0Nc3Cl0d0">
+        if (typeof window.openStackBlitz !== 'function') {
+            window.openStackBlitz = function(url) {
+                try {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } catch (e) {
+                    window.location.href = url;
+                }
+            };
+        }
+    </script>
+</footer>
+    </footer>
+
+    <script nonce="N0Nc3Cl0d0">
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.faq-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    faqItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="/js/init-systems.84654b0f.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script defer src="/js/config/features.6fd0dbe9.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="/js/main.21b52c3e.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="/js/defer-css.400dfe70.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="/js/ui/navigation-component.2f87c94a.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="/js/analytics.cf47b86f.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>
+

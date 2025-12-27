@@ -1,0 +1,1 @@
+console.log('ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)');
