@@ -37,7 +37,7 @@ for (const [slug, data] of Object.entries(variants)) {
   </main>
 </body>
 </html>`;
-    fs.writeFileSync(filePath, content, 'utf8');
+    fs.writeFileSync(filePath, content);
     console.log('Wrote', filePath);
   }
 }

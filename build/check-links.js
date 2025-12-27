@@ -263,7 +263,7 @@ function generateReport() {
 
     // Save detailed report
     const reportPath = join(BUILD_DIR, 'link-health-report.json');
-    writeFileSync(reportPath, JSON.stringify(linkAnalytics, null, 2), 'utf8');
+    writeFileSync(reportPath, JSON.stringify(linkAnalytics, null, 2));
     console.log(`\n📄 Detailed report saved to: ${reportPath}`);
 
     return linkAnalytics.brokenLinks.length === 0;
