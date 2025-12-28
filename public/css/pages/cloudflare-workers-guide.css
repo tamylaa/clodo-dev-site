@@ -1,0 +1,341 @@
+/* ===== CLOUDFLARE WORKERS GUIDE PAGE STYLES ===== */
+
+:root {
+  --guide-spacing-lg: 4rem;
+  --guide-spacing-md: 2rem;
+  --guide-spacing-sm: 1rem;
+  --guide-border-radius: 8px;
+  --guide-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --guide-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --primary-color: #0066ff;
+  --primary-dark: #0052cc;
+  --text-primary: #0b1220;
+  --text-secondary: #1a3a52;
+  --bg-light: #f9f9f9;
+  --bg-highlight: #e8f4f8;
+  --border-color: #ddd;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5em;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+h3 {
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+  color: var(--text-secondary);
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* ===== CODE STYLING ===== */
+code {
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+pre {
+  background: #0b1220;
+  color: #e8e8e8;
+  padding: 1.5em;
+  border-radius: var(--guide-border-radius);
+  overflow-x: auto;
+  border: 1px solid var(--text-secondary);
+  margin: 1.5em 0;
+}
+
+pre code {
+  background: none;
+  color: #e8e8e8;
+  padding: 0;
+  font-size: 0.95em;
+  border-radius: 0;
+}
+
+/* ===== TABLE STYLING ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--guide-border-radius);
+  overflow: hidden;
+  box-shadow: var(--guide-shadow);
+}
+
+table thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+table th {
+  padding: 1em;
+  text-align: left;
+  font-weight: 600;
+  border: none;
+}
+
+table td {
+  padding: 0.8em;
+  border: 1px solid var(--border-color);
+}
+
+table tbody tr:nth-child(even) {
+  background: var(--bg-light);
+}
+
+table tbody tr:hover {
+  background: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+/* ===== LIST STYLING ===== */
+ul, ol {
+  line-height: 1.8;
+  margin: 1em 0;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+/* ===== CARD STYLING ===== */
+.feature, 
+.practice, 
+.building-block, 
+.workflow-step, 
+.benefit {
+  background: white;
+  padding: 1.5em;
+  margin: 1em 0;
+  border-radius: var(--guide-border-radius);
+  border: 1px solid var(--border-color);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.feature:hover, 
+.practice:hover, 
+.building-block:hover, 
+.workflow-step:hover, 
+.benefit:hover {
+  box-shadow: var(--guide-shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.feature h4, 
+.practice h4, 
+.building-block h3, 
+.workflow-step h4, 
+.benefit h4 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+/* ===== GRID LAYOUTS ===== */
+.runtime-features, 
+.best-practices, 
+.clodo-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2em;
+  margin: var(--guide-spacing-md) 0;
+}
+
+/* ===== HIGHLIGHT BOXES ===== */
+.highlight-box {
+  background: var(--bg-highlight);
+  border-left: 4px solid var(--primary-color);
+  padding: 1.5em;
+  border-radius: 4px;
+  margin: 1.5em 0;
+}
+
+.highlight-box h4 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ===== EMPHASIS ===== */
+strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ===== CODE EXAMPLE STYLING ===== */
+.code-example {
+  margin: 1.5em 0;
+  border-radius: var(--guide-border-radius);
+  overflow: hidden;
+}
+
+.code-example pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  background: linear-gradient(135deg, #0b1220 0%, #1a3a52 100%);
+  padding: var(--guide-spacing-lg) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--guide-spacing-sm);
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--guide-spacing-sm);
+  line-height: 1.1;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--guide-spacing-md);
+  line-height: 1.6;
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.table-of-contents {
+  background: var(--bg-light);
+  padding: var(--guide-spacing-md);
+  border-radius: var(--guide-border-radius);
+  margin-bottom: var(--guide-spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.table-of-contents h2 {
+  margin-top: 0;
+  border: none;
+  padding-bottom: 0;
+  color: var(--primary-color);
+}
+
+.table-of-contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.table-of-contents li {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.table-of-contents li::before {
+  content: '▶';
+  color: var(--primary-color);
+  position: absolute;
+  margin-left: -1.5em;
+}
+
+.table-of-contents a {
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+}
+
+.table-of-contents a:hover {
+  color: var(--primary-dark);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  h2 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+  }
+
+  h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .runtime-features, 
+  .best-practices, 
+  .clodo-benefits {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table th, table td {
+    padding: 0.6em;
+  }
+
+  pre {
+    padding: 1em;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  pre {
+    padding: 0.75em;
+    font-size: 0.8rem;
+  }
+}
