@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defer CSS Debug Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #333; }
+        iframe { width: 100%; height: 800px; border: none; margin: 20px 0; }
+        #debug-output { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .log { padding: 8px; border-left: 3px solid #3b82f6; margin: 5px 0; background: #f0f9ff; }
+        .error { border-left-color: #ef4444; background: #fef2f2; }
+        button { padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 10px 0; }
+        button:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Defer CSS Debug Test</h1>
+        <p>This page loads clodo.dev in an iframe and listens for console logs from the defer-css script.</p>
+        
+        <button onclick="openInNewWindow()">Open in New Window with Console</button>
+        
+        <h2>Debug Output:</h2>
+        <div id="debug-output">
+            <p>Waiting for defer-css to initialize...</p>
+        </div>
+
+        <h2>Live Preview (iframe):</h2>
+        <iframe id="preview" src="https://www.clodo.dev/" sandbox="allow-same-origin allow-scripts"></iframe>
+    </div>
+
+    <script>
+        function openInNewWindow() {
+            const win = window.open('https://www.clodo.dev/', 'clodo', 'width=1200,height=800');
+            setTimeout(() => {
+                console.log('Open the DevTools console in the new window to see defer-css logs');
+                console.log('Look for messages starting with [defer-css]');
+            }, 1000);
+        }
+
+        // Try to access the iframe's window after it loads
+        document.getElementById('preview').addEventListener('load', function() {
+            try {
+                const iframeWindow = this.contentWindow;
+                setTimeout(() => {
+                    if (iframeWindow.__deferCssDebug) {
+                        console.log('Found __deferCssDebug object:', iframeWindow.__deferCssDebug);
+                        displayLogs(iframeWindow.__deferCssDebug.logs);
+                    } else {
+                        console.log('__deferCssDebug not yet available');
+                    }
+                }, 2000);
+            } catch (e) {
+                console.error('Cannot access iframe due to cross-origin restrictions:', e.message);
+                document.getElementById('debug-output').innerHTML = `
+                    <p style="color: #ef4444;">Cannot access iframe due to cross-origin policy.</p>
+                    <p>Click "Open in New Window with Console" button above and manually:</p>
+                    <ol>
+                        <li>Open DevTools (F12)</li>
+                        <li>Go to Console tab</li>
+                        <li>Type: <code>window.__deferCssDebug</code></li>
+                        <li>Look for "logs" array with debug messages</li>
+                    </ol>
+                `;
+            }
+        });
+
+        function displayLogs(logs) {
+            const output = document.getElementById('debug-output');
+            if (!logs || logs.length === 0) {
+                output.innerHTML = '<p>No debug logs captured yet.</p>';
+                return;
+            }
+
+            output.innerHTML = '<h3>Defer CSS Debug Logs:</h3>' + logs.map(log => {
+                const isError = log.includes('ERROR');
+                return `<div class="log ${isError ? 'error' : ''}">${log}</div>`;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

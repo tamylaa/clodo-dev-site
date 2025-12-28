@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Defer CSS Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        #output { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0; white-space: pre-wrap; word-break: break-all; }
+        .success { color: green; }
+        .error { color: red; font-weight: bold; }
+        h2 { color: #333; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Defer CSS Debug Test</h1>
+    <p>This test simulates the defer-css script execution and captures all debug output.</p>
+    
+    <h2>Asset Manifest Check:</h2>
+    <div id="output">Loading asset manifest...</div>
+
+    <h2>Defer CSS Execution Trace:</h2>
+    <div id="trace">Fetching production page...</div>
+
+    <script>
+        const output = document.getElementById('output');
+        const trace = document.getElementById('trace');
+        
+        async function testDeferCSS() {
+            try {
+                // Fetch the production page
+                const response = await fetch('https://www.clodo.dev/');
+                const html = await response.text();
+                
+                // Extract asset manifest
+                const manifestMatch = html.match(/window\.__assetManifest__\s*=\s*({[^;]+})/);
+                if (!manifestMatch) {
+                    output.innerHTML = '<span class="error">✗ Asset manifest NOT found in HTML!</span>';
+                    return;
+                }
+                
+                try {
+                    const manifest = eval('(' + manifestMatch[1] + ')');
+                    output.innerHTML = `<span class="success">✓ Asset Manifest Found (${Object.keys(manifest).length} entries)</span>\n\nDeferred CSS entries:\n`;
+                    
+                    if (manifest['styles-index-deferred.css']) {
+                        output.innerHTML += `<span class="success">✓ styles-index-deferred.css → ${manifest['styles-index-deferred.css']}</span>\n`;
+                    } else {
+                        output.innerHTML += `<span class="error">✗ styles-index-deferred.css NOT in manifest!</span>\n`;
+                    }
+                    
+                    if (manifest['css/components-deferred.css']) {
+                        output.innerHTML += `<span class="success">✓ css/components-deferred.css → ${manifest['css/components-deferred.css']}</span>\n`;
+                    } else {
+                        output.innerHTML += `<span class="error">✗ css/components-deferred.css NOT in manifest!</span>\n`;
+                    }
+                    
+                    // Now simulate defer-css execution
+                    simulateDeferCSS(manifest);
+                    
+                } catch (e) {
+                    output.innerHTML += `<span class="error">Error parsing manifest: ${e.message}</span>`;
+                }
+                
+            } catch (e) {
+                output.innerHTML = `<span class="error">Error fetching page: ${e.message}</span>`;
+            }
+        }
+        
+        function simulateDeferCSS(assetManifest) {
+            const logs = [];
+            
+            function log(msg) {
+                logs.push(`[${new Date().toLocaleTimeString()}] ${msg}`);
+                trace.innerHTML += msg + '\n';
+            }
+            
+            log('=== DEFER-CSS SIMULATION ===');
+            log(`Asset manifest entries: ${Object.keys(assetManifest).length}`);
+            
+            const deferredStyles = {
+                'index': assetManifest['styles-index-deferred.css'] ? '/' + assetManifest['styles-index-deferred.css'] : '/styles-index-deferred.css',
+                'common': assetManifest['css/components-deferred.css'] ? '/' + assetManifest['css/components-deferred.css'] : '/css/components-deferred.css'
+            };
+            
+            log(`Resolved deferred styles: ${JSON.stringify(deferredStyles)}`);
+            
+            // Check if CSS files are accessible
+            log('\nChecking CSS file accessibility...');
+            
+            [deferredStyles.common, deferredStyles.index].forEach(href => {
+                if (href) {
+                    fetch('https://www.clodo.dev' + href)
+                        .then(r => {
+                            log(`✓ ${href} → Status ${r.status}`);
+                            // Try to read a bit of content
+                            return r.text().then(txt => {
+                                const size = txt.length;
+                                const preview = txt.substring(0, 50).replace(/\n/g, '\\n');
+                                log(`  Content: ${size} bytes, preview: ${preview}...`);
+                            });
+                        })
+                        .catch(e => log(`✗ ${href} → Error: ${e.message}`));
+                }
+            });
+            
+            log('\nPath detection:');
+            log(`Current path would be: /`);
+            log(`Is index page: true (path === '/')`);
+            log('\nWould load:');
+            log(`  - Common styles: ${deferredStyles.common}`);
+            log(`  - Index styles: ${deferredStyles.index}`);
+        }
+        
+        testDeferCSS();
+    </script>
+</body>
+</html>
