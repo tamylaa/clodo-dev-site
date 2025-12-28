@@ -57,10 +57,12 @@
 # Static Assets - Aggressive Caching
 /*.css
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css; charset=utf-8
   # Note: Cloudflare Auto Minify + Compression enabled
 
 /*.js
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript; charset=utf-8
   # Note: Cloudflare Auto Minify + Compression enabled
 
 /*.woff2
