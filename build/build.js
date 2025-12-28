@@ -342,7 +342,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                         // 2. In Footer: Apply both CSS files
                         
                         // Add asset manifest as global variable for use in deferred CSS loading
-                        const manifestScript = `<script>window.__assetManifest__=${JSON.stringify(assetManifest)};</script>`;
+                        // CRITICAL: Must include nonce to comply with Content-Security-Policy
+                        const manifestScript = `<script nonce="N0Nc3Cl0d0">window.__assetManifest__=${JSON.stringify(assetManifest)};</script>`;
                         const headInjection = `${criticalCssInline}\n    ${manifestScript}\n    <link rel="preload" href="/${commonCssFile}" as="style">\n    <link rel="preload" href="/${cssFile}" as="style">\n    <script src="/${initPreloadJs}"></script>`;
                         const footerInjection = `<link rel="stylesheet" href="/${commonCssFile}">\n    <link rel="stylesheet" href="/${cssFile}">`;
                         
