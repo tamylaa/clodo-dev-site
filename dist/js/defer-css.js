@@ -23,13 +23,34 @@
 
     // Asset manifest with hashed filenames (injected during build)
     const assetManifest = window.__assetManifest__ || {};
-    debugLog('Asset manifest loaded: ' + Object.keys(assetManifest).length + ' entries');
+    const manifestSize = Object.keys(assetManifest).length;
+    debugLog('Asset manifest loaded: ' + manifestSize + ' entries');
+    
+    if (manifestSize === 0) {
+        debugLog('WARNING: Manifest is empty! Possible browser cache issue or manifest not injected.');
+    }
+
+    // Get hashed filenames from manifest (CRITICAL for production)
+    const indexDeferredCss = assetManifest['styles-index-deferred.css'];
+    const commonDeferredCss = assetManifest['css/components-deferred.css'];
+    
+    debugLog('Index deferred CSS lookup: "styles-index-deferred.css" -> ' + (indexDeferredCss || 'NOT FOUND'));
+    debugLog('Common deferred CSS lookup: "css/components-deferred.css" -> ' + (commonDeferredCss || 'NOT FOUND'));
 
     // CSS files to load after initial render (maps to asset manifest keys)
     const deferredStyles = {
-        'index': assetManifest['styles-index-deferred.css'] ? '/' + assetManifest['styles-index-deferred.css'] : '/styles-index-deferred.css',  // Homepage below-fold sections
-        'common': assetManifest['css/components-deferred.css'] ? '/' + assetManifest['css/components-deferred.css'] : '/css/components-deferred.css'  // Common interactive styles
+        'index': indexDeferredCss ? '/' + indexDeferredCss : null,  // Homepage below-fold sections
+        'common': commonDeferredCss ? '/' + commonDeferredCss : null  // Common interactive styles
     };
+    
+    // ERROR: If hashed files not found, DO NOT fall back to unmapped paths
+    if (!indexDeferredCss) {
+        debugLog('ERROR: Index deferred CSS not found in manifest - styles may not load!');
+    }
+    if (!commonDeferredCss) {
+        debugLog('ERROR: Common deferred CSS not found in manifest - styles may not load!');
+    }
+    
     debugLog('Deferred styles resolved: ' + JSON.stringify(deferredStyles));
 
     /**
@@ -73,7 +94,7 @@
             debugLog('Loading common deferred styles');
             loadDeferredCSS(deferredStyles['common']);
         } else {
-            debugLog('No common deferred styles');
+            debugLog('ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest');
         }
         
         // Detect current page (check body class or URL)
@@ -85,6 +106,8 @@
         if (isIndex && deferredStyles['index']) {
             debugLog('Loading index deferred styles');
             loadDeferredCSS(deferredStyles['index']);
+        } else if (isIndex && !deferredStyles['index']) {
+            debugLog('ERROR: This is index page but no index deferred styles available - manifest issue');
         } else {
             debugLog('Not loading index styles');
         }
