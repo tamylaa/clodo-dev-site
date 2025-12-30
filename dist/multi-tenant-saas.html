@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -238,7 +238,7 @@
                     <!-- Help & Support Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
-                            <strong>â“ Help & Support</strong>
+                            <strong>❓ Help & Support</strong>
                         </span>
                     </li>
                     <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
@@ -411,7 +411,7 @@
             </div>
 
             <div class="step-box">
-                <h4>âš ï¸ Trade-offs</h4>
+                <h4>⚠ï¸ Trade-offs</h4>
                 <ul>
                     <li>Requires careful query filtering</li>
                     <li>Risk of data leakage if filters missed</li>
@@ -434,7 +434,7 @@
             </div>
 
             <div class="step-box">
-                <h4>âš ï¸ Trade-offs</h4>
+                <h4>⚠ï¸ Trade-offs</h4>
                 <ul>
                     <li>Higher infrastructure costs</li>
                     <li>More complex deployments</li>
@@ -446,39 +446,39 @@
 
             <div class="architecture-diagram">
                 <strong>Multi-Tenant SaaS on Workers</strong><br><br>
-                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”<br>
-                â”‚   Cloudflare Edge (Global)              â”‚<br>
-                â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚<br>
-                â”‚  â”‚ Worker (Tenant Router)            â”‚  â”‚<br>
-                â”‚  â”‚ â€¢ auth.saas.example.com           â”‚  â”‚<br>
-                â”‚  â”‚ â€¢ api.saas.example.com            â”‚  â”‚  
-                â”‚  â”‚ â€¢ tenant-name.saas.example.com    â”‚  â”‚<br>
-                â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚<br>
-                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜<br>
-                          â”‚ Extract tenant_id<br>
-                          â–¼<br>
-                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”<br>
-                â”‚ Durable Objects (Per-Tenant State)      â”‚<br>
-                â”‚ â€¢ Sessions                              â”‚<br>
-                â”‚ â€¢ Rate limiting                         â”‚<br>
-                â”‚ â€¢ Cache                                 â”‚<br>
-                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜<br>
-                          â”‚<br>
-                          â–¼<br>
-                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”<br>
-                â”‚ D1 Database (Shared, Row-Level Isolation)â”‚<br>
-                â”‚ â€¢ users (tenant_id, name, email)       â”‚<br>
-                â”‚ â€¢ data (tenant_id, content)            â”‚<br>
-                â”‚ â€¢ All tables indexed on tenant_id      â”‚<br>
-                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜<br>
-                          â”‚<br>
-                          â–¼<br>
-                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”<br>
-                â”‚ External Services (Per-Tenant)          â”‚<br>
-                â”‚ â€¢ Analytics Engine                      â”‚<br>
-                â”‚ â€¢ KV Store (user preferences)           â”‚<br>
-                â”‚ â€¢ R2 (tenant files)                     â”‚<br>
-                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                ┌─────────────────────────────────────────┐<br>
+                │   Cloudflare Edge (Global)              │<br>
+                │  ┌───────────────────────────────────┐  │<br>
+                │  │ Worker (Tenant Router)            │  │<br>
+                │  │ • auth.saas.example.com           │  │<br>
+                │  │ • api.saas.example.com            │  │  
+                │  │ • tenant-name.saas.example.com    │  │<br>
+                │  └───────────────────────────────────┘  │<br>
+                └─────────┬──────────────────────────────┘<br>
+                          │ Extract tenant_id<br>
+                          ▼<br>
+                ┌─────────────────────────────────────────┐<br>
+                │ Durable Objects (Per-Tenant State)      │<br>
+                │ • Sessions                              │<br>
+                │ • Rate limiting                         │<br>
+                │ • Cache                                 │<br>
+                └─────────────────────────────────────────┘<br>
+                          │<br>
+                          ▼<br>
+                ┌─────────────────────────────────────────┐<br>
+                │ D1 Database (Shared, Row-Level Isolation)│<br>
+                │ • users (tenant_id, name, email)       │<br>
+                │ • data (tenant_id, content)            │<br>
+                │ • All tables indexed on tenant_id      │<br>
+                └─────────────────────────────────────────┘<br>
+                          │<br>
+                          ▼<br>
+                ┌─────────────────────────────────────────┐<br>
+                │ External Services (Per-Tenant)          │<br>
+                │ • Analytics Engine                      │<br>
+                │ • KV Store (user preferences)           │<br>
+                │ • R2 (tenant files)                     │<br>
+                └─────────────────────────────────────────┘
             </div>
 
             <h2 id="implementation">Implementation Steps</h2>
@@ -488,14 +488,14 @@
                 <p>Identify tenant from subdomain, header, or path:</p>
                 <pre><code class="language-typescript">// From subdomain
 const tenant = new URL(request.url).hostname
-  .split('.')[0]; // tenant.example.com â†’ "tenant"
+  .split('.')[0]; // tenant.example.com → "tenant"
 
 // From header
 const tenant = request.headers.get('X-Tenant-ID');
 
 // From path
 const tenant = new URL(request.url)
-  .pathname.split('/')[1]; // /tenant123/data â†’ "tenant123"</code></pre>
+  .pathname.split('/')[1]; // /tenant123/data → "tenant123"</code></pre>
             </div>
 
             <div class="step-box">
@@ -654,25 +654,25 @@ export default app;</code></pre>
                         <td><strong>Subdomain</strong></td>
                         <td><code>acme.saas.com</code></td>
                         <td>✅ Native, simple</td>
-                        <td>âŒ Wildcard DNS</td>
+                        <td>❌ Wildcard DNS</td>
                     </tr>
                     <tr>
                         <td><strong>Custom Domain</strong></td>
                         <td><code>acme.com</code></td>
                         <td>✅ Professional, branded</td>
-                        <td>âŒ DNS per tenant</td>
+                        <td>❌ DNS per tenant</td>
                     </tr>
                     <tr>
                         <td><strong>URL Path</strong></td>
                         <td><code>/acme/api/users</code></td>
                         <td>✅ Simple DNS</td>
-                        <td>âŒ URL uglier</td>
+                        <td>❌ URL uglier</td>
                     </tr>
                     <tr>
                         <td><strong>Header</strong></td>
                         <td><code>X-Tenant-ID: acme</code></td>
                         <td>✅ API-friendly</td>
-                        <td>âŒ Less intuitive</td>
+                        <td>❌ Less intuitive</td>
                     </tr>
                 </tbody>
             </table>
@@ -717,7 +717,7 @@ CREATE TABLE tenants (
 );</code></pre>
 
             <div class="highlight-box">
-                <strong>âš ï¸ Critical Rule:</strong> Every WHERE clause should include <code>AND tenant_id = ?</code>. Missing this is a security vulnerability.
+                <strong>⚠ï¸ Critical Rule:</strong> Every WHERE clause should include <code>AND tenant_id = ?</code>. Missing this is a security vulnerability.
             </div>
 
             <h2 id="costs">Cost Comparison: Workers vs Lambda</h2>
@@ -769,7 +769,7 @@ CREATE TABLE tenants (
                 <li>✅ Validate tenant ownership before updates/deletes</li>
                 <li>✅ Use database foreign keys to enforce isolation</li>
                 <li>✅ Audit all per-tenant data access</li>
-                <li>âŒ Never trust client-provided tenant_id (always use authenticated identity)</li>
+                <li>❌ Never trust client-provided tenant_id (always use authenticated identity)</li>
             </ul>
 
             <h3>Monitoring & Observability</h3>
