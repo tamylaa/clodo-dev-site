@@ -60,13 +60,16 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     // Function to adjust template paths for subdirectory files
     function adjustTemplatePaths(template, prefix) {
         if (!prefix) return template;
-        // Adjust href attributes that are relative (not starting with http, //, or #)
-        return template.replace(/href="([^"]*)"/g, (match, href) => {
-            if (href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('mailto:')) {
+        // Adjust href and src attributes that are relative (not starting with http, //, /, or #)
+        const adjustAttr = (match, attr, value) => {
+            if (value.startsWith('http') || value.startsWith('//') || value.startsWith('/') || value.startsWith('#') || value.startsWith('mailto:') || value.startsWith('data:')) {
                 return match; // Leave absolute URLs and anchors unchanged
             }
-            return `href="${prefix}${href}"`;
-        });
+            return `${attr}="${prefix}${value}"`;
+        };
+        return template
+            .replace(/href="([^"]*)"/g, (match, href) => adjustAttr(match, 'href', href))
+            .replace(/src="([^"]*)"/g, (match, src) => adjustAttr(match, 'src', src));
     }
     function findHtmlFiles(dir, relativePath = '') {
         const files = [];
