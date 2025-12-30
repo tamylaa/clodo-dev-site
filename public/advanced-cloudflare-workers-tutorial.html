@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -180,18 +180,18 @@
 
                     <div class="architecture-diagram">
                         <h3>Service Mesh Topology</h3>
-                        <pre><code>â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚   API Gateway   â”‚â”€â”€â”€â”€â”‚ Service Router  â”‚â”€â”€â”€â”€â”‚   Auth Service  â”‚
-â”‚   (Worker)      â”‚    â”‚   (Worker)      â”‚    â”‚   (Worker)      â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-         â”‚                        â”‚                        â”‚
-         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                        <pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   API Gateway   │────│ Service Router  │────│   Auth Service  │
+│   (Worker)      │    │   (Worker)      │    │   (Worker)      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         └────────────────────────┴────────────────────────┘
                           Service Discovery
-                                 â”‚
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚  User Service  â”‚â”€â”€â”€â”€â”‚Product Service  â”‚
-                    â”‚   (Worker)     â”‚    â”‚  (Worker)       â”‚
-                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜</code></pre>
+                                 │
+                    ┌─────────────────┐    ┌─────────────────┐
+                    │  User Service  │────│Product Service  │
+                    │   (Worker)     │    │  (Worker)       │
+                    └─────────────────┘    └─────────────────┘</code></pre>
                     </div>
 
                     <div class="code-example">
@@ -595,7 +595,7 @@ class FeatureFlagManager {
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h3>ðŸ”¬ Research & Best Practices</h3>
+                            <h3>🔬 Research & Best Practices</h3>
                             <ul>
                                 <li><a href="https://web.dev/service-workers-cache-storage/" target="_blank" rel="noopener">Service Worker Caching</a></li>
                                 <li><a href="https://microservices.io/patterns/" target="_blank" rel="noopener">Microservices Patterns</a></li>
@@ -603,7 +603,7 @@ class FeatureFlagManager {
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h3>ðŸ› ï¸ Tools & Frameworks</h3>
+                            <h3>🛠ï¸ Tools & Frameworks</h3>
                             <ul>
                                 <li><a href="https://hono.dev/" target="_blank" rel="noopener">Hono Framework</a></li>
                                 <li><a href="https://itty-router.dev/" target="_blank" rel="noopener">Itty Router</a></li>
@@ -619,17 +619,17 @@ class FeatureFlagManager {
                         <div class="related-card">
                             <h3><a href="/serverless-framework-comparison">Serverless Platform Comparison</a></h3>
                             <p>Compare AWS Lambda, Cloudflare Workers, and Clodo Framework to choose the right platform for enterprise applications.</p>
-                            <a href="/serverless-framework-comparison" class="related-link">Read Comparison â†’</a>
+                            <a href="/serverless-framework-comparison" class="related-link">Read Comparison →</a>
                         </div>
                         <div class="related-card">
                             <h3><a href="/worker-scaffolding-tools">Worker Scaffolding Tools</a></h3>
                             <p>Automate the implementation of enterprise patterns with our scaffolding tools that generate production-ready services.</p>
-                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding â†’</a>
+                            <a href="/worker-scaffolding-tools" class="related-link">Try Scaffolding →</a>
                         </div>
                         <div class="related-card">
                             <h3><a href="/wrangler-to-clodo-migration">Migrate from Wrangler</a></h3>
                             <p>Learn how to migrate existing Cloudflare Workers projects to Clodo Framework with enterprise features.</p>
-                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration â†’</a>
+                            <a href="/wrangler-to-clodo-migration" class="related-link">Start Migration →</a>
                         </div>
                     </div>
                 </section>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Security Headers -->
@@ -275,10 +275,10 @@
 
                 <p>You check again. Still old code. You clear your browser cache. Still old code. You wait 10 minutes. <strong>Still old code.</strong></p>
 
-                <p>This is every developer's nightmareâ€”the silent failure. No error message, no warning, just... nothing happens.</p>
+                <p>This is every developer's nightmare—the silent failure. No error message, no warning, just... nothing happens.</p>
 
                 <aside class="highlight-box highlight-box--warning">
-                    <h4>âš ï¸ The Worst Kind of Bug</h4>
+                    <h4>⚠ï¸ The Worst Kind of Bug</h4>
                     <p>"The worst bugs are the ones that don't tell you they're bugs." Silent failures can waste hours of debugging time.</p>
                 </aside>
 
@@ -297,7 +297,7 @@ c2bad2d Revert unnecessary wrangler.toml build command
                 <h3>Step 2: Check Cloudflare Pages Dashboard</h3>
                 <p>Cloudflare Pages showed "Deployment successful" but the build output was using old code. The timestamp was recent, but the content was stale.</p>
 
-                <p>ðŸ¤” Something was wrong with the <strong>source</strong> being built, not the build process itself.</p>
+                <p>🤔 Something was wrong with the <strong>source</strong> being built, not the build process itself.</p>
 
                 <h3>Step 3: Inspect Git Status</h3>
                 <pre><code class="language-bash">$ git status
@@ -312,7 +312,7 @@ nothing to commit, working tree clean</code></pre>
                 <pre><code class="language-bash">$ git ls-tree HEAD | grep clodo-starter-template
 160000 commit 1c53a56d... clodo-starter-template</code></pre>
 
-                <p>ðŸš¨ <strong>There it is.</strong> Mode <code>160000</code> means git is tracking <code>clodo-starter-template</code> as a submodule commit reference, not as actual directory contents.</p>
+                <p>🚨 <strong>There it is.</strong> Mode <code>160000</code> means git is tracking <code>clodo-starter-template</code> as a submodule commit reference, not as actual directory contents.</p>
 
                 <h2 id="understanding">Understanding Git Submodules</h2>
                 
@@ -343,7 +343,7 @@ $ git submodule status
                 </ol>
 
                 <h3>Our Problem: The Half-Configured Submodule</h3>
-                <p>Our situation was worseâ€”we had a submodule <strong>reference</strong> without the <strong>configuration</strong>:</p>
+                <p>Our situation was worse—we had a submodule <strong>reference</strong> without the <strong>configuration</strong>:</p>
 
                 <pre><code class="language-bash">$ cat .gitmodules
 cat: .gitmodules: No such file or directory
@@ -357,9 +357,9 @@ drwxr-xr-x  clodo-starter-template/</code></pre>
                 <p>This created a nightmare scenario:</p>
                 <ul>
                     <li>✅ Locally: Directory exists with full contents</li>
-                    <li>âŒ In git: Only a commit reference is tracked</li>
-                    <li>âŒ On Cloudflare Pages: Build fails to fetch submodule (no .gitmodules)</li>
-                    <li>âŒ Build logs: No clear error message</li>
+                    <li>❌ In git: Only a commit reference is tracked</li>
+                    <li>❌ On Cloudflare Pages: Build fails to fetch submodule (no .gitmodules)</li>
+                    <li>❌ Build logs: No clear error message</li>
                 </ul>
 
                 <h2 id="how-happened">How Did This Happen?</h2>
@@ -370,7 +370,7 @@ drwxr-xr-x  clodo-starter-template/</code></pre>
                 <pre><code class="language-bash"># You accidentally add a directory that's already a git repo
 $ cd project
 $ git clone https://github.com/example/library.git
-$ git add library/  # âš ï¸ git sees .git folder, treats as submodule
+$ git add library/  # ⚠ï¸ git sees .git folder, treats as submodule
 $ git commit -m "Add library"</code></pre>
 
                 <h3>Scenario 2: Manual .gitmodules Deletion</h3>
@@ -378,14 +378,14 @@ $ git commit -m "Add library"</code></pre>
 $ rm .gitmodules
 $ git add .gitmodules
 $ git commit -m "Remove submodules"
-# âš ï¸ Submodule reference still exists in git index!</code></pre>
+# ⚠ï¸ Submodule reference still exists in git index!</code></pre>
 
                 <h3>Scenario 3: Incomplete Submodule Removal</h3>
                 <pre><code class="language-bash"># Wrong way to remove submodule
 $ rm -rf clodo-starter-template/
 $ git add .
 $ git commit
-# âš ï¸ Reference remains, directory is gone</code></pre>
+# ⚠ï¸ Reference remains, directory is gone</code></pre>
 
                 <h2 id="fix">The Fix: Complete Submodule Removal</h2>
 
@@ -454,7 +454,7 @@ nothing to commit, working tree clean</code></pre>
                 <p>The result: New commits are "deployed" but old code is served.</p>
 
                 <h3>Why No Error Message?</h3>
-                <p>The build system didn't consider missing submodule initialization a <strong>build failure</strong>â€”just a skipped step. The actual build command (<code>npm run build</code>) succeeded because it didn't reference the missing directory.</p>
+                <p>The build system didn't consider missing submodule initialization a <strong>build failure</strong>—just a skipped step. The actual build command (<code>npm run build</code>) succeeded because it didn't reference the missing directory.</p>
 
                 <h2 id="best-practices">Lessons Learned: Git Submodule Best Practices</h2>
 
@@ -515,7 +515,7 @@ $ git commit -m "Remove submodule: path/to/submodule"</code></pre>
                 <pre><code class="language-yaml">- name: Checkout code
   uses: actions/checkout@v3
   with:
-    submodules: recursive  # â† Important!</code></pre>
+    submodules: recursive  # ← Important!</code></pre>
 
                 <p><strong>Cloudflare Pages:</strong></p>
                 <pre><code class="language-toml"># wrangler.toml
@@ -546,8 +546,8 @@ command = "git submodule update --init --recursive && npm run build"</code></pre
 
                 <h3>Trade-offs</h3>
                 <ul>
-                    <li>âŒ Manual sync if demo needs website changes</li>
-                    <li>âŒ Can't test demo changes locally within website repo</li>
+                    <li>❌ Manual sync if demo needs website changes</li>
+                    <li>❌ Can't test demo changes locally within website repo</li>
                     <li>✅ But: Demo is deployed to StackBlitz, not our site</li>
                     <li>✅ Simpler mental model and deployment</li>
                 </ul>
@@ -580,9 +580,9 @@ $ git submodule status</code></pre>
 
                 <h3>3. Inspect Build Logs</h3>
                 <ul>
-                    <li>Cloudflare Pages: Dashboard â†’ Deployments â†’ View build log</li>
-                    <li>Vercel: Deployment â†’ View function logs</li>
-                    <li>Netlify: Deploys â†’ Deploy log</li>
+                    <li>Cloudflare Pages: Dashboard → Deployments → View build log</li>
+                    <li>Vercel: Deployment → View function logs</li>
+                    <li>Netlify: Deploys → Deploy log</li>
                 </ul>
 
                 <h3>4. Test Build Locally</h3>
@@ -656,7 +656,7 @@ jobs:
 
                 <h2>Conclusion</h2>
 
-                <p>Silent failures are the worst kind of bugs. They don't crash, they don't errorâ€”they just quietly break your deployment pipeline.</p>
+                <p>Silent failures are the worst kind of bugs. They don't crash, they don't error—they just quietly break your deployment pipeline.</p>
 
                 <p>The broken git submodule issue taught us:</p>
                 <ol>
@@ -681,19 +681,19 @@ jobs:
                     <h2 id="sources-heading">Sources & References</h2>
                     <ol class="sources-list">
                         <li id="ref-1">
-                            <cite>Git - git-submodule Documentation</cite> â€” 
+                            <cite>Git - git-submodule Documentation</cite> — 
                             <a href="https://git-scm.com/docs/git-submodule" target="_blank" rel="nofollow noopener">git-scm.com</a>
                         </li>
                         <li id="ref-2">
-                            <cite>Git Tools - Submodules</cite> â€” Pro Git Book â€” 
+                            <cite>Git Tools - Submodules</cite> — Pro Git Book — 
                             <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="nofollow noopener">git-scm.com</a>
                         </li>
                         <li id="ref-3">
-                            <cite>Cloudflare Pages Build Configuration</cite> â€” Cloudflare Docs â€” 
+                            <cite>Cloudflare Pages Build Configuration</cite> — Cloudflare Docs — 
                             <a href="https://developers.cloudflare.com/pages/configuration/build-configuration/" target="_blank" rel="nofollow noopener">developers.cloudflare.com</a>
                         </li>
                         <li id="ref-4">
-                            <cite>actions/checkout - Submodules Support</cite> â€” GitHub â€” 
+                            <cite>actions/checkout - Submodules Support</cite> — GitHub — 
                             <a href="https://github.com/actions/checkout#checkout-submodules" target="_blank" rel="nofollow noopener">github.com</a>
                         </li>
                     </ol>
