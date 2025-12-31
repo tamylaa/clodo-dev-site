@@ -1,0 +1,263 @@
+<!doctype html>
+<html ⚡ lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Blog - Clodo Framework | Edge Computing, Cloudflare Workers & Developer Insights</title>
+  <link rel="canonical" href="https://clodo.dev/blog/">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <meta name="description" content="Technical articles about edge computing, Cloudflare Workers, infrastructure optimization, and developer experience. Learn how to reduce cloud costs by 60-80%.">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+  <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+  <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+  <style amp-custom>
+    
+    /* Essential blog content styles */
+    body {
+      font-family: var(--font-family-base, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      line-height: var(--line-height-base, 1.6);
+      color: var(--text-color, #333);
+      background: var(--bg-color, #fff);
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--heading-color, #1a1a1a);
+      font-weight: var(--font-weight-bold, 600);
+      line-height: var(--heading-line-height, 1.2);
+      margin-top: var(--spacing-xl, 2rem);
+      margin-bottom: var(--spacing-md, 1rem);
+    }
+
+    p {
+      margin-bottom: var(--spacing-md, 1rem);
+      color: var(--text-color, #333);
+    }
+
+    a {
+      color: var(--link-color, #0066cc);
+      text-decoration: var(--link-decoration, none);
+    }
+
+    a:hover {
+      color: var(--link-hover-color, #004499);
+    }
+
+    code {
+      font-family: var(--font-family-mono, 'SF Mono', Monaco, 'Cascadia Code', monospace);
+      background: var(--code-bg, #f5f5f5);
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--code-bg, #f5f5f5);
+      padding: var(--spacing-md, 1rem);
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: var(--font-family-mono, 'SF Mono', Monaco, 'Cascadia Code', monospace);
+    }
+
+    blockquote {
+      border-left: 4px solid var(--primary-color, #0066cc);
+      padding-left: var(--spacing-md, 1rem);
+      margin: var(--spacing-lg, 1.5rem) 0;
+      font-style: italic;
+      color: var(--text-muted, #666);
+    }
+
+    /* AMP-specific overrides */
+    .touch-target { min-height: 44px; min-width: 44px; }
+    .amp-social-share { margin: 10px; }
+
+    /* Mobile-first responsive adjustments */
+    @media (max-width: 768px) {
+      body { padding: 15px; }
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.3em; }
+    }
+  
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="/">Clodo</a></h1>
+    <nav>
+      <a href="/blog" class="touch-target">Blog</a>
+      <a href="/docs" class="touch-target">Docs</a>
+      <a href="/community" class="touch-target">Community</a>
+    </nav>
+  </header>
+
+  <main>
+    
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                    <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Blog</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
+        <div class="container">
+            <header class="blog-index__header">
+                <h1>Clodo Framework Blog</h1>
+                <p>Technical deep-dives, developer experience insights, and lessons learned building enterprise frameworks for Cloudflare Workers.</p>
+            </header>
+
+            <section class="blog-index__featured">
+                <h2>Featured Articles</h2>
+                <div class="blog-cards blog-cards--featured">
+                    <article class="blog-card blog-card--large blog-card--highlight">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-25">Nov 25, 2024</time>
+                            <span class="blog-card__tag blog-card__tag--new">New</span>
+                            <span class="blog-card__tag">Tutorial</span>
+                        </div>
+                        <h3><a href="/blog/cloudflare-workers-tutorial-beginners">Cloudflare Workers Tutorial for Beginners: Build Your First API in 10 Minutes</a></h3>
+                        <p>A practical, step-by-step guide to building and deploying your first serverless API. No prior serverless experience needed—if you know JavaScript, you can do this. Includes code examples for routing, CORS, and real-world patterns.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">12 min read</span>
+                            <a href="/blog/cloudflare-workers-tutorial-beginners" class="btn btn-text">Read tutorial →</a>
+                        </div>
+                    </article>
+                    <article class="blog-card blog-card--large">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-28">Nov 28, 2024</time>
+                            <span class="blog-card__tag">Infrastructure</span>
+                        </div>
+                        <h3><a href="/blog/cloudflare-infrastructure-myth">Cloudflare Workers: The Infrastructure Revolution You're Missing</a></h3>
+                        <p>Why the misconception that Cloudflare is "just a CDN" is costing enterprises millions. Learn how companies like Shopify and Baselime cut costs by 80% while improving global performance with V8 isolates and edge computing.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">15 min read</span>
+                            <a href="/blog/cloudflare-infrastructure-myth" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="blog-index__recent">
+                <h2>Recent Articles</h2>
+                <div class="blog-cards">
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2025-12-26">Dec 26, 2025</time>
+                            <span class="blog-card__tag blog-card__tag--new">New</span>
+                            <span class="blog-card__tag">Architecture</span>
+                        </div>
+                        <h3><a href="/blog/v8-isolates-comprehensive-guide">V8 Isolates: From Concept to Production – Building Efficient Architectures That Scale</a></h3>
+                        <p>Discover how V8 isolates can transform your product architecture with real-world results: 63% cost reduction and 96% latency improvement. A comprehensive guide for developers, architects, and scrum masters in fintech, retail, and IoT.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">25 min read</span>
+                            <a href="/blog/v8-isolates-comprehensive-guide" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-15">Nov 15, 2024</time>
+                            <span class="blog-card__tag">Developer Experience</span>
+                        </div>
+                        <h3><a href="/blog/stackblitz-integration-journey">Building an Instant "Try Now" Experience: Our StackBlitz Integration Journey</a></h3>
+                        <p>How we transformed developer onboarding from "install, configure, debug" to one-click coding environment in 60 seconds using StackBlitz, real npm packages, and smart cache-busting strategies.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">12 min read</span>
+                            <a href="/blog/stackblitz-integration-journey" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-10">Nov 10, 2024</time>
+                            <span class="blog-card__tag">Impact Analysis</span>
+                        </div>
+                        <h3><a href="/blog/instant-try-it-impact">30x Faster Developer Onboarding: The Impact of Instant Try-It Experiences</a></h3>
+                        <p>Why reducing friction from 30 minutes to 60 seconds isn't just faster—it's transformational. The metrics, psychology, and economics behind instant developer gratification.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">8 min read</span>
+                            <a href="/blog/instant-try-it-impact" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-05">Nov 5, 2024</time>
+                            <span class="blog-card__tag">Technical Deep-Dive</span>
+                        </div>
+                        <h3><a href="/blog/debugging-silent-build-failures">Debugging Production: When Git Submodules Fail Silently</a></h3>
+                        <p>A forensic analysis of how a broken git submodule caused Cloudflare Pages builds to fail without error messages, and the complete debugging process to fix it.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">10 min read</span>
+                            <a href="/blog/debugging-silent-build-failures" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-25">Nov 25, 2024</time>
+                            <span class="blog-card__tag">Tutorial</span>
+                        </div>
+                        <h3><a href="/blog/cloudflare-workers-tutorial-beginners">Cloudflare Workers Tutorial for Beginners: Your First Edge Function</a></h3>
+                        <p>Build your first Cloudflare Worker in 10 minutes. Complete beginner's guide with hands-on code examples, deployment steps, and real-world use cases.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">15 min read</span>
+                            <a href="/blog/cloudflare-workers-tutorial-beginners" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card__meta">
+                            <time datetime="2024-11-20">Nov 20, 2024</time>
+                            <span class="blog-card__tag">Community</span>
+                        </div>
+                        <h3><a href="/blog/building-developer-communities">Building Developer Communities: From Code to Culture</a></h3>
+                        <p>How successful open source projects build thriving communities. Lessons learned from growing a 500+ member developer community around edge computing.</p>
+                        <div class="blog-card__footer">
+                            <span class="blog-card__reading-time">8 min read</span>
+                            <a href="/blog/building-developer-communities" class="btn btn-text">Read article →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="blog-index__cta">
+                <h2>Want to experience what we built?</h2>
+                <p>Try Clodo Framework's instant coding environment—no installation required.</p>
+                <a href="/" class="btn btn-primary">Try Now - 60 Seconds</a>
+            </section>
+        </div>
+    
+  </main>
+
+  <footer>
+    <amp-social-share type="twitter" width="60" height="44" data-param-text="Blog - Clodo Framework | Edge Computing, Cloudflare Workers & Developer Insights" data-param-url="G:/coding/clodo-dev-site//amp/en/blog/index.amp.html"></amp-social-share>
+    <amp-social-share type="linkedin" width="60" height="44" data-param-url="G:/coding/clodo-dev-site//amp/en/blog/index.amp.html"></amp-social-share>
+    <amp-social-share type="facebook" width="60" height="44" data-param-url="G:/coding/clodo-dev-site//amp/en/blog/index.amp.html"></amp-social-share>
+    <p>&copy; 2025 Clodo. All rights reserved.</p>
+  </footer>
+
+  <amp-analytics type="googleanalytics">
+    <script type="application/json">
+    {
+      "vars": {
+        "account": "UA-XXXXX-Y"
+      },
+      "triggers": {
+        "trackPageview": {
+          "on": "visible",
+          "request": "pageview"
+        }
+      }
+    }
+    </script>
+  </amp-analytics>
+</body>
+</html>
