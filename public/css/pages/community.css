@@ -98,8 +98,7 @@
 
 /* Getting Started Paths */
 .getting-started-paths {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); moved to .grid-300 */
   gap: 2rem;
   margin-bottom: 3rem;
 }

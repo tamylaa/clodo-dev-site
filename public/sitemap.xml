@@ -45,6 +45,14 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Cloudflare Framework - HIGH PRIORITY for "cloudflare framework" keyword -->
+    <url>
+        <loc>https://clodo.dev/cloudflare-framework</loc>
+        <lastmod>2025-12-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
     <!-- Cloudflare Workers Development Guide - HIGH PRIORITY SEO -->
     <url>
         <loc>https://clodo.dev/cloudflare-workers-development-guide</loc>
