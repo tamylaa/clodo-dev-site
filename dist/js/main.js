@@ -487,6 +487,17 @@ async function initFeatures() {
     } catch (err) {
         console.error('[Main.js] StackBlitz integration setup failed:', err);
     }
+
+    // Copy button functionality: initialize if page contains copy buttons
+    try {
+        const hasCopyButtons = document.querySelector('.copy-button') !== null;
+        if (hasCopyButtons) {
+            initCopyButtons();
+            console.log('[Main.js] ✓ Copy button functionality initialized');
+        }
+    } catch (err) {
+        console.error('[Main.js] Copy button setup failed:', err);
+    }
 }
 
 /**
@@ -586,9 +597,74 @@ async function init() {
     }
 }
 
+/**
+ * Copy Button Functionality
+ * Enhanced code examples with clipboard support
+ */
+function initCopyButtons() {
+    const copyButtons = document.querySelectorAll('.copy-button');
+
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const textToCopy = button.getAttribute('data-clipboard-text');
+
+            if (!textToCopy) {
+                console.warn('Copy button missing data-clipboard-text attribute');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+
+                // Visual feedback
+                button.classList.add('copied');
+                button.textContent = 'Copied!';
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.textContent = 'Copy';
+                }, 2000);
+
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+                    button.classList.add('copied');
+                    button.textContent = 'Copied!';
+
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.textContent = 'Copy';
+                    }, 2000);
+                } catch (fallbackErr) {
+                    console.error('Fallback copy failed: ', fallbackErr);
+                    button.textContent = 'Copy failed';
+                    setTimeout(() => {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                }
+
+                document.body.removeChild(textArea);
+            }
+        });
+    });
+}
+
 // Auto-initialize
 init();
 
 // Export for testing and manual initialization
-export { init, initCore, initFeatures, initDeferred };
+export { init, initCore, initFeatures, initDeferred, initCopyButtons };
 

@@ -23,6 +23,16 @@ async function run() {
     console.error('Locale file not found:', i18nFile);
     process.exit(1);
   }
+  const localeLabels = {
+    'de': 'Zurück',
+    'it': 'Indietro',
+    'es': 'Volver',
+    'es-419': 'Volver',
+    'fr': 'Retour',
+    'pt': 'Voltar',
+    'br': 'Voltar'
+  };
+  const backLabel = localeLabels[locale] || 'Back';
   const raw = await fs.readFile(i18nFile, 'utf8');
   const i18n = JSON.parse(raw);
   const outDir = path.join(__dirname, '..', '..', 'public', 'i18n', locale);
@@ -44,7 +54,7 @@ async function run() {
   <main>
     <h1>${meta.title}</h1>
     <p>${meta.meta}</p>
-    <p><a href="/">Volver</a></p>
+    <p><a href="/">${backLabel}</a></p>
   </main>
 </body>
 </html>`;

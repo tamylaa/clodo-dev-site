@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Framework: Build Edge Apps with Clodo on Cloudflare Workers</title>
+    <link rel="canonical" href="https://clodo.dev/cloudflare-framework">
+    <meta name="description" content="Discover the best Cloudflare framework for building edge applications. Learn about Clodo Framework, comparisons with Hono and Worktop, tutorials, and deployment guides for Cloudflare Workers.">
+    <meta name="keywords" content="cloudflare framework, clodo framework, cloudflare workers, edge computing, serverless framework, framework comparison, hono, worktop">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Cloudflare Framework: Build Edge Apps with Clodo">
+    <meta property="og:description" content="Complete guide to Cloudflare frameworks. Learn Clodo, compare alternatives, and build edge applications on Cloudflare Workers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/cloudflare-framework.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cloudflare Framework: Build Edge Apps with Clodo">
+    <meta name="twitter:description" content="Discover the best framework for Cloudflare Workers. Tutorials, comparisons, and deployment guides.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+
+    <!-- Article Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cloudflare Framework: Build Edge Apps with Clodo on Cloudflare Workers",
+      "description": "Comprehensive guide to Cloudflare frameworks, featuring Clodo as the leading choice for building edge applications on Cloudflare Workers.",
+      "url": "https://clodo.dev/cloudflare-framework",
+      "image": "https://clodo.dev/og-image.png",
+      "author": {"@type": "Organization", "name": "Clodo Framework"},
+      "publisher": {"@type": "Organization", "name": "Clodo Framework"},
+      "datePublished": "2025-12-31T00:00:00Z",
+      "dateModified": "2025-12-31T00:00:00Z",
+      "keywords": ["cloudflare framework", "clodo framework", "cloudflare workers", "edge computing", "serverless", "framework comparison"]
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Cloudflare framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Cloudflare framework is a development toolkit that simplifies building applications on Cloudflare's edge network, particularly Cloudflare Workers. It provides abstractions, routing, middleware, and integrations to make serverless development easier."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why choose Clodo as your Cloudflare framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework offers enterprise-ready features like multi-tenant architecture, database integrations, authentication, and global deployment. It's designed specifically for production applications on Cloudflare Workers with excellent performance and developer experience."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Clodo compare to Hono and Worktop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo provides more comprehensive enterprise features and better TypeScript support compared to Hono and Worktop. While Hono excels in lightweight routing and Worktop in simplicity, Clodo offers full-stack capabilities for complex applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Clodo Framework free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Clodo Framework is open-source and free to use. You only pay for Cloudflare Workers compute time, which has a generous free tier of 100,000 requests per day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I deploy Clodo apps globally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Clodo Framework deploys to Cloudflare's 200+ global data centers, ensuring low-latency responses worldwide. It's built for edge computing from the ground up."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://clodo.dev"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cloudflare Framework",
+          "item": "https://clodo.dev/cloudflare-framework"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <img src="icons/icon.svg" alt="Clodo Framework" class="brand-icon">
+                    <span class="brand-text">Clodo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/quick-start">Quick Start</a></li>
+                <li><a href="/clodo-framework-guide">Guide</a></li>
+                <li><a href="/framework-comparison">Comparison</a></li>
+                <li><a href="/cloudflare-framework">Cloudflare Framework</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/docs">Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <div class="breadcrumb-item">
+            <a href="/">Home</a>
+        </div>
+        <span class="breadcrumb-separator">/</span>
+        <div class="breadcrumb-item">
+            <span>Cloudflare Framework</span>
+        </div>
+    </nav>
+
+    <main class="content">
+        <article class="article-content">
+            <header class="article-header">
+                <h1>Cloudflare Framework: Build Edge Apps with Clodo</h1>
+                <p class="article-subtitle">Discover the best framework for Cloudflare Workers. Learn Clodo Framework, compare alternatives, and build production-ready edge applications.</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="table-of-contents" aria-label="Table of Contents">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#what-is-cloudflare-framework">What is a Cloudflare Framework?</a></li>
+                    <li><a href="#why-clodo">Why Choose Clodo Framework?</a></li>
+                    <li><a href="#framework-comparison">Framework Comparison</a></li>
+                    <li><a href="#getting-started">Getting Started with Clodo</a></li>
+                    <li><a href="#deployment">Deployment & Scaling</a></li>
+                    <li><a href="#faq">Frequently Asked Questions</a></li>
+                </ul>
+            </nav>
+
+            <section id="what-is-cloudflare-framework">
+                <h2>What is a Cloudflare Framework?</h2>
+                <p>A Cloudflare framework is a development toolkit that simplifies building applications on Cloudflare's global edge network. These frameworks provide:</p>
+                <ul>
+                    <li><strong>Routing & Middleware:</strong> Easy API endpoint creation and request handling</li>
+                    <li><strong>Database Integration:</strong> Built-in support for Cloudflare D1, KV, and external databases</li>
+                    <li><strong>Authentication:</strong> User management and security features</li>
+                    <li><strong>Deployment Tools:</strong> Simplified publishing to Cloudflare's edge</li>
+                </ul>
+                <p>Popular Cloudflare frameworks include Clodo, Hono, and Worktop, each with different strengths for various use cases.</p>
+            </section>
+
+            <section id="why-clodo">
+                <h2>Why Choose Clodo Framework?</h2>
+                <p>Clodo Framework stands out as the most comprehensive solution for building enterprise applications on Cloudflare Workers:</p>
+                <div class="grid-250">
+                    <div class="feature-card">
+                        <h3>Enterprise Ready</h3>
+                        <p>Multi-tenant architecture, advanced security, and production monitoring built-in.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Full-Stack Features</h3>
+                        <p>Database integrations, authentication, API management, and more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Developer Experience</h3>
+                        <p>Excellent TypeScript support, intuitive APIs, and comprehensive documentation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Global Performance</h3>
+                        <p>Deploy to 200+ data centers with automatic scaling and edge optimization.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="framework-comparison">
+                <h2>Framework Comparison: Clodo vs Hono vs Worktop</h2>
+                <p>Here's how Clodo compares to other popular Cloudflare frameworks:</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Clodo</th>
+                            <th>Hono</th>
+                            <th>Worktop</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Multi-Tenant Support</td>
+                            <td>✅ Built-in</td>
+                            <td>❌ Manual</td>
+                            <td>❌ Manual</td>
+                        </tr>
+                        <tr>
+                            <td>Database Integration</td>
+                            <td>✅ D1, KV, External</td>
+                            <td>✅ Basic</td>
+                            <td>✅ Basic</td>
+                        </tr>
+                        <tr>
+                            <td>TypeScript Support</td>
+                            <td>✅ Excellent</td>
+                            <td>✅ Good</td>
+                            <td>✅ Good</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise Features</td>
+                            <td>✅ Authentication, Monitoring</td>
+                            <td>❌ Limited</td>
+                            <td>❌ Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Learning Curve</td>
+                            <td>Medium</td>
+                            <td>Easy</td>
+                            <td>Easy</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><a href="/framework-comparison">View detailed comparison →</a></p>
+            </section>
+
+            <section id="getting-started">
+                <h2>Getting Started with Clodo Framework</h2>
+                <p>Install and create your first Clodo application:</p>
+                <pre><code class="language-bash"># Install Clodo CLI
+npm install -g @clodo/cli
+
+# Create new project
+clodo create my-app
+
+# Navigate to project
+cd my-app
+
+# Start development server
+npm run dev</code></pre>
+                <p><a href="/quick-start">Complete Quick Start Guide →</a></p>
+            </section>
+
+            <section id="deployment">
+                <h2>Deployment & Scaling</h2>
+                <p>Deploy your Clodo application globally with one command:</p>
+                <pre><code class="language-bash"># Deploy to Cloudflare
+npm run deploy</code></pre>
+                <p>Clodo automatically handles:</p>
+                <ul>
+                    <li>Global edge deployment across 200+ data centers</li>
+                    <li>Automatic scaling based on traffic</li>
+                    <li>Zero-downtime updates</li>
+                    <li>Built-in CDN and security features</li>
+                </ul>
+            </section>
+
+            <section id="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-section">
+                    <h3>What is a Cloudflare framework?</h3>
+                    <p>A Cloudflare framework is a development toolkit that simplifies building applications on Cloudflare's edge network, particularly Cloudflare Workers. It provides abstractions, routing, middleware, and integrations to make serverless development easier.</p>
+
+                    <h3>Why choose Clodo as your Cloudflare framework?</h3>
+                    <p>Clodo Framework offers enterprise-ready features like multi-tenant architecture, database integrations, authentication, and global deployment. It's designed specifically for production applications on Cloudflare Workers with excellent performance and developer experience.</p>
+
+                    <h3>How does Clodo compare to Hono and Worktop?</h3>
+                    <p>Clodo provides more comprehensive enterprise features and better TypeScript support compared to Hono and Worktop. While Hono excels in lightweight routing and Worktop in simplicity, Clodo offers full-stack capabilities for complex applications.</p>
+
+                    <h3>Is Clodo Framework free?</h3>
+                    <p>Yes! Clodo Framework is open-source and free to use. You only pay for Cloudflare Workers compute time, which has a generous free tier of 100,000 requests per day.</p>
+
+                    <h3>Can I deploy Clodo apps globally?</h3>
+                    <p>Absolutely! Clodo Framework deploys to Cloudflare's 200+ global data centers, ensuring low-latency responses worldwide. It's built for edge computing from the ground up.</p>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to Build with Clodo?</h2>
+                <p>Start building edge applications with the most powerful Cloudflare framework available.</p>
+                <div class="cta-buttons">
+                    <a href="/quick-start" class="btn btn-primary">Get Started</a>
+                    <a href="/framework-comparison" class="btn btn-secondary">Compare Frameworks</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Clodo Framework</h3>
+                <p>The ultimate framework for building edge applications on Cloudflare Workers.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/quick-start">Quick Start</a></li>
+                    <li><a href="/framework-comparison">Framework Comparison</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="https://github.com/clodo">GitHub</a></li>
+                    <li><a href="/community">Community</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Clodo Framework. Built for the edge.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
