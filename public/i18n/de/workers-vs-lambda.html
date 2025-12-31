@@ -6,6 +6,39 @@
   <title>Cloudflare Workers vs AWS Lambda: Performance, Kosten & Entwicklererfahrung</title>
   <meta name="description" content="Vergleichen Sie Cloudflare Workers vs AWS Lambda: Cold Starts, globale Performance, Preise und Entwicklererfahrung. Wählen Sie die richtige serverless Plattform für Ihre Edge-Anwendungen.">
   <link rel="canonical" href="https://www.clodo.dev/i18n/de/workers-vs-lambda">
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+      {
+            "@type": "Question",
+            "name": "Was ist schneller: Cloudflare Workers oder AWS Lambda?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cloudflare Workers sind deutlich schneller mit keinen Cold Starts und Edge-Bereitstellung. Lambda hat typischerweise Cold-Start-Verzögerungen von 100-500ms, während Workers konsistent unter 100ms Antworten liefern."
+            }
+      },
+      {
+            "@type": "Question",
+            "name": "Was ist der Kostenunterschied zwischen Workers und Lambda?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Workers sind in der Regel günstiger für Edge-Computing-Workloads. Workers enthalten großzügige kostenlose Tarife und niedrigere Preise pro Anfrage für globale Edge-Anwendungen."
+            }
+      },
+      {
+            "@type": "Question",
+            "name": "Wann sollte ich Workers anstatt Lambda verwenden?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Verwenden Sie Workers für globale Anwendungen, die niedrige Latenz, Echtzeitverarbeitung oder Edge-Computing erfordern. Lambda ist besser für rechenintensive Aufgaben oder wenn Sie Zugriff auf das AWS-Ökosystem benötigen."
+            }
+      }
+]
+    }
+    </script>
 </head>
 <body>
   <div style="padding:1rem; background:#f3f4f6; border-left:4px solid #3b82f6;">

@@ -1,9 +1,9 @@
 /* ===========================================
-   ARABIC RTL (RIGHT-TO-LEFT) SUPPORT
+   ARABIC/HEBREW/PERSIAN RTL (RIGHT-TO-LEFT) SUPPORT
    ===========================================
 
-   This file contains RTL-specific overrides for Arabic language support.
-   It should be loaded after the main stylesheet for Arabic pages.
+   This file contains RTL-specific overrides for Arabic, Hebrew, and Persian language support.
+   It should be loaded after the main stylesheet for RTL pages.
    =========================================== */
 
 /* ===== HTML DIRECTION ===== */
@@ -107,16 +107,41 @@ html[dir="rtl"] .form-row .form-group {
   margin-right: 1rem;
 }
 
-/* ===== CODE BLOCKS ===== */
-html[dir="rtl"] pre,
-html[dir="rtl"] code {
-  direction: ltr; /* Keep code LTR */
+/* ===== LANGUAGE-SPECIFIC TYPOGRAPHY ===== */
+/* Hebrew-specific quotes and punctuation */
+html[dir="rtl"][lang="he"] q:before { content: '"'; }
+html[dir="rtl"][lang="he"] q:after { content: '"'; }
+
+/* Persian-specific number formatting */
+html[dir="rtl"][lang="fa"] {
+  font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* ===== RTL ENHANCED COMPONENTS ===== */
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+html[dir="rtl"] .sr-only {
+  /* Screen reader text remains LTR for consistency */
+  direction: ltr;
+}
+
+/* ===== ENHANCED FORM HANDLING ===== */
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="url"],
+html[dir="rtl"] input[type="tel"] {
+  direction: ltr; /* Keep email/URL/phone LTR */
   text-align: left;
 }
 
-html[dir="rtl"] .code-block {
-  direction: ltr;
-  text-align: left;
+/* ===== RTL-SPECIFIC SPACING ===== */
+html[dir="rtl"] .space-x-reverse > * + * {
+  margin-left: 0;
+  margin-right: var(--space-x-reverse);
+}
+
+/* ===== IMPROVED FOCUS INDICATORS ===== */
+html[dir="rtl"] .focus\:ring:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
 
 /* ===== ICONS AND MEDIA ===== */
