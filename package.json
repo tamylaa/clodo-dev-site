@@ -6,7 +6,7 @@
   "main": "index.html",
   "scripts": {
     "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run check-links",
-    "build": "node build/build.js",
+    "build": "node build/build.js && npm run generate:amp",
     "start": "npm run serve",
     "dev": "npm run serve",
     "preview": "vite preview --config config/vite.config.js",
@@ -19,6 +19,7 @@
     "validate:headers": "node build/validate-headers.js",
     "validate:redirects": "node build/validate-redirects.js",
     "generate:blog": "node build/generate-blog-post.mjs --all",
+    "generate:amp": "node build/generate-amp.js",
     "check-links": "node build/check-links.js",
     "check-page-loading": "node build/check-page-loading.js",
     "check-nav-stability": "node build/check-nav-stability.js",

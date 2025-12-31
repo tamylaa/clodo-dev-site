@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Search Console Verification -->
+<meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE" />
+<meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
+<meta name="yandex-verification" content="YANDEX_VERIFICATION_CODE" />
+<meta name="baidu-site-verification" content="BAIDU_VERIFICATION_CODE" />
+<meta name="naver-site-verification" content="NAVER_VERIFICATION_CODE" />
 
     
     
@@ -12,7 +18,8 @@
     <meta name="author" content="Clodo Framework">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://clodo.dev/blog/cloudflare-infrastructure-myth">
-    <style>:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-400:rgb(96 165 250);--primary-500:rgb(59 130 246);--primary-600:rgb(37 99 235);--primary-700:rgb(29 78 216);--primary-800:rgb(30 64 175);--primary-900:rgb(30 58 138);--primary-950:rgb(23 37 84);--primary-color:var(--primary-600);--primary-dark:var(--primary-700);--primary-light:var(--primary-400);--gray-50:rgb(249 250 251);--gray-100:rgb(243 244 246);--gray-200:rgb(229 231 235);--gray-300:rgb(209 213 219);--gray-400:rgb(156 163 175);--gray-500:rgb(107 114 128);--gray-600:rgb(75 85 99);--gray-700:rgb(55 65 81);--gray-800:rgb(31 41 55);--gray-900:rgb(17 24 39);--gray-950:rgb(3 7 18);--success-500:rgb(16 185 129);--success-600:rgb(5 150 105);--warning-500:rgb(245 158 11);--warning-600:rgb(217 119 6);--error-500:rgb(239 68 68);--error-600:rgb(220 38 38);--info-500:rgb(59 130 246);--info-600:rgb(37 99 235);--success-color:var(--success-600);--warning-color:var(--warning-600);--error-color:var(--error-600);--info-color:var(--info-600);--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-muted:var(--gray-600);--bg-primary:var(--gray-50);--bg-secondary:var(--gray-100);--bg-tertiary:var(--gray-200);--bg-accent:var(--primary-50);--bg-dark:var(--gray-800);--bg-darker:var(--gray-900);--border-color:var(--gray-200);--shadow-sm:0 1px 2px 0 rgb(0 0 0 / 5%);--shadow-md:0 4px 6px -1px rgb(0 0 0 / 10%),0 2px 4px -2px rgb(0 0 0 / 10%);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / 10%),0 4px 6px -4px rgb(0 0 0 / 10%);--spacing-xs:0.25rem;--spacing-sm:0.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4rem;--transition-fast:0.15s ease-out;--transition-normal:0.3s ease-out;--radius-sm:0.25rem;--radius-md:0.375rem;--radius-lg:0.5rem;--radius-xl:0.75rem}@media (prefers-color-scheme:dark){:root{--text-primary:rgb(243 244 246);--text-secondary:rgb(209 213 219);--text-muted:rgb(156 163 175);--bg-primary:rgb(17 24 39);--bg-secondary:rgb(31 41 55);--bg-tertiary:rgb(55 65 81);--bg-accent:rgb(30 58 95);--border-color:rgb(55 65 81)}}*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background-color:var(--bg-primary);-webkit-font-smoothing:antialiased}a{color:var(--primary-color);text-decoration:none;transition:all var(--transition-fast)}img{max-width:100%;height:auto}#hero-title{font-size:2.5rem;line-height:1.1;font-weight:700;margin:0 0 1.5rem;color:var(--text-primary)}@media (width >= 768px){#hero-title{font-size:3rem}}.hero-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;max-width:1200px;margin:0 auto;padding:0 1rem}.hero-content{order:1;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:100%}.hero-visual{order:2;text-align:center;max-width:100%;width:100%}.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}@media (width >= 1024px){.hero-grid{grid-template-columns:0.9fr 1.1fr;gap:4rem}.hero-visual{order:1;justify-self:end}.hero-content{order:2;align-items:flex-start !important;text-align:left !important;max-width:600px}.hero-buttons{justify-content:flex-start !important}}header{position:sticky;top:0;z-index:1000;background-color:var(--bg-primary)}.navbar{background-color:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 1px 3px rgb(0 0 0 / 5%)}.nav-container{display:flex;align-items:center;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);max-width:1200px;margin:0 auto;gap:var(--spacing-sm)}@media (width <= 767px){.nav-container{justify-content:space-between}.logo{order:1}.mobile-menu-toggle{order:3}.nav-menu{order:2}.nav-actions{order:4;display:flex;gap:var(--spacing-xs)}}@media (width >= 768px){.nav-container{padding:var(--spacing-sm) var(--spacing-lg)}}.logo{display:flex;align-items:center;gap:0.5rem;font-size:1.25rem;font-weight:700;color:var(--text-primary);text-decoration:none;transition:opacity var(--transition-fast);min-height:44px}.logo:hover{opacity:0.8}.logo:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.logo-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0}.logo-text{background:linear-gradient(135deg,var(--primary-color),var(--primary-dark,var(--primary-color)));background-clip:text;-webkit-text-fill-color:transparent}.mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--border-color);border-radius:var(--radius-md);cursor:pointer;transition:all var(--transition-fast)}.mobile-menu-toggle:hover{background:var(--bg-secondary);border-color:var(--primary-color)}.mobile-menu-toggle:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.mobile-menu-toggle[aria-expanded="true"]{background:var(--bg-secondary)}.hamburger{display:flex;flex-direction:column;gap:4px;width:20px}.hamburger__line{display:block;width:100%;height:2px;background:var(--text-primary);transition:all var(--transition-fast);border-radius:2px}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top{transform:translateY(6px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle{opacity:0}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:translateY(-6px) rotate(-45deg)}.nav-menu{display:none;list-style:none;margin:0;padding:0;position:absolute;top:100%;left:0;right:0;background:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 8px 16px rgb(0 0 0 / 10%)}.nav-menu[data-visible="false"]{display:none}.nav-menu[data-visible="true"]{display:flex;flex-direction:column}.nav-menu li{margin:0;border-bottom:1px solid var(--border-color)}.nav-menu li:last-child{border-bottom:none}.nav-link{display:flex;align-items:center;padding:var(--spacing-md);color:var(--text-primary);text-decoration:none;font-weight:500;font-size:1rem;transition:all var(--transition-fast);min-height:44px}.nav-link:hover{background:var(--bg-secondary);color:var(--primary-color)}.nav-link:focus-visible{outline:2px solid var(--primary-color);outline-offset:-2px}.nav-link[aria-current="page"]{color:var(--primary-color);font-weight:600;background:var(--bg-hover,var(--bg-secondary))}.nav-dropdown{position:relative}.nav-dropdown-toggle::after{content:"▾";margin-left:0.375rem;font-size:0.875rem;transition:transform var(--transition-fast)}.nav-dropdown-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}.nav-dropdown-menu{display:none;list-style:none;margin:0;padding:var(--spacing-sm) 0;background:var(--bg-secondary)}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu{display:block}.nav-dropdown-link{display:block;padding:var(--spacing-sm) var(--spacing-lg);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all var(--transition-fast)}.nav-dropdown-link:hover{background:var(--bg-hover,var(--bg-primary));color:var(--primary-color)}.nav-dropdown-divider{padding:var(--spacing-xs) var(--spacing-lg);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted,var(--text-secondary));margin-top:var(--spacing-sm)}.nav-dropdown-section{margin:var(--spacing-sm) 0 var(--spacing-xs) 0}.nav-dropdown-section-title{padding:var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size:0.875rem !important;font-weight:600 !important;color:var(--text-primary) !important;cursor:pointer;border-bottom:1px solid var(--border-color,rgb(255 255 255 / 10%));margin-bottom:var(--spacing-xs)}.nav-dropdown-section-title:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important}.nav-dropdown-subitem{padding:var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size:0.8125rem !important;color:var(--text-secondary) !important;border-left:2px solid transparent}.nav-dropdown-subitem:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important;border-left-color:var(--primary-color)}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}.github-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--text-primary);text-decoration:none;border:1px solid var(--border-color);border-radius:var(--radius-md);transition:all var(--transition-fast)}.github-btn:hover{background:var(--bg-secondary);border-color:var(--primary-color);color:var(--primary-color)}.github-btn:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}@media (width >= 768px){.nav-container{padding:var(--spacing-md) var(--spacing-lg)}.logo{font-size:1.5rem}.mobile-menu-toggle{display:none}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"]{display:flex !important;position:static;flex-direction:row;align-items:center;gap:var(--spacing-sm);background:transparent;border:none;box-shadow:none}.nav-menu li{border-bottom:none}.nav-link{padding:var(--spacing-sm) var(--spacing-md)}.nav-dropdown-menu{position:absolute;top:100%;left:0;min-width:250px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);box-shadow:0 8px 16px rgb(0 0 0 / 10%);margin-top:0.5rem}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}}@media (width >= 1024px){.nav-menu{gap:var(--spacing-md)}.nav-dropdown-menu{min-width:300px}}@media (prefers-reduced-motion:reduce){.hamburger__line,.nav-dropdown-toggle::after{transition:none}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:none}}@media (prefers-contrast:high){.navbar{border-bottom:2px solid var(--border-color)}.mobile-menu-toggle,.github-btn{border:2px solid var(--border-color)}}@media print{.navbar{position:static;border-bottom:2px solid var(--color-black)}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions{display:none}.nav-menu{display:flex;flex-direction:row;gap:1rem}}.error{border-color:var(--error-color) !important;background-color:rgb(239 68 68 / 10%) !important}.success{border-color:var(--success-color) !important;background-color:rgb(16 185 129 / 10%) !important}.skip-link{position:absolute;left:0;top:0;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;z-index:1000;opacity:0}.skip-link:focus{position:absolute;top:6px;left:6px;width:auto;height:auto;padding:8px;margin:0;background:var(--primary-color);color:var(--color-white);text-decoration:none;border-radius:4px;font-weight:500;overflow:visible;clip:auto;white-space:normal}.noscript-banner{position:relative;width:100%;background:linear-gradient(90deg,rgba(255,248,225,1),rgba(255,255,255,1));color:var(--color-text,#111);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);text-align:center;z-index:999;font-size:.95rem}.noscript-banner .container{max-width:1100px;margin:0 auto;padding:0 16px}.noscript-link,.noscript-banner a{color:var(--primary-color);text-decoration:underline;font-weight:600}.text-heart{color:rgb(226 85 85)}.theme-icon--dark{display:none}[data-theme="dark"] .theme-icon--dark{display:inline}.hidden{display:none !important}.visible{display:block !important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.font-normal{font-weight:400}.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}.text-sm{font-size:0.875rem}.text-base{font-size:1rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}.text-4xl{font-size:2.25rem}.text-5xl{font-size:3rem}</style>
+    <link rel="amphtml" href="https://clodo.dev/blog/cloudflare-infrastructure-myth.amp.html">
+    <style>:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-400:rgb(96 165 250);--primary-500:rgb(59 130 246);--primary-600:rgb(37 99 235);--primary-700:rgb(29 78 216);--primary-800:rgb(30 64 175);--primary-900:rgb(30 58 138);--primary-950:rgb(23 37 84);--primary-color:var(--primary-600);--primary-dark:var(--primary-700);--primary-light:var(--primary-400);--gray-50:rgb(249 250 251);--gray-100:rgb(243 244 246);--gray-200:rgb(229 231 235);--gray-300:rgb(209 213 219);--gray-400:rgb(156 163 175);--gray-500:rgb(107 114 128);--gray-600:rgb(75 85 99);--gray-700:rgb(55 65 81);--gray-800:rgb(31 41 55);--gray-900:rgb(17 24 39);--gray-950:rgb(3 7 18);--success-500:rgb(16 185 129);--success-600:rgb(5 150 105);--warning-500:rgb(245 158 11);--warning-600:rgb(217 119 6);--error-500:rgb(239 68 68);--error-600:rgb(220 38 38);--info-500:rgb(59 130 246);--info-600:rgb(37 99 235);--success-color:var(--success-600);--warning-color:var(--warning-600);--error-color:var(--error-600);--info-color:var(--info-600);--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-muted:var(--gray-600);--bg-primary:var(--gray-50);--bg-secondary:var(--gray-100);--bg-tertiary:var(--gray-200);--bg-accent:var(--primary-50);--bg-dark:var(--gray-800);--bg-darker:var(--gray-900);--border-color:var(--gray-200);--shadow-sm:0 1px 2px 0 rgb(0 0 0 / 5%);--shadow-md:0 4px 6px -1px rgb(0 0 0 / 10%),0 2px 4px -2px rgb(0 0 0 / 10%);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / 10%),0 4px 6px -4px rgb(0 0 0 / 10%);--spacing-xs:0.25rem;--spacing-sm:0.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4rem;--transition-fast:0.15s ease-out;--transition-normal:0.3s ease-out;--radius-sm:0.25rem;--radius-md:0.375rem;--radius-lg:0.5rem;--radius-xl:0.75rem}@media (prefers-color-scheme:dark){:root{--text-primary:rgb(243 244 246);--text-secondary:rgb(209 213 219);--text-muted:rgb(156 163 175);--bg-primary:rgb(17 24 39);--bg-secondary:rgb(31 41 55);--bg-tertiary:rgb(55 65 81);--bg-accent:rgb(30 58 95);--border-color:rgb(55 65 81)}}*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background-color:var(--bg-primary);-webkit-font-smoothing:antialiased}a{color:var(--primary-color);text-decoration:none;transition:all var(--transition-fast)}img{max-width:100%;height:auto}#hero-title{font-size:2.5rem;line-height:1.1;font-weight:700;margin:0 0 1.5rem;color:var(--text-primary)}@media (width >= 768px){#hero-title{font-size:3rem}}.hero-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;max-width:1200px;margin:0 auto;padding:0 1rem}.hero-content{order:1;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:100%}.hero-visual{order:2;text-align:center;max-width:100%;width:100%}.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}@media (width >= 1024px){.hero-grid{grid-template-columns:0.9fr 1.1fr;gap:4rem}.hero-visual{order:1;justify-self:end}.hero-content{order:2;align-items:flex-start !important;text-align:left !important;max-width:600px}.hero-buttons{justify-content:flex-start !important}}header{position:sticky;top:0;z-index:1000;background-color:var(--bg-primary)}.navbar{background-color:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 1px 3px rgb(0 0 0 / 5%)}.nav-container{display:flex;align-items:center;justify-content:space-between;padding:var(--spacing-sm) var(--spacing-md);max-width:1200px;margin:0 auto;gap:var(--spacing-sm)}@media (width <= 767px){.nav-container{justify-content:space-between}.logo{order:1}.mobile-menu-toggle{order:3}.nav-menu{order:2}.nav-actions{order:4;display:flex;gap:var(--spacing-xs)}}@media (width >= 768px){.nav-container{padding:var(--spacing-sm) var(--spacing-lg)}}.logo{display:flex;align-items:center;gap:0.5rem;font-size:1.25rem;font-weight:700;color:var(--text-primary);text-decoration:none;transition:opacity var(--transition-fast);min-height:44px}.logo:hover{opacity:0.8}.logo:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.logo-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0}.logo-text{background:linear-gradient(135deg,var(--primary-color),var(--primary-dark,var(--primary-color)));background-clip:text;-webkit-text-fill-color:transparent}.mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--border-color);border-radius:var(--radius-md);cursor:pointer;transition:all var(--transition-fast)}.mobile-menu-toggle:hover{background:var(--bg-secondary);border-color:var(--primary-color)}.mobile-menu-toggle:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}.mobile-menu-toggle[aria-expanded="true"]{background:var(--bg-secondary)}.hamburger{display:flex;flex-direction:column;gap:4px;width:20px}.hamburger__line{display:block;width:100%;height:2px;background:var(--text-primary);transition:all var(--transition-fast);border-radius:2px}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top{transform:translateY(6px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle{opacity:0}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:translateY(-6px) rotate(-45deg)}.nav-menu{display:none;list-style:none;margin:0;padding:0;position:absolute;top:100%;left:0;right:0;background:var(--bg-primary);border-bottom:1px solid var(--border-color);box-shadow:0 8px 16px rgb(0 0 0 / 10%)}.nav-menu[data-visible="false"]{display:none}.nav-menu[data-visible="true"]{display:flex;flex-direction:column}.nav-menu li{margin:0;border-bottom:1px solid var(--border-color)}.nav-menu li:last-child{border-bottom:none}.nav-link{display:flex;align-items:center;padding:var(--spacing-md);color:var(--text-primary);text-decoration:none;font-weight:500;font-size:1rem;transition:all var(--transition-fast);min-height:44px}.nav-link:hover{background:var(--bg-secondary);color:var(--primary-color)}.nav-link:focus-visible{outline:2px solid var(--primary-color);outline-offset:-2px}.nav-link[aria-current="page"]{color:var(--primary-color);font-weight:600;background:var(--bg-hover,var(--bg-secondary))}.nav-dropdown{position:relative}.nav-dropdown-toggle::after{content:"▾";margin-left:0.375rem;font-size:0.875rem;transition:transform var(--transition-fast)}.nav-dropdown-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}.nav-dropdown-menu{display:none;list-style:none;margin:0;padding:var(--spacing-sm) 0;background:var(--bg-secondary)}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu{display:block}.nav-dropdown-link{display:block;padding:var(--spacing-sm) var(--spacing-lg);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all var(--transition-fast)}.nav-dropdown-link:hover{background:var(--bg-hover,var(--bg-primary));color:var(--primary-color)}.nav-dropdown-divider{padding:var(--spacing-xs) var(--spacing-lg);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted,var(--text-secondary));margin-top:var(--spacing-sm)}.nav-dropdown-section{margin:var(--spacing-sm) 0 var(--spacing-xs) 0}.nav-dropdown-section-title{padding:var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size:0.875rem !important;font-weight:600 !important;color:var(--text-primary) !important;cursor:pointer;border-bottom:1px solid var(--border-color,rgb(255 255 255 / 10%));margin-bottom:var(--spacing-xs)}.nav-dropdown-section-title:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important}.nav-dropdown-subitem{padding:var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size:0.8125rem !important;color:var(--text-secondary) !important;border-left:2px solid transparent}.nav-dropdown-subitem:hover{background:var(--bg-hover,var(--bg-primary)) !important;color:var(--primary-color) !important;border-left-color:var(--primary-color)}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}.github-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--text-primary);text-decoration:none;border:1px solid var(--border-color);border-radius:var(--radius-md);transition:all var(--transition-fast)}.github-btn:hover{background:var(--bg-secondary);border-color:var(--primary-color);color:var(--primary-color)}.github-btn:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}@media (width >= 768px){.nav-container{padding:var(--spacing-md) var(--spacing-lg)}.logo{font-size:1.5rem}.mobile-menu-toggle{display:none}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"]{display:flex !important;position:static;flex-direction:row;align-items:center;gap:var(--spacing-sm);background:transparent;border:none;box-shadow:none}.nav-menu li{border-bottom:none}.nav-link{padding:var(--spacing-sm) var(--spacing-md)}.nav-dropdown-menu{position:absolute;top:100%;left:0;min-width:250px;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius-md);box-shadow:0 8px 16px rgb(0 0 0 / 10%);margin-top:0.5rem}.nav-actions{display:flex;align-items:center;gap:var(--spacing-sm)}}@media (width >= 1024px){.nav-menu{gap:var(--spacing-md)}.nav-dropdown-menu{min-width:300px}}@media (prefers-reduced-motion:reduce){.hamburger__line,.nav-dropdown-toggle::after{transition:none}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom{transform:none}}@media (prefers-contrast:high){.navbar{border-bottom:2px solid var(--border-color)}.mobile-menu-toggle,.github-btn{border:2px solid var(--border-color)}}@media print{.navbar{position:static;border-bottom:2px solid var(--color-black)}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions{display:none}.nav-menu{display:flex;flex-direction:row;gap:1rem}}.error{border-color:var(--error-color) !important;background-color:rgb(239 68 68 / 10%) !important}.success{border-color:var(--success-color) !important;background-color:rgb(16 185 129 / 10%) !important}.skip-link{position:absolute;left:0;top:0;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;z-index:1000;opacity:0}.skip-link:focus{position:absolute;top:6px;left:6px;width:auto;height:auto;padding:8px;margin:0;background:var(--primary-color);color:var(--color-white);text-decoration:none;border-radius:4px;font-weight:500;overflow:visible;clip:auto;white-space:normal}.noscript-banner{position:relative;width:100%;background:linear-gradient(90deg,rgba(255,248,225,1),rgba(255,255,255,1));color:var(--color-text,#111);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);text-align:center;z-index:999;font-size:.95rem}.noscript-banner .container{max-width:1100px;margin:0 auto;padding:0 16px}.noscript-link,.noscript-banner a{color:var(--primary-color);text-decoration:underline;font-weight:600}.text-heart{color:rgb(226 85 85)}.theme-icon--dark{display:none}[data-theme="dark"] .theme-icon--dark{display:inline}.hidden{display:none !important}.visible{display:block !important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.font-normal{font-weight:400}.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}.text-sm{font-size:0.875rem}.text-base{font-size:1rem}.text-lg{font-size:1.125rem}.text-xl{font-size:1.25rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}.text-4xl{font-size:2.25rem}.text-5xl{font-size:3rem}.touch-target{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}@media (min-width:768px){.touch-target{min-height:48px;min-width:48px}}</style>
     <link rel="preload" href="/styles.2cff6a5a.css" as="style"><noscript><link rel="stylesheet" href="/styles.2cff6a5a.css"></noscript>
     <link rel="preload" href="/styles-blog.a97ea96e.css" as="style"><noscript><link rel="stylesheet" href="/styles-blog.a97ea96e.css"></noscript>
     <script src="/js/init-preload.58026b79.js"></script>
@@ -368,7 +375,7 @@
             <span class="logo-text">Clodo</span>
         </a>
 
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle touch-target" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
             <span class="hamburger">
                 <span class="hamburger__line hamburger__line--top"></span>
                 <span class="hamburger__line hamburger__line--middle"></span>
@@ -376,113 +383,113 @@
             </span>
         </button>
 
-        <ul class="nav-menu" id="mobile-menu" data-visible="false">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-dropdown">
-                <a href="/product" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Product</a>
+        <ul class="nav-menu" id="mobile-menu" data-visible="false" role="menu" aria-label="Main navigation">
+            <li role="none"><a href="/" class="nav-link touch-target" role="menuitem">Home</a></li>
+            <li class="nav-dropdown" role="none">
+                <a href="/product" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Product</a>
                 <ul class="nav-dropdown-menu" role="menu">
-                    <li role="none"><a href="/product" class="nav-dropdown-link" role="menuitem">Overview</a></li>
-                    <li role="none"><a href="/migrate" class="nav-dropdown-link" role="menuitem">Migrate</a></li>
-                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link" role="menuitem">Community</a></li>
-                    
+                    <li role="none"><a href="/product" class="nav-dropdown-link touch-target" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="/migrate" class="nav-dropdown-link touch-target" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link touch-target" role="menuitem">Community</a></li>
+
                     <li class="nav-dropdown-divider" role="separator"></li>
-                    
+
                     <!-- Comparisons Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
                             <strong>⚖️ Comparisons</strong>
                         </span>
                     </li>
-                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge vs Cloud Computing</a></li>
-                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Workers vs Lambda</a></li>
-                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Clodo vs AWS Lambda</a></li>
-                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Cloudflare Workers</a></li>
-                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">What is Edge Computing</a></li>
+                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Edge Computing</a></li>
                 </ul>
             </li>
-            <li class="nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Learn</a>
+            <li class="nav-dropdown" role="none">
+                <a href="#" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Learn</a>
                 <ul class="nav-dropdown-menu" role="menu">
                     <!-- Documentation Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
                             <strong>📚 Documentation</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Getting Started</a></li>
-                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Components</a></li>
-                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Development & Deployment</a></li>
-                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">API Simplification</a></li>
-                    
+                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Components</a></li>
+                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Development & Deployment</a></li>
+                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">API Simplification</a></li>
+
                     <li class="nav-dropdown-divider" role="separator"></li>
-                    
+
                     <!-- Guides Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
                             <strong>🚀 Guides</strong>
                         </span>
                     </li>
-                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Workers Guide</a></li>
-                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Edge Computing Guide</a></li>
-                    <li role="none"><a href="/cloudflare-framework" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Cloudflare Framework Guide</a></li>
-                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Migration Guide</a></li>
-                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Framework Promise to Reality</a></li>
-                    
+                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="/cloudflare-framework" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Framework Guide</a></li>
+                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Migration Guide</a></li>
+                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Framework Promise to Reality</a></li>
+
                     <li class="nav-dropdown-divider" role="separator"></li>
-                    
+
                     <!-- Examples Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
                             <strong>💡 Examples</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Code Examples & Templates</a></li>
-                    
+                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Code Examples & Templates</a></li>
+
                     <li class="nav-dropdown-divider" role="separator"></li>
-                    
+
                     <!-- Help & Support Section -->
                     <li class="nav-dropdown-section">
                         <span class="nav-dropdown-link nav-dropdown-section-title">
                             <strong>❓ Help & Support</strong>
                         </span>
                     </li>
-                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Frequently Asked Questions</a></li>
-                    
+                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Frequently Asked Questions</a></li>
+
                     <!-- Case Studies Section -->
                     <li class="nav-dropdown-section">
-                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title" role="menuitem">
+                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
                             <strong>📈 Case Studies</strong>
                         </a>
                     </li>
-                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem" role="menuitem">Real-world Implementations</a></li>
+                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Real-world Implementations</a></li>
                 </ul>
             </li>
-            <li><a href="/blog" class="nav-link">Blog</a></li>
-            <li><a href="/pricing" class="nav-link">Pricing</a></li>
+            <li role="none"><a href="/blog" class="nav-link touch-target" role="menuitem">Blog</a></li>
+            <li role="none"><a href="/pricing" class="nav-link touch-target" role="menuitem">Pricing</a></li>
             <!-- Scroll spy navigation for index page -->
-            <li class="nav-scroll-spy hidden">
-                <a href="#key-benefits" class="nav-link">Benefits</a>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#key-benefits" class="nav-link touch-target" role="menuitem">Benefits</a>
             </li>
-            <li class="nav-scroll-spy hidden">
-                <a href="#features" class="nav-link">Features</a>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#features" class="nav-link touch-target" role="menuitem">Features</a>
             </li>
-            <li class="nav-scroll-spy hidden">
-                <a href="#comparison" class="nav-link">Comparison</a>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#comparison" class="nav-link touch-target" role="menuitem">Comparison</a>
             </li>
-            <li class="nav-scroll-spy hidden">
-                <a href="#architecture" class="nav-link">Architecture</a>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#architecture" class="nav-link touch-target" role="menuitem">Architecture</a>
             </li>
-            <li class="nav-dropdown">
-                <a href="/about" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
+            <li class="nav-dropdown" role="none">
+                <a href="/about" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">About</a>
                 <ul class="nav-dropdown-menu" role="menu">
-                    <li role="none"><a href="/about" class="nav-dropdown-link" role="menuitem">About Us</a></li>
-                    <li role="none"><a href="/privacy" class="nav-dropdown-link" role="menuitem">Privacy Policy</a></li>
+                    <li role="none"><a href="/about" class="nav-dropdown-link touch-target" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="/privacy" class="nav-dropdown-link touch-target" role="menuitem">Privacy Policy</a></li>
                 </ul>
             </li>
         </ul>
 
         <div class="nav-actions">
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <button id="theme-toggle" class="theme-toggle touch-target" aria-label="Toggle dark mode" title="Toggle dark mode">
                 <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -498,7 +505,7 @@
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
             </button>
-            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn" target="_blank" rel="noopener" aria-label="View on GitHub">
+            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn touch-target" target="_blank" rel="noopener" aria-label="View on GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>

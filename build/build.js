@@ -32,6 +32,7 @@ function copyHtml(assetManifest = {}) {
     const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
     const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
+    const verificationTemplate = readFileSync(join('templates', 'verification.html'), 'utf8');
     const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
 const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'), 'utf8');
     const heroMinimalTemplate = readFileSync(join('templates', 'hero-minimal.html'), 'utf8'); // Minimal hero for critical path
@@ -216,6 +217,15 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 const blogCritical = `.blog-index__header{margin-bottom:3rem}.blog-index__header h1{margin-bottom:.75rem}.blog-index__header p{font-size:1.1rem;margin:0 auto;line-height:1.6}`;
                 headerCriticalCss = headerCriticalCss + blogCritical;
             }
+
+            // Inject verification meta tags right after <head> tag
+            if (content.includes('<head>')) {
+                content = content.replace('<head>', `<head>\n    ${verificationTemplate}`);
+                console.log(`   ✅ Search Console verification tags injected in ${file}`);
+            } else {
+                console.warn(`   ⚠️  No <head> tag found in ${file} - verification tags NOT injected!`);
+            }
+
             if (content.includes('</head>')) {
                 const headerStyleTag = headerCriticalCss ? `<style>${headerCriticalCss}</style>\n    ` : '';
                 content = content.replace('</head>', `    ${headerStyleTag}${themeScriptTemplate}\n</head>`);

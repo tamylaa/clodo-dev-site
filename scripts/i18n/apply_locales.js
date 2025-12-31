@@ -370,6 +370,26 @@ async function run() {
             "text": "Unsere Dokumentation enthält Fehlerbehebungsleitfäden, und Sie können auf Community-Support, detaillierte Fehlererklärungen und direkte Unterstützung über unsere Enterprise-Support-Kanäle zugreifen."
           }
         }
+      ],
+      'v8-isolates-comprehensive-guide': [
+        {
+          "name": "What are V8 isolates?",
+          "acceptedAnswer": {
+            "text": "V8 isolates are lightweight JavaScript execution environments that provide memory isolation without the overhead of separate processes. They enable efficient, sandboxed code execution for high-concurrency workloads."
+          }
+        },
+        {
+          "name": "When should I use V8 isolates vs containers?",
+          "acceptedAnswer": {
+            "text": "Use V8 isolates for sub-5s requests, JavaScript/WebAssembly, and high concurrency. Use containers for multi-language support, longer durations, or complex dependencies."
+          }
+        },
+        {
+          "name": "How do V8 isolates reduce technical debt?",
+          "acceptedAnswer": {
+            "text": "Isolates enforce modularity and isolation, enabling incremental refactoring and preventing tightly coupled code. They promote stateless, event-driven architectures that scale efficiently."
+          }
+        }
       ]
     },
     'es-419': {
@@ -1340,6 +1360,28 @@ async function run() {
           "name": "¿Cómo obtengo ayuda si encuentro problemas?",
           "acceptedAnswer": {
             "text": "Nossa documentação inclui guias de solução de problemas, e você pode acessar suporte da comunidade, explicações detalhadas de erros e assistência direta através de nossos canais de suporte empresarial."
+          }
+        }
+      ]
+    },
+    'en': {
+      'v8-isolates-comprehensive-guide': [
+        {
+          "name": "What are V8 isolates?",
+          "acceptedAnswer": {
+            "text": "V8 isolates are lightweight JavaScript execution environments that provide memory isolation without the overhead of separate processes. They enable efficient, sandboxed code execution for high-concurrency workloads."
+          }
+        },
+        {
+          "name": "When should I use V8 isolates vs containers?",
+          "acceptedAnswer": {
+            "text": "Use V8 isolates for sub-5s requests, JavaScript/WebAssembly, and high concurrency. Use containers for multi-language support, longer durations, or complex dependencies."
+          }
+        },
+        {
+          "name": "How do V8 isolates reduce technical debt?",
+          "acceptedAnswer": {
+            "text": "Isolates enforce modularity and isolation, enabling incremental refactoring and preventing tightly coupled code. They promote stateless, event-driven architectures that scale efficiently."
           }
         }
       ]

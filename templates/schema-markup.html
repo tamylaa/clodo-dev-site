@@ -86,6 +86,110 @@
         "item": "https://clodo.dev/cloudflare-workers-guide"
       }
     ]
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "h2", "h3", ".summary"]
+  },
+  "potentialAction": {
+    "@type": "ReadAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://clodo.dev/cloudflare-workers-guide",
+      "inLanguage": "en-US",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform",
+        "http://schema.org/IOSPlatform",
+        "http://schema.org/AndroidPlatform"
+      ]
+    }
+  }
+}
+</script>
+
+<!-- Mobile-Specific Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Clodo Framework",
+  "description": "Enterprise orchestration framework for Cloudflare Workers that reduces custom software development costs by 60%",
+  "url": "https://clodo.dev",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": ["iOS", "Android"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/OpenSource"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Clodo Framework",
+    "url": "https://clodo.dev"
+  },
+  "featureList": [
+    "Mobile-optimized documentation",
+    "Touch-friendly interface",
+    "Progressive Web App support",
+    "Offline-capable resources"
+  ]
+}
+</script>
+
+<!-- Mobile Web Page Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Cloudflare Workers Complete Guide",
+  "description": "Comprehensive guide to Cloudflare Workers covering architecture, deployment, and best practices for edge computing applications.",
+  "url": "https://clodo.dev/cloudflare-workers-guide",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Clodo Framework",
+    "url": "https://clodo.dev"
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "inLanguage": "en-US",
+  "potentialAction": [
+    {
+      "@type": "ReadAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://clodo.dev/cloudflare-workers-guide",
+        "inLanguage": "en-US",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform",
+          "http://schema.org/IOSPlatform",
+          "http://schema.org/AndroidPlatform"
+        ]
+      }
+    },
+    {
+      "@type": "ViewAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://clodo.dev/cloudflare-workers-guide",
+        "inLanguage": "en-US",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      }
+    }
+  ],
+  "mainEntity": {
+    "@type": "TechArticle",
+    "headline": "Cloudflare Workers Complete Guide",
+    "description": "Comprehensive guide to Cloudflare Workers covering architecture, deployment, and best practices for edge computing applications."
   }
 }
 </script>

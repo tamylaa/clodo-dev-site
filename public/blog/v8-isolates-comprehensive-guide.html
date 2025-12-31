@@ -12,6 +12,7 @@
     <meta name="author" content="Clodo Team">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://clodo.dev/blog/v8-isolates-comprehensive-guide">
+    <link rel="amphtml" href="https://clodo.dev/blog/v8-isolates-comprehensive-guide.amp.html">
     <link rel="stylesheet" href="../styles.css">
 <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -294,6 +295,8 @@
                 <p class="blog-post__excerpt">Discover how V8 isolates can transform your product architecture with real-world results: 63% cost reduction and 96% latency improvement. A comprehensive guide for developers, architects, and scrum masters in fintech, retail, and IoT.</p>
             </header>
             
+            <!--#include file="../../templates/table-of-contents.html" -->
+            
             <div class="blog-post__content">
                 <p>In the fast-paced world of product startups, efficiency is often treated like a cherry on top—something to optimize after the core features are built and the product is "working." But what if we flipped the script? What if we started with efficiency as the north star, designing systems where runtime environments like V8 isolates aren't just performance amplifiers but the very foundation of our architecture?</p>
                 
@@ -472,7 +475,67 @@
                 
                 <p>Here's a production-ready event processing worker:</p>
                 
-                <pre><code class="language-javascript">// worker.js - Runs in V8 isolate at the edge
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-language">javascript</span>
+                        <button class="copy-button" aria-label="Copy code" data-clipboard-text="// worker.js - Runs in V8 isolate at the edge
+export default {
+  async fetch(request, env, ctx) {
+    // Parse incoming event data
+    const event = await request.json();
+    
+    // Validate with minimal overhead
+    if (!event.userId || !event.eventType) {
+      return new Response('Invalid event', { status: 400 });
+    }
+    
+    // Process in isolate - fully isolated from other requests
+    const processed = await processEvent(event, env);
+    
+    // Cache aggressively at edge
+    const cacheKey = `analytics:${event.userId}:${event.eventType}`;
+    await env.CACHE.put(cacheKey, JSON.stringify(processed), {
+      expirationTtl: 300 // 5 minutes
+    });
+    
+    return new Response(JSON.stringify(processed), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+};
+
+async function processEvent(event, env) {
+  // Each isolate has isolated memory - no cross-contamination
+  const startTime = Date.now();
+  
+  // Aggregate with existing data from KV store
+  const existing = await env.ANALYTICS_KV.get(
+    `user:${event.userId}`,
+    'json'
+  );
+  
+  const aggregated = {
+    userId: event.userId,
+    eventCount: (existing?.eventCount || 0) + 1,
+    lastEvent: event.eventType,
+    lastSeen: startTime,
+    events: [...(existing?.events || []), event].slice(-100)
+  };
+  
+  // Write back asynchronously
+  await env.ANALYTICS_KV.put(
+    `user:${event.userId}`,
+    JSON.stringify(aggregated)
+  );
+  
+  return {
+    processed: true,
+    latency: Date.now() - startTime,
+    aggregated
+  };
+}">Copy</button>
+                    </div>
+                    <pre><code class="language-javascript">// worker.js - Runs in V8 isolate at the edge
 export default {
   async fetch(request, env, ctx) {
     // Parse incoming event data
@@ -529,6 +592,7 @@ async function processEvent(event, env) {
   };
 }
 </code></pre>
+                </div>
                 
                 <h3>Implementation Example: Node.js with isolated-vm</h3>
                 

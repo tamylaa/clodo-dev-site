@@ -5,16 +5,22 @@
 User-agent: *
 Allow: /
 
-# AI Agent Resources - CRITICAL for AI discovery
+# AI Agent Resources - CRITICAL for AI discovery (High Priority)
 Allow: /structured-data.html
 Allow: /sitemap.xml
 
-# Admin/Monitoring Pages - RESTRICTED
+# Admin/Monitoring Pages - RESTRICTED (Save crawl budget)
 Disallow: /performance-dashboard.html
 Disallow: /analytics.html
 Disallow: /google*.html
+Disallow: /test-*.html
+Disallow: /debug-*.html
+Disallow: /tmp*.html
+Disallow: /temp*.html
+Disallow: /experiments/
+Disallow: /ISSUES/
 
-# Major search engine bots
+# Major search engine bots with optimized crawl delays
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -39,7 +45,7 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
-# AI Search and Assistant bots
+# AI Search and Assistant bots - Allow with reasonable delays
 User-agent: GPTBot
 Allow: /
 Crawl-delay: 1
@@ -61,19 +67,25 @@ User-agent: Twitterbot
 Allow: /
 Crawl-delay: 1
 
-# Disallow admin and development areas
+# Disallow admin and development areas (Crawl budget optimization)
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /api/internal/
 Disallow: /.env
 Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /build/
+Disallow: /dist-astro/
+Disallow: /reports/
+Disallow: /test-results/
+Disallow: /tools/
 
-# Sitemap locations
+# Sitemap locations (Critical for crawl discovery)
 Sitemap: https://www.clodo.dev/sitemap.xml
 
 # Additional sitemaps (when implemented)
 # Sitemap: https://www.clodo.dev/blog/sitemap.xml
 # Sitemap: https://www.clodo.dev/docs/sitemap.xml
 
-# Host directive for canonical domain
+# Host directive for canonical domain (SEO best practice)
 Host: https://www.clodo.dev
