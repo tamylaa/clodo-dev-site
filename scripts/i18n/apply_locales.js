@@ -30,22 +30,29 @@ async function run() {
     'es-419': 'Volver',
     'fr': 'Retour',
     'pt': 'Voltar',
-    'br': 'Voltar'
+    'br': 'Voltar',
+    'ar': 'العودة'
   };
   const backLabel = localeLabels[locale] || 'Back';
+
+  // RTL support for Arabic
+  const isRTL = locale === 'ar';
+  const htmlDir = isRTL ? ' dir="rtl"' : '';
+  const rtlCSS = isRTL ? '<link rel="stylesheet" href="/css/rtl.css">' : '';
   const raw = await fs.readFile(i18nFile, 'utf8');
   const i18n = JSON.parse(raw);
   const outDir = path.join(__dirname, '..', '..', 'public', 'i18n', locale);
   await fs.mkdir(outDir, { recursive: true });
   for (const [slug, meta] of Object.entries(i18n)) {
     const html = `<!doctype html>
-<html lang="${locale.split('-')[0]}">
+<html lang="${locale.split('-')[0]}"${htmlDir}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${meta.title}</title>
   <meta name="description" content="${meta.meta}">
   <link rel="canonical" href="https://www.clodo.dev/i18n/${locale}/${slug}">
+  ${rtlCSS}
 </head>
 <body>
   <div style="padding:1rem; background:#f3f4f6; border-left:4px solid #3b82f6;">
