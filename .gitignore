@@ -5,6 +5,11 @@ node_modules/
 # dist/  -- Keep committed for Cloudflare Pages deployment (npm run build generates it)
 dist-astro/
 
+# Build artifacts (generated during build process)
+build/build-output.txt
+build/build.log
+build/link-health-report.json
+
 # Astro cache
 .astro/
 
@@ -44,6 +49,8 @@ playwright/.cache/
 # Temporary diagnostic files
 tmp_*.html
 tmp_*.txt
+debug/tmp*.html
+debug/temp_*.html
 
 # Internal documentation (keep in repo but separate)
 # Uncomment below if you want to ignore internal docs:
