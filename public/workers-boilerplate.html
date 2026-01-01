@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</title>
+    <link rel="canonical" href="https://clodo.dev/workers-boilerplate/">
+    
+    <!-- Hreflang tags for international SEO -->
+    <link rel="alternate" hreflang="en" href="https://clodo.dev/workers-boilerplate/">
+    <link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/workers-boilerplate.html">
+    <link rel="alternate" hreflang="x-default" href="https://clodo.dev/workers-boilerplate/">
+    
+    <meta name="description" content="Compare top Cloudflare Workers boilerplates and starter templates. Find the best framework for your project with feature comparisons, setup guides, and deployment examples.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cloudflare Workers Boilerplates: Ultimate Starter Template Guide">
+    <meta property="og:description" content="Comprehensive comparison of Workers boilerplates including Clodo, Wrangler templates, and community frameworks.">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta property="og:url" content="https://clodo.dev/workers-boilerplate/">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Workers Boilerplates: Template Comparison Guide">
+    <meta name="twitter:description" content="Find the perfect Cloudflare Workers starter template for your project.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+
+    <!-- Article Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cloudflare Workers Boilerplates: Complete Starter Template Comparison",
+      "description": "Comprehensive guide comparing popular Cloudflare Workers boilerplates, starter templates, and frameworks for developers.",
+      "image": "https://clodo.dev/og-image.png",
+      "datePublished": "2026-01-01T00:00:00Z",
+      "dateModified": "2026-01-01T00:00:00Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo",
+        "url": "https://www.clodo.dev"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://clodo.dev/logo.png"
+        }
+      },
+      "keywords": ["workers boilerplate", "cloudflare workers template", "starter template", "workers framework", "wrangler template"]
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best Cloudflare Workers boilerplate for beginners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For beginners, we recommend starting with the official Wrangler templates or Clodo Framework. Both provide excellent documentation and community support. Clodo offers additional enterprise features like multi-tenancy and authentication out of the box."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I choose between different Workers frameworks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Consider your project requirements: For simple APIs, use basic Wrangler templates. For complex SaaS applications, choose frameworks with built-in authentication and database integration like Clodo. Evaluate based on TypeScript support, testing frameworks, and deployment ease."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I migrate from one Workers boilerplate to another?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, migration is possible but requires careful planning. Start by understanding the differences in project structure, dependencies, and configuration. Clodo provides migration guides from popular frameworks like Wrangler and Hono."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema for Clodo -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Clodo Framework",
+      "description": "Enterprise-grade framework for Cloudflare Workers with multi-tenant SaaS support, authentication, and 60% cost reduction.",
+      "url": "https://clodo.dev",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cloudflare Workers",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo"
+      },
+      "featureList": [
+        "Multi-tenant SaaS support",
+        "Built-in authentication",
+        "Database integration",
+        "TypeScript support",
+        "Testing framework",
+        "Deployment automation"
+      ]
+    }
+    </script>
+</head>
+<body>
+<body>
+    <header><!--#include file="../templates/nav-main.html" --></header>
+
+    <main>
+        <article>
+            <header class="hero">
+                <h1>Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</h1>
+                <p class="subtitle">Find the perfect starting point for your Cloudflare Workers project with our comprehensive comparison of popular boilerplates and frameworks.</p>
+            </header>
+
+            <section id="table-of-contents">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#popular-boilerplates">Popular Workers Boilerplates</a></li>
+                    <li><a href="#feature-comparison">Feature Comparison</a></li>
+                    <li><a href="#getting-started">Getting Started Guide</a></li>
+                    <li><a href="#migration">Migration Strategies</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                </ul>
+            </section>
+
+            <section id="popular-boilerplates">
+                <h2>Popular Cloudflare Workers Boilerplates</h2>
+                
+                <div class="boilerplate-grid">
+                    <div class="boilerplate-card">
+                        <h3>Clodo Framework</h3>
+                        <p>Enterprise-grade framework with multi-tenant SaaS support, authentication, and database integration.</p>
+                        <div class="features">
+                            <span class="feature">Multi-tenant ready</span>
+                            <span class="feature">Built-in auth</span>
+                            <span class="feature">TypeScript</span>
+                            <span class="feature">Testing included</span>
+                        </div>
+                        <div class="actions">
+                            <a href="/docs" class="btn-primary">Get Started</a>
+                            <a href="https://github.com/clodo/clodo" class="btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="boilerplate-card">
+                        <h3>Wrangler Templates</h3>
+                        <p>Official Cloudflare templates for various use cases, maintained by the Workers team.</p>
+                        <div class="features">
+                            <span class="feature">Official support</span>
+                            <span class="feature">Multiple languages</span>
+                            <span class="feature">Well documented</span>
+                            <span class="feature">Free</span>
+                        </div>
+                        <div class="actions">
+                            <a href="https://developers.cloudflare.com/workers/get-started/guide/" class="btn-primary">Official Guide</a>
+                            <a href="https://github.com/cloudflare/workers-sdk/tree/main/templates" class="btn-secondary">Templates</a>
+                        </div>
+                    </div>
+
+                    <div class="boilerplate-card">
+                        <h3>Hono Framework</h3>
+                        <p>Fast, lightweight web framework for Cloudflare Workers with excellent TypeScript support.</p>
+                        <div class="features">
+                            <span class="feature">Fast performance</span>
+                            <span class="feature">TypeScript first</span>
+                            <span class="feature">Middleware rich</span>
+                            <span class="feature">Active community</span>
+                        </div>
+                        <div class="actions">
+                            <a href="https://hono.dev" class="btn-primary">Documentation</a>
+                            <a href="https://github.com/honojs/hono" class="btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="boilerplate-card">
+                        <h3>Itty Router</h3>
+                        <p>Simple, functional router for Cloudflare Workers with minimal overhead.</p>
+                        <div class="features">
+                            <span class="feature">Lightweight</span>
+                            <span class="feature">Functional style</span>
+                            <span class="feature">Easy to learn</span>
+                            <span class="feature">CORS built-in</span>
+                        </div>
+                        <div class="actions">
+                            <a href="https://itty.dev" class="btn-primary">Documentation</a>
+                            <a href="https://github.com/kwhitley/itty-router" class="btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="feature-comparison">
+                <h2>Feature Comparison Table</h2>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Clodo</th>
+                                <th>Wrangler</th>
+                                <th>Hono</th>
+                                <th>Itty Router</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TypeScript Support</td>
+                                <td>✅ Excellent</td>
+                                <td>✅ Good</td>
+                                <td>✅ Excellent</td>
+                                <td>✅ Good</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-tenant SaaS</td>
+                                <td>✅ Built-in</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                            </tr>
+                            <tr>
+                                <td>Authentication</td>
+                                <td>✅ JWT + OAuth</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                            </tr>
+                            <tr>
+                                <td>Database Integration</td>
+                                <td>✅ D1 + KV</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                            </tr>
+                            <tr>
+                                <td>Testing Framework</td>
+                                <td>✅ Vitest</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                                <td>❌ Manual</td>
+                            </tr>
+                            <tr>
+                                <td>Learning Curve</td>
+                                <td>Medium</td>
+                                <td>Low</td>
+                                <td>Low</td>
+                                <td>Low</td>
+                            </tr>
+                            <tr>
+                                <td>Community Size</td>
+                                <td>Growing</td>
+                                <td>Large</td>
+                                <td>Large</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Cost Reduction</td>
+                                <td>60%</td>
+                                <td>0%</td>
+                                <td>0%</td>
+                                <td>0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="getting-started">
+                <h2>Getting Started with Clodo Framework</h2>
+                <p>Ready to build production-ready Workers applications? Here's how to get started with Clodo:</p>
+                
+                <div class="code-example">
+                    <h3>Quick Setup</h3>
+                    <pre><code>npm create clodo@latest my-app
+cd my-app
+npm install
+npm run dev</code></pre>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <h3>1. Create Your Project</h3>
+                        <p>Use our CLI to scaffold a new Clodo project with all enterprise features pre-configured.</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. Configure Environment</h3>
+                        <p>Set up your Cloudflare account, D1 database, and KV namespaces through our guided setup.</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. Deploy to Production</h3>
+                        <p>One-command deployment with automatic scaling, monitoring, and security.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="migration">
+                <h2>Migrating from Other Frameworks</h2>
+                <p>Already using another Workers framework? Migration guides are coming soon. For now, check our <a href="/wrangler-to-clodo-migration">Wrangler migration guide</a> for detailed steps.</p>
+            </section>
+
+            <section id="best-practices">
+                <h2>Workers Boilerplate Best Practices</h2>
+                
+                <h3>Choose Based on Project Needs</h3>
+                <p>For simple APIs or scheduled tasks, basic templates suffice. For complex applications requiring authentication, databases, and multi-tenancy, choose frameworks like Clodo that provide these features out of the box.</p>
+                
+                <h3>Consider Long-term Maintenance</h3>
+                <p>Evaluate community size, documentation quality, and update frequency. Official Cloudflare templates offer stability, while community frameworks provide innovation.</p>
+                
+                <h3>Start Small, Scale Up</h3>
+                <p>Begin with a minimal template and add features as needed. Most boilerplates support incremental enhancement without complete rewrites.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Clodo Framework. All rights reserved.</p>
+            <nav>
+                <a href="/privacy">Privacy</a>
+                <a href="https://github.com/clodo/clodo">GitHub</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Load CSS and JS -->
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/script.js" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html></content>
+<parameter name="filePath">G:\coding\clodo-dev-site\public\workers-boilerplate.html
