@@ -4,38 +4,46 @@ This folder contains strategic planning documents, framework evolution ideas, an
 
 ## 📁 Document Organization
 
-### 📈 **Strategic Planning & Roadmaps**
-- **[ADVANCED_SEO_ENHANCEMENT_ROADMAP.md](ADVANCED_SEO_ENHANCEMENT_ROADMAP.md)** - Advanced SEO enhancement roadmap and strategies
-- **[CLODO_FRAMEWORK_EVOLUTION.md](CLODO_FRAMEWORK_EVOLUTION.md)** - Complete framework evolution plan and implementation roadmap
-- **[FRAMEWORK_TRANSFORMATION_PLAN.md](FRAMEWORK_TRANSFORMATION_PLAN.md)** - Detailed plan for transforming scripts into reusable framework
-- **[FRAMEWORK_ROI_ANALYSIS.md](FRAMEWORK_ROI_ANALYSIS.md)** - Return on investment analysis for framework development
-- **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** - Project structure planning and organization
-- **[SEO_IMPLEMENTATION_PLAN.md](SEO_IMPLEMENTATION_PLAN.md)** - SEO implementation planning and strategy
-- **[pending-todolist.md](pending-todolist.md)** - Pending tasks and action items
-- **[ROI_ESTIMATES.md](ROI_ESTIMATES.md)** - Return on investment estimates and analysis
-- **[VISIBILITY_ACTION_PLAN.md](VISIBILITY_ACTION_PLAN.md)** - Visibility and growth action plan
-
-### ☁️ **Cloudflare Strategy & Solutions**
-- **[CLOUDFLARE_DDOS_OVERRIDE_SOLUTION.md](CLOUDFLARE_DDOS_OVERRIDE_SOLUTION.md)** - DDoS override solution strategies
-- **[CLOUDFLARE_REAL_SOLUTION.md](CLOUDFLARE_REAL_SOLUTION.md)** - Real-world Cloudflare implementation solutions
-- **[CLOUDFLARE_SETUP_VISUAL_GUIDE.md](CLOUDFLARE_SETUP_VISUAL_GUIDE.md)** - Visual guide for Cloudflare setup
-- **[CLOUDFLARE_WAF_FIX.md](CLOUDFLARE_WAF_FIX.md)** - Web Application Firewall fixes and solutions
-
-### 🎯 **Strategic & Marketing Ideas**
-- **[CLODO_ACTION_PLAN_UPDATED.md](CLODO_ACTION_PLAN_UPDATED.md)** - Updated action plan for Clodo Framework development
-- **[CLODO_AUTOMATION_ADVANTAGE.md](CLODO_AUTOMATION_ADVANTAGE.md)** - Analysis of automation advantages in the framework
-- **[CLODO_CAPABILITY_AWARE_MARKETING.md](CLODO_CAPABILITY_AWARE_MARKETING.md)** - Marketing strategies focused on framework capabilities
-- **[CLODO_COMPETITIVE_ANALYSIS.md](CLODO_COMPETITIVE_ANALYSIS.md)** - Competitive landscape analysis
-- **[CLODO_GUERRILLA_MARKETING.md](CLODO_GUERRILLA_MARKETING.md)** - Guerrilla marketing tactics and strategies
-- **[CLODO_MARKETING_REVIEW.md](CLODO_MARKETING_REVIEW.md)** - Comprehensive marketing strategy review
-- **[DAILY_GUERRILLA_CHECKLIST.md](DAILY_GUERRILLA_CHECKLIST.md)** - Daily checklist for guerrilla marketing activities
-- **[EARLY_STAGE_STRATEGIES_FROM_COMPETITORS.md](EARLY_STAGE_STRATEGIES_FROM_COMPETITORS.md)** - Lessons from competitor early-stage strategies
-
 ### 🏗️ **Framework Architecture & Evolution**
-- **[ADDITIONAL_FRAMEWORK_SCRIPTS.md](ADDITIONAL_FRAMEWORK_SCRIPTS.md)** - Comprehensive list of additional scripts needed for framework
+- **[framework/](framework/)** - Framework development and technical architecture
+  - **[CLODO_FRAMEWORK_EVOLUTION.md](framework/CLODO_FRAMEWORK_EVOLUTION.md)** - Complete framework evolution plan
+  - **[FRAMEWORK_ROI_ANALYSIS.md](framework/FRAMEWORK_ROI_ANALYSIS.md)** - ROI analysis for framework development
+  - **[FRAMEWORK_TRANSFORMATION_PLAN.md](framework/FRAMEWORK_TRANSFORMATION_PLAN.md)** - Transformation plan for scripts to framework
+  - **[SCRIPTS_INVENTORY.md](framework/SCRIPTS_INVENTORY.md)** - Complete inventory of 165+ scripts
+  - **[ADDITIONAL_FRAMEWORK_SCRIPTS.md](framework/ADDITIONAL_FRAMEWORK_SCRIPTS.md)** - Additional scripts needed
 
-### 🔧 **Technical Infrastructure**
-- **[SCRIPTS_INVENTORY.md](SCRIPTS_INVENTORY.md)** - Complete inventory of all 165+ build and tooling scripts
+### ☁️ **Cloudflare Technical Solutions**
+- **[cloudflare/](cloudflare/)** - Cloudflare-specific technical guides and solutions
+  - **[CLOUDFLARE_DDOS_OVERRIDE_SOLUTION.md](cloudflare/CLOUDFLARE_DDOS_OVERRIDE_SOLUTION.md)** - DDoS override configuration
+  - **[CLOUDFLARE_REAL_SOLUTION.md](cloudflare/CLOUDFLARE_REAL_SOLUTION.md)** - Real-world implementation strategies
+  - **[CLOUDFLARE_SETUP_VISUAL_GUIDE.md](cloudflare/CLOUDFLARE_SETUP_VISUAL_GUIDE.md)** - Visual setup guide
+  - **[CLOUDFLARE_WAF_FIX.md](cloudflare/CLOUDFLARE_WAF_FIX.md)** - WAF fixes and security solutions
+
+### 💼 **Business Analysis & Strategy**
+- **[business/](business/)** - Business planning and competitive analysis
+  - **[CLODO_COMPETITIVE_ANALYSIS.md](business/CLODO_COMPETITIVE_ANALYSIS.md)** - Competitive landscape analysis
+  - **[ROI_ESTIMATES.md](business/ROI_ESTIMATES.md)** - Financial projections and ROI analysis
+
+### 📊 **Marketing & Growth Strategy**
+- **[marketing/](marketing/)** - Marketing strategies and growth planning
+  - **[CLODO_GUERRILLA_MARKETING.md](marketing/CLODO_GUERRILLA_MARKETING.md)** - Guerrilla marketing tactics
+  - **[CLODO_MARKETING_REVIEW.md](marketing/CLODO_MARKETING_REVIEW.md)** - Marketing strategy review
+  - **[DAILY_GUERRILLA_CHECKLIST.md](marketing/DAILY_GUERRILLA_CHECKLIST.md)** - Daily marketing checklist
+  - **[EARLY_STAGE_STRATEGIES_FROM_COMPETITORS.md](marketing/EARLY_STAGE_STRATEGIES_FROM_COMPETITORS.md)** - Competitor strategy analysis
+  - **[seo/](marketing/seo/)** - SEO enhancement strategies
+    - **[ADVANCED_SEO_ENHANCEMENT_ROADMAP.md](marketing/seo/ADVANCED_SEO_ENHANCEMENT_ROADMAP.md)** - Advanced SEO roadmap
+    - **[SEO_IMPLEMENTATION_PLAN.md](marketing/seo/SEO_IMPLEMENTATION_PLAN.md)** - SEO implementation planning
+    - **[VISIBILITY_ACTION_PLAN.md](marketing/seo/VISIBILITY_ACTION_PLAN.md)** - Visibility and growth actions
+
+### 📋 **Project Management & Planning**
+- **[project/](project/)** - Project management and operational planning
+  - **[PROJECT_STRUCTURE.md](project/PROJECT_STRUCTURE.md)** - Project structure and organization
+  - **[pending-todolist.md](project/pending-todolist.md)** - Comprehensive roadmap and tasks
+
+### 🎯 **Strategic Planning & Execution**
+- **[CLODO_ACTION_PLAN_UPDATED.md](CLODO_ACTION_PLAN_UPDATED.md)** - Updated action plan for framework development
+- **[CLODO_AUTOMATION_ADVANTAGE.md](CLODO_AUTOMATION_ADVANTAGE.md)** - Analysis of automation advantages
+- **[CLODO_CAPABILITY_AWARE_MARKETING.md](CLODO_CAPABILITY_AWARE_MARKETING.md)** - Capability-focused marketing strategies
 
 ## 📋 Key Insights & Decisions
 
@@ -94,14 +102,16 @@ This folder contains strategic planning documents, framework evolution ideas, an
 
 | Document | Status | Last Updated | Key Decisions |
 |----------|--------|--------------|---------------|
-| CLODO_FRAMEWORK_EVOLUTION.md | ✅ Complete | 2026-01-01 | "1-Site System" approach approved |
-| FRAMEWORK_ROI_ANALYSIS.md | ✅ Complete | 2026-01-01 | Full framework not recommended |
-| SCRIPTS_INVENTORY.md | ✅ Complete | 2026-01-01 | 165+ scripts cataloged |
-| FRAMEWORK_TRANSFORMATION_PLAN.md | ✅ Complete | 2026-01-01 | Detailed transformation plan |
-| ADDITIONAL_FRAMEWORK_SCRIPTS.md | ✅ Complete | 2026-01-01 | 30+ additional scripts identified |
-| ADVANCED_SEO_ENHANCEMENT_ROADMAP.md | 📝 Existing | Various | SEO enhancement strategies |
-| CLOUDFLARE_*_SOLUTION.md | 📝 Existing | Various | Cloudflare implementation strategies |
-| Marketing Documents | 📝 Existing | Various | Strategic marketing plans |
+| framework/CLODO_FRAMEWORK_EVOLUTION.md | ✅ Complete | 2026-01-01 | "1-Site System" approach approved |
+| framework/FRAMEWORK_ROI_ANALYSIS.md | ✅ Complete | 2026-01-01 | Full framework not recommended |
+| framework/SCRIPTS_INVENTORY.md | ✅ Complete | 2026-01-01 | 165+ scripts cataloged |
+| framework/FRAMEWORK_TRANSFORMATION_PLAN.md | ✅ Complete | 2026-01-01 | Detailed transformation plan |
+| framework/ADDITIONAL_FRAMEWORK_SCRIPTS.md | ✅ Complete | 2026-01-01 | 30+ additional scripts identified |
+| marketing/seo/ADVANCED_SEO_ENHANCEMENT_ROADMAP.md | 📝 Existing | Various | SEO enhancement strategies |
+| cloudflare/CLOUDFLARE_*_SOLUTION.md | 📝 Existing | Various | Cloudflare implementation strategies |
+| marketing/* | 📝 Existing | Various | Strategic marketing plans |
+| business/* | 📝 Existing | Various | Business analysis and planning |
+| project/* | 📝 Existing | Various | Project management and planning |
 
 ## 🚀 Next Steps
 
