@@ -79,6 +79,19 @@
         </image:image>
     </url>
 
+    <!-- Workers Boilerplate Showcase - HIGH PRIORITY SEO -->
+    <url>
+        <loc>https://clodo.dev/workers-boilerplate</loc>
+        <lastmod>2026-01-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://clodo.dev/og-image.png</image:loc>
+            <image:title>Cloudflare Workers Boilerplates: Starter Templates Comparison</image:title>
+            <image:caption>Compare top Workers boilerplates including Clodo, Wrangler, Hono, and Itty Router</image:caption>
+        </image:image>
+    </url>
+
     <!-- Workers Authentication Guide - HIGH PRIORITY SEO -->
     <url>
         <loc>https://clodo.dev/cloudflare-workers-auth</loc>
