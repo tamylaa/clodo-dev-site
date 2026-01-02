@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product Page Content",
+  "description": "Content configuration for the product page",
+
+  "hero": {
+    "title": "Clodo Framework — Product & Download",
+    "subtitle": "Enterprise SaaS framework for Cloudflare Workers",
+    "description": "Build enterprise SaaS on Cloudflare Workers faster and safer. Install the framework, explore features, and compare with other toolkits.",
+    "cta": {
+      "primary": {
+        "text": "Get Started",
+        "href": "/quick-start",
+        "icon": "download"
+      },
+      "secondary": {
+        "text": "View Docs",
+        "href": "/docs",
+        "icon": "book"
+      }
+    }
+  },
+
+  "announcement": {
+    "enabled": true,
+    "id": "product-launch-2025",
+    "dismissible": true,
+    "expiresAt": "2025-03-01T00:00:00Z",
+    "style": {
+      "backgroundColor": "#1d4ed8",
+      "textColor": "#ffffff",
+      "accentColor": "#fbbf24",
+      "position": "top"
+    },
+    "content": {
+      "icon": "🚀",
+      "badge": "NEW",
+      "message": "Product page exclusive: Get enterprise support included for free!",
+      "link": {
+        "text": "Contact Sales",
+        "url": "/contact",
+        "external": false
+      }
+    }
+  },
+
+  "features": {
+    "title": "Why Choose Clodo Framework?",
+    "subtitle": "Built for enterprise-scale applications",
+    "items": [
+      {
+        "icon": "⚡",
+        "title": "Lightning Fast",
+        "description": "Edge computing performance with global distribution"
+      },
+      {
+        "icon": "🔒",
+        "title": "Enterprise Security",
+        "description": "SOC 2 compliant with built-in security features"
+      },
+      {
+        "icon": "🏗️",
+        "title": "Modular Architecture",
+        "description": "LEGO-like components for rapid development"
+      }
+    ]
+  }
+}

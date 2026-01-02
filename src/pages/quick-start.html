@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start - Clodo Framework</title>
+    <meta name="description" content="Get started with Clodo Framework in 5 minutes. Build enterprise SaaS on Cloudflare Workers.">
+    <link rel="canonical" href="https://www.clodo.dev/quick-start">
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.clodo.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Quick Start",
+          "item": "https://www.clodo.dev/quick-start"
+        }
+      ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><!--#include file="../templates/nav-main.html" --></header>
+
+    <main id="main-content">
+        <section class="quick-start-hero">
+            <div class="container">
+                <h1>🚀 Get Started in 5 Minutes</h1>
+                <p>Build your first enterprise SaaS app on Cloudflare Workers with pre-flight validations and zero cold starts.</p>
+            </div>
+        </section>
+
+        <section class="quick-start-steps">
+            <div class="container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Clodo CLI</h3>
+                    <pre><code>npm install -g @clodo/framework</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Your App</h3>
+                    <pre><code>clodo init my-enterprise-saas</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Add Enterprise Components</h3>
+                    <pre><code>cd my-enterprise-saas
+clodo add auth --enterprise
+clodo add database --multi-tenant</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Deploy with Confidence</h3>
+                    <pre><code>clodo deploy --check</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="live-demo">
+            <div class="container">
+                <h2>🎮 Try It Live</h2>
+                <p>Experience Clodo Framework in your browser:</p>
+                <div class="demo-embed">
+                    <iframe src="https://stackblitz.com/github/tamylaa/clodo-starter-template?embed=1&file=index.js" width="100%" height="600" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><!--#include file="../templates/footer.html" --></footer>
+</body>
+</html>

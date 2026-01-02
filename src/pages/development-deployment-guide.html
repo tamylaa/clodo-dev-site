@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development & Deployment Guide: Edge Application Lifecycle</title>
+    <link rel="canonical" href="https://www.clodo.dev/development-deployment-guide">
+    <meta name="description" content="Master the complete development and deployment lifecycle for edge applications. Learn workflows, CI/CD, performance optimization, security, and scaling strategies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Development & Deployment Guide: Edge Application Lifecycle">
+    <meta property="og:description" content="Master the complete development and deployment lifecycle for edge applications with best practices for performance, security, and scaling.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/development-deployment-guide.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Development & Deployment Guide: Edge Application Lifecycle">
+    <meta name="twitter:description" content="Master the complete development and deployment lifecycle for edge applications with best practices for performance, security, and scaling.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Development & Deployment Guide: Edge Application Lifecycle",
+      "description": "Master the complete development and deployment lifecycle for edge applications. Learn workflows, CI/CD, performance optimization, security, and scaling strategies.",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2025-11-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clodo.dev/development-deployment-guide.html"
+      },
+      "articleSection": "Development & Deployment",
+      "keywords": ["edge development", "deployment", "ci/cd", "performance optimization", "security", "scaling"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="/">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Development & Deployment Guide</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Development & Deployment Guide</h1>
+                    <p>Master the complete lifecycle of edge application development. Learn modern workflows, CI/CD pipelines, performance optimization, security best practices, and scaling strategies.</p>
+                    <div class="hero-actions">
+                        <a href="/docs" class="btn btn--primary">Start Developing</a>
+                        <a href="/examples" class="btn btn--secondary">View Examples</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>Development Workflow</h2>
+                        <p>A modern development workflow for edge applications combines local development, testing, continuous integration, and automated deployment to deliver high-quality applications efficiently.</p>
+
+                        <h3>Local Development Environment</h3>
+                        <div class="dev-environment">
+                            <div class="tool">
+                                <h4>🔧 Clodo CLI</h4>
+                                <p>Command-line interface for project management, development server, and deployment</p>
+                                <div class="code-example">
+                                    <pre><code># Install CLI
+npm install -g @clodo/cli
+
+# Create new project
+clodo create my-app
+
+# Start development server
+clodo dev</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="tool">
+                                <h4>📝 Code Editor</h4>
+                                <p>VS Code with Clodo extensions for syntax highlighting, debugging, and IntelliSense</p>
+                            </div>
+
+                            <div class="tool">
+                                <h4>🧪 Testing Framework</h4>
+                                <p>Jest and Vitest for unit tests, integration tests, and end-to-end testing</p>
+                            </div>
+
+                            <div class="tool">
+                                <h4>🐳 Local Stack</h4>
+                                <p>Miniflare for local Cloudflare Workers simulation with KV, D1, and Durable Objects</p>
+                            </div>
+                        </div>
+
+                        <h3>Project Structure</h3>
+                        <div class="code-example">
+                            <pre><code>my-clodo-app/
+├── src/
+│   ├── routes/
+│   │   ├── api.ts
+│   │   └── web.ts
+│   ├── middleware/
+│   │   ├── auth.ts
+│   │   └── cors.ts
+│   ├── models/
+│   │   └── user.ts
+│   └── index.ts
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+├── migrations/
+│   └── 001_initial.sql
+├── clodo.config.ts
+├── package.json
+└── README.md</code></pre>
+                        </div>
+
+                        <h2>Testing Strategies</h2>
+                        <div class="testing-strategies">
+                            <div class="strategy">
+                                <h3>Unit Testing</h3>
+                                <p>Test individual functions and components in isolation</p>
+                                <div class="code-example">
+                                    <pre><code>import { describe, it, expect } from 'vitest';
+import { validateEmail } from '../src/utils/validation';
+
+describe('Email Validation', () => {
+  it('should validate correct email', () => {
+    expect(validateEmail('user@example.com')).toBe(true);
+  });
+
+  it('should reject invalid email', () => {
+    expect(validateEmail('invalid-email')).toBe(false);
+  });
+});</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="strategy">
+                                <h3>Integration Testing</h3>
+                                <p>Test how components work together, including database interactions</p>
+                                <div class="code-example">
+                                    <pre><code>import { test, expect } from 'vitest';
+import { Clodo } from '@clodo/framework';
+
+test('user registration flow', async () => {
+  const app = new Clodo();
+
+  const response = await app.request('/api/register', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: 'test@example.com',
+      password: 'password123'
+    })
+  });
+
+  expect(response.status).toBe(201);
+  const user = await response.json();
+  expect(user.email).toBe('test@example.com');
+});</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="strategy">
+                                <h3>E2E Testing</h3>
+                                <p>Test complete user journeys from frontend to backend</p>
+                                <div class="code-example">
+                                    <pre><code>import { test, expect } from '@playwright/test';
+
+test('complete user registration', async ({ page }) => {
+  await page.goto('/register');
+
+  await page.fill('[name="email"]', 'test@example.com');
+  await page.fill('[name="password"]', 'password123');
+  await page.click('[type="submit"]');
+
+  await expect(page).toHaveURL('/dashboard');
+  await expect(page.locator('.welcome-message')).toContainText('Welcome');
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Continuous Integration & Deployment</h2>
+                        <div class="ci-cd-pipeline">
+                            <div class="pipeline-stage">
+                                <h4>1. Code Quality</h4>
+                                <p>Linting, type checking, and security scanning</p>
+                            </div>
+                            <div class="pipeline-stage">
+                                <h4>2. Testing</h4>
+                                <p>Run unit, integration, and E2E test suites</p>
+                            </div>
+                            <div class="pipeline-stage">
+                                <h4>3. Build</h4>
+                                <p>Optimize and bundle code for production</p>
+                            </div>
+                            <div class="pipeline-stage">
+                                <h4>4. Deploy</h4>
+                                <p>Deploy to staging, run smoke tests, then production</p>
+                            </div>
+                            <div class="pipeline-stage">
+                                <h4>5. Monitor</h4>
+                                <p>Monitor performance and error rates post-deployment</p>
+                            </div>
+                        </div>
+
+                        <h3>GitHub Actions Example</h3>
+                        <div class="code-example">
+                            <pre><code>name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  deploy-staging:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: clodo deploy --env staging
+
+  deploy-production:
+    needs: deploy-staging
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: clodo deploy --env production</code></pre>
+                        </div>
+
+                        <h2>Performance Optimization</h2>
+                        <div class="performance-optimization">
+                            <div class="optimization">
+                                <h4>⚡ Response Time Optimization</h4>
+                                <ul>
+                                    <li>Use streaming responses for large data</li>
+                                    <li>Implement caching strategies (CDN, KV, browser)</li>
+                                    <li>Optimize database queries and connections</li>
+                                    <li>Minimize external API calls</li>
+                                </ul>
+                            </div>
+
+                            <div class="optimization">
+                                <h4>📦 Bundle Size Optimization</h4>
+                                <ul>
+                                    <li>Tree shaking to remove unused code</li>
+                                    <li>Code splitting for better caching</li>
+                                    <li>Compress assets (gzip, brotli)</li>
+                                    <li>Lazy load non-critical resources</li>
+                                </ul>
+                            </div>
+
+                            <div class="optimization">
+                                <h4>🔄 Runtime Optimization</h4>
+                                <ul>
+                                    <li>Use efficient algorithms and data structures</li>
+                                    <li>Implement connection pooling</li>
+                                    <li>Cache expensive computations</li>
+                                    <li>Profile and optimize hot paths</li>
+                                </ul>
+                            </div>
+
+                            <div class="optimization">
+                                <h4>🌐 Network Optimization</h4>
+                                <ul>
+                                    <li>Minimize round trips with batching</li>
+                                    <li>Use HTTP/2 for multiplexing</li>
+                                    <li>Implement proper CORS headers</li>
+                                    <li>Optimize for edge network topology</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Performance Monitoring</h3>
+                        <div class="code-example">
+                            <pre><code>// Performance monitoring middleware
+export async function performanceMiddleware(c, next) {
+  const start = Date.now();
+
+  const response = await next();
+
+  const duration = Date.now() - start;
+
+  // Log slow requests
+  if (duration > 1000) {
+    console.warn(`Slow request: ${c.req.method} ${c.req.url} took ${duration}ms`);
+  }
+
+  // Add performance headers
+  response.headers.set('X-Response-Time', `${duration}ms`);
+  response.headers.set('X-Edge-Location', c.req.cf?.colo || 'unknown');
+
+  return response;
+}</code></pre>
+                        </div>
+
+                        <h2>Security Best Practices</h2>
+                        <div class="security-practices">
+                            <div class="practice">
+                                <h4>🔐 Authentication & Authorization</h4>
+                                <ul>
+                                    <li>Use JWT with proper expiration</li>
+                                    <li>Implement role-based access control</li>
+                                    <li>Validate all user inputs</li>
+                                    <li>Use secure session management</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>🛡️ Input Validation & Sanitization</h4>
+                                <ul>
+                                    <li>Validate and sanitize all inputs</li>
+                                    <li>Use parameterized queries</li>
+                                    <li>Implement rate limiting</li>
+                                    <li>Escape output to prevent XSS</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>🔒 Data Protection</h4>
+                                <ul>
+                                    <li>Encrypt sensitive data at rest</li>
+                                    <li>Use HTTPS for all communications</li>
+                                    <li>Implement proper CORS policies</li>
+                                    <li>Regular security audits</li>
+                                </ul>
+                            </div>
+
+                            <div class="practice">
+                                <h4>🚨 Monitoring & Incident Response</h4>
+                                <ul>
+                                    <li>Log security events</li>
+                                    <li>Implement intrusion detection</li>
+                                    <li>Have incident response plans</li>
+                                    <li>Regular security updates</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Security Headers Middleware</h3>
+                        <div class="code-example">
+                            <pre><code>export async function securityHeaders(c, next) {
+  const response = await next();
+
+  // Security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('Permissions-Policy', 'geolocation=(), microphone=()');
+
+  // CSP header
+  response.headers.set('Content-Security-Policy',
+    "default-src 'self'; " +
+    "script-src 'self' 'nonce-${c.req.nonce}'; " +
+    "style-src 'self' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "img-src 'self' data: https:; " +
+    "connect-src 'self' https://api.example.com"
+  );
+
+  return response;
+}</code></pre>
+                        </div>
+
+                        <h2>Scaling Strategies</h2>
+                        <div class="scaling-strategies">
+                            <div class="strategy">
+                                <h4>Horizontal Scaling</h4>
+                                <p>Cloudflare automatically scales your application across 200+ edge locations based on traffic patterns.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h4>Database Scaling</h4>
+                                <p>Use read replicas, connection pooling, and caching to handle increased database load.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h4>Caching Strategies</h4>
+                                <p>Implement multi-layer caching: browser, CDN, edge, and database caching.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h4>Load Balancing</h4>
+                                <p>Distribute traffic intelligently across regions and data centers.</p>
+                            </div>
+                        </div>
+
+                        <h3>Scaling Best Practices</h3>
+                        <ul>
+                            <li><strong>Stateless Design:</strong> Design applications to be stateless for easy scaling</li>
+                            <li><strong>Auto-scaling:</strong> Let the platform handle scaling automatically</li>
+                            <li><strong>Monitoring:</strong> Monitor key metrics to identify scaling needs</li>
+                            <li><strong>Cost Optimization:</strong> Scale down during low-traffic periods</li>
+                            <li><strong>Global Distribution:</strong> Use edge locations to reduce latency worldwide</li>
+                            <li><strong>Failover:</strong> Implement automatic failover for high availability</li>
+                        </ul>
+
+                        <h2>Deployment Strategies</h2>
+                        <div class="deployment-strategies">
+                            <div class="strategy">
+                                <h3>Blue-Green Deployment</h3>
+                                <p>Maintain two identical environments and switch traffic between them for zero-downtime deployments.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h3>Canary Deployment</h3>
+                                <p>Gradually roll out new versions to a small percentage of users before full deployment.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h3>Rolling Deployment</h3>
+                                <p>Update instances gradually while keeping the application available throughout the process.</p>
+                            </div>
+
+                            <div class="strategy">
+                                <h3>Feature Flags</h3>
+                                <p>Deploy code with features disabled, then enable them gradually or for specific user groups.</p>
+                            </div>
+                        </div>
+
+                        <h3>Environment Configuration</h3>
+                        <div class="code-example">
+                            <pre><code>// clodo.config.ts
+export default {
+  environments: {
+    development: {
+      database: 'dev-db',
+      cache: 'dev-cache',
+      debug: true
+    },
+    staging: {
+      database: 'staging-db',
+      cache: 'staging-cache',
+      debug: false
+    },
+    production: {
+      database: 'prod-db',
+      cache: 'prod-cache',
+      debug: false
+    }
+  },
+
+  build: {
+    minify: true,
+    sourcemap: false,
+    target: 'es2020'
+  },
+
+  deployment: {
+    strategy: 'blue-green',
+    healthCheck: '/api/health',
+    rollback: {
+      enabled: true,
+      timeout: 300
+    }
+  }
+};</code></pre>
+                        </div>
+
+                        <h2>Monitoring & Observability</h2>
+                        <div class="monitoring-tools">
+                            <div class="tool">
+                                <h4>📊 Cloudflare Analytics</h4>
+                                <p>Built-in analytics for requests, performance, and errors</p>
+                            </div>
+
+                            <div class="tool">
+                                <h4>🔍 Custom Logging</h4>
+                                <p>Structured logging with correlation IDs and context</p>
+                            </div>
+
+                            <div class="tool">
+                                <h4>📈 Performance Monitoring</h4>
+                                <p>Real-time performance metrics and alerting</p>
+                            </div>
+
+                            <div class="tool">
+                                <h4>🚨 Error Tracking</h4>
+                                <p>Comprehensive error tracking and reporting</p>
+                            </div>
+                        </div>
+
+                        <h2>Further Reading</h2>
+                        <div class="further-reading">
+                            <div class="reading-item">
+                                <h4><a href="/clodo-framework-guide">Clodo Framework Guide</a></h4>
+                                <p>Learn about the framework that powers your development and deployment workflows.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/cloudflare-workers-guide">Cloudflare Workers Guide</a></h4>
+                                <p>Understand the runtime environment and capabilities for your applications.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/edge-computing-guide">Edge Computing Guide</a></h4>
+                                <p>Master the edge computing paradigm that influences deployment strategies.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/docs">Documentation</a></h4>
+                                <p>Explore comprehensive documentation and guides for deploying at scale.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Deploy at Scale?</h3>
+                            <p>Master the development and deployment lifecycle with Clodo Framework's enterprise-grade tools and best practices.</p>
+                            <a href="/product" class="btn btn--primary">Start Building</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Development Topics</h3>
+                            <ul>
+                                <li><a href="/cloudflare-workers-guide">Workers Guide</a></li>
+                                <li><a href="/clodo-framework-guide">Framework Guide</a></li>
+                                <li><a href="/how-to-migrate-from-wrangler">Migrate from Wrangler</a></li>
+                                <li><a href="/docs">Documentation</a></li>
+                                <li><a href="/examples">Examples</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Related Guides</h3>
+                            <ul>
+                                <li><a href="/edge-computing-guide">Edge Computing Guide</a></li>
+                                <li><a href="/cloudflare-workers-guide">Workers Guide</a></li>
+                                <li><a href="/clodo-framework-guide">Clodo Framework Guide</a></li>
+                                <li><a href="/product">Product Information</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="/docs">Full Documentation</a></li>
+                                <li><a href="/examples">Code Examples</a></li>
+                                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">GitHub Repository</a></li>
+                                <li><a href="https://developers.cloudflare.com/workers/" target="_blank">Cloudflare Docs</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main><!--#include file="../templates/footer.html" -->
+
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

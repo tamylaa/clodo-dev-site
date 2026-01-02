@@ -1,0 +1,748 @@
+/* ===========================================
+   CLOUDO FRAMEWORK - LAYOUT
+   ===========================================
+   
+   📚 CSS Architecture: See /CSS_ARCHITECTURE.md for load order,
+   specificity rules, and cascade guidelines.
+   
+   ⚠️  WARNING: Generic hero/section rules in this file can cascade
+   to page-specific styles. Use structural properties only.
+
+   Contains:
+   - Grid Systems
+   - Flexbox Utilities
+   - Spacing Utilities
+   - Layout Components (Hero, Sections, etc.)
+   =========================================== */
+
+/* ===== MIGRATION BANNER ===== */
+.migration-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--color-white);
+    padding: var(--spacing-sm) 0;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.banner-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.banner-link {
+    color: var(--color-white);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity var(--transition-fast);
+}
+
+.banner-link:hover {
+    opacity: 0.8;
+}
+
+.banner-close {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: var(--spacing-sm);
+}
+
+.banner-close:hover {
+    background-color: rgb(255 255 255 / 10%);
+}
+
+.banner-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Hide banner when closed */
+.migration-banner.hidden {
+    display: none;
+}
+
+/* ===== GRID SYSTEM ===== */
+.grid {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.grid--cols-1 { grid-template-columns: 1fr; }
+.grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.grid--gap-sm { gap: var(--spacing-sm); }
+.grid--gap-md { gap: var(--spacing-md); }
+.grid--gap-lg { gap: var(--spacing-lg); }
+.grid--gap-xl { gap: var(--spacing-xl); }
+
+/* ===== FLEXBOX UTILITIES ===== */
+.flex {
+    display: flex;
+}
+
+.flex--col {
+    flex-direction: column;
+}
+
+.flex--row {
+    flex-direction: row;
+}
+
+.flex--wrap {
+    flex-wrap: wrap;
+}
+
+.flex--nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex--center {
+    align-items: center;
+}
+
+.flex--start {
+    align-items: flex-start;
+}
+
+.flex--end {
+    align-items: flex-end;
+}
+
+.flex--justify-center {
+    justify-content: center;
+}
+
+.flex--justify-between {
+    justify-content: space-between;
+}
+
+.flex--justify-around {
+    justify-content: space-around;
+}
+
+.flex--justify-end {
+    justify-content: flex-end;
+}
+
+/* ===== SPACING UTILITIES ===== */
+.margin-0 { margin: 0; }
+.margin-xs { margin: var(--spacing-xs); }
+.margin-sm { margin: var(--spacing-sm); }
+.margin-md { margin: var(--spacing-md); }
+.margin-lg { margin: var(--spacing-lg); }
+.margin-xl { margin: var(--spacing-xl); }
+.margin-2xl { margin: var(--spacing-2xl); }
+
+.margin-t-0 { margin-top: 0; }
+.margin-t-xs { margin-top: var(--spacing-xs); }
+.margin-t-sm { margin-top: var(--spacing-sm); }
+.margin-t-md { margin-top: var(--spacing-md); }
+.margin-t-lg { margin-top: var(--spacing-lg); }
+.margin-t-xl { margin-top: var(--spacing-xl); }
+
+.margin-b-0 { margin-bottom: 0; }
+.margin-b-xs { margin-bottom: var(--spacing-xs); }
+.margin-b-sm { margin-bottom: var(--spacing-sm); }
+.margin-b-md { margin-bottom: var(--spacing-md); }
+.margin-b-lg { margin-bottom: var(--spacing-lg); }
+.margin-b-xl { margin-bottom: var(--spacing-xl); }
+
+.padding-0 { padding: 0; }
+.padding-xs { padding: var(--spacing-xs); }
+.padding-sm { padding: var(--spacing-sm); }
+.padding-md { padding: var(--spacing-md); }
+.padding-lg { padding: var(--spacing-lg); }
+.padding-xl { padding: var(--spacing-xl); }
+
+.padding-t-0 { padding-top: 0; }
+.padding-t-xs { padding-top: var(--spacing-xs); }
+.padding-t-sm { padding-top: var(--spacing-sm); }
+.padding-t-md { padding-top: var(--spacing-md); }
+.padding-t-lg { padding-top: var(--spacing-lg); }
+.padding-t-xl { padding-top: var(--spacing-xl); }
+
+.padding-b-0 { padding-bottom: 0; }
+.padding-b-xs { padding-bottom: var(--spacing-xs); }
+.padding-b-sm { padding-bottom: var(--spacing-sm); }
+.padding-b-md { padding-bottom: var(--spacing-md); }
+.padding-b-lg { padding-bottom: var(--spacing-lg); }
+.padding-b-xl { padding-bottom: var(--spacing-xl); }
+
+/* ===== LAYOUT COMPONENTS ===== */
+.section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section--sm {
+    padding: var(--spacing-2xl) 0;
+}
+
+.section--lg {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section--hero {
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl) 0;
+    background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%);
+}
+
+.section--dark {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+.section--gray {
+    background-color: var(--bg-secondary);
+}
+
+/* Hero styles moved to hero.css */
+
+/* ===== FEATURE COMPONENTS ===== */
+.features {
+    margin: var(--spacing-2xl) 0;
+    animation-delay: 0.2s;
+}
+
+.feature {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.feature__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-md) auto;
+    background-color: var(--primary-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.feature__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.feature__description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ===== TESTIMONIAL COMPONENTS ===== */
+.testimonials {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-3xl) 0;
+    animation-delay: 0.4s;
+}
+
+.testimonial__info h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.testimonial__info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large Desktop */
+@media (width <= 1200px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+/* Desktop */
+@media (width <= 1024px) {
+    .grid--cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+}
+
+/* Tablet */
+@media (width <= 768px) {
+    .grid--cols-2,
+    .grid--cols-3,
+    .grid--cols-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .section {
+        padding: var(--spacing-2xl) 0;
+    }
+
+    .section--hero {
+        padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
+    }
+
+    .features {
+        margin: var(--spacing-xl) 0;
+    }
+
+    .footer__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+
+    .hero__actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.125rem;
+    }
+
+    .feature {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Mobile */
+@media (width <= 480px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .section--hero {
+        padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+    }
+
+    .hero__title {
+        font-size: 2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .feature {
+        padding: var(--spacing-sm);
+    }
+
+    .footer {
+        padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+    }
+
+    .footer__container {
+        gap: var(--spacing-md);
+    }
+
+    .footer__section h3 {
+        font-size: 1.125rem;
+    }
+}
+
+/* ===== NEW FOOTER RESPONSIVE STYLES ===== */
+
+/* Large Desktop */
+@media (width <= 1200px) {
+    .footer-content {
+        padding: var(--spacing-2xl) 2rem 0;
+    }
+}
+
+/* Desktop */
+@media (width <= 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-2xl);
+        padding: var(--spacing-2xl) 1.5rem 0;
+    }
+
+    .footer-newsletter .form-group {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-newsletter .newsletter-row1 {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-newsletter .newsletter-row2 {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-newsletter .newsletter-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-newsletter input,
+    .footer-newsletter button {
+        width: 100%;
+    }
+}
+
+/* Tablet */
+@media (width <= 768px) {
+    /* Keep layout-level adjustments here; footer-specific visual and sizing rules live in `public/css/global/footer.css` */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        padding: var(--spacing-xl) 1rem 0;
+    }
+
+    .footer-logo {
+        text-align: center;
+    }
+
+    .footer-logo .logo-text {
+        font-size: 1.75rem;
+    }
+
+    /* Footer visual details (social links, h4 decorative after, newsletter arrangement) moved to `public/css/global/footer.css` to avoid selector duplication. */
+
+    .footer-bottom p {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+/* Mobile */
+@media (width <= 480px) {
+    .footer-content {
+        padding: var(--spacing-lg) 1rem 0;
+    }
+
+    /* Footer mobile visual adjustments (h4 size, list spacing, social-links sizing and newsletter padding) moved to `public/css/global/footer.css` to keep footer behavior canonical. */
+
+    .footer-logo .logo-icon {
+        font-size: 2rem;
+    }
+
+    .footer-logo .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .footer-section h4 {
+        font-size: 1.125rem;
+    }
+
+    .footer-section ul {
+        padding-left: 0;
+    }
+
+    .footer-section li {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-section .social-links {
+        gap: 0.75rem;
+    }
+
+    .footer-section .social-links a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-newsletter {
+        padding: var(--spacing-lg);
+    }
+
+    .footer-newsletter h4 {
+        font-size: 1.125rem;
+    }
+
+    .footer-newsletter p {
+        font-size: 0.875rem;
+    }
+
+    .footer-bottom {
+        padding: var(--spacing-lg) 1rem var(--spacing-xl);
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== SUBSCRIPTION PAGE ===== */
+
+/* Styles moved to css/pages/subscribe.css */
+
+
+
+/* ===== COMPREHENSIVE ANNOUNCEMENT BANNER SYSTEM ===== */
+
+.announcement-container {
+    position: relative;
+    z-index: 1000;
+}
+
+.announcement-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--color-white);
+    padding: var(--spacing-sm) 0;
+    position: relative;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+    animation: slideInDown 0.5s ease-out;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.announcement-banner.announcement-success {
+    background: linear-gradient(135deg, var(--success-color), rgb(5 150 105));
+}
+
+.announcement-banner.announcement-warning {
+    background: linear-gradient(135deg, var(--warning-color), rgb(217 119 6));
+}
+
+.announcement-banner.announcement-error {
+    background: linear-gradient(135deg, var(--error-color), rgb(220 38 38));
+}
+
+.announcement-banner.announcement-info {
+    background: linear-gradient(135deg, var(--info-color), rgb(37 99 235));
+}
+
+.announcement-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.announcement-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.announcement-text {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.announcement-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.announcement-message {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+.announcement-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-shrink: 0;
+}
+
+.announcement-link {
+    color: var(--color-white);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity var(--transition-fast);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    background: rgb(255 255 255 / 10%);
+}
+
+.announcement-link:hover {
+    opacity: 0.8;
+    background: rgb(255 255 255 / 20%);
+}
+
+.announcement-close {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.announcement-close:hover {
+    background-color: rgb(255 255 255 / 10%);
+}
+
+.announcement-close:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (width <= 768px) {
+    .announcement-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+
+    .announcement-text {
+        min-width: auto;
+    }
+
+    .announcement-actions {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .announcement-link {
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+}
+
+@media (width <= 480px) {
+    .announcement-banner {
+        padding: var(--spacing-md) 0;
+    }
+
+    .announcement-content {
+        padding: 0 var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+
+    .announcement-message {
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== ORIENTATION-BASED MEDIA QUERIES ===== */
+
+/* Landscape orientation optimization for tablets and phones */
+@media (orientation: landscape) and (height <= 600px) {
+
+    /* Reduce vertical padding in landscape mode on small devices */
+    .hero-section,
+    #hero,
+    .section {
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+    }
+
+    h2 {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    }
+
+    /* Optimize spacing in landscape */
+    .container {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+/* Tablet in landscape mode */
+@media (orientation: landscape) and (width >= 768px) and (width <= 1024px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+
+    .grid--cols-2,
+    .grid--cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Portrait mode adjustments */
+@media (orientation: portrait) {
+
+    /* Standard portrait mode - mobile first */
+    body {
+        overflow-x: hidden;
+    }
+}
+
+/* Large landscape (desktop-like) */
+@media (orientation: landscape) and (height >= 700px) {
+
+    /* Allow full spacing on large landscape screens */
+    .hero-section,
+    #hero {
+        min-height: auto;
+    }
+}

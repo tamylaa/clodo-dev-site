@@ -1,0 +1,237 @@
+{
+  "config": {
+    "configFile": "G:\\coding\\clodo-dev-site\\config\\playwright.config.js",
+    "rootDir": "G:/coding/clodo-dev-site/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/playwright-report/results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "G:/coding/clodo-dev-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/coding/clodo-dev-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js",
+          "**/integration/**/*.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "G:/coding/clodo-dev-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "G:/coding/clodo-dev-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js",
+          "**/integration/**/*.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "G:/coding/clodo-dev-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "G:/coding/clodo-dev-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js",
+          "**/integration/**/*.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 6,
+    "webServer": {
+      "command": "node G:\\coding\\clodo-dev-site\\build\\dev-server.js",
+      "url": "http://localhost:8000",
+      "reuseExistingServer": true,
+      "timeout": 120000,
+      "stdout": "pipe",
+      "stderr": "pipe"
+    }
+  },
+  "suites": [
+    {
+      "title": "integration\\seo-smoke.spec.js",
+      "file": "integration/seo-smoke.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "SEO Smoke Tests",
+          "file": "integration/seo-smoke.spec.js",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "sitemap.xml reachable and contains site root",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 55,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-25T16:43:35.111Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddf36bd32626203d728f-44b2966459a898d5d0f7",
+              "file": "integration/seo-smoke.spec.js",
+              "line": 59,
+              "column": 5
+            },
+            {
+              "title": "sitemap.xml reachable and contains site root",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 51,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-25T16:43:35.111Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddf36bd32626203d728f-ed0eacf392fde3e7dc8b",
+              "file": "integration/seo-smoke.spec.js",
+              "line": 59,
+              "column": 5
+            },
+            {
+              "title": "sitemap.xml reachable and contains site root",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 53,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-25T16:43:35.111Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddf36bd32626203d728f-6b0bac7d02b3026f4b43",
+              "file": "integration/seo-smoke.spec.js",
+              "line": 59,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-12-25T16:43:33.145Z",
+    "duration": 2310.845,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

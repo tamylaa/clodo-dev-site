@@ -1,18 +1,18 @@
 {
   "$schema": "./announcement.schema.json",
-  
+
   "enabled": true,
   "id": "launch-2025",
   "dismissible": true,
   "expiresAt": "2025-03-01T00:00:00Z",
-  
+
   "style": {
     "backgroundColor": "#1d4ed8",
     "textColor": "#ffffff",
     "accentColor": "#fbbf24",
     "position": "top"
   },
-  
+
   "content": {
     "icon": "🚀",
     "badge": "NEW",
@@ -22,6 +22,16 @@
       "href": "/launch-offer",
       "external": false
     }
+  },
+
+  "lazyLoading": {
+    "enabled": true,
+    "delay": 1000,
+    "showDelay": 500,
+    "position": "top",
+    "autoHideDelay": null,
+    "maxImpressions": null,
+    "cookieExpiry": 7
   },
 
   "targeting": {

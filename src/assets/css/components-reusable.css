@@ -1,0 +1,345 @@
+/* ===========================================
+   CLOUDO FRAMEWORK - REUSABLE COMPONENTS
+   ===========================================
+   Modular, reusable components for internal linking
+   and navigation elements used across pages.
+   =========================================== */
+
+/* ===== TABLE OF CONTENTS ===== */
+.table-of-contents {
+    background-color: var(--color-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    position: sticky;
+    top: var(--spacing-lg);
+    max-height: calc(100vh - 2 * var(--spacing-lg));
+    overflow-y: auto;
+}
+
+.table-of-contents h2 {
+    margin: 0 0 var(--spacing-lg) 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.table-of-contents nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.table-of-contents nav li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.table-of-contents nav li ul {
+    margin-left: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+}
+
+.table-of-contents nav li ul li {
+    margin-bottom: 2px;
+}
+
+.table-of-contents nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+    display: block;
+    padding: var(--spacing-xs) 0;
+}
+
+.table-of-contents nav a:hover {
+    color: var(--primary-color);
+}
+
+.table-of-contents nav a:focus {
+    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* NAV SECTION (moved) */
+
+/* NAV SECTION (moved) */
+.nav-section h4 {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-section li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.nav-section a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+    display: block;
+    padding: var(--spacing-xs) 0;
+}
+
+.nav-section a:hover {
+    color: var(--primary-color);
+}
+
+.nav-section a:focus {
+    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* duplicate TOC nav removed (moved earlier) */
+
+/* FAQ-style table of contents */
+.toc-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.toc-categories-grid li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.toc-categories-grid li a:hover {
+    background: rgb(0 102 204 / 10%);
+}
+
+/* toc nav hover/focus moved earlier */
+
+/* ===== RELATED CONTENT GRID ===== */
+.related-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.content-category h3 {
+    margin: 0 0 var(--spacing-lg) 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.content-category .further-reading {
+    margin-top: 0;
+}
+
+/* ===== INLINE STYLES FOR FAQ/COMPARISON PAGES ===== */
+
+/* These maintain the original inline styling for pages that use different layouts */
+.related-content-inline {
+    background: var(--bg-secondary);
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    margin-top: 4rem;
+}
+
+.related-content-inline h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.related-content-inline .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.related-content-inline .content-item {
+    text-align: center;
+}
+
+.related-content-inline .content-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.related-content-inline .content-item p {
+    margin-bottom: 1rem;
+}
+
+/* ===== CONTENT CLUSTER NAVIGATION ===== */
+.content-cluster-nav {
+    background: var(--color-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    position: sticky;
+    top: var(--spacing-lg);
+}
+
+.cluster-nav-container {
+    max-width: none;
+}
+
+.cluster-breadcrumb {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.cluster-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.breadcrumb-separator {
+    margin: 0 var(--spacing-sm);
+    color: var(--text-muted);
+}
+
+.current-page {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.cluster-navigation {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+/* nav-section defined earlier */
+
+/* ===== RELATED CONTENT CARDS ===== */
+.related-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: all 0.2s ease;
+}
+
+.related-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.related-card h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.related-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.related-card h3 a:hover {
+    color: var(--primary-color);
+}
+
+.related-card p {
+    margin: 0 0 var(--spacing-lg) 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.related-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.related-link:hover {
+    color: var(--primary-hover);
+    transform: translateX(4px);
+}
+
+.related-link::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-left: var(--spacing-sm);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+/* ===== RESOURCES GRID ===== */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.resource-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.resource-card h3 {
+    margin: 0 0 var(--spacing-lg) 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.resource-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resource-card li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.resource-card a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.resource-card a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}

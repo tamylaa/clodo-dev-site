@@ -1,0 +1,313 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "site.schema.json",
+  "title": "Site Configuration Schema",
+  "description": "JSON Schema for main site configuration (TOML format)",
+  "type": "object",
+  "properties": {
+    "site": {
+      "type": "object",
+      "description": "Core site information",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full site name",
+          "minLength": 1
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Short/abbreviated site name",
+          "minLength": 1
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Site tagline or slogan"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description for SEO",
+          "minLength": 10
+        },
+        "url": {
+          "type": "string",
+          "description": "Primary site URL",
+          "format": "uri"
+        },
+        "language": {
+          "type": "string",
+          "description": "Site language code",
+          "pattern": "^[a-z]{2}$"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Site locale",
+          "pattern": "^[a-z]{2}_[A-Z]{2}$"
+        },
+        "copyright": {
+          "type": "object",
+          "properties": {
+            "holder": {
+              "type": "string",
+              "description": "Copyright holder name"
+            },
+            "year": {
+              "type": "number",
+              "description": "Current copyright year",
+              "minimum": 2000,
+              "maximum": 2100
+            },
+            "startYear": {
+              "type": "number",
+              "description": "Copyright start year",
+              "minimum": 2000,
+              "maximum": 2100
+            }
+          }
+        }
+      },
+      "required": ["name", "description"]
+    },
+    "branding": {
+      "type": "object",
+      "description": "Site branding configuration",
+      "properties": {
+        "logo": {
+          "type": "string",
+          "description": "Logo file path"
+        },
+        "favicon": {
+          "type": "string",
+          "description": "Favicon file path"
+        },
+        "colors": {
+          "type": "object",
+          "description": "Brand colors",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Primary brand color",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "secondary": {
+              "type": "string",
+              "description": "Secondary brand color",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            }
+          }
+        },
+        "social": {
+          "type": "object",
+          "description": "Social media handles",
+          "properties": {
+            "twitter": {
+              "type": "string",
+              "description": "Twitter handle"
+            },
+            "github": {
+              "type": "string",
+              "description": "GitHub username/organization"
+            }
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Primary contact email"
+        },
+        "support": {
+          "type": "string",
+          "format": "email",
+          "description": "Support email"
+        },
+        "company": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Company name"
+            },
+            "address": {
+              "type": "string",
+              "description": "Street address"
+            },
+            "city": {
+              "type": "string",
+              "description": "City"
+            },
+            "state": {
+              "type": "string",
+              "description": "State/province"
+            },
+            "zip": {
+              "type": "string",
+              "description": "ZIP/postal code"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country"
+            }
+          }
+        },
+        "hours": {
+          "type": "object",
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "description": "Business timezone"
+            },
+            "weekdays": {
+              "type": "string",
+              "description": "Weekday business hours"
+            },
+            "weekends": {
+              "type": "string",
+              "description": "Weekend business hours"
+            }
+          }
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "description": "Analytics configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["plausible", "google", "mixpanel", "none"],
+          "default": "plausible"
+        },
+        "providers": {
+          "type": "object",
+          "properties": {
+            "plausible": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "Plausible domain"
+                },
+                "apiKey": {
+                  "type": "string",
+                  "description": "Plausible API key"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "description": "SEO configuration",
+      "properties": {
+        "titleTemplate": {
+          "type": "string",
+          "description": "Title template for pages"
+        },
+        "defaultDescription": {
+          "type": "string",
+          "description": "Default meta description"
+        },
+        "openGraph": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["website", "article", "product"],
+              "default": "website"
+            },
+            "siteName": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string",
+              "description": "Open Graph image path"
+            }
+          }
+        },
+        "twitter": {
+          "type": "object",
+          "properties": {
+            "card": {
+              "type": "string",
+              "enum": ["summary", "summary_large_image", "app", "player"],
+              "default": "summary_large_image"
+            },
+            "site": {
+              "type": "string",
+              "description": "Twitter site handle"
+            },
+            "creator": {
+              "type": "string",
+              "description": "Twitter creator handle"
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature flags",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "build": {
+      "type": "object",
+      "description": "Build configuration",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"],
+          "default": "development"
+        },
+        "minify": {
+          "type": "boolean",
+          "default": false
+        },
+        "sourcemap": {
+          "type": "boolean",
+          "default": true
+        },
+        "bundler": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "enum": ["esbuild", "webpack", "rollup"],
+              "default": "esbuild"
+            },
+            "target": {
+              "type": "string",
+              "description": "JavaScript target version"
+            }
+          }
+        },
+        "optimization": {
+          "type": "object",
+          "properties": {
+            "splitChunks": {
+              "type": "boolean",
+              "default": true
+            },
+            "treeShaking": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

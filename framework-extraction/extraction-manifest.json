@@ -1,0 +1,183 @@
+{
+  "extractionDate": "2026-01-01T17:36:41.963Z",
+  "sourceProject": "clodo-dev-site",
+  "targetProject": "clodo-web-starter",
+  "extractedComponents": [
+    {
+      "source": "build/build.js",
+      "target": "build-tools/core-build.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/dev-server.js",
+      "target": "build-tools/dev-server.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/analyze-css-changes.js",
+      "target": "build-tools/css-analyzer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/generate-amp.js",
+      "target": "content-tools/amp-generator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/demo-service-creation.js",
+      "target": "build-tools/service-scaffolder.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/clean-index-css.js",
+      "target": "build-tools/css-cleaner.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/generate-blog-post.mjs",
+      "target": "content-tools/blog-generator.mjs",
+      "status": "extracted"
+    },
+    {
+      "source": "build/content-effectiveness-analyzer.js",
+      "target": "content-tools/content-analyzer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/keyword-ranking-tracker.js",
+      "target": "content-tools/seo-tracker.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-links.js",
+      "target": "validation-tools/link-checker.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-lcp.js",
+      "target": "validation-tools/lcp-checker.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-page-loading.js",
+      "target": "validation-tools/page-load-tester.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/seo-performance-test.js",
+      "target": "validation-tools/seo-performance-test.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/validate-headers.js",
+      "target": "validation-tools/header-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/validate-redirects.js",
+      "target": "validation-tools/redirect-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-visual.js",
+      "target": "validation-tools/visual-regression.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-analytics-visual.js",
+      "target": "validation-tools/analytics-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-community-visual.js",
+      "target": "validation-tools/community-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-index-visual.js",
+      "target": "validation-tools/homepage-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-nav-stability.js",
+      "target": "validation-tools/nav-validator.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-production-button.js",
+      "target": "validation-tools/prod-readiness.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/check-lcp-node.js",
+      "target": "validation-tools/lcp-node-checker.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/observe-header-change.js",
+      "target": "validation-tools/observers/header-observer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/observe-images.js",
+      "target": "validation-tools/observers/image-observer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/observe-mutations.js",
+      "target": "validation-tools/observers/mutation-observer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/fix-canonicals.js",
+      "target": "build-tools/canonical-fixer.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/inspect-canonical.js",
+      "target": "build-tools/canonical-inspector.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/inspect-layout-shift.js",
+      "target": "build-tools/layout-shift-inspector.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/setup-clodo.js",
+      "target": "deployment-tools/cloudflare-setup.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/setup-clodo.ps1",
+      "target": "deployment-tools/cloudflare-setup.ps1",
+      "status": "extracted"
+    },
+    {
+      "source": "build/consolidate-footer.ps1",
+      "target": "deployment-tools/footer-consolidator.ps1",
+      "status": "extracted"
+    },
+    {
+      "source": "build/prod-main-current.js",
+      "target": "deployment-tools/prod-config.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/production-main.js",
+      "target": "deployment-tools/prod-entry.js",
+      "status": "extracted"
+    },
+    {
+      "source": "build/production-stackblitz.js",
+      "target": "deployment-tools/stackblitz-config.js",
+      "status": "extracted"
+    }
+  ],
+  "notes": [
+    "Files have been copied but may need modifications for framework use",
+    "Remove site-specific paths and configurations",
+    "Add configurable parameters for different projects",
+    "Update import paths to work with new structure"
+  ]
+}

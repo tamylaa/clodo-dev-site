@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structured Data Hub - Clodo Framework</title>
+    <meta name="description" content="Complete structured data index for AI agents and search engines. All Schema.org metadata in one place.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.clodo.dev/structured-data">
+    
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        h1 {
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        
+        .schema-block {
+            background: #f5f5f5;
+            border-left: 4px solid #0066cc;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .schema-block h2 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        
+        pre {
+            background: var(--color-white);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        
+        .ai-notice {
+            background: #e7f3ff;
+            border: 2px solid #0066cc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .sitemap-link {
+            background: var(--color-white)3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+    </style>
+    
+    <!-- AGGREGATED STRUCTURED DATA FOR AI AGENTS -->
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Clodo Framework",
+        "url": "https://clodo.dev",
+        "logo": "https://clodo.dev/assets/images/logo.svg",
+        "description": "Modern JavaScript framework for building enterprise-grade web applications with unprecedented speed. Transform 6-month development cycles into 6 weeks with production-ready components.",
+        "foundingDate": "2024",
+        "email": "support@clodo.dev",
+        "sameAs": [
+            "https://github.com/clodoframework",
+            "https://twitter.com/clodoframework",
+            "https://linkedin.com/company/clodoframework"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Support",
+            "email": "support@clodo.dev",
+            "availableLanguage": ["English"]
+        }
+    }
+    </script>
+    
+    <!-- WebSite Schema with Search Action -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Clodo Framework",
+        "alternateName": "Clodo",
+        "url": "https://clodo.dev",
+        "description": "Modern JavaScript framework for building enterprise-grade web applications with unprecedented speed",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://clodo.dev/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Clodo Framework",
+        "operatingSystem": "Any",
+        "applicationCategory": "DeveloperApplication",
+        "description": "Modern JavaScript framework for building enterprise-grade web applications. Features include built-in authentication, Cloudflare Workers integration, production-ready components, and enterprise orchestration.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "downloadUrl": "https://clodo.dev/docs/quick-start",
+        "softwareVersion": "1.0.0",
+        "releaseNotes": "Initial stable release with core framework features",
+        "programmingLanguage": "JavaScript",
+        "runtimePlatform": ["Node.js", "Browser", "Cloudflare Workers"],
+        "featureList": [
+            "Enterprise-grade component library",
+            "Built-in authentication system",
+            "Cloudflare Workers integration",
+            "Production-ready templates",
+            "Performance monitoring",
+            "SEO optimization",
+            "Accessibility compliance"
+        ]
+    }
+    </script>
+    
+    <!-- ItemList: Main Pages -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Clodo Framework Main Pages",
+        "description": "Primary navigation pages for Clodo Framework",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://clodo.dev/",
+                "name": "Home"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://clodo.dev/docs.html",
+                "name": "Documentation"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://clodo.dev/examples.html",
+                "name": "Examples"
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://clodo.dev/components.html",
+                "name": "Components"
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://clodo.dev/about.html",
+                "name": "About"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Clodo Framework?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Clodo Framework is a modern JavaScript framework designed for building enterprise-grade web applications with unprecedented speed. It reduces typical 6-month development cycles to 6 weeks by providing production-ready components, built-in authentication, and seamless Cloudflare Workers integration."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Clodo Framework free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Clodo Framework is completely free and open source under the MIT license. There are no paid tiers, enterprise licenses, or hidden costs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What makes Clodo different from React or Angular?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Clodo focuses on enterprise orchestration with Cloudflare Workers, providing pre-built authentication, routing, deployment templates, and production-ready components that React and Angular lack out-of-the-box. It's designed specifically for rapid enterprise application development."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Clodo work with Cloudflare Workers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Clodo Framework has native Cloudflare Workers integration. It's designed to leverage edge computing for optimal performance and global distribution."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I get started with Clodo Framework?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Visit https://clodo.dev/docs/quick-start for the quick start guide. You can also try the live demo or clone the starter template from GitHub."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are the system requirements?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Clodo Framework runs on Node.js 16+ and modern browsers (Chrome, Firefox, Safari, Edge). It's compatible with Windows, macOS, and Linux."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- BreadcrumbList for Site Structure -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://clodo.dev/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Structured Data Hub",
+                "item": "https://clodo.dev/structured-data"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Course Schema (if we have learning paths) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Clodo Framework Complete Guide",
+        "description": "Comprehensive learning path for mastering Clodo Framework, from basics to advanced enterprise patterns",
+        "provider": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "hasCourseInstance": [
+            {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "courseWorkload": "PT8H"
+            }
+        ],
+        "educationalLevel": "Beginner to Advanced",
+        "teaches": [
+            "JavaScript framework development",
+            "Cloudflare Workers integration",
+            "Enterprise application architecture",
+            "Performance optimization",
+            "SEO best practices"
+        ]
+    }
+    </script>
+    
+    <!-- TechArticle for Guides -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Cloudflare Workers Guide",
+        "description": "Complete guide to deploying edge functions with Cloudflare Workers using Clodo Framework",
+        "author": {
+            "@type": "Organization",
+            "name": "Clodo Framework Team"
+        },
+        "datePublished": "2025-11-22",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://clodo.dev/assets/images/logo.svg"
+            }
+        },
+        "mainEntityOfPage": "https://clodo.dev/cloudflare-workers-guide.html",
+        "articleSection": "Tutorials",
+        "keywords": ["Cloudflare Workers", "Edge Computing", "Serverless", "JavaScript"]
+    }
+    </script>
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="ai-notice">
+        <h1>🤖 AI Agent Notice</h1>
+        <p><strong>This page aggregates all structured data (Schema.org JSON-LD) for the entire Clodo Framework website.</strong></p>
+        <p>AI agents, crawlers, and search engines can parse this single page to understand:</p>
+        <ul>
+            <li>What Clodo Framework is (Organization, Software)</li>
+            <li>Site structure and navigation (ItemList, BreadcrumbList)</li>
+            <li>Frequently asked questions (FAQPage)</li>
+            <li>Learning resources (Course)</li>
+            <li>Technical documentation (TechArticle)</li>
+        </ul>
+        <p><strong>Last Updated:</strong> November 22, 2025</p>
+    </div>
+    
+    <h1>Structured Data Hub</h1>
+    <p>This page provides a complete index of all Schema.org structured data used across the Clodo Framework website. Each schema type is documented below with examples.</p>
+    
+    <div class="sitemap-link">
+        <strong>📍 Additional Resources:</strong>
+        <ul>
+            <li><a href="/sitemap.xml">XML Sitemap</a> - All page URLs with metadata</li>
+            <li><a href="/robots.txt">Robots.txt</a> - Crawler directives</li>
+            <li><a href="/performance-dashboard">Performance Dashboard</a> - Real-time metrics</li>
+        </ul>
+    </div>
+    
+    <!-- Organization Schema -->
+    <div class="schema-block">
+        <h2>1. Organization Schema</h2>
+        <p><strong>Applied to:</strong> All pages (global)</p>
+        <p><strong>Purpose:</strong> Defines Clodo Framework as an organization with contact information and social profiles.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Google Knowledge Panel eligibility</li>
+            <li>Rich search results with logo</li>
+            <li>AI agents understand company structure</li>
+        </ul>
+        <details>
+            <summary>View JSON-LD</summary>
+            <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Clodo Framework",
+  "url": "https://clodo.dev",
+  "logo": "https://clodo.dev/assets/images/logo.svg",
+  "description": "Modern JavaScript framework for enterprise applications",
+  "email": "support@clodo.dev",
+  "sameAs": [
+    "https://github.com/clodoframework",
+    "https://twitter.com/clodoframework"
+  ]
+}</code></pre>
+        </details>
+    </div>
+    
+    <!-- WebSite Schema -->
+    <div class="schema-block">
+        <h2>2. WebSite Schema</h2>
+        <p><strong>Applied to:</strong> All pages (global)</p>
+        <p><strong>Purpose:</strong> Defines the website with search action capability.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Google Sitelinks Search Box in results</li>
+            <li>Voice search optimization</li>
+            <li>AI agents can understand site search capability</li>
+        </ul>
+    </div>
+    
+    <!-- Software Schema -->
+    <div class="schema-block">
+        <h2>3. SoftwareApplication Schema</h2>
+        <p><strong>Applied to:</strong> Homepage, product pages</p>
+        <p><strong>Purpose:</strong> Defines Clodo as a software product with features, version, and pricing.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Software-specific rich results</li>
+            <li>App store recognition</li>
+            <li>AI agents accurately categorize as developer tool</li>
+        </ul>
+        <details>
+            <summary>View JSON-LD</summary>
+            <pre><code>{
+  "@type": "SoftwareApplication",
+  "name": "Clodo Framework",
+  "operatingSystem": "Any",
+  "applicationCategory": "DeveloperApplication",
+  "offers": { "price": "0", "priceCurrency": "USD" },
+  "softwareVersion": "1.0.0",
+  "featureList": [
+    "Enterprise component library",
+    "Built-in authentication",
+    "Cloudflare Workers integration"
+  ]
+}</code></pre>
+        </details>
+    </div>
+    
+    <!-- FAQ Schema -->
+    <div class="schema-block">
+        <h2>4. FAQPage Schema</h2>
+        <p><strong>Applied to:</strong> This page, documentation pages</p>
+        <p><strong>Purpose:</strong> Provides common questions and answers for AI agents.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>FAQ rich snippets in Google</li>
+            <li>AI agents can quote answers directly</li>
+            <li>Voice assistant optimization</li>
+        </ul>
+    </div>
+    
+    <!-- ItemList Schema -->
+    <div class="schema-block">
+        <h2>5. ItemList Schema</h2>
+        <p><strong>Applied to:</strong> Navigation, page collections</p>
+        <p><strong>Purpose:</strong> Defines ordered lists of pages and content.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Carousel rich results</li>
+            <li>AI agents understand site structure</li>
+            <li>Better navigation in search results</li>
+        </ul>
+    </div>
+    
+    <!-- BreadcrumbList Schema -->
+    <div class="schema-block">
+        <h2>6. BreadcrumbList Schema</h2>
+        <p><strong>Applied to:</strong> All pages (dynamic based on URL)</p>
+        <p><strong>Purpose:</strong> Shows page hierarchy and navigation path.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Breadcrumb display in search results</li>
+            <li>AI agents understand page relationships</li>
+            <li>Better mobile search UX</li>
+        </ul>
+    </div>
+    
+    <!-- Course Schema -->
+    <div class="schema-block">
+        <h2>7. Course Schema</h2>
+        <p><strong>Applied to:</strong> Learning paths, tutorial series</p>
+        <p><strong>Purpose:</strong> Defines educational content and learning resources.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Course rich results in Google</li>
+            <li>AI learning platforms can index content</li>
+            <li>Educational AI agents can recommend</li>
+        </ul>
+    </div>
+    
+    <!-- TechArticle Schema -->
+    <div class="schema-block">
+        <h2>8. TechArticle Schema</h2>
+        <p><strong>Applied to:</strong> Guides, tutorials, blog posts</p>
+        <p><strong>Purpose:</strong> Marks technical articles with author and date.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Article rich snippets</li>
+            <li>AI agents can cite with proper attribution</li>
+            <li>News/article sections in search</li>
+        </ul>
+    </div>
+    
+    <hr style="margin: 3rem 0;">
+    
+    <h2>How to Use This Page</h2>
+    
+    <h3>For AI Agents:</h3>
+    <p>Parse the <code>&lt;script type="application/ld+json"&gt;</code> blocks above to extract complete structured data about Clodo Framework. All schemas follow Schema.org specifications.</p>
+    
+    <h3>For Developers:</h3>
+    <p>Reference this page when adding new content to understand what structured data to include. Copy schema templates and customize for your pages.</p>
+    
+    <h3>For Search Engines:</h3>
+    <p>This aggregated page supplements individual page structured data. Use it to build a comprehensive understanding of the entire website.</p>
+    
+    <hr style="margin: 3rem 0;">
+    
+    <h2>Validation Tools</h2>
+    <ul>
+        <li><a href="https://validator.schema.org/" target="_blank">Schema.org Validator</a></li>
+        <li><a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a></li>
+        <li><a href="https://search.google.com/search-console" target="_blank">Google Search Console</a></li>
+    </ul>
+    
+<!--#include file="../templates/footer.html" -->
+    <script src="js/init-systems.js"></script>
+</body>
+</html>
+

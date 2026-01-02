@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experiments.schema.json",
+  "title": "Experiments Configuration Schema",
+  "description": "JSON Schema for A/B testing and experimentation configuration",
+  "type": "object",
+  "patternProperties": {
+    "^[a-zA-Z_][a-zA-Z0-9_-]*$": {
+      "type": "object",
+      "description": "Individual experiment configuration",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable experiment name",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the experiment",
+          "minLength": 1
+        },
+        "variants": {
+          "type": "array",
+          "description": "Array of experiment variants",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "weight"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the variant",
+                "pattern": "^[a-zA-Z_][a-zA-Z0-9_-]*$",
+                "minLength": 1,
+                "maxLength": 50
+              },
+              "name": {
+                "type": "string",
+                "description": "Human-readable variant name",
+                "minLength": 1
+              },
+              "weight": {
+                "type": "number",
+                "description": "Traffic allocation weight (percentage)",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "config": {
+                "type": "object",
+                "description": "Configuration overrides for this variant",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "targetSegments": {
+          "type": "array",
+          "description": "User segments this experiment targets",
+          "items": {
+            "type": "string",
+            "enum": ["all", "prospects", "customers", "power_users", "enterprise", "first_time"]
+          },
+          "default": ["all"]
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Experiment start date (ISO format)",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Experiment end date (ISO format)",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "description": "Experiment status",
+          "enum": ["draft", "active", "paused", "completed"],
+          "default": "draft"
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Success metrics for the experiment",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Primary success metric"
+            },
+            "secondary": {
+              "type": "array",
+              "description": "Secondary success metrics",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": ["name", "description", "variants"]
+    }
+  },
+  "additionalProperties": false,
+  "minProperties": 1
+}

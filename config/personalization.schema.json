@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "personalization.schema.json",
+  "title": "Personalization Configuration Schema",
+  "description": "JSON Schema for user personalization and dynamic configuration",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "description": "Individual personalization rule",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the personalization rule",
+        "pattern": "^[a-zA-Z_][a-zA-Z0-9_-]*$",
+        "minLength": 1,
+        "maxLength": 50
+      },
+      "condition": {
+        "type": "string",
+        "description": "JavaScript expression that evaluates to true/false for rule activation",
+        "minLength": 1
+      },
+      "config": {
+        "type": "object",
+        "description": "Configuration overrides to apply when condition is met",
+        "additionalProperties": true,
+        "minProperties": 1
+      },
+      "priority": {
+        "type": "number",
+        "description": "Rule priority (higher numbers take precedence)",
+        "minimum": 0,
+        "maximum": 100,
+        "default": 5
+      },
+      "enabled": {
+        "type": "boolean",
+        "description": "Whether this rule is enabled",
+        "default": true
+      },
+      "segments": {
+        "type": "array",
+        "description": "User segments this rule applies to",
+        "items": {
+          "type": "string",
+          "enum": ["all", "prospects", "customers", "power_users", "enterprise", "first_time", "mobile", "desktop"]
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Additional metadata for the rule",
+        "properties": {
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "author": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": ["id", "condition", "config"],
+    "additionalProperties": false
+  },
+  "minItems": 0,
+  "uniqueItems": true
+}

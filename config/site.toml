@@ -1,0 +1,102 @@
+# Site Configuration - TOML Format
+# Demonstrates TOML support in the unified config system
+# This file takes precedence over site.config.js if both exist
+
+[site]
+name = "Clodo Framework"
+shortName = "Clodo"
+tagline = "Build serverless applications with ease"
+description = "Modern framework for building Cloudflare Workers applications with developer experience in mind"
+
+# Primary URL (used for canonical URLs, sitemaps, etc.)
+url = "https://www.clodo.dev"
+
+# Language settings
+language = "en"
+locale = "en_US"
+
+# Copyright information
+[site.copyright]
+holder = "Clodo Team"
+year = 2024
+startYear = 2024
+
+# Branding
+[branding]
+logo = "/logo.svg"
+favicon = "/favicon.ico"
+
+# Colors (can reference theme or override)
+[branding.colors]
+primary = "#1d4ed8"
+secondary = "#6366f1"
+
+# Social media
+[branding.social]
+twitter = "@clodo_dev"
+github = "clodo-dev"
+
+# Contact information
+[contact]
+email = "hello@clodo.dev"
+support = "support@clodo.dev"
+
+# Company details
+[contact.company]
+name = "Clodo"
+address = "123 Developer Street"
+city = "San Francisco"
+state = "CA"
+zip = "94105"
+country = "USA"
+
+# Business hours
+[contact.hours]
+timezone = "PST"
+weekdays = "9:00 AM - 6:00 PM"
+weekends = "Closed"
+
+# Analytics
+[analytics]
+enabled = true
+provider = "plausible"
+
+[analytics.providers.plausible]
+domain = "clodo.dev"
+apiKey = "your-api-key-here"
+
+# SEO Settings
+[seo]
+titleTemplate = "%s | Clodo Framework"
+defaultDescription = "Build serverless applications with ease"
+
+[seo.openGraph]
+type = "website"
+siteName = "Clodo Framework"
+image = "/og-image.png"
+
+[seo.twitter]
+card = "summary_large_image"
+site = "@clodo_dev"
+creator = "@clodo_dev"
+
+# Feature flags
+[features]
+analytics = true
+newsletter = true
+comments = false
+darkMode = true
+
+# Build settings
+[build]
+environment = "development"
+minify = false
+sourcemap = true
+
+[build.bundler]
+name = "esbuild"
+target = "es2020"
+
+[build.optimization]
+splitChunks = true
+treeShaking = true

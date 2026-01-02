@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Dashboard - Clodo Framework</title>
+    
+    <!-- Admin Page - Prevent Search Engine Indexing -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="description" content="Internal performance monitoring dashboard for site administrators">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .performance-dashboard {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+        }
+        
+        .metric-card.good {
+            border-left: 4px solid var(--success-500);
+        }
+        
+        .metric-card.needs-improvement {
+            border-left: 4px solid var(--warning-500);
+        }
+        
+        .metric-card.poor {
+            border-left: 4px solid var(--error-500);
+        }
+        
+        .metric-name {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .metric-rating {
+            font-size: 0.875rem;
+            margin-top: var(--spacing-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .metric-rating.good { color: var(--success-500); }
+        .metric-rating.needs-improvement { color: var(--warning-500); }
+        .metric-rating.poor { color: var(--error-500); }
+        
+        .section {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .error-item {
+            padding: var(--spacing-md);
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid var(--error-500);
+            margin-bottom: var(--spacing-sm);
+            border-radius: 4px;
+        }
+        
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .timing-slow {
+            color: var(--error-500);
+            font-weight: 600;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.875rem;
+        }
+        
+        .refresh-button {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .memory-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .memory-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .memory-used {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-500) 0%, var(--warning-500) 70%, var(--error-500) 90%);
+            transition: width 0.3s ease;
+        }
+        
+        .memory-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+        }
+        
+        .memory-status.high { color: var(--error-500); }
+        .memory-status.medium { color: var(--warning-500); }
+        .memory-status.low { color: var(--success-500); }
+        
+        .resource-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .resource-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+        }
+        
+        .resource-category h4 {
+            margin: 0 0 var(--spacing-sm) 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .resource-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .stat-value.warning {
+            color: var(--warning-500);
+        }
+        
+        .recommendation {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .recommendation.high {
+            border-left: 4px solid var(--error-500);
+            background: rgba(239, 68, 68, 0.05);
+        }
+        
+        .recommendation.medium {
+            border-left: 4px solid var(--warning-500);
+            background: rgba(245, 158, 11, 0.05);
+        }
+        
+        .recommendation.low {
+            border-left: 4px solid var(--success-500);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .recommendation-priority {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .recommendation-priority.high {
+            background: var(--error-500);
+            color: var(--color-white);
+        }
+        
+        .recommendation-priority.medium {
+            background: var(--warning-500);
+            color: var(--color-white);
+        }
+        
+        .recommendation-priority.low {
+            background: var(--success-500);
+            color: var(--color-white);
+        }
+        
+        .recommendation-category {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .recommendation-content p {
+            margin: var(--spacing-xs) 0 0 0;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a><!--#include file="../templates/nav-main.html" -->
+    
+    <main class="performance-dashboard" id="main-content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Performance Dashboard</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
+        <div class="dashboard-header">
+            <h1>Performance Dashboard</h1>
+            <p>Real-time Web Vitals and performance metrics</p>
+            <button class="btn btn--primary refresh-button" onclick="refreshDashboard()" aria-label="Refresh performance metrics">
+                Refresh Metrics
+            </button>
+        </div>
+        
+        <div id="metrics-grid" class="metrics-grid">
+            <!-- Metrics will be injected here -->
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Performance Trends</h2>
+            <div id="trends-chart">
+                <!-- Trends chart will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Network Quality</h2>
+            <div id="network-info">
+                <!-- Network info will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">JavaScript Errors</h2>
+            <div id="errors-list">
+                <!-- Errors will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Resource Breakdown</h2>
+            <div id="resource-breakdown">
+                <!-- Resource breakdown will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Slow Resources (> 1s)</h2>
+            <div id="slow-resources">
+                <!-- Slow resources will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Memory Usage</h2>
+            <div id="memory-info">
+                <!-- Memory info will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Long Tasks (> 50ms)</h2>
+            <div id="long-tasks">
+                <!-- Long tasks will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Optimization Recommendations</h2>
+            <div id="optimization-recommendations">
+                <!-- Recommendations will be injected here -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Session Info</h2>
+            <div id="session-info">
+                <!-- Session info will be injected here -->
+            </div>
+        </div>
+    </main><!--#include file="../templates/footer.html" -->
+    
+    <script nonce="N0Nc3Cl0d0">
+        // Provide a lightweight fallback PerformanceMonitor for dev/tests when the real
+        // module is intentionally omitted (init-systems deprecated). This allows the
+        // dashboard to render in local/test environments without loading heavy monitors.
+        (function injectPerformanceMonitorFallback() {
+            // Test/dev-only fallback: only inject on localhost or if explicitly requested via
+            // the URL query param `?testFallback=1`. This prevents accidental usage in
+            // production while keeping test runs deterministic.
+            if (typeof window.PerformanceMonitor !== 'undefined') return;
+            if (!(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('testFallback=1'))) return;
+
+            // After a short delay, inject a simple stub (quick for tests)
+            setTimeout(() => {
+                if (typeof window.PerformanceMonitor !== 'undefined') return;
+
+                window.PerformanceMonitor = {
+                    init: () => {},
+                    getMetrics: () => ({
+                        lcp: { value: 1200, rating: 'needs-improvement' },
+                        fid: { value: 45, rating: 'good' },
+                        cls: { value: 0.01, rating: 'good' },
+                        fcp: { value: 400, rating: 'good' },
+                        ttfb: { value: 50, rating: 'good' },
+                        inp: { value: 15, rating: 'good' },
+                        tbt: { value: 12, rating: 'good' },
+                        memory: { heapUsed: 20, heapTotal: 40, heapLimit: 64 }
+                    }),
+                    getReport: () => {
+                        const resources = performance.getEntriesByType('resource').map(r => ({ name: r.name, duration: r.duration, type: r.initiatorType || 'other' }));
+                        return {
+                            url: window.location.href,
+                            sessionDuration: 2000,
+                            metrics: window.PerformanceMonitor.getMetrics(),
+                            trends: {},
+                            network: {
+                                effectiveType: (navigator.connection && navigator.connection.effectiveType) || '4g',
+                                downlink: (navigator.connection && navigator.connection.downlink) || 10,
+                                rtt: (navigator.connection && navigator.connection.rtt) || 50,
+                                saveData: (navigator.connection && navigator.connection.saveData) || false
+                            },
+                            errors: [],
+                            timings: resources,
+                            resourceBreakdown: {},
+                            longTasks: [],
+                            recommendations: []
+                        };
+                    },
+                    getTimings: () => performance.getEntriesByType('resource').map(r => ({ name: r.name, duration: r.duration }))
+                };
+
+                // Notify that a fallback PerfMonitor has been injected so dashboard can initialize immediately
+                document.dispatchEvent(new Event('performance-monitor-injected'));
+                console.log('PerformanceMonitor fallback injected for dashboard (dev/test)');
+            }, 200);
+        })();
+
+        // Wait for PerformanceMonitor to be loaded - use event or poll
+        function initializeDashboard() {
+            const doInit = () => {
+                // Initialize with debug enabled
+                window.PerformanceMonitor.init({
+                    debug: true,
+                    sampleRate: 1.0,
+                });
+
+                // Render dashboard
+                function renderDashboard() {
+                    const report = window.PerformanceMonitor.getReport();
+
+                    // Render metrics
+                    renderMetrics(report.metrics);
+
+                    // Render trends
+                    renderTrends(report.trends);
+
+                    // Render network info
+                    renderNetworkInfo(report.network);
+
+                    // Render errors
+                    renderErrors(report.errors);
+
+                    // Render slow resources
+                    renderSlowResources(report.timings);
+
+                    // Render resource breakdown
+                    renderResourceBreakdown(report.resourceBreakdown);
+
+                    // Render memory info
+                    renderMemoryInfo(report.metrics.memory);
+
+                    // Render long tasks
+                    renderLongTasks(report.longTasks);
+
+                    // Render session info
+                    renderSessionInfo(report);
+
+                    // Render optimization recommendations
+                    renderOptimizationRecommendations(report.recommendations);
+                }
+
+                // Initial render after 200ms for quick feedback in tests
+                setTimeout(() => {
+                    renderDashboard();
+                    console.log('Dashboard initialized');
+                }, 200);
+
+                // Auto-refresh every 5 seconds
+                setInterval(() => {
+                    renderDashboard();
+                }, 5000);
+            };
+
+            if (typeof window.PerformanceMonitor !== 'undefined') {
+                doInit();
+                return;
+            }
+
+            // Listen for injected fallback
+            const onInjected = () => {
+                document.removeEventListener('performance-monitor-injected', onInjected);
+                doInit();
+            };
+            document.addEventListener('performance-monitor-injected', onInjected);
+
+            // Fallback poll as well
+            const poll = () => {
+                if (typeof window.PerformanceMonitor !== 'undefined') {
+                    document.removeEventListener('performance-monitor-injected', onInjected);
+                    doInit();
+                } else {
+                    setTimeout(poll, 100);
+                }
+            };
+            poll();
+
+            // Render dashboard
+            function renderDashboard() {
+                const report = window.PerformanceMonitor.getReport();
+
+                // Render metrics
+                renderMetrics(report.metrics);
+
+                // Render trends
+                renderTrends(report.trends);
+
+                // Render network info
+                renderNetworkInfo(report.network);
+
+                // Render errors
+                renderErrors(report.errors);
+
+                // Render slow resources
+                renderSlowResources(report.timings);
+
+                // Render resource breakdown
+                renderResourceBreakdown(report.resourceBreakdown);
+
+                // Render memory info
+                renderMemoryInfo(report.metrics.memory);
+
+                // Render long tasks
+                renderLongTasks(report.longTasks);
+
+                // Render session info
+                renderSessionInfo(report);
+
+                // Render optimization recommendations
+                renderOptimizationRecommendations(report.recommendations);
+            }
+
+            function renderMetrics(metrics) {
+                const grid = document.getElementById('metrics-grid');
+                const metricNames = ['lcp', 'fid', 'cls', 'fcp', 'ttfb', 'inp', 'tbt'];
+
+                grid.innerHTML = metricNames.map(name => {
+                    const metric = metrics[name];
+                    if (!metric) return '';
+
+                    const unit = name === 'cls' ? '' : 'ms';
+                    const value = name === 'cls' ? metric.value.toFixed(3) : Math.round(metric.value);
+
+                    return `
+                        <div class="metric-card ${metric.rating}">
+                            <div class="metric-name">${name.toUpperCase()}</div>
+                            <div class="metric-value">${value}${unit}</div>
+                            <div class="metric-rating ${metric.rating}">${metric.rating.replace('-', ' ')}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderNetworkInfo(network) {
+                const container = document.getElementById('network-info');
+
+                if (!network) {
+                    container.innerHTML = '<p>Network information not available</p>';
+                    return;
+                }
+
+                container.innerHTML = `
+                    <p><strong>Effective Type:</strong> ${network.effectiveType}</p>
+                    <p><strong>Downlink:</strong> ${network.downlink} Mbps</p>
+                    <p><strong>Round-Trip Time:</strong> ${network.rtt} ms</p>
+                    <p><strong>Data Saver:</strong> ${network.saveData ? 'Enabled' : 'Disabled'}</p>
+                `;
+            }
+
+            function renderErrors(errors) {
+                const container = document.getElementById('errors-list');
+
+                if (errors.length === 0) {
+                    container.innerHTML = '<p>✅ No errors detected</p>';
+                    return;
+                }
+
+                container.innerHTML = errors.map(error => `
+                    <div class="error-item">
+                        <strong>${error.message}</strong>
+                        ${error.filename ? `<br><code>${error.filename}:${error.lineno}:${error.colno}</code>` : ''}
+                        ${error.error ? `<br><pre style="margin-top: 8px; font-size: 0.875rem;">${error.error}</pre>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            function renderSlowResources(timings) {
+                const container = document.getElementById('slow-resources');
+                const slowResources = timings.filter(t => t.duration > 1000);
+
+                if (slowResources.length === 0) {
+                    container.innerHTML = '<p>✅ No slow resources detected</p>';
+                    return;
+                }
+
+                container.innerHTML = slowResources.map(resource => `
+                    <div class="timing-item">
+                        <span>
+                            <strong>[${resource.type}]</strong>
+                            ${resource.name.substring(resource.name.lastIndexOf('/') + 1)}
+                        </span>
+                        <span class="timing-slow">${Math.round(resource.duration)}ms</span>
+                    </div>
+                `).join('');
+            }
+
+            function renderTrends(trends) {
+                const container = document.getElementById('trends-chart');
+                const metrics = ['lcp', 'fid', 'cls', 'fcp', 'ttfb', 'inp', 'tbt'];
+                const colors = {
+                    lcp: 'var(--primary-500)',
+                    fid: 'var(--success-500)',
+                    cls: 'var(--warning-500)',
+                    fcp: 'var(--accent-purple)',
+                    ttfb: 'var(--error-500)',
+                    inp: '#06b6d4',
+                    tbt: '#84cc16'
+                };
+
+                // Create SVG chart
+                const width = 800;
+                const height = 300;
+                const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+
+                let svg = container.querySelector('svg');
+                if (!svg) {
+                    svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('width', width);
+                    svg.setAttribute('height', height);
+                    container.appendChild(svg);
+                }
+
+                // Clear previous content
+                svg.innerHTML = '';
+
+                // Find max session time and max value across all metrics
+                let maxTime = 0;
+                let maxValue = 0;
+
+                metrics.forEach(metric => {
+                    const data = trends[metric] || [];
+                    data.forEach(point => {
+                        maxTime = Math.max(maxTime, point.sessionTime);
+                        maxValue = Math.max(maxValue, point.value);
+                    });
+                });
+
+                if (maxTime === 0 || maxValue === 0) {
+                    container.innerHTML = '<p>No trend data available yet. Metrics will appear as they are collected.</p>';
+                    return;
+                }
+
+                // Add axes
+                const xScale = maxTime / (width - margin.left - margin.right);
+                const yScale = maxValue / (height - margin.top - margin.bottom);
+
+                // X axis
+                const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                xAxis.setAttribute('x1', margin.left);
+                xAxis.setAttribute('y1', height - margin.bottom);
+                xAxis.setAttribute('x2', width - margin.right);
+                xAxis.setAttribute('y2', height - margin.bottom);
+                xAxis.setAttribute('stroke', '#666');
+                xAxis.setAttribute('stroke-width', '1');
+                svg.appendChild(xAxis);
+
+                // Y axis
+                const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                yAxis.setAttribute('x1', margin.left);
+                yAxis.setAttribute('y1', margin.top);
+                yAxis.setAttribute('x2', margin.left);
+                yAxis.setAttribute('y2', height - margin.bottom);
+                yAxis.setAttribute('stroke', '#666');
+                yAxis.setAttribute('stroke-width', '1');
+                svg.appendChild(yAxis);
+
+                // Plot each metric
+                metrics.forEach(metric => {
+                    const data = trends[metric] || [];
+                    if (data.length < 2) return;
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    let pathData = '';
+
+                    data.forEach((point, index) => {
+                        const x = margin.left + (point.sessionTime / xScale);
+                        const y = height - margin.bottom - (point.value / yScale);
+
+                        if (index === 0) {
+                            pathData += `M ${x} ${y}`;
+                        } else {
+                            pathData += ` L ${x} ${y}`;
+                        }
+                    });
+
+                    path.setAttribute('d', pathData);
+                    path.setAttribute('stroke', colors[metric]);
+                    path.setAttribute('stroke-width', '2');
+                    path.setAttribute('fill', 'none');
+                    svg.appendChild(path);
+
+                    // Add label
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', width - margin.right + 5);
+                    label.setAttribute('y', margin.top + (metrics.indexOf(metric) * 15));
+                    label.setAttribute('fill', colors[metric]);
+                    label.setAttribute('font-size', '12');
+                    label.textContent = metric.toUpperCase();
+                    svg.appendChild(label);
+                });
+
+                // Add time labels
+                const timeLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                timeLabel.setAttribute('x', width / 2);
+                timeLabel.setAttribute('y', height - 5);
+                timeLabel.setAttribute('text-anchor', 'middle');
+                timeLabel.setAttribute('font-size', '12');
+                timeLabel.setAttribute('fill', '#666');
+                timeLabel.textContent = 'Session Time (seconds)';
+                svg.appendChild(timeLabel);
+            }
+
+            function renderResourceBreakdown(breakdown) {
+                const container = document.getElementById('resource-breakdown');
+
+                if (!breakdown || Object.keys(breakdown).length === 0) {
+                    container.innerHTML = '<p>No resource data available yet.</p>';
+                    return;
+                }
+
+                const categories = Object.entries(breakdown).map(([type, data]) => ({
+                    type: type.toUpperCase(),
+                    ...data,
+                    avgSize: data.count > 0 ? (data.totalSize / data.count / 1024).toFixed(1) : 0,
+                    avgTime: data.count > 0 ? (data.totalTime / data.count).toFixed(1) : 0,
+                    totalSizeMB: (data.totalSize / 1024 / 1024).toFixed(2)
+                }));
+
+                container.innerHTML = `
+                    <div class="resource-breakdown-grid">
+                        ${categories.map(cat => `
+                            <div class="resource-category">
+                                <h4>${cat.type}</h4>
+                                <div class="resource-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Count:</span>
+                                        <span class="stat-value">${cat.count}</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Total Size:</span>
+                                        <span class="stat-value">${cat.totalSizeMB} MB</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Size:</span>
+                                        <span class="stat-value">${cat.avgSize} KB</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Time:</span>
+                                        <span class="stat-value">${cat.avgTime}ms</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Slow (>1s):</span>
+                                        <span class="stat-value ${cat.slowCount > 0 ? 'warning' : ''}">${cat.slowCount}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            function renderMemoryInfo(memory) {
+                const container = document.getElementById('memory-info');
+
+                if (!memory) {
+                    container.innerHTML = '<p>Memory monitoring not available in this browser</p>';
+                    return;
+                }
+
+                const usedPercent = ((memory.heapUsed / memory.heapLimit) * 100).toFixed(1);
+                const status = memory.heapUsed / memory.heapLimit > 0.8 ? 'high' : memory.heapUsed / memory.heapLimit > 0.6 ? 'medium' : 'low';
+
+                container.innerHTML = `
+                    <div class="memory-stats">
+                        <div class="memory-bar">
+                            <div class="memory-used" style="width: ${usedPercent}%"></div>
+                        </div>
+                        <div class="memory-details">
+                            <p><strong>Heap Used:</strong> ${memory.heapUsed.toFixed(1)} MB (${usedPercent}%)</p>
+                            <p><strong>Heap Total:</strong> ${memory.heapTotal.toFixed(1)} MB</p>
+                            <p><strong>Heap Limit:</strong> ${memory.heapLimit.toFixed(1)} MB</p>
+                            <p><strong>Status:</strong> <span class="memory-status ${status}">${status.toUpperCase()}</span></p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderLongTasks(longTasks) {
+                const container = document.getElementById('long-tasks');
+
+                if (!longTasks || longTasks.length === 0) {
+                    container.innerHTML = '<p>✅ No long tasks detected</p>';
+                    return;
+                }
+
+                container.innerHTML = longTasks.map(task => `
+                    <div class="timing-item">
+                        <span>
+                            <strong>Long Task</strong>
+                            <br><small>Started at ${new Date(task.startTime).toLocaleTimeString()}</small>
+                        </span>
+                        <span class="timing-slow">${Math.round(task.duration)}ms</span>
+                    </div>
+                `).join('');
+            }
+
+            function renderOptimizationRecommendations(recommendations) {
+                const container = document.getElementById('optimization-recommendations');
+
+                if (!recommendations || recommendations.length === 0) {
+                    container.innerHTML = '<p>✅ No optimization recommendations at this time.</p>';
+                    return;
+                }
+
+                container.innerHTML = recommendations.map(rec => `
+                    <div class="recommendation ${rec.priority}">
+                        <div class="recommendation-header">
+                            <span class="recommendation-priority ${rec.priority}">${rec.priority.toUpperCase()}</span>
+                            <span class="recommendation-category">${rec.category}</span>
+                        </div>
+                        <div class="recommendation-content">
+                            <strong>${rec.issue}</strong>
+                            <p>${rec.suggestion}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function renderSessionInfo(report) {
+                const container = document.getElementById('session-info');
+                const duration = (report.sessionDuration / 1000).toFixed(2);
+
+                container.innerHTML = `
+                    <p><strong>URL:</strong> <code>${report.url}</code></p>
+                    <p><strong>Session Duration:</strong> ${duration}s</p>
+                    <p><strong>Total Resources:</strong> ${report.timings.length}</p>
+                `;
+            }
+
+            // Refresh dashboard
+            window.refreshDashboard = function() {
+                renderDashboard();
+            };
+
+            // Initial render after 2 seconds (let metrics collect)
+            setTimeout(() => {
+                renderDashboard();
+                console.log('Dashboard initialized');
+            }, 2000);
+
+            // Auto-refresh every 5 seconds
+            setInterval(() => {
+                renderDashboard();
+            }, 5000);
+        }
+
+        // Start initialization
+        initializeDashboard();
+    </script>
+    <script src="js/init-systems.js"></script>
+</body>
+</html>

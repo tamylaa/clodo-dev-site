@@ -1,0 +1,30 @@
+<!-- Newsletter CTA (Mid-Article) -->
+<!-- Usage: <!--#include file="../components/newsletter-cta-blog-mid.html" --> -->
+<!-- Used in: blog posts for mid-article newsletter signup -->
+
+<div class="blog-cta blog-cta--newsletter" data-component="newsletter-mid">
+    <h4>📬 Stay Ahead of the Edge Computing Curve</h4>
+    <p>Monthly insights on Cloudflare Workers, serverless architecture, and developer experience best practices. Join 2,000+ developers.</p>
+    <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
+        <!-- Honeypot field for spam protection -->
+        <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
+        <input type="hidden" name="source" value="blog-mid-article">
+        <div class="form-group">
+            <label for="mid-newsletter-email" class="sr-only">Email address</label>
+            <input id="mid-newsletter-email"
+                   name="email"
+                   type="email"
+                   placeholder="Enter your email"
+                   autocomplete="email"
+                   inputmode="email"
+                   required>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+        </div>
+        <div class="consent">
+            <input type="checkbox" id="mid-newsletter-consent" name="consent" required>
+            <label for="mid-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
+        </div>
+        <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
+        <p class="form-message" aria-live="polite" role="status"></p>
+    </form>
+</div>

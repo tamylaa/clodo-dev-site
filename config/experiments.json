@@ -1,0 +1,94 @@
+{
+  "hero_button_color": {
+    "name": "Hero Button Color Test",
+    "description": "Test different button colors on the hero section",
+    "variants": [
+      {
+        "id": "blue",
+        "name": "Blue (Control)",
+        "weight": 50,
+        "config": {
+          "theme": {
+            "colors": {
+              "brand": {
+                "primary": "#1d4ed8"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "green",
+        "name": "Green (Variant)",
+        "weight": 50,
+        "config": {
+          "theme": {
+            "colors": {
+              "brand": {
+                "primary": "#059669"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "targetSegments": ["all"],
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31"
+  },
+  "navigation_layout": {
+    "name": "Navigation Layout Test",
+    "description": "Test centered vs left-aligned navigation",
+    "variants": [
+      {
+        "id": "left",
+        "name": "Left Aligned",
+        "weight": 70,
+        "config": {
+          "navigation": {
+            "layout": "left"
+          }
+        }
+      },
+      {
+        "id": "center",
+        "name": "Center Aligned",
+        "weight": 30,
+        "config": {
+          "navigation": {
+            "layout": "center"
+          }
+        }
+      }
+    ]
+  },
+  "pricing_display": {
+    "name": "Pricing Display Test",
+    "description": "Test different pricing presentation formats",
+    "variants": [
+      {
+        "id": "yearly_first",
+        "name": "Show Yearly First",
+        "weight": 50,
+        "config": {
+          "pricing": {
+            "defaultInterval": "yearly",
+            "showSavings": true
+          }
+        }
+      },
+      {
+        "id": "monthly_first",
+        "name": "Show Monthly First",
+        "weight": 50,
+        "config": {
+          "pricing": {
+            "defaultInterval": "monthly",
+            "showSavings": false
+          }
+        }
+      }
+    ],
+    "targetSegments": ["prospects"]
+  }
+}

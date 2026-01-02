@@ -1,0 +1,292 @@
+import { createServer } from 'http';
+import { readFileSync, existsSync, statSync } from 'fs';
+import { join, resolve, dirname } from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { watch } from 'chokidar';
+import { BuildEngine } from '../../core/engine/BuildEngine.js';
+import { PATHS } from '../../lib/constants.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const projectRoot = resolve(__dirname, '../..');
+
+export async function devServer(config = {}) {
+    // Serve root: dist (production build) by default, or public if --public flag provided
+    const usePublic = process.argv.includes('--public');
+
+    // Configurable directories with constants as defaults
+    const publicDir = config.build?.publicDir || PATHS.PUBLIC_DIR;
+    const outputDir = config.build?.outputDir || PATHS.OUTPUT_DIR;
+
+    // Parse port from command line arguments
+    let portArg = 8000; // default
+    const portIndex = process.argv.indexOf('--port');
+    if (portIndex !== -1 && portIndex + 1 < process.argv.length) {
+        const parsedPort = parseInt(process.argv[portIndex + 1], 10);
+        if (!isNaN(parsedPort) && parsedPort > 0 && parsedPort < 65536) {
+            portArg = parsedPort;
+        } else {
+            console.error(`❌ Invalid port number: ${process.argv[portIndex + 1]}`);
+            process.exit(1);
+        }
+    }
+
+    const serveDir = join(projectRoot, usePublic ? publicDir : outputDir);
+
+    // Initialize Build Engine
+    const buildEngine = new BuildEngine(config);
+    let isBuilding = false;
+
+    const runBuild = async () => {
+        if (isBuilding) return;
+        isBuilding = true;
+        try {
+            await buildEngine.build();
+        } catch (error) {
+            console.error('❌ Build failed:', error);
+        } finally {
+            isBuilding = false;
+        }
+    };
+
+    // Initial Build
+    await runBuild();
+
+    // Start Watcher
+    const watcher = watch(join(projectRoot, 'src'), {
+        ignored: /(^|[\/\\])\../, // ignore dotfiles
+        persistent: true
+    });
+
+    watcher.on('change', (path) => {
+        console.log(`🔄 File changed: ${path}`);
+        runBuild();
+    });
+
+    let server = createServer((req, res) => {
+        // Parse URL to remove query parameters
+        const urlPath = req.url.split('?')[0];
+
+        // If a function exists for this path (e.g., /newsletter-subscribe -> functions/newsletter-subscribe.js)
+        const funcFile = join(projectRoot, 'functions', (urlPath || '/').replace(/^\//, '') + '.js');
+        if (existsSync(funcFile)) {
+            // Route to the Cloudflare Pages Function file
+            (async () => {
+                try {
+                    const mod = await import(pathToFileURL(funcFile).href);
+
+                    // Helper to convert a Web Response into Node's http response
+                    const flushResponse = async (webRes) => {
+                        const status = webRes.status || 200;
+                        /** @type {Record<string, string | number | readonly string[]>} */
+                        const headers = {};
+                        for (const [k, v] of webRes.headers.entries()) headers[k] = v;
+                        res.writeHead(status, /** @type {any} */ (headers));
+                        const buf = await webRes.arrayBuffer().catch(() => null);
+                        if (buf) res.end(Buffer.from(buf)); else res.end();
+                    };
+
+                    if (req.method === 'OPTIONS' && typeof mod.onRequestOptions === 'function') {
+                        const webRes = await mod.onRequestOptions();
+                        await flushResponse(webRes);
+                        return;
+                    }
+
+                    if (req.method === 'POST' && typeof mod.onRequestPost === 'function') {
+                        const chunks = [];
+                        req.on('data', c => chunks.push(c));
+                        req.on('end', async () => {
+                            const raw = Buffer.concat(chunks).toString();
+                            const url = `http://localhost:${PORT}${req.url}`;
+                            /** @type {Record<string, string | number | readonly string[]>} */
+                            const headerMap = {};
+                            for (const [k, v] of Object.entries(req.headers)) {
+                                if (v !== undefined) headerMap[k] = v;
+                            }
+                            const webReq = new Request(url, {
+                                method: 'POST',
+                                headers: /** @type {any} */ (headerMap),
+                                body: raw
+                            });
+                            const webRes = await mod.onRequestPost({ request: webReq, env: process.env });
+                            await flushResponse(webRes);
+                        });
+                        return;
+                    }
+
+                    // Unsupported method
+                    res.writeHead(405, { 'Content-Type': 'text/plain' });
+                    res.end('Method Not Allowed');
+                    return;
+                } catch (e) {
+                    console.error('Function router error:', e);
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Internal Server Error');
+                    return;
+                }
+            })();
+            return;
+        }
+
+        // Normalize the requested path to avoid absolute path injection via leading slash
+        const cleanPath = urlPath === '/' ? 'index.html' : urlPath.replace(/^\//, '');
+        let filePath = join(serveDir, cleanPath);
+
+        // Check if path is a directory and serve index.html from it
+        if (existsSync(filePath) && statSync(filePath).isDirectory()) {
+            filePath = join(filePath, 'index.html');
+        }
+
+        // Security check - prevent directory traversal
+        const resolvedPath = resolve(filePath);
+        if (!resolvedPath.startsWith(serveDir)) {
+            res.writeHead(403);
+            res.end('Forbidden');
+            return;
+        }
+
+        // Check if file exists
+        if (!existsSync(filePath)) {
+            // Developer convenience: try adding a `.html` extension for extensionless URLs (e.g., /docs -> /docs.html)
+            const altHtml = filePath + '.html';
+            if (existsSync(altHtml)) {
+                filePath = altHtml;
+            } else {
+                res.writeHead(404, { 'Content-Type': 'text/html' });
+                res.end(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head><title>404 - File Not Found</title></head>
+                    <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+                        <h1>404 - File Not Found</h1>
+                        <p>The requested file <code>${req.url}</code> was not found.</p>
+                        <p><a href="/">Go back to home</a></p>
+                    </body>
+                    </html>
+                `);
+                return;
+            }
+        }
+
+        // Get file extension
+        const ext = filePath.split('.').pop()?.toLowerCase() || '';
+        let contentType = 'text/html';
+
+        switch (ext) {
+            case 'css':
+                contentType = 'text/css';
+                break;
+            case 'js':
+                contentType = 'text/javascript';
+                break;
+            case 'json':
+                contentType = 'application/json';
+                break;
+            case 'png':
+                contentType = 'image/png';
+                break;
+            case 'jpg':
+            case 'jpeg':
+                contentType = 'image/jpeg';
+                break;
+            case 'svg':
+                contentType = 'image/svg+xml';
+                break;
+            case 'ico':
+                contentType = 'image/x-icon';
+                break;
+            case 'txt':
+                contentType = 'text/plain';
+                break;
+            case 'xml':
+                contentType = 'application/xml';
+                break;
+            case 'woff':
+                contentType = 'font/woff';
+                break;
+            case 'woff2':
+                contentType = 'font/woff2';
+                break;
+        }
+
+        try {
+            // Serve file directly from dist
+            const data = readFileSync(filePath);
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(data);
+        } catch (error) {
+            res.writeHead(500);
+            res.end('Server error');
+        }
+    });
+
+    let PORT = portArg || parseInt(process.env.PORT, 10) || 8000;
+    let isShuttingDown = false;
+
+    function startServer(startPort, attemptsLeft = 20) {
+        PORT = startPort;
+        server.listen(PORT, () => {
+            console.log(`🚀 Clodo Framework Dev Server running at http://localhost:${PORT}`);
+            console.log(`📁 Serving files from: ${serveDir}`);
+            console.log(`🏠 Home page: http://localhost:${PORT}/`);
+        });
+
+        server.on('error', (err) => {
+            /** @type {any} */
+            const e = err;
+            if (e && e.code === 'EADDRINUSE') {
+                if (attemptsLeft > 0) {
+                    const nextPort = PORT + 1;
+                    console.warn(`⚠️  Port ${PORT} in use. Trying ${nextPort}...`);
+                    // Remove current error listener to avoid stacking
+                    server.removeAllListeners('error');
+                    // Create a new server instance and retry
+                    const newServer = createServer(/** @type {any} */ (server.listeners('request')[0]));
+                    // Replace server reference
+                    server.close(() => {
+                        // no-op
+                    });
+                    // Rebind graceful shutdown to new server
+                    bindShutdown(newServer);
+                    // Reassign global server ref
+                    global.server = newServer;
+                    server = newServer;
+                    startServer(nextPort, attemptsLeft - 1);
+                } else {
+                    console.error(`❌ All retry ports are in use. Last attempted: ${PORT}`);
+                    process.exit(1);
+                }
+            } else {
+                console.error('❌ Server error:', err);
+                process.exit(1);
+            }
+        });
+    }
+
+    function bindShutdown(srv) {
+        function shutdown(signal) {
+            if (isShuttingDown) return;
+            isShuttingDown = true;
+            console.log(`\n${signal} received. Shutting down dev server...`);
+            watcher.close();
+            srv.close(() => {
+                console.log('✅ Server closed. Bye!');
+                process.exit(0);
+            });
+        }
+        process.removeAllListeners('SIGINT');
+        process.removeAllListeners('SIGTERM');
+        process.on('SIGINT', () => shutdown('SIGINT'));
+        process.on('SIGTERM', () => shutdown('SIGTERM'));
+    }
+
+    // Initial bind and start
+    bindShutdown(server);
+    startServer(PORT);
+    return server;
+}
+
+if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`) {
+    console.log('Starting dev server...');
+    devServer();
+}

@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-01-02T01:55:54.603Z",
+  "rankings": [
+    {
+      "keyword": "wrangler",
+      "currentRank": 11,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 5400,
+      "competition": "high"
+    },
+    {
+      "keyword": "cloudflare workers",
+      "currentRank": 12,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 2900,
+      "competition": "medium"
+    },
+    {
+      "keyword": "serverless",
+      "currentRank": 8,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 12100,
+      "competition": "high"
+    },
+    {
+      "keyword": "ruby on rails for cloudflare",
+      "currentRank": 20,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 320,
+      "competition": "low"
+    },
+    {
+      "keyword": "scaffolding for workers",
+      "currentRank": 30,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 210,
+      "competition": "low"
+    },
+    {
+      "keyword": "worker migration",
+      "currentRank": 19,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 590,
+      "competition": "medium"
+    },
+    {
+      "keyword": "rails cloudflare integration",
+      "currentRank": 27,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 260,
+      "competition": "low"
+    },
+    {
+      "keyword": "serverless framework comparison",
+      "currentRank": 11,
+      "previousRank": null,
+      "trend": "new",
+      "searchVolume": 880,
+      "competition": "medium"
+    }
+  ],
+  "trends": {
+    "improving": 0,
+    "declining": 0,
+    "stable": 0,
+    "new": 8
+  },
+  "summary": {
+    "totalKeywords": 8,
+    "averageRank": 17.25,
+    "topRank": 8,
+    "opportunities": 0,
+    "trends": {
+      "improving": 0,
+      "declining": 0,
+      "stable": 0,
+      "new": 8
+    }
+  }
+}

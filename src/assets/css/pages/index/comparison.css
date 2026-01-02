@@ -1,0 +1,343 @@
+/* =========================================
+   COMPARISON SECTION - Mobile First
+   ========================================= */
+
+/* ===== BASE STYLES (Mobile: 0-767px) ===== */
+
+#comparison {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.comparison-section .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.comparison-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+}
+
+/* Mobile: Single column grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.comparison-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.comparison-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.comparison-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--color-white);
+    padding: 1.5rem 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.comparison-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgb(255 255 255 / 15%);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(255 255 255 / 20%);
+}
+
+.comparison-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.comparison-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+}
+
+.comparison-badge {
+    display: inline-block;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+}
+
+.comparison-badge--improvement {
+    background: rgb(34 197 94 / 90%);
+    color: var(--color-white);
+}
+
+.comparison-badge--security {
+    background: rgb(168 85 247 / 90%);
+    color: var(--color-white);
+}
+
+.comparison-badge--performance {
+    background: rgb(59 130 246 / 90%);
+    color: var(--color-white);
+}
+
+.comparison-content {
+    padding: 1.5rem;
+}
+
+.comparison-option {
+    margin-bottom: 1.5rem;
+}
+
+.comparison-option:last-child {
+    margin-bottom: 0;
+}
+
+.option-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.option-label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.option-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    align-self: flex-end;
+}
+
+.option-status--slow {
+    background: rgb(239 68 68 / 10%);
+    color: var(--error-color);
+}
+
+.option-status--manual {
+    background: rgb(245 158 11 / 10%);
+    color: var(--warning-color);
+}
+
+.option-status--complex {
+    background: rgb(245 158 11 / 10%);
+    color: var(--warning-color);
+}
+
+.option-status--fast {
+    background: rgb(34 197 94 / 10%);
+    color: var(--success-color);
+}
+
+.option-status--automated {
+    background: rgb(168 85 247 / 10%);
+    color: var(--primary-color);
+}
+
+.option-status--global {
+    background: rgb(59 130 246 / 10%);
+    color: var(--info-color);
+}
+
+.option-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.option-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.comparison-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.comparison-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+
+.divider-text {
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced comparison option styling */
+.comparison-option--traditional .option-metric {
+    border-color: rgb(239 68 68 / 20%);
+}
+
+.comparison-option--clodo .option-metric {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgb(14 165 233 / 5%), rgb(99 102 241 / 5%));
+}
+
+.comparison-option--clodo .metric-value {
+    color: var(--primary-color);
+}
+
+/* ===== TABLET (768px+) ===== */
+
+@media (width >= 768px) {
+    #comparison {
+        padding: 80px 0;
+    }
+
+    .comparison-section h2 {
+        font-size: 2.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.125rem;
+        max-width: 600px;
+        padding: 0;
+    }
+
+    .comparison-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .comparison-header {
+        padding: 2rem 2rem 1.5rem;
+    }
+
+    .comparison-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .comparison-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .comparison-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .comparison-badge {
+        display: inline-flex;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        margin-top: 0;
+    }
+
+    .comparison-content {
+        padding: 2rem;
+    }
+
+    .option-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .option-label {
+        font-size: 1.125rem;
+    }
+
+    .option-status {
+        align-self: auto;
+    }
+
+    .option-text {
+        font-size: 1rem;
+    }
+}
+
+/* ===== DESKTOP (1024px+) ===== */
+
+@media (width >= 1024px) {
+    .comparison-section .section-header {
+        margin-bottom: 4rem;
+    }
+
+    .comparison-grid {
+        padding: 0 var(--spacing-lg);
+    }
+}

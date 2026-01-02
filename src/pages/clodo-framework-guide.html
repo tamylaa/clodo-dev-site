@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clodo Framework Guide: Enterprise Edge Development</title>
+    <link rel="canonical" href="https://www.clodo.dev/clodo-framework-guide">
+    <meta name="description" content="Master Clodo Framework: Build enterprise-grade applications on Cloudflare Workers. Learn architecture, APIs, deployment, and scale global applications with confidence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Clodo Framework Guide: Enterprise Edge Development">
+    <meta property="og:description" content="Master Clodo Framework: Build enterprise-grade applications on Cloudflare Workers with production-ready features and global performance.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/clodo-framework-guide.html">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clodo Framework Guide: Enterprise Edge Development">
+    <meta name="twitter:description" content="Master Clodo Framework: Build enterprise-grade applications on Cloudflare Workers with production-ready features and global performance.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Clodo Framework Guide: Enterprise Edge Development",
+      "description": "Master Clodo Framework: Build enterprise-grade applications on Cloudflare Workers. Learn architecture, APIs, deployment, and scale global applications with confidence.",
+      "author": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clodo Framework"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2025-11-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clodo.dev/clodo-framework-guide.html"
+      },
+      "articleSection": "Clodo Framework",
+      "keywords": ["clodo framework", "cloudflare workers", "edge development", "serverless", "enterprise framework"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="/">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Clodo Framework Guide</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Clodo Framework Guide</h1>
+                    <p>Build enterprise-grade applications on Cloudflare Workers. Master Clodo's powerful APIs, deployment strategies, and scale global applications with production-ready features.</p>
+                    <div class="hero-actions">
+                        <a href="/docs" class="btn btn--primary">Get Started</a>
+                        <a href="/examples" class="btn btn--secondary">View Examples</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <article class="main-content">
+                        <h2>What is Clodo Framework?</h2>
+                        <p>Clodo Framework is a production-ready, enterprise-grade framework for building applications on Cloudflare Workers. It provides high-level abstractions, developer-friendly APIs, and battle-tested patterns for scaling applications across Cloudflare's global edge network.</p>
+
+                        <h3>Why Choose Clodo?</h3>
+                        <div class="why-clodo">
+                            <div class="reason">
+                                <h4>🚀 Production Ready</h4>
+                                <p>Built for enterprise scale with comprehensive error handling, logging, and monitoring capabilities.</p>
+                            </div>
+                            <div class="reason">
+                                <h4>⚡ Edge Optimized</h4>
+                                <p>Designed specifically for Cloudflare Workers with optimal performance and resource utilization.</p>
+                            </div>
+                            <div class="reason">
+                                <h4>🛠️ Developer Experience</h4>
+                                <p>Intuitive APIs, excellent documentation, and powerful CLI tools for rapid development.</p>
+                            </div>
+                            <div class="reason">
+                                <h4>🔧 Full-Stack Features</h4>
+                                <p>Routing, middleware, database integration, authentication, and more out of the box.</p>
+                            </div>
+                            <div class="reason">
+                                <h4>📈 Enterprise Support</h4>
+                                <p>Dedicated enterprise support, SLAs, and custom development services available.</p>
+                            </div>
+                            <div class="reason">
+                                <h4>🌐 Global by Default</h4>
+                                <p>Applications automatically scale across 200+ edge locations worldwide.</p>
+                            </div>
+                        </div>
+
+                        <h2>Core Architecture</h2>
+                        <div class="architecture-overview">
+                            <div class="arch-layer">
+                                <h4>Application Layer</h4>
+                                <p>Your business logic, routes, and handlers built with Clodo's APIs</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Framework Layer</h4>
+                                <p>Clodo's core runtime, routing, middleware, and utility functions</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Workers Runtime</h4>
+                                <p>Cloudflare Workers V8 JavaScript engine and Web APIs</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Edge Network</h4>
+                                <p>Cloudflare's global network of 200+ edge data centers</p>
+                            </div>
+                        </div>
+
+                        <h3>Key Components</h3>
+                        <dl>
+                            <dt>Router</dt>
+                            <dd>Powerful routing system with parameter extraction, middleware support, and nested routes</dd>
+
+                            <dt>Middleware</dt>
+                            <dd>Composable middleware system for authentication, logging, CORS, rate limiting, and custom logic</dd>
+
+                            <dt>Database</dt>
+                            <dd>Built-in support for Cloudflare D1, KV, Durable Objects, and external databases</dd>
+
+                            <dt>Authentication</dt>
+                            <dd>JWT, OAuth, and custom authentication providers with session management</dd>
+
+                            <dt>Validation</dt>
+                            <dd>Request/response validation with Zod schemas and automatic error handling</dd>
+
+                            <dt>Deployment</dt>
+                            <dd>One-command deployment with environment management and rollbacks</dd>
+                        </dl>
+
+                        <h2>Getting Started</h2>
+                        <div class="getting-started-steps">
+                            <div class="step">
+                                <h4>1. Install Clodo CLI</h4>
+                                <div class="code-example">
+                                    <pre><code>npm install -g @clodo/cli
+# or
+yarn global add @clodo/cli</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <h4>2. Create New Project</h4>
+                                <div class="code-example">
+                                    <pre><code>clodo create my-app
+cd my-app
+npm install</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <h4>3. Start Development</h4>
+                                <div class="code-example">
+                                    <pre><code>clodo dev</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <h4>4. Deploy to Production</h4>
+                                <div class="code-example">
+                                    <pre><code>clodo deploy</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Building Applications</h2>
+                        <div class="building-examples">
+                            <div class="example">
+                                <h3>Basic API</h3>
+                                <div class="code-example">
+                                    <pre><code>import { Clodo } from '@clodo/framework';
+
+const app = new Clodo();
+
+app.get('/api/users', async (c) => {
+  const users = await c.db.query('SELECT * FROM users');
+  return c.json(users);
+});
+
+app.post('/api/users', async (c) => {
+  const { name, email } = await c.req.json();
+  const user = await c.db.insert('users', { name, email });
+  return c.json(user, 201);
+});
+
+export default app;</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="example">
+                                <h3>With Authentication</h3>
+                                <div class="code-example">
+                                    <pre><code>import { Clodo, auth } from '@clodo/framework';
+
+const app = new Clodo();
+
+// Protected route
+app.get('/api/profile', auth.required(), async (c) => {
+  const user = c.get('user');
+  return c.json({ profile: user });
+});
+
+// Admin only
+app.get('/api/admin', auth.hasRole('admin'), async (c) => {
+  const stats = await getAdminStats();
+  return c.json(stats);
+});
+
+export default app;</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="example">
+                                <h3>Database Integration</h3>
+                                <div class="code-example">
+                                    <pre><code>import { Clodo, Database } from '@clodo/framework';
+
+const app = new Clodo({
+  database: new Database({
+    d1: 'my-database',
+    kv: 'my-cache'
+  })
+});
+
+app.get('/api/posts/:id', async (c) => {
+  const { id } = c.req.param();
+
+  // Try cache first
+  let post = await c.db.kv.get(`post:${id}`);
+  if (!post) {
+    // Fetch from D1
+    post = await c.db.d1.query(
+      'SELECT * FROM posts WHERE id = ?',
+      [id]
+    );
+    // Cache for 5 minutes
+    await c.db.kv.put(`post:${id}`, post, { ttl: 300 });
+  }
+
+  return c.json(post);
+});
+
+export default app;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Advanced Features</h2>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <h3>🔄 Background Tasks</h3>
+                                <p>Run long-running tasks in the background with Durable Objects for coordination and state management.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h3>📊 Real-time Analytics</h3>
+                                <p>Built-in analytics engine for tracking user behavior, performance metrics, and business KPIs.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h3>🔐 Advanced Security</h3>
+                                <p>Rate limiting, bot protection, WAF rules, and custom security middleware.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h3>🌍 Multi-region Deployment</h3>
+                                <p>Deploy to specific regions or globally with automatic traffic routing and failover.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h3>📱 Mobile SDK</h3>
+                                <p>Native mobile SDKs for iOS and Android with offline support and sync capabilities.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h3>🤖 AI Integration</h3>
+                                <p>Built-in support for AI services, vector databases, and machine learning workflows.</p>
+                            </div>
+                        </div>
+
+                        <h2>Deployment & Scaling</h2>
+                        <div class="deployment-options">
+                            <div class="option">
+                                <h4>🚀 One-Click Deploy</h4>
+                                <p>Deploy to production with a single command. Clodo handles build optimization, asset uploading, and configuration.</p>
+                            </div>
+
+                            <div class="option">
+                                <h4>🔄 Blue-Green Deployments</h4>
+                                <p>Zero-downtime deployments with automatic rollback capabilities and traffic shifting.</p>
+                            </div>
+
+                            <div class="option">
+                                <h4>📊 Auto Scaling</h4>
+                                <p>Applications automatically scale based on traffic patterns across Cloudflare's edge network.</p>
+                            </div>
+
+                            <div class="option">
+                                <h4>🌍 Global CDN</h4>
+                                <p>Built-in CDN with automatic caching, compression, and edge optimization.</p>
+                            </div>
+                        </div>
+
+                        <h3>Environment Management</h3>
+                        <div class="code-example">
+                            <pre><code># Development
+clodo deploy --env dev
+
+# Staging
+clodo deploy --env staging
+
+# Production
+clodo deploy --env prod
+
+# Custom environment
+clodo deploy --env custom --config production.toml</code></pre>
+                        </div>
+
+                        <h2>Enterprise Features</h2>
+                        <div class="enterprise-features">
+                            <div class="feature">
+                                <h4>🏢 Single Sign-On (SSO)</h4>
+                                <p>Integration with enterprise identity providers including SAML, OAuth, and LDAP.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h4>📋 Audit Logging</h4>
+                                <p>Comprehensive audit trails for compliance with SOC 2, GDPR, and other regulations.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h4>🔍 Advanced Monitoring</h4>
+                                <p>Real-time dashboards, alerting, and integration with enterprise monitoring tools.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h4>🤝 Custom Development</h4>
+                                <p>Dedicated engineering support for custom features and integrations.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h4>📞 24/7 Support</h4>
+                                <p>Round-the-clock enterprise support with guaranteed response times.</p>
+                            </div>
+
+                            <div class="feature">
+                                <h4>🔒 Private Deployment</h4>
+                                <p>Deploy to private Cloudflare networks for enhanced security and compliance.</p>
+                            </div>
+                        </div>
+
+                        <h2>Migration Guide</h2>
+                        <p>Migrating existing applications to Clodo Framework is straightforward. We provide migration tools and guides for popular frameworks.</p>
+
+                        <div class="migration-paths">
+                            <div class="path">
+                                <h4>From Express.js</h4>
+                                <p>Most Express applications can be migrated with minimal changes using our Express compatibility layer.</p>
+                            </div>
+
+                            <div class="path">
+                                <h4>From Raw Workers</h4>
+                                <p>Raw Cloudflare Workers can be gradually migrated to Clodo by wrapping existing code.</p>
+                            </div>
+
+                            <div class="path">
+                                <h4>From Serverless</h4>
+                                <p>AWS Lambda, Vercel Functions, and other serverless platforms can be migrated using our import tools.</p>
+                            </div>
+                        </div>
+
+                        <h2>Further Reading</h2>
+                        <div class="further-reading">
+                            <div class="reading-item">
+                                <h4><a href="/cloudflare-workers-guide">Cloudflare Workers Guide</a></h4>
+                                <p>Understand the foundation that powers Clodo Framework - Cloudflare Workers.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/how-to-migrate-from-wrangler">Migrate from Wrangler to Clodo</a></h4>
+                                <p>Step-by-step migration guide for existing Wrangler projects to Clodo Framework.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/development-deployment-guide">Development & Deployment Guide</a></h4>
+                                <p>Complete guide to developing and deploying applications with modern workflows and best practices.</p>
+                            </div>
+                            <div class="reading-item">
+                                <h4><a href="/edge-computing-guide">Edge Computing Guide</a></h4>
+                                <p>Learn about the edge computing paradigm that Clodo Framework is built for.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h3>Ready to Build with Clodo?</h3>
+                            <p>Join thousands of developers building the future of edge computing. Start your free trial today.</p>
+                            <a href="/pricing" class="btn btn--primary">Start Free Trial</a>
+                        </div>
+                    </article>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Related Guides</h3>
+                            <ul>
+                                <li><a href="/edge-computing-guide">Edge Computing Guide</a></li>
+                                <li><a href="/cloudflare-workers-guide">Workers Guide</a></li>
+                                <li><a href="/how-to-migrate-from-wrangler">Migrate from Wrangler</a></li>
+                                <li><a href="/components">Framework Components</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="/docs">Full Documentation</a></li>
+                                <li><a href="/examples">Code Examples</a></li>
+                                <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">GitHub Repository</a></li>
+                                <li><a href="https://discord.gg/clodo" target="_blank">Community Discord</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main><!--#include file="../templates/footer.html" -->
+
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

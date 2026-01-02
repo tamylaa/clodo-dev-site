@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "navigation.schema.json",
+  "title": "Navigation Configuration Schema",
+  "description": "JSON Schema for site navigation configuration",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema reference"
+    },
+    "_comment": {
+      "type": "string",
+      "description": "Configuration comment"
+    },
+    "header": {
+      "type": "object",
+      "description": "Header navigation configuration",
+      "properties": {
+        "logo": {
+          "type": "object",
+          "description": "Site logo configuration",
+          "properties": {
+            "href": {
+              "type": "string",
+              "description": "Logo link URL"
+            },
+            "ariaLabel": {
+              "type": "string",
+              "description": "Accessibility label for logo"
+            }
+          }
+        },
+        "mainNav": {
+          "type": "array",
+          "description": "Main navigation items",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Navigation item label"
+              },
+              "href": {
+                "type": "string",
+                "description": "Navigation item URL"
+              },
+              "dropdown": {
+                "type": "array",
+                "description": "Dropdown menu items",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    },
+                    "section": {
+                      "type": "string",
+                      "description": "Dropdown section title"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "description": "Section icon"
+                    }
+                  }
+                }
+              }
+            },
+            "required": ["label", "href"]
+          }
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "description": "Footer navigation configuration",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "description": "Footer sections",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Section title"
+              },
+              "id": {
+                "type": "string",
+                "description": "Section ID"
+              },
+              "links": {
+                "type": "array",
+                "description": "Section links",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    },
+                    "external": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  },
+                  "required": ["label", "href"]
+                }
+              }
+            },
+            "required": ["title", "links"]
+          }
+        },
+        "socialLinks": {
+          "type": "array",
+          "description": "Social media links",
+          "items": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "string",
+                "enum": ["twitter", "github", "discord", "linkedin", "facebook", "instagram"]
+              },
+              "href": {
+                "type": "string"
+              },
+              "ariaLabel": {
+                "type": "string"
+              }
+            },
+            "required": ["platform", "href"]
+          }
+        },
+        "legal": {
+          "type": "array",
+          "description": "Legal links",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            },
+            "required": ["label", "href"]
+          }
+        },
+        "copyright": {
+          "type": "string",
+          "description": "Copyright text"
+        }
+      }
+    },
+    "mobile": {
+      "type": "object",
+      "description": "Mobile navigation configuration",
+      "properties": {
+        "breakpoint": {
+          "type": "string",
+          "description": "Mobile breakpoint"
+        },
+        "menuToggle": {
+          "type": "object",
+          "properties": {
+            "ariaLabel": {
+              "type": "string"
+            },
+            "ariaControls": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

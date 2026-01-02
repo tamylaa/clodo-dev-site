@@ -1,0 +1,61 @@
+{
+  "site": {
+    "name": "Clodo Framework",
+    "description": "Build serverless applications with ease",
+    "copyright": "© 2024 Clodo Team. All rights reserved."
+  },
+  "navigation": {
+    "home": "Home",
+    "docs": "Docs",
+    "community": "Community",
+    "blog": "Blog",
+    "get_started": "Get Started",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "pages": {
+    "home": {
+      "title": "Build Serverless Applications with Ease",
+      "description": "Modern framework for Cloudflare Workers development"
+    },
+    "docs": {
+      "title": "Documentation",
+      "description": "Comprehensive guides and API reference"
+    }
+  },
+  "common": {
+    "buttons": {
+      "learn_more": "Learn More",
+      "get_started": "Get Started",
+      "read_docs": "Read Docs",
+      "view_demo": "View Demo",
+      "contact_us": "Contact Us"
+    },
+    "labels": {
+      "loading": "Loading...",
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning"
+    },
+    "messages": {
+      "page_not_found": "Page not found",
+      "server_error": "Server error occurred",
+      "network_error": "Network connection failed"
+    }
+  },
+  "seo": {
+    "keywords": [
+      "cloudflare workers",
+      "serverless",
+      "framework",
+      "javascript",
+      "edge computing",
+      "web development"
+    ],
+    "meta": {
+      "author": "Clodo Team",
+      "robots": "index, follow",
+      "og_type": "website"
+    }
+  }
+}

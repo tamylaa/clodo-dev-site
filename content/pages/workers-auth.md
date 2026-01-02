@@ -75,7 +75,7 @@ export default {
   }
 }
 </script>
-
+ 
 ### OAuth: Server-side token exchange (example)
 
 ```js

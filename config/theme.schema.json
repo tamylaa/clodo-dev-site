@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Theme Configuration Schema",
+  "description": "Schema for theme configuration files",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Theme name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Theme version"
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "primaryHover": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "primaryLight": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "secondary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "secondaryHover": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+          },
+          "required": ["primary"]
+        },
+        "neutral": {
+          "type": "object",
+          "patternProperties": {
+            "^(50|100|200|300|400|500|600|700|800|900|950)$": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            }
+          }
+        },
+        "semantic": {
+          "type": "object",
+          "properties": {
+            "success": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "successLight": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "warning": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "warningLight": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "error": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "errorLight": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "info": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "infoLight": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "light": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "lightAlt": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "dark": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "darkAlt": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+          }
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "light": {
+              "type": "object",
+              "properties": {
+                "primary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "secondary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "muted": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+              }
+            },
+            "dark": {
+              "type": "object",
+              "properties": {
+                "primary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "secondary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "muted": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+              }
+            }
+          }
+        }
+      },
+      "required": ["brand", "background", "text"]
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fontFamily": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" },
+            "mono": { "type": "string" }
+          }
+        },
+        "fontSize": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        },
+        "fontWeight": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "oneOf": [{ "type": "string" }, { "type": "number" }] }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "properties": {
+        "unit": { "type": "string" },
+        "section": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        },
+        "container": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "type": "string" }
+          }
+        }
+      },
+      "patternProperties": {
+        ".*": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object", "patternProperties": { ".*": { "type": "string" } } }
+          ]
+        }
+      }
+    },
+    "breakpoints": {
+      "type": "object",
+      "patternProperties": {
+        ".*": { "type": "string" }
+      }
+    }
+  },
+  "required": ["name", "colors"]
+}

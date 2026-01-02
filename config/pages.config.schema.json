@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pages.config.schema.json",
+  "title": "Pages Configuration Schema",
+  "description": "JSON Schema for page-to-CSS bundle mappings and optimization settings",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema reference"
+    },
+    "_comment": {
+      "type": "string",
+      "description": "Configuration comment"
+    },
+    "bundleDetection": {
+      "type": "object",
+      "description": "Rules for automatically detecting CSS bundles",
+      "properties": {
+        "_comment": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "description": "Bundle detection rules",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "File path pattern to match"
+              },
+              "bundle": {
+                "type": "string",
+                "description": "CSS bundle name to use"
+              },
+              "priority": {
+                "type": "number",
+                "description": "Rule priority (higher numbers take precedence)",
+                "minimum": 0
+              },
+              "exact": {
+                "type": "boolean",
+                "description": "Whether pattern must match exactly",
+                "default": false
+              }
+            },
+            "required": ["pattern", "bundle"]
+          }
+        },
+        "defaultBundle": {
+          "type": "string",
+          "description": "Default bundle name when no rules match",
+          "default": "common"
+        }
+      },
+      "required": ["rules"]
+    },
+    "commonCss": {
+      "type": "object",
+      "description": "CSS files loaded on every page",
+      "properties": {
+        "_comment": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "description": "Common CSS file paths",
+          "items": {
+            "type": "string",
+            "pattern": "\\.css$"
+          }
+        }
+      },
+      "required": ["files"]
+    },
+    "pageBundles": {
+      "type": "object",
+      "description": "Page-specific CSS bundles",
+      "properties": {
+        "_comment": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_-]*$": {
+          "type": "object",
+          "description": "Individual page bundle configuration",
+          "properties": {
+            "css": {
+              "type": "array",
+              "description": "Critical CSS files for this bundle",
+              "items": {
+                "type": "string",
+                "pattern": "\\.css$"
+              }
+            },
+            "deferred": {
+              "type": "array",
+              "description": "Deferred CSS files loaded after page load",
+              "items": {
+                "type": "string",
+                "pattern": "\\.css$"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "outputFiles": {
+      "type": "object",
+      "description": "Naming conventions for bundled CSS files",
+      "properties": {
+        "_comment": {
+          "type": "string"
+        },
+        "common": {
+          "type": "string",
+          "description": "Output filename for common CSS"
+        },
+        "pageBundle": {
+          "type": "string",
+          "description": "Template for page-specific bundle filenames"
+        },
+        "deferred": {
+          "type": "string",
+          "description": "Template for deferred CSS filenames"
+        }
+      },
+      "required": ["common"]
+    },
+    "optimization": {
+      "type": "object",
+      "description": "CSS optimization settings",
+      "properties": {
+        "criticalCss": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "maxInlineSize": {
+              "type": "number",
+              "description": "Maximum size for inlined critical CSS (bytes)",
+              "minimum": 0
+            }
+          }
+        },
+        "contentHashing": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "hashLength": {
+              "type": "number",
+              "description": "Length of content hash",
+              "minimum": 1,
+              "maximum": 32
+            }
+          }
+        },
+        "minification": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

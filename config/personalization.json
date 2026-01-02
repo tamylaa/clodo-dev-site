@@ -1,0 +1,85 @@
+[
+  {
+    "id": "power_users",
+    "condition": "user.segments.includes('power_user')",
+    "config": {
+      "features": {
+        "advanced_analytics": true,
+        "priority_support": true
+      },
+      "ui": {
+        "show_advanced_options": true
+      }
+    },
+    "priority": 10
+  },
+  {
+    "id": "dark_mode_users",
+    "condition": "user.preferences.theme === 'dark'",
+    "config": {
+      "theme": {
+        "mode": "dark",
+        "colors": {
+          "background": {
+            "primary": "#0f172a"
+          }
+        }
+      }
+    },
+    "priority": 5
+  },
+  {
+    "id": "spanish_speakers",
+    "condition": "user.preferences.language === 'es'",
+    "config": {
+      "locale": "es",
+      "content": {
+        "show_spanish_content": true
+      }
+    },
+    "priority": 8
+  },
+  {
+    "id": "mobile_users",
+    "condition": "context.userAgent?.includes('Mobile')",
+    "config": {
+      "ui": {
+        "mobile_optimized": true,
+        "touch_targets": "large"
+      },
+      "features": {
+        "simplified_navigation": true
+      }
+    },
+    "priority": 3
+  },
+  {
+    "id": "first_time_visitors",
+    "condition": "user.segments.includes('first_time')",
+    "config": {
+      "ui": {
+        "show_onboarding": true,
+        "highlight_cta": true
+      },
+      "content": {
+        "show_beginner_content": true
+      }
+    },
+    "priority": 7
+  },
+  {
+    "id": "enterprise_segment",
+    "condition": "user.segments.includes('enterprise')",
+    "config": {
+      "features": {
+        "sso_integration": true,
+        "advanced_security": true,
+        "custom_branding": true
+      },
+      "pricing": {
+        "show_enterprise_plans": true
+      }
+    },
+    "priority": 9
+  }
+]

@@ -1,0 +1,165 @@
+# Clodo Framework Constants
+# TOML Format - Primary source of truth
+# Loads in priority order: TOML → JSON → JS
+
+[environments]
+development = "development"
+staging = "staging"
+production = "production"
+all = ["development", "staging", "production"]
+
+[environments.hosts]
+development = ["localhost", "127.0.0.1", "0.0.0.0"]
+staging = ["staging.clodo.dev"]
+production = ["clodo.dev", "www.clodo.dev"]
+
+[ports]
+devServer = 8000
+viteDev = 5173
+httpServer = 3000
+lighthouse = 8000
+smokeTest = 38200
+defaultDev = 8000
+defaultHttp = 3000
+defaultVite = 5173
+
+[localhost]
+main = "http://localhost:8000"
+vite = "http://localhost:5173"
+http = "http://localhost:3000"
+workers = "http://localhost:8787"
+host = "localhost"
+ipLoopback = "127.0.0.1"
+ipAll = "0.0.0.0"
+
+[themeModes]
+light = "light"
+dark = "dark"
+auto = "auto"
+all = ["light", "dark", "auto"]
+
+[themeColors.primary]
+light = "#0066cc"
+dark = "#3399ff"
+
+[themeColors.text]
+primary = "#1a1a1a"
+secondary = "#666666"
+muted = "#999999"
+
+[themeColors.background]
+light = "#ffffff"
+dark = "#1a1a1a"
+
+[themeColors.status]
+success = "#22c55e"
+error = "#ef4444"
+warning = "#f59e0b"
+info = "#3b82f6"
+
+[themeColors.console]
+reset = "\u001b[0m"
+red = "\u001b[31m"
+green = "\u001b[32m"
+yellow = "\u001b[33m"
+blue = "\u001b[34m"
+cyan = "\u001b[36m"
+
+[locales]
+english = "en"
+spanish = "es"
+french = "fr"
+german = "de"
+japanese = "ja"
+chinese = "zh"
+hebrew = "he"
+all = ["en", "es", "fr", "de", "ja", "zh", "he"]
+
+[locales.regions]
+en = "en-US"
+es = "es-ES"
+fr = "fr-FR"
+de = "de-DE"
+ja = "ja-JP"
+zh = "zh-CN"
+he = "he-IL"
+
+[performance.lighthouse]
+performance = 90
+accessibility = 95
+bestPractices = 90
+seo = 90
+
+[performance.webVitals]
+lcp = 2500
+fid = 100
+cls = 0.1
+fcp = 1800
+ttfb = 800
+
+[performance.timeouts]
+request = 10000
+pageLoad = 30000
+navigation = 60000
+resourceLoad = 10000
+smokeTest = 10000
+smokeTestExtended = 15000
+
+[performance.files]
+maxInlineCSS = 50000
+maxInlineCSS_KB = 50
+
+[pages]
+home = "/"
+about = "/about"
+pricing = "/pricing"
+docs = "/docs"
+blog = "/blog"
+caseStudies = "/case-studies"
+migrate = "/migrate"
+community = "/community"
+
+[configExtensions]
+json = ".json"
+js = ".js"
+ts = ".ts"
+mjs = ".mjs"
+toml = ".toml"
+all = [".json", ".js", ".ts", ".mjs", ".toml"]
+
+[features]
+abTesting = "ab-testing"
+personalization = "personalization"
+analytics = "analytics"
+hotReload = "hot-reload"
+devTools = "dev-tools"
+
+[build]
+hashLength = 8
+modeDev = "development"
+modeProd = "production"
+sourcemapDev = true
+sourcemapProd = false
+
+[httpCodes]
+ok = 200
+redirectMin = 300
+redirectMax = 399
+clientError = 400
+notFound = 404
+serverError = 500
+
+[validation.http]
+success = 200
+redirectMin = 300
+redirectMax = 399
+clientError = 400
+serverError = 500
+
+[validation.curl]
+maxRedirects = 10
+timeout = 30000
+
+[validation.playwright]
+defaultTimeout = 30000
+navigationTimeout = 60000

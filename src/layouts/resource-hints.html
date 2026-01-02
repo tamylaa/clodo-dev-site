@@ -1,0 +1,22 @@
+<!-- PERFORMANCE RESOURCE HINTS - OPTIMIZED FOR LCP -->
+<!-- DNS Prefetch for analytics only (not fonts - we use system fonts now!) -->
+<!-- Preconnect to analytics origins used after LCP to reduce connection latency -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+
+<!-- CRITICAL: Early shims to prevent TypeErrors if core modules fail to load or are cached -->
+<script>
+// Ensure core module globals exist before ANY other scripts run
+window.PerformanceMonitor=window.PerformanceMonitor||{init:function(){},getReport:function(){return{}},getMetrics:function(){return{}},getErrors:function(){return[]},getTimings:function(){return[]},getLongTasks:function(){return[]},getTrends:function(){return[]},getResourceBreakdown:function(){return{}},getOptimizationRecommendations:function(){return[]},enableDebug:function(){},disableDebug:function(){},stop:function(){},sendBeacon:function(){}};window.SEO=window.SEO||{init:function(){},addOrganizationSchema:function(){},addWebSiteSchema:function(){},addSoftwareSchema:function(){},addStructuredData:function(){},setPageMeta:function(){},makeAbsoluteUrl:function(u){return u||''},getCurrentMeta:function(){return{}}};window.a11y=window.a11y||{init:function(){},generateReport:function(){return{}}};
+</script>
+
+<!-- Preload Critical Resources ONLY -->
+<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>
+<!-- Script swaps preloaded style links to stylesheet using an external script so it works with strict CSP (no inline handlers) -->
+<script src="/js/init-preload.js"></script>
+
+<!-- Future: Module Preload (for ES6 modules migration) -->
+<!-- <link rel="modulepreload" href="js/main.js"> -->
+<!-- <link rel="modulepreload" href="js/core/theme.js"> -->
+<!-- <link rel="modulepreload" href="js/features/newsletter.js"> -->

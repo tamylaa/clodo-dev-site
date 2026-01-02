@@ -1,0 +1,43 @@
+{
+  "integrationDate": "2026-01-01T17:36:44.260Z",
+  "sourceDir": "G:\\coding\\clodo-dev-site\\framework-extraction",
+  "targetDir": "G:\\coding\\clodo-web-starter",
+  "integratedComponents": [
+    {
+      "source": "build-tools",
+      "target": "build",
+      "fileCount": 8
+    },
+    {
+      "source": "content-tools",
+      "target": "build",
+      "fileCount": 4
+    },
+    {
+      "source": "validation-tools",
+      "target": "build",
+      "fileCount": 16
+    },
+    {
+      "source": "deployment-tools",
+      "target": "build",
+      "fileCount": 6
+    },
+    {
+      "source": "templates",
+      "target": "templates",
+      "fileCount": 48
+    },
+    {
+      "source": "config/templates",
+      "target": "config",
+      "fileCount": 12
+    }
+  ],
+  "nextSteps": [
+    "Review integrated files for path updates",
+    "Test build process in clodo-web-starter",
+    "Update package.json scripts if needed",
+    "Run validation tools to ensure everything works"
+  ]
+}

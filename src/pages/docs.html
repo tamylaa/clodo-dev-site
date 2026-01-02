@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Developer Documentation - Clodo Framework Guide for Workers</title>
+    <link rel="canonical" href="https://www.clodo.dev/docs">
+    <meta name="description" content="Complete Cloudflare developer documentation. Learn Cloudflare Workers, edge computing, and serverless development with Clodo Framework. Comprehensive guides, tutorials, and API references.">
+    <meta name="keywords" content="cloudflare developer docs, cloudflare documentation, cloudflare workers guide, edge computing documentation, serverless framework docs, clodo framework documentation, cloudflare api documentation">
+    <meta name="author" content="Clodo Framework Team">
+    <meta name="article:author" content="Clodo Framework">
+    <meta name="article:published_time" content="2024-09-01T00:00:00Z">
+    <meta name="article:modified_time" content="2024-11-25T00:00:00Z">
+    <meta name="article:section" content="Documentation">
+    <meta name="article:tag" content="Cloudflare Workers">
+    <meta name="article:tag" content="Serverless">
+    <meta name="article:tag" content="Edge Computing">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="dns-prefetch" href="//api.github.com">
+    
+    <!-- Hreflang for Internationalization -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="en-US" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="en-GB" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="en-IN" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="pt-BR" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="de" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="de-DE" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="it" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="it-IT" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="nl-BE" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="fr-BE" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="es-PY" href="https://www.clodo.dev/docs">
+    <link rel="alternate" hreflang="x-default" href="https://www.clodo.dev/docs">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    
+    <!-- Geo-targeting for International SEO -->
+    <meta name="geo.region" content="US">
+    <meta name="geo.country" content="United States">
+    <meta name="geo.region" content="DE">
+    <meta name="geo.country" content="Germany">
+    <meta name="geo.region" content="IT">
+    <meta name="geo.country" content="Italy">
+    <meta name="geo.region" content="BR">
+    <meta name="geo.country" content="Brazil">
+    <meta name="geo.region" content="BE">
+    <meta name="geo.country" content="Belgium">
+    <meta name="geo.region" content="IN">
+    <meta name="geo.country" content="India">
+    <meta name="geo.region" content="PY">
+    <meta name="geo.country" content="Paraguay">
+    
+    <!-- International Content Distribution -->
+    <meta name="distribution" content="global">
+    <meta name="target" content="all">
+    <meta name="language" content="en">
+    
+    <!-- Additional Link Relations for SEO -->
+    <link rel="author" href="https://github.com/tamylaa/clodo-framework">
+    <link rel="help" href="/docs">
+    <link rel="next" href="/cloudflare-workers-guide">
+    
+    <!-- Schema.org Documentation -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Clodo Framework Documentation - Complete Guide",
+        "description": "Complete documentation for Clodo Framework - the Ruby on Rails of Cloudflare Workers. Build production SaaS applications with enterprise-grade features.",
+        "url": "https://clodo.dev/docs",
+        "datePublished": "2024-09-01",
+        "dateModified": "2024-11-25",
+        "author": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Clodo Framework",
+            "url": "https://clodo.dev",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://clodo.dev/icons/icon-512.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://clodo.dev/docs.html"
+        },
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "Clodo Framework",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform"
+        },
+        "proficiencyLevel": "Beginner to Advanced",
+        "dependencies": "Node.js 18+, npm, Cloudflare Account"
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.clodo.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Documentation",
+          "item": "https://www.clodo.dev/docs"
+        }
+      ]
+    }
+    </script>
+
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Clodo Framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework is an open-source enterprise framework for Cloudflare Workers that simplifies building production-ready serverless applications. It provides pre-built patterns for authentication, database integration, API routing, and deployment automation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Clodo compare to manual Wrangler development?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework reduces development time by 75% compared to manual Wrangler commands. Instead of writing boilerplate code for every service, Clodo provides scaffolding tools that generate complete applications with enterprise features like multi-tenancy, security, and monitoring."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Clodo Framework free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Clodo Framework is completely free and open source under the MIT License. You can use it for personal projects, startups, and enterprise applications without any licensing fees. The framework runs on Cloudflare Workers' generous free tier."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What programming languages does Clodo support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework is built for TypeScript and JavaScript, the native languages of Cloudflare Workers. It leverages V8 isolates for optimal performance and provides full TypeScript support with intelligent type checking."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TableOfContents",
+      "name": "Clodo Framework Documentation Table of Contents",
+      "description": "Complete guide to Clodo Framework for Cloudflare Workers development",
+      "mainEntity": {
+        "@type": "WebPage",
+        "@id": "https://www.clodo.dev/docs"
+      },
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Getting Started",
+          "url": "https://www.clodo.dev/docs#getting-started"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Cloudflare Developer Resources",
+          "url": "https://www.clodo.dev/docs#cloudflare-docs"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "API Reference",
+          "url": "https://www.clodo.dev/docs#api"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+    </header>
+
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="/">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span>Documentation</span>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Cloudflare Developer Documentation</h1>
+                    <p>Complete guide to Cloudflare Workers development with Clodo Framework. Learn edge computing, serverless APIs, database integration, and production deployment. From beginner tutorials to enterprise patterns.</p>
+                    <div class="doc-meta">
+                        <time datetime="2024-11-25" class="last-updated">Last updated: November 25, 2024</time>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#getting-started" class="btn btn--primary">Get Started</a>
+                        <a href="/cloudflare-workers-guide" class="btn btn--secondary">Workers Guide</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="getting-started">
+            <div class="container">
+                <h2>🚀 Getting Started in 5 Minutes</h2>
+
+                <h3>Installation</h3>
+                <pre><code>npm install @tamyla/clodo-framework</code></pre>
+
+                <h3>Create Your First Service</h3>
+                <pre><code>npx create-clodo-service my-new-service --type data-service</code></pre>
+
+                <h3>Development Setup</h3>
+                <pre><code>cd my-new-service
+npm install
+npm run dev</code></pre>
+
+                <h3>Deploy to Production</h3>
+                <pre><code>npm run deploy</code></pre>
+
+                <p><strong>That's it!</strong> Your service is now running on Cloudflare Workers with enterprise-grade security, database integration, and automated deployment.</p>
+
+                <div class="learn-more-section">
+                    <h3>📚 Learn More</h3>
+                    <p>Deep dive into Cloudflare Workers development:</p>
+                    <ul>
+                        <li><a href="/cloudflare-workers-development-guide">Complete Cloudflare Workers Development Guide 2025</a> - Master edge computing, D1 database, KV storage, and deployment best practices</li>
+                        <li><a href="/what-is-cloudflare-workers">What is Cloudflare Workers?</a> - Understanding the platform fundamentals</li>
+                        <li><a href="/examples">Code Examples</a> - Real-world implementation patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="concepts">
+            <div class="container">
+                <h2>Core Concepts</h2>
+
+                <h3>Service Types</h3>
+                <div class="service-types-grid">
+                    <div class="service-type">
+                        <h4>🗄️ Data Service</h4>
+                        <p>Database CRUD operations with Cloudflare D1 integration, schema management, and query optimization.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>🔐 Authentication Service</h4>
+                        <p>User authentication, authorization, JWT token management, and session handling.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>🌐 API Gateway</h4>
+                        <p>Request routing, rate limiting, API orchestration, and cross-service communication.</p>
+                    </div>
+                    <div class="service-type">
+                        <h4>📝 Content Service</h4>
+                        <p>Content management, CMS functionality, and dynamic content delivery.</p>
+                    </div>
+                </div>
+
+                <h3>🔒 Security-by-Default Architecture</h3>
+                <p>Clodo Framework implements comprehensive security validation:</p>
+                <ul>
+                    <li><strong>API Token Security</strong>: AES-256-CBC encrypted storage with automatic prompting</li>
+                    <li><strong>Dummy Key Prevention</strong>: Blocks deployment of development/test keys to production</li>
+                    <li><strong>Weak Secret Detection</strong>: Validates password strength and entropy</li>
+                    <li><strong>URL Security</strong>: Enforces HTTPS in production, blocks localhost in live environments</li>
+                    <li><strong>JWT Validation</strong>: Ensures proper JWT secret strength and configuration</li>
+                </ul>
+
+                <h3>🏗️ Domain Configuration Management</h3>
+                <p>Centralized configuration system with runtime discovery:</p>
+                <ul>
+                    <li><strong>JSON-based Configuration</strong>: Environment-specific settings with validation</li>
+                    <li><strong>Runtime Discovery</strong>: Services automatically discover and configure themselves</li>
+                    <li><strong>Feature Flags</strong>: Declarative feature management with domain-specific overrides</li>
+                    <li><strong>Multi-tenant Support</strong>: Customer isolation and configuration management</li>
+                </ul>
+
+                <h3>⚡ Performance & Caching</h3>
+                <p>Optimized for Cloudflare's edge network:</p>
+                <ul>
+                    <li><strong>Schema Caching</strong>: Database schema caching for improved performance</li>
+                    <li><strong>SQL Query Caching</strong>: Intelligent query result caching</li>
+                    <li><strong>Validation Caching</strong>: Security validation result caching</li>
+                    <li><strong>Global Replication</strong>: Edge-optimized data distribution</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="cloudflare-docs" class="cloudflare-docs-section">
+            <div class="container">
+                <h2>📚 Cloudflare Developer Resources</h2>
+                <p>Essential documentation for Cloudflare Workers development, from basics to advanced patterns.</p>
+
+                <div class="docs-grid">
+                    <div class="doc-card">
+                        <h3><a href="/what-is-cloudflare-workers">What are Cloudflare Workers?</a></h3>
+                        <p>Learn the fundamentals of serverless functions at the edge. Understand how Workers differ from traditional serverless platforms.</p>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><a href="/cloudflare-workers-guide">Complete Workers Guide</a></h3>
+                        <p>Comprehensive tutorial covering installation, deployment, databases, and production best practices.</p>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><a href="/workers-vs-lambda">Workers vs AWS Lambda</a></h3>
+                        <p>Detailed comparison of performance, cost, and developer experience between Cloudflare Workers and AWS Lambda.</p>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><a href="/framework-comparison">Framework Comparison</a></h3>
+                        <p>Compare Clodo Framework with Hono, Worktop, and other Cloudflare Workers frameworks.</p>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><a href="/worker-scaffolding-tools">Scaffolding Tools</a></h3>
+                        <p>Automated code generation for enterprise patterns, authentication, databases, and API endpoints.</p>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><a href="https://developers.cloudflare.com/workers/" target="_blank">Official Cloudflare Docs →</a></h3>
+                        <p>Official Cloudflare Workers documentation for core platform features and APIs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="api">
+            <div class="container">
+                <h2>API Reference</h2>
+
+                <h3>🔧 CLI Commands</h3>
+                <div class="api-commands">
+                    <div class="command-group">
+                        <h4>Service Management</h4>
+                        <pre><code>npx create-clodo-service <name> --type <type>  # Create new service
+npx @tamyla/clodo-framework --help              # Show all commands</code></pre>
+                    </div>
+
+                    <div class="command-group">
+                        <h4>Available Service Types</h4>
+                        <pre><code>--type data-service      # Database operations
+--type auth-service      # Authentication & authorization
+--type api-gateway       # API routing & orchestration
+--type content-service   # Content management & CMS</code></pre>
+                    </div>
+                </div>
+
+                <h3>📚 Core Classes & Functions</h3>
+                <div class="api-reference">
+                    <div class="api-item">
+                        <h4>FeatureFlagManager</h4>
+                        <pre><code>import { FeatureFlagManager } from '@tamyla/clodo-framework';
+
+const featureManager = new FeatureFlagManager();
+await featureManager.setDomain(domainConfig);
+const isEnabled = featureManager.isEnabled('featureName');</code></pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h4>Domain Configuration</h4>
+                        <pre><code>import { initializeService } from '@tamyla/clodo-framework';
+
+export default {
+  async fetch(request, env, ctx) {
+    const service = initializeService(env);
+    // Service automatically discovers domain configuration
+  }
+};</code></pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h4>Security Validation</h4>
+                        <pre><code>import { createFeatureGuard } from '@tamyla/clodo-framework';
+
+const guardedHandler = createFeatureGuard('premiumFeature')(
+  premiumHandler
+);</code></pre>
+                    </div>
+                </div>
+
+                <h3>🔗 Additional Resources</h3>
+                <ul>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank">Complete Documentation on GitHub</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/docs/api" target="_blank">Full API Reference</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework/tree/main/i-docs" target="_blank">Internal Documentation</a></li>
+                </ul>
+            </div>
+        </section>
+    </main><!--#include file="../templates/footer.html" -->
+
+    
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

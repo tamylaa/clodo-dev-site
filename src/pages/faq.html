@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+    <title>Clodo Framework FAQ - Questions About Pricing, Features & Deployment</title>
+    <meta name="description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements. Get answers to help you decide.">
+    <meta name="keywords" content="clodo faq, cloudflare workers faq, serverless framework questions, multi-tenant SaaS">
+    <meta name="author" content="Clodo Framework">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <link rel="canonical" href="https://www.clodo.dev/faq">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Clodo Framework FAQ - Questions About Pricing, Features & Deployment">
+    <meta property="og:description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements.">
+    <meta property="og:image" content="https://www.clodo.dev/og-image.png">
+    <meta property="og:url" content="https://www.clodo.dev/faq">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clodo Framework FAQ - Questions About Pricing, Features & Deployment">
+    <meta name="twitter:description" content="Frequently asked questions about Clodo Framework. Learn about pricing, feature comparisons, deployment, security, and technical requirements.">
+    <meta name="twitter:image" content="https://www.clodo.dev/og-image.png">
+
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does Clodo Framework cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clodo Framework uses a pay-as-you-go model; typical small deployments cost $20-50/month."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" nonce="N0Nc3Cl0d0">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.clodo.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FAQ",
+          "item": "https://www.clodo.dev/faq"
+        }
+      ]
+    }
+    </script>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .faq-item {
+            background: var(--bg-secondary);
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 4px solid var(--primary-color);
+        }
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        .faq-question:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            line-height: 1.8;
+            border-top: 1px solid var(--border-color);
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-answer ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+        .faq-category {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .faq-category h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .faq-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .faq-filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .faq-filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .faq-filter-btn.active {
+            background: var(--primary-color);
+            color: var(--color-white);
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header><!--#include file="../templates/nav-main.html" --></header>
+    
+    <main>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">FAQ</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
+        <section class="hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #172554 100%); padding: 3rem 2rem; text-align: center; color: var(--color-white);">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Frequently Asked Questions</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Find answers to common questions about Clodo Framework</p>
+        </section>
+
+        <div class="faq-container">
+            <div class="table-of-contents" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem;">Table of Contents</h2>
+                <nav aria-label="FAQ table of contents">
+                    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <li><a href="#pricing-costs" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">💰 Pricing & Costs</a></li>
+                        <li><a href="#features-capabilities" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">✨ Features & Capabilities</a></li>
+                        <li><a href="#deployment-operations" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">🚀 Deployment & Operations</a></li>
+                        <li><a href="#technical-questions" style="color: var(--text-color); text-decoration: none; font-weight: 500; display: block; padding: 0.5rem; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.background='rgba(0, 102, 204, 0.1)'" onmouseout="this.style.background='transparent'">⚙️ Technical Questions</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="faq-filter">
+                <button class="faq-filter-btn active" data-filter="all">All Questions</button>
+                <button class="faq-filter-btn" data-filter="pricing">Pricing</button>
+                <button class="faq-filter-btn" data-filter="features">Features</button>
+                <button class="faq-filter-btn" data-filter="deployment">Deployment</button>
+                <button class="faq-filter-btn" data-filter="technical">Technical</button>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="faq-category">
+                <h2 id="pricing-costs">💰 Pricing & Costs</h2>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>How much does Clodo Framework cost?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo Framework uses a pay-as-you-go model through Cloudflare:</p>
+                        <ul>
+                            <li><strong>Compute:</strong> $0.00001667 per request (first 100M/month free)</li>
+                            <li><strong>Storage (D1):</strong> Included (SQLite database)</li>
+                            <li><strong>KV Storage:</strong> $0.50/million operations</li>
+                            <li><strong>R2 Object Storage:</strong> $0.015/GB (first 10GB free)</li>
+                        </ul>
+                        <p><strong>Typical enterprise app (1M requests/month):</strong> $20-50/month infrastructure</p>
+                        <p>Compare to: Lambda ($200-300/month) + RDS ($50-100/month) + S3 ($5-20/month) = $255-420/month</p>
+                        <p><strong>Savings: 80-90% compared to traditional serverless</strong></p>
+                        <p>For detailed pricing breakdown and cost calculators, visit our <a href="/pricing">pricing page</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>Do you have paid plans with support?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo Framework is open-source and free. We offer optional commercial support tiers:</p>
+                        <ul>
+                            <li><strong>Community Support:</strong> GitHub Discussions (free)</li>
+                            <li><strong>Priority Support:</strong> Email + Slack (contact sales)</li>
+                            <li><strong>Enterprise Support:</strong> Dedicated engineer (contact sales)</li>
+                        </ul>
+                        <p>You only pay for Cloudflare's infrastructure, not the framework itself.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>Are there any hidden fees?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. You only pay Cloudflare for what you use:</p>
+                        <ul>
+                            <li>✅ Compute requests</li>
+                            <li>✅ Data storage (D1, KV, R2)</li>
+                            <li>✅ Analytics</li>
+                            <li>❌ No platform fees</li>
+                            <li>❌ No seat licenses</li>
+                            <li>❌ No support fees (unless you opt in)</li>
+                        </ul>
+                        <p>You control costs by optimizing your code and usage patterns.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question">
+                        <span>What about scaling costs? Does price increase with traffic?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, but predictably and efficiently:</p>
+                        <ul>
+                            <li><strong>Linear pricing:</strong> 2x traffic = 2x cost</li>
+                            <li><strong>No overprovisioning:</strong> Pay only for actual requests</li>
+                            <li><strong>Free tier covers:</strong> 100M requests/month (enough for 1M users with average usage)</li>
+                            <li><strong>Rate limiting:</strong> Built-in, no surprise costs</li>
+                        </ul>
+                        <p>A service with 1B requests/month costs ~$200, not $20,000 like traditional servers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="faq-category">
+                <h2 id="features-capabilities">✨ Features & Capabilities</h2>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>What is the "Pre-Flight Checker"?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Pre-Flight Checker is Clodo's deployment validation system:</p>
+                        <ul>
+                            <li><strong>Before deployment:</strong> Validates all worker rules, environment variables, database connections</li>
+                            <li><strong>Prevents crashes:</strong> Catches errors before they hit production</li>
+                            <li><strong>Reduces downtime:</strong> Failed deployments never go live</li>
+                            <li><strong>Enterprise-ready:</strong> Integrates with CI/CD pipelines</li>
+                        </ul>
+                        <p>Think of it as your deployment insurance policy.</p>
+                        <p>Learn more about deployment and the Pre-Flight Checker in our <a href="/development-deployment-guide">deployment guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>Does Clodo support multi-tenant applications?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, multi-tenant is built-in, not an afterthought:</p>
+                        <ul>
+                            <li><strong>Tenant isolation:</strong> Data automatically separated by tenant</li>
+                            <li><strong>Namespace management:</strong> Automatic routing by tenant ID</li>
+                            <li><strong>Database per tenant or shared:</strong> You choose the architecture</li>
+                            <li><strong>Cost per tenant:</strong> Transparent, automatic billing if needed</li>
+                        </ul>
+                        <p>Clodo was designed from day 1 for SaaS multi-tenant platforms.</p>
+                        <p>See our case studies for examples of <a href="/case-studies/healthcare-saas-platform">multi-tenant healthcare platforms</a> and <a href="/case-studies/fintech-payment-platform">fintech payment systems</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>What programming languages does Clodo support?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo currently supports:</p>
+                        <ul>
+                            <li>✅ <strong>JavaScript/TypeScript</strong> (primary, full support)</li>
+                            <li>✅ <strong>Python</strong> (via community packages)</li>
+                            <li>✅ <strong>Rust</strong> (via WebAssembly)</li>
+                            <li>🔄 <strong>Go, Java:</strong> Coming soon</li>
+                        </ul>
+                        <p>Cloudflare Workers natively supports JavaScript/TypeScript with excellent DX.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <span>Can I use Clodo for real-time applications?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Clodo excels at real-time:</p>
+                        <ul>
+                            <li>✅ <strong>WebSockets:</strong> Supported via Durable Objects</li>
+                            <li>✅ <strong>Real-time messaging:</strong> Low-latency global pub/sub</li>
+                            <li>✅ <strong>Chat applications:</strong> Built-in for multi-user sync</li>
+                            <li>✅ <strong>Live dashboards:</strong> Server-Sent Events (SSE)</li>
+                            <li>✅ <strong>Collaboration tools:</strong> CRDT support available</li>
+                        </ul>
+                        <p>Edge location means <10ms latency for real-time features.</p>
+                        <p>Compare Clodo's real-time capabilities with traditional serverless in our <a href="/workers-vs-lambda">Workers vs Lambda comparison</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deployment Section -->
+            <div class="faq-category">
+                <h2 id="deployment-operations">🚀 Deployment & Operations</h2>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>How long does it take to deploy a Clodo app?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Extremely fast:</p>
+                        <ul>
+                            <li><strong>Initial setup:</strong> 5 minutes</li>
+                            <li><strong>First deployment:</strong> 2-3 minutes</li>
+                            <li><strong>Subsequent deploys:</strong> 10-30 seconds</li>
+                            <li><strong>Zero downtime:</strong> Blue-green deployments automatic</li>
+                            <li><strong>Rollback:</strong> 1 click, instant</li>
+                        </ul>
+                        <p>Compare to: Traditional server (hours), Lambda (minutes), Clodo (seconds).</p>
+                        <p>For step-by-step deployment instructions, check our <a href="/development-deployment-guide">development and deployment guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>What's the uptime guarantee?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cloudflare provides:</p>
+                        <ul>
+                            <li>✅ <strong>99.99% SLA</strong> for Enterprise customers</li>
+                            <li>✅ <strong>200+ data centers</strong> worldwide (automatic failover)</li>
+                            <li>✅ <strong>DDoS protection</strong> included</li>
+                            <li>✅ <strong>Automatic scaling:</strong> No manual intervention needed</li>
+                            <li>✅ <strong>Zero cold starts:</strong> Always ready to serve</li>
+                        </ul>
+                        <p>Your app is as reliable as Cloudflare's global infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>Can I use Clodo with CI/CD pipelines?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, full CI/CD support:</p>
+                        <ul>
+                            <li>✅ <strong>GitHub Actions:</strong> Deploy on push</li>
+                            <li>✅ <strong>GitLab CI:</strong> Full integration</li>
+                            <li>✅ <strong>CircleCI:</strong> Pre-flight validation</li>
+                            <li>✅ <strong>Jenkins:</strong> Custom webhook support</li>
+                            <li>✅ <strong>Environment promotion:</strong> Dev → Staging → Production</li>
+                        </ul>
+                        <p>Pre-Flight Checker integrates directly into your CI/CD to prevent bad deployments.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="deployment">
+                    <div class="faq-question">
+                        <span>How do I monitor my Clodo application?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Comprehensive monitoring built-in:</p>
+                        <ul>
+                            <li><strong>Real-time logs:</strong> All requests/errors in Cloudflare dashboard</li>
+                            <li><strong>Metrics:</strong> CPU, memory, errors, latency</li>
+                            <li><strong>Analytics:</strong> Page views, geographic distribution, browser stats</li>
+                            <li><strong>Alerts:</strong> Set thresholds for errors, latency</li>
+                            <li><strong>Integrations:</strong> DataDog, New Relic, Grafana</li>
+                        </ul>
+                        <p>No separate monitoring service needed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Section -->
+            <div class="faq-category">
+                <h2 id="technical-questions">⚙️ Technical Questions</h2>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>What are the execution time limits?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clodo on Cloudflare Workers has different limits depending on usage:</p>
+                        <ul>
+                            <li><strong>CPU time:</strong> 30 seconds for Workers, up to 15 minutes for Durable Objects</li>
+                            <li><strong>Memory:</strong> 128MB standard, up to 512MB available</li>
+                            <li><strong>Request timeout:</strong> 30 seconds default</li>
+                            <li><strong>File size:</strong> 25MB max upload size</li>
+                        </ul>
+                        <p><strong>Good for:</strong> API requests, web scraping, data processing</p>
+                        <p><strong>Not ideal for:</strong> Video encoding, large ML models (15+ seconds)</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Is there cold start latency like Lambda?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No cold starts with Clodo on Cloudflare Workers:</p>
+                        <ul>
+                            <li>✅ <strong>~0ms cold start:</strong> Code is pre-compiled at edge</li>
+                            <li>✅ <strong>Always hot:</strong> Replicated to 200+ locations globally</li>
+                            <li>✅ <strong>Instant response:</strong> No initialization delay</li>
+                            <li>✅ <strong>Perfect for:</strong> P99 latency matters (customer-facing apps)</li>
+                        </ul>
+                        <p>Lambda typically has 500ms-1000ms cold starts. Not an issue with Clodo.</p>
+                        <p>Compare cold start performance in our <a href="/workers-vs-lambda">Workers vs Lambda guide</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>What about CORS and security headers?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Full security control built-in:</p>
+                        <ul>
+                            <li>✅ <strong>CORS handling:</strong> Simple declarative syntax</li>
+                            <li>✅ <strong>Security headers:</strong> CSP, X-Frame-Options, HSTS</li>
+                            <li>✅ <strong>JWT validation:</strong> Built-in middleware</li>
+                            <li>✅ <strong>Rate limiting:</strong> Per-tenant or per-IP</li>
+                            <li>✅ <strong>WAF rules:</strong> Cloudflare WAF included</li>
+                        </ul>
+                        <p>Security-first architecture by default.</p>
+                        <p>Learn more about security features in our <a href="/docs">documentation</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Can I connect to external databases?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, multiple options:</p>
+                        <ul>
+                            <li>✅ <strong>D1 (SQLite):</strong> Built-in, recommended</li>
+                            <li>✅ <strong>PostgreSQL:</strong> Via Neon, Supabase</li>
+                            <li>✅ <strong>MySQL:</strong> Via PlanetScale</li>
+                            <li>✅ <strong>MongoDB:</strong> Via Atlas</li>
+                            <li>✅ <strong>Custom APIs:</strong> HTTP calls to any service</li>
+                        </ul>
+                        <p><strong>Best practice:</strong> Use D1 for 90% of cases, external DB only if needed.</p>
+                        <p>Check our <a href="/examples">code examples</a> for database integration patterns.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>How do I handle file uploads?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Multiple options for file handling:</p>
+                        <ul>
+                            <li>✅ <strong>R2 Object Storage:</strong> Store files permanently (recommended)</li>
+                            <li>✅ <strong>Base64 encoding:</strong> Small files in D1 database</li>
+                            <li>✅ <strong>Multipart form data:</strong> Full HTTP upload support</li>
+                            <li>✅ <strong>Signed URLs:</strong> Direct browser-to-R2 uploads</li>
+                            <li>✅ <strong>Size limits:</strong> Up to 25MB per request</li>
+                        </ul>
+                        <p>R2 is cheapest option for large-scale file storage ($0.015/GB).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <span>Is the framework vendor-locked to Cloudflare?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Flexible architecture:</p>
+                        <ul>
+                            <li>✅ <strong>Standard Web APIs:</strong> Most code runs anywhere</li>
+                            <li>⚠️ <strong>Cloudflare-specific:</strong> Durable Objects, D1, R2 (but documented)</li>
+                            <li>✅ <strong>Migration path:</strong> Can move to other platforms if needed</li>
+                            <li>✅ <strong>Open source:</strong> You own your code, not locked in</li>
+                        </ul>
+                        <p>Not as locked-in as AWS Lambda, not as portable as plain Node.js. Balanced approach.</p>
+                        <p>Compare vendor lock-in concerns in our <a href="/clodo-vs-lambda">Clodo vs AWS Lambda comparison</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Content Section --><!--#include file="../templates/related-content-faq.html" -->
+
+            <!-- Getting Started CTA -->
+            <div style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--color-white); padding: 3rem 2rem; border-radius: 8px; text-align: center; margin-top: 4rem;">
+                <h2 style="margin-top: 0;">Ready to Get Started?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Have more questions? Check out our full documentation or start building.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="/docs" class="btn" style="background: var(--color-white); color: var(--primary-color); padding: 0.75rem 2rem; font-weight: 600; text-decoration: none; border-radius: 4px; display: inline-block;">View Documentation</a>
+                    <a href="/pricing" class="btn" style="background: transparent; color: var(--color-white); border: 2px solid var(--color-white); padding: 0.75rem 2rem; font-weight: 600; text-decoration: none; border-radius: 4px; display: inline-block;">View Pricing</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!--#include file="../templates/footer.html" -->
+    </footer>
+
+    <script nonce="N0Nc3Cl0d0">
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.faq-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    faqItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+</body>
+</html>

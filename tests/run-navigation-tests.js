@@ -36,7 +36,7 @@ build.on('close', (code) => {
     
     // Step 2: Start server
     console.log('🌐 Starting dev server...');
-    const server = spawn('node', ['build/dev-server.js'], {
+    const server = spawn('node', ['build/core/dev-server.js'], {
         stdio: 'pipe',
         shell: true
     });
