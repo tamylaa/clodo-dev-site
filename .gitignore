@@ -52,6 +52,10 @@ tmp_*.txt
 debug/tmp*.html
 debug/temp_*.html
 
+# Framework extraction output (generated files)
+framework-extraction/*/
+!framework-extraction/extract-framework.cjs
+
 # Internal documentation (keep in repo but separate)
 # Uncomment below if you want to ignore internal docs:
 # .docs/
