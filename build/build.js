@@ -332,6 +332,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'migrate';
                 } else if (fileName === 'clodo-framework-guide') {
                     pageBundle = 'clodo-framework-guide';
+                } else if (fileName === 'cloudflare-workers-guide') {
+                    pageBundle = 'cloudflare-workers-guide';
                 }
                 
                 const origCssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
@@ -450,7 +452,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     'features/index.js',
                     'features/newsletter.js',
                     'features/brevo-chat.js',
-                    'ui/index.js'
+                    'ui/index.js',
+                    'pages/cloudflare-workers-guide.js'
                 ];
 
                 deferScriptNames.forEach((name) => {
@@ -473,7 +476,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'analytics.js', variable: analyticsJs },
                     { name: 'defer-css.js', variable: deferCssJs },
                     { name: 'config/features.js', variable: configFeaturesJs },
-                    { name: 'ui/navigation-component.js', variable: navigationJs }
+                    { name: 'ui/navigation-component.js', variable: navigationJs },
+                    { name: 'pages/cloudflare-workers-guide.js', variable: assetManifest['js/pages/cloudflare-workers-guide.js'] || 'js/pages/cloudflare-workers-guide.js' }
                 ];
 
                 scriptReplacements.forEach(({ name, variable }) => {
@@ -638,6 +642,9 @@ function bundleCss() {
         ],
         'clodo-framework-guide': [
             'css/pages/clodo-framework-guide.css'
+        ],
+        'cloudflare-workers-guide': [
+            'css/pages/cloudflare-workers-guide.css'
         ]
     };
 
