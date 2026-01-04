@@ -42,7 +42,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const relatedContentFaqTemplate = readFileSync(join('templates', 'related-content-faq.html'), 'utf8');
     const relatedContentComparisonTemplate = readFileSync(join('templates', 'related-content-comparison.html'), 'utf8');
     const relatedContentWorkersTemplate = readFileSync(join('templates', 'related-content-workers.html'), 'utf8');
-    const announcementBannerTemplate = readFileSync(join('templates', 'announcement-banner.html'), 'utf8');
+    // Static announcement banner no longer used - replaced with dynamic announcements-manager.js system
     const themeScriptTemplate = readFileSync(join('templates', 'theme-script.html'), 'utf8'); // Critical theme initialization
 
     // Read component templates
@@ -160,27 +160,19 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             const adjustedNewsletterCtaBlogMidTemplate = adjustTemplatePaths(newsletterCtaBlogMidTemplate, pathPrefix);
             const adjustedNewsletterCtaBlogFooterTemplate = adjustTemplatePaths(newsletterCtaBlogFooterTemplate, pathPrefix);
 
-            // Add skip link and announcement container after body tag if not already present
-            // Skip announcement banner for index.html to optimize LCP (hero title should be LCP)
-            const isIndexPage = file === 'index.html';
+            // Add skip link and empty announcement container after body tag if not already present
+            // The container will be populated dynamically by announcements-manager.js based on config
             if (!content.includes('class="skip-link"')) {
-                if (!isIndexPage) {
-                    content = content.replace(
-                        /<body>/,
-                        '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container">' + announcementBannerTemplate + '</div>'
-                    );
-                } else {
-                    content = content.replace(
-                        /<body>/,
-                        '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>'
-                    );
-                }
+                content = content.replace(
+                    /<body>/,
+                    '<body>\n    <a href="#main-content" class="skip-link">Skip to main content</a>\n    <!-- Announcement Container - Populated dynamically by announcements-manager.js -->\n    <div class="announcement-container"></div>'
+                );
             } else {
-                // Just add announcement container if skip link already exists (but not for index)
-                if (!isIndexPage) {
+                // Just add empty announcement container if skip link already exists
+                if (!content.includes('announcement-container')) {
                     content = content.replace(
                         /<body>/,
-                        '<body>\n    <!-- Announcement Banner Container -->\n    <div class="announcement-container">' + announcementBannerTemplate + '</div>'
+                        '<body>\n    <!-- Announcement Container - Populated dynamically by announcements-manager.js -->\n    <div class="announcement-container"></div>'
                     );
                 }
             }
@@ -298,6 +290,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             const deferCssJs = assetManifest['js/defer-css.js'] || 'js/defer-css.js';
             const configFeaturesJs = assetManifest['js/config/features.js'] || 'js/config/features.js';
             const navigationJs = assetManifest['js/ui/navigation-component.js'] || 'js/ui/navigation-component.js';
+            const announcementsManagerJs = assetManifest['js/announcements-manager.js'] || 'js/announcements-manager.js';
 
             // Replace CSS link with inline critical CSS and async non-critical CSS
             if (criticalCss) {
@@ -472,6 +465,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             try {
                 const scriptReplacements = [
                     { name: 'init-systems.js', variable: initSystemsJs },
+                    { name: 'announcements-manager.js', variable: announcementsManagerJs },
                     { name: 'main.js', variable: mainJs },
                     { name: 'analytics.js', variable: analyticsJs },
                     { name: 'defer-css.js', variable: deferCssJs },
