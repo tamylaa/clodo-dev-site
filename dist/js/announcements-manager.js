@@ -35,6 +35,12 @@
           return;
         }
 
+        // Check if current page is excluded globally
+        if (this.isPageExcluded()) {
+          console.log('[Announcements] Page excluded globally');
+          return;
+        }
+
         console.log('[Announcements] Manager initialized');
         
         // Get the announcement container or create one
@@ -46,9 +52,9 @@
         // Determine which announcements to show
         await this.determineAnnouncements();
 
-        // Render announcements
+        // Render announcements with configured delays
         if (this.announcements.length > 0) {
-          this.render();
+          this.renderWithDelays();
         } else {
           console.log('[Announcements] No announcements for this page');
           this.clearContainer();
@@ -56,6 +62,16 @@
       } catch (error) {
         console.error('[Announcements] Error initializing:', error);
       }
+    }
+
+    /**
+     * Check if current page is globally excluded
+     */
+    isPageExcluded() {
+      if (!this.config.excludePages) return false;
+      return this.config.excludePages.some(page => 
+        this.currentPage === page || this.matchesPattern(this.currentPage, page)
+      );
     }
 
     /**
@@ -163,17 +179,45 @@
     }
 
     /**
-     * Render announcements to the DOM
+     * Render announcements with configured delays and smooth fade-in
      */
-    render() {
+    renderWithDelays() {
       if (!this.container) return;
 
       this.container.innerHTML = '';
       this.container.style.display = 'block';
 
+      // Add CSS for animations if not already present
+      if (!document.getElementById('announcement-styles')) {
+        const style = document.createElement('style');
+        style.id = 'announcement-styles';
+        style.textContent = `
+          @keyframes announceSlideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .announcement-banner {
+            animation: announceSlideDown 0.4s ease-out forwards;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      // Render each announcement with its configured delay
       for (const announcement of this.announcements) {
-        const element = this.createAnnouncementElement(announcement);
-        this.container.appendChild(element);
+        const delay = announcement.delayMs !== undefined ? announcement.delayMs : (this.config.defaultDelayMs || 2500);
+        
+        setTimeout(() => {
+          const element = this.createAnnouncementElement(announcement);
+          this.container.appendChild(element);
+          console.log(`[Announcements] Rendered with ${delay}ms delay: ${announcement.id}`);
+        }, delay);
       }
     }
 
