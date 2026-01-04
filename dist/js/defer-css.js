@@ -103,13 +103,16 @@
                        window.location.pathname === '/index.html';
         debugLog('Is index page: ' + isIndex + ' (pathname: ' + window.location.pathname + ')');
 
-        if (isIndex && deferredStyles['index']) {
-            debugLog('Loading index deferred styles');
-            loadDeferredCSS(deferredStyles['index']);
-        } else if (isIndex && !deferredStyles['index']) {
-            debugLog('ERROR: This is index page but no index deferred styles available - manifest issue');
+        if (isIndex) {
+            if (deferredStyles['index']) {
+                debugLog('Loading index deferred styles');
+                loadDeferredCSS(deferredStyles['index']);
+            } else {
+                debugLog('ERROR: This is index page but no index deferred styles available - manifest issue');
+            }
         } else {
-            debugLog('Not loading index styles');
+            debugLog('Not loading index styles (non-index page detected)');
+            debugLog('Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js');
         }
     }
 
