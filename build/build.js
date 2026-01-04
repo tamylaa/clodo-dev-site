@@ -995,6 +995,21 @@ function copyAssets() {
             }
         }
     }
+
+    // Copy config JSON files (announcements.json, etc.)
+    const configSrc = join('config');
+    const configDest = join('dist', 'config');
+    if (existsSync(configSrc)) {
+        mkdirSync(configDest, { recursive: true });
+        for (const entry of readdirSync(configSrc)) {
+            // Only copy JSON files, skip subdirectories
+            if (entry.endsWith('.json')) {
+                const srcPath = join(configSrc, entry);
+                const destPath = join(configDest, entry);
+                copyFileSync(srcPath, destPath);
+            }
+        }
+    }
 }
 
 
