@@ -1,5 +1,10 @@
 {
   "enabled": true,
+  "excludePages": [
+    "/",
+    "/index.html"
+  ],
+  "defaultDelayMs": 2500,
   "globalAnnouncements": [
     {
       "id": "migration-2025",
@@ -13,6 +18,7 @@
       },
       "dismissible": true,
       "storageKey": "clodo-announcement-migration-2025",
+      "delayMs": 2500,
       "excludePages": [
         "/cloudflare-workers-guide",
         "/framework-comparison",
@@ -35,7 +41,8 @@
         "icon": "⚡",
         "position": "sticky",
         "dismissible": true,
-        "storageKey": "clodo-announcement-workers-guide-tip"
+        "storageKey": "clodo-announcement-workers-guide-tip",
+        "delayMs": 3000
       }
     ],
     "/pricing": [
@@ -50,7 +57,8 @@
           "url": "/pricing#early-bird"
         },
         "dismissible": true,
-        "storageKey": "clodo-announcement-pricing-discount"
+        "storageKey": "clodo-announcement-pricing-discount",
+        "delayMs": 2000
       }
     ]
   },
