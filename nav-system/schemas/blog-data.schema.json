@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://clodo.dev/schemas/blog-data.schema.json",
+  "title": "Blog Central Data",
+  "description": "Central data store for reusable blog components (authors, testimonials, CTAs, etc.)",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "authors": {
+      "type": "object",
+      "description": "Author profiles keyed by author ID",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "credentials": { 
+            "oneOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ]
+          },
+          "bio": { "type": "string" },
+          "avatar": { "type": "string", "format": "uri" },
+          "url": { "type": "string", "format": "uri" },
+          "jobTitle": { "type": "string" },
+          "social": {
+            "type": "object",
+            "properties": {
+              "github": { "type": "string", "format": "uri" },
+              "linkedin": { "type": "string", "format": "uri" },
+              "twitter": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "testimonials": {
+      "type": "object",
+      "description": "Testimonials grouped by topic",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "quote": { "type": "string" },
+            "author": { "type": "string" },
+            "role": { "type": "string" },
+            "company": { "type": "string" },
+            "rating": { "type": "integer", "minimum": 1, "maximum": 5 }
+          },
+          "required": ["id", "quote", "author"]
+        }
+      }
+    },
+    "ctas": {
+      "type": "object",
+      "description": "Call-to-action templates",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "buttonText": { "type": "string" },
+          "buttonUrl": { "type": "string" },
+          "variant": { "type": "string" }
+        }
+      }
+    },
+    "relatedArticles": {
+      "type": "object",
+      "description": "Related articles grouped by category",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "slug": { "type": "string" },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "readTime": { "type": "integer" }
+          },
+          "required": ["slug", "title"]
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "color": { "type": "string" }
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "description": "Citation sources keyed by ID",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "description": { "type": "string" }
+        },
+        "required": ["title", "url"]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<!-- Newsletter CTA (Blog Footer) -->
+<!-- Usage: <!--#include file="../components/newsletter-cta-blog-footer.html" --> -->
+<!-- Used in: blog posts for end-of-article newsletter signup -->
+
+<div class="blog-cta blog-cta--footer" id="newsletter-footer" data-component="newsletter-footer">
+    <h3>🚀 Level Up Your Edge Computing Skills</h3>
+    <p>Get monthly deep-dives on Cloudflare Workers, performance optimization, and developer experience strategies. Join developers who ship with confidence.</p>
+    <form class="newsletter-form" action="/newsletter-subscribe" method="post" data-newsletter-form>
+        <!-- Honeypot field for spam protection -->
+        <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off" data-honeypot="true">
+        <input type="hidden" name="source" value="blog-footer">
+        <div class="form-group">
+            <label for="footer-newsletter-email" class="sr-only">Email address</label>
+            <input id="footer-newsletter-email"
+                   name="email"
+                   type="email"
+                   placeholder="Enter your email"
+                   autocomplete="email"
+                   inputmode="email"
+                   required>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+        </div>
+        <div class="consent">
+            <input type="checkbox" id="footer-newsletter-consent" name="consent" required>
+            <label for="footer-newsletter-consent">I agree to receive emails and accept the <a href="/privacy">Privacy Policy</a>.</label>
+        </div>
+        <p class="reassurance">No spam. 1-2 emails/month. Unsubscribe anytime.</p>
+        <p class="form-message" aria-live="polite" role="status"></p>
+    </form>
+</div>

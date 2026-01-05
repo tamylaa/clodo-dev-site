@@ -1,0 +1,553 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-05T05:25:29.560Z",
+  "contentTypes": {
+    "educational": {
+      "icon": "📚",
+      "description": "Conceptual, beginner-friendly content",
+      "color": "#6366f1"
+    },
+    "comparison": {
+      "icon": "⚖️",
+      "description": "Comparative analysis between technologies",
+      "color": "#8b5cf6"
+    },
+    "guide": {
+      "icon": "🚀",
+      "description": "Comprehensive guides and how-tos",
+      "color": "#06b6d4"
+    },
+    "tutorial": {
+      "icon": "👨‍🏫",
+      "description": "Step-by-step tutorials",
+      "color": "#10b981"
+    },
+    "framework": {
+      "icon": "⚙️",
+      "description": "Framework-specific content",
+      "color": "#f59e0b"
+    },
+    "examples": {
+      "icon": "💡",
+      "description": "Code examples and templates",
+      "color": "#ec4899"
+    },
+    "documentation": {
+      "icon": "📖",
+      "description": "API/technical documentation",
+      "color": "#3b82f6"
+    },
+    "tool": {
+      "icon": "🛠️",
+      "description": "Interactive tools and dashboards",
+      "color": "#ef4444"
+    },
+    "caseStudy": {
+      "icon": "📊",
+      "description": "Real-world case studies",
+      "color": "#14b8a6"
+    },
+    "blog": {
+      "icon": "📝",
+      "description": "Blog posts and articles",
+      "color": "#f97316"
+    }
+  },
+  "categories": {
+    "product": {
+      "label": "Product",
+      "icon": "📦",
+      "order": 1
+    },
+    "learn": {
+      "label": "Learn",
+      "icon": "🎓",
+      "order": 2
+    },
+    "resources": {
+      "label": "Resources",
+      "icon": "📚",
+      "order": 3
+    },
+    "company": {
+      "label": "Company",
+      "icon": "🏢",
+      "order": 4
+    },
+    "community": {
+      "label": "Community",
+      "icon": "👥",
+      "order": 5
+    }
+  },
+  "mainNav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "href": "/",
+      "icon": "🏠",
+      "type": "link"
+    },
+    {
+      "id": "product",
+      "label": "Product",
+      "href": "/product",
+      "icon": "📦",
+      "type": "dropdown",
+      "category": "product",
+      "children": [
+        {
+          "id": "product-overview",
+          "label": "Overview",
+          "href": "/product",
+          "contentType": "educational"
+        },
+        {
+          "id": "product-migrate",
+          "label": "Migrate",
+          "href": "/migrate",
+          "contentType": "guide"
+        },
+        {
+          "id": "product-community",
+          "label": "Community",
+          "href": "/community/welcome",
+          "contentType": "educational"
+        },
+        {
+          "section": "Comparisons",
+          "icon": "⚖️",
+          "children": [
+            {
+              "id": "comp-edge-vs-cloud",
+              "label": "Edge vs Cloud Computing",
+              "href": "/edge-vs-cloud-computing",
+              "contentType": "comparison"
+            },
+            {
+              "id": "comp-workers-vs-lambda",
+              "label": "Workers vs Lambda",
+              "href": "/workers-vs-lambda",
+              "contentType": "comparison"
+            },
+            {
+              "id": "comp-clodo-vs-lambda",
+              "label": "Clodo vs AWS Lambda",
+              "href": "/clodo-vs-lambda",
+              "contentType": "comparison"
+            },
+            {
+              "id": "comp-what-is-workers",
+              "label": "What is Cloudflare Workers",
+              "href": "/what-is-cloudflare-workers",
+              "contentType": "educational"
+            },
+            {
+              "id": "comp-what-is-edge",
+              "label": "What is Edge Computing",
+              "href": "/what-is-edge-computing",
+              "contentType": "educational"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "href": "#",
+      "icon": "🎓",
+      "type": "dropdown",
+      "category": "learn",
+      "children": [
+        {
+          "section": "Documentation",
+          "icon": "📚",
+          "href": "/docs",
+          "children": [
+            {
+              "id": "learn-docs-getting-started",
+              "label": "Getting Started",
+              "href": "/docs",
+              "contentType": "documentation"
+            },
+            {
+              "id": "learn-docs-components",
+              "label": "Components",
+              "href": "/components",
+              "contentType": "documentation"
+            },
+            {
+              "id": "learn-docs-deployment",
+              "label": "Development & Deployment",
+              "href": "/development-deployment-guide",
+              "contentType": "guide"
+            },
+            {
+              "id": "learn-docs-api",
+              "label": "API Simplification",
+              "href": "/clodo-framework-api-simplification",
+              "contentType": "documentation"
+            }
+          ]
+        },
+        {
+          "section": "Guides",
+          "icon": "🚀",
+          "children": [
+            {
+              "id": "learn-guide-workers",
+              "label": "Cloudflare Workers Guide",
+              "href": "/cloudflare-workers-guide",
+              "contentType": "guide"
+            },
+            {
+              "id": "learn-guide-edge",
+              "label": "Edge Computing Guide",
+              "href": "/edge-computing-guide",
+              "contentType": "guide"
+            },
+            {
+              "id": "learn-guide-framework",
+              "label": "Cloudflare Framework Guide",
+              "href": "/cloudflare-framework",
+              "contentType": "guide"
+            },
+            {
+              "id": "learn-guide-boilerplate",
+              "label": "Workers Boilerplates",
+              "href": "/workers-boilerplate",
+              "contentType": "examples"
+            },
+            {
+              "id": "learn-guide-migration",
+              "label": "Migration Guide",
+              "href": "/how-to-migrate-from-wrangler",
+              "contentType": "guide"
+            }
+          ]
+        },
+        {
+          "section": "Examples",
+          "icon": "💡",
+          "href": "/examples",
+          "children": [
+            {
+              "id": "learn-examples-all",
+              "label": "Code Examples & Templates",
+              "href": "/examples",
+              "contentType": "examples"
+            }
+          ]
+        },
+        {
+          "section": "Help & Support",
+          "icon": "❓",
+          "children": [
+            {
+              "id": "learn-help-faq",
+              "label": "Frequently Asked Questions",
+              "href": "/faq",
+              "contentType": "documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "href": "/about",
+      "icon": "🏢",
+      "type": "dropdown",
+      "category": "company",
+      "children": [
+        {
+          "id": "about-us",
+          "label": "About Us",
+          "href": "/about",
+          "contentType": "educational"
+        },
+        {
+          "id": "about-team",
+          "label": "Our Team",
+          "href": "/about#team",
+          "contentType": "educational"
+        },
+        {
+          "id": "about-careers",
+          "label": "Careers",
+          "href": "/about#careers",
+          "contentType": "educational"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "label": "Pricing",
+      "href": "/pricing",
+      "type": "link",
+      "category": "product"
+    }
+  ],
+  "footer": [
+    {
+      "category": "product",
+      "title": "Product",
+      "titleId": "footer-product",
+      "links": [
+        {
+          "label": "Product Overview",
+          "href": "/product",
+          "contentType": "educational"
+        },
+        {
+          "label": "Documentation",
+          "href": "/docs",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Code Examples",
+          "href": "/examples",
+          "contentType": "examples"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing",
+          "contentType": "educational"
+        },
+        {
+          "label": "Migration Guide",
+          "href": "/migrate",
+          "contentType": "guide"
+        },
+        {
+          "label": "Clodo vs AWS Lambda",
+          "href": "/clodo-vs-lambda",
+          "contentType": "comparison"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/tamylaa/clodo-framework",
+          "external": true
+        },
+        {
+          "label": "API Reference",
+          "href": "/docs#api",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Expert Review",
+          "href": "/product#expert-assessment",
+          "contentType": "educational"
+        }
+      ]
+    },
+    {
+      "category": "developers",
+      "title": "Developers",
+      "titleId": "footer-developers",
+      "links": [
+        {
+          "label": "Getting Started",
+          "href": "/docs#getting-started",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Deployment",
+          "href": "/docs#deployment",
+          "contentType": "guide"
+        },
+        {
+          "label": "Security Guide",
+          "href": "/docs#security",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Troubleshooting",
+          "href": "/docs#troubleshooting",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Example Projects",
+          "href": "/examples",
+          "contentType": "examples"
+        },
+        {
+          "label": "Release Notes",
+          "href": "https://github.com/tamylaa/clodo-framework/releases",
+          "external": true
+        }
+      ]
+    },
+    {
+      "category": "resources",
+      "title": "Resources",
+      "titleId": "footer-blog",
+      "links": [
+        {
+          "label": "Blog",
+          "href": "/blog/",
+          "contentType": "blog"
+        },
+        {
+          "label": "Infrastructure Revolution",
+          "href": "/blog/cloudflare-infrastructure-myth",
+          "contentType": "blog"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies/",
+          "contentType": "caseStudy"
+        },
+        {
+          "label": "Cloudflare Framework Guide",
+          "href": "/cloudflare-framework",
+          "contentType": "guide"
+        },
+        {
+          "label": "From Promise to Reality",
+          "href": "/clodo-framework-promise-to-reality",
+          "contentType": "blog"
+        },
+        {
+          "label": "API Complexity Crisis",
+          "href": "/clodo-framework-api-simplification",
+          "contentType": "blog"
+        },
+        {
+          "label": "Frequently Asked Questions",
+          "href": "/faq",
+          "contentType": "documentation"
+        },
+        {
+          "label": "Our Story",
+          "href": "/about#game-changer",
+          "contentType": "educational"
+        },
+        {
+          "label": "Product Roadmap",
+          "href": "/about#roadmap",
+          "contentType": "educational"
+        }
+      ]
+    },
+    {
+      "category": "company",
+      "title": "Company",
+      "titleId": "footer-company",
+      "links": [
+        {
+          "label": "About Us",
+          "href": "/about",
+          "contentType": "educational"
+        },
+        {
+          "label": "Our Mission",
+          "href": "/about#vision",
+          "contentType": "educational"
+        },
+        {
+          "label": "Roadmap",
+          "href": "/about#roadmap",
+          "contentType": "educational"
+        },
+        {
+          "label": "Our Story",
+          "href": "/about#game-changer",
+          "contentType": "educational"
+        },
+        {
+          "label": "Contact",
+          "href": "/pricing#contact",
+          "contentType": "educational"
+        },
+        {
+          "label": "Team",
+          "href": "/about#team",
+          "contentType": "educational"
+        },
+        {
+          "label": "Careers",
+          "href": "/about#careers",
+          "contentType": "educational"
+        }
+      ]
+    },
+    {
+      "category": "community",
+      "title": "Community",
+      "titleId": "footer-community",
+      "links": [
+        {
+          "label": "Community Welcome",
+          "href": "/community/welcome",
+          "contentType": "educational"
+        },
+        {
+          "label": "GitHub Discussions",
+          "href": "https://github.com/tamylaa/clodo-framework/discussions",
+          "external": true
+        },
+        {
+          "label": "Twitter",
+          "href": "https://twitter.com/clodoframework",
+          "external": true
+        },
+        {
+          "label": "Report Issues",
+          "href": "https://github.com/tamylaa/clodo-framework/issues",
+          "external": true
+        },
+        {
+          "label": "Email Support",
+          "href": "/about#contact",
+          "contentType": "educational"
+        },
+        {
+          "label": "Contribute",
+          "href": "https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md",
+          "external": true
+        }
+      ]
+    }
+  ],
+  "breadcrumbs": {
+    "home": {
+      "label": "Home",
+      "href": "/"
+    },
+    "patterns": {
+      "product": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Product",
+          "href": "/product"
+        }
+      ],
+      "docs": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Learn",
+          "href": "/docs"
+        }
+      ],
+      "blog": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog/"
+        }
+      ]
+    }
+  }
+}
