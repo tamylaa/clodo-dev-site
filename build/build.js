@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
+import { injectSchemasIntoHTML } from '../schema/build-integration.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -504,6 +505,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             content = content.replace(/<meta http-equiv="Referrer-Policy"[^>]*>/g, '');
             
             // All security headers are now set via HTTP headers in _headers file (correct approach)
+
+            // Inject generated schemas (data-driven schema system)
+            content = injectSchemasIntoHTML(file, content);
 
             // Ensure destination directory exists
             const destPath = join('dist', file);
