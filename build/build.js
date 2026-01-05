@@ -29,9 +29,11 @@ function copyHtml(assetManifest = {}) {
     console.log('📄 Processing HTML files with templates...');
 
     // Read templates
-    const footerTemplate = readFileSync(join('templates', 'footer.html'), 'utf8');
     const headerTemplate = readFileSync(join('templates', 'header.html'), 'utf8');
-    const navMainTemplate = readFileSync(join('templates', 'nav-main.html'), 'utf8');
+    
+    // Navigation templates - loaded from centralized nav-system
+    const footerTemplate = readFileSync(join('nav-system', 'templates', 'footer.html'), 'utf8');
+    const navMainTemplate = readFileSync(join('nav-system', 'templates', 'nav-main.html'), 'utf8');
     const verificationTemplate = readFileSync(join('templates', 'verification.html'), 'utf8');
     const heroTemplate = readFileSync(join('templates', 'hero.html'), 'utf8');
 const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'), 'utf8');
@@ -44,6 +46,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const relatedContentWorkersTemplate = readFileSync(join('templates', 'related-content-workers.html'), 'utf8');
     // Static announcement banner no longer used - replaced with dynamic announcements-manager.js system
     const themeScriptTemplate = readFileSync(join('templates', 'theme-script.html'), 'utf8'); // Critical theme initialization
+
+    // Read community section template from nav-system
+    const communitySectionTemplate = readFileSync(join('nav-system', 'templates', 'community-section.html'), 'utf8');
 
     // Read component templates
     const newsletterFormFooterTemplate = readFileSync(join('templates', 'components', 'newsletter-form-footer.html'), 'utf8');
@@ -248,6 +253,11 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
+
+            // Process community section SSI includes
+            const adjustedCommunitySectionTemplate = adjustTemplatePaths(communitySectionTemplate, pathPrefix);
+            content = content.replace(/<!--#include file="\.\.\/templates\/community-section\.html" -->/g, adjustedCommunitySectionTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/community-section\.html" -->/g, adjustedCommunitySectionTemplate);
 
             // Process component SSI includes
             content = content.replace(/<!--#include file="components\/newsletter-form-footer\.html" -->/g, adjustedNewsletterFormFooterTemplate);
@@ -515,7 +525,11 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
 
 // Copy HTML files that don't use SSI includes (standalone HTML pages)
 function copyStandaloneHtml() {
-    console.log('[COPY] Copying standalone HTML files...');
+    console.log('[COPY] Copying standalone HTML files with navigation injection...');
+    
+    // Load navigation templates for static files
+    const footerTemplate = readFileSync(join('nav-system', 'templates', 'footer.html'), 'utf8');
+    const navMainTemplate = readFileSync(join('nav-system', 'templates', 'nav-main.html'), 'utf8');
     
     function copyHtmlFiles(dir, relativePath = '') {
         const fullDirPath = join('public', dir);
@@ -551,10 +565,36 @@ function copyStandaloneHtml() {
                     continue;
                 }
                 
-                const content = readFileSync(fullEntryPath, 'utf8');
+                let content = readFileSync(fullEntryPath, 'utf8');
 
                 // Only copy HTML files that DON'T use SSI includes (these are standalone pages)
                 if (!content.includes('<!--#include file="')) {
+                    // Skip Google verification file and other special files that shouldn't have navigation
+                    const skipNavFiles = ['google1234567890abcdef.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest', '_redirects', '_headers', 'favicon.svg', 'favicon.ico'];
+                    const shouldInjectNav = !skipNavFiles.includes(entry);
+                    const hasNavbar = content.includes('class="navbar"') || content.includes('class="nav-main"');
+                    const hasFooter = content.includes('<footer');
+                    
+                    // Inject navigation for static HTML files
+                    if (shouldInjectNav && content.includes('<body')) {
+                        // ALWAYS replace the navbar (remove old one if it exists, inject fresh template)
+                        if (hasNavbar) {
+                            // Remove old navbar (both navbar and nav-main formats)
+                            content = content.replace(/<nav[^>]*class="(navbar|nav-main)"[^>]*>[\s\S]*?<\/nav>/i, '');
+                        }
+                        
+                        // Inject fresh navbar after <body> tag
+                        content = content.replace(/<body([^>]*)>/, (match) => {
+                            return match + '\n    ' + navMainTemplate;
+                        });
+                        
+                        // Only inject footer if it doesn't already exist
+                        if (!hasFooter) {
+                            // Inject footer before </body> tag
+                            content = content.replace(/<\/body>/i, footerTemplate + '\n</body>');
+                        }
+                    }
+                    
                     const filePath = relativePath ? join(relativePath, entry) : entry;
                     const destPath = join('dist', filePath);
                     
@@ -564,8 +604,9 @@ function copyStandaloneHtml() {
                         mkdirSync(destDir, { recursive: true });
                     }
                     
-                    copyFileSync(fullEntryPath, destPath);
-                    console.log(`   📋 Copied standalone HTML: ${filePath}`);
+                    writeFileSync(destPath, content, 'utf8');
+                    const navStatus = hasNavbar ? '✅ replaced navbar' : '✅ injected navbar';
+                    console.log(`   📋 Copied standalone HTML: ${filePath} (${navStatus})`);
                 }
             }
         }
@@ -594,7 +635,8 @@ function bundleCss() {
         'css/layout.css',      // Grid, containers, basic layout
         'css/components/buttons.css',  // Button component
         'css/components-common.css',  // Truly reusable components (buttons, cards, forms, icons, alerts, badges, loading)
-        'css/global/footer.css'  // Footer styling (loaded with common CSS - below-the-fold)
+        'css/global/footer.css',  // Footer styling (loaded with common CSS - below-the-fold)
+        'css/global/community-section.css'  // Community section (appears on multiple pages)
     ];
 
     // Page-specific CSS bundles (reduces unused CSS by 60%+)
