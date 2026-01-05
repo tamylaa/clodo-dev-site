@@ -39,79 +39,9 @@
     <meta name="twitter:description" content="A forensic analysis of silent Cloudflare Pages build failures caused by broken git submodules.">
     <meta name="twitter:image" content="https://clodo.dev/og-image.png">
     
-    <!-- Article Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Debugging Production: When Git Submodules Fail Silently",
-        "description": "A technical deep-dive into debugging silent Cloudflare Pages build failures caused by broken git submodules, cache invalidation, and deployment strategies.",
-        "image": "https://clodo.dev/og-image.png",
-        "author": {
-            "@type": "Person",
-            "name": "Tamyla",
-            "url": "https://clodo.dev/about",
-            "jobTitle": "Founder & Principal Engineer",
-            "sameAs": ["https://github.com/tamylaa", "https://linkedin.com/in/tamyla"]
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://clodo.dev/icons/icon.svg"
-            }
-        },
-        "datePublished": "2024-11-15",
-        "dateModified": "2024-11-28",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/debugging-silent-build-failures"
-        },
-        "articleSection": "Technical Deep-Dive",
-        "keywords": ["git submodules", "debugging", "Cloudflare Pages", "deployment"]
-    }
-    </script>
-    
+    <!-- TechArticle Schema -->
+    <!-- BreadcrumbList Schema -->
     <!-- HowTo Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to Fix Silent Git Submodule Build Failures",
-        "description": "Step-by-step guide to diagnose and fix broken git submodule configurations that cause CI/CD build failures.",
-        "totalTime": "PT30M",
-        "step": [
-            {
-                "@type": "HowToStep",
-                "name": "Verify Git History",
-                "text": "Check git log and verify remote sync with git fetch and git status."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Check for Submodule Issues",
-                "text": "Use git ls-tree HEAD | grep '^160000' to find submodule references. Check if .gitmodules exists."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Remove Broken Submodule",
-                "text": "Use git rm --cached <submodule-path> to remove from git index while keeping local files."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Prevent Future Issues",
-                "text": "Add the directory to .gitignore to prevent accidental re-tracking."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Commit and Verify",
-                "text": "Commit the fix and verify with git ls-tree HEAD that the submodule reference is removed."
-            }
-        ]
-    }
-    </script>
-    
     <!-- Reading Progress & UI Enhancements -->
     <style>
         .reading-progress {
@@ -153,64 +83,8 @@
     </style>
     
     <!-- BlogPosting Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Debugging Silent Build Failures: How to Catch Errors Before Production",
-        "description": "A comprehensive guide to identifying and fixing silent build failures that can ship broken code to production. Includes real-world examples and debugging strategies.",
-        "image": "https://clodo.dev/og-image.png",
-        "datePublished": "2024-11-12T11:00:00Z",
-        "dateModified": "2024-11-12T11:00:00Z",
-        "author": {
-            "@type": "Person",
-            "name": "Tamyla",
-            "url": "https://clodo.dev/about",
-            "jobTitle": "Founder & Principal Engineer"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev"
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/debugging-silent-build-failures"
-        },
-        "articleSection": "Debugging",
-        "keywords": "debugging, build failures, error detection",
-        "isAccessibleForFree": true
-    }
-    </script>
-    
     <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://clodo.dev/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": "https://clodo.dev/blog"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Debugging Silent Build Failures",
-                "item": "https://clodo.dev/blog/debugging-silent-build-failures"
-            }
-        ]
-    }
-    </script>
-</head>
+    </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->
     <!-- Reading Progress Indicator -->
