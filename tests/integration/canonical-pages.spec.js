@@ -5,39 +5,39 @@ const BASE = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8000';
 const pages = [
   {
     path: '/experiments/clodo-framework-api-simplification-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-api-simplification-variant-a',
+    expected: 'https://clodo.dev/experiments/clodo-framework-api-simplification-variant-a',
   },
   {
     path: '/experiments/clodo-framework-api-simplification-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-api-simplification-variant-b',
+    expected: 'https://clodo.dev/experiments/clodo-framework-api-simplification-variant-b',
   },
   {
     path: '/experiments/clodo-framework-promise-to-reality-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-promise-to-reality-variant-a',
+    expected: 'https://clodo.dev/experiments/clodo-framework-promise-to-reality-variant-a',
   },
   {
     path: '/experiments/clodo-framework-promise-to-reality-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/clodo-framework-promise-to-reality-variant-b',
+    expected: 'https://clodo.dev/experiments/clodo-framework-promise-to-reality-variant-b',
   },
   {
     path: '/experiments/how-to-migrate-from-wrangler-variant-a.html',
-    expected: 'https://www.clodo.dev/experiments/how-to-migrate-from-wrangler-variant-a',
+    expected: 'https://clodo.dev/experiments/how-to-migrate-from-wrangler-variant-a',
   },
   {
     path: '/experiments/how-to-migrate-from-wrangler-variant-b.html',
-    expected: 'https://www.clodo.dev/experiments/how-to-migrate-from-wrangler-variant-b',
+    expected: 'https://clodo.dev/experiments/how-to-migrate-from-wrangler-variant-b',
   },
   {
     path: '/i18n/de/clodo-framework-api-simplification.html',
-    expected: 'https://www.clodo.dev/i18n/de/clodo-framework-api-simplification',
+    expected: 'https://clodo.dev/i18n/de/clodo-framework-api-simplification',
   },
   {
     path: '/i18n/de/clodo-framework-promise-to-reality.html',
-    expected: 'https://www.clodo.dev/i18n/de/clodo-framework-promise-to-reality',
+    expected: 'https://clodo.dev/i18n/de/clodo-framework-promise-to-reality',
   },
   {
     path: '/i18n/de/how-to-migrate-from-wrangler.html',
-    expected: 'https://www.clodo.dev/i18n/de/how-to-migrate-from-wrangler',
+    expected: 'https://clodo.dev/i18n/de/how-to-migrate-from-wrangler',
   },
 ];
 

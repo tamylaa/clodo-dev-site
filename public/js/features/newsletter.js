@@ -126,7 +126,11 @@ function setLoadingState(form, isLoading) {
     submitControls.forEach(btn => {
         try {
             btn.disabled = isLoading;
-            if (isLoading) btn.setAttribute('disabled', 'disabled'); else btn.removeAttribute('disabled');
+            if (isLoading) {
+                btn.setAttribute('disabled', 'disabled');
+            } else {
+                btn.removeAttribute('disabled');
+            }
             btn.setAttribute('aria-busy', isLoading.toString());
         } catch (e) {
             // ignore stale nodes

@@ -64,8 +64,9 @@ export function generateOrganizationSchema(locale = 'en') {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     'name': org.name || 'Clodo Framework',
-    'url': org.url_locale || org.url || 'https://clodo.dev',
-    'logo': org.logo || 'https://clodo.dev/icons/icon.svg',
+    'description': org.description || 'Enterprise-ready framework for Cloudflare Workers',
+    'url': org.url_locale || org.url || 'https://www.clodo.dev',
+    'logo': org.logo || 'https://www.clodo.dev/icons/icon.svg',
     'founded': org.founded || '2024',
     'foundingLocation': {
       '@type': 'Place',
@@ -87,6 +88,60 @@ export function generateOrganizationSchema(locale = 'en') {
       'https://twitter.com/clodoframework',
       'https://linkedin.com/company/clodo-framework'
     ]
+  };
+}
+
+/**
+ * Generate WebSite schema
+ * @param {string} locale - Language locale code (e.g., 'en', 'de', 'it')
+ */
+export function generateWebSiteSchema(locale = 'en') {
+  const localeConfig = getLocaleConfig(locale);
+  const baseUrl = locale === 'en' ? 'https://clodo.dev' : `https://clodo.dev/i18n/${locale}`;
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': 'Clodo Framework',
+    'description': 'Enterprise-grade framework for Cloudflare Workers. Build production SaaS applications 10x faster.',
+    'url': baseUrl,
+    'inLanguage': localeConfig.locale || 'en-US',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': {
+        '@type': 'EntryPoint',
+        'urlTemplate': `${baseUrl}/search?q={search_term_string}`
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  };
+}
+
+/**
+ * Generate SoftwareApplication schema
+ * @param {string} locale - Language locale code (e.g., 'en', 'de', 'it')
+ */
+export function generateSoftwareApplicationSchema(locale = 'en') {
+  const localeConfig = getLocaleConfig(locale);
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    'name': 'Clodo Framework',
+    'description': 'Pre-flight checker for Cloudflare Workers. Reduce custom software costs by 60% with enterprise orchestration.',
+    'softwareVersion': '1.0.0',
+    'url': locale === 'en' ? 'https://clodo.dev' : `https://clodo.dev/i18n/${locale}`,
+    'applicationCategory': 'DeveloperApplication',
+    'inLanguage': localeConfig.locale || 'en-US',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD'
+    },
+    'author': {
+      '@type': 'Organization',
+      'name': 'Clodo Framework'
+    }
   };
 }
 
@@ -120,7 +175,7 @@ export function generateTechArticleSchema(post) {
     '@type': 'TechArticle',
     'headline': post.headline || post.title,
     'description': post.description,
-    'image': post.image || 'https://clodo.dev/og-image.png',
+    'image': post.image || 'https://www.clodo.dev/og-image.png',
     'datePublished': post.datePublished || post.published,
     'dateModified': post.dateModified || post.updated || post.datePublished,
     'author': author ? {
@@ -429,8 +484,8 @@ export function generateBlogPostSchemas(htmlFilename, config, locale = 'en') {
 
   // Breadcrumb for blog post
   const breadcrumbs = [
-    { name: 'Home', item: 'https://clodo.dev' },
-    { name: 'Blog', item: 'https://clodo.dev/blog' },
+    { name: 'Home', item: 'https://www.clodo.dev' },
+    { name: 'Blog', item: 'https://www.clodo.dev/blog' },
     { name: config.headline || config.title, item: config.url }
   ];
   schemas.push(wrapSchemaTag(generateBreadcrumbList(breadcrumbs)));
@@ -483,8 +538,8 @@ export function generateCaseStudySchemas(htmlFilename, config, locale = 'en') {
 
   // Breadcrumb
   const breadcrumbs = [
-    { name: 'Home', item: 'https://clodo.dev' },
-    { name: 'Case Studies', item: 'https://clodo.dev/case-studies' },
+    { name: 'Home', item: 'https://www.clodo.dev' },
+    { name: 'Case Studies', item: 'https://www.clodo.dev/case-studies' },
     { name: config.headline || config.title, item: config.url }
   ];
   schemas.push(wrapSchemaTag(generateBreadcrumbList(breadcrumbs)));
@@ -535,6 +590,8 @@ export function generateAllPageSchemas() {
 
 export default {
   generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateSoftwareApplicationSchema,
   generateBreadcrumbList,
   generateTechArticleSchema,
   generateFAQPageSchema,

@@ -25,6 +25,6 @@ test.describe('SEO & Robots checks', () => {
     const res = await request.get(`${BASE}/sitemap.xml`);
     expect(res.ok()).toBeTruthy();
     const body = await res.text();
-    expect(body).toContain('https://www.clodo.dev/');
+    expect(body).toContain('https://clodo.dev/');
   });
 });
