@@ -1,0 +1,212 @@
+{
+  "locales": {
+    "en": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Enterprise-ready framework for building serverless applications on Cloudflare Workers with zero cold starts, integrated databases, multi-tenancy, advanced caching, and comprehensive monitoring.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "en",
+      "locale": "en-US",
+      "region": "US"
+    },
+    "de": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/de",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Enterprise-ready Framework für die Entwicklung serverloser Anwendungen auf Cloudflare Workers mit null Kaltstarts, integrierten Datenbanken, Multi-Tenancy, fortgeschrittenem Caching und umfassender Überwachung.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "de",
+      "locale": "de-DE",
+      "region": "DE"
+    },
+    "it": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/it",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Framework pronto per l'azienda per la creazione di applicazioni serverless su Cloudflare Workers con zero cold start, database integrati, multi-tenancy, caching avanzato e monitoraggio completo.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "it",
+      "locale": "it-IT",
+      "region": "IT"
+    },
+    "ar": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/ar",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "إطار عمل جاهز للمؤسسات لبناء تطبيقات بدون خادم على Cloudflare Workers مع عدم وجود بدايات باردة، وقواعد بيانات متكاملة، ودعم متعدد المستأجرين، وتخزين مؤقت متقدم، ومراقبة شاملة.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "ar",
+      "locale": "ar-SA",
+      "region": "SA",
+      "isRTL": true
+    },
+    "he": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/he",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "מסגרת מוכנה לתאגידים לבניית יישומים חסרי שרתים ב-Cloudflare Workers ללא התחלות קרות, מסדי נתונים משולבים, ריבוי דיירים, קישור מתקדם וניטור מקיף.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "he",
+      "locale": "he-IL",
+      "region": "IL",
+      "isRTL": true
+    },
+    "fa": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/fa",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "چارچوب آماده برای سازمان برای ساخت برنامه های بدون سرور در Cloudflare Workers بدون شروع سرد، پایگاه های داده یکپارچه، چند خوابگی، کش پیشرفته و نظارت جامع.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "fa",
+      "locale": "fa-IR",
+      "region": "IR",
+      "isRTL": true
+    },
+    "br": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/br",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Framework pronto para empresas para criar aplicações sem servidor no Cloudflare Workers com zero cold starts, bancos de dados integrados, multi-tenancy, cache avançado e monitoramento abrangente.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "pt",
+      "locale": "pt-BR",
+      "region": "BR"
+    },
+    "es-419": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/es-419",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Marco listo para empresas para crear aplicaciones sin servidor en Cloudflare Workers con cero cold starts, bases de datos integradas, multi-tenancy, almacenamiento en caché avanzado y monitoreo integral.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "es",
+      "locale": "es-419",
+      "region": "MX"
+    },
+    "in": {
+      "organization": {
+        "name": "Clodo Framework",
+        "name_short": "Clodo",
+        "url": "https://clodo.dev",
+        "url_locale": "https://clodo.dev/i18n/in",
+        "logo": "https://clodo.dev/icons/icon.svg",
+        "email": "product@clodo.dev",
+        "founded": "2024",
+        "description": "Enterprise-ready framework for building serverless applications on Cloudflare Workers with zero cold starts, integrated databases, multi-tenancy, advanced caching, and comprehensive monitoring.",
+        "sameAs": [
+          "https://github.com/tamylaa/clodo-framework",
+          "https://www.npmjs.com/package/@tamyla/clodo-framework",
+          "https://twitter.com/clodoframework",
+          "https://linkedin.com/company/clodo-framework"
+        ]
+      },
+      "language": "en",
+      "locale": "en-IN",
+      "region": "IN"
+    }
+  },
+  "shared": {
+    "softwareApplication": {
+      "name": "Clodo Framework",
+      "applicationCategory": "DeveloperApplication",
+      "runtimePlatform": "Cloudflare Workers",
+      "downloads": 1974,
+      "versions": 79,
+      "testCoverage": "98.9%",
+      "testsPassing": 463,
+      "rating": {
+        "value": 4.8,
+        "count": 1974,
+        "reviews": 127
+      }
+    }
+  }
+}
