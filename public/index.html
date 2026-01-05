@@ -38,6 +38,8 @@
     <!-- Preload Critical Resources ONLY -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
+    <!-- Page-specific styles deferred (non-critical content) -->
+    <link rel="stylesheet" href="css/pages/index.css" media="print" onload="this.media='all'">
     
     <!-- Prefetch Likely Navigation Destinations -->
     <link rel="prefetch" href="/docs">
@@ -1662,37 +1664,54 @@ const token = clodo.generateToken({
             </div>
         </section>
 
-        <section id="cta" class="cta-section" aria-labelledby="cta-title">
+        <!--#include file="../templates/community-section.html" -->
+
+        <section id="cta" class="cta-section" style="background: linear-gradient(135deg, #0066ff 0%, #0052cc 50%, #0066ff 100%); color: white;" aria-labelledby="cta-title">
             <div class="container">
-                <div class="cta-container">
-                    <div class="cta-visual">
-                        <div class="cta-badge">
+                <div class="cta-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+                    <div class="cta-visual" style="display: flex; flex-direction: column; gap: 2rem; align-items: center; justify-content: center;">
+                        <!-- Open Source Badge with SVG -->
+                        <svg width="120" height="120" viewBox="0 0 120 120" style="margin-bottom: 1rem;" aria-label="Open Source Badge">
+                            <!-- Outer circle -->
+                            <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <!-- Inner glow -->
+                            <circle cx="60" cy="60" r="50" fill="rgba(255,255,255,0.05)"/>
+                            <!-- Bracket open -->
+                            <path d="M 35 30 L 30 30 L 30 90 L 35 90" stroke="rgba(255,255,255,0.8)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Bracket close -->
+                            <path d="M 85 30 L 90 30 L 90 90 L 85 90" stroke="rgba(255,255,255,0.8)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Code inside -->
+                            <text x="60" y="65" font-size="24" font-weight="bold" text-anchor="middle" fill="white" opacity="0.9">&lt;&gt;</text>
+                        </svg>
+                        
+                        <div class="cta-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; backdrop-filter: blur(10px); font-size: 0.875rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                             </svg>
                             <span>Open Source</span>
                         </div>
-                        <div class="cta-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">60%</span>
-                                <span class="stat-label">Cost Reduction</span>
+
+                        <div class="cta-stats" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">60%</span>
+                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Cost Reduction</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-number">4hrs</span>
-                                <span class="stat-label">Setup Time</span>
+                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">4hrs</span>
+                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Setup Time</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-number">50ms</span>
-                                <span class="stat-label">Global Latency</span>
+                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">50ms</span>
+                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Global Latency</span>
                             </div>
                         </div>
                     </div>
                     <div class="cta-content">
                         <div class="cta-header">
-                            <h2 id="cta-title">Ready to Transform Your Development Workflow?</h2>
+                            <h2 id="cta-title">Ready to Join a Thriving Open Source Community?</h2>
                             <div class="cta-subtitle">
-                                <p>Join 1000+ developers building the next generation of SaaS applications on Cloudflare Edge.</p>
-                                <p class="cta-highlight">Stop assembling frameworks. Start building businesses.</p>
+                                <p>Start building today and become part of the shared prosperity movement. Your success is our community's success.</p>
+                                <p class="cta-highlight">Build faster. Cost less. Together.</p>
                             </div>
                         </div>
                         <div class="cta-features">
@@ -1818,6 +1837,9 @@ const token = clodo.generateToken({
     
     <!-- Navigation component for mobile menu -->
     <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+    
+    <!-- Community Section Component -->
+    <script src="js/components/community-section.js" nonce="N0Nc3Cl0d0"></script>
     
     <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
     <!-- This replaces Cloudflare auto-injection with optimized manual control -->
