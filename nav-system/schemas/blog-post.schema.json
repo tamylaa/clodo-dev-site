@@ -1,0 +1,275 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://clodo.dev/schemas/blog-post.schema.json",
+  "title": "Clodo Blog Post Schema",
+  "description": "JSON Schema for Clodo Framework blog posts - ensures consistency and SEO optimization",
+  "type": "object",
+  "required": [
+    "slug",
+    "title",
+    "description",
+    "author",
+    "publishedDate",
+    "category",
+    "tags",
+    "content"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly identifier (e.g., 'cloudflare-infrastructure-myth')",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "SEO-optimized title (50-60 characters ideal)",
+      "minLength": 20,
+      "maxLength": 100
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Supporting headline shown below title",
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Meta description for SEO (150-160 characters ideal)",
+      "minLength": 100,
+      "maxLength": 300
+    },
+    "author": {
+      "type": "string",
+      "description": "Author ID from blog-data.json",
+      "default": "tamyla"
+    },
+    "authorCredential": {
+      "type": "string",
+      "description": "Context-specific credential to display (overrides default)",
+      "examples": ["Built 500+ member community", "Tracked 10,000+ developer sessions"]
+    },
+    "publishedDate": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date (YYYY-MM-DD)"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Last significant update date"
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary category",
+      "enum": [
+        "Infrastructure",
+        "Technical Deep-Dive",
+        "Developer Experience",
+        "Community",
+        "Impact Analysis",
+        "Tutorial",
+        "Case Study"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Topic tags for categorization",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "maxItems": 8
+    },
+    "readingTime": {
+      "type": "integer",
+      "description": "Estimated reading time in minutes",
+      "minimum": 1,
+      "maximum": 60
+    },
+    "featuredImage": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "alt": { "type": "string" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" }
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "description": "Which JSON-LD schemas to include",
+      "properties": {
+        "article": { "type": "boolean", "default": true },
+        "faq": { "type": "boolean", "default": false },
+        "howTo": { "type": "boolean", "default": false },
+        "breadcrumb": { "type": "boolean", "default": true }
+      }
+    },
+    "content": {
+      "type": "object",
+      "description": "Main content structure",
+      "required": ["sections"],
+      "properties": {
+        "opinionStatement": {
+          "type": "object",
+          "description": "Bold opening statement for authority",
+          "properties": {
+            "emoji": { "type": "string", "default": "🔥" },
+            "label": { "type": "string", "default": "Hot Take:" },
+            "text": { "type": "string", "minLength": 50 },
+            "style": { 
+              "type": "string", 
+              "enum": ["strong", "warning", "info"],
+              "default": "strong"
+            }
+          },
+          "required": ["text"]
+        },
+        "sections": {
+          "type": "array",
+          "description": "Content sections for TOC generation",
+          "items": {
+            "type": "object",
+            "required": ["id", "title"],
+            "properties": {
+              "id": { 
+                "type": "string",
+                "description": "Anchor ID for linking",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "title": { 
+                "type": "string",
+                "description": "Section heading"
+              },
+              "content": {
+                "type": "string",
+                "description": "HTML or Markdown content"
+              }
+            }
+          },
+          "minItems": 3
+        },
+        "ourResults": {
+          "type": "object",
+          "description": "First-hand metrics section for E-E-A-T",
+          "properties": {
+            "enabled": { "type": "boolean", "default": false },
+            "metrics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": { "type": "string" },
+                  "label": { "type": "string" },
+                  "context": { "type": "string" }
+                },
+                "required": ["value", "label"]
+              }
+            },
+            "methodology": {
+              "type": "object",
+              "properties": {
+                "testEnvironment": { "type": "string" },
+                "timePeriod": { "type": "string" },
+                "tools": { "type": "string" },
+                "sampleSize": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "faq": {
+      "type": "array",
+      "description": "FAQ items for schema and content",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "properties": {
+          "question": { "type": "string", "minLength": 10 },
+          "answer": { "type": "string", "minLength": 50 }
+        }
+      }
+    },
+    "howToSteps": {
+      "type": "array",
+      "description": "HowTo schema steps",
+      "items": {
+        "type": "object",
+        "required": ["name", "text"],
+        "properties": {
+          "position": { "type": "integer" },
+          "name": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Reference source IDs from blog-data.json",
+      "items": { "type": "string" }
+    },
+    "relatedArticles": {
+      "type": "array",
+      "description": "Related article slugs",
+      "items": { "type": "string" },
+      "maxItems": 4
+    },
+    "testimonials": {
+      "type": "string",
+      "description": "Testimonial group ID from blog-data.json",
+      "examples": ["cloudflare-workers", "developer-experience"]
+    },
+    "ctas": {
+      "type": "object",
+      "description": "Call-to-action configuration",
+      "properties": {
+        "midArticle": {
+          "type": "boolean",
+          "description": "Include newsletter CTA mid-article",
+          "default": true
+        },
+        "footer": {
+          "type": "boolean",
+          "description": "Include newsletter CTA in footer",
+          "default": true
+        },
+        "product": {
+          "type": "boolean",
+          "description": "Include 'Try Clodo' CTA",
+          "default": true
+        }
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "description": "Article update history for trust signals",
+      "items": {
+        "type": "object",
+        "required": ["date", "description"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "description": { "type": "string" },
+          "isPlanned": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "description": "Advanced SEO settings",
+      "properties": {
+        "canonicalUrl": { "type": "string", "format": "uri" },
+        "noIndex": { "type": "boolean", "default": false },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ogImage": { "type": "string" },
+        "twitterCard": {
+          "type": "string",
+          "enum": ["summary", "summary_large_image"],
+          "default": "summary_large_image"
+        }
+      }
+    }
+  }
+}

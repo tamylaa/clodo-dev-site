@@ -1,0 +1,83 @@
+{
+  "enabled": true,
+  "excludePages": [
+    "/",
+    "/index.html"
+  ],
+  "defaultDelayMs": 2500,
+  "globalAnnouncements": [
+    {
+      "id": "migration-2025",
+      "type": "info",
+      "title": "New: Migrate to Cloudflare",
+      "message": "Migrate from Vercel/Railway to Cloudflare with Clodo Framework. Get enterprise-grade performance and security.",
+      "icon": "ℹ️",
+      "cta": {
+        "text": "Learn more",
+        "url": "/migrate"
+      },
+      "dismissible": true,
+      "storageKey": "clodo-announcement-migration-2025",
+      "delayMs": 2500,
+      "excludePages": [
+        "/cloudflare-workers-guide",
+        "/framework-comparison",
+        "/docs",
+        "/examples"
+      ],
+      "excludePatterns": [
+        "/i18n/*",
+        "/amp/*"
+      ]
+    }
+  ],
+  "pageSpecificAnnouncements": {
+    "/cloudflare-workers-guide": [
+      {
+        "id": "workers-guide-tip",
+        "type": "success",
+        "title": "Pro Tip",
+        "message": "Check the performance optimization section for real-world production patterns.",
+        "icon": "⚡",
+        "position": "sticky",
+        "dismissible": true,
+        "storageKey": "clodo-announcement-workers-guide-tip",
+        "delayMs": 3000
+      }
+    ],
+    "/pricing": [
+      {
+        "id": "pricing-discount",
+        "type": "warning",
+        "title": "Limited Time Offer",
+        "message": "Early adopters get 20% off the first year. Use code EARLY2025.",
+        "icon": "🎁",
+        "cta": {
+          "text": "Get discount",
+          "url": "/pricing#early-bird"
+        },
+        "dismissible": true,
+        "storageKey": "clodo-announcement-pricing-discount",
+        "delayMs": 2000
+      }
+    ]
+  },
+  "types": {
+    "info": {
+      "background": "linear-gradient(135deg, #2563eb, #1d4ed8)",
+      "color": "#ffffff"
+    },
+    "success": {
+      "background": "linear-gradient(135deg, #10b981, #059669)",
+      "color": "#ffffff"
+    },
+    "warning": {
+      "background": "linear-gradient(135deg, #f59e0b, #d97706)",
+      "color": "#ffffff"
+    },
+    "error": {
+      "background": "linear-gradient(135deg, #ef4444, #dc2626)",
+      "color": "#ffffff"
+    }
+  }
+}
