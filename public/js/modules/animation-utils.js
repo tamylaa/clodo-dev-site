@@ -1,0 +1,197 @@
+/**
+ * Shared Animation Utilities Module
+ * Handles counter animations, IntersectionObserver patterns, and common animations
+ */
+
+export function animateCounter(element, start, end, duration, suffix = '') {
+  const startTime = performance.now();
+  const endTime = startTime + duration;
+
+  function update(currentTime) {
+    if (currentTime >= endTime) {
+      element.textContent = end + suffix;
+      return;
+    }
+
+    const progress = (currentTime - startTime) / duration;
+    const easeOutProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+    const currentValue = Math.floor(start + (end - start) * easeOutProgress);
+
+    element.textContent = currentValue + suffix;
+
+    requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+export function initIntersectionObserverForElements(selector, callback, options = {}) {
+  const defaultOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+    ...options
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        callback(entry);
+      }
+    });
+  }, defaultOptions);
+
+  document.querySelectorAll(selector).forEach(element => {
+    observer.observe(element);
+  });
+
+  return observer;
+}
+
+export function initCounterAnimation() {
+  const counterCards = document.querySelectorAll('[data-animate="counter"]');
+  
+  if (!counterCards.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        
+        const valueElement = entry.target.querySelector('.metric-value') ||
+                           entry.target.querySelector('.stat-number');
+        if (valueElement) {
+          const target = parseInt(entry.target.dataset.target);
+          const suffix = entry.target.dataset.suffix || '';
+          animateCounter(valueElement, 0, target, 2000, suffix);
+        }
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  counterCards.forEach(card => observer.observe(card));
+  return observer;
+}
+
+export function initCardFadeInAnimation() {
+  const cards = document.querySelectorAll('.building-block, .platform-card');
+
+  if (!cards.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+    observer.observe(card);
+  });
+
+  return observer;
+}
+
+export function initBarChartAnimation() {
+  const barItems = document.querySelectorAll('.bar-item');
+  
+  if (!barItems.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const barFill = entry.target.querySelector('.bar-fill');
+        if (barFill && !barFill.dataset.animated) {
+          barFill.dataset.animated = 'true';
+          const targetWidth = barFill.dataset.width;
+          setTimeout(() => {
+            barFill.style.width = targetWidth + '%';
+          }, 100);
+        }
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  barItems.forEach(item => observer.observe(item));
+  return observer;
+}
+
+function animateDonutSegment(segment, percentage, circumference) {
+  let currentPercentage = 0;
+  const duration = 1500;
+  const startTime = performance.now();
+  
+  const animate = (currentTime) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    
+    currentPercentage = percentage * easeProgress;
+    const currentDashArray = (currentPercentage / 100) * circumference;
+    
+    segment.setAttribute('stroke-dasharray', `${currentDashArray} ${circumference - currentDashArray}`);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+  
+  requestAnimationFrame(animate);
+}
+
+export function initDonutChartAnimation() {
+  const donutSegments = document.querySelectorAll('.donut-segment');
+  
+  if (!donutSegments.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        donutSegments.forEach(segment => {
+          if (!segment.dataset.animated) {
+            segment.dataset.animated = 'true';
+            const percentage = parseInt(segment.dataset.percentage);
+            const circumference = 2 * Math.PI * 15.91549430918954;
+            animateDonutSegment(segment, percentage, circumference);
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  const donutChart = document.querySelector('.donut-chart');
+  if (donutChart) {
+    observer.observe(donutChart);
+  }
+  return observer;
+}
+
+export function initCodePreviewAnimation() {
+  const codePreviews = document.querySelectorAll('.hero-code-preview');
+
+  codePreviews.forEach(preview => {
+    const codeContent = preview.querySelector('.code-content');
+    if (codeContent) {
+      preview.addEventListener('mouseenter', () => {
+        codeContent.style.transform = 'scale(1.02)';
+      });
+
+      preview.addEventListener('mouseleave', () => {
+        codeContent.style.transform = 'scale(1)';
+      });
+    }
+  });
+}
