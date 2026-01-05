@@ -60,6 +60,18 @@ framework-extraction/*/
 # Uncomment below if you want to ignore internal docs:
 # .docs/
 
+# Navigation system audit and reports (local development)
+nav-system-audit.json
+nav-system-organization-plan.md
+NAVIGATION_SYSTEM_STATUS.md
+COMPLETE_NAVIGATION_SYSTEM_TODO.md
+NAV_SYSTEM_SETUP_STATUS.md
+PHASE_2_COMPLETION_REPORT.md
+docs/NAVIGATION_*.md
+reports/NAV_*.md
+reports/NAVIGATION_*.md
+scripts/README_NAVIGATION.md
+
 # SENSITIVE BUSINESS DOCUMENTATION - DO NOT COMMIT
 docs/clodo-framework-docs/
 docs/clodo-framework-i-docs/
