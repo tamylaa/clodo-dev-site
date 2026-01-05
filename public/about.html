@@ -14,64 +14,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-about.css">
+    <!-- Page-specific styles deferred (non-critical content) -->
+    <link rel="stylesheet" href="css/pages/about.css" media="print" onload="this.media='all'">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
     
     <!-- Schema.org AboutPage -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        "name": "About Clodo Framework",
-        "description": "About Clodo Framework - vision, roadmap, and the story behind building enterprise services on Cloudflare Edge.",
-        "url": "https://clodo.dev/about.html",
-        "mainEntity": {
-            "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev",
-            "description": "Enterprise-grade Cloudflare Workers framework for building multi-tenant SaaS applications",
-            "foundingDate": "2024",
-            "slogan": "Democratizing Enterprise Software Development",
-            "sameAs": [
-                "https://github.com/tamylaa/clodo-framework",
-                "https://www.npmjs.com/package/@tamyla/clodo-framework"
-            ],
-            "knowsAbout": [
-                "Cloudflare Workers",
-                "Edge Computing",
-                "Serverless Architecture",
-                "Multi-tenant SaaS",
-                "TypeScript",
-                "API Development"
-            ]
-        }
-    }
-    </script>
-    
     <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://clodo.dev/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "About",
-          "item": "https://clodo.dev/about"
-        }
-      ]
-    }
-    </script>
-</head>
+    </head>
 <body>
     <header>
 <!--#include file="../templates/nav-main.html" -->

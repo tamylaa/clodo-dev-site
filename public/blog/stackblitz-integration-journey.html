@@ -42,99 +42,9 @@
     
     <!-- Article Schema -->
     <!-- Author Schema (Person for E-E-A-T) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Tamyla",
-        "jobTitle": "Founder & Principal Engineer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Clodo Framework"
-        },
-        "url": "https://clodo.dev/about",
-        "sameAs": [
-            "https://github.com/tamylaa",
-            "https://linkedin.com/in/tamyla"
-        ],
-        "knowsAbout": ["Developer Experience", "StackBlitz", "Browser IDEs", "npm", "JavaScript"],
-        "description": "7+ years building developer tools and onboarding experiences. Creator of Clodo Framework."
-    }
-    </script>
-    
-    <!-- Article Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
-        "description": "How we built a one-click coding environment for Clodo Framework using StackBlitz, npm packages, and smart cache-busting.",
-        "image": "https://clodo.dev/og-image.png",
-        "author": {
-            "@type": "Person",
-            "name": "Tamyla",
-            "url": "https://clodo.dev/about",
-            "jobTitle": "Founder & Principal Engineer",
-            "sameAs": ["https://github.com/tamylaa", "https://linkedin.com/in/tamyla"]
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://clodo.dev/icons/icon.svg"
-            }
-        },
-        "datePublished": "2024-11-15",
-        "dateModified": "2024-11-28",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/stackblitz-integration-journey"
-        },
-        "articleSection": "Technical",
-        "keywords": ["StackBlitz", "developer experience", "npm", "ESM", "cache busting"]
-    }
-    </script>
-    
+    <!-- TechArticle Schema -->
+    <!-- BreadcrumbList Schema -->
     <!-- HowTo Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to Build an Instant Try-It Experience with StackBlitz",
-        "description": "Step-by-step guide to creating a one-click coding environment for your framework.",
-        "totalTime": "PT2H",
-        "step": [
-            {
-                "@type": "HowToStep",
-                "name": "Create Demo Repository",
-                "text": "Create a separate repository for your demo with package.json, .stackblitzrc, and demo code."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Configure StackBlitz",
-                "text": "Add .stackblitzrc file with startCommand, installDependencies, and nodeVersion settings."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Use ESM Modules",
-                "text": "Add type: module to package.json and use import statements instead of require."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Implement Cache-Busting",
-                "text": "Use commit hash in StackBlitz URL instead of branch name to bypass caching."
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Add Try Now Button",
-                "text": "Add a button with onclick handler that opens StackBlitz URL in new tab."
-            }
-        ]
-    }
-    </script>
-    
     <!-- Reading Progress & UI Enhancements -->
     <style>
         .reading-progress {
@@ -176,68 +86,8 @@
     </style>
     
     <!-- BlogPosting Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
-        "description": "How we built a one-click coding environment for Clodo Framework using StackBlitz, npm packages, and smart cache-busting.",
-        "image": "https://clodo.dev/og-image.png",
-        "datePublished": "2024-11-15T08:00:00Z",
-        "dateModified": "2024-11-28T14:30:00Z",
-        "author": {
-            "@type": "Person",
-            "name": "Tamyla",
-            "url": "https://clodo.dev/about",
-            "jobTitle": "Founder & Principal Engineer"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Clodo Framework",
-            "url": "https://clodo.dev",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://clodo.dev/icons/icon.svg"
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://clodo.dev/blog/stackblitz-integration-journey"
-        },
-        "articleSection": "Technical",
-        "keywords": "StackBlitz, developer experience, npm, ESM, cache busting",
-        "isAccessibleForFree": true
-    }
-    </script>
-    
     <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.clodo.dev/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": "https://www.clodo.dev/blog"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
-                "item": "https://www.clodo.dev/blog/stackblitz-integration-journey"
-            }
-        ]
-    }
-    </script>
-</head>
+    </head>
 <body>
 <!--#include file="../../templates/nav-main.html" -->
     <!-- Reading Progress Indicator -->
