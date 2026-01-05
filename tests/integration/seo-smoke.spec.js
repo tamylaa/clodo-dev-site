@@ -48,16 +48,16 @@ test.describe('SEO Smoke Tests', () => {
         });
     }
 
-    test('robots.txt contains sitemap', async ({ request }) => {
-        const resp = await request.get('/robots.txt');
+    test('robots.txt contains sitemap', async ({ page, request, baseURL }) => {
+        const resp = await request.get(`${baseURL}/robots.txt`);
         expect(resp.status()).toBe(200);
         const body = await resp.text();
         expect(body).toContain('Sitemap:');
         expect(body).toMatch(/Sitemap:\s*https:\/\/[^\s]+\/sitemap.xml/);
     });
 
-    test('sitemap.xml reachable and contains site root', async ({ request }) => {
-        const resp = await request.get('/sitemap.xml');
+    test('sitemap.xml reachable and contains site root', async ({ page, request, baseURL }) => {
+        const resp = await request.get(`${baseURL}/sitemap.xml`);
         expect(resp.status()).toBe(200);
         const text = await resp.text();
         // Ensure sitemap references the canonical site root (no www)
