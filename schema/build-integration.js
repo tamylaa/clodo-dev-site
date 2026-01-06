@@ -17,6 +17,11 @@ import {
   generateBlogPostSchemas,
   generateCaseStudySchemas,
   generateAllPageSchemas,
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateSoftwareApplicationSchema,
+  generateFAQPageSchema,
+  generateLearningResourceSchema,
   loadPageConfiguration
 } from './schema-generator.js';
 import {
@@ -37,6 +42,7 @@ import {
 export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
   // Skip schema injection for files that shouldn't have schemas
   if (!shouldInjectSchemas(htmlFilePath)) {
+    console.log(`   ⏭️  Skipping schema injection for: ${htmlFilePath}`);
     return htmlContent;
   }
 
@@ -47,6 +53,8 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
   
   // Extract just the filename for config lookup
   const filename = htmlFilePath.split(/[\\/]/).pop();
+  
+  console.log(`   📋 Injecting schemas into: ${filename} (locale: ${locale})`);
   
   // Check if this file has a schema config
   let generatedSchemas = null;
@@ -63,10 +71,45 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     generatedSchemas = generateCaseStudySchemas(filename, config, locale);
   }
 
+  // For all pages (including root pages like index.html, docs.html, etc.)
+  // Always inject Organization, WebSite, and other default schemas
+  else {
+    const schemas = [];
+    
+    // All pages get Organization schema
+    schemas.push(generateOrganizationSchema(locale));
+    
+    // All pages get WebSite schema  
+    schemas.push(generateWebSiteSchema(locale));
+    
+    // All pages get SoftwareApplication schema
+    schemas.push(generateSoftwareApplicationSchema(locale));
+    
+    // Check if this page has a specific configuration
+    if (pageConfig.pages?.[filename?.replace(/\.html$/, '')]) {
+      const config = pageConfig.pages[filename?.replace(/\.html$/, '')];
+      
+      if (config.type === 'FAQPage') {
+        schemas.push(generateFAQPageSchema(config.faqs || []));
+      } else if (config.type === 'LearningResource') {
+        schemas.push(generateLearningResourceSchema(config));
+      }
+    }
+    
+    // Wrap all schemas with tags and join
+    generatedSchemas = schemas
+      .filter(Boolean)
+      .map(schema => `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`)
+      .join('\n');
+  }
+
   // If no schema was generated, return original content
   if (!generatedSchemas) {
+    console.warn(`   ⚠️  No schemas generated for: ${filename}`);
     return htmlContent;
   }
+
+  console.log(`   ✅ Generated ${(generatedSchemas.match(/<script type="application\/ld\+json">/g) || []).length} schema(s) for: ${filename}`);
 
   // Replace or inject schemas
   // Strategy: Remove old inline schemas and inject new ones in <head>

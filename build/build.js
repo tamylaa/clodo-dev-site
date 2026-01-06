@@ -600,6 +600,10 @@ function copyStandaloneHtml() {
                     }
                     
                     const filePath = relativePath ? join(relativePath, entry) : entry;
+                    
+                    // Inject generated schemas (data-driven schema system)
+                    content = injectSchemasIntoHTML(filePath, content);
+                    
                     const destPath = join('dist', filePath);
                     
                     // Ensure destination directory exists

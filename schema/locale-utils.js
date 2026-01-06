@@ -75,18 +75,18 @@ export function getOrganizationForLocale(locale) {
 
 /**
  * Build locale-specific URL
- * Example: en → https://clodo.dev
- *          de → https://clodo.dev/i18n/de
- *          it → https://clodo.dev/i18n/it
+ * Example: en → https://www.clodo.dev
+ *          de → https://www.clodo.dev/i18n/de
+ *          it → https://www.clodo.dev/i18n/it
  */
 export function buildLocaleUrl(basePath, locale) {
   if (locale === 'en') {
     // English is default - no locale prefix
-    return `https://clodo.dev${basePath}`;
+    return `https://www.clodo.dev${basePath}`;
   }
   
   // Other locales get /i18n/<locale> prefix
-  return `https://clodo.dev/i18n/${locale}${basePath}`;
+  return `https://www.clodo.dev/i18n/${locale}${basePath}`;
 }
 
 /**
