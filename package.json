@@ -55,6 +55,8 @@
     "seo:keywords": "node build/keyword-ranking-tracker.js",
     "seo:content": "node build/content-effectiveness-analyzer.js",
     "seo:all": "npm run seo:test && npm run seo:keywords && npm run seo:content",
+    "audit:schemas": "node tools/audit-schemas.js",
+    "audit:schemas:local": "node tools/audit-schemas.js http://localhost:8001",
     "lint:js": "eslint . --ext .js --max-warnings=50",
     "lint:css": "stylelint \"public/**/*.css\" --ignore-pattern \"public/styles.css\"",
     "lint": "npm run lint:js && npm run lint:css",
