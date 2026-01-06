@@ -5,6 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
 import { injectSchemasIntoHTML } from '../schema/build-integration.js';
+import { fixCanonicalUrls } from './fix-canonicals-fn.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -1116,6 +1117,11 @@ try {
     copyJsConfigs();
     copyAssets();
     generateBuildInfo();
+
+    // Fix canonical URLs in dist
+    console.log('[CANONICAL] Fixing canonical URLs to https://www.clodo.dev...');
+    fixCanonicalUrls('dist', 'https://www.clodo.dev');
+    console.log('[CANONICAL] Canonical URLs fixed');
 
     // Run link health check
     console.log('[CHECK] Running link health check...');
