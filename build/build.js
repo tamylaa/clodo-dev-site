@@ -317,6 +317,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 
                 // Map file to page bundle (check full path for subdirectories)
                 // Use regex to handle both forward slashes (Unix) and backslashes (Windows)
+                // NOTE: Order matters - check specific filenames BEFORE generic includes()
                 if (file.match(/blog[\\/]/)) {
                     pageBundle = 'blog';
                 } else if (file.match(/case-studies[\\/]/)) {
@@ -325,6 +326,14 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'community';
                 } else if (fileName === 'index') {
                     pageBundle = 'index';
+                } else if (fileName === 'clodo-framework-guide') {
+                    pageBundle = 'clodo-framework-guide';
+                } else if (fileName === 'cloudflare-workers-guide') {
+                    pageBundle = 'cloudflare-workers-guide';
+                } else if (fileName === 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs') {
+                    pageBundle = 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs';
+                } else if (fileName === 'saas-product-startups-cloudflare-case-studies') {
+                    pageBundle = 'saas-product-startups-cloudflare-case-studies';
                 } else if (fileName.includes('pricing')) {
                     pageBundle = 'pricing';
                 } else if (fileName.includes('subscribe')) {
@@ -335,12 +344,6 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'about';
                 } else if (fileName.includes('migrate')) {
                     pageBundle = 'migrate';
-                } else if (fileName === 'clodo-framework-guide') {
-                    pageBundle = 'clodo-framework-guide';
-                } else if (fileName === 'cloudflare-workers-guide') {
-                    pageBundle = 'cloudflare-workers-guide';
-                } else if (fileName === 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs') {
-                    pageBundle = 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs';
                 }
                 
                 const origCssFile = pageBundle === 'common' ? 'styles.css' : `styles-${pageBundle}.css`;
@@ -701,6 +704,12 @@ function bundleCss() {
             'css/components-animations-shared.css',
             'css/components-shared-utilities.css',
             'css/pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css'
+        ],
+        'saas-product-startups-cloudflare-case-studies': [
+            'css/components-hero-shared.css',
+            'css/components-animations-shared.css',
+            'css/components-shared-utilities.css',
+            'css/pages/saas-product-startups-cloudflare-case-studies.css'
         ]
     };
 
