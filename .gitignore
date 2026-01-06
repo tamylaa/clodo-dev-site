@@ -48,6 +48,30 @@ playwright/.cache/
 
 # Temporary diagnostic files
 tmp_*.html
+
+# Analysis and investigation reports
+reports/
+*.report.json
+*.report.csv
+*.report.md
+
+# Documentation/scratch files from sessions
+BEFORE_AFTER_COMPARISON.md
+CLOUDFLARE_SEO_QUICK_REFERENCE.md
+FINAL_CLEANUP_SUMMARY.txt
+ISSUE_RESOLUTION_STATUS.md
+LOCAL_BUILD_CHECK_REPORT.md
+READ_ME_FIRST_SCRIPTS.md
+SCHEMA_GENERATION_REFACTOR.md
+SCHEMA_REFACTOR_SUMMARY.md
+SCRIPTS_COMPLETE_INDEX.md
+SCRIPT_CLEANUP_SUMMARY.md
+SEO_IMPLEMENTATION_TODO_LIST.md
+SEO_IMPROVEMENTS_CLOUDFLARE_CASE_STUDY.md
+SEO_STRATEGIC_ANALYSIS_AND_PLAN.md
+SEO_VERIFICATION_CHECKLIST.md
+build-check.log
+update-verification-codes.ps1
 tmp_*.txt
 debug/tmp*.html
 debug/temp_*.html
