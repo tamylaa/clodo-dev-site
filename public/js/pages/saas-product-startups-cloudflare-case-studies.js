@@ -1,0 +1,458 @@
+/**
+ * Cloudflare Case Studies Page - Interactive Features
+ * Handles filtering, comparison, reading progress, and social sharing
+ */
+
+(function() {
+    'use strict';
+
+    // Platform Filter Functionality
+    function initPlatformFilters() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const platformRows = document.querySelectorAll('.platform-row');
+
+        if (!filterBtns.length || !platformRows.length) return;
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                // Filter platforms
+                platformRows.forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const categories = row.getAttribute('data-category');
+                        if (categories && categories.includes(filter)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Add animation
+                platformRows.forEach((row, index) => {
+                    if (row.style.display !== 'none') {
+                        row.style.animation = 'none';
+                        setTimeout(() => {
+                            row.style.animation = `fadeInUp 0.4s ease ${index * 0.05}s forwards`;
+                        }, 10);
+                    }
+                });
+            });
+        });
+    }
+
+    // Reading Progress Bar
+    function initReadingProgress() {
+        const progressBar = document.querySelector('.progress-bar');
+        if (!progressBar) return;
+
+        function updateProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = Math.min(progress, 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateProgress);
+        updateProgress(); // Initial call
+    }
+
+    // Social Sharing Functions
+    function shareOnTwitter() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent('Real Cloudflare case studies: How Discord, Shopify, GitHub & 7 top companies use edge computing. 85% average edge delivery! #Cloudflare #CaseStudies #EdgeComputing');
+        const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        window.open(twitterUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnLinkedIn() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent('Companies Using Cloudflare: Real Case Studies 2026');
+        const summary = encodeURIComponent('See how Discord, Shopify, GitHub & 7 leading companies use Cloudflare. Real metrics, architecture patterns & implementation insights.');
+        const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`;
+        window.open(linkedinUrl, '_blank', 'width=600,height=600');
+    }
+
+    function copyLink() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            // Show temporary feedback
+            const copyBtn = document.querySelector('.copy-link');
+            if (copyBtn) {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error('Failed to copy link:', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        });
+    }
+
+    // Table of Contents - Sticky and Active Section Highlighting
+    function initTableOfContents() {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocToggle = document.querySelector('.toc-toggle');
+        const tocNav = document.querySelector('.toc-nav');
+
+        if (!tocLinks.length) return;
+
+        // Toggle TOC on mobile
+        if (tocToggle && tocNav) {
+            tocToggle.addEventListener('click', function() {
+                const isExpanded = tocNav.classList.contains('expanded');
+                tocNav.classList.toggle('expanded');
+                tocToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
+
+        // Highlight active section
+        function highlightActiveSection() {
+            const scrollPosition = window.scrollY + 100;
+
+            tocLinks.forEach(link => {
+                const targetId = link.getAttribute('href')?.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const targetTop = targetElement.offsetTop;
+                    const targetBottom = targetTop + targetElement.offsetHeight;
+
+                    if (scrollPosition >= targetTop && scrollPosition < targetBottom) {
+                        tocLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Smooth scroll to section
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href')?.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 80; // Account for fixed header
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection(); // Initial call
+    }
+
+    // Social Sharing Functions
+    function initSocialSharing() {
+        // Attach functions to window for global access
+        window.shareOnTwitter = shareOnTwitter;
+        window.shareOnLinkedIn = shareOnLinkedIn;
+        window.copyLink = copyLink;
+    }
+
+    // Platform Analysis Cards Animation
+    function initPlatformCards() {
+        const buildingBlocks = document.querySelectorAll('.building-block');
+
+        if (!buildingBlocks.length) return;
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        buildingBlocks.forEach((block, index) => {
+            block.style.opacity = '0';
+            block.style.transform = 'translateY(20px)';
+            block.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(block);
+        });
+    }
+
+    // Statistics Counter Animation
+    function initStatsAnimation() {
+        const stats = document.querySelectorAll('.stat-number');
+        if (!stats.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stat = entry.target;
+                    const targetValue = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+                    const suffix = stat.textContent.replace(/[\d]/g, '');
+
+                    if (!stat.dataset.animated) {
+                        stat.dataset.animated = 'true';
+                        animateCounter(stat, 0, targetValue, 2000, suffix);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        stats.forEach(stat => observer.observe(stat));
+    }
+
+    function animateCounter(element, start, end, duration, suffix = '') {
+        const startTime = performance.now();
+        const endTime = startTime + duration;
+
+        function update(currentTime) {
+            if (currentTime >= endTime) {
+                element.textContent = end + suffix;
+                return;
+            }
+
+            const progress = (currentTime - startTime) / duration;
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+            const currentValue = Math.floor(start + (end - start) * easeOutProgress);
+
+            element.textContent = currentValue + suffix;
+
+            requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    // Enhanced Code Preview Interactions
+    function initCodePreview() {
+        const codePreviews = document.querySelectorAll('.hero-code-preview');
+
+        codePreviews.forEach(preview => {
+            const codeContent = preview.querySelector('.code-content');
+            if (codeContent) {
+                // Add subtle animation on hover
+                preview.addEventListener('mouseenter', () => {
+                    codeContent.style.transform = 'scale(1.02)';
+                });
+
+                preview.addEventListener('mouseleave', () => {
+                    codeContent.style.transform = 'scale(1)';
+                });
+            }
+        });
+    }
+
+    // Counter Animation for Metric Cards
+    function initCounterAnimation() {
+        const counterCards = document.querySelectorAll('[data-animate="counter"]');
+        
+        if (!counterCards.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    animateCardCounter(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        counterCards.forEach(card => observer.observe(card));
+    }
+
+    function animateCardCounter(card) {
+        const target = parseInt(card.dataset.target);
+        const suffix = card.dataset.suffix || '';
+        const valueElement = card.querySelector('.metric-value');
+        
+        if (!valueElement) return;
+
+        const duration = 2000; // 2 seconds
+        const startTime = performance.now();
+        
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function (ease-out cubic)
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(target * easeProgress);
+            
+            valueElement.textContent = currentValue + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        };
+        
+        requestAnimationFrame(update);
+    }
+
+    // Bar Chart Animation
+    function initBarCharts() {
+        const barItems = document.querySelectorAll('.bar-item');
+        
+        if (!barItems.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const barFill = entry.target.querySelector('.bar-fill');
+                    if (barFill && !barFill.dataset.animated) {
+                        barFill.dataset.animated = 'true';
+                        const targetWidth = barFill.dataset.width;
+                        setTimeout(() => {
+                            barFill.style.width = targetWidth + '%';
+                        }, 100);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        barItems.forEach(item => observer.observe(item));
+    }
+
+    // Donut Chart Animation
+    function initDonutChart() {
+        const donutSegments = document.querySelectorAll('.donut-segment');
+        
+        if (!donutSegments.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    donutSegments.forEach(segment => {
+                        if (!segment.dataset.animated) {
+                            segment.dataset.animated = 'true';
+                            const percentage = parseInt(segment.dataset.percentage);
+                            const circumference = 2 * Math.PI * 15.91549430918954;
+                            
+                            // Animate from 0 to target
+                            let currentPercentage = 0;
+                            const duration = 1500;
+                            const startTime = performance.now();
+                            
+                            const animate = (currentTime) => {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                                
+                                currentPercentage = percentage * easeProgress;
+                                const currentDashArray = (currentPercentage / 100) * circumference;
+                                
+                                segment.setAttribute('stroke-dasharray', `${currentDashArray} ${circumference - currentDashArray}`);
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
+                                }
+                            };
+                            
+                            requestAnimationFrame(animate);
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        const donutChart = document.querySelector('.donut-chart');
+        if (donutChart) {
+            observer.observe(donutChart);
+        }
+    }
+
+    // Service Stats Pulse Animation
+    function initServiceStats() {
+        const serviceStats = document.querySelectorAll('.service-stat');
+        
+        if (!serviceStats.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    entry.target.style.animation = `fadeInUp 0.5s ease ${index * 0.1}s forwards`;
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        serviceStats.forEach(stat => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            observer.observe(stat);
+        });
+    }
+
+    // Initialize all visualizations
+    function initVisualizations() {
+        initCounterAnimation();
+        initBarCharts();
+        initDonutChart();
+        initServiceStats();
+    }
+
+    // Initialize all features when DOM is ready
+    function init() {
+        initReadingProgress();
+        initTableOfContents();
+        initSocialSharing();
+        initPlatformCards();
+        initStatsAnimation();
+        initCodePreview();
+        initVisualizations(); // Add chart animations
+
+        // Add any page-specific event listeners
+        document.addEventListener('keydown', function(e) {
+            // Allow keyboard navigation for TOC
+            if (e.key === 'Escape' && document.querySelector('.toc-nav.expanded')) {
+                document.querySelector('.toc-nav').classList.remove('expanded');
+                document.querySelector('.toc-toggle')?.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Initialize when DOM is loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    // Export functions for potential external use
+    window.CloudflareSaasResearch = {
+        init,
+        shareOnTwitter,
+        shareOnLinkedIn,
+        copyLink
+    };
+
+})();
