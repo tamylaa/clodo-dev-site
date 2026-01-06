@@ -46,10 +46,8 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         await emailInput.fill('invalid-email');
         await submitButton.click();
 
-        // Wait for validation
-        await page.waitForTimeout(500);
-
         // Check if browser validation prevents submission (HTML5 validation)
+        // Check immediately without waiting as HTML5 validation is synchronous
         const isValid = await emailInput.evaluate(el => el.checkValidity());
         expect(isValid).toBe(false);
     });
@@ -103,25 +101,29 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         // Submit form
         await submitButton.click();
 
-        // Wait for loading state to be set (tolerate scheduling differences)
+        // Check loading state immediately with a short timeout
         // Accept either disabled attribute, a loading ARIA state, or button text indicating loading
-        await page.waitForFunction(
-            (btn) => btn.disabled || (btn.textContent && btn.textContent.toLowerCase().includes('subscrib')) || btn.getAttribute('aria-busy') === 'true',
-            submitButton,
-            { timeout: 5000 }
-        );
+        try {
+            await page.waitForFunction(
+                (btn) => btn.disabled || (btn.textContent && btn.textContent.toLowerCase().includes('subscrib')) || btn.getAttribute('aria-busy') === 'true',
+                submitButton,
+                { timeout: 2000 }
+            );
 
-        // Check loading state
-        const isDisabled = await submitButton.evaluate(el => el.disabled);
-        const buttonText = await submitButton.textContent();
+            // Check loading state
+            const isDisabled = await submitButton.evaluate(el => el.disabled);
+            const buttonText = await submitButton.textContent();
 
-        expect(isDisabled).toBe(true);
-        expect(buttonText.toLowerCase()).toContain('subscrib');
-
-        // Restore fetch
-        await page.evaluate(() => {
-            window.fetch = window.originalFetch;
-        });
+            expect(isDisabled).toBe(true);
+            expect(buttonText.toLowerCase()).toContain('subscrib');
+        } finally {
+            // Restore fetch
+            await page.evaluate(() => {
+                if (window.originalFetch) {
+                    window.fetch = window.originalFetch;
+                }
+            });
+        }
     });
 
     test('Subscribe form handles successful API response', async ({ page }) => {
@@ -134,41 +136,45 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         const consentCheckbox = await form.$('input[name="consent"]');
         const messageArea = await form.$('.form-message');
 
-        // Mock successful API response
-        await page.evaluate(() => {
-            window.originalFetch = window.fetch;
-            window.fetch = () => Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve({
-                    success: true,
-                    message: 'Successfully subscribed! Check your email for confirmation.'
-                })
+        try {
+            // Mock successful API response
+            await page.evaluate(() => {
+                window.originalFetch = window.fetch;
+                window.fetch = () => Promise.resolve({
+                    ok: true,
+                    json: () => Promise.resolve({
+                        success: true,
+                        message: 'Successfully subscribed! Check your email for confirmation.'
+                    })
+                });
             });
-        });
 
-        // Fill and submit form
-        await emailInput.fill('test@example.com');
-        await consentCheckbox.check();
-        await submitButton.click();
+            // Fill and submit form
+            await emailInput.fill('test@example.com');
+            await consentCheckbox.check();
+            await submitButton.click();
 
-        // Wait for response
-        await page.waitForTimeout(1000);
+            // Wait for response with shorter timeout
+            await page.waitForTimeout(500);
 
-        // Check success message
-        const messageText = await messageArea.textContent();
-        const messageClass = await messageArea.getAttribute('class');
+            // Check success message
+            const messageText = await messageArea.textContent();
+            const messageClass = await messageArea.getAttribute('class');
 
-        expect(messageText).toContain('Thanks for subscribing');
-        expect(messageClass).toContain('success');
+            expect(messageText).toContain('Thanks for subscribing');
+            expect(messageClass).toContain('success');
 
-        // Check form is reset (email cleared, but consent may stay checked)
-        const emailValue = await emailInput.inputValue();
-        expect(emailValue).toBe('');
-
-        // Restore fetch
-        await page.evaluate(() => {
-            window.fetch = window.originalFetch;
-        });
+            // Check form is reset (email cleared, but consent may stay checked)
+            const emailValue = await emailInput.inputValue();
+            expect(emailValue).toBe('');
+        } finally {
+            // Restore fetch
+            await page.evaluate(() => {
+                if (window.originalFetch) {
+                    window.fetch = window.originalFetch;
+                }
+            });
+        }
     });
 
     test('Subscribe form handles API error response', async ({ page }) => {
@@ -181,41 +187,45 @@ test.describe('Newsletter Subscribe Button Integration Tests', () => {
         const consentCheckbox = await form.$('input[name="consent"]');
         const messageArea = await form.$('.form-message');
 
-        // Mock error API response that triggers "already subscribed"
-        await page.evaluate(() => {
-            window.originalFetch = window.fetch;
-            window.fetch = () => Promise.resolve({
-                ok: false,
-                status: 400,
-                json: () => Promise.resolve({
-                    error: 'Contact already exists'
-                })
+        try {
+            // Mock error API response that triggers "already subscribed"
+            await page.evaluate(() => {
+                window.originalFetch = window.fetch;
+                window.fetch = () => Promise.resolve({
+                    ok: false,
+                    status: 400,
+                    json: () => Promise.resolve({
+                        error: 'Contact already exists'
+                    })
+                });
             });
-        });
 
-        // Fill and submit form
-        await emailInput.fill('existing@example.com');
-        await consentCheckbox.check();
-        await submitButton.click();
+            // Fill and submit form
+            await emailInput.fill('existing@example.com');
+            await consentCheckbox.check();
+            await submitButton.click();
 
-        // Wait for response
-        await page.waitForTimeout(1000);
+            // Wait for response with shorter timeout
+            await page.waitForTimeout(500);
 
-        // Check error message
-        const messageText = await messageArea.textContent();
-        const messageClass = await messageArea.getAttribute('class');
+            // Check error message
+            const messageText = await messageArea.textContent();
+            const messageClass = await messageArea.getAttribute('class');
 
-        expect(messageText).toContain('already subscribed');
-        expect(messageClass).toContain('error');
+            expect(messageText).toContain('already subscribed');
+            expect(messageClass).toContain('error');
 
-        // Check form is not reset
-        const emailValue = await emailInput.inputValue();
-        expect(emailValue).toBe('existing@example.com');
-
-        // Restore fetch
-        await page.evaluate(() => {
-            window.fetch = window.originalFetch;
-        });
+            // Check form is not reset
+            const emailValue = await emailInput.inputValue();
+            expect(emailValue).toBe('existing@example.com');
+        } finally {
+            // Restore fetch
+            await page.evaluate(() => {
+                if (window.originalFetch) {
+                    window.fetch = window.originalFetch;
+                }
+            });
+        }
     });
 
     test('Subscribe form handles network error', async ({ page }) => {

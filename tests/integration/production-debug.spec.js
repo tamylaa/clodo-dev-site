@@ -5,16 +5,18 @@
 
 import { test, expect } from '@playwright/test';
 
+const BASE = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8000';
+
 test.describe('Production Button Debug', () => {
     test.skip(process.env.CI, 'Production debug test skipped in CI environment');
     
     test('check if stackblitz module loads and attaches handlers', async ({ page }) => {
-        // Navigate to production site
-        await page.goto('https://www.clodo.dev/');
+        // Navigate to local test server (avoid external network calls)
+        await page.goto(`${BASE}/index.html`);
         
         // Wait for page to be fully loaded
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
         
         // Check if buttons exist
         const buttons = await page.locator('[data-stackblitz-url]').count();
@@ -94,9 +96,10 @@ test.describe('Production Button Debug', () => {
             });
         });
         
-        await page.goto('https://www.clodo.dev/');
+        // Navigate to local test server (avoid external network calls)
+        await page.goto(`${BASE}/index.html`);
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
         
         // Filter for relevant logs
         const relevantLogs = consoleLogs.filter(log => 
