@@ -168,11 +168,22 @@ function convertToAMP(canonicalPath, ampPath, locale = 'en') {
   // Extract key elements
   const title = document.querySelector('title')?.textContent || 'Clodo Blog';
   const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-  const canonicalUrl = document.querySelector('link[rel="canonical"]')?.getAttribute('href') ||
+  
+  // Generate correct canonical URL (page-specific, not site root)
+  let canonicalUrl = document.querySelector('link[rel="canonical"]')?.getAttribute('href') ||
     (locale === 'en'
       ? canonicalPath.replace(/\\/g, '/').replace('public/blog/', '/blog/').replace('.html', '')
       : canonicalPath.replace(/\\/g, '/').replace(`public/i18n/${locale}/blog/`, `/i18n/${locale}/blog/`).replace('.html', '')
     );
+  
+  // Ensure canonical has full URL with www domain
+  if (!canonicalUrl.startsWith('http')) {
+    canonicalUrl = 'https://www.clodo.dev' + (canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl);
+  } else if (canonicalUrl.includes('https://clodo.dev/') && !canonicalUrl.includes('www')) {
+    // Fix clodo.dev to www.clodo.dev
+    canonicalUrl = canonicalUrl.replace('https://clodo.dev', 'https://www.clodo.dev');
+  }
+  
   const ampUrl = ampPath.replace(/\\/g, '/').replace('public/', '/');
 
   // Extract main content (assuming it's in <main> or <article>)
