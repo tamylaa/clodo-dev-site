@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 3
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -60,7 +60,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 1
         },
         "id": "mobile-chrome",
         "name": "mobile-chrome",
@@ -77,7 +77,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 1
         },
         "id": "tablet",
         "name": "tablet",
@@ -106,20 +106,20 @@
   },
   "suites": [
     {
-      "title": "integration\\seo-smoke.spec.js",
-      "file": "integration/seo-smoke.spec.js",
+      "title": "integration\\structured-data.spec.js",
+      "file": "integration/structured-data.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "SEO Smoke Tests",
-          "file": "integration/seo-smoke.spec.js",
-          "line": 15,
+          "title": "Structured Data Hub Tests",
+          "file": "integration/structured-data.spec.js",
+          "line": 9,
           "column": 6,
           "specs": [
             {
-              "title": "sitemap.xml reachable and contains site root",
+              "title": "should inject BlogPosting schema on blog pages",
               "ok": true,
               "tags": [],
               "tests": [
@@ -134,12 +134,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 55,
+                      "duration": 5354,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-25T16:43:35.111Z",
+                      "startTime": "2026-01-05T18:05:31.817Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -147,77 +147,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "ddf36bd32626203d728f-44b2966459a898d5d0f7",
-              "file": "integration/seo-smoke.spec.js",
-              "line": 59,
-              "column": 5
-            },
-            {
-              "title": "sitemap.xml reachable and contains site root",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "mobile-chrome",
-                  "projectName": "mobile-chrome",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 51,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-25T16:43:35.111Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ddf36bd32626203d728f-ed0eacf392fde3e7dc8b",
-              "file": "integration/seo-smoke.spec.js",
-              "line": 59,
-              "column": 5
-            },
-            {
-              "title": "sitemap.xml reachable and contains site root",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "tablet",
-                  "projectName": "tablet",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 53,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-25T16:43:35.111Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ddf36bd32626203d728f-6b0bac7d02b3026f4b43",
-              "file": "integration/seo-smoke.spec.js",
-              "line": 59,
+              "id": "04b9bb80c6e25e045dd3-9a2af198fdae8705ef54",
+              "file": "integration/structured-data.spec.js",
+              "line": 89,
               "column": 5
             }
           ]
@@ -227,9 +159,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-12-25T16:43:33.145Z",
-    "duration": 2310.845,
-    "expected": 3,
+    "startTime": "2026-01-05T18:05:30.719Z",
+    "duration": 7270.219000000001,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
