@@ -68,9 +68,10 @@
 /* Comparison Table */
 .comparison-table-wrapper {
   overflow-x: auto;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  max-width: calc(100% - 4rem);
 }
 
 .comparison-table {
@@ -87,13 +88,18 @@
 }
 
 .comparison-table th {
-  padding: 1.25rem 1rem;
-  text-align: left;
+  padding: 1.25rem 0.75rem;
+  padding-right: 0.5rem;
+  text-align: center;
   font-weight: 700;
   color: white;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
 }
 
 .comparison-table tbody tr {
@@ -107,9 +113,15 @@
 }
 
 .comparison-table td {
-  padding: 1.25rem 1rem;
+  padding: 1.25rem 0.75rem;
+  padding-right: 0.5rem;
   color: #374151;
   font-size: 0.9375rem;
+  text-align: center;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
 }
 
 .company-cell {
