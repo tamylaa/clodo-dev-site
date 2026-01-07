@@ -68,10 +68,11 @@
 /* Comparison Table */
 .comparison-table-wrapper {
   overflow-x: auto;
-  margin: 0 auto 3rem 2rem;
+  margin: 0 auto 3rem auto;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  max-width: calc(100% - 4rem);
+  max-width: 100%;
+  width: 100%;
 }
 
 .comparison-table {
