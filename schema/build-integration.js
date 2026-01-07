@@ -22,6 +22,7 @@ import {
   generateSoftwareApplicationSchema,
   generateFAQPageSchema,
   generateLearningResourceSchema,
+  generateBreadcrumbList,
   loadPageConfiguration
 } from './schema-generator.js';
 import {
@@ -95,7 +96,74 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
         schemas.push(generateLearningResourceSchema(config));
       }
     }
-    
+    // Heuristics for pages without explicit config:
+    //  - If the HTML contains breadcrumb markup, auto-generate BreadcrumbList
+    //  - If the HTML looks like an article (has <article> or og:type=article), add Article schema
+    //  - If the HTML contains FAQ items (.faq-item), extract Q&A and add FAQPage schema
+    try {
+      // Breadcrumb detection: parse anchors inside <nav class="breadcrumbs"> or <nav aria-label="Breadcrumb">
+      const breadcrumbNavMatch = htmlContent.match(/<nav[^>]*class=["']?breadcrumbs["']?[^>]*>[\s\S]*?<\/nav>/i) || htmlContent.match(/<nav[^>]*aria-label=["']?Breadcrumb["']?[^>]*>[\s\S]*?<\/nav>/i);
+      if (breadcrumbNavMatch) {
+        const navHtml = breadcrumbNavMatch[0];
+        const linkRegex = /<a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+        let m;
+        const items = [];
+        while ((m = linkRegex.exec(navHtml)) !== null) {
+          const href = m[1];
+          const name = m[2].replace(/<[^>]+>/g, '').trim();
+          const url = href.startsWith('http') ? href : `https://www.clodo.dev${href.startsWith('/') ? '' : '/'}${href.replace(/^\//, '')}`;
+          items.push({ name, url });
+        }
+        // Attempt to capture the last non-link breadcrumb label (e.g., <span>Current Page</span>)
+        const lastLabelMatch = navHtml.match(/<(?:(?:span|div|li)[^>]*)(?:[^>]*?)>([^<]+)<\/(?:span|div|li)>/i);
+        if (lastLabelMatch && lastLabelMatch[1]) {
+          const lastName = lastLabelMatch[1].trim();
+          if (!items.find(it => it.name === lastName)) {
+            // Use canonical or site root as the URL for final breadcrumb when not linked
+            const canonicalMatch = htmlContent.match(/<link rel=["']canonical["'] href=["']([^"']+)["']\s*\/>/i);
+            const lastUrl = canonicalMatch ? canonicalMatch[1] : `https://www.clodo.dev`;
+            items.push({ name: lastName, url: lastUrl });
+          }
+        }
+        if (items.length) {
+          schemas.push(generateBreadcrumbList(items));
+        }
+      }
+
+      // FAQ detection: simple extraction from .faq-item / .faq-question / .faq-answer markup
+      if (/class=["']?faq-item["']?/i.test(htmlContent)) {
+        const faqRegex = /<div[^>]*class=["']?faq-item["']?[^>]*>[\s\S]*?<div[^>]*class=["']?faq-question["']?[^>]*>([\s\S]*?)<\/div>[\s\S]*?<div[^>]*class=["']?faq-answer["']?[^>]*>([\s\S]*?)<\/div>/gi;
+        let fm;
+        const faqs = [];
+        while ((fm = faqRegex.exec(htmlContent)) !== null) {
+          const q = fm[1].replace(/<[^>]+>/g, '').trim();
+          const a = fm[2].replace(/<[^>]+>/g, '').trim();
+          if (q && a) faqs.push({ name: q, acceptedAnswer: a });
+        }
+        if (faqs.length) {
+          schemas.push(generateFAQPageSchema(faqs));
+        }
+      }
+
+      // Article detection: look for <article> or og:type=article or meta[type]=article
+      if (/<article[\s>]/i.test(htmlContent) || /<meta[^>]*property=["']og:type["'][^>]*content=["']article["'][^>]*>/i.test(htmlContent) || /<meta[^>]*name=["']twitter:card["'][^>]*content=["']summary_large_image["'][^>]*>/i.test(htmlContent)) {
+        const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\/title>/i);
+        const canonicalMatch = htmlContent.match(/<link rel=["']canonical["'] href=["']([^"']+)["']\s*\/>/i);
+        const pageUrl = canonicalMatch ? canonicalMatch[1] : null;
+        const headline = titleMatch ? titleMatch[1].trim() : '';
+        if (headline) {
+          const articleSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'headline': headline,
+            'url': pageUrl
+          };
+          schemas.push(articleSchema);
+        }
+      }
+    } catch (e) {
+      console.warn('Schema heuristics failed:', e.message);
+    }    
     // Wrap all schemas with tags and join
     generatedSchemas = schemas
       .filter(Boolean)
