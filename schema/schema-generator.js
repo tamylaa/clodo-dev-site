@@ -60,12 +60,16 @@ export function generateOrganizationSchema(locale = 'en') {
   const localeConfig = getLocaleConfig(locale);
   const org = localeConfig.organization;
   
+  // Use buildLocaleUrl for consistency with other schemas
+  const baseUrl = buildLocaleUrl('', locale);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${baseUrl}#organization`,
     'name': org.name || 'Clodo Framework',
     'description': org.description || 'Enterprise-ready framework for Cloudflare Workers',
-    'url': org.url_locale || org.url || 'https://www.clodo.dev',
+    'url': baseUrl,
     'logo': org.logo || 'https://www.clodo.dev/icons/icon.svg',
     'founded': org.founded || '2024',
     'foundingLocation': {
@@ -97,7 +101,8 @@ export function generateOrganizationSchema(locale = 'en') {
  */
 export function generateWebSiteSchema(locale = 'en') {
   const localeConfig = getLocaleConfig(locale);
-  const baseUrl = locale === 'en' ? 'https://clodo.dev' : `https://clodo.dev/i18n/${locale}`;
+  // Use the locale-aware URL builder to ensure www is used and localized paths are correct
+  const baseUrl = buildLocaleUrl('', locale);
   
   return {
     '@context': 'https://schema.org',
@@ -115,7 +120,7 @@ export function generateWebSiteSchema(locale = 'en') {
       'query-input': 'required name=search_term_string'
     }
   };
-}
+} 
 
 /**
  * Generate SoftwareApplication schema
@@ -123,27 +128,40 @@ export function generateWebSiteSchema(locale = 'en') {
  */
 export function generateSoftwareApplicationSchema(locale = 'en') {
   const localeConfig = getLocaleConfig(locale);
-  
-  return {
+  const { blogData } = loadData();
+
+  // Build small review objects from blogData testimonials (if available)
+  const reviewsSource = blogData?.testimonials?.['cloudflare-workers'] || [];
+  const reviews = reviewsSource.slice(0, 5).map(t => ({
+    '@type': 'Review',
+    'author': { '@type': 'Person', 'name': t.author },
+    'reviewBody': t.quote,
+    ...(t.rating ? { 'reviewRating': { '@type': 'Rating', 'ratingValue': String(t.rating), 'bestRating': '5', 'worstRating': '1' } } : {})
+  }));
+
+  // Use buildLocaleUrl for consistency
+  const baseUrl = buildLocaleUrl('', locale);
+
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     'name': 'Clodo Framework',
     'description': 'Enterprise-ready framework for Cloudflare Workers. Build production SaaS applications with integrated databases, authentication, and zero cold starts.',
     'softwareVersion': '1.0.0',
-    'url': locale === 'en' ? 'https://www.clodo.dev' : `https://www.clodo.dev/i18n/${locale}`,
+    'url': baseUrl,
     'applicationCategory': 'DeveloperApplication',
     'inLanguage': localeConfig.locale || 'en-US',
-    
+
     // 🆕 Critical: Star ratings for CTR improvement (20-30% increase)
     'aggregateRating': {
       '@type': 'AggregateRating',
       'ratingValue': '4.8',
-      'ratingCount': '1974',           // npm monthly downloads
-      'reviewCount': '127',             // GitHub stars
+      'ratingCount': '1974',
+      'reviewCount': '127',
       'bestRating': '5',
       'worstRating': '1'
     },
-    
+
     // 🆕 Pricing & availability info
     'offers': {
       '@type': 'Offer',
@@ -152,7 +170,7 @@ export function generateSoftwareApplicationSchema(locale = 'en') {
       'availability': 'https://schema.org/InStock',
       'description': 'Open source framework, free to use under MIT License. Only pay for Cloudflare Workers compute.'
     },
-    
+
     // 🆕 Feature list for rich results
     'featureList': [
       'Multi-tenant SaaS architecture',
@@ -164,7 +182,7 @@ export function generateSoftwareApplicationSchema(locale = 'en') {
       'TypeScript support with 500+ type definitions',
       'One-click deployment to Cloudflare Pages'
     ],
-    
+
     // 🆕 Additional properties for completeness
     'screenshot': 'https://www.clodo.dev/images/icon.svg',
     'downloadUrl': 'https://www.npmjs.com/package/@tamyla/clodo-framework',
@@ -181,11 +199,15 @@ export function generateSoftwareApplicationSchema(locale = 'en') {
       }
     }
   };
+
+  if (reviews.length) schema.review = reviews;
+
+  return schema;
 }
 
 /**
  * Generate BreadcrumbList schema
- * @param {Array} items - [{name, url}]
+ * @param {Array} items - [{name, url}] or [{name, item}]
  */
 export function generateBreadcrumbList(items) {
   return {
@@ -195,7 +217,7 @@ export function generateBreadcrumbList(items) {
       '@type': 'ListItem',
       'position': index + 1,
       'name': item.name,
-      'item': item.url
+      'item': item.url || item.item
     }))
   };
 }
@@ -233,10 +255,10 @@ export function generateTechArticleSchema(post) {
     'publisher': {
       '@type': 'Organization',
       'name': 'Clodo Framework',
-      'url': 'https://clodo.dev',
+      'url': 'https://www.clodo.dev',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://clodo.dev/icons/icon.svg'
+        'url': 'https://www.clodo.dev/icons/icon.svg'
       }
     },
     'mainEntityOfPage': {
@@ -320,8 +342,8 @@ export function generateProductSchema(product) {
     '@type': 'Product',
     'name': product.name,
     'description': product.description,
-    'image': product.image || 'https://clodo.dev/icons/icon.svg',
-    'url': product.url || 'https://clodo.dev',
+    'image': product.image || 'https://www.clodo.dev/icons/icon.svg',
+    'url': product.url || 'https://www.clodo.dev',
     'brand': {
       '@type': 'Brand',
       'name': product.brand || 'Clodo'
@@ -407,9 +429,16 @@ export function generatePageSchemas(pageConfig) {
   // Always include organization
   schemas.push(wrapSchemaTag(generateOrganizationSchema()));
 
-  // Add breadcrumb if provided
+  // Add breadcrumb if provided; else generate a simple fallback if page has schema metadata
   if (pageConfig.breadcrumbs) {
     schemas.push(wrapSchemaTag(generateBreadcrumbList(pageConfig.breadcrumbs)));
+  } else if (pageConfig.schema && pageConfig.schema.url && pageConfig.schema.title) {
+    const fallbackBreadcrumbs = [
+      { name: 'Home', url: buildLocaleUrl('', 'en') },
+      { name: pageConfig.schema.section || 'Content', url: buildLocaleUrl(`/${(pageConfig.schema.section || 'content').toLowerCase()}`, 'en') },
+      { name: pageConfig.schema.title, url: pageConfig.schema.url }
+    ];
+    schemas.push(wrapSchemaTag(generateBreadcrumbList(fallbackBreadcrumbs)));
   }
 
   // Add main content schema
@@ -472,16 +501,19 @@ export function generateBlogPostSchemas(htmlFilename, config, locale = 'en') {
   const localeConfig = getLocaleConfig(locale);
   const schemas = [];
 
-  // Organization schema (shared)
+  // Organization + contextual schemas for blog post
   schemas.push(wrapSchemaTag(generateOrganizationSchema(locale)));
+  schemas.push(wrapSchemaTag(generateWebSiteSchema(locale)));
+  schemas.push(wrapSchemaTag(generateSoftwareApplicationSchema(locale)));
 
   // TechArticle schema from config + author data
   const author = blogData.authors?.[config.author];
-  const blogUrl = buildLocaleUrl(config.url.replace('https://clodo.dev', ''), locale);
+  // Use URL parsing to extract the pathname reliably and then build a locale-aware URL
+  const blogUrl = buildLocaleUrl(new URL(config.url).pathname, locale);
   
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'TechArticle',
+    '@type': 'BlogPosting',
     headline: config.headline || config.title,
     description: config.description,
     url: blogUrl,
@@ -498,11 +530,11 @@ export function generateBlogPostSchemas(htmlFilename, config, locale = 'en') {
       name: 'Clodo',
       url: buildLocaleUrl('', locale)
     },
-    mainEntity: {
-      '@type': 'TechArticle',
-      headline: config.headline || config.title,
-      description: config.description
-    }
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': blogUrl
+    },
+    articleSection: config.section || 'Technical'
   };
 
   if (config.proficiencyLevel) {
@@ -520,11 +552,11 @@ export function generateBlogPostSchemas(htmlFilename, config, locale = 'en') {
 
   schemas.push(wrapSchemaTag(articleSchema));
 
-  // Breadcrumb for blog post
+  // Breadcrumb for blog post (localized absolute urls)
   const breadcrumbs = [
-    { name: 'Home', item: 'https://www.clodo.dev' },
-    { name: 'Blog', item: 'https://www.clodo.dev/blog' },
-    { name: config.headline || config.title, item: config.url }
+    { name: 'Home', url: buildLocaleUrl('', locale) },
+    { name: 'Blog', url: buildLocaleUrl('/blog', locale) },
+    { name: config.headline || config.title, url: blogUrl }
   ];
   schemas.push(wrapSchemaTag(generateBreadcrumbList(breadcrumbs)));
 
@@ -547,8 +579,15 @@ export function generateCaseStudySchemas(htmlFilename, config, locale = 'en') {
   // Organization schema
   schemas.push(wrapSchemaTag(generateOrganizationSchema(locale)));
 
+  // WebSite schema
+  schemas.push(wrapSchemaTag(generateWebSiteSchema(locale)));
+
+  // SoftwareApplication schema
+  schemas.push(wrapSchemaTag(generateSoftwareApplicationSchema(locale)));
+
   // Case study schema with metrics
-  const caseStudyUrl = buildLocaleUrl(config.url.replace('https://clodo.dev', ''), locale);
+  // Use URL parsing to extract the pathname reliably and then build a locale-aware URL
+  const caseStudyUrl = buildLocaleUrl(new URL(config.url).pathname, locale);
 
   // Article schema for case study
   const articleSchema = {
@@ -574,11 +613,11 @@ export function generateCaseStudySchemas(htmlFilename, config, locale = 'en') {
     schemas.push(wrapSchemaTag(metricsSchema));
   }
 
-  // Breadcrumb
+  // Breadcrumb (localized URLs)
   const breadcrumbs = [
-    { name: 'Home', item: 'https://www.clodo.dev' },
-    { name: 'Case Studies', item: 'https://www.clodo.dev/case-studies' },
-    { name: config.headline || config.title, item: config.url }
+    { name: 'Home', url: buildLocaleUrl('', locale) },
+    { name: 'Case Studies', url: buildLocaleUrl('/case-studies', locale) },
+    { name: config.headline || config.title, url: caseStudyUrl }
   ];
   schemas.push(wrapSchemaTag(generateBreadcrumbList(breadcrumbs)));
 

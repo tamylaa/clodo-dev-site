@@ -5,6 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
 import { injectSchemasIntoHTML } from '../schema/build-integration.js';
+import { generateOrganizationSchema, generateWebSiteSchema, generateSoftwareApplicationSchema } from '../schema/schema-generator.js';
 import { fixCanonicalUrls } from './fix-canonicals-fn.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -513,7 +514,23 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             // Inject generated schemas (data-driven schema system)
             content = injectSchemasIntoHTML(file, content);
 
-            // Ensure destination directory exists
+                    // Fallback: if no schema script tags were injected, add default Organization/WebSite/SoftwareApplication
+                    if (!(/<script[^>]*type\s*=\s*["']?application\/ld\+json["']?/i.test(content))) {
+                        const defaultSchemas = [
+                            generateOrganizationSchema(),
+                            generateWebSiteSchema(),
+                            generateSoftwareApplicationSchema()
+                        ];
+                        const scripts = defaultSchemas.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n    ');
+                        if (content.includes('</head>')) {
+                            content = content.replace('</head>', `    ${scripts}\n</head>`);
+                            console.log(`   ℹ️  Fallback: injected default schemas into ${file}`);
+                        } else {
+                            content = content + `\n${scripts}`;
+                            console.log(`   ℹ️  Fallback: appended default schemas to ${file} (no </head> found)`);
+                        }
+                    }
+
             const destPath = join('dist', file);
             const destDir = dirname(destPath);
             if (!existsSync(destDir)) {
@@ -554,7 +571,8 @@ function copyStandaloneHtml() {
 
             if (stat.isDirectory()) {
                 // Skip directories that shouldn't be processed
-                const skipDirs = ['node_modules', 'css', 'js', 'icons', 'demo', 'images', 'assets', 'fonts', 'vendor'];
+                // Directory blacklist for copying standalone HTML files. Removed 'demo' so demo HTML pages are processed and receive schema injection.
+                const skipDirs = ['node_modules', 'css', 'js', 'icons', 'images', 'assets', 'fonts', 'vendor'];
                 if (entry.startsWith('.') || skipDirs.includes(entry)) {
                     continue;
                 }
@@ -607,7 +625,24 @@ function copyStandaloneHtml() {
                     
                     // Inject generated schemas (data-driven schema system)
                     content = injectSchemasIntoHTML(filePath, content);
-                    
+
+                    // Fallback: if no schema script tags were injected, add default Organization/WebSite/SoftwareApplication
+                    if (!(/<script[^>]*type\s*=\s*["']?application\/ld\+json["']?/i.test(content))) {
+                        const defaultSchemas = [
+                            generateOrganizationSchema(),
+                            generateWebSiteSchema(),
+                            generateSoftwareApplicationSchema()
+                        ];
+                        const scripts = defaultSchemas.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n    ');
+                        if (content.includes('</head>')) {
+                            content = content.replace('</head>', `    ${scripts}\n</head>`);
+                            console.log(`   ℹ️  Fallback: injected default schemas into ${filePath}`);
+                        } else {
+                            content = content + `\n${scripts}`;
+                            console.log(`   ℹ️  Fallback: appended default schemas to ${filePath} (no </head> found)`);
+                        }
+                    }
+
                     const destPath = join('dist', filePath);
                     
                     // Ensure destination directory exists
