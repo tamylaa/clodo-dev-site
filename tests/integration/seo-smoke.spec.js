@@ -61,6 +61,6 @@ test.describe('SEO Smoke Tests', () => {
         expect(resp.status()).toBe(200);
         const text = await resp.text();
         // Ensure sitemap references the canonical site root (no www)
-        expect(text).toContain('<loc>https://clodo.dev/</loc>');
+        expect(text).toContain('<loc>https://www.clodo.dev/</loc>');
     });
 });

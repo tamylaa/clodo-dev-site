@@ -1,0 +1,58 @@
+name: SEO Checker - Automated Scan
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # daily at 03:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      
+      - name: Run SEO check
+        run: |
+          echo "🔍 Running SEO checker on 59 URLs..."
+          node scripts/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report-${{ github.run_id }}.csv
+          echo "✅ SEO check complete"
+      
+      - name: Run canonical consistency check
+        run: |
+          echo "🔗 Checking canonical consistency..."
+          node scripts/check-canonical-consistency.mjs
+          echo "✅ Canonical check complete"
+      
+      - name: Generate priority fixes report
+        run: |
+          echo "📊 Generating priority fixes report..."
+          node reports/generate-priority-fixes.mjs
+          echo "✅ Priority fixes report generated"
+      
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "## 🔍 SEO Checker Automated Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan Time:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "**Run ID:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "reports/seo-canonical-mismatches.md" ]; then
+            MISMATCH_COUNT=$(grep -c "^##" reports/seo-canonical-mismatches.md || echo "0")
+            echo "- Canonical mismatches detected: $MISMATCH_COUNT" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📎 **Reports:** Check artifacts for detailed findings" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-reports-${{ github.run_id }}
+          path: reports/
+          retention-days: 30
+

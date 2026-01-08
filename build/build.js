@@ -503,6 +503,38 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 console.warn(`⚠️  Script src replacement failed: ${e.message}`);
             }
 
+            // Replace page-specific CSS href paths with hashed versions from asset manifest
+            try {
+                // Handle page-specific CSS files that use the defer loading pattern
+                const pageCssReplacements = [
+                    { name: 'css/pages/cloudflare-workers-development-guide.css', manifestKey: 'styles-cloudflare-workers-development-guide.css' },
+                    { name: 'css/pages/cloudflare-workers-guide.css', manifestKey: 'styles-cloudflare-workers-guide.css' },
+                    { name: 'css/pages/clodo-framework-guide.css', manifestKey: 'styles-clodo-framework-guide.css' },
+                    { name: 'css/pages/index.css', manifestKey: 'styles-index.css' },
+                    { name: 'css/pages/pricing.css', manifestKey: 'styles-pricing.css' },
+                    { name: 'css/pages/product.css', manifestKey: 'styles-product.css' },
+                    { name: 'css/pages/about.css', manifestKey: 'styles-about.css' },
+                    { name: 'css/pages/migrate.css', manifestKey: 'styles-migrate.css' },
+                    { name: 'css/pages/case-studies.css', manifestKey: 'styles-case-studies.css' },
+                    { name: 'css/pages/community.css', manifestKey: 'styles-community.css' },
+                    { name: 'css/pages/saas-product-startups-cloudflare-case-studies.css', manifestKey: 'styles-saas-product-startups-cloudflare-case-studies.css' }
+                ];
+
+                pageCssReplacements.forEach(({ name, manifestKey }) => {
+                    const hashedFile = assetManifest[manifestKey] || name;
+                    // Match CSS link tags with defer loading pattern (media="print" onload="this.media='all'")
+                    const escapedName = name.replace(/\//g, '\\/');
+                    const regex = new RegExp(`(<link[^>]*href=["'])(${escapedName})(["'][^>]*media=["']print["'][^>]*onload=["']this\\.media=['"]all['"]["'][^>]*>)`, 'g');
+                    if (regex.test(content)) {
+                        content = content.replace(regex, `$1/${hashedFile}$3`);
+                        console.log(`   ✅ Replaced page CSS: ${name} → /${hashedFile}`);
+                    }
+                });
+            } catch (e) {
+                // Non-fatal - leave CSS as-is if replacement fails
+                console.warn(`⚠️  Page CSS href replacement failed: ${e.message}`);
+            }
+
             // Remove redundant security meta tags (already set via HTTP headers in _headers file)
             content = content.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/g, '');
             content = content.replace(/<meta http-equiv="X-Frame-Options"[^>]*>/g, '');
@@ -733,6 +765,12 @@ function bundleCss() {
             'css/components-animations-shared.css',
             'css/components-shared-utilities.css',
             'css/pages/cloudflare-workers-guide.css'
+        ],
+        'cloudflare-workers-development-guide': [
+            'css/components-hero-shared.css',
+            'css/components-animations-shared.css',
+            'css/components-shared-utilities.css',
+            'css/pages/cloudflare-workers-development-guide.css'
         ],
         'cloudflare-top-10-saas-edge-computing-workers-case-study-docs': [
             'css/components-hero-shared.css',

@@ -1,0 +1,17 @@
+{
+  "maxRedirects": 10,
+  "concurrency": 6,
+  "rewriteRules": [
+    {
+      "description": "Remove .html suffix produced by old build outputs",
+      "pattern": "\\.html$",
+      "replacement": ""
+    },
+    {
+      "description": "Force www host canonical",
+      "pattern": "^https?://(www\\.)?clodo\\.dev",
+      "replacement": "https://www.clodo.dev"
+    }
+  ],
+  "userAgent": "Clodo-SEO-Checker/1.0 (+https://clodo.dev)"
+}

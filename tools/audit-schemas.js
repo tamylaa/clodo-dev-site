@@ -156,7 +156,7 @@ function printReport(result) {
   if (!types.includes('WebSite')) missing.push('WebSite');
   if (!types.includes('SoftwareApplication')) missing.push('SoftwareApplication');
   if (!types.includes('BreadcrumbList')) missing.push('BreadcrumbList');
-  if (!types.includes('Article')) missing.push('Article/BlogPosting');
+  if (!types.includes('Article') && !types.includes('BlogPosting')) missing.push('Article/BlogPosting');
   if (!types.includes('FAQPage')) missing.push('FAQPage');
 
   if (missing.length > 0) {

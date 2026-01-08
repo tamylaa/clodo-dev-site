@@ -25,7 +25,7 @@ test.describe('Structured Data Hub Tests', () => {
 
         if (orgSchema) {
             expect(orgSchema.name).toBe('Clodo Framework');
-            expect(orgSchema.url).toBe('https://clodo.dev');
+            expect(orgSchema.url).toBe('https://www.clodo.dev');
             expect(orgSchema.logo).toBeTruthy();
             expect(orgSchema.description).toBeTruthy();
             console.log('Organization schema:', orgSchema);
@@ -43,7 +43,7 @@ test.describe('Structured Data Hub Tests', () => {
 
         if (websiteSchema) {
             expect(websiteSchema.name).toBe('Clodo Framework');
-            expect(websiteSchema.url).toBe('https://clodo.dev');
+            expect(websiteSchema.url).toBe('https://www.clodo.dev');
             expect(websiteSchema.potentialAction).toBeDefined();
             console.log('WebSite schema:', websiteSchema);
         }
@@ -63,6 +63,50 @@ test.describe('Structured Data Hub Tests', () => {
             expect(softwareSchema.softwareVersion).toBeTruthy();
             expect(softwareSchema.applicationCategory).toBe('DeveloperApplication');
             console.log('SoftwareApplication schema:', softwareSchema);
+        }
+    });
+
+    test('Organization schema should include @id', async ({ page }) => {
+        const schemas = await page.$$eval(
+            'script[type="application/ld+json"]',
+            scripts => scripts.map(s => JSON.parse(s.textContent))
+        );
+        const orgSchema = schemas.find(s => s['@type'] === 'Organization');
+        expect(orgSchema).toBeDefined();
+        if (orgSchema) {
+            expect(orgSchema['@id']).toBeTruthy();
+            expect(orgSchema['@id']).toContain('#organization');
+            console.log('Organization @id:', orgSchema['@id']);
+        }
+    });
+
+    test('SoftwareApplication should include reviews when available', async ({ page }) => {
+        const schemas = await page.$$eval(
+            'script[type="application/ld+json"]',
+            scripts => scripts.map(s => JSON.parse(s.textContent))
+        );
+        const softwareSchema = schemas.find(s => s['@type'] === 'SoftwareApplication');
+        expect(softwareSchema).toBeDefined();
+        if (softwareSchema) {
+            // If reviews were generated from testimonials, they should appear as an array
+            if (softwareSchema.review) {
+                expect(Array.isArray(softwareSchema.review)).toBe(true);
+                expect(softwareSchema.review.length).toBeGreaterThan(0);
+                console.log('SoftwareApplication reviews:', softwareSchema.review.length);
+            } else {
+                console.log('No reviews present in SoftwareApplication schema (might be intentional)');
+            }
+        }
+    });
+
+    test('Microdata Reviews should include itemReviewed', async ({ page }) => {
+        await page.goto('/clodo-framework-guide.html');
+        await page.waitForLoadState('domcontentloaded');
+        const reviewBlocks = await page.$$('[itemscope][itemtype="https://schema.org/Review"]');
+        expect(reviewBlocks.length).toBeGreaterThan(0);
+        for (const block of reviewBlocks) {
+            const hasItemReviewed = await block.$('[itemprop="itemReviewed"]');
+            expect(hasItemReviewed).toBeTruthy();
         }
     });
 
@@ -104,6 +148,34 @@ test.describe('Structured Data Hub Tests', () => {
             expect(blogSchema.author).toBeDefined();
             expect(blogSchema.datePublished).toBeTruthy();
             console.log('BlogPosting schema:', blogSchema.headline);
+        }
+
+        // BreadcrumbList should also be present on blog posts
+        const breadcrumbSchema = schemas.find(s => s['@type'] === 'BreadcrumbList');
+        expect(breadcrumbSchema).toBeDefined();
+        if (breadcrumbSchema) {
+            expect(Array.isArray(breadcrumbSchema.itemListElement)).toBe(true);
+            expect(breadcrumbSchema.itemListElement[0].position).toBe(1);
+            expect(breadcrumbSchema.itemListElement[0].name).toBe('Home');
+        }
+    });
+
+    test('should inject FAQPage schema on /faq', async ({ page }) => {
+        await page.goto('/faq');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+        const schemas = await page.$$eval(
+            'script[type="application/ld+json"]',
+            scripts => scripts.map(s => JSON.parse(s.textContent))
+        );
+
+        const faqSchema = schemas.find(s => s['@type'] === 'FAQPage');
+        expect(faqSchema).toBeDefined();
+        if (faqSchema) {
+            expect(Array.isArray(faqSchema.mainEntity)).toBe(true);
+            expect(faqSchema.mainEntity.length).toBeGreaterThan(0);
+            console.log('FAQPage questions on /faq:', faqSchema.mainEntity.length);
         }
     });
 

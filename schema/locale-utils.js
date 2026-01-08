@@ -100,7 +100,7 @@ export function generateAlternateLanguageLinks(basePath) {
   links.push({
     rel: 'alternate',
     hreflang: 'en',
-    href: `https://clodo.dev${basePath}`
+    href: `https://www.clodo.dev${basePath}`
   });
   
   // All other locales
@@ -119,7 +119,7 @@ export function generateAlternateLanguageLinks(basePath) {
   links.push({
     rel: 'alternate',
     hreflang: 'x-default',
-    href: `https://clodo.dev${basePath}`
+    href: `https://www.clodo.dev${basePath}`
   });
   
   return links;
@@ -152,9 +152,9 @@ export function getAllLocales() {
  */
 export function buildLocalizedBreadcrumbUrl(basePath, locale) {
   if (locale === 'en') {
-    return `https://clodo.dev${basePath}`;
+    return `https://www.clodo.dev${basePath}`;
   }
-  return `https://clodo.dev/i18n/${locale}${basePath}`;
+  return `https://www.clodo.dev/i18n/${locale}${basePath}`;
 }
 
 /**

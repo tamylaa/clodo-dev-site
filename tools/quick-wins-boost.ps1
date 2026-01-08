@@ -56,7 +56,7 @@ Write-Host ""
 # 5. Performance Check
 Write-Host "5. Checking Site Performance..." -ForegroundColor Yellow
 try {
-    $response = Invoke-WebRequest -Uri "https://clodo.dev" -Method Head -TimeoutSec 10
+    $response = Invoke-WebRequest -Uri "https://www.clodo.dev" -Method Head -TimeoutSec 10
     if ($response.StatusCode -eq 200) {
         Write-Host "Site is live and accessible" -ForegroundColor Green
     } else {
@@ -152,6 +152,6 @@ Write-Host ""
 
 Write-Host "Quick Links:" -ForegroundColor Cyan
 Write-Host "* Repository: https://github.com/tamylaa/clodo-framework" -ForegroundColor White
-Write-Host "* Live Site: https://clodo.dev" -ForegroundColor White
-Write-Host "* Performance Dashboard: https://clodo.dev/performance-dashboard.html" -ForegroundColor White
-Write-Host "* Documentation: https://clodo.dev/docs.html" -ForegroundColor White
+Write-Host "* Live Site: https://www.clodo.dev" -ForegroundColor White
+Write-Host "* Performance Dashboard: https://www.clodo.dev/performance-dashboard.html" -ForegroundColor White
+Write-Host "* Documentation: https://www.clodo.dev/docs.html" -ForegroundColor White
