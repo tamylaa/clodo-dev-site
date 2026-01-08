@@ -100,7 +100,7 @@ test.describe('Structured Data Hub Tests', () => {
     });
 
     test('Microdata Reviews should include itemReviewed', async ({ page }) => {
-        await page.goto('/clodo-framework-guide.html');
+        await page.goto('/blog/cloudflare-infrastructure-myth.html');
         await page.waitForLoadState('domcontentloaded');
         const reviewBlocks = await page.$$('[itemscope][itemtype="https://schema.org/Review"]');
         expect(reviewBlocks.length).toBeGreaterThan(0);

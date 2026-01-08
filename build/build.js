@@ -331,6 +331,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'clodo-framework-guide';
                 } else if (fileName === 'cloudflare-workers-guide') {
                     pageBundle = 'cloudflare-workers-guide';
+                } else if (fileName === 'cloudflare-workers-development-guide') {
+                    pageBundle = 'cloudflare-workers-development-guide';
                 } else if (fileName === 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs') {
                     pageBundle = 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs';
                 } else if (fileName === 'saas-product-startups-cloudflare-case-studies') {
@@ -384,6 +386,13 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                         
                         // Append to body (before closing tag)
                         content = content.replace('</body>', `    ${footerInjection}\n</body>`);
+                        
+                        // Remove the page-specific defer CSS link since it's now loaded synchronously
+                        if (pageBundle !== 'common') {
+                            const deferCssPattern = new RegExp(`<link[^>]*rel="stylesheet"[^>]*href="[^"]*${pageBundle}[^"]*"[^>]*media="print"[^>]*onload="this\\.media='all'"[^>]*>`, 'g');
+                            content = content.replace(deferCssPattern, '');
+                            console.log(`   ✅ Removed defer CSS link for synchronous loading: ${pageBundle}`);
+                        }
                         
                     } else {
                         // Standard behavior for other pages (Preload + Onload hack)
