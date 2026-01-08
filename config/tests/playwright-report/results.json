@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 6
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 6
         },
         "id": "chromium",
         "name": "chromium",
@@ -60,7 +60,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 6
         },
         "id": "mobile-chrome",
         "name": "mobile-chrome",
@@ -77,7 +77,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 6
         },
         "id": "tablet",
         "name": "tablet",
@@ -106,20 +106,20 @@
   },
   "suites": [
     {
-      "title": "integration\\structured-data.spec.js",
-      "file": "integration/structured-data.spec.js",
+      "title": "integration\\production-debug.spec.js",
+      "file": "integration/production-debug.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Structured Data Hub Tests",
-          "file": "integration/structured-data.spec.js",
-          "line": 9,
+          "title": "Production Button Debug",
+          "file": "integration/production-debug.spec.js",
+          "line": 10,
           "column": 6,
           "specs": [
             {
-              "title": "should inject BlogPosting schema on blog pages",
+              "title": "check if stackblitz module loads and attaches handlers",
               "ok": true,
               "tags": [],
               "tests": [
@@ -134,12 +134,34 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5354,
+                      "duration": 13671,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "Found 2 buttons with data-stackblitz-url\n"
+                        },
+                        {
+                          "text": "Stackblitz module loaded: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "openStackBlitz function exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Button handlers: [\n  {\n    \"index\": 0,\n    \"text\": \"🚀\\n                 \",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  },\n  {\n    \"index\": 1,\n    \"text\": \"Try Live Demo\",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  }\n]\n"
+                        },
+                        {
+                          "text": "Skipping interactive popup click in non-local environment to avoid flakiness\n"
+                        },
+                        {
+                          "text": "Console logs: []\n"
+                        },
+                        {
+                          "text": "Popup: \u001b[33mfalse\u001b[39m moduleLoaded: \u001b[33mtrue\u001b[39m functionExists: \u001b[33mtrue\u001b[39m hasHandler: \u001b[33mtrue\u001b[39m\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-05T18:05:31.817Z",
+                      "startTime": "2026-01-06T12:37:25.273Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -147,9 +169,469 @@
                   "status": "expected"
                 }
               ],
-              "id": "04b9bb80c6e25e045dd3-9a2af198fdae8705ef54",
-              "file": "integration/structured-data.spec.js",
-              "line": 89,
+              "id": "5b8bce7cc3031d6f93f7-d859111faeafe45e75e6",
+              "file": "integration/production-debug.spec.js",
+              "line": 13,
+              "column": 5
+            },
+            {
+              "title": "check main.js execution order",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 12164,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "=== Initialization Logs ===\n"
+                        },
+                        {
+                          "text": "[log] ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] 🚀 Initializing Clodo Framework modules...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing core features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing page features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] DOM ready state: interactive\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Current URL: http://localhost:8000/index.html\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found newsletter forms: 1\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found StackBlitz buttons: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found onclick buttons: 0\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Importing newsletter module...\n"
+                        },
+                        {
+                          "text": "[log] [SEO] Initialized with structured data\n"
+                        },
+                        {
+                          "text": "[log] [Accessibility] Already initialized. Use window.a11y to access methods\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter import successful, init function: function\n"
+                        },
+                        {
+                          "text": "[log] [Newsletter] Form initialized: JSHandle@node\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Newsletter form handler initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] StackBlitz check: true Elements found: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing StackBlitz module...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ StackBlitz integration initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing deferred features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Brevo chat loaded\n"
+                        },
+                        {
+                          "text": "✓ StackBlitz was initialized\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-06T12:37:25.274Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b8bce7cc3031d6f93f7-65242792773df1735173",
+              "file": "integration/production-debug.spec.js",
+              "line": 90,
+              "column": 5
+            },
+            {
+              "title": "check if stackblitz module loads and attaches handlers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 12302,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Found 2 buttons with data-stackblitz-url\n"
+                        },
+                        {
+                          "text": "Stackblitz module loaded: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "openStackBlitz function exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Button handlers: [\n  {\n    \"index\": 0,\n    \"text\": \"🚀\\n                 \",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  },\n  {\n    \"index\": 1,\n    \"text\": \"Try Live Demo\",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  }\n]\n"
+                        },
+                        {
+                          "text": "Skipping interactive popup click in non-local environment to avoid flakiness\n"
+                        },
+                        {
+                          "text": "Console logs: []\n"
+                        },
+                        {
+                          "text": "Popup: \u001b[33mfalse\u001b[39m moduleLoaded: \u001b[33mtrue\u001b[39m functionExists: \u001b[33mtrue\u001b[39m hasHandler: \u001b[33mtrue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-06T12:37:25.303Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b8bce7cc3031d6f93f7-2316bbdfcf5862d20a42",
+              "file": "integration/production-debug.spec.js",
+              "line": 13,
+              "column": 5
+            },
+            {
+              "title": "check main.js execution order",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 12421,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "=== Initialization Logs ===\n"
+                        },
+                        {
+                          "text": "[log] ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] 🚀 Initializing Clodo Framework modules...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing core features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing page features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] DOM ready state: interactive\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Current URL: http://localhost:8000/index.html\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found newsletter forms: 1\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found StackBlitz buttons: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found onclick buttons: 0\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Importing newsletter module...\n"
+                        },
+                        {
+                          "text": "[log] [SEO] Initialized with structured data\n"
+                        },
+                        {
+                          "text": "[log] [Accessibility] Already initialized. Use window.a11y to access methods\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing deferred features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter import successful, init function: function\n"
+                        },
+                        {
+                          "text": "[log] [Newsletter] Form initialized: JSHandle@node\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Newsletter form handler initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] StackBlitz check: true Elements found: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing StackBlitz module...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ StackBlitz integration initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Brevo chat loaded\n"
+                        },
+                        {
+                          "text": "✓ StackBlitz was initialized\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-06T12:37:25.290Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b8bce7cc3031d6f93f7-9481451dfc2892396a3a",
+              "file": "integration/production-debug.spec.js",
+              "line": 90,
+              "column": 5
+            },
+            {
+              "title": "check if stackblitz module loads and attaches handlers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 12766,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Found 2 buttons with data-stackblitz-url\n"
+                        },
+                        {
+                          "text": "Stackblitz module loaded: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "openStackBlitz function exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Button handlers: [\n  {\n    \"index\": 0,\n    \"text\": \"🚀\\n                 \",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  },\n  {\n    \"index\": 1,\n    \"text\": \"Try Live Demo\",\n    \"hasListener\": true,\n    \"onclick\": \"NO\"\n  }\n]\n"
+                        },
+                        {
+                          "text": "Skipping interactive popup click in non-local environment to avoid flakiness\n"
+                        },
+                        {
+                          "text": "Console logs: []\n"
+                        },
+                        {
+                          "text": "Popup: \u001b[33mfalse\u001b[39m moduleLoaded: \u001b[33mtrue\u001b[39m functionExists: \u001b[33mtrue\u001b[39m hasHandler: \u001b[33mtrue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-06T12:37:25.347Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b8bce7cc3031d6f93f7-2162fd18c59beafdb8fe",
+              "file": "integration/production-debug.spec.js",
+              "line": 13,
+              "column": 5
+            },
+            {
+              "title": "check main.js execution order",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 12707,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "=== Initialization Logs ===\n"
+                        },
+                        {
+                          "text": "[log] ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] 🚀 Initializing Clodo Framework modules...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing core features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing page features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] DOM ready state: interactive\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Current URL: http://localhost:8000/index.html\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found newsletter forms: 1\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found StackBlitz buttons: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Found onclick buttons: 0\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Importing newsletter module...\n"
+                        },
+                        {
+                          "text": "[log] [SEO] Initialized with structured data\n"
+                        },
+                        {
+                          "text": "[log] [Accessibility] Already initialized. Use window.a11y to access methods\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Newsletter import successful, init function: function\n"
+                        },
+                        {
+                          "text": "[log] [Newsletter] Form initialized: JSHandle@node\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Newsletter form handler initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] StackBlitz check: true Elements found: 2\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing StackBlitz module...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ StackBlitz integration initialized\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] Initializing deferred features...\n"
+                        },
+                        {
+                          "text": "[log] [Main.js] ✓ Brevo chat loaded\n"
+                        },
+                        {
+                          "text": "✓ StackBlitz was initialized\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-06T12:37:25.275Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b8bce7cc3031d6f93f7-737b06ac386ff372b52d",
+              "file": "integration/production-debug.spec.js",
+              "line": 90,
               "column": 5
             }
           ]
@@ -159,9 +641,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-05T18:05:30.719Z",
-    "duration": 7270.219000000001,
-    "expected": 1,
+    "startTime": "2026-01-06T12:37:23.626Z",
+    "duration": 16288.976999999999,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

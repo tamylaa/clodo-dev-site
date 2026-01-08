@@ -79,8 +79,8 @@ async function purgeCache() {
     const urls = [
       'https://www.clodo.dev',
       'https://www.clodo.dev/',
-      'https://clodo.dev',
-      'https://clodo.dev/'
+      'https://www.clodo.dev',
+      'https://www.clodo.dev/'
     ];
     
     await makeRequest('POST', `/client/v4/zones/${zoneId}/purge_cache`, {

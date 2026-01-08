@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloudflare Framework Comparison: Clodo vs Hono vs Worktop</title>
-    <link rel="canonical" href="https://clodo.dev/framework-comparison">
+    <link rel="canonical" href="https://www.clodo.dev/framework-comparison">
     <meta name="description" content="Complete Cloudflare framework comparison: Clodo vs Hono vs Worktop for Cloudflare Workers. Features, performance, and which framework to choose for your edge applications.">
     <meta name="keywords" content="cloudflare framework, cloudflare workers framework, clodo framework, hono framework, worktop framework, framework comparison, edge computing, serverless">
     <!-- Open Graph -->
@@ -65,10 +65,11 @@
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://www.clodo.dev#organization",
   "name": "Clodo Framework",
   "description": "Enterprise-ready framework for building serverless applications on Cloudflare Workers with zero cold starts, integrated databases, multi-tenancy, advanced caching, and comprehensive monitoring.",
-  "url": "https://clodo.dev",
-  "logo": "https://clodo.dev/icons/icon.svg",
+  "url": "https://www.clodo.dev",
+  "logo": "https://www.clodo.dev/icons/icon.svg",
   "founded": "2024",
   "foundingLocation": {
     "@type": "Place",
@@ -98,13 +99,13 @@
   "@type": "WebSite",
   "name": "Clodo Framework",
   "description": "Enterprise-grade framework for Cloudflare Workers. Build production SaaS applications 10x faster.",
-  "url": "https://clodo.dev",
+  "url": "https://www.clodo.dev",
   "inLanguage": "en-US",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://clodo.dev/search?q={search_term_string}"
+      "urlTemplate": "https://www.clodo.dev/search?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -158,7 +159,129 @@
       "@type": "ImageObject",
       "url": "https://www.clodo.dev/icons/icon.svg"
     }
-  }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah K."
+      },
+      "reviewBody": "Migrated our auth service from Lambda in a weekend. Cold starts went from 800ms to literally zero. Our users in Australia finally stopped complaining.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Marcus T."
+      },
+      "reviewBody": "The billing model alone saved us $4k/month. We were paying Lambda to wait on OpenAI API calls. Workers only charge for actual compute. Game changer.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Dev R."
+      },
+      "reviewBody": "Honestly skeptical at first—sounded too good. But after running both in parallel for 3 months, we're all-in on Workers. The DX with Clodo Framework sealed the deal.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q: Which framework has the best documentation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hono has the most extensive documentation with many tutorials and examples. Clodo documentation is growing quickly. Worktop documentation is minimal but clear for what it covers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: Can I mix multiple frameworks in the same project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can use Hono with Clodo utilities, or Worktop for simple endpoints. They're compatible in the same Worker."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: Which is best for production?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All three are production-ready. Hono for microservices, Clodo for full-stack SaaS, Worktop for simple functions. Choose based on your architecture, not maturity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: How hard is it to migrate between frameworks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For small projects ("
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: Which has the best TypeScript support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All three have excellent TypeScript support. Clodo has built-in schema validation. Hono has advanced type inference. Worktop keeps it simple."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: What about serverless cold starts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare Workers have essentially zero cold starts (instant global scaling). This advantage applies to all three frameworks equally."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Framework Comparison: Clodo vs Hono vs Worktop",
+  "url": null
 }
 </script>
 </head>
@@ -234,6 +357,7 @@
                         </span>
                     </li>
                     <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/cloudflare-workers-development-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Workers Development Guide</a></li>
                     <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge Computing Guide</a></li>
                     <li role="none"><a href="/cloudflare-framework" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Framework Guide</a></li>
                     <li role="none"><a href="/workers-boilerplate" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers Boilerplates</a></li>

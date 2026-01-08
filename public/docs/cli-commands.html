@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clodo Framework CLI Commands Reference | Complete Guide</title>
+    <meta name="description" content="Complete reference for Clodo Framework CLI commands. Learn how to create, deploy, and manage Cloudflare Workers applications with automated service generation.">
+    <meta name="keywords" content="clodo cli, clodo framework cli, cloudflare workers cli, automated service generation, deployment commands, clodo create, clodo deploy">
+    <meta name="author" content="Clodo Framework Team">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <!-- Enhanced Hreflang for international SEO -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/docs/cli-commands">
+    <link rel="alternate" hreflang="en-GB" href="https://www.clodo.dev/docs/cli-commands">
+    <link rel="alternate" hreflang="en-IN" href="https://www.clodo.dev/docs/cli-commands">
+    <link rel="alternate" hreflang="en-AU" href="https://www.clodo.dev/docs/cli-commands">
+    <link rel="alternate" hreflang="en-DE" href="https://www.clodo.dev/docs/cli-commands">
+
+    <link rel="prev" href="/cloudflare-workers-development-guide">
+    <link rel="author" href="https://github.com/tamylaa/clodo-framework">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Clodo Framework CLI Commands Reference | Complete Guide">
+    <meta property="og:description" content="Complete reference for Clodo Framework CLI commands. Learn how to create, deploy, and manage Cloudflare Workers applications with automated service generation.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://clodo.dev/docs/cli-commands">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Clodo Framework">
+    <meta property="article:published_time" content="2025-12-17T00:00:00.000Z">
+    <meta property="article:modified_time" content="2026-01-08T00:00:00.000Z">
+    <meta property="article:section" content="Documentation">
+    <meta property="article:tag" content="cli">
+    <meta property="article:tag" content="automation">
+    <meta property="article:tag" content="deployment">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clodo Framework CLI Commands Reference | Complete Guide">
+    <meta name="twitter:description" content="Complete reference for Clodo Framework CLI commands. Learn how to create, deploy, and manage Cloudflare Workers applications with automated service generation.">
+    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:site" content="@clodoframework">
+    <meta name="twitter:creator" content="@clodoframework">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+</head>
+<body>
+    <header><!--#include file="../../templates/nav-main.html" --></header>
+
+    <main id="main-content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <div class="breadcrumb-item"><a href="/">Home</a></div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item"><a href="/docs">Documentation</a></div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item"><span>CLI Commands</span></div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Clodo Framework CLI Commands</h1>
+                    <p>Complete reference guide for automating Cloudflare Workers development with Clodo Framework's command-line interface.</p>
+                    <div class="hero-actions">
+                        <a href="#installation" class="btn btn--primary">Get Started</a>
+                        <a href="#quick-reference" class="btn btn--secondary">Quick Reference</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="table-of-contents" class="toc-section">
+            <div class="container">
+                <h2>📋 Contents</h2>
+                <nav class="toc-nav" aria-label="CLI documentation navigation">
+                    <ul>
+                        <li><a href="#installation">Installation & Setup</a></li>
+                        <li><a href="#service-creation">Service Creation Commands</a></li>
+                        <li><a href="#development">Development Commands</a></li>
+                        <li><a href="#deployment">Deployment Commands</a></li>
+                        <li><a href="#management">Service Management</a></li>
+                        <li><a href="#advanced">Advanced Options</a></li>
+                        <li><a href="#examples">Practical Examples</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <section id="installation" class="content-section">
+            <div class="container">
+                <h2>🚀 Installation & Setup</h2>
+                <p>Install the Clodo CLI globally to access all automation commands.</p>
+
+                <div class="code-example">
+                    <h3>Install Clodo CLI</h3>
+                    <pre><code># Install globally via npm
+npm install -g @clodo/cli
+
+# Or use npx for one-time commands
+npx @clodo/cli --help</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h3>Verify Installation</h3>
+                    <pre><code># Check version and available commands
+clodo --version
+clodo --help</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="service-creation" class="content-section">
+            <div class="container">
+                <h2>🏗️ Service Creation Commands</h2>
+                <p>Generate production-ready Cloudflare Workers services with intelligent defaults.</p>
+
+                <h3>Basic Service Creation</h3>
+                <div class="code-example">
+                    <h3>Create a Simple Service</h3>
+                    <pre><code># Create a basic service with smart defaults
+clodo create my-service
+
+# Result: Complete service structure generated automatically
+✅ Service created successfully!
+📁 Generated 28+ files with production-ready code
+🔗 Ready for deployment across multiple domains</code></pre>
+                </div>
+
+                <h3>Advanced Service Creation</h3>
+                <div class="code-example">
+                    <h3>Create Service with Custom Configuration</h3>
+                    <pre><code># Create service with specific template and configuration
+clodo create ./my-service --template complex \
+  --config-file config.json \
+  --env-file .env \
+  --handlers custom.js \
+  --validation-config validation.json
+
+# Alternative: Use npx for one-time service creation
+npx create-clodo-service my-new-service --type data-service</code></pre>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🎯 What Gets Generated</h4>
+                    <p>Each service creation generates a complete, production-ready structure including:</p>
+                    <ul>
+                        <li>✅ Service handlers with error handling</li>
+                        <li>✅ Database schemas and migrations</li>
+                        <li>✅ Authentication & authorization</li>
+                        <li>✅ Input validation & sanitization</li>
+                        <li>✅ Monitoring & logging setup</li>
+                        <li>✅ Deployment configurations</li>
+                        <li>✅ Unit & integration tests</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="development" class="content-section">
+            <div class="container">
+                <h2>💻 Development Commands</h2>
+                <p>Commands for local development and testing.</p>
+
+                <h3>Start Development Server</h3>
+                <div class="code-example">
+                    <h3>Run Local Development Environment</h3>
+                    <pre><code># Start development server with hot reload
+clodo dev
+
+# Server starts at http://localhost:8787
+# Hot reload enabled for instant feedback</code></pre>
+                </div>
+
+                <h3>Testing Commands</h3>
+                <div class="code-example">
+                    <h3>Run Test Suite</h3>
+                    <pre><code># Run all tests
+clodo test
+
+# Run specific test file
+clodo test --file auth.spec.js
+
+# Run tests in watch mode
+clodo test --watch</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="deployment" class="content-section">
+            <div class="container">
+                <h2>🚀 Deployment Commands</h2>
+                <p>Deploy services across multiple environments with zero-downtime updates.</p>
+
+                <h3>Environment-Based Deployment</h3>
+                <div class="code-example">
+                    <h3>Deploy to Different Environments</h3>
+                    <pre><code># Deploy to development environment
+clodo deploy --env dev
+
+# Deploy to staging for testing
+clodo deploy --env staging
+
+# Deploy to production
+clodo deploy --env prod
+
+# Deploy to custom environment
+clodo deploy --env custom --config production.toml</code></pre>
+                </div>
+
+                <h3>Multi-Domain Deployment</h3>
+                <div class="code-example">
+                    <h3>Deploy Across Multiple Domains</h3>
+                    <pre><code># Deploy to multiple domains simultaneously
+clodo deploy --domains api.example.com,app.example.com \
+  --env production
+
+# Result: Service deployed across all specified domains
+✅ Deployed to api.example.com
+✅ Deployed to app.example.com
+🔍 Health checks passed for all domains</code></pre>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🔄 Zero-Downtime Deployment</h4>
+                    <p>All deployments use rolling updates to ensure:</p>
+                    <ul>
+                        <li>✅ No service interruption during deployment</li>
+                        <li>✅ Automatic rollback on failure</li>
+                        <li>✅ Health checks before traffic switching</li>
+                        <li>✅ Gradual traffic migration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="management" class="content-section">
+            <div class="container">
+                <h2>⚙️ Service Management Commands</h2>
+                <p>Monitor, scale, and manage deployed services.</p>
+
+                <h3>Service Monitoring</h3>
+                <div class="code-example">
+                    <h3>Check Service Status</h3>
+                    <pre><code># Get detailed service status
+clodo status
+
+# Monitor specific service
+clodo status --service my-service
+
+# View real-time metrics
+clodo monitor --service my-service</code></pre>
+                </div>
+
+                <h3>Scaling Commands</h3>
+                <div class="code-example">
+                    <h3>Scale Service Resources</h3>
+                    <pre><code># Auto-scale based on traffic
+clodo scale --auto
+
+# Manual scaling
+clodo scale --cpu 2 --memory 1GB
+
+# Scale to zero for cost optimization
+clodo scale --zero</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced" class="content-section">
+            <div class="container">
+                <h2>🔧 Advanced Options</h2>
+                <p>Advanced configuration and customization options.</p>
+
+                <h3>Custom Templates</h3>
+                <div class="code-example">
+                    <h3>Use Custom Service Templates</h3>
+                    <pre><code># List available templates
+clodo templates --list
+
+# Create service with specific template
+clodo create my-api --template rest-api
+clodo create my-worker --template queue-worker
+clodo create my-site --template static-site</code></pre>
+                </div>
+
+                <h3>Configuration Overrides</h3>
+                <div class="code-example">
+                    <h3>Override Default Configurations</h3>
+                    <pre><code># Use custom configuration file
+clodo create my-service --config custom-config.json
+
+# Override specific settings
+clodo deploy --env prod --timeout 300 \
+  --health-check-path /api/health \
+  --rollout-percent 25</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="content-section">
+            <div class="container">
+                <h2>💡 Practical Examples</h2>
+                <p>Real-world scenarios and command combinations.</p>
+
+                <h3>Complete Development Workflow</h3>
+                <div class="code-example">
+                    <h3>From Idea to Production</h3>
+                    <pre><code># 1. Create new service
+clodo create ecommerce-api --template rest-api
+
+# 2. Start development
+cd ecommerce-api
+clodo dev
+
+# 3. Run tests during development
+clodo test --watch
+
+# 4. Deploy to staging
+clodo deploy --env staging
+
+# 5. Run integration tests
+clodo test --integration
+
+# 6. Deploy to production
+clodo deploy --env prod --domains api.store.com</code></pre>
+                </div>
+
+                <h3>Multi-Service Application</h3>
+                <div class="code-example">
+                    <h3>Create Complete Application Stack</h3>
+                    <pre><code># Create API service
+clodo create api-service --template rest-api
+
+# Create worker service
+clodo create worker-service --template queue-worker
+
+# Create frontend service
+clodo create frontend --template static-site
+
+# Deploy all services together
+clodo deploy --services api-service,worker-service,frontend \
+  --env prod --domains api.app.com,app.com</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="content-section">
+            <div class="container">
+                <h2>🔍 Troubleshooting</h2>
+                <p>Common issues and their solutions.</p>
+
+                <div class="troubleshooting-grid">
+                    <div class="troubleshoot-item">
+                        <h4>❌ Command Not Found</h4>
+                        <p><strong>Solution:</strong> Ensure CLI is installed globally</p>
+                        <pre><code>npm install -g @clodo/cli
+# Or reinstall if issues persist
+npm uninstall -g @clodo/cli && npm install -g @clodo/cli</code></pre>
+                    </div>
+
+                    <div class="troubleshoot-item">
+                        <h4>❌ Deployment Fails</h4>
+                        <p><strong>Solution:</strong> Check authentication and permissions</p>
+                        <pre><code># Verify Cloudflare credentials
+clodo auth status
+
+# Re-authenticate if needed
+clodo auth login</code></pre>
+                    </div>
+
+                    <div class="troubleshoot-item">
+                        <h4>❌ Service Won't Start</h4>
+                        <p><strong>Solution:</strong> Check logs and configuration</p>
+                        <pre><code># View detailed logs
+clodo logs --service my-service --tail 100
+
+# Validate configuration
+clodo validate --config config.json</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Automate Your Development?</h2>
+                <p>Join thousands of developers who have accelerated their Cloudflare Workers development with Clodo Framework.</p>
+                <div class="cta-actions">
+                    <a href="/quick-start" class="btn btn--primary">Start Building</a>
+                    <a href="/cloudflare-workers-development-guide" class="btn btn--secondary">Read Full Guide</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><!--#include file="../../templates/footer.html" --></footer>
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="../js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="../js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="../js/main.js" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="../js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="../js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <script src="../js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+</body>
+</html></content>
+<parameter name="filePath">g:\coding\clodo-dev-site\public\docs\cli-commands.html

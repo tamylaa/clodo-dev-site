@@ -55,8 +55,8 @@ for (const file of fileList) {
     });
 
     // Replace absolute share URLs with .html
-    content = content.replace(/https:\/\/clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://clodo.dev/blog/$1');
-    content = content.replace(/https:\/\/www\.clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://clodo.dev/blog/$1');
+    content = content.replace(/https:\/\/clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://www.clodo.dev/blog/$1');
+    content = content.replace(/https:\/\/www\.clodo\.dev\/blog\/([a-z0-9-]+)\.html/g, 'https://www.clodo.dev/blog/$1');
   }
 
   // Also replace occurrences of /blog/<slug>.html in hrefs for any file
