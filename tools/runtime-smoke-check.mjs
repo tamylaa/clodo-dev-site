@@ -17,7 +17,7 @@ const DEV_ARGS = ['build/dev-server.js', '--port', String(PORT)];
 
 const urls = [
   '/',
-  '/docs',
+  '/docs.html',
   '/case-studies',
   '/case-studies/healthcare-saas-platform',
   '/blog/building-developer-communities',
