@@ -361,9 +361,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
 
-                    if (file === 'index.html') {
+                    if (file === 'index.html' || fileName.includes('guide')) {
                         // OPTIMIZATION FOR LCP:
-                        // For index.html, we separate preload and application to ensure NO render blocking
+                        // For index.html and guide pages, we separate preload and application to ensure NO render blocking
                         // 1. In Head: Inline Critical CSS + Preload common CSS + Preload page CSS
                         // 2. In Footer: Apply both CSS files
                         
