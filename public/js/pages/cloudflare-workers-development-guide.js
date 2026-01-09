@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Counter animation for metrics
     const counterElements = document.querySelectorAll('[data-animate="counter"]');
 
-    function animateCounter(element) {
+    const animateCounter = function(element) {
         const target = parseInt(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const duration = 2000; // 2 seconds
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             element.textContent = Math.floor(current) + suffix;
         }, 16);
-    }
+    };
 
     // Intersection Observer for counter animation
     const observerOptions = {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tocLinks = document.querySelectorAll('.table-of-contents a');
     const sections = document.querySelectorAll('section[id]');
 
-    function updateActiveTocLink() {
+    const updateActiveTocLink = function() {
         const scrollPosition = window.scrollY + 100;
 
         sections.forEach(section => {
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    }
+    };
 
     window.addEventListener('scroll', updateActiveTocLink);
     updateActiveTocLink(); // Initial call
@@ -160,12 +160,30 @@ document.addEventListener('DOMContentLoaded', function() {
         originalDisplay[row] = row.style.display;
     });
 
-    // Performance optimization: Debounce scroll events
-    let scrollTimeout;
-    function debouncedScroll() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveTocLink, 10);
+    // Reading Progress Bar
+    const updateProgress = function() {
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        }
+    };
+    
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress(); // Initialize
     }
 
+    // Performance optimization: Debounce scroll events
+    let scrollTimeout;
+    const debouncedScroll = function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveTocLink, 10);
+    };
+
     window.addEventListener('scroll', debouncedScroll, { passive: true });
+    updateActiveTocLink(); // Initialize
 });

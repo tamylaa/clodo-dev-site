@@ -68,6 +68,11 @@
     <header><!--#include file="../templates/nav-main.html" --></header>
 
     <main id="main-content">
+        <!-- Reading Progress Bar -->
+        <div class="reading-progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol itemscope itemtype="https://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -86,7 +91,7 @@
         </nav>
 
         <section class="hero-section">
-            <div class="container">
+            <div class="hero-grid">
                 <div class="hero-content">
                     <div class="hero-badges">
                         <span class="hero-badge">📚 Complete Tutorial</span>
@@ -126,13 +131,13 @@
 
         <article class="content-article">
             <div class="container">
-                <section id="what-are-workers">
-                    <h2>📍 What are Cloudflare Workers?</h2>
-                    <p>Cloudflare Workers are serverless functions that run at the edge of Cloudflare's global network. Unlike traditional serverless platforms that run in specific regions, Workers execute in 200+ cities worldwide, providing unparalleled performance and global reach.</p>
+                    <section id="what-are-workers">
+                        <h2>📍 What are Cloudflare Workers?</h2>
+                        <p>Cloudflare Workers are serverless functions that run at the edge of Cloudflare's global network. Unlike traditional serverless platforms that run in specific regions, Workers execute in 200+ cities worldwide, providing unparalleled performance and global reach.</p>
 
-                    <h3>Key Benefits of Cloudflare Workers</h3>
-                    <ul>
-                        <li><strong>Zero Cold Starts</strong> - Always-on compute with sub-millisecond startup times</li>
+                        <h3>Key Benefits of Cloudflare Workers</h3>
+                        <ul>
+                            <li><strong>Zero Cold Starts</strong> - Always-on compute with sub-millisecond startup times</li>
                         <li><strong>Global Edge Network</strong> - Deploy to 200+ locations instantly</li>
                         <li><strong>Cost Effective</strong> - Pay only for execution time, not idle resources</li>
                         <li><strong>Developer Friendly</strong> - JavaScript/TypeScript runtime with familiar APIs</li>
@@ -491,76 +496,71 @@ wrangler deploy --env staging</code></pre>
 
                 <!-- FAQ Section -->
                 <section id="faq" class="faq-section">
-                    <h2>❓ Frequently Asked Questions</h2>
+                    <div class="container">
+                        <h2>❓ Frequently Asked Questions</h2>
 
-                    <div class="building-block">
-                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 itemprop="name">How do Cloudflare Workers compare to AWS Lambda?</h3>
-                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <div itemprop="text">
-                                <p>Cloudflare Workers offer several advantages over AWS Lambda: <strong>zero cold starts</strong> (always warm), <strong>200+ global locations</strong> vs Lambda's ~20 regions, and <strong>cost efficiency</strong> with pay-per-request pricing. Workers run in V8 isolates rather than containers, providing faster startup times and better performance for edge computing workloads.</p>
+                        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <h3 itemprop="name">How do Cloudflare Workers compare to AWS Lambda?</h3>
+                            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                    <p>Cloudflare Workers offer several advantages over AWS Lambda: <strong>zero cold starts</strong> (always warm), <strong>200+ global locations</strong> vs Lambda's ~20 regions, and <strong>cost efficiency</strong> with pay-per-request pricing. Workers run in V8 isolates rather than containers, providing faster startup times and better performance for edge computing workloads.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
 
-                    <div class="building-block">
-                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 itemprop="name">What's the difference between KV and D1 storage?</h3>
-                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <div itemprop="text">
-                                <p><strong>KV (Key-Value)</strong> is optimized for high-read, low-write scenarios like caching, sessions, and configuration. <strong>D1</strong> is a relational database perfect for complex queries, transactions, and structured data. Use KV for simple key lookups and D1 for SQL queries and relationships.</p>
+                        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <h3 itemprop="name">What's the difference between KV and D1 storage?</h3>
+                            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                    <p><strong>KV (Key-Value)</strong> is optimized for high-read, low-write scenarios like caching, sessions, and configuration. <strong>D1</strong> is a relational database perfect for complex queries, transactions, and structured data. Use KV for simple key lookups and D1 for SQL queries and relationships.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
 
-                    <div class="building-block">
-                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 itemprop="name">How do I handle authentication in Workers?</h3>
-                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <div itemprop="text">
-                                <p>Use JSON Web Tokens (JWT) stored in encrypted cookies or Authorization headers. Validate tokens at the edge to reduce origin load. For session management, combine JWT with KV storage for fast lookups. Cloudflare Access provides enterprise SSO integration.</p>
+                        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <h3 itemprop="name">How do I handle authentication in Workers?</h3>
+                            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                    <p>Use JSON Web Tokens (JWT) stored in encrypted cookies or Authorization headers. Validate tokens at the edge to reduce origin load. For session management, combine JWT with KV storage for fast lookups. Cloudflare Access provides enterprise SSO integration.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
 
-                    <div class="building-block">
-                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 itemprop="name">What's the best way to deploy Workers?</h3>
-                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <div itemprop="text">
-                                <p>Use Wrangler CLI for development and GitHub Actions for CI/CD. Implement staging environments with preview deployments. Use Cloudflare Pages for full-stack applications combining Workers with static assets. Monitor performance with Cloudflare's analytics and set up alerts for errors.</p>
+                        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <h3 itemprop="name">What's the best way to deploy Workers?</h3>
+                            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                    <p>Use Wrangler CLI for development and GitHub Actions for CI/CD. Implement staging environments with preview deployments. Use Cloudflare Pages for full-stack applications combining Workers with static assets. Monitor performance with Cloudflare's analytics and set up alerts for errors.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </section>
 
                 <section id="clodo-automation">
-                    <h2>⚡ Accelerate Development with Clodo Framework Automation</h2>
-                    <p>Building production-ready Cloudflare Workers applications requires extensive boilerplate code, consistent patterns, and reliable deployment processes. Manual development can take weeks for complex systems with multiple services. Clodo Framework eliminates this bottleneck through intelligent automation.</p>
+                    <div class="container">
+                        <h2>⚡ Accelerate Development with Clodo Framework Automation</h2>
+                        <p>Building production-ready Cloudflare Workers applications requires extensive boilerplate code, consistent patterns, and reliable deployment processes. Manual development can take weeks for complex systems with multiple services. Clodo Framework eliminates this bottleneck through intelligent automation.</p>
 
-                    <h3>The Boilerplate Bottleneck</h3>
-                    <div class="building-block">
-                    <p>When building enterprise-scale applications, developers face repetitive tasks:</p>
-                    <ul>
-                        <li>🔄 <strong>Service Scaffolding</strong> - Creating consistent project structures for 10+ services</li>
-                        <li>🗄️ <strong>Database Setup</strong> - D1 migrations, schema definitions, and connection handling</li>
-                        <li>💾 <strong>Storage Configuration</strong> - KV namespaces, R2 buckets, and cache strategies</li>
-                        <li>🔐 <strong>Authentication & Security</strong> - JWT validation, rate limiting, CORS policies</li>
-                        <li>📊 <strong>Monitoring & Logging</strong> - Structured logging, error tracking, performance metrics</li>
-                        <li>🚀 <strong>Deployment Automation</strong> - Multi-environment configs, CI/CD pipelines, rollback strategies</li>
-                    </ul>
-                    </div>
+                        <div class="building-block">
+                            <h3>The Boilerplate Bottleneck</h3>
+                            <p>When building enterprise-scale applications, developers face repetitive tasks:</p>
+                            <ul>
+                                <li>🔄 <strong>Service Scaffolding</strong> - Creating consistent project structures for 10+ services</li>
+                                <li>🗄️ <strong>Database Setup</strong> - D1 migrations, schema definitions, and connection handling</li>
+                                <li>💾 <strong>Storage Configuration</strong> - KV namespaces, R2 buckets, and cache strategies</li>
+                                <li>🔐 <strong>Authentication & Security</strong> - JWT validation, rate limiting, CORS policies</li>
+                                <li>📊 <strong>Monitoring & Logging</strong> - Structured logging, error tracking, performance metrics</li>
+                                <li>🚀 <strong>Deployment Automation</strong> - Multi-environment configs, CI/CD pipelines, rollback strategies</li>
+                            </ul>
+                        </div>
 
-                    <h3>Automated Service Generation</h3>
-                    <div class="building-block">
-                    <p>Clodo Framework's CLI generates production-ready service boilerplate in seconds:</p>
+                        <div class="building-block">
+                            <h3>Automated Service Generation</h3>
+                            <p>Clodo Framework's CLI generates production-ready service boilerplate in seconds:</p>
 
-                    <h4>Create a Complete API Service</h4>
-                    <pre><code># Generate a REST API service with authentication
+                            <h4>Create a Complete API Service</h4>
+                            <pre><code># Generate a REST API service with authentication
 clodo generate service api --name user-management --auth jwt --database d1
 
 # This creates:
@@ -572,8 +572,8 @@ clodo generate service api --name user-management --auth jwt --database d1
 # - Error handling
 # - Unit tests</code></pre>
 
-                    <h4>Generate Multi-Service Architecture</h4>
-                    <pre><code># Create a microservices architecture
+                            <h4>Generate Multi-Service Architecture</h4>
+                            <pre><code># Create a microservices architecture
 clodo generate project ecommerce-platform --services 8
 
 # Generates:
@@ -585,15 +585,15 @@ clodo generate project ecommerce-platform --services 8
 # - Notification service (emails, SMS)
 # - Analytics (metrics, reporting)
 # - Admin dashboard (management, monitoring)</code></pre>
-                    </div>
+                        </div>
 
-                    <h3>Intelligent Code Generation</h3>
-                    <div class="building-block">
-                    <p>Clodo analyzes your requirements and generates contextually appropriate code:</p>
+                        <div class="building-block">
+                            <h3>Intelligent Code Generation</h3>
+                            <p>Clodo analyzes your requirements and generates contextually appropriate code:</p>
 
-                    <div class="code-example">
-                        <h4>Generated User Authentication Service</h4>
-                        <pre><code>// Auto-generated by Clodo Framework
+                            <div class="code-example">
+                                <h4>Generated User Authentication Service</h4>
+                                <pre><code>// Auto-generated by Clodo Framework
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { jwt } from 'hono/jwt';
@@ -644,15 +644,15 @@ app.get('/api/users/:id', async (c) => {
 });
 
 export default app;</code></pre>
-                    </div>
-                    </div>
+                            </div>
+                        </div>
 
-                    <h3>Automated Deployment Pipeline</h3>
-                    <div class="building-block">
-                    <p>Clodo Framework handles the entire deployment lifecycle:</p>
+                        <div class="building-block">
+                            <h3>Automated Deployment Pipeline</h3>
+                            <p>Clodo Framework handles the entire deployment lifecycle:</p>
 
-                    <h4>One-Command Deployment</h4>
-                    <pre><code># Deploy all services to production
+                            <h4>One-Command Deployment</h4>
+                            <pre><code># Deploy all services to production
 clodo deploy --environment production --services all
 
 # This automatically:
@@ -663,8 +663,8 @@ clodo deploy --environment production --services all
 # - Runs integration tests
 # - Updates monitoring dashboards</code></pre>
 
-                    <h4>Multi-Environment Management</h4>
-                    <pre><code># Deploy to staging first
+                            <h4>Multi-Environment Management</h4>
+                            <pre><code># Deploy to staging first
 clodo deploy --environment staging --services user,product
 
 # Promote to production after testing
@@ -672,126 +672,154 @@ clodo promote --from staging --to production
 
 # Rollback if issues detected
 clodo rollback --environment production --version previous</code></pre>
-                    </div>
+                        </div>
 
-                    <h3>Development Acceleration Metrics</h3>
-                    <div class="metrics-dashboard">
-                        <h4>Time Savings with Clodo Automation</h4>
-                        <div class="metrics-grid">
-                            <div class="metric-card" data-animate="counter" data-target="80">
-                                <div class="metric-icon">⚡</div>
-                                <div class="metric-value">0%</div>
-                                <div class="metric-label">Faster Development</div>
-                            </div>
-                            <div class="metric-card" data-animate="counter" data-target="95">
-                                <div class="metric-icon">🐛</div>
-                                <div class="metric-value">0%</div>
-                                <div class="metric-label">Fewer Bugs</div>
-                            </div>
-                            <div class="metric-card" data-animate="counter" data-target="99">
-                                <div class="metric-icon">🔒</div>
-                                <div class="metric-value">0%</div>
-                                <div class="metric-label">Security Compliance</div>
-                            </div>
-                            <div class="metric-card" data-animate="counter" data-target="24">
-                                <div class="metric-icon">🚀</div>
-                                <div class="metric-value">0/7</div>
-                                <div class="metric-label">Hours to Launch</div>
+                        <h3>Development Acceleration Metrics</h3>
+                        <div class="metrics-dashboard">
+                            <h4>Time Savings with Clodo Automation</h4>
+                            <div class="metrics-grid">
+                                <div class="metric-card" data-animate="counter" data-target="80">
+                                    <div class="metric-icon">⚡</div>
+                                    <div class="metric-value">0%</div>
+                                    <div class="metric-label">Faster Development</div>
+                                </div>
+                                <div class="metric-card" data-animate="counter" data-target="95">
+                                    <div class="metric-icon">🐛</div>
+                                    <div class="metric-value">0%</div>
+                                    <div class="metric-label">Fewer Bugs</div>
+                                </div>
+                                <div class="metric-card" data-animate="counter" data-target="99">
+                                    <div class="metric-icon">🔒</div>
+                                    <div class="metric-value">0%</div>
+                                    <div class="metric-label">Security Compliance</div>
+                                </div>
+                                <div class="metric-card" data-animate="counter" data-target="24">
+                                    <div class="metric-icon">🚀</div>
+                                    <div class="metric-value">0/7</div>
+                                    <div class="metric-label">Hours to Launch</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <h3>Consistency & Quality Assurance</h3>
-                    <div class="building-block">
-                    <p>Every generated service follows enterprise patterns:</p>
-                    <ul>
-                        <li><strong>🔒 Security First</strong> - Built-in authentication, authorization, and input validation</li>
-                        <li><strong>📊 Observability</strong> - Structured logging, metrics, and error tracking</li>
-                        <li><strong>🧪 Testing</strong> - Unit tests, integration tests, and performance benchmarks</li>
-                        <li><strong>📚 Documentation</strong> - Auto-generated API docs and deployment guides</li>
-                        <li><strong>🔄 DevOps</strong> - CI/CD pipelines, monitoring, and automated scaling</li>
-                    </ul>
-                    </div>
+                        <div class="building-block">
+                            <h3>Consistency & Quality Assurance</h3>
+                            <p>Every generated service follows enterprise patterns:</p>
+                            <ul>
+                                <li><strong>🔒 Security First</strong> - Built-in authentication, authorization, and input validation</li>
+                                <li><strong>📊 Observability</strong> - Structured logging, metrics, and error tracking</li>
+                                <li><strong>🧪 Testing</strong> - Unit tests, integration tests, and performance benchmarks</li>
+                                <li><strong>📚 Documentation</strong> - Auto-generated API docs and deployment guides</li>
+                                <li><strong>🔄 DevOps</strong> - CI/CD pipelines, monitoring, and automated scaling</li>
+                            </ul>
+                        </div>
 
-                    <h3>From Manual to Automated: A Comparison</h3>
-                    <div class="building-block">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Task</th>
-                                <th>Manual Development</th>
-                                <th>Clodo Automation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Create API Service</td>
-                                <td>2-3 days</td>
-                                <td>5 minutes</td>
-                            </tr>
-                            <tr>
-                                <td>Setup Authentication</td>
-                                <td>1-2 days</td>
-                                <td>Auto-generated</td>
-                            </tr>
-                            <tr>
-                                <td>Database Integration</td>
-                                <td>1 day</td>
-                                <td>Auto-configured</td>
-                            </tr>
-                            <tr>
-                                <td>Deploy to Production</td>
-                                <td>4-6 hours</td>
-                                <td>2 minutes</td>
-                            </tr>
-                            <tr>
-                                <td>Setup Monitoring</td>
-                                <td>2-3 days</td>
-                                <td>Auto-instrumented</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
+                        <div class="building-block">
+                            <h3>From Manual to Automated: A Comparison</h3>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task</th>
+                                        <th>Manual Development</th>
+                                        <th>Clodo Automation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Create API Service</td>
+                                        <td>2-3 days</td>
+                                        <td>5 minutes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Setup Authentication</td>
+                                        <td>1-2 days</td>
+                                        <td>Auto-generated</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Integration</td>
+                                        <td>1 day</td>
+                                        <td>Auto-configured</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deploy to Production</td>
+                                        <td>4-6 hours</td>
+                                        <td>2 minutes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Setup Monitoring</td>
+                                        <td>2-3 days</td>
+                                        <td>Auto-instrumented</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div class="cta-box">
-                        <h3>Ready to Accelerate Your Development?</h3>
-                        <p>Stop wasting weeks on boilerplate. Generate production-ready services in minutes with Clodo Framework's intelligent automation.</p>
-                        <div class="cta-actions">
-                            <a href="/quick-start" class="btn btn--primary">Start Automating Now</a>
-                            <a href="/docs/cli-commands" class="btn btn--secondary">View CLI Reference</a>
+                        <div class="cta-box">
+                            <h3>Ready to Accelerate Your Development?</h3>
+                            <p>Stop wasting weeks on boilerplate. Generate production-ready services in minutes with Clodo Framework's intelligent automation.</p>
+                            <div class="cta-actions">
+                                <a href="/quick-start" class="btn btn--primary">Start Automating Now</a>
+                                <a href="/docs/cli-commands" class="btn btn--secondary">View CLI Reference</a>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <section id="clodo-framework">
-                    <h2>🎯 Why Choose Clodo Framework?</h2>
-                    <p>While Cloudflare Workers are powerful, building production applications requires significant infrastructure. Clodo Framework provides the missing pieces:</p>
+                    <div class="container">
+                        <h2>🎯 Why Choose Clodo Framework?</h2>
+                        <p>While Cloudflare Workers are powerful, building production applications requires significant infrastructure. Clodo Framework provides the missing pieces:</p>
 
-                    <div class="cta-box">
-                        <h3>Ready to Build Production SaaS?</h3>
-                        <p>Clodo Framework reduces development time from months to weeks and costs by 60%. Get started with enterprise-grade components today.</p>
-                        <div class="cta-actions">
-                            <a href="/quick-start" class="btn btn--primary">Get Started with Clodo</a>
-                            <a href="/docs" class="btn btn--secondary">View Documentation</a>
+                        <div class="cta-box">
+                            <h3>Ready to Build Production SaaS?</h3>
+                            <p>Clodo Framework reduces development time from months to weeks and costs by 60%. Get started with enterprise-grade components today.</p>
+                            <div class="cta-actions">
+                                <a href="/quick-start" class="btn btn--primary">Get Started with Clodo</a>
+                                <a href="/docs" class="btn btn--secondary">View Documentation</a>
+                            </div>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>What Clodo Provides</h3>
+                            <ul>
+                                <li><strong>Pre-Flight Checker</strong> - Validates deployments before they fail</li>
+                                <li><strong>Multi-Tenant Architecture</strong> - Built-in tenant isolation</li>
+                                <li><strong>Enterprise Components</strong> - Auth, database, API orchestration</li>
+                                <li><strong>Automated Testing</strong> - Comprehensive test suites</li>
+                                <li><strong>Production Monitoring</strong> - Real-time performance insights</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <h3>What Clodo Provides</h3>
-                    <div class="building-block">
-                    <ul>
-                        <li><strong>Pre-Flight Checker</strong> - Validates deployments before they fail</li>
-                        <li><strong>Multi-Tenant Architecture</strong> - Built-in tenant isolation</li>
-                        <li><strong>Enterprise Components</strong> - Auth, database, API orchestration</li>
-                        <li><strong>Automated Testing</strong> - Comprehensive test suites</li>
-                        <li><strong>Production Monitoring</strong> - Real-time performance insights</li>
-                    </ul>
-                    </div>
                 </section>
+
+                <!-- Social Sharing Section -->
+                <div class="share-section">
+                    <h3>Share This Guide</h3>
+                    <p>Help developers master Cloudflare Workers with this comprehensive guide.</p>
+                    <div class="share-buttons">
+                        <button class="share-btn twitter-share" onclick="shareOnTwitter()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                            Twitter
+                        </button>
+                        <button class="share-btn linkedin-share" onclick="shareOnLinkedIn()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn
+                        </button>
+                        <button class="share-btn copy-link" onclick="copyLink()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
             </div>
         </article>
     </main>
-
-    <footer><!--#include file="../templates/footer.html" --></footer>
+    <!--#include file="../templates/footer.html" -->
 
     <!-- Defer JavaScript - load after LCP for better performance -->
     <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
