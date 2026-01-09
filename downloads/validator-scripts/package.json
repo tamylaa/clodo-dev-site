@@ -1,0 +1,37 @@
+{
+  "name": "cloudflare-workers-guide-validators",
+  "version": "1.0.0",
+  "description": "Comprehensive validator scripts for Cloudflare Workers Development Guide - validate code examples and publication readiness",
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "validation",
+    "code-quality",
+    "testing",
+    "guide",
+    "documentation"
+  ],
+  "author": "Clodo Framework",
+  "license": "MIT",
+  "main": "validate-code-examples.js",
+  "scripts": {
+    "start": "node validate-code-examples.js && node publication-verification.js",
+    "test": "node validate-code-examples.js",
+    "verify": "node publication-verification.js",
+    "all": "npm run test && npm run verify"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamylaa/clodo-framework"
+  },
+  "bugs": {
+    "url": "https://github.com/tamylaa/clodo-framework/issues"
+  },
+  "homepage": "https://www.clodo.dev/cloudflare-workers-development-guide",
+  "devDependencies": {},
+  "dependencies": {}
+}

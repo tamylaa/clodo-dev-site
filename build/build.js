@@ -1214,6 +1214,34 @@ try {
     fixCanonicalUrls('dist', 'https://www.clodo.dev');
     console.log('[CANONICAL] Canonical URLs fixed');
 
+    // Copy Cloudflare Functions to dist for Pages Functions deployment
+    console.log('[FUNCTIONS] Copying Cloudflare Functions for deployment...');
+    const functionsSource = join(__dirname, '..', 'functions');
+    const functionsDestination = join(__dirname, '..', 'dist', 'functions');
+    
+    // Remove existing functions folder if it exists
+    if (existsSync(functionsDestination)) {
+        rmSync(functionsDestination, { recursive: true, force: true });
+    }
+    
+    // Copy functions directory
+    mkdirSync(functionsDestination, { recursive: true });
+    const copyFunctionsRecursive = (src, dest) => {
+        const files = readdirSync(src);
+        files.forEach(file => {
+            const srcFile = join(src, file);
+            const destFile = join(dest, file);
+            if (statSync(srcFile).isDirectory()) {
+                mkdirSync(destFile, { recursive: true });
+                copyFunctionsRecursive(srcFile, destFile);
+            } else {
+                copyFileSync(srcFile, destFile);
+            }
+        });
+    };
+    copyFunctionsRecursive(functionsSource, functionsDestination);
+    console.log('  ✅ Functions copied to dist/functions/');
+
     // Run link health check
     console.log('[CHECK] Running link health check...');
     import('./check-links.js').then(({ checkLinks }) => {
