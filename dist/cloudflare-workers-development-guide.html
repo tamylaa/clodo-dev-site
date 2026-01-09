@@ -932,35 +932,91 @@ wrangler deploy --env staging</code></pre>
                         </div>
 
                         <div class="building-block">
-                            <h3>Automated Service Generation</h3>
-                            <p>Clodo Framework's CLI generates production-ready service boilerplate in seconds:</p>
+                            <h3>Five Core Pillars of Clodo Framework</h3>
+                            <p>Clodo Framework is built on five foundational concepts that work together to eliminate boilerplate:</p>
+                            <ul>
+                                <li><strong>🔄 Automation</strong> - Input Collection → Code Generation → Configuration → Validation → Deployment. What takes days manually happens in minutes.</li>
+                                <li><strong>🎼 Orchestration</strong> - Manage multi-domain services with automatic dependency management, cross-service communication, and environment consistency across dev/staging/prod.</li>
+                                <li><strong>⚙️ Configuration</strong> - Convention over Configuration with sensible defaults for 80% of cases, plus environment-specific overrides and validation to prevent "works on my machine" issues.</li>
+                                <li><strong>✅ Validation</strong> - Pre-deploy checks, runtime validation, deployment verification, and continuous monitoring to catch issues before production.</li>
+                                <li><strong>📏 Consistency</strong> - Standardized code patterns, naming conventions, security standards, and auto-generated documentation across all services.</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Quick Start by Experience Level</h3>
+                            <p>Whether you're new to Cloudflare Workers or managing enterprise deployments, Clodo adapts to your needs:</p>
+
+                            <h4>🌱 Newbie (First Time with Cloudflare Workers)</h4>
+                            <pre><code># Install and create your first service with interactive prompts
+npm install -g @tamyla/clodo-framework
+npx clodo-service create
+# Follow the guided setup - no Cloudflare knowledge needed!
+# Framework generates: database, API endpoints, deployment scripts, documentation</code></pre>
+
+                            <h4>📚 Intermediate (Know Cloudflare Basics)</h4>
+                            <pre><code># Create a specific service type with your domain
+npx clodo-service create --type data-service --name my-api --domain myapp.com
+
+# Deploy with built-in validation
+npx clodo-service validate
+npx clodo-service deploy --environment production</code></pre>
+
+                            <h4>🚀 Expert (Enterprise Orchestration)</h4>
+                            <pre><code>import { MultiDomainOrchestrator } from '@tamyla/clodo-framework/orchestration';
+
+// Programmatic multi-service orchestration
+const orchestrator = new MultiDomainOrchestrator();
+await orchestrator.deployMultiple([
+  { path: './api', domain: 'api.example.com' },
+  { path: './auth', domain: 'auth.example.com' },
+  { path: './files', domain: 'files.example.com' }
+]);</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Intelligent Service Generation (28+ Files)</h3>
+                            <p>Clodo Framework generates production-ready services with 28+ pre-configured files, smart defaults, and environment-specific configurations:</p>
 
                             <h4>Create a Complete API Service</h4>
                             <pre><code># Generate a REST API service with authentication
-clodo generate service api --name user-management --auth jwt --database d1
+npx clodo-service create --type data-service --name user-management --domain users.myapp.com
 
-# This creates:
-# - Complete project structure
-# - Authentication middleware
-# - D1 database integration
-# - CRUD endpoints
-# - Input validation
-# - Error handling
-# - Unit tests</code></pre>
+# Auto-generates:
+# - Project structure with source and tests
+# - Authentication middleware (JWT validation)
+# - D1 database integration with migrations
+# - CRUD endpoints with input validation
+# - Error handling and logging
+# - Unit and integration tests
+# - Deployment configuration
+# - Environment-specific configs (dev/staging/prod)</code></pre>
 
-                            <h4>Generate Multi-Service Architecture</h4>
-                            <pre><code># Create a microservices architecture
-clodo generate project ecommerce-platform --services 8
+                            <h4>Multi-Service Architecture</h4>
+                            <pre><code>// Orchestrate multiple services across domains
+import { Clodo } from '@tamyla/clodo-framework';
 
-# Generates:
-# - User service (authentication, profiles)
-# - Product catalog (inventory, pricing)
-# - Shopping cart (sessions, persistence)
-# - Payment processing (webhooks, security)
-# - Order management (transactions, history)
-# - Notification service (emails, SMS)
-# - Analytics (metrics, reporting)
-# - Admin dashboard (management, monitoring)</code></pre>
+const services = [
+  { type: 'data-service', name: 'users', domain: 'users.myapp.com' },
+  { type: 'data-service', name: 'products', domain: 'products.myapp.com' },
+  { type: 'api-gateway', name: 'gateway', domain: 'api.myapp.com' }
+];
+
+for (const service of services) {
+  await Clodo.createService(service);
+  await Clodo.deploy({ servicePath: `./${service.name}`, environment: 'production' });
+}</code></pre>
+
+                            <h4>What Gets Generated</h4>
+                            <ul>
+                                <li><strong>Source Code:</strong> Service handlers, middleware, utilities, types</li>
+                                <li><strong>Database:</strong> D1 migrations, schema validation, queries</li>
+                                <li><strong>Security:</strong> Authentication, authorization, validation schemas</li>
+                                <li><strong>Testing:</strong> Unit tests, integration tests, test fixtures</li>
+                                <li><strong>Configuration:</strong> Environment configs, secrets management, build config</li>
+                                <li><strong>Deployment:</strong> Wrangler config, CI/CD scripts, monitoring setup</li>
+                                <li><strong>Documentation:</strong> API docs, architecture guide, deployment guide</li>
+                            </ul>
                         </div>
 
                         <div class="building-block">
@@ -1154,15 +1210,243 @@ clodo rollback --environment production --version previous</code></pre>
                             </div>
                         </div>
 
+                        <p>Clodo Framework builds on Cloudflare Workers by providing five core pillars that address the gaps between serverless functions and production SaaS applications.</p>
+
                         <div class="building-block">
-                            <h3>What Clodo Provides</h3>
+                            <h3>The Five Pillars of Clodo</h3>
+
+                            <h4>1. Automation (Input → Output)</h4>
+                            <p>Transform requirements into production-ready code automatically:</p>
                             <ul>
-                                <li><strong>Pre-Flight Checker</strong> - Validates deployments before they fail</li>
-                                <li><strong>Multi-Tenant Architecture</strong> - Built-in tenant isolation</li>
-                                <li><strong>Enterprise Components</strong> - Auth, database, API orchestration</li>
-                                <li><strong>Automated Testing</strong> - Comprehensive test suites</li>
-                                <li><strong>Production Monitoring</strong> - Real-time performance insights</li>
+                                <li>Parse user requirements and specifications</li>
+                                <li>Generate 28+ production files (handlers, middleware, tests, configs)</li>
+                                <li>Create database schemas with migrations</li>
+                                <li>Setup authentication and authorization patterns</li>
+                                <li>Generate API documentation automatically</li>
                             </ul>
+
+                            <h4>2. Orchestration (Multi-Service Coordination)</h4>
+                            <p>Manage complex architectures with service dependencies:</p>
+                            <ul>
+                                <li>Multi-domain support for service distribution</li>
+                                <li>Service dependency resolution and deployment ordering</li>
+                                <li>Cross-service communication patterns</li>
+                                <li>API Gateway orchestration</li>
+                                <li>Load balancing and failover strategies</li>
+                            </ul>
+
+                            <h4>3. Configuration (Convention Over Configuration)</h4>
+                            <p>Smart defaults with environment-specific overrides:</p>
+                            <ul>
+                                <li>Sensible defaults for development and production</li>
+                                <li>Environment-specific configurations (dev/staging/prod)</li>
+                                <li>Secrets management integration</li>
+                                <li>Feature flags and gradual rollouts</li>
+                                <li>Zero-config deployment to Cloudflare</li>
+                            </ul>
+
+                            <h4>4. Validation (Pre-Deploy Quality Checks)</h4>
+                            <p>Comprehensive validation at every stage:</p>
+                            <ul>
+                                <li><strong>Syntax Validation:</strong> TypeScript, linting, code quality</li>
+                                <li><strong>Schema Validation:</strong> Database schemas, API contracts</li>
+                                <li><strong>Security Validation:</strong> Authentication rules, authorization checks</li>
+                                <li><strong>Integration Validation:</strong> Service dependencies, cross-service contracts</li>
+                                <li><strong>Performance Validation:</strong> Cold starts, memory usage, startup time</li>
+                            </ul>
+
+                            <h4>5. Consistency (Unified Patterns Across Services)</h4>
+                            <p>All services follow identical conventions and patterns:</p>
+                            <ul>
+                                <li><strong>Naming Conventions:</strong> Variables, functions, files follow standard patterns</li>
+                                <li><strong>Code Patterns:</strong> Error handling, logging, security patterns are unified</li>
+                                <li><strong>Security Standards:</strong> All services implement the same security measures</li>
+                                <li><strong>Testing Patterns:</strong> Unit and integration tests use same frameworks</li>
+                                <li><strong>Documentation:</strong> All services have consistent API and architecture docs</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>What Gets Generated</h3>
+                            <p>When you create a new service with Clodo, you get 28+ production-ready files:</p>
+                            <ul>
+                                <li><strong>Source Code:</strong> Handlers, middleware, utilities, type definitions, services</li>
+                                <li><strong>Database:</strong> D1 migrations, schema validation, ORM queries</li>
+                                <li><strong>Security:</strong> JWT authentication, role-based access, input validation</li>
+                                <li><strong>Testing:</strong> Unit tests, integration tests, fixtures, mocks</li>
+                                <li><strong>Configuration:</strong> Environment configs, secrets, build settings</li>
+                                <li><strong>Deployment:</strong> Wrangler config, CI/CD scripts, monitoring setup</li>
+                                <li><strong>Documentation:</strong> API docs, architecture guide, deployment guide</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Installation & Setup</h3>
+
+                            <h4>Basic Installation</h4>
+                            <p>Choose the installation method that fits your workflow:</p>
+                            <pre><code># For one-time use (npx - no installation required)
+npx @tamyla/clodo-framework create
+
+# For repeated use (install globally)
+npm install -g @tamyla/clodo-framework
+
+# For project-specific use (install locally)
+npm install @tamyla/clodo-framework --save-dev</code></pre>
+
+                            <h4>Environment Setup</h4>
+                            <p>Clodo Framework auto-detects your Cloudflare credentials, but you can configure explicitly:</p>
+                            <pre><code># Initialize configuration interactively
+npx clodo-service init-config
+
+# Or set environment variables
+export CLOUDFLARE_API_TOKEN=your_token
+export CLOUDFLARE_ACCOUNT_ID=your_account_id
+export CLOUDFLARE_ZONE_ID=your_zone_id</code></pre>
+
+                            <h4>Verification</h4>
+                            <p>Confirm everything is working correctly:</p>
+                            <pre><code># Check installation and version
+npx clodo-service --version
+
+# Test framework capabilities
+npx clodo-service diagnose
+
+# Validate your configuration
+npx clodo-service validate-config</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Available Tools & Commands</h3>
+
+                            <h4>CLI Tools</h4>
+                            <ul>
+                                <li><strong>clodo-service</strong> - Main CLI for complete service lifecycle management</li>
+                                <li><strong>clodo-simple</strong> - Streamlined CLI for basic operations and quick starts</li>
+                                <li><strong>clodo-security</strong> - Security-focused operations and compliance checks</li>
+                            </ul>
+
+                            <h4>Essential Commands</h4>
+                            <pre><code># Service Creation & Management
+npx clodo-service create              # Interactive service creation
+npx clodo-service create --help       # Show all options
+npx clodo-service validate            # Validate service configuration
+npx clodo-service update              # Update existing service
+
+# Deployment & Orchestration
+npx clodo-service deploy              # Deploy service to Cloudflare
+npx clodo-service diagnose            # Troubleshoot deployment issues
+npx clodo-service assess              # Capability assessment and reporting
+
+# Utilities
+npx clodo-service init-config         # Initialize configuration
+npx clodo-service list-types          # Show available service types
+npx clodo-service rollback            # Rollback to previous version</code></pre>
+
+                            <h4>Programmatic API</h4>
+                            <p>For advanced use cases, import the framework directly in your code:</p>
+                            <pre><code>// Simple operations
+import { Clodo } from '@tamyla/clodo-framework';
+
+await Clodo.createService({ name: 'my-api', type: 'data-service' });
+await Clodo.deploy({ servicePath: './my-api', environment: 'production' });
+await Clodo.validate({ servicePath: './my-api' });
+
+// Advanced orchestration
+import { ServiceOrchestrator } from '@tamyla/clodo-framework/service-management';
+import { MultiDomainOrchestrator } from '@tamyla/clodo-framework/orchestration';</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Usage Patterns by Real-World Scenario</h3>
+
+                            <h4>Scenario 1: Building Your First Service</h4>
+                            <p>Perfect for developers new to Cloudflare Workers:</p>
+                            <pre><code># Interactive creation with guided setup
+npx clodo-service create
+
+# Or programmatic creation
+import { Clodo } from '@tamyla/clodo-framework';
+
+await Clodo.createService({
+  name: 'user-service',
+  type: 'data-service',
+  domain: 'users.myapp.com',
+  withAuth: true,
+  withDatabase: true
+});</code></pre>
+
+                            <h4>Scenario 2: Multi-Environment Deployment</h4>
+                            <p>Deploy the same service across dev, staging, and production:</p>
+                            <pre><code># Development (with debugging)
+npx clodo-service deploy --environment development --debug
+
+# Staging (with validation)
+npx clodo-service validate
+npx clodo-service deploy --environment staging
+
+# Production (with extra checks)
+npx clodo-service assess --service-path ./my-service
+npx clodo-service deploy --environment production --dry-run
+npx clodo-service deploy --environment production</code></pre>
+
+                            <h4>Scenario 3: Managing Multiple Services</h4>
+                            <p>Orchestrate complex architectures with automatic dependency management:</p>
+                            <pre><code>import { MultiDomainOrchestrator } from '@tamyla/clodo-framework/orchestration';
+
+const orchestrator = new MultiDomainOrchestrator();
+
+// Deploy multiple services across different domains
+await orchestrator.deployMultiple([
+  { path: './services/api', domain: 'api.example.com' },
+  { path: './services/auth', domain: 'auth.example.com' },
+  { path: './services/files', domain: 'files.example.com' }
+], { 
+  environment: 'production',
+  validateDependencies: true,
+  orderedDeployment: true 
+});</code></pre>
+
+                            <h4>Scenario 4: Customizing Generated Services</h4>
+                            <p>Extend generated services with custom business logic:</p>
+                            <pre><code>import { GenericDataService } from '@tamyla/clodo-framework/services';
+import { SchemaManager } from '@tamyla/clodo-framework/schema';
+import { Hono } from 'hono';
+
+// Use framework components as a foundation
+const service = new GenericDataService();
+const schema = new SchemaManager();
+
+// Add your custom endpoints
+const app = new Hono();
+app.post('/custom-logic', async (c) => {
+  // Your business logic here
+  return c.json({ success: true });
+});
+
+export default app;</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Common Questions & Answers</h3>
+
+                            <h4>Q: Can I import internal `dist/*` files directly?</h4>
+                            <p><strong>A:</strong> No — always prefer public exports from the main package. Internal files may change between versions. If you need internal functionality exposed, request it explicitly and we'll evaluate adding it to the public API.</p>
+
+                            <h4>Q: Is the CLI intended for programmatic use?</h4>
+                            <p><strong>A:</strong> No — the CLI is optimized for human use and automation scripts. For programmatic tasks, use the library exports directly. This gives you better error handling and doesn't spawn subprocesses.</p>
+
+                            <h4>Q: What's the difference between `clodo-service` and `clodo-simple`?</h4>
+                            <p><strong>A:</strong> <strong>clodo-service</strong> provides full control and all options. <strong>clodo-simple</strong> provides a streamlined experience with smart defaults. Choose simple for quick setup, service for advanced customization.</p>
+
+                            <h4>Q: How do I handle multiple domains and services?</h4>
+                            <p><strong>A:</strong> Use the MultiDomainOrchestrator for orchestrated deployments. It handles service dependencies, deployment ordering, and environment consistency automatically across all domains.</p>
+
+                            <h4>Q: What happens if deployment fails?</h4>
+                            <p><strong>A:</strong> Framework automatically rolls back to the previous version. Check logs with <code>npx clodo-service diagnose</code> and validate configuration with <code>npx clodo-service validate</code> before re-deploying.</p>
+
+                            <h4>Q: How do I customize generated code without losing updates?</h4>
+                            <p><strong>A:</strong> Generated code uses clear sections marking framework-generated vs. custom areas. Keep custom logic in separate files or marked blocks, and regenerate with <code>npx clodo-service update</code> when needed.</p>
                         </div>
                     </div>
                 </section>
