@@ -1079,4 +1079,58 @@ html {
   .faq-item {
     padding: 1rem;
   }
+
+  /* Download CTA Section - Mobile */
+  .download-cta-section {
+    padding: 2rem !important;
+  }
+
+  .download-cta-section h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .download-form input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* ===== DOWNLOAD CTA SECTION STYLES ===== */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.download-cta-section {
+  animation: slideUp 0.6s ease-out;
+}
+
+.download-form input {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.download-form input:focus {
+  outline: none;
+  border-color: #0078d4 !important;
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+}
+
+.download-form button {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.download-form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 120, 212, 0.3) !important;
+}
+
+.download-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
