@@ -1798,59 +1798,33 @@ await orchestrator.deployMultiple([
                         <div class="building-block">
                             <h3>Best Practices</h3>
 
-                            <h4>For Teams</h4>
+                            <h4>Multi-Service Consistency</h4>
                             <ul>
-                                <li>✅ Use consistent naming conventions across all services</li>
-                                <li>✅ Leverage environment-specific configurations for consistency</li>
-                                <li>✅ Run validation in CI/CD pipelines before deployment</li>
-                                <li>✅ Document customizations and deviations from defaults</li>
-                                <li>✅ Share service templates for common patterns</li>
-                                <li>✅ Establish code review processes for generated code customizations</li>
+                                <li>Use environment-specific config files (dev.toml, staging.toml, prod.toml) rather than branching generated code</li>
+                                <li>Define service templates for your domain to enforce naming and structure across teams</li>
+                                <li>Run <code>npx clodo-service validate</code> in pre-commit hooks to catch issues before CI/CD</li>
                             </ul>
 
-                            <h4>For Production Deployments</h4>
+                            <h4>Production Deployment Strategy</h4>
                             <ul>
-                                <li>✅ Always run <code>npx clodo-service validate</code> before deployment</li>
-                                <li>✅ Use staging environments for testing before production</li>
-                                <li>✅ Monitor deployed services health continuously</li>
-                                <li>✅ Keep framework and dependencies updated regularly</li>
-                                <li>✅ Set up automated rollback procedures</li>
-                                <li>✅ Document any manual configuration changes</li>
+                                <li>Deploy to staging first, run integration tests against live Cloudflare infrastructure (not mocks)</li>
+                                <li>Use <code>npx clodo-service deploy --strategy gradual</code> for canary deployments to catch edge cases</li>
+                                <li>Set up alerts on cold start times and D1 query latency to catch performance regressions early</li>
                             </ul>
 
-                            <h4>For Development</h4>
+                            <h4>Development Workflow</h4>
                             <ul>
-                                <li>✅ Start with <code>npx clodo-service create</code> for quick setup</li>
-                                <li>✅ Use local development environment for testing</li>
-                                <li>✅ Test services individually before orchestration</li>
-                                <li>✅ Leverage auto-generated documentation</li>
-                                <li>✅ Customize incrementally, don't rewrite</li>
-                                <li>✅ Keep custom and generated code clearly separated</li>
+                                <li>Keep generated framework code in git history but mark it clearly (use git diff to track customizations)</li>
+                                <li>Build custom business logic as separate modules imported by handlers, not inline modifications</li>
+                                <li>Use <code>npx clodo-service diagnose</code> when deployments fail—it reports actual vs expected configurations</li>
                             </ul>
 
-                            <h4>For Security</h4>
+                            <h4>Security Essentials</h4>
                             <ul>
-                                <li>✅ Never commit API tokens or secrets to version control</li>
-                                <li>✅ Use environment variables for all sensitive data</li>
-                                <li>✅ Enable authentication on all services</li>
-                                <li>✅ Validate all input with schema validation</li>
-                                <li>✅ Use HTTPS for all external communications</li>
-                                <li>✅ Regularly audit access logs and permissions</li>
+                                <li>Store secrets in Cloudflare Secrets Manager, accessed via <code>context.env</code> (never .env files in production)</li>
+                                <li>Enable request signing for cross-service calls to prevent unauthorized internal requests</li>
+                                <li>Audit D1 query logs quarterly for access patterns and remove overly permissive role bindings</li>
                             </ul>
-                        </div>
-
-                        <div class="building-block">
-                            <h3>What's Next?</h3>
-                            <p>You now have everything you need to build production-grade Cloudflare Workers applications with Clodo Framework. Here's your path forward:</p>
-                            <ul>
-                                <li><strong>Step 1:</strong> Create your first service with <code>npx clodo-service create</code></li>
-                                <li><strong>Step 2:</strong> Deploy it with <code>npx clodo-service deploy</code></li>
-                                <li><strong>Step 3:</strong> Explore the generated code and understand the patterns</li>
-                                <li><strong>Step 4:</strong> Customize it for your business needs</li>
-                                <li><strong>Step 5:</strong> Scale to multiple services with orchestration</li>
-                                <li><strong>Step 6:</strong> Share your experience and help the community grow</li>
-                            </ul>
-                            <p><strong>Remember:</strong> Clodo Framework handles the infrastructure complexity so you can focus on building amazing features. Start simple, scale with confidence, and ship faster than ever before!</p>
                         </div>
                     </div>
                 </section>
