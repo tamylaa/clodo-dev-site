@@ -1448,6 +1448,410 @@ export default app;</code></pre>
                             <h4>Q: How do I customize generated code without losing updates?</h4>
                             <p><strong>A:</strong> Generated code uses clear sections marking framework-generated vs. custom areas. Keep custom logic in separate files or marked blocks, and regenerate with <code>npx clodo-service update</code> when needed.</p>
                         </div>
+
+                        <div class="building-block">
+                            <h3>Service Types Available</h3>
+                            <p>Clodo Framework supports multiple service types to fit different use cases:</p>
+
+                            <h4>Data Service</h4>
+                            <p><strong>Best for:</strong> CRUD operations, database-driven APIs, data management services</p>
+                            <pre><code>npx clodo-service create --type data-service --name user-api
+
+# Generates:
+# - D1 database integration with migrations
+# - RESTful CRUD endpoints
+# - Input validation with Zod schemas
+# - Database connection pooling
+# - Query optimization utilities</code></pre>
+
+                            <h4>Authentication Service</h4>
+                            <p><strong>Best for:</strong> User authentication, JWT token management, session handling</p>
+                            <pre><code>npx clodo-service create --type auth-service --name auth-api
+
+# Generates:
+# - JWT token generation and validation
+# - Password hashing and verification
+# - OAuth integration patterns
+# - Rate limiting for auth endpoints
+# - Secure session management</code></pre>
+
+                            <h4>Content Service</h4>
+                            <p><strong>Best for:</strong> Content management, file handling, asset delivery</p>
+                            <pre><code>npx clodo-service create --type content-service --name cms-api
+
+# Generates:
+# - Content upload and storage handlers
+# - R2 bucket integration
+# - Content versioning
+# - Preview and publishing workflows
+# - Asset optimization</code></pre>
+
+                            <h4>API Gateway</h4>
+                            <p><strong>Best for:</strong> Service orchestration, request routing, API aggregation</p>
+                            <pre><code>npx clodo-service create --type api-gateway --name api-gateway
+
+# Generates:
+# - Multi-service request routing
+# - Request/response transformation
+# - Cross-service communication
+# - Load balancing patterns
+# - Service health checks</code></pre>
+
+                            <h4>Generic Service</h4>
+                            <p><strong>Best for:</strong> Custom use cases, specialized requirements, experimentation</p>
+                            <pre><code>npx clodo-service create --type generic --name custom-service
+
+# Generates:
+# - Minimal boilerplate structure
+# - Custom handler templates
+# - Flexible configuration
+# - Complete control over implementation</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Structured Learning Path</h3>
+                            <p>Progress through five levels as you become more proficient with Clodo Framework:</p>
+
+                            <h4>Level 1: Getting Started (30 minutes)</h4>
+                            <ul>
+                                <li>✅ Install Node.js 18+ and npm</li>
+                                <li>✅ Run <code>npx clodo-service create</code></li>
+                                <li>✅ Follow interactive prompts</li>
+                                <li>✅ Deploy with <code>npx clodo-service deploy</code></li>
+                                <li>✅ <strong>Goal:</strong> Have a working Cloudflare service live</li>
+                            </ul>
+
+                            <h4>Level 2: Understanding Automation (1 hour)</h4>
+                            <ul>
+                                <li>✅ Explore the 28+ generated files</li>
+                                <li>✅ Understand project structure and patterns</li>
+                                <li>✅ Customize handlers and middleware</li>
+                                <li>✅ Run <code>npx clodo-service validate</code></li>
+                                <li>✅ <strong>Goal:</strong> Understand what the framework generates and why</li>
+                            </ul>
+
+                            <h4>Level 3: Orchestration Basics (2 hours)</h4>
+                            <ul>
+                                <li>✅ Create multiple services</li>
+                                <li>✅ Deploy to dev, staging, and production</li>
+                                <li>✅ Use <code>npx clodo-service validate</code> in different environments</li>
+                                <li>✅ Learn the programmatic API</li>
+                                <li>✅ <strong>Goal:</strong> Manage multi-service applications confidently</li>
+                            </ul>
+
+                            <h4>Level 4: Advanced Orchestration (4+ hours)</h4>
+                            <ul>
+                                <li>✅ Multi-domain deployments with MultiDomainOrchestrator</li>
+                                <li>✅ Custom service types and templates</li>
+                                <li>✅ Integration with CI/CD pipelines</li>
+                                <li>✅ Advanced monitoring and diagnostics</li>
+                                <li>✅ <strong>Goal:</strong> Deploy enterprise-scale applications</li>
+                            </ul>
+
+                            <h4>Level 5: Expert Customization (Ongoing)</h4>
+                            <ul>
+                                <li>✅ Extend framework components for custom needs</li>
+                                <li>✅ Build and publish custom service templates</li>
+                                <li>✅ Contribute improvements to the framework</li>
+                                <li>✅ Mentor other developers in your organization</li>
+                                <li>✅ <strong>Goal:</strong> Become a Clodo Framework expert and contributor</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Cost & Licensing</h3>
+
+                            <h4>Framework Licensing</h4>
+                            <ul>
+                                <li><strong>License:</strong> MIT (free and open source)</li>
+                                <li><strong>Usage:</strong> Commercial and personal use allowed</li>
+                                <li><strong>Support:</strong> Community-driven via GitHub</li>
+                                <li><strong>Cost:</strong> $0 (framework itself)</li>
+                            </ul>
+
+                            <h4>Cloudflare Services Pricing</h4>
+                            <p>The framework is free, but Cloudflare charges for the services you deploy:</p>
+                            <ul>
+                                <li><strong>Workers:</strong> $0.30 per million requests (first 10 million free/month)</li>
+                                <li><strong>D1 Database:</strong> $0.75 per GB stored + $1.25 per million queries</li>
+                                <li><strong>KV Storage:</strong> $0.50 per million operations</li>
+                                <li><strong>R2 Storage:</strong> $0.015 per GB stored</li>
+                                <li><strong>Domains:</strong> Standard Cloudflare pricing varies by plan</li>
+                            </ul>
+
+                            <h4>Cost Optimization Tips</h4>
+                            <ul>
+                                <li>Start with Cloudflare's free tier for development and testing</li>
+                                <li>Use KV for caching to reduce D1 database queries</li>
+                                <li>Optimize cold starts by monitoring performance metrics</li>
+                                <li>Use appropriate caching strategies for static content</li>
+                                <li>Monitor usage regularly and set up billing alerts</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>CI/CD Integration</h3>
+                            <p>Integrate Clodo Framework into your continuous integration and deployment pipelines:</p>
+
+                            <h4>GitHub Actions Example</h4>
+                            <pre><code>name: Deploy Clodo Service
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Clodo Framework
+        run: npm install -g @tamyla/clodo-framework
+      
+      - name: Validate Service
+        run: npx clodo-service validate
+      
+      - name: Deploy to Staging
+        run: npx clodo-service deploy --environment staging
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      
+      - name: Run Integration Tests
+        run: npm test
+      
+      - name: Deploy to Production
+        if: success()
+        run: npx clodo-service deploy --environment production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}</code></pre>
+
+                            <h4>GitLab CI Example</h4>
+                            <pre><code>stages:
+  - validate
+  - deploy-staging
+  - deploy-production
+
+validate:
+  stage: validate
+  image: node:18
+  script:
+    - npm install -g @tamyla/clodo-framework
+    - npx clodo-service validate
+
+deploy-staging:
+  stage: deploy-staging
+  image: node:18
+  script:
+    - npm install -g @tamyla/clodo-framework
+    - npx clodo-service deploy --environment staging
+  environment:
+    name: staging
+
+deploy-production:
+  stage: deploy-production
+  image: node:18
+  script:
+    - npm install -g @tamyla/clodo-framework
+    - npx clodo-service deploy --environment production
+  environment:
+    name: production
+  when: manual</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Framework Integrations</h3>
+                            <p>Use Clodo Framework services with popular web frameworks:</p>
+
+                            <h4>Next.js Integration</h4>
+                            <pre><code>// Use Clodo service as API backend
+import { Clodo } from '@tamyla/clodo-framework';
+
+export async function getServerSideProps() {
+  // Call your Clodo service from Next.js
+  const response = await fetch('https://your-domain.com/api/data');
+  const data = await response.json();
+  
+  return { props: { data } };
+}</code></pre>
+
+                            <h4>Remix Integration</h4>
+                            <pre><code>// Deploy Clodo services alongside Remix
+import { json } from '@remix-run/cloudflare';
+
+export async function loader({ context }) {
+  // Access Clodo service
+  const response = await context.env.SERVICES.yourService.call('api/data');
+  return json(response);
+}</code></pre>
+
+                            <h4>Astro Integration</h4>
+                            <pre><code>// Use Clodo content service for Astro
+---
+import { Clodo } from '@tamyla/clodo-framework';
+
+const data = await Clodo.getContent({
+  service: 'content-service',
+  path: '/blog'
+});
+---
+
+{data.map(item => (
+  <article>{item.title}</article>
+))}</code></pre>
+
+                            <h4>SvelteKit Integration</h4>
+                            <pre><code>// Call Clodo services from SvelteKit endpoints
+export async function POST({ request }) {
+  const data = await request.json();
+  
+  const response = await fetch('https://your-api.com/api/items', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  });
+  
+  return response;
+}</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Community & Support</h3>
+
+                            <h4>Getting Help</h4>
+                            <ul>
+                                <li><strong>📖 Documentation:</strong> This guide + generated service READMEs + API docs</li>
+                                <li><strong>🐛 GitHub Issues:</strong> Report bugs and request features</li>
+                                <li><strong>💬 GitHub Discussions:</strong> Ask questions and share ideas</li>
+                                <li><strong>📧 Email Support:</strong> Enterprise support inquiries</li>
+                                <li><strong>🔗 Community Forums:</strong> Connect with other developers</li>
+                            </ul>
+
+                            <h4>Contributing</h4>
+                            <ul>
+                                <li><strong>Code:</strong> Submit PRs for bug fixes and features</li>
+                                <li><strong>Documentation:</strong> Improve guides and examples</li>
+                                <li><strong>Templates:</strong> Share custom service templates</li>
+                                <li><strong>Testing:</strong> Add test cases and integration tests</li>
+                                <li><strong>Translations:</strong> Help translate documentation</li>
+                            </ul>
+
+                            <h4>Code of Conduct</h4>
+                            <p>We maintain a welcoming, inclusive community. All contributors are expected to follow our Code of Conduct. Be respectful, constructive, and supportive in all interactions.</p>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>API Reference</h3>
+
+                            <h4>Public Exports</h4>
+                            <ul>
+                                <li><strong>@tamyla/clodo-framework</strong> - Simple API (recommended for most use cases)</li>
+                                <li><strong>@tamyla/clodo-framework/service-management</strong> - Service creation and management</li>
+                                <li><strong>@tamyla/clodo-framework/orchestration</strong> - Multi-domain management</li>
+                                <li><strong>@tamyla/clodo-framework/deployment</strong> - Deployment utilities</li>
+                                <li><strong>@tamyla/clodo-framework/security</strong> - Security components</li>
+                                <li><strong>@tamyla/clodo-framework/config</strong> - Configuration management</li>
+                            </ul>
+
+                            <h4>Simple API Methods</h4>
+                            <pre><code>import { Clodo } from '@tamyla/clodo-framework';
+
+// Create a new service
+await Clodo.createService({
+  name: 'my-service',
+  type: 'data-service',
+  domain: 'api.example.com'
+});
+
+// Deploy a service
+await Clodo.deploy({
+  servicePath: './my-service',
+  environment: 'production'
+});
+
+// Validate service configuration
+await Clodo.validate({
+  servicePath: './my-service'
+});
+
+// Get framework information
+const info = Clodo.getInfo();</code></pre>
+
+                            <h4>Advanced API</h4>
+                            <pre><code>import { ServiceOrchestrator } from '@tamyla/clodo-framework/service-management';
+import { MultiDomainOrchestrator } from '@tamyla/clodo-framework/orchestration';
+
+// Advanced orchestration for complex architectures
+const orchestrator = new MultiDomainOrchestrator();
+await orchestrator.deployMultiple([
+  { path: './api', domain: 'api.example.com' },
+  { path: './auth', domain: 'auth.example.com' }
+]);</code></pre>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>Best Practices</h3>
+
+                            <h4>For Teams</h4>
+                            <ul>
+                                <li>✅ Use consistent naming conventions across all services</li>
+                                <li>✅ Leverage environment-specific configurations for consistency</li>
+                                <li>✅ Run validation in CI/CD pipelines before deployment</li>
+                                <li>✅ Document customizations and deviations from defaults</li>
+                                <li>✅ Share service templates for common patterns</li>
+                                <li>✅ Establish code review processes for generated code customizations</li>
+                            </ul>
+
+                            <h4>For Production Deployments</h4>
+                            <ul>
+                                <li>✅ Always run <code>npx clodo-service validate</code> before deployment</li>
+                                <li>✅ Use staging environments for testing before production</li>
+                                <li>✅ Monitor deployed services health continuously</li>
+                                <li>✅ Keep framework and dependencies updated regularly</li>
+                                <li>✅ Set up automated rollback procedures</li>
+                                <li>✅ Document any manual configuration changes</li>
+                            </ul>
+
+                            <h4>For Development</h4>
+                            <ul>
+                                <li>✅ Start with <code>npx clodo-service create</code> for quick setup</li>
+                                <li>✅ Use local development environment for testing</li>
+                                <li>✅ Test services individually before orchestration</li>
+                                <li>✅ Leverage auto-generated documentation</li>
+                                <li>✅ Customize incrementally, don't rewrite</li>
+                                <li>✅ Keep custom and generated code clearly separated</li>
+                            </ul>
+
+                            <h4>For Security</h4>
+                            <ul>
+                                <li>✅ Never commit API tokens or secrets to version control</li>
+                                <li>✅ Use environment variables for all sensitive data</li>
+                                <li>✅ Enable authentication on all services</li>
+                                <li>✅ Validate all input with schema validation</li>
+                                <li>✅ Use HTTPS for all external communications</li>
+                                <li>✅ Regularly audit access logs and permissions</li>
+                            </ul>
+                        </div>
+
+                        <div class="building-block">
+                            <h3>What's Next?</h3>
+                            <p>You now have everything you need to build production-grade Cloudflare Workers applications with Clodo Framework. Here's your path forward:</p>
+                            <ul>
+                                <li><strong>Step 1:</strong> Create your first service with <code>npx clodo-service create</code></li>
+                                <li><strong>Step 2:</strong> Deploy it with <code>npx clodo-service deploy</code></li>
+                                <li><strong>Step 3:</strong> Explore the generated code and understand the patterns</li>
+                                <li><strong>Step 4:</strong> Customize it for your business needs</li>
+                                <li><strong>Step 5:</strong> Scale to multiple services with orchestration</li>
+                                <li><strong>Step 6:</strong> Share your experience and help the community grow</li>
+                            </ul>
+                            <p><strong>Remember:</strong> Clodo Framework handles the infrastructure complexity so you can focus on building amazing features. Start simple, scale with confidence, and ship faster than ever before!</p>
+                        </div>
                     </div>
                 </section>
 
