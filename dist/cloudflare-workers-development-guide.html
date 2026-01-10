@@ -2072,9 +2072,15 @@ await orchestrator.deployMultiple([
             button.textContent = '⏳ Sending...';
             button.disabled = true;
             
+            // Convert FormData to JSON object for proper parsing
+            const jsonData = Object.fromEntries(formData.entries());
+            
             const response = await fetch('/download-validator-scripts', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData)
             });
             
             if (response.ok) {
