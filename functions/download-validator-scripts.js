@@ -257,7 +257,7 @@ export async function onRequestPost({ request, env }) {
 
         // Derive a simple first name for template personalization
         const rawLocal = email ? email.split('@')[0] : '';
-        const firstName = rawLocal ? rawLocal.split(/[\.\+_\-]/)[0] : '';
+        const firstName = rawLocal ? rawLocal.split(/[-._+]/)[0] : '';
         const firstNameFormatted = firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : '';
 
         let emailPayload;
