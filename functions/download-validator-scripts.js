@@ -135,7 +135,21 @@ export async function onRequestPost({ request, env }) {
         // ===== GENERATE DOWNLOAD TOKEN =====
         // Time-limited token (24 hours, prevents infinite sharing)
         const token = generateDownloadToken(email, env);
-        const downloadUrl = `${getBaseUrl(request)}/download/scripts?token=${token}`;
+        const tokenEncoded = encodeURIComponent(token);
+        const downloadUrl = `${getBaseUrl(request)}/download/scripts?token=${tokenEncoded}`;
+        console.log('[Download] Generated token (encoded prefix):', (tokenEncoded || '').substring(0, 24) + '...');
+
+        // Store token metadata in KV for revocation and one-time checks (hashed key)
+        try {
+            const kv = env.DOWNLOADS_KV;
+            if (kv) {
+                const tokenKey = `download-token:${simpleHash(token)}`;
+                await kv.put(tokenKey, JSON.stringify({ email, issuedAt: new Date().toISOString(), expiry: Date.now() + 24 * 60 * 60 * 1000 }), { expirationTtl: 86400 });
+                console.log('[Download] Stored token metadata in KV:', tokenKey);
+            }
+        } catch (err) {
+            console.warn('[Download] Failed to store token in KV:', err);
+        }
 
         // ===== ADD CONTACT TO BREVO (EXACT PATTERN FROM NEWSLETTER) =====
         
@@ -238,13 +252,38 @@ export async function onRequestPost({ request, env }) {
         const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
         const senderName = 'Clodo Framework';
 
-        const emailPayload = {
-            sender: { email: senderEmail, name: senderName },
-            to: [{ email: email, name: 'User' }],
-            subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
-            htmlContent: htmlContent,
-            replyTo: { email: 'support@clodo.dev', name: 'Support' }
-        };
+        const templateId = env.BREVO_TEMPLATE_ID ? parseInt(env.BREVO_TEMPLATE_ID, 10) : null;
+        const useTemplate = !!templateId;
+
+        // Derive a simple first name for template personalization
+        const rawLocal = email ? email.split('@')[0] : '';
+        const firstName = rawLocal ? rawLocal.split(/[\.\+_\-]/)[0] : '';
+        const firstNameFormatted = firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : '';
+
+        let emailPayload;
+        if (useTemplate) {
+            emailPayload = {
+                sender: { email: senderEmail, name: senderName },
+                to: [{ email: email, name: 'User' }],
+                templateId: templateId,
+                params: {
+                    DOWNLOAD_URL: downloadUrl,
+                    DOWNLOAD_TOKEN: tokenEncoded,
+                    CONTACT_EMAIL: email,
+                    FIRSTNAME: firstNameFormatted
+                },
+                replyTo: { email: 'product@clodo.dev', name: 'Support' }
+            };
+            console.log('[Download] Sending via Brevo template:', templateId, 'params:', { DOWNLOAD_TOKEN: (tokenEncoded || '').substring(0,24) + '...', CONTACT_EMAIL: email, FIRSTNAME: firstNameFormatted });
+        } else {
+            emailPayload = {
+                sender: { email: senderEmail, name: senderName },
+                to: [{ email: email, name: 'User' }],
+                subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
+                htmlContent: htmlContent,
+                replyTo: { email: 'product@clodo.dev', name: 'Support' }
+            };
+        }
 
         let emailResponse;
         try {
@@ -312,8 +351,16 @@ export async function onRequestPost({ request, env }) {
             });
         }
 
-        // Log successful download request
-        console.log(`[Download] Request sent to: ${email} | Source: ${source} | Timestamp: ${new Date().toISOString()}`);
+        // Capture and log Brevo response details (messageId, status)
+        let emailRespData = {};
+        try {
+            emailRespData = await emailResponse.json().catch(() => ({}));
+        } catch (e) {
+            emailRespData = {};
+        }
+
+        console.log('[Download] Email send response:', { status: emailResponse.status, data: emailRespData });
+        console.log(`[Download] Request sent to: ${email} | Source: ${source} | TemplateUsed: ${!!useTemplate} | Timestamp: ${new Date().toISOString()}`);
 
         // Store request log for analytics
         await logDownloadRequest(email, source, env);
