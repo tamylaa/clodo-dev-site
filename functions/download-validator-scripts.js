@@ -223,10 +223,14 @@ export async function onRequestPost({ request, env }) {
         // ===== SEND EMAIL WITH DOWNLOAD LINK =====
         
         const htmlContent = generateEmailTemplate(downloadUrl, email);
+        
+        // Use configured sender email or default
+        const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
+        const senderName = 'Clodo Framework';
 
         const emailPayload = {
             to: [{ email: email, name: 'User' }],
-            from: { email: 'downloads@clodo.dev', name: 'Clodo Framework' },
+            from: { email: senderEmail, name: senderName },
             subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
             htmlContent: htmlContent,
             replyTo: { email: 'support@clodo.dev', name: 'Support' }
@@ -272,6 +276,7 @@ export async function onRequestPost({ request, env }) {
         if (!emailResponse.ok) {
             const emailErrorData = await emailResponse.text().catch(() => '');
             console.error('[Download] Brevo email API error:', emailResponse.status, emailErrorData);
+            console.error('[Download] Email payload was:', JSON.stringify(emailPayload));
             
             if (isNoScript) {
                 return new Response(null, {
@@ -284,7 +289,8 @@ export async function onRequestPost({ request, env }) {
 
             return new Response(JSON.stringify({
                 error: 'Failed to send email. Please try again.',
-                code: 'EMAIL_SEND_FAILED'
+                code: 'EMAIL_SEND_FAILED',
+                details: process.env.ENVIRONMENT === 'development' ? emailErrorData : undefined
             }), {
                 status: emailResponse.status >= 500 ? 503 : 400,
                 headers: {
