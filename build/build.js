@@ -1149,6 +1149,27 @@ function copyAssets() {
         }
     }
 
+    // Copy downloads directory (contains validator-scripts.zip) if present at repo root
+    const downloadsSrc = join('downloads');
+    const downloadsDest = join('dist', 'downloads');
+    if (existsSync(downloadsSrc)) {
+        mkdirSync(downloadsDest, { recursive: true });
+        for (const entry of readdirSync(downloadsSrc)) {
+            const srcPath = join(downloadsSrc, entry);
+            const destPath = join(downloadsDest, entry);
+            const stat = statSync(srcPath);
+            if (stat.isDirectory()) {
+                mkdirSync(destPath, { recursive: true });
+                for (const sub of readdirSync(srcPath)) {
+                    copyFileSync(join(srcPath, sub), join(destPath, sub));
+                }
+            } else {
+                copyFileSync(srcPath, destPath);
+            }
+        }
+        console.log('[ASSETS] Copied downloads/ to dist/downloads/');
+    }
+
     // Copy config JSON files (announcements.json, etc.)
     const configSrc = join('config');
     const configDest = join('dist', 'config');
