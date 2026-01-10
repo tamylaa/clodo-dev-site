@@ -239,8 +239,8 @@ export async function onRequestPost({ request, env }) {
         const senderName = 'Clodo Framework';
 
         const emailPayload = {
+            sender: { email: senderEmail, name: senderName },
             to: [{ email: email, name: 'User' }],
-            from: { email: senderEmail, name: senderName },
             subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
             htmlContent: htmlContent,
             replyTo: { email: 'support@clodo.dev', name: 'Support' }
@@ -300,7 +300,7 @@ export async function onRequestPost({ request, env }) {
             return new Response(JSON.stringify({
                 error: 'Failed to send email. Please try again.',
                 code: 'EMAIL_SEND_FAILED',
-                details: process.env.ENVIRONMENT === 'development' ? emailErrorData : undefined
+                details: env.ENVIRONMENT === 'development' ? emailErrorData : undefined
             }), {
                 status: emailResponse.status >= 500 ? 503 : 400,
                 headers: {
