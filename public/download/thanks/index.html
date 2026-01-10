@@ -4,381 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✅ Download Confirmed - Validator Scripts</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 16px;
-            opacity: 0.95;
-        }
-        
-        .content {
-            padding: 40px 30px;
-        }
-        
-        .success-box {
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 30px;
-        }
-        
-        .success-box strong {
-            color: #667eea;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        h2 {
-            color: #667eea;
-            margin: 30px 0 15px 0;
-            font-size: 20px;
-        }
-        
-        .steps {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .step {
-            display: flex;
-            margin-bottom: 15px;
-        }
-        
-        .step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            margin-right: 15px;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-content strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #333;
-        }
-        
-        .step-content p {
-            color: #666;
-            font-size: 14px;
-            margin: 0;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .feature {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .feature-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-        
-        .feature-title {
-            font-weight: bold;
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-        
-        .feature-desc {
-            color: #666;
-            font-size: 12px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .secondary-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 14px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            border: 2px solid #667eea;
-            text-align: center;
-            width: 100%;
-            transition: all 0.2s;
-            box-sizing: border-box;
-        }
-        
-        .secondary-button:hover {
-            background: #f0f7ff;
-        }
-        
-        .buttons {
-            margin-bottom: 30px;
-        }
-        
-        .bonus-section {
-            background: #fff3e0;
-            border: 2px solid #ffb74d;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .bonus-section h3 {
-            color: #f57c00;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        .bonus-section ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .bonus-section li {
-            padding: 8px 0;
-            color: #666;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .bonus-section li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #f57c00;
-            font-weight: bold;
-        }
-        
-        .bonus-section a {
-            color: #f57c00;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .bonus-section a:hover {
-            text-decoration: underline;
-        }
-        
-        .footer {
-            background: #f9f9f9;
-            padding: 20px 30px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 13px;
-            color: #666;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 600px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            h2 {
-                font-size: 18px;
-            }
-        }
-    </style>
+    <meta name="description" content="Your validator scripts download has been confirmed. Check your email for the secure download link.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.clodo.dev/download/thanks/">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>✅ Check Your Email!</h1>
-            <p>Your validator scripts are on their way</p>
-        </div>
-        
-        <div class="content">
-            <div class="success-box">
-                <strong>📧 Email arriving in 1-5 minutes</strong>
-                <p>We've sent your download link to your email address. Check your inbox (and spam folder just in case).</p>
+    <header><!--#include file="../templates/nav-main.html" --></header>
+
+    <main id="main-content" class="page-content">
+        <section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 0; text-align: center;">
+            <div class="container">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">✅ Download Confirmed</h1>
+                <p style="font-size: 1.25rem; opacity: 0.95;">Your validator scripts are ready for download</p>
             </div>
-            
-            <h2>📥 What to Expect</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <strong>Receive Email</strong>
-                        <p>Look for message from <code>products@clodo.dev</code></p>
+        </section>
+
+        <section class="content-section" style="padding: 60px 0;">
+            <div class="container">
+                <div class="success-message" style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                    <div class="success-header" style="background: #f0f7ff; border-left: 4px solid #667eea; padding: 30px;">
+                        <h2 style="color: #667eea; margin: 0; font-size: 1.5rem;">🎉 Check Your Email!</h2>
+                        <p style="margin: 10px 0 0 0; color: #333;">We've sent your secure download link to the email address you provided.</p>
+                    </div>
+
+                    <div class="success-content" style="padding: 30px;">
+                        <div class="alert alert-info" style="background: #e6f3ff; border: 1px solid #b3d9ff; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                            <strong style="color: #0066cc;">Important:</strong> The download link will expire in 24 hours for security reasons. If you don't see the email, please check your spam folder.
+                        </div>
+
+                        <h3 style="color: #333; margin-bottom: 20px;">What happens next?</h3>
+
+                        <div class="steps" style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
+                            <div class="step" style="display: flex; margin-bottom: 20px; align-items: flex-start;">
+                                <div class="step-number" style="background: #667eea; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; margin-right: 15px; font-size: 16px;">1</div>
+                                <div class="step-content">
+                                    <strong>Check your email</strong> for a message from Clodo Framework with the subject "Your Validator Scripts Download"
+                                </div>
+                            </div>
+
+                            <div class="step" style="display: flex; margin-bottom: 20px; align-items: flex-start;">
+                                <div class="step-number" style="background: #667eea; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; margin-right: 15px; font-size: 16px;">2</div>
+                                <div class="step-content">
+                                    <strong>Click the download link</strong> in the email (valid for 24 hours)
+                                </div>
+                            </div>
+
+                            <div class="step" style="display: flex; align-items: flex-start;">
+                                <div class="step-number" style="background: #667eea; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; margin-right: 15px; font-size: 16px;">3</div>
+                                <div class="step-content">
+                                    <strong>Extract and use</strong> the validator scripts in your Cloudflare Workers projects
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="actions" style="text-align: center; padding-top: 20px; border-top: 1px solid #eee;">
+                            <p style="margin-bottom: 20px; color: #666;">Didn't receive the email? <a href="/download" style="color: #667eea; text-decoration: none;">Try again</a></p>
+                            <a href="/" class="btn btn-primary" style="background: #667eea; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 500;">Return to Homepage</a>
+                        </div>
                     </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <strong>Click Download Link</strong>
-                        <p>Your link is valid for 24 hours from now</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <strong>Extract & Run</strong>
-                        <p>Unzip and run: <code>npm start</code></p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <strong>Review Results</strong>
-                        <p>See detailed validation report + recommendations</p>
-                    </div>
-                </div>
             </div>
-            
-            <h2>📦 What's Included</h2>
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">✅</div>
-                    <div class="feature-title">Code Validator</div>
-                    <div class="feature-desc">All 43 examples verified</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📋</div>
-                    <div class="feature-title">Publication Check</div>
-                    <div class="feature-desc">8 sections validated</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔗</div>
-                    <div class="feature-title">Link Verification</div>
-                    <div class="feature-desc">2,207 links checked</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📚</div>
-                    <div class="feature-title">README Guide</div>
-                    <div class="feature-desc">Full documentation</div>
-                </div>
-            </div>
-            
-            <div class="bonus-section">
-                <h3>🎁 Bonus Content</h3>
-                <ul>
-                    <li><a href="https://www.clodo.dev/cloudflare-workers-development-guide">Full Guide</a> - Complete Cloudflare Workers reference</li>
-                    <li><a href="https://www.clodo.dev/cloudflare-workers-development-guide#best-practices">Best Practices</a> - Expert recommendations</li>
-                    <li><a href="https://www.clodo.dev/cloudflare-workers-development-guide#faq">FAQ Section</a> - Answers to common questions</li>
-                    <li><a href="https://www.clodo.dev">Clodo Framework</a> - Learn more about our framework</li>
-                </ul>
-            </div>
-            
-            <div class="buttons">
-                <a href="https://www.clodo.dev/cloudflare-workers-development-guide" class="cta-button">
-                    📖 View Full Guide
-                </a>
-                <a href="https://www.clodo.dev" class="secondary-button">
-                    🏠 Back to Clodo Framework
-                </a>
-            </div>
-            
-            <div class="bonus-section" style="background: #e8f5e9; border-color: #4caf50;">
-                <h3 style="color: #2e7d32;">💡 Pro Tips</h3>
-                <ul style="color: #2e7d32;">
-                    <li>Run validators regularly to maintain code quality</li>
-                    <li>Share results with your team via GitHub/email</li>
-                    <li>Customize validators for your own projects</li>
-                    <li>Check out the README for advanced usage options</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>
-                Questions? Reply to the email or visit
-                <a href="https://www.clodo.dev">Clodo Framework</a>
-            </p>
-            <p style="margin-top: 10px; color: #999;">
-                Link expires in 24 hours. You'll need to request a new one if it expires.
-            </p>
-            <p style="margin-top: 10px;">
-                <a href="https://www.clodo.dev/privacy">Privacy Policy</a> •
-                <a href="https://www.clodo.dev/unsubscribe">Unsubscribe</a>
-            </p>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <!--#include file="../templates/footer.html" -->
 </body>
 </html>
