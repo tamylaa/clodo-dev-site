@@ -20,23 +20,24 @@ export async function onRequestGet({ request, env }) {
     try {
         const url = new URL(request.url);
         const token = url.searchParams.get('token');
+        console.log('[Download] Delivery token received (prefix):', token ? token.substring(0, 24) + '...' : 'missing');
 
         if (!token) {
             return sendErrorPage('Missing download token', 400);
         }
 
         // Validate token format and expiry
-        const tokenData = validateDownloadToken(token, env);
+        const tokenData = await validateDownloadToken(token, env);
         if (!tokenData) {
             return sendErrorPage('Invalid or expired download link. Please request a new one.', 400);
         }
 
         const { email } = tokenData;
 
-        // Check if token already used (one-time use)
+        // Check if token already used (one-time use) — use hashed key to avoid special chars
         const kv = env.DOWNLOADS_KV;
         if (kv) {
-            const usedKey = `download-used:${token}`;
+            const usedKey = `download-used:${generateTokenHash(token)}`;
             const alreadyUsed = await kv.get(usedKey);
 
             if (alreadyUsed) {
@@ -48,7 +49,7 @@ export async function onRequestGet({ request, env }) {
         }
 
         // Get or generate ZIP file
-        const zipBuffer = await getValidatorScriptsZip(env);
+        const zipBuffer = await getValidatorScriptsZip(env, request);
 
         // Log successful download
         console.log(`[Download] Delivered to: ${email} | Timestamp: ${new Date().toISOString()}`);
@@ -63,12 +64,13 @@ export async function onRequestGet({ request, env }) {
         }
 
         // Send ZIP file
+        const contentLength = zipBuffer && (zipBuffer.byteLength || zipBuffer.length || 0);
         return new Response(zipBuffer, {
             status: 200,
             headers: {
                 'Content-Type': 'application/zip',
                 'Content-Disposition': 'attachment; filename="clodo-validator-scripts.zip"',
-                'Content-Length': zipBuffer.length,
+                'Content-Length': String(contentLength),
                 'Cache-Control': 'no-cache, no-store, must-revalidate'
             }
         });
@@ -83,10 +85,16 @@ export async function onRequestGet({ request, env }) {
  * Validate download token
  * Returns { email } if valid, null if invalid/expired
  */
-function validateDownloadToken(token, env) {
+async function validateDownloadToken(token, env) {
     try {
-        // Decode from base64
-        const decoded = atob(token);
+        // Decode from base64 (token is URL-encoded in emails)
+        let decoded;
+        try {
+            decoded = atob(decodeURIComponent(token));
+        } catch (err) {
+            console.error('[Download] Token decode error:', err);
+            return null;
+        }
         const parts = decoded.split(':');
 
         if (parts.length !== 4) {
@@ -105,11 +113,25 @@ function validateDownloadToken(token, env) {
         // Verify hash
         const secret = env.DOWNLOAD_TOKEN_SECRET || 'default-secret-change-me';
         const data = `${email}:${timestamp}:${expiry}`;
-        const expectedHash = simpleHash(`${data}:${secret}`);
+        const expectedHash = generateTokenHash(`${data}:${secret}`);
 
         if (expectedHash !== providedHash) {
             console.warn(`[Download] Hash mismatch for token`);
             return null;
+        }
+
+        // OPTIONAL: Verify token was issued and not revoked by checking KV
+        if (env.DOWNLOADS_KV) {
+            try {
+                const tokenKey = `download-token:${generateTokenHash(token)}`;
+                const exists = await env.DOWNLOADS_KV.get(tokenKey);
+                if (!exists) {
+                    console.warn(`[Download] Token missing in KV (may be revoked): ${tokenKey}`);
+                    return null;
+                }
+            } catch (err) {
+                console.warn('[Download] KV check error:', err);
+            }
         }
 
         return { email, timestamp, expiry: expiryTime };
@@ -122,14 +144,17 @@ function validateDownloadToken(token, env) {
 /**
  * Simple hash function (matches generator)
  */
-function simpleHash(str) {
-    let hash = 0;
+/**
+ * Generate hash for token integrity
+ * Uses djb2 algorithm with proper 32-bit handling
+ */
+function generateTokenHash(str) {
+    let hash = 5381; // djb2 starting value
     for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+        hash = hash >>> 0; // Convert to unsigned 32-bit
     }
-    return Math.abs(hash).toString(16);
+    return hash.toString(16).padStart(8, '0');
 }
 
 /**
@@ -142,33 +167,31 @@ function simpleHash(str) {
  * 
  * For now, we'll use on-demand generation with caching.
  */
-async function getValidatorScriptsZip(env) {
-    // Option 1: Check R2 bucket first (if configured)
-    if (env.DOWNLOADS_R2) {
-        try {
-            const cached = await env.DOWNLOADS_R2.get('validator-scripts.zip');
-            if (cached) {
-                console.log('[Download] Serving from R2 cache');
-                return await cached.arrayBuffer();
-            }
-        } catch (error) {
-            console.warn('[Download] R2 cache miss:', error);
+async function getValidatorScriptsZip(env, request) {
+    // Static-only approach: fetch a static ZIP from the site at /downloads/validator-scripts.zip
+    // (R2 support removed - we serve the uploaded static asset instead)
+
+    // Option 2: Try to fetch a static ZIP from the same site (uploads into repository at /downloads/validator-scripts.zip)
+    try {
+        const url = new URL(request.url);
+        const staticUrl = `${url.protocol}//${url.host}/downloads/validator-scripts.zip`;
+        console.log('[Download] Attempting to fetch static ZIP from:', staticUrl);
+        const resp = await fetch(staticUrl);
+        if (resp && resp.ok) {
+            console.log('[Download] Serving ZIP from static site asset');
+            return await resp.arrayBuffer();
+        } else {
+            console.warn('[Download] Static ZIP fetch failed:', resp && resp.status);
         }
+    } catch (err) {
+        console.warn('[Download] Static ZIP fetch error:', err);
     }
 
-    // Option 2: Generate ZIP on-demand
+    // Option 3: Generate ZIP on-demand (fallback)
     console.log('[Download] Generating ZIP on-demand');
     const zipBuffer = await generateValidatorScriptsZip(env);
 
-    // Cache to R2 if available
-    if (env.DOWNLOADS_R2) {
-        try {
-            await env.DOWNLOADS_R2.put('validator-scripts.zip', zipBuffer);
-            console.log('[Download] Cached ZIP to R2');
-        } catch (error) {
-            console.warn('[Download] Failed to cache to R2:', error);
-        }
-    }
+    // No R2 caching in static-only approach
 
     return zipBuffer;
 }
