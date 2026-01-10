@@ -37,7 +37,7 @@ export async function onRequestGet({ request, env }) {
         // Check if token already used (one-time use) — use hashed key to avoid special chars
         const kv = env.DOWNLOADS_KV;
         if (kv) {
-            const usedKey = `download-used:${simpleHash(token)}`;
+            const usedKey = `download-used:${generateTokenHash(token)}`;
             const alreadyUsed = await kv.get(usedKey);
 
             if (alreadyUsed) {
@@ -113,7 +113,7 @@ async function validateDownloadToken(token, env) {
         // Verify hash
         const secret = env.DOWNLOAD_TOKEN_SECRET || 'default-secret-change-me';
         const data = `${email}:${timestamp}:${expiry}`;
-        const expectedHash = simpleHash(`${data}:${secret}`);
+        const expectedHash = generateTokenHash(`${data}:${secret}`);
 
         if (expectedHash !== providedHash) {
             console.warn(`[Download] Hash mismatch for token`);
@@ -123,7 +123,7 @@ async function validateDownloadToken(token, env) {
         // OPTIONAL: Verify token was issued and not revoked by checking KV
         if (env.DOWNLOADS_KV) {
             try {
-                const tokenKey = `download-token:${simpleHash(token)}`;
+                const tokenKey = `download-token:${generateTokenHash(token)}`;
                 const exists = await env.DOWNLOADS_KV.get(tokenKey);
                 if (!exists) {
                     console.warn(`[Download] Token missing in KV (may be revoked): ${tokenKey}`);
@@ -144,14 +144,17 @@ async function validateDownloadToken(token, env) {
 /**
  * Simple hash function (matches generator)
  */
-function simpleHash(str) {
-    let hash = 0;
+/**
+ * Generate hash for token integrity
+ * Uses djb2 algorithm with proper 32-bit handling
+ */
+function generateTokenHash(str) {
+    let hash = 5381; // djb2 starting value
     for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+        hash = hash >>> 0; // Convert to unsigned 32-bit
     }
-    return Math.abs(hash).toString(16);
+    return hash.toString(16).padStart(8, '0');
 }
 
 /**
