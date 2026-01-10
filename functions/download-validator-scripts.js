@@ -146,7 +146,7 @@ export async function onRequestPost({ request, env }) {
         try {
             const kv = env.DOWNLOADS_KV;
             if (kv) {
-                const tokenKey = `download-token:${simpleHash(token)}`;
+                const tokenKey = `download-token:${generateTokenHash(token)}`;
                 await kv.put(tokenKey, JSON.stringify({ email, issuedAt: new Date().toISOString(), expiry: Date.now() + 24 * 60 * 60 * 1000 }), { expirationTtl: 86400 });
                 console.log('[Download] Stored token metadata in KV:', tokenKey);
             }
@@ -551,25 +551,24 @@ function generateDownloadToken(email, env) {
     const data = `${email}:${timestamp}:${expiryTime}`;
     const secret = env.DOWNLOAD_TOKEN_SECRET || 'default-secret-change-me';
     
-    // Simple hash (HMAC-like)
-    const hash = simpleHash(`${data}:${secret}`);
+    // Generate hash for integrity
+    const hash = generateTokenHash(`${data}:${secret}`);
     const token = btoa(`${data}:${hash}`);
 
     return token;
 }
 
 /**
- * Simple hash function for token validation
- * In production, consider using crypto.subtle.sign for HMAC-SHA256
+ * Generate hash for token integrity
+ * Uses djb2 algorithm with proper 32-bit handling
  */
-function simpleHash(str) {
-    let hash = 0;
+function generateTokenHash(str) {
+    let hash = 5381; // djb2 starting value
     for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+        hash = hash >>> 0; // Convert to unsigned 32-bit
     }
-    return Math.abs(hash).toString(16);
+    return hash.toString(16).padStart(8, '0');
 }
 
 /**
