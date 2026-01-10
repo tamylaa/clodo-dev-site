@@ -245,9 +245,6 @@ export async function onRequestPost({ request, env }) {
         }
 
         // ===== SEND EMAIL WITH DOWNLOAD LINK =====
-        
-        const htmlContent = generateEmailTemplate(downloadUrl, email);
-        
         // Use configured sender email or default
         const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
         const senderName = 'Clodo Framework';
@@ -255,35 +252,152 @@ export async function onRequestPost({ request, env }) {
         const templateId = env.BREVO_TEMPLATE_ID ? parseInt(env.BREVO_TEMPLATE_ID, 10) : null;
         const useTemplate = !!templateId;
 
+        // Require template usage - fail fast if not configured
+        if (!useTemplate) {
+            console.error('[Download] BREVO_TEMPLATE_ID is not configured - template is required');
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/download?error=template_missing'
+                    }
+                });
+            }
+
+            return new Response(JSON.stringify({
+                error: 'Service configuration error: email template not configured',
+                code: 'TEMPLATE_NOT_CONFIGURED'
+            }), {
+                status: 500,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+            });
+        }
+
         // Derive a simple first name for template personalization
         const rawLocal = email ? email.split('@')[0] : '';
         const firstName = rawLocal ? rawLocal.split(/[-._+]/)[0] : '';
         const firstNameFormatted = firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : '';
 
-        let emailPayload;
-        if (useTemplate) {
-            emailPayload = {
-                sender: { email: senderEmail, name: senderName },
-                to: [{ email: email, name: 'User' }],
-                templateId: templateId,
-                params: {
-                    DOWNLOAD_URL: downloadUrl,
-                    DOWNLOAD_TOKEN: tokenEncoded,
-                    CONTACT_EMAIL: email,
-                    FIRSTNAME: firstNameFormatted
-                },
-                replyTo: { email: 'product@clodo.dev', name: 'Support' }
-            };
-            console.log('[Download] Sending via Brevo template:', templateId, 'params:', { DOWNLOAD_TOKEN: (tokenEncoded || '').substring(0,24) + '...', CONTACT_EMAIL: email, FIRSTNAME: firstNameFormatted });
-        } else {
-            emailPayload = {
-                sender: { email: senderEmail, name: senderName },
-                to: [{ email: email, name: 'User' }],
-                subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
-                htmlContent: htmlContent,
-                replyTo: { email: 'product@clodo.dev', name: 'Support' }
-            };
+        // Verify that the Brevo template exists and contains required placeholders
+        try {
+            const templateResp = await fetch(`https://api.brevo.com/v3/smtp/templates/${templateId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'api-key': apiKey
+                }
+            });
+
+            if (!templateResp.ok) {
+                console.error('[Download] Brevo template not found or inaccessible:', templateId, templateResp.status);
+                if (isNoScript) {
+                    return new Response(null, {
+                        status: 303,
+                        headers: {
+                            'Location': '/download?error=template_missing'
+                        }
+                    });
+                }
+
+                const respText = await templateResp.text().catch(() => '');
+                return new Response(JSON.stringify({
+                    error: 'Email template missing or inaccessible in email provider',
+                    code: 'TEMPLATE_MISSING',
+                    details: respText
+                }), {
+                    status: 500,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type'
+                    }
+                });
+            }
+
+            const templateData = await templateResp.json().catch(() => ({}));
+            const templateContent = ((templateData.htmlContent || templateData.html || JSON.stringify(templateData)) + '').toLowerCase();
+            const hasRequiredPlaceholder = templateContent.includes('download_url') || templateContent.includes('download_token');
+
+            if (!hasRequiredPlaceholder) {
+                console.error('[Download] Template is missing required placeholders (DOWNLOAD_URL or DOWNLOAD_TOKEN):', templateId);
+                if (isNoScript) {
+                    return new Response(null, {
+                        status: 303,
+                        headers: {
+                            'Location': '/download?error=template_invalid'
+                        }
+                    });
+                }
+
+                return new Response(JSON.stringify({
+                    error: 'Email template does not contain required placeholders (DOWNLOAD_URL or DOWNLOAD_TOKEN)',
+                    code: 'TEMPLATE_INVALID'
+                }), {
+                    status: 500,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type'
+                    }
+                });
+            }
+
+            console.log('[Download] Brevo template verified:', templateId);
+        } catch (err) {
+            console.error('[Download] Error verifying Brevo template:', err);
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/download?error=template_error'
+                    }
+                });
+            }
+
+            return new Response(JSON.stringify({
+                error: 'Error verifying email template',
+                code: 'TEMPLATE_VERIFY_FAILED'
+            }), {
+                status: 500,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+            });
         }
+
+        // Build template payload (template is required and was verified above)
+        const emailPayload = {
+            sender: { email: senderEmail, name: senderName },
+            to: [{ email: email, name: 'User' }],
+            templateId: templateId,
+            params: {
+                DOWNLOAD_URL: downloadUrl,
+                download_url: downloadUrl,
+                DOWNLOAD_TOKEN: tokenEncoded,
+                download_token: tokenEncoded,
+                CONTACT_EMAIL: email,
+                FIRSTNAME: firstNameFormatted
+            },
+            replyTo: { email: 'product@clodo.dev', name: 'Support' }
+        };
+
+        // Log params (redact token tail) to help Brevo template debugging
+        console.log('[Download] Sending via Brevo template:', templateId, 'params:', {
+            DOWNLOAD_URL: downloadUrl,
+            DOWNLOAD_TOKEN: (tokenEncoded || '').substring(0,24) + '...',
+            CONTACT_EMAIL: email,
+            FIRSTNAME: firstNameFormatted
+        });
 
         let emailResponse;
         try {
@@ -360,7 +474,7 @@ export async function onRequestPost({ request, env }) {
         }
 
         console.log('[Download] Email send response:', { status: emailResponse.status, data: emailRespData });
-        console.log(`[Download] Request sent to: ${email} | Source: ${source} | TemplateUsed: ${!!useTemplate} | Timestamp: ${new Date().toISOString()}`);
+        console.log(`[Download] Request sent to: ${email} | Source: ${source} | TemplateUsed: true | Timestamp: ${new Date().toISOString()}`);
 
         // Store request log for analytics
         await logDownloadRequest(email, source, env);
