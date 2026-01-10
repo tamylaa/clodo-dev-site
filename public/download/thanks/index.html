@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✅ Download Confirmed - Validator Scripts</title>
     <meta name="description" content="Your validator scripts download has been confirmed. Check your email for the secure download link.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://www.clodo.dev/download/thanks/">
+
+    <!-- Enhanced Open Graph for better social sharing -->
+    <meta property="og:title" content="Download Confirmed - Validator Scripts">
+    <meta property="og:description" content="Your validator scripts download has been confirmed. Check your email for the secure download link.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.clodo.dev/download/thanks/">
+
+    <!-- Enhanced Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download Confirmed - Validator Scripts">
+    <meta name="twitter:description" content="Your validator scripts download has been confirmed. Check your email for the secure download link.">
+
+    <!-- CSS Links - Build system will replace these with optimized preload/async loading -->
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header><!--#include file="../templates/nav-main.html" --></header>
@@ -68,5 +87,22 @@
     </main>
 
     <!--#include file="../templates/footer.html" -->
+
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="../js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="../js/announcements-manager.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="../js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="../js/main.js" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="../js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Navigation component for mobile menu -->
+    <script type="module" src="../js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="../js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
 </body>
 </html>
