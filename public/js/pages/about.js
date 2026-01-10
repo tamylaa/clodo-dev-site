@@ -1,0 +1,194 @@
+// About Page Interactive Features
+document.addEventListener('DOMContentLoaded', function() {
+    // Counter animation for metrics dashboard
+    const counterElements = document.querySelectorAll('[data-animate="counter"]');
+
+    const animateCounter = function(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current) + suffix;
+        }, 16);
+    };
+
+    // Intersection Observer for counter animation
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('[data-animate="counter"]');
+                counters.forEach(counter => {
+                    if (!counter.classList.contains('animated')) {
+                        counter.classList.add('animated');
+                        animateCounter(counter);
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe metrics dashboard
+    const metricsDashboard = document.querySelector('.metrics-dashboard');
+    if (metricsDashboard) {
+        observer.observe(metricsDashboard);
+    }
+
+    // Smooth scrolling for table of contents
+    const tocLinks = document.querySelectorAll('.toc-link');
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                const headerOffset = 80; // Account for fixed header
+                const elementPosition = targetElement.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Update URL without triggering scroll
+                history.pushState(null, null, `#${targetId}`);
+            }
+        });
+    });
+
+    // Highlight active section in table of contents
+    const sections = document.querySelectorAll('section[id]');
+    const tocItems = document.querySelectorAll('.toc-item');
+
+    function highlightActiveSection() {
+        const scrollPosition = window.scrollY + 100; // Offset for header
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                tocItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.querySelector('.toc-link').getAttribute('href') === `#${sectionId}`) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Throttle scroll events for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                highlightActiveSection();
+                scrollTimeout = null;
+            }, 10);
+        }
+    });
+
+    // Community card hover effects
+    const communityCards = document.querySelectorAll('.community-card');
+    communityCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Framework pillar animations
+    const pillarCards = document.querySelectorAll('.pillar-card');
+    pillarCards.forEach((card, index) => {
+        // Stagger animation on page load
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+
+    // Step card animations for getting started
+    const stepCards = document.querySelectorAll('.step-card');
+    const stepObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'slideInFromLeft 0.8s ease-out forwards';
+            }
+        });
+    }, { threshold: 0.3 });
+
+    stepCards.forEach(card => {
+        stepObserver.observe(card);
+    });
+
+    // Add CSS animations if not already present
+    if (!document.getElementById('about-page-styles')) {
+        const style = document.createElement('style');
+        style.id = 'about-page-styles';
+        style.textContent = `
+            @keyframes slideInFromLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .toc-item.active .toc-link {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+
+            .community-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .pillar-card {
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Handle URL hash on page load
+    if (window.location.hash) {
+        const targetElement = document.querySelector(window.location.hash);
+        if (targetElement) {
+            setTimeout(() => {
+                const headerOffset = 80;
+                const elementPosition = targetElement.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    }
+});

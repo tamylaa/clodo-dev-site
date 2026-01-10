@@ -7,18 +7,50 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Clodo - Enterprise Cloudflare Framework & Mission</title>
+    <title>About Clodo - Cloudflare Workers Automation & Orchestration Framework</title>
+    <meta name="description" content="Clodo Framework: Open source Cloudflare Workers services automation and orchestration platform empowering Cloudflare developers to deliver top-tier engineering globally.">
+    <meta name="keywords" content="clodo framework, cloudflare workers, automation platform, orchestration, serverless framework, edge computing, cloudflare development, open source framework, developer tools, cloudflare workers automation">
     <link rel="canonical" href="https://www.clodo.dev/about">
-    <meta name="description" content="About Clodo Framework - vision, roadmap, and the story behind building enterprise services on Cloudflare Edge.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Enhanced Hreflang for international SEO -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/about">
+    <link rel="alternate" hreflang="en-GB" href="https://www.clodo.dev/about">
+    <link rel="alternate" hreflang="en-IN" href="https://www.clodo.dev/about">
+    <link rel="alternate" hreflang="en-AU" href="https://www.clodo.dev/about">
+    <link rel="alternate" hreflang="en-DE" href="https://www.clodo.dev/about">
+
+    <!-- CSS Links - Optimized loading for better performance -->
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
     <!-- Page-specific styles deferred (non-critical content) -->
     <link rel="stylesheet" href="css/pages/about.css" media="print" onload="this.media='all'">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
+
+    <!-- Enhanced SEO Meta Tags -->
+    <meta property="og:title" content="About Clodo - Cloudflare Workers Automation & Orchestration Platform">
+    <meta property="og:description" content="Clodo Framework: Open source Cloudflare Workers services automation and orchestration platform empowering Cloudflare developers to deliver top-tier engineering globally.">
+    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://www.clodo.dev/about">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Clodo - Cloudflare Workers Automation & Orchestration Platform">
+    <meta name="twitter:description" content="Clodo Framework: Open source Cloudflare Workers services automation and orchestration platform empowering Cloudflare developers to deliver top-tier engineering globally.">
+    <meta name="twitter:site" content="@clodoframework">
+    <meta name="twitter:creator" content="@clodoframework">
+    <meta name="twitter:label1" content="Reading time">
+    <meta name="twitter:data1" content="8 minutes">
+    <meta property="article:reading_time_minutes" content="8">
+
+    <!-- Reading time and content metadata -->
+    <meta name="author" content="Clodo Framework">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
     <!-- Schema.org AboutPage -->
     <!-- BreadcrumbList Schema -->
@@ -42,22 +74,37 @@
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Democratizing Enterprise Software Development</h1>
-                    <p>Clodo Framework was born from a simple insight: custom software shouldn't cost $200K and take 6 months. What if you could build enterprise-grade SaaS applications in weeks for a fraction of the cost?</p>
+                    <div class="hero-badges">
+                        <span class="hero-badge">🚀 Open Source</span>
+                        <span class="hero-badge">⚡ Cloudflare Workers</span>
+                        <span class="hero-badge">🏢 Enterprise Ready</span>
+                    </div>
+                    <h1>Empowering Cloudflare Developers Worldwide</h1>
+                    <p class="hero-description">Clodo is an open source Cloudflare Workers services development automation and engineering orchestration framework that empowers Cloudflare architects, deployment leaders, and engineers to get the best out of Wrangler capabilities without the excruciating learning curve.</p>
+                    <div class="article-meta">
+                        <span class="article-date">Framework v1.0.0</span>
+                        <span class="article-reading-time">⏱️ 8 min read</span>
+                        <span class="article-level">🎯 All Experience Levels</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="table-of-contents" class="toc-section">
             <div class="container">
-                <h2>Table of Contents</h2>
+                <h2>📋 Table of Contents</h2>
                 <nav class="toc-nav" aria-label="Page navigation">
                     <ul>
                         <li><a href="#vision">Our Mission</a></li>
                         <li><a href="#why-built">The Problem We Solve</a></li>
                         <li><a href="#game-changer">The Game-Changer</a></li>
                         <li><a href="#highlights">Key Highlights</a></li>
+                        <li><a href="#benefits">Who Benefits</a></li>
+                        <li><a href="#framework-pillars">Framework Pillars</a></li>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#comparison">vs Manual Development</a></li>
                         <li><a href="#roadmap">Roadmap</a></li>
+                        <li><a href="#community">Community</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -67,16 +114,18 @@
         <section id="vision">
             <div class="container">
                 <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Our Mission</h2>
-                <p>To make enterprise-grade software development accessible to every business. We believe that powerful, scalable applications shouldn't require enterprise budgets or development teams of dozens.</p>
+                <p>Our mission is to empower Cloudflare developers across the globe to deliver engineering like the top 1% engineers.</p>
                 <p>Clodo Framework transforms the economics of custom software: <strong>10x faster development, 90% cost reduction, enterprise security built-in.</strong></p>
+                <p>We believe that powerful, scalable applications shouldn't require enterprise budgets or development teams of dozens. Through our open source platform, we're making Cloudflare Workers orchestration accessible to every developer, architect, and deployment leader.</p>
             </div>
         </section>
 
         <section id="why-built">
             <div class="container">
                 <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21c0 .5.5 1 1 1h4c.5 0 1-.5 1-1v-1H9v1Z"/><path d="M16 2H8c-1 0-2 .5-2 1.5v13c0 1 .5 1.5 1.5 1.5h9c1 0 1.5-.5 1.5-1.5V3.5c0-1-.5-1.5-1.5-1.5Z"/><path d="M12 6v4"/><path d="M10 8h4"/></svg> The Problem We Solve</h2>
+                <p>Cloudflare Workers promised a revolution in serverless computing, but existing frameworks left developers assembling complex stacks from scratch. Cloudflare architects and deployment leaders struggled to maximize Wrangler's potential while maintaining consistency and performance across services.</p>
                 <p>Traditional custom software development is broken. Small businesses pay $50K-200K for applications that take 3-9 months to build. Startups waste precious time assembling infrastructure instead of building products.</p>
-                <p>Cloudflare Workers promised a better way, but existing frameworks left developers assembling complex stacks from scratch. Clodo Framework changes that equation - providing everything you need for production SaaS applications out of the box.</p>
+                <p>Clodo Framework changes that equation - providing everything you need for production SaaS applications on Cloudflare Edge out of the box.</p>
                 <p><strong>The result: What once cost $180K and took 6 months now ships in 3 weeks for $15K.</strong></p>
             </div>
         </section>
@@ -85,56 +134,31 @@
             <div class="container">
                 <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.26-2c.71-.71.71-2 1-2.5C9 17 9 13.5 9 13.5c0-2 1-3.5 2.5-3.5 2.21 0 4.5 2.79 4.5 5.5 0 1.76-.94 3.5-2.5 4.5-1.79 1.15-4.26 1-4.26 1-.78-.26-2-.74-2-.74s.5-2 .5-3c0-1 .5-1.5 1-2.5-.59-.5-2-.5-2-.5-.21 1-.5 2.5-.5 2.5s-1.5.5-2.5 1.5 1 2.5 1 2.5Z"/></svg> The Game-Changer</h2>
                 <div class="narrative-content">
-                    <p><strong>The Hustle Toolkit for Cloudflare That Every Fortune 500 Behemoth Needs</strong></p>
+                    <p><strong>The Ultimate Toolkit for Cloudflare Workers Orchestration</strong></p>
                     
-                    <p>Enterprises have been waiting since time immemorial to deliver with the nimbleness of a startup without the seven-figure infrastructure bills or the board meetings that spawn more board meetings.</p>
+                    <p>Cloudflare Workers revolutionized serverless computing, but most developers only scratch the surface of Wrangler's capabilities. Architects and deployment leaders know the potential, but struggle to orchestrate complex services at scale.</p>
                     
-                    <p>"Moving at a snail's pace" has become the unofficial motto for how enterprises even scrappy scale-ups behave once they cross that invisible line into manager-centric bureaucracy.</p>
+                    <p>Clodo Framework bridges this gap - transforming Wrangler from a powerful tool into a comprehensive orchestration platform that enables consistent, performance-optimized deployments across your entire Cloudflare infrastructure.</p>
                     
-                    <p>Innovation gets trapped in approval chains. MVPs take quarters, not weekends.</p>
+                    <p>Whether you're a solo developer building your first Worker or an enterprise architect managing hundreds of services, Clodo provides the automation and orchestration layer that makes Cloudflare Workers truly enterprise-ready.</p>
                     
-                    <p>And here's the painful part: developers know it. They complain about it in stand-ups, vent about it in Slack channels, write bitter Medium posts about "legacy architecture" and "technical debt."</p>
-                    
-                    <blockquote>
-                        "We can't ship fast because of the monolith"<br>
-                        "We need to refactor first"<br>
-                        "The infrastructure team is swamped"<br>
-                        "Our tooling wasn't built for this."
-                    </blockquote>
-                    
-                    <p>But here's the uncomfortable truth. Complaining has become easier than changing. They have the talent, the vision, and often the mandate. What they're missing is the intent, agency and autonomy to deliver.</p>
-                    
-                    <p>But what if we smash every damn excuse?</p>
-                    
-                    <h3>Introducing Clodo-Framework (clodo.dev)</h3>
-                    
-                    <p>The Lego Revolution for Serverless is born from our own desperate need to move FAST.</p>
+                    <h3>Built by Developers, for Developers</h3>
                     
                     <p>We didn't build this in a conference room with whiteboards and "strategic alignment." We built it in the trenches, shipping real products on Cloudflare, hitting the same walls you're hitting right now.</p>
                     
-                    <p>And here's what we discovered: The real problem in creative product-building environments isn't your architecture, your team, or even your processes.</p>
+                    <p>And here's what we discovered: The real problem in modern development environments isn't your architecture, your team, or even your processes.</p>
                     
-                    <p>It's the friction tax your tooling imposes on every single decision.</p>
+                    <p>It's the friction tax your tooling imposes on every single deployment.</p>
                     
-                    <p>Every deployment that requires three approvals. Every environment variable that needs a ticket. Every "simple change" that cascades into infrastructure archaeology. That's not engineering but taxation on velocity.</p>
+                    <p>Every environment variable that needs a ticket. Every service dependency that requires manual coordination. Every performance optimization that demands deep Cloudflare expertise.</p>
                     
-                    <p>So we asked a different question:</p>
+                    <p>Clodo Framework exists to obliterate these artificial barriers and hand the full power of Cloudflare Workers back to the builders who craft innovative solutions.</p>
                     
-                    <p><em>What if you could build autonomous, domain-specific services as easily as snapping together Lego bricks?</em></p>
-                    
-                    <p>No permission slips.<br>
-                    No infrastructure theater.<br>
-                    No waiting for Platform Engineering to "unblock" you in Q3.</p>
-                    
-                    <p>Clodo-Framework exists to obliterate the excuses and hand intent, agency, and autonomy back to the builders who craft innovative solutions.</p>
-                    
-                    <h3>We Feel Your Everyday Pain</h3>
-                    
-                    <p>You didn't become a developer to manage Jira tickets and attend alignment meetings but you came with a hunger to build things that matter and ship code that solves real problems.</p>
+                    <h3>Our Promise</h3>
                     
                     <p>Clodo's mission is brutally simple:</p>
                     
-                    <p><strong>Eliminate every artificial barrier between "I have an idea" and "It's running in production"</strong></p>
+                    <p><strong>Eliminate every artificial barrier between "I have a Cloudflare account" and "My services are orchestrating at global scale"</strong></p>
                     
                     <p>Companies winning today aren't the ones with the biggest infrastructure teams. They're the ones where a developer can prototype on Monday and validate with real users by Wednesday.</p>
                     
@@ -151,23 +175,188 @@
                 <div class="highlights-grid">
                     <div class="highlight-card">
                         <div class="highlight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.26-2c.71-.71.71-2 1-2.5C9 17 9 13.5 9 13.5c0-2 1-3.5 2.5-3.5 2.21 0 4.5 2.79 4.5 5.5 0 1.76-.94 3.5-2.5 4.5-1.79 1.15-4.26 1-4.26 1-.78-.26-2-.74-2-.74s.5-2 .5-3c0-1 .5-1.5 1-2.5-.59-.5-2-.5-2-.5-.21 1-.5 2.5-.5 2.5s-1.5.5-2.5 1.5 1 2.5 1 2.5Z"/></svg></div>
-                        <h3>Enterprise Deployment System</h3>
-                        <p>Multi-domain orchestration with automated security checks and production readiness validation.</p>
+                        <h3>Wrangler Optimization</h3>
+                        <p>Maximize Cloudflare Workers performance with automated orchestration, intelligent caching, and optimized deployment pipelines.</p>
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><circle cx="12" cy="16" r="1"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                        <h3>Security-by-Default</h3>
-                        <p>AES-256-CBC encryption, automatic vulnerability detection, and comprehensive validation.</p>
+                        <h3>Enterprise Security</h3>
+                        <p>AES-256-CBC encryption, automatic vulnerability detection, and comprehensive validation built for Cloudflare's global edge network.</p>
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/><line x1="10" x2="10.01" y1="6" y2="6"/><line x1="10" x2="10.01" y1="18" y2="18"/><line x1="14" x2="14.01" y1="6" y2="6"/><line x1="14" x2="14.01" y1="18" y2="18"/><line x1="18" x2="18.01" y1="6" y2="6"/><line x1="18" x2="18.01" y1="18" y2="18"/></svg></div>
-                        <h3>D1 Database Integration</h3>
-                        <p>Seamless Cloudflare D1 integration with migrations, caching, and type-safe queries.</p>
+                        <h3>Service Orchestration</h3>
+                        <p>Seamless integration with Cloudflare D1, R2, KV, and other services with automated dependency management and cross-service communication.</p>
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
-                        <h3>Intelligent Orchestration</h3>
-                        <p>Pre-deployment validation, gap analysis, and automated deployment orchestration.</p>
+                        <h3>Developer Experience</h3>
+                        <p>Intuitive APIs, comprehensive TypeScript support, and automated validation that makes Cloudflare Workers development feel effortless.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits">
+            <div class="container">
+                <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Who Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>Cloudflare Architects</h3>
+                        <p>Design scalable, secure architectures that leverage the full power of Cloudflare's ecosystem. Clodo provides the orchestration layer that turns complex multi-service deployments into manageable, automated workflows.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Deployment Leaders</h3>
+                        <p>Streamline your deployment pipelines with enterprise-grade automation. Ensure consistency, security, and performance across all your Cloudflare Workers while maintaining full control over your infrastructure.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Engineers & Developers</h3>
+                        <p>Focus on building features, not infrastructure. Clodo's developer-friendly APIs and comprehensive tooling let you ship production-ready services faster than ever before.</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 3rem; font-size: 1.1rem; color: var(--text-secondary);">
+                    <strong>Join the open source community</strong> - Clodo Framework is free, MIT-licensed, and built by developers for developers. Contribute, collaborate, and help shape the future of Cloudflare Workers orchestration.
+                </p>
+            </div>
+        </section>
+
+        <section id="framework-pillars">
+            <div class="container">
+                <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> Framework Pillars</h2>
+                <p>Clodo Framework is built on five foundational concepts that work together to eliminate boilerplate and accelerate development:</p>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🔄</div>
+                        <h3>Automation</h3>
+                        <p>Transform requirements into production-ready code automatically. Generate 28+ files including handlers, middleware, tests, and configurations in minutes instead of days.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🎼</div>
+                        <h3>Orchestration</h3>
+                        <p>Manage multi-domain services with automatic dependency management, cross-service communication, and environment consistency across dev/staging/prod.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">⚙️</div>
+                        <h3>Configuration</h3>
+                        <p>Convention over Configuration with sensible defaults for 80% of cases, plus environment-specific overrides and validation to prevent "works on my machine" issues.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">✅</div>
+                        <h3>Validation</h3>
+                        <p>Pre-deploy checks, runtime validation, deployment verification, and continuous monitoring to catch issues before production.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">📏</div>
+                        <h3>Consistency</h3>
+                        <p>Unified patterns across all services with standardized error handling, logging, security standards, and testing frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="getting-started">
+            <div class="container">
+                <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5.26-2c.71-.71.71-2 1-2.5C9 17 9 13.5 9 13.5c0-2 1-3.5 2.5-3.5 2.21 0 4.5 2.79 4.5 5.5 0 1.76-.94 3.5-2.5 4.5-1.79 1.15-4.26 1-4.26 1-.78-.26-2-.74-2-.74s.5-2 .5-3c0-1 .5-1.5 1-2.5-.59-.5-2-.5-2-.5-.21 1-.5 2.5-.5 2.5s-1.5.5-2.5 1.5 1 2.5 1 2.5Z"/></svg> Getting Started</h2>
+                <p>Ready to experience the power of automated Cloudflare Workers development? Get started in minutes:</p>
+
+                <div class="getting-started-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Install Clodo Framework</h3>
+                        <pre><code>npm install -g @tamyla/clodo-framework</code></pre>
+                        <p>Install the framework globally for the best experience.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Create Your First Service</h3>
+                        <pre><code>npx clodo-service create</code></pre>
+                        <p>Follow the interactive prompts to generate your first production-ready service.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Deploy to Cloudflare</h3>
+                        <pre><code>npx clodo-service deploy</code></pre>
+                        <p>Deploy your service to Cloudflare with automated validation and monitoring.</p>
+                    </div>
+                </div>
+
+                <div class="cta-box" style="margin-top: 3rem;">
+                    <h3>Start Building Today</h3>
+                    <p>Join thousands of developers who have accelerated their Cloudflare Workers development with Clodo Framework.</p>
+                    <div class="cta-actions">
+                        <a href="/quick-start" class="btn btn--primary">Quick Start Guide</a>
+                        <a href="/docs" class="btn btn--secondary">View Documentation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <div class="container">
+                <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21c0 .5.5 1 1 1h4c.5 0 1-.5 1-1v-1H9v1Z"/><path d="M16 2H8c-1 0-2 .5-2 1.5v13c0 1 .5 1.5 1.5 1.5h9c1 0 1.5-.5 1.5-1.5V3.5c0-1-.5-1.5-1.5-1.5Z"/><path d="M12 6v4"/><path d="M10 8h4"/></svg> Manual vs Automated Development</h2>
+                <p>See how Clodo Framework transforms the development workflow:</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Manual Development</th>
+                            <th>Clodo Automation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Create API Service</td>
+                            <td>2-3 days</td>
+                            <td>5 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Setup Authentication</td>
+                            <td>1-2 days</td>
+                            <td>Auto-generated</td>
+                        </tr>
+                        <tr>
+                            <td>Database Integration</td>
+                            <td>1 day</td>
+                            <td>Auto-configured</td>
+                        </tr>
+                        <tr>
+                            <td>Deploy to Production</td>
+                            <td>4-6 hours</td>
+                            <td>2 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Setup Monitoring</td>
+                            <td>2-3 days</td>
+                            <td>Auto-instrumented</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="metrics-dashboard" style="margin-top: 3rem;">
+                    <h3>Development Acceleration Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card" data-animate="counter" data-target="80">
+                            <div class="metric-icon">⚡</div>
+                            <div class="metric-value">0%</div>
+                            <div class="metric-label">Faster Development</div>
+                        </div>
+                        <div class="metric-card" data-animate="counter" data-target="95">
+                            <div class="metric-icon">🐛</div>
+                            <div class="metric-value">0%</div>
+                            <div class="metric-label">Fewer Bugs</div>
+                        </div>
+                        <div class="metric-card" data-animate="counter" data-target="99">
+                            <div class="metric-icon">🔒</div>
+                            <div class="metric-value">0%</div>
+                            <div class="metric-label">Security Compliance</div>
+                        </div>
+                        <div class="metric-card" data-animate="counter" data-target="24">
+                            <div class="metric-icon">🚀</div>
+                            <div class="metric-value">0/7</div>
+                            <div class="metric-label">Hours to Launch</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,6 +413,45 @@
             </div>
         </section>
 
+        <section id="community">
+            <div class="container">
+                <h2><svg class="icon-heading" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Community & Support</h2>
+                <p>Join a thriving community of Cloudflare developers building the future of edge computing. Clodo Framework is open source and community-driven.</p>
+
+                <div class="community-grid">
+                    <div class="community-card">
+                        <div class="community-icon">📖</div>
+                        <h3>Documentation</h3>
+                        <p>Comprehensive guides, API references, and tutorials to help you master Clodo Framework.</p>
+                        <a href="/docs" class="community-link">View Docs →</a>
+                    </div>
+                    <div class="community-card">
+                        <div class="community-icon">🐛</div>
+                        <h3>GitHub Issues</h3>
+                        <p>Report bugs, request features, and contribute to the framework's development.</p>
+                        <a href="https://github.com/tamylaa/clodo-framework/issues" target="_blank" class="community-link">Report Issue →</a>
+                    </div>
+                    <div class="community-card">
+                        <div class="community-icon">💬</div>
+                        <h3>GitHub Discussions</h3>
+                        <p>Ask questions, share ideas, and connect with other developers using Clodo.</p>
+                        <a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" class="community-link">Join Discussion →</a>
+                    </div>
+                    <div class="community-card">
+                        <div class="community-icon">🤝</div>
+                        <h3>Contributing</h3>
+                        <p>Help improve Clodo Framework by contributing code, documentation, or community support.</p>
+                        <a href="https://github.com/tamylaa/clodo-framework/blob/main/CONTRIBUTING.md" target="_blank" class="community-link">Contribute →</a>
+                    </div>
+                </div>
+
+                <div class="open-source-notice">
+                    <h3>🎉 Open Source & Free</h3>
+                    <p>Clodo Framework is MIT-licensed and completely free to use. The framework itself costs $0 - you only pay for the Cloudflare services you deploy to. Join us in building the future of Cloudflare Workers orchestration.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <div class="container">
                 <h2>Contact</h2>
@@ -241,15 +469,19 @@
 
     <!-- Defer JavaScript - load after LCP for better performance -->
     <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/announcements-manager.js" defer="" nonce="N0Nc3Cl0d0"></script>
     <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
     <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
-    
+
     <!-- Lazy load below-the-fold CSS to improve LCP -->
     <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
-    
+
     <!-- Navigation component for mobile menu -->
     <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
-    
+
+    <!-- Interactive features for enhanced user experience -->
+    <script src="js/pages/about.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
     <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
     <!-- This replaces Cloudflare auto-injection with optimized manual control -->
     <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
