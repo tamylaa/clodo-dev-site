@@ -25,6 +25,19 @@
 
 export async function onRequestPost({ request, env }) {
     try {
+        // ===== DIAGNOSTIC: Check environment variables =====
+        const templateEnvName = env.BREVO_DOWNLOAD_TEMPLATE_ID ? 'BREVO_DOWNLOAD_TEMPLATE_ID' : (env.BREVO_TEMPLATE_ID ? 'BREVO_TEMPLATE_ID' : null);
+        console.log('[Download] Environment check:', {
+            hasApiKey: !!env.BREVO_API_KEY,
+            hasListId: !!env.BREVO_DOWNLOAD_LIST_ID,
+            hasTokenSecret: !!env.DOWNLOAD_TOKEN_SECRET,
+            hasTemplateId: !!templateEnvName,
+            templateEnv: templateEnvName || 'missing',
+            apiKeyPrefix: env.BREVO_API_KEY ? env.BREVO_API_KEY.substring(0, 10) + '...' : 'missing',
+            listId: env.BREVO_DOWNLOAD_LIST_ID || 'missing',
+            tokenSecretLength: env.DOWNLOAD_TOKEN_SECRET ? env.DOWNLOAD_TOKEN_SECRET.length : 0
+        });
+
         // Parse request body (exact same pattern as newsletter-subscribe.js)
         const contentType = (request.headers.get('content-type') || '').toLowerCase();
         let requestBody = {};
@@ -125,7 +138,21 @@ export async function onRequestPost({ request, env }) {
         // ===== GENERATE DOWNLOAD TOKEN =====
         // Time-limited token (24 hours, prevents infinite sharing)
         const token = generateDownloadToken(email, env);
-        const downloadUrl = `${getBaseUrl(request)}/download/scripts?token=${token}`;
+        const tokenEncoded = encodeURIComponent(token);
+        const downloadUrl = `${getBaseUrl(request)}/download/scripts?token=${tokenEncoded}`;
+        console.log('[Download] Generated token (encoded prefix):', (tokenEncoded || '').substring(0, 24) + '...');
+
+        // Store token metadata in KV for revocation and one-time checks (hashed key)
+        try {
+            const kv = env.DOWNLOADS_KV;
+            if (kv) {
+                const tokenKey = `download-token:${generateTokenHash(token)}`;
+                await kv.put(tokenKey, JSON.stringify({ email, issuedAt: new Date().toISOString(), expiry: Date.now() + 24 * 60 * 60 * 1000 }), { expirationTtl: 86400 });
+                console.log('[Download] Stored token metadata in KV:', tokenKey);
+            }
+        } catch (err) {
+            console.warn('[Download] Failed to store token in KV:', err);
+        }
 
         // ===== ADD CONTACT TO BREVO (EXACT PATTERN FROM NEWSLETTER) =====
         
@@ -221,16 +248,162 @@ export async function onRequestPost({ request, env }) {
         }
 
         // ===== SEND EMAIL WITH DOWNLOAD LINK =====
-        
-        const htmlContent = generateEmailTemplate(downloadUrl, email);
+        // Use configured sender email or default
+        const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
+        const senderName = 'Clodo Framework';
 
+        // Prefer explicit download template env var and fall back to legacy name if present
+        const templateEnvValue = env.BREVO_DOWNLOAD_TEMPLATE_ID || env.BREVO_TEMPLATE_ID || null;
+        const templateEnvInUse = env.BREVO_DOWNLOAD_TEMPLATE_ID ? 'BREVO_DOWNLOAD_TEMPLATE_ID' : (env.BREVO_TEMPLATE_ID ? 'BREVO_TEMPLATE_ID' : null);
+        const templateId = templateEnvValue ? parseInt(templateEnvValue, 10) : null;
+        const useTemplate = !!templateId;
+
+        // Require template usage - fail fast if not configured
+        if (!useTemplate) {
+            console.error('[Download] BREVO_DOWNLOAD_TEMPLATE_ID (or legacy BREVO_TEMPLATE_ID) is not configured - template is required');
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/download?error=template_missing'
+                    }
+                });
+            }
+
+            return new Response(JSON.stringify({
+                error: 'Service configuration error: email template not configured',
+                code: 'TEMPLATE_NOT_CONFIGURED'
+            }), {
+                status: 500,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+            });
+        }
+
+        // Derive a simple first name for template personalization
+        const rawLocal = email ? email.split('@')[0] : '';
+        const firstName = rawLocal ? rawLocal.split(/[-._+]/)[0] : '';
+        const firstNameFormatted = firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : '';
+
+        // Verify that the Brevo template exists and contains required placeholders
+        try {
+            const templateResp = await fetch(`https://api.brevo.com/v3/smtp/templates/${templateId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'api-key': apiKey
+                }
+            });
+
+            if (!templateResp.ok) {
+                console.error('[Download] Brevo template not found or inaccessible:', templateId, templateResp.status);
+                if (isNoScript) {
+                    return new Response(null, {
+                        status: 303,
+                        headers: {
+                            'Location': '/download?error=template_missing'
+                        }
+                    });
+                }
+
+                const respText = await templateResp.text().catch(() => '');
+                return new Response(JSON.stringify({
+                    error: 'Email template missing or inaccessible in email provider',
+                    code: 'TEMPLATE_MISSING',
+                    details: respText
+                }), {
+                    status: 500,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type'
+                    }
+                });
+            }
+
+            const templateData = await templateResp.json().catch(() => ({}));
+            const templateContent = ((templateData.htmlContent || templateData.html || JSON.stringify(templateData)) + '').toLowerCase();
+            const hasRequiredPlaceholder = templateContent.includes('download_url') || templateContent.includes('download_token');
+
+            if (!hasRequiredPlaceholder) {
+                console.error('[Download] Template is missing required placeholders (DOWNLOAD_URL or DOWNLOAD_TOKEN):', templateId);
+                if (isNoScript) {
+                    return new Response(null, {
+                        status: 303,
+                        headers: {
+                            'Location': '/download?error=template_invalid'
+                        }
+                    });
+                }
+
+                return new Response(JSON.stringify({
+                    error: 'Email template does not contain required placeholders (DOWNLOAD_URL or DOWNLOAD_TOKEN)',
+                    code: 'TEMPLATE_INVALID'
+                }), {
+                    status: 500,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type'
+                    }
+                });
+            }
+
+            console.log('[Download] Brevo template verified:', templateId, 'envVar:', templateEnvInUse);
+        } catch (err) {
+            console.error('[Download] Error verifying Brevo template:', err);
+            if (isNoScript) {
+                return new Response(null, {
+                    status: 303,
+                    headers: {
+                        'Location': '/download?error=template_error'
+                    }
+                });
+            }
+
+            return new Response(JSON.stringify({
+                error: 'Error verifying email template',
+                code: 'TEMPLATE_VERIFY_FAILED'
+            }), {
+                status: 500,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+            });
+        }
+
+        // Build template payload (template is required and was verified above)
         const emailPayload = {
+            sender: { email: senderEmail, name: senderName },
             to: [{ email: email, name: 'User' }],
-            from: { email: 'downloads@clodo.dev', name: 'Clodo Framework' },
-            subject: '✅ Download Validator Scripts - Cloudflare Workers Guide',
-            htmlContent: htmlContent,
-            replyTo: { email: 'support@clodo.dev', name: 'Support' }
+            templateId: templateId,
+            params: {
+                DOWNLOAD_URL: downloadUrl,
+                download_url: downloadUrl,
+                DOWNLOAD_TOKEN: tokenEncoded,
+                download_token: tokenEncoded,
+                CONTACT_EMAIL: email,
+                FIRSTNAME: firstNameFormatted
+            },
+            replyTo: { email: 'product@clodo.dev', name: 'Support' }
         };
+
+        // Log params (redact token tail) to help Brevo template debugging
+        console.log('[Download] Sending via Brevo template:', templateId, 'params:', {
+            DOWNLOAD_URL: downloadUrl,
+            DOWNLOAD_TOKEN: (tokenEncoded || '').substring(0,24) + '...',
+            CONTACT_EMAIL: email,
+            FIRSTNAME: firstNameFormatted
+        });
 
         let emailResponse;
         try {
@@ -272,6 +445,7 @@ export async function onRequestPost({ request, env }) {
         if (!emailResponse.ok) {
             const emailErrorData = await emailResponse.text().catch(() => '');
             console.error('[Download] Brevo email API error:', emailResponse.status, emailErrorData);
+            console.error('[Download] Email payload was:', JSON.stringify(emailPayload));
             
             if (isNoScript) {
                 return new Response(null, {
@@ -284,7 +458,8 @@ export async function onRequestPost({ request, env }) {
 
             return new Response(JSON.stringify({
                 error: 'Failed to send email. Please try again.',
-                code: 'EMAIL_SEND_FAILED'
+                code: 'EMAIL_SEND_FAILED',
+                details: env.ENVIRONMENT === 'development' ? emailErrorData : undefined
             }), {
                 status: emailResponse.status >= 500 ? 503 : 400,
                 headers: {
@@ -296,8 +471,16 @@ export async function onRequestPost({ request, env }) {
             });
         }
 
-        // Log successful download request
-        console.log(`[Download] Request sent to: ${email} | Source: ${source} | Timestamp: ${new Date().toISOString()}`);
+        // Capture and log Brevo response details (messageId, status)
+        let emailRespData = {};
+        try {
+            emailRespData = await emailResponse.json().catch(() => ({}));
+        } catch (e) {
+            emailRespData = {};
+        }
+
+        console.log('[Download] Email send response:', { status: emailResponse.status, data: emailRespData });
+        console.log(`[Download] Request sent to: ${email} | Source: ${source} | TemplateUsed: true | Timestamp: ${new Date().toISOString()}`);
 
         // Store request log for analytics
         await logDownloadRequest(email, source, env);
@@ -368,25 +551,24 @@ function generateDownloadToken(email, env) {
     const data = `${email}:${timestamp}:${expiryTime}`;
     const secret = env.DOWNLOAD_TOKEN_SECRET || 'default-secret-change-me';
     
-    // Simple hash (HMAC-like)
-    const hash = simpleHash(`${data}:${secret}`);
+    // Generate hash for integrity
+    const hash = generateTokenHash(`${data}:${secret}`);
     const token = btoa(`${data}:${hash}`);
 
     return token;
 }
 
 /**
- * Simple hash function for token validation
- * In production, consider using crypto.subtle.sign for HMAC-SHA256
+ * Generate hash for token integrity
+ * Uses djb2 algorithm with proper 32-bit handling
  */
-function simpleHash(str) {
-    let hash = 0;
+function generateTokenHash(str) {
+    let hash = 5381; // djb2 starting value
     for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+        hash = hash >>> 0; // Convert to unsigned 32-bit
     }
-    return Math.abs(hash).toString(16);
+    return hash.toString(16).padStart(8, '0');
 }
 
 /**

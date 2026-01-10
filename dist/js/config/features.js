@@ -268,13 +268,12 @@ function getFallback(featureName) {
  * @returns {number} Hash value
  */
 function simpleHash(str) {
-  let hash = 0;
+  let hash = 5381; // djb2 starting value
   for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
+    hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+    hash = hash >>> 0; // Convert to unsigned 32-bit
   }
-  return Math.abs(hash);
+  return hash.toString(16).padStart(8, '0');
 }
 
 /**
