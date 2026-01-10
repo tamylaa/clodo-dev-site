@@ -25,6 +25,16 @@
 
 export async function onRequestPost({ request, env }) {
     try {
+        // ===== DIAGNOSTIC: Check environment variables =====
+        console.log('[Download] Environment check:', {
+            hasApiKey: !!env.BREVO_API_KEY,
+            hasListId: !!env.BREVO_DOWNLOAD_LIST_ID,
+            hasTokenSecret: !!env.DOWNLOAD_TOKEN_SECRET,
+            apiKeyPrefix: env.BREVO_API_KEY ? env.BREVO_API_KEY.substring(0, 10) + '...' : 'missing',
+            listId: env.BREVO_DOWNLOAD_LIST_ID || 'missing',
+            tokenSecretLength: env.DOWNLOAD_TOKEN_SECRET ? env.DOWNLOAD_TOKEN_SECRET.length : 0
+        });
+
         // Parse request body (exact same pattern as newsletter-subscribe.js)
         const contentType = (request.headers.get('content-type') || '').toLowerCase();
         let requestBody = {};
