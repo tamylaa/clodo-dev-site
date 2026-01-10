@@ -26,10 +26,13 @@
 export async function onRequestPost({ request, env }) {
     try {
         // ===== DIAGNOSTIC: Check environment variables =====
+        const templateEnvName = env.BREVO_DOWNLOAD_TEMPLATE_ID ? 'BREVO_DOWNLOAD_TEMPLATE_ID' : (env.BREVO_TEMPLATE_ID ? 'BREVO_TEMPLATE_ID' : null);
         console.log('[Download] Environment check:', {
             hasApiKey: !!env.BREVO_API_KEY,
             hasListId: !!env.BREVO_DOWNLOAD_LIST_ID,
             hasTokenSecret: !!env.DOWNLOAD_TOKEN_SECRET,
+            hasTemplateId: !!templateEnvName,
+            templateEnv: templateEnvName || 'missing',
             apiKeyPrefix: env.BREVO_API_KEY ? env.BREVO_API_KEY.substring(0, 10) + '...' : 'missing',
             listId: env.BREVO_DOWNLOAD_LIST_ID || 'missing',
             tokenSecretLength: env.DOWNLOAD_TOKEN_SECRET ? env.DOWNLOAD_TOKEN_SECRET.length : 0
@@ -249,12 +252,15 @@ export async function onRequestPost({ request, env }) {
         const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
         const senderName = 'Clodo Framework';
 
-        const templateId = env.BREVO_DOWNLOAD_LIST_ID ? parseInt(env.BREVO_DOWNLOAD_LIST_ID, 10) : null;
+        // Prefer explicit download template env var and fall back to legacy name if present
+        const templateEnvValue = env.BREVO_DOWNLOAD_TEMPLATE_ID || env.BREVO_TEMPLATE_ID || null;
+        const templateEnvInUse = env.BREVO_DOWNLOAD_TEMPLATE_ID ? 'BREVO_DOWNLOAD_TEMPLATE_ID' : (env.BREVO_TEMPLATE_ID ? 'BREVO_TEMPLATE_ID' : null);
+        const templateId = templateEnvValue ? parseInt(templateEnvValue, 10) : null;
         const useTemplate = !!templateId;
 
         // Require template usage - fail fast if not configured
         if (!useTemplate) {
-            console.error('[Download] BREVO_DOWNLOAD_LIST_ID is not configured - template is required');
+            console.error('[Download] BREVO_DOWNLOAD_TEMPLATE_ID (or legacy BREVO_TEMPLATE_ID) is not configured - template is required');
             if (isNoScript) {
                 return new Response(null, {
                     status: 303,
@@ -349,7 +355,7 @@ export async function onRequestPost({ request, env }) {
                 });
             }
 
-            console.log('[Download] Brevo template verified:', templateId);
+            console.log('[Download] Brevo template verified:', templateId, 'envVar:', templateEnvInUse);
         } catch (err) {
             console.error('[Download] Error verifying Brevo template:', err);
             if (isNoScript) {
