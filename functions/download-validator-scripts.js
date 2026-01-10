@@ -249,12 +249,12 @@ export async function onRequestPost({ request, env }) {
         const senderEmail = env.BREVO_SENDER_EMAIL || 'product@clodo.dev';
         const senderName = 'Clodo Framework';
 
-        const templateId = env.BREVO_TEMPLATE_ID ? parseInt(env.BREVO_TEMPLATE_ID, 10) : null;
+        const templateId = env.BREVO_DOWNLOAD_LIST_ID ? parseInt(env.BREVO_DOWNLOAD_LIST_ID, 10) : null;
         const useTemplate = !!templateId;
 
         // Require template usage - fail fast if not configured
         if (!useTemplate) {
-            console.error('[Download] BREVO_TEMPLATE_ID is not configured - template is required');
+            console.error('[Download] BREVO_DOWNLOAD_LIST_ID is not configured - template is required');
             if (isNoScript) {
                 return new Response(null, {
                     status: 303,
