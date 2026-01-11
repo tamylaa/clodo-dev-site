@@ -32,7 +32,7 @@
       await navigator.clipboard.writeText(text);
       showToast('Copied to clipboard');
       // analytics hook (no-op if analytics not available)
-      try{ if(window.analytics && typeof window.analytics.track==='function') window.analytics.track('copy_snippet', {page:'product', snippet: selector||'inline'}); }catch(e){}
+      try{ if(window.analytics && typeof window.analytics.track==='function') window.analytics.track('copy_snippet', {page:'product', snippet: selector||'inline'}); }catch(e){ /* ignore analytics errors */ }
     }catch(err){ showToast('Copy failed — select and press Ctrl+C'); }
   }
 

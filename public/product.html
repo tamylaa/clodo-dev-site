@@ -32,6 +32,45 @@
     <meta name="theme-color" content="#0b1220">
     
     <!-- Product Schema with Offers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Clodo Framework",
+      "url": "https://www.clodo.dev/product",
+      "description": "Clodo Framework — deployment orchestration for Cloudflare Workers and D1 with automated Wrangler integration.",
+      "softwareVersion": "4.0.13",
+      "applicationCategory": "DevTool",
+      "author": { "@type": "Organization", "name": "Clodo Framework" },
+      "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Clodo replace Wrangler?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Clodo complements Wrangler by providing orchestration, deployments, and D1 lifecycle tools on top of Wrangler's CLI." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run D1 migrations safely in production?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Clodo provides migration helpers; we recommend staging dry-runs and verification steps before applying production migrations." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I roll back a problematic deployment?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Clodo provides rollback helpers and supports atomic deploy strategies; see the docs for the recommended process." }
+        }
+      ]
+    }
+    </script>
+
     <!-- BreadcrumbList Schema -->
     </head>
 <body>
@@ -101,27 +140,102 @@ await d.runD1Migrations('production');</code></pre>
 
                 <h3>Key capabilities</h3>
                 <ul>
-                    <li>Automated discovery and validation of <code>wrangler.toml</code> for multiple environments</li>
-                    <li>Safe Wrangler command execution (retries, timeouts, parsed output)</li>
-                    <li>D1 database lifecycle management (create, migrate, list, validate)</li>
-                    <li>Interactive and programmatic deployments: <code>node bin/deployment/enterprise-deploy.js deploy --interactive</code></li>
+                    <li>Automated discovery and validation of <code>wrangler.toml</code> across multiple environments</li>
+                    <li>Safe Wrangler command orchestration (retries, timeouts, parsed output and structured logging)</li>
+                    <li>D1 database lifecycle management (create, migrate, list, validate, and rollback helpers)</li>
+                    <li>Interactive and programmatic deployments with an orchestration layer for multi-stage rollouts</li>
                 </ul>
 
-                <h3>Quick example</h3>
-                <pre><code>// Programmatic deployment using DeploymentOrchestrator
-import { DeploymentOrchestrator } from '@tamyla/clodo-framework/deployment';
+                <h3>Architecture (at a glance)</h3>
+                <div class="architecture" role="img" aria-labelledby="arch-title">
+                  <h4 id="arch-title" class="sr-only">Wrangler automation architecture</h4>
+                  <svg width="100%" height="160" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="false">
+                    <defs>
+                      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#111827" />
+                      </marker>
+                    </defs>
+                    <rect x="20" y="16" width="140" height="48" rx="6" fill="#f3f4f6" stroke="#e5e7eb" />
+                    <text x="90" y="44" font-size="12" text-anchor="middle" fill="#0b1220">Developer (Local)</text>
 
-const orchestrator = new DeploymentOrchestrator({ environment: 'production' });
-await orchestrator.deploy('production');</code></pre>
+                    <rect x="200" y="16" width="160" height="48" rx="6" fill="#eef2ff" stroke="#c7d2fe" />
+                    <text x="280" y="34" font-size="12" text-anchor="middle" fill="#0b1220">CI & Validation</text>
+                    <text x="280" y="48" font-size="11" text-anchor="middle" fill="#374151">tests, lint, schema checks</text>
+
+                    <rect x="400" y="16" width="160" height="48" rx="6" fill="#ecfdf5" stroke="#bbf7d0" />
+                    <text x="480" y="34" font-size="12" text-anchor="middle" fill="#0b1220">Orchestrator</text>
+                    <text x="480" y="48" font-size="11" text-anchor="middle" fill="#374151">WranglerDeployer + D1 Manager</text>
+
+                    <rect x="620" y="16" width="160" height="48" rx="6" fill="#fff7ed" stroke="#ffedd5" />
+                    <text x="700" y="34" font-size="12" text-anchor="middle" fill="#0b1220">Cloudflare (Workers + D1)</text>
+
+                    <line x1="160" y1="40" x2="200" y2="40" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" />
+                    <line x1="360" y1="40" x2="400" y2="40" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" />
+                    <line x1="560" y1="40" x2="620" y2="40" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" />
+                  </svg>
+                  <p class="muted">Flow: Developer -> CI & Validation -> Orchestrator (WranglerDeployer + D1 Manager) -> Cloudflare (Workers + D1)</p>
+                </div>
+
+                <h3>Expanded examples — programmatic & CLI</h3>
+
+                <h4>Programmatic: resilient deployment + migration</h4>
+                <pre><code>// Programmatic deployment example (with basic checks & error handling)
+import { WranglerDeployer } from '@tamyla/clodo-framework/deploy';
+
+const d = new WranglerDeployer({ env: 'production' });
+try {
+  const status = await d.validateEnvironment();
+  if(!status.ok) throw new Error('Environment validation failed');
+  await d.deploy();
+  const migrateResult = await d.runD1Migrations();
+  console.log('Migrations:', migrateResult);
+  await d.verifyDeployment();
+  console.log('Deployment complete');
+} catch (err) {
+  console.error('Deployment failed:', err);
+  // Optionally: d.rollback();
+}
+</code></pre>
+
+                <h4>CLI: quick tasks</h4>
+                <pre><code># Verify auth and Wrangler setup
+npx wrangler whoami --format=json
+
+# Dry-run deploy via clodo helper
+npx clodo deploy --env=staging --dry-run
+
+# Run D1 migrations
+npx clodo d1:migrate --env=production
+</code></pre>
 
                 <h3>Troubleshooting & best practices</h3>
                 <ul>
-                    <li>Verify authentication with <code>wrangler whoami</code>; Clodo runs the same check via <code>validateWranglerSetup()</code>.</li>
-                    <li>Use <code>WranglerConfigManager</code> to inspect/fix <code>wrangler.toml</code> (checks <code>name</code>, <code>main</code>, <code>compatibility_date</code>).</li>
-                    <li>If D1 issues occur, inspect migrations: <code>wrangler d1 migrations list</code>, and apply with <code>wrangler d1 migrations apply &lt;database&gt;</code>.</li>
+                    <li>Verify authentication: <code>npx wrangler whoami</code>; Clodo runs the same check via <code>validateWranglerSetup()</code>.</li>
+                    <li>Validate <code>wrangler.toml</code> with <code>WranglerConfigManager</code> (checks <code>name</code>, <code>main</code>, <code>compatibility_date</code>, and D1 bindings).</li>
+                    <li>Inspect D1 migrations: <code>wrangler d1 migrations list</code> and apply with <code>wrangler d1 migrations apply &lt;database&gt;</code>. Always test migrations in staging first.</li>
+                    <li>Use dry-run deployments in CI to catch errors early: <code>npx clodo deploy --env=staging --dry-run</code>.</li>
                 </ul>
 
                 <p>Related links: <a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub repo</a> · <a href="https://www.npmjs.com/package/@tamyla/clodo-framework" target="_blank" rel="noopener">npm • @tamyla/clodo-framework v4.0.13</a></p>
+            </div>
+        </section>
+
+        <section id="product-faq" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title">Frequently asked questions</h2>
+                <dl class="faq-list">
+                    <dt>Does Clodo replace Wrangler?</dt>
+                    <dd>Clodo complements Wrangler by providing orchestration, deployments, and D1 lifecycle tools on top of Wrangler's CLI. We rely on Wrangler for lower-level commands and add automation and validation around it.</dd>
+
+                    <dt>Can I run D1 migrations safely in production?</dt>
+                    <dd>Yes — Clodo provides migration helpers and recommends staging dry-runs and verification steps before applying production migrations. Use <code>npx clodo d1:migrate --env=staging</code> first.</dd>
+
+                    <dt>How do I roll back a problematic deployment?</dt>
+                    <dd>Clodo provides rollback helpers (where applicable) and supports atomic deploy strategies. See <a href="/docs/deployment#rollbacks">docs: deployment rollbacks</a> for the recommended process.</dd>
+
+                    <dt>What versions of Wrangler are supported?</dt>
+                    <dd>Clodo is built to work with current Wrangler releases; check the compatibility notes in the project releases (linked above) and the <code>wrangler.toml</code> validation output.</dd>
+                </dl>
             </div>
         </section>
 
@@ -202,7 +316,7 @@ await orchestrator.deploy('production');</code></pre>
                         <li>Scaffolding and automation to accelerate service bootstrapping</li>
                         <li>Comprehensive test and release automation</li>
                     </ul>
-                    <p>See <a href="/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and linked case studies for methodology and evidence.</p>
+                    <p>See <a href="https://github.com/tamylaa/clodo-framework/blob/main/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and linked case studies for methodology and evidence.</p>
                 </div>
             </div>
         </section>
@@ -211,7 +325,7 @@ await orchestrator.deploy('production');</code></pre>
             <div class="container">
                 <h2>Independent assessment</h2>
                 <div class="assessment-content">
-                    <p>Independent analysis of the repository (see <a href="/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and case studies) indicates the project has a strong modular architecture, thorough CI and testing, and purpose-built Wrangler & D1 automation. The report also highlights areas to improve (build system hardening and documentation alignment) to reach broader enterprise adoption.</p>
+                    <p>Independent analysis of the repository (see <a href="https://github.com/tamylaa/clodo-framework/blob/main/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and case studies) indicates the project has a strong modular architecture, thorough CI and testing, and purpose-built Wrangler & D1 automation. The report also highlights areas to improve (build system hardening and documentation alignment) to reach broader enterprise adoption.</p>
                     <div class="assessment-strengths">
                         <h3>Key strengths (evidence-backed)</h3>
                         <ul>
@@ -221,7 +335,7 @@ await orchestrator.deploy('production');</code></pre>
                             <li><strong>Automation-first</strong> — semantic-release and release automation reduce manual release overhead.</li>
                         </ul>
                     </div>
-                    <p class="assessment-note">For full details and the underlying data, see the <a href="/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and linked case studies.</p>
+                    <p class="assessment-note">For full details and the underlying data, see the <a href="https://github.com/tamylaa/clodo-framework/blob/main/content/release-notes/tamylaa/clodo-framework/commit-insights-summary.md" target="_blank" rel="noopener">commit insights</a> and linked case studies.</p>
                 </div>
             </div>
         </section>
