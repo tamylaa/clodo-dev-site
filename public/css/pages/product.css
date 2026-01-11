@@ -2,8 +2,17 @@
 
 /* Wrangler automation section */
 
+.architecture{ margin: 1rem 0 1.25rem 0; }
+.architecture .muted{ color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* FAQ */
+.faq-list{ margin: 0; padding: 0; }
+.faq-list dt{ font-weight: 600; margin-top: 1rem; }
+.faq-list dd{ margin: 0.25rem 0 0 0; color: var(--text-secondary); }
+
 /* Toast used for copy-to-clipboard feedback */
 #clodo-toast{ transition: opacity 0.2s ease-in-out; opacity:0; }
+
 
 #wrangler-automation {
   padding: 2.5rem 0;
