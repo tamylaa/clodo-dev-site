@@ -4,11 +4,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all features
-    initScrollAnimations();
-    initTableOfContents();
+    // Initialize all features (ensure elements have animation classes before observing)
     initFeatureCardAnimations();
     initComparisonTableHighlighting();
+    initScrollAnimations();
+    initTableOfContents();
     initSmoothScrolling();
     initReadingProgress();
 });
