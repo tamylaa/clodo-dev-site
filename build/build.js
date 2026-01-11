@@ -327,6 +327,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     pageBundle = 'community';
                 } else if (fileName === 'index') {
                     pageBundle = 'index';
+                } else if (fileName === 'cloudflare-framework') {
+                    pageBundle = 'cloudflare-framework';
                 } else if (fileName === 'clodo-framework-guide') {
                     pageBundle = 'clodo-framework-guide';
                 } else if (fileName === 'cloudflare-workers-guide') {
@@ -363,7 +365,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
 
-                    if (file === 'index.html' || fileName.includes('guide')) {
+                    if (file === 'index.html' || fileName.includes('guide') || fileName === 'cloudflare-framework') {
                         // OPTIMIZATION FOR LCP:
                         // For index.html and guide pages, we separate preload and application to ensure NO render blocking
                         // 1. In Head: Inline Critical CSS + Preload common CSS + Preload page CSS
@@ -389,8 +391,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                         
                         // Remove the page-specific defer CSS link since it's now loaded synchronously
                         if (pageBundle !== 'common') {
-                            const deferCssPattern = new RegExp(`<link[^>]*rel="stylesheet"[^>]*href="[^"]*${pageBundle}[^"]*"[^>]*media="print"[^>]*onload="this\\.media='all'"[^>]*>`, 'g');
-                            content = content.replace(deferCssPattern, '');
+                            // Remove any link tag that contains the pageBundle and has async loading attributes
+                            const asyncPattern = new RegExp(`<link[^>]*media="print"[^>]*onload="this.media='all'"[^>]*(?:href="[^"]*${pageBundle}[^"]*"|href="[^"]*css/pages/${pageBundle}[^"]*")[^>]*>|<link[^>]*(?:href="[^"]*${pageBundle}[^"]*"|href="[^"]*css/pages/${pageBundle}[^"]*")[^>]*media="print"[^>]*onload="this.media='all'"[^>]*>`, 'gi');
+                            content = content.replace(asyncPattern, '');
                             console.log(`   ✅ Removed defer CSS link for synchronous loading: ${pageBundle}`);
                         }
                         
