@@ -19,6 +19,9 @@
 @import url('./css/components.css');
 @import url('./css/components-reusable.css');
 
+/* ===== FRAMEWORK COMPONENTS ===== */
+@import url('./css/framework/framework.css');
+
 /* ===== GLOBAL COMPONENTS ===== */
 @import url('./css/global/header.css');
 @import url('./css/global/footer.css');
