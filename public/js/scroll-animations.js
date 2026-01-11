@@ -19,7 +19,7 @@ function setupScrollAnimations() {
     }, observerOptions);
 
     // Observe elements that should animate in
-    document.querySelectorAll('.feature-card, .testimonial, .stat-item').forEach(el => {
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
     });
 }
