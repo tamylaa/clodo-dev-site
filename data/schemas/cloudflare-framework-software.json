@@ -1,0 +1,36 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Clodo Framework",
+  "description": "A lightweight, high-performance framework for building edge applications on Cloudflare Workers",
+  "url": "https://clodo.dev",
+  "image": "https://clodo.dev/icons/icon.svg",
+  "applicationCategory": "DeveloperApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Clodo",
+    "url": "https://clodo.dev"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "200"
+  },
+  "operatingSystem": ["OS Independent"],
+  "inLanguage": "en",
+  "downloadUrl": "https://npmjs.com/package/clodo",
+  "requiresSubscription": false,
+  "potentialAction": {
+    "@type": "Action",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://clodo.dev/quick-start",
+      "actionPlatform": ["DesktopWebPlatform", "MobileWebPlatform"]
+    }
+  }
+}

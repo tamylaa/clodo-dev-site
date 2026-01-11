@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Clodo Framework?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clodo Framework is a lightweight, optimized framework designed specifically for Cloudflare Workers. It provides a developer-friendly API with minimal overhead while maximizing edge computing performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Clodo better than Hono and Worktop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each framework has distinct advantages. Clodo excels in performance and developer experience for edge computing, while Hono offers a broader ecosystem and Worktop provides excellent TypeScript support. Choose based on your specific project requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I deploy to Cloudflare Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deployment to Cloudflare Workers is straightforward with the Wrangler CLI. Simply configure your wrangler.toml file and run 'wrangler publish' to deploy your Clodo application globally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the benefits of edge computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edge computing reduces latency by processing requests closer to users, improves performance, reduces server load, provides better scalability, and offers automatic global distribution without managing infrastructure."
+      }
+    }
+  ]
+}

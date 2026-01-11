@@ -30,6 +30,64 @@ import {
   getLocaleConfig,
   shouldInjectSchemas
 } from './locale-utils.js';
+import { readFileSync, existsSync, readdirSync } from 'fs';
+import { join } from 'path';
+
+/**
+ * Loads schema from a separate JSON file if it exists
+ * @param {string} schemaName - Name of the schema file (without .json extension)
+ * @returns {object|null} Parsed JSON schema or null if file doesn't exist
+ */
+function loadSchemaFromFile(schemaName) {
+  const schemaPath = join('data', 'schemas', `${schemaName}.json`);
+  if (existsSync(schemaPath)) {
+    try {
+      const schemaContent = readFileSync(schemaPath, 'utf8');
+      return JSON.parse(schemaContent);
+    } catch (e) {
+      console.warn(`Failed to load schema file ${schemaPath}:`, e.message);
+      return null;
+    }
+  }
+  return null;
+}
+
+/**
+ * Loads all page-specific schema files for a given page
+ * @param {string} pageName - Name of the page (without .html extension)
+ * @returns {Array} Array of loaded schema objects
+ */
+function loadPageSchemas(pageName) {
+  const schemas = [];
+  const schemasDir = join('data', 'schemas');
+  
+  // Check if schemas directory exists
+  if (!existsSync(schemasDir)) {
+    return schemas;
+  }
+  
+  try {
+    // Get all files in the schemas directory
+    const files = readdirSync(schemasDir);
+    
+    // Look for files that match the pattern: ${pageName}-*.json
+    const pageSchemaPattern = new RegExp(`^${pageName}-.*.json$`);
+    
+    for (const file of files) {
+      if (pageSchemaPattern.test(file)) {
+        const schemaName = file.replace(/\.json$/, '');
+        const schema = loadSchemaFromFile(schemaName);
+        if (schema) {
+          schemas.push(schema);
+        }
+      }
+    }
+  } catch (e) {
+    console.warn(`Failed to read schemas directory:`, e.message);
+  }
+  
+  return schemas;
+}
 
 /**
  * Injects generated schemas into HTML content
@@ -86,9 +144,14 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     // All pages get SoftwareApplication schema
     schemas.push(generateSoftwareApplicationSchema(locale));
     
+    // Load all page-specific schema files
+    const pageName = filename.replace(/\.html$/, '');
+    const pageSchemas = loadPageSchemas(pageName);
+    schemas.push(...pageSchemas);
+    
     // Check if this page has a specific configuration
-    if (pageConfig.pages?.[filename?.replace(/\.html$/, '')]) {
-      const config = pageConfig.pages[filename?.replace(/\.html$/, '')];
+    if (pageConfig.pages?.[pageName]) {
+      const config = pageConfig.pages[pageName];
       
       if (config.type === 'FAQPage') {
         schemas.push(generateFAQPageSchema(config.faqs || []));
