@@ -1,46 +1,39 @@
 # Commit insights — clodo-framework
 
-Total commits: **643**
+Total commits: **147**
 ## Top types
-- **other** — 192
-- **fix** — 157
-- **feat** — 93
-- **chore** — 83
-- **docs** — 40
-- **refactor** — 14
-- **ci** — 14
-- **style** — 8
-- **analysis** — 7
-- **build** — 6
+- **fix** — 74
+- **chore** — 56
+- **feat** — 6
+- **other** — 6
+- **docs** — 5
 
 ## Top authors
-- **tamylaa** — 642
-- **Tamyla** — 1
+- **Tamyla** — 94
+- **semantic-release-bot** — 53
 
 ## Top keywords
-- **css** — 54
-- **chorecss** — 50
-- **page** — 47
-- **cloudflare** — 44
-- **build** — 41
-- **docs** — 36
-- **hero** — 34
-- **pages** — 33
-- **seo** — 31
-- **comprehensive** — 31
-- **styling** — 29
-- **section** — 25
-- **complete** — 25
-- **all** — 24
-- **replace** — 23
-- **issues** — 23
-- **files** — 23
-- **test** — 22
-- **canonical** — 22
-- **stackblitz** — 22
+- **chorerelease** — 53
+- **skip** — 53
+- **resolve** — 15
+- **framework** — 13
+- **comprehensive** — 10
+- **deployment** — 9
+- **documentation** — 9
+- **missing** — 7
+- **release** — 7
+- **correct** — 6
+- **validation** — 6
+- **package** — 6
+- **database** — 6
+- **clodo** — 6
+- **merge** — 6
+- **configuration** — 5
+- **issues** — 5
+- **test** — 5
+- **docs** — 5
+- **branch** — 5
 
 ## Timeline (monthly)
-- **2025-10** — 102 commits
-- **2025-11** — 187 commits
-- **2025-12** — 274 commits
-- **2026-01** — 80 commits
+- **2025-09** — 10 commits
+- **2025-10** — 137 commits

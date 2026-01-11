@@ -1,157 +1,129 @@
 {
   "summary": {
-    "total": 643,
+    "total": 147,
     "topTypes": [
       [
-        "other",
-        192
-      ],
-      [
         "fix",
-        157
-      ],
-      [
-        "feat",
-        93
+        74
       ],
       [
         "chore",
-        83
+        56
+      ],
+      [
+        "feat",
+        6
+      ],
+      [
+        "other",
+        6
       ],
       [
         "docs",
-        40
-      ],
-      [
-        "refactor",
-        14
-      ],
-      [
-        "ci",
-        14
-      ],
-      [
-        "style",
-        8
-      ],
-      [
-        "analysis",
-        7
-      ],
-      [
-        "build",
-        6
+        5
       ]
     ],
     "topAuthors": [
       [
-        "tamylaa",
-        642
+        "Tamyla",
+        94
       ],
       [
-        "Tamyla",
-        1
+        "semantic-release-bot",
+        53
       ]
     ],
     "topKeywords": [
       [
-        "css",
-        54
+        "chorerelease",
+        53
       ],
       [
-        "chorecss",
-        50
+        "skip",
+        53
       ],
       [
-        "page",
-        47
+        "resolve",
+        15
       ],
       [
-        "cloudflare",
-        44
-      ],
-      [
-        "build",
-        41
-      ],
-      [
-        "docs",
-        36
-      ],
-      [
-        "hero",
-        34
-      ],
-      [
-        "pages",
-        33
-      ],
-      [
-        "seo",
-        31
+        "framework",
+        13
       ],
       [
         "comprehensive",
-        31
+        10
       ],
       [
-        "styling",
-        29
+        "deployment",
+        9
       ],
       [
-        "section",
-        25
+        "documentation",
+        9
       ],
       [
-        "complete",
-        25
+        "missing",
+        7
       ],
       [
-        "all",
-        24
+        "release",
+        7
       ],
       [
-        "replace",
-        23
+        "correct",
+        6
+      ],
+      [
+        "validation",
+        6
+      ],
+      [
+        "package",
+        6
+      ],
+      [
+        "database",
+        6
+      ],
+      [
+        "clodo",
+        6
+      ],
+      [
+        "merge",
+        6
+      ],
+      [
+        "configuration",
+        5
       ],
       [
         "issues",
-        23
-      ],
-      [
-        "files",
-        23
+        5
       ],
       [
         "test",
-        22
+        5
       ],
       [
-        "canonical",
-        22
+        "docs",
+        5
       ],
       [
-        "stackblitz",
-        22
+        "branch",
+        5
       ]
     ]
   },
   "timeline": [
     {
+      "month": "2025-09",
+      "count": 10
+    },
+    {
       "month": "2025-10",
-      "count": 102
-    },
-    {
-      "month": "2025-11",
-      "count": 187
-    },
-    {
-      "month": "2025-12",
-      "count": 274
-    },
-    {
-      "month": "2026-01",
-      "count": 80
+      "count": 137
     }
   ]
 }
