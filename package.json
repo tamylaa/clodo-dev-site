@@ -63,7 +63,8 @@
     "lint": "npm run lint:js && npm run lint:css",
     "type-check": "tsc --noEmit --project config/tsconfig.json",
     "pre-commit": "echo '🚀 Running comprehensive pre-commit checks...' && npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run check-links && npm run build && npm run test:navigation:static && npm run test:smoke && echo '✅ All pre-commit checks passed!'",
-    "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'"
+    "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'",
+    "collect-commits": "node scripts/collect-commits.js"
   },
   "keywords": [
     "cloudflare",
