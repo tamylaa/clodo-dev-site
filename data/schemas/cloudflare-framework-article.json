@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Framework: Build Edge Apps with Clodo on Cloudflare Workers",
+  "description": "Discover the best Cloudflare framework for building edge applications. Learn about Clodo Framework, comparisons with Hono and Worktop, tutorials, and deployment guides for Cloudflare Workers.",
+  "image": "https://clodo.dev/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Clodo",
+    "url": "https://clodo.dev"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clodo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://clodo.dev/icons/icon.svg"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-20",
+  "articleBody": "Comprehensive guide to Cloudflare frameworks including Clodo, Hono, and Worktop. Learn architecture, deployment strategies, and best practices for edge computing.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Clodo Framework",
+    "url": "https://clodo.dev"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "xpath": ["/html/body/main/h1", "/html/body/main/p[1]"]
+  }
+}

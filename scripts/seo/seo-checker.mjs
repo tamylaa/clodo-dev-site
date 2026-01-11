@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * SEO URL checker (ESM)
- * Usage: node scripts/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report.csv
+ * Usage: node scripts/seo/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report.csv
  * Requires Node.js 18+ (for global fetch)
  */
 

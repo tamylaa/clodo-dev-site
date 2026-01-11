@@ -14,6 +14,7 @@
     margin-bottom: var(--spacing-xl);
     position: sticky;
     top: var(--spacing-lg);
+    z-index: 10;
     max-height: calc(100vh - 2 * var(--spacing-lg));
     overflow-y: auto;
 }
