@@ -18,13 +18,13 @@ jobs:
       - name: Run SEO check
         run: |
           echo "🔍 Running SEO checker on 59 URLs..."
-          node scripts/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report-${{ github.run_id }}.csv
+          node scripts/seo/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report-${{ github.run_id }}.csv
           echo "✅ SEO check complete"
       
       - name: Run canonical consistency check
         run: |
           echo "🔗 Checking canonical consistency..."
-          node scripts/check-canonical-consistency.mjs
+          node scripts/seo/check-canonical-consistency.mjs
           echo "✅ Canonical check complete"
       
       - name: Generate priority fixes report
