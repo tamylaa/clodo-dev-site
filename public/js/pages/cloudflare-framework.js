@@ -34,7 +34,21 @@ function initScrollAnimations() {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     animateElements.forEach(element => {
         observer.observe(element);
+
+        // If the element is already in the viewport, add the class immediately
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top < viewportHeight - 50) {
+            element.classList.add('animate-in');
+        }
     });
+
+    // Fallback: ensure content is revealed even if IntersectionObserver fails/delays
+    setTimeout(() => {
+        document.querySelectorAll('.animate-on-scroll:not(.animate-in)').forEach(el => {
+            el.classList.add('animate-in');
+        });
+    }, 2000);
 }
 
 /**
