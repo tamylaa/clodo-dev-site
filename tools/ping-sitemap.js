@@ -149,8 +149,15 @@ async function main() {
     }
   } catch (error) {
     console.error(`  ✗ Failed to fetch sitemap: ${error.message}`);
-    console.error('\n❌ Cannot proceed without sitemap');
-    process.exit(1);
+    console.error('\n⚠️  Skipping search engine notification (sitemap not accessible)');
+    console.error('\n📚 Alternative approaches:');
+    console.error('  • Submit URLs via Google Search Console');
+    console.error('  • Submit URLs via Bing Webmaster Tools');
+    console.error('  • Ensure robots.txt references sitemap');
+    console.error('  • Try again after deployment completes');
+    
+    // Exit successfully to not fail the workflow
+    process.exit(0);
   }
 
   // Submit to IndexNow
