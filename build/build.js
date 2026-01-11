@@ -476,7 +476,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     'features/newsletter.js',
                     'features/brevo-chat.js',
                     'ui/index.js',
-                    'pages/cloudflare-workers-guide.js'
+                    'pages/cloudflare-workers-guide.js',
+                    'pages/cloudflare-framework.js'
                 ];
 
                 deferScriptNames.forEach((name) => {
@@ -501,7 +502,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'defer-css.js', variable: deferCssJs },
                     { name: 'config/features.js', variable: configFeaturesJs },
                     { name: 'ui/navigation-component.js', variable: navigationJs },
-                    { name: 'pages/cloudflare-workers-guide.js', variable: assetManifest['js/pages/cloudflare-workers-guide.js'] || 'js/pages/cloudflare-workers-guide.js' }
+                    { name: 'pages/cloudflare-workers-guide.js', variable: assetManifest['js/pages/cloudflare-workers-guide.js'] || 'js/pages/cloudflare-workers-guide.js' },
+                    { name: 'pages/cloudflare-framework.js', variable: assetManifest['js/pages/cloudflare-framework.js'] || 'js/pages/cloudflare-framework.js' }
                 ];
 
                 scriptReplacements.forEach(({ name, variable }) => {
