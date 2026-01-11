@@ -1,5 +1,46 @@
 /* ===== PRODUCT PAGE STYLES ===== */
 
+/* Wrangler automation section */
+#wrangler-automation {
+  padding: 2.5rem 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+#wrangler-automation .container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+#wrangler-automation h2 {
+  margin-bottom: 0.5rem;
+}
+
+#wrangler-automation pre {
+  background: var(--bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  overflow: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+#wrangler-automation code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+#wrangler-automation ul {
+  margin-left: 1rem;
+}
+
+#wrangler-automation .container p a { color: var(--primary-color); }
+
+@media (width >= 768px) {
+  #wrangler-automation .container { padding: 0; }
+}
+
 #expert-assessment {
   padding: 2rem 0;
   background: var(--bg-secondary);
