@@ -402,19 +402,19 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                         const _pathPrefix = isSubdirectory ? '../' : '';
                         console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${_pathPrefix}'`);
                         
-                        const commonCss = `<link rel="preload" href="/${commonCssFile}" as="style"><noscript><link rel="stylesheet" href="/${commonCssFile}"></noscript>`;
-                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
-                        const asyncCssLink = commonCss + pageCss + `\n    <script src="/${initPreloadJs}"></script>`;
+                        const commonCss = `<link rel="stylesheet" href="/${commonCssFile}">`;
+                        const pageCss = pageBundle !== 'common' ? `\n    <link rel="stylesheet" href="/${cssFile}">` : '';
+                        const cssLinks = commonCss + pageCss;
                         
                         if ((content.includes('href="styles.css"') || content.includes('href="../styles.css"')) && content.match(cssLinkPatternMultiple)) {
                             content = content.replace(
                                 cssLinkPatternMultiple,
-                                criticalCssInline + '\n    ' + asyncCssLink + '\n    '
+                                criticalCssInline + '\n    ' + cssLinks + '\n    '
                             );
                         } else if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
                             content = content.replace(
                                 cssLinkPatternSingle,
-                                criticalCssInline + '\n    ' + asyncCssLink
+                                criticalCssInline + '\n    ' + cssLinks
                             );
                         }
                     }
@@ -427,9 +427,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     const isSubdirectory = fileDir !== '.' && fileDir !== '';
                     const _pathPrefix = isSubdirectory ? '../' : '';
                     
-                    const commonCss = `<link rel="preload" href="/${commonCssFile}" as="style"><noscript><link rel="stylesheet" href="/${commonCssFile}"></noscript>`;
-                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>` : '';
-                    const asyncCssLink = commonCss + pageCss + `\n    <script src="/${initPreloadJs}"></script>`;
+                    const commonCss = `<link rel="stylesheet" href="/${commonCssFile}">`;
+                    const pageCss = pageBundle !== 'common' ? `\n    <link rel="stylesheet" href="/${cssFile}">` : '';
+                    const cssLinks = commonCss + pageCss;
                     
                     const cssLinkPatternMultiple = /<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*<link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>[\s\n]*(?:<noscript><link[^>]*href="(?:\.\.\/)?styles\.css"[^>]*><\/noscript>[\s\n]*)?/g;
                     const cssLinkPatternSingle = /<link[^>]*rel="stylesheet"[^>]*href="(?:\.\.\/)?styles\.css"[^>]*>/g;
@@ -438,19 +438,19 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     if ((content.includes('href="styles.css"') || content.includes('href="../styles.css"')) && content.match(cssLinkPatternMultiple)) {
                         content = content.replace(
                             cssLinkPatternMultiple,
-                            asyncCssLink + '\n    '
+                            cssLinks + '\n    '
                         );
                     } else if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
                         content = content.replace(
                             cssLinkPatternSingle,
-                            asyncCssLink
+                            cssLinks
                         );
                     } else if (pageBundle !== 'common') {
                         // Fallback: if styles.css link wasn't found but this is a page-specific bundle,
                         // inject the page CSS into the footer before </body>
-                        const commonCss = `<link rel="preload" href="/${commonCssFile}" as="style"><noscript><link rel="stylesheet" href="/${commonCssFile}"></noscript>`;
-                        const pageCss = `\n    <link rel="preload" href="/${cssFile}" as="style"><noscript><link rel="stylesheet" href="/${cssFile}"></noscript>`;
-                        const fallbackCssLink = commonCss + pageCss + `\n    <script src="/${initPreloadJs}"></script>`;
+                        const commonCss = `<link rel="stylesheet" href="/${commonCssFile}">`;
+                        const pageCss = `\n    <link rel="stylesheet" href="/${cssFile}">`;
+                        const fallbackCssLink = commonCss + pageCss;
                         content = content.replace('</body>', `    ${fallbackCssLink}\n</body>`);
                         console.log(`   ℹ️  Injected page-specific CSS (${cssFile}) via fallback method`);
                     }
@@ -519,6 +519,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'css/pages/cloudflare-workers-development-guide.css', manifestKey: 'styles-cloudflare-workers-development-guide.css' },
                     { name: 'css/pages/cloudflare-workers-guide.css', manifestKey: 'styles-cloudflare-workers-guide.css' },
                     { name: 'css/pages/clodo-framework-guide.css', manifestKey: 'styles-clodo-framework-guide.css' },
+                    { name: 'css/pages/cloudflare-framework.css', manifestKey: 'styles-cloudflare-framework.css' },
                     { name: 'css/pages/index.css', manifestKey: 'styles-index.css' },
                     { name: 'css/pages/pricing.css', manifestKey: 'styles-pricing.css' },
                     { name: 'css/pages/product.css', manifestKey: 'styles-product.css' },
@@ -792,6 +793,9 @@ function bundleCss() {
             'css/components-animations-shared.css',
             'css/components-shared-utilities.css',
             'css/pages/saas-product-startups-cloudflare-case-studies.css'
+        ],
+        'cloudflare-framework': [
+            'css/pages/cloudflare-framework.css'
         ]
     };
 
