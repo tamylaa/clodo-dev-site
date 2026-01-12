@@ -26,7 +26,12 @@ let defaultsI18n = null;
 function loadData() {
   if (!blogData) {
     try {
-      blogData = JSON.parse(readFileSync(join('data', 'blog-data.json'), 'utf8'));
+      // Prefer new canonical location: data/blog/blog-data.json
+      try {
+        blogData = JSON.parse(readFileSync(join('data','blog','blog-data.json'), 'utf8'));
+      } catch (inner) {
+        blogData = JSON.parse(readFileSync(join('data', 'blog-data.json'), 'utf8'));
+      }
     } catch (e) {
       console.error('Failed to load blog-data.json:', e.message);
       blogData = { authors: {}, testimonials: {} };

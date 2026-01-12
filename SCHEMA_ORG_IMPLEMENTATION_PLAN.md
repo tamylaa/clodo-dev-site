@@ -236,7 +236,7 @@ This already has good schema. Tasks:
 }
 ```
 
-**Data source:** Use `data/blog-data.json` for author info, dates, and metadata.
+**Data source:** Use `data/blog/blog-data.json` for author info, dates, and metadata (preferred; legacy `data/blog-data.json` supported).
 
 #### 2.2 FAQ Page - Expand FAQPage Schema
 

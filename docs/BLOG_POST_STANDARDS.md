@@ -341,7 +341,7 @@ Use the reusable components from `/templates/blog/`:
 
 ### JSON-First Workflow (Recommended)
 
-1. **Create post JSON** in `data/posts/your-slug.json`:
+1. **Create post JSON** in `data/blog/posts/your-slug.json`:
 
 ```json
 {
@@ -424,7 +424,7 @@ Rules:
 - Rich Results: https://search.google.com/test/rich-results
 - Mobile: https://search.google.com/test/mobile-friendly
 - PageSpeed: https://pagespeed.web.dev/
-- JSON Schema: `npx ajv validate -s data/blog-post.schema.json -d data/posts/your-post.json`
+- JSON Schema: `npx ajv validate -s data/json-schemas/blog-post.schema.json -d data/blog/posts/your-post.json`
 
 ---
 
