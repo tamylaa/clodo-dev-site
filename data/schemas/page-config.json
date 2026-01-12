@@ -579,6 +579,230 @@
         "Article",
         "BreadcrumbList"
       ]
+    },
+    "building-developer-communities.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-enterprise-roi.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-infrastructure-myth.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-tutorial-beginners.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "debugging-silent-build-failures.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "index.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "instant-try-it-impact.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "stackblitz-integration-journey.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "v8-isolates-comprehensive-guide.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "building-developer-communities": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-infrastructure-myth": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "debugging-silent-build-failures": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "instant-try-it-impact": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "stackblitz-integration-journey": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "v8-isolates-comprehensive-guide": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "fintech-payment-platform": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "healthcare-saas-platform": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "welcome": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "migrate": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "multi-tenant-saas": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "performance-dashboard": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "privacy": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "roi-calculator": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "saas-product-startups-cloudflare-case-studies": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "structured-data": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "thanks": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "subscribe": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "what-is-edge-computing": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
     }
   }
 }

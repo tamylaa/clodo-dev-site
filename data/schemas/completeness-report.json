@@ -1,0 +1,828 @@
+{
+  "total": 53,
+  "minimal": 39,
+  "missingImportant": 40,
+  "details": [
+    {
+      "file": "about-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "advanced-cloudflare-workers-tutorial-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "analytics-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 11,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "cli-commands-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "generate-skeletons.js",
+      "present": {},
+      "keyCount": 7,
+      "missing": [
+        "description",
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "clodo-cloud-service-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "clodo-framework-api-simplification-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "clodo-framework-enterprise-roi-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "generate-skeletons.js",
+      "present": {},
+      "keyCount": 7,
+      "missing": [
+        "description",
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "clodo-framework-guide-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "clodo-framework-promise-to-reality-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "clodo-vs-lambda-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-d1-errors-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "cloudflare-framework-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 14,
+      "missing": [
+        "url"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-framework-breadcrumbs.json",
+      "type": "BreadcrumbList",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "cloudflare-framework-faq.json",
+      "type": "FAQPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [
+        "name",
+        "faqs",
+        "url"
+      ],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "cloudflare-framework-software.json",
+      "type": "SoftwareApplication",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 15,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-top-10-saas-edge-computing-workers-case-study-docs-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 15,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-workers-auth-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "cloudflare-workers-cold-start-optimization-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "cloudflare-workers-development-guide-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 15,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-workers-enterprise-features-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-workers-guide-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 15,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "cloudflare-workers-tutorial-beginners-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "generate-skeletons.js",
+      "present": {},
+      "keyCount": 7,
+      "missing": [
+        "description",
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "completeness-report.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 4,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "components-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 11,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "content-performance-monitoring-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "defaults-i18n.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 2,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "defaults.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 4,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "development-deployment-guide-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "edge-computing-guide-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "edge-vs-cloud-computing-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "examples-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "faq-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "framework-comparison-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "google1234567890abcdef-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 10,
+      "missing": [
+        "description",
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "how-to-migrate-from-wrangler-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "how-to-migrate-from-wrangler-variant-a-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 11,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "how-to-migrate-from-wrangler-variant-b-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 11,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "index-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "page-config.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "product-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "url"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "product-breadcrumbs.json",
+      "type": "BreadcrumbList",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "product-faq.json",
+      "type": "FAQPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [
+        "name",
+        "faqs",
+        "url"
+      ],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "product-release.json",
+      "type": "SoftwareRelease",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 8,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "product-software.json",
+      "type": "SoftwareApplication",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 12,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": true
+    },
+    {
+      "file": "quick-start-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "ruby-on-rails-cloudflare-integration-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "serverless-architecture-best-practices-article.json",
+      "type": "Article",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [
+        "author",
+        "datePublished",
+        "image"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "serverless-framework-comparison-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "what-is-cloudflare-workers-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "worker-scaffolding-tools-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "workers-boilerplate-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 12,
+      "missing": [
+        "author",
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "workers-vs-lambda-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 15,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "wrangler-to-clodo-migration-article.json",
+      "type": "Article",
+      "generated": true,
+      "generatedBy": "skeleton-enricher.js",
+      "present": {},
+      "keyCount": 13,
+      "missing": [
+        "datePublished"
+      ],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    }
+  ]
+}
