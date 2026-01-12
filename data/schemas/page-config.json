@@ -256,6 +256,42 @@
       "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
       "url": "https://clodo.dev/docs",
       "educationalLevel": "Intermediate to Advanced"
+    },
+    "index": {
+      "type": "WebPage",
+      "requiredSchemas": ["WebSite", "BreadcrumbList"]
+    },
+    "about": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "edge-computing-guide": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "quick-start": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "framework-comparison": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "how-to-migrate-from-wrangler": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "serverless-architecture-best-practices": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "examples": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
+    },
+    "ruby-on-rails-cloudflare-integration": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList"]
     }
   }
 }
