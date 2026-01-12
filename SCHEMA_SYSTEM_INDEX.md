@@ -305,14 +305,14 @@ Output shows:
 - Organization name, URL, logo, email, social
 - Software application metrics
 - Blog post and case study defaults
-- Located: schema/defaults.json
+- Located: data/schemas/defaults.json (preferred; legacy `schema/defaults.json` still present)
 
 ### page-config.json
 **Used For:** Page-specific metadata
 - Blog post configs (title, author, published, keywords)
 - Case study configs (title, industry, metrics)
 - Page configs (type, content)
-- Located: schema/page-config.json
+- Located: data/schemas/page-config.json (preferred; legacy `schema/page-config.json` still present)
 
 ## Schema Types Supported
 

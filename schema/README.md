@@ -14,13 +14,13 @@ This document describes the new **data-driven schema architecture** for clodo.de
    - Reads from data files (blog-data.json, page-config.json)
    - Eliminates all inline schema duplication
 
-2. **`schema/defaults.json`** (JSON configuration)
+2. **`data/schemas/defaults.json`** (JSON configuration, preferred location; legacy `schema/defaults.json` still supported)
    - Centralized organization metadata
    - Software application metrics
    - Default values for blog posts and case studies
    - Single source of truth for shared values
 
-3. **`schema/page-config.json`** (JSON configuration)
+3. **`data/schemas/page-config.json`** (JSON configuration, preferred location; legacy `schema/page-config.json` still supported)
    - Blog post configurations (6 posts)
    - Case study configurations (2 studies)
    - Page-specific configurations (pricing, docs)
@@ -44,7 +44,7 @@ This document describes the new **data-driven schema architecture** for clodo.de
 
 ### Blog Posts Configuration
 
-Each blog post in `schema/page-config.json` requires:
+Each blog post in `data/schemas/page-config.json` requires:
 
 ```json
 {
@@ -353,9 +353,9 @@ npm run build
 
 ### Update Organization Info
 
-All pages use organization data from `schema/defaults.json`. To update:
+All pages use organization data from `data/schemas/defaults.json` (legacy: `schema/defaults.json`). To update:
 
-1. Edit `schema/defaults.json`:
+1. Edit `data/schemas/defaults.json`:
 
 ```json
 {
@@ -375,7 +375,7 @@ All pages use organization data from `schema/defaults.json`. To update:
 
 For SoftwareApplication schema:
 
-1. Edit `schema/defaults.json`:
+1. Edit `data/schemaschemas/defaults.json`:
 
 ```json
 {

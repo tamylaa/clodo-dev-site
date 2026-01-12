@@ -91,7 +91,7 @@ function runAudit(){
           const data = JSON.parse(readFileSync(join(schemasDir,sf),'utf8'));
           const t = data['@type'] || data['@graph'] && data['@graph'][0] && data['@graph'][0]['@type'];
           if (t && (t === 'Article' || t === 'FAQPage' || t === 'BreadcrumbList' || t === 'SoftwareApplication')) comprehensive = true;
-        }catch(e){}
+        }catch(e){ void 0; }
       }
     }
 

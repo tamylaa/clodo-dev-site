@@ -34,7 +34,12 @@ function loadData() {
   }
   if (!schemaDefaults) {
     try {
-      schemaDefaults = JSON.parse(readFileSync(join('schema', 'defaults.json'), 'utf8'));
+      // Prefer canonical location in data/schemas but fall back to legacy schema/ for compatibility
+      try {
+        schemaDefaults = JSON.parse(readFileSync(join('data', 'schemas', 'defaults.json'), 'utf8'));
+      } catch (inner) {
+        schemaDefaults = JSON.parse(readFileSync(join('schema', 'defaults.json'), 'utf8'));
+      }
     } catch (e) {
       console.warn('Schema defaults not found, using minimal config');
       schemaDefaults = { organization: {}, author: {} };
@@ -42,7 +47,12 @@ function loadData() {
   }
   if (!defaultsI18n) {
     try {
-      defaultsI18n = JSON.parse(readFileSync(join('schema', 'defaults-i18n.json'), 'utf8'));
+      // Prefer canonical location in data/schemas but fall back to legacy schema/ for compatibility
+      try {
+        defaultsI18n = JSON.parse(readFileSync(join('data', 'schemas', 'defaults-i18n.json'), 'utf8'));
+      } catch (inner) {
+        defaultsI18n = JSON.parse(readFileSync(join('schema', 'defaults-i18n.json'), 'utf8'));
+      }
     } catch (e) {
       console.warn('i18n defaults not found, using English only');
       defaultsI18n = { locales: { en: {} } };
@@ -476,7 +486,7 @@ export function generatePageSchemas(pageConfig) {
 
 /**
  * Loads page configuration and generates schemas for all pages
- * Reads from schema/page-config.json to ensure DRY principle
+ * Reads from data/schemas/page-config.json to ensure DRY principle (legacy `schema/page-config.json` supported)
  */
 export function loadPageConfiguration() {
   try {
