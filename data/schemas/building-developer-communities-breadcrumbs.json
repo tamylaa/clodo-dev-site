@@ -11,20 +11,14 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "I18n",
-      "item": "https://www.clodo.dev/i18n"
+      "name": "Blog",
+      "item": "https://www.clodo.dev/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "It",
-      "item": "https://www.clodo.dev/i18n/it"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Cloudflare Framework",
-      "item": "https://www.clodo.dev/cloudflare-framework"
+      "name": "Building Developer Communities",
+      "item": "https://www.clodo.dev/building-developer-communities"
     }
   ]
 }
