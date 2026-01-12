@@ -524,34 +524,6 @@
         "BreadcrumbList"
       ]
     },
-    "clodo-framework-api-simplification-variant-a": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
-    },
-    "clodo-framework-api-simplification-variant-b": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
-    },
-    "clodo-framework-promise-to-reality-variant-a": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
-    },
-    "clodo-framework-promise-to-reality-variant-b": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
-    },
     "how-to-migrate-from-wrangler-variant-a": {
       "type": "WebPage",
       "requiredSchemas": [

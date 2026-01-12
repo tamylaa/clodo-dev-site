@@ -60,6 +60,14 @@ const pageConfig = loadPageConfig();
 const missingPages = [];
 for (const f of htmlFiles) {
   const name = basename(f).replace(/\.html$/, '');
+
+  // Skip experimental variant pages (A/B tests) and standalone experiment pages
+  const isExperiment = f.includes('/experiments/') || f.includes('\\experiments\\');
+  if (name.includes('-variant-') || isExperiment) {
+    console.log(`Skipping experiment/variant page: ${name}`);
+    continue;
+  }
+
   if (pageConfig.pages?.[name] || pageConfig.blogPosts?.[`${name}.html`] || pageConfig.caseStudies?.[`${name}.html`]) continue;
   if (pageHasSchemaFiles(name)) continue;
   missingPages.push({ name, path: f });
