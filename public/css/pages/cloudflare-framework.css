@@ -353,8 +353,8 @@ code {
 
 /* ===== ANIMATIONS ===== */
 .animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
   transition: var(--transition-slow);
 }
 

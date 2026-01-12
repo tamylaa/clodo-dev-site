@@ -2,6 +2,7 @@
 import fs from 'fs';
 import process from 'process';
 import { execSync } from 'child_process';
+import path from 'path';
 
 /*
   Content-scoped commit collector
@@ -41,7 +42,7 @@ function fetchLocalCommits({ since, until, out }) {
   for (const c of commits) { const n = c.author.name || 'unknown'; byAuthor[n] = (byAuthor[n] || 0) + 1; }
   const summary = { total: commits.length, byAuthor, first: commits[commits.length - 1]?.date, last: commits[0]?.date };
   const outData = { meta: { source: 'local', fetchedAt: new Date().toISOString() }, summary, commits };
-  fs.mkdirSync(require('path').dirname(out), { recursive: true });
+  fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, JSON.stringify(outData, null, 2), 'utf8');
   console.log(`Wrote ${commits.length} commits to ${out}`);
 }
@@ -55,22 +56,57 @@ async function fetchGithubCommits({ repo, since, until, out }) {
   if (since) url += `&since=${encodeURIComponent(since)}`;
   if (until) url += `&until=${encodeURIComponent(until)}`;
 
-  const allCommits = [];
+  // Streaming write: open file and append commits as we fetch pages.
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  const stream = fs.createWriteStream(out + '.tmp', { encoding: 'utf8' });
+  stream.write(JSON.stringify({ meta: { source: 'github', repo, fetchedAt: new Date().toISOString() } }).slice(0, -1)); // write '{ "meta": {...}' without closing '}'
+  stream.write(',"commits":[');
+
   let next = url;
+  let total = 0;
+  const CONCURRENCY = 5;
+
+  // helper to fetch commit details with limited concurrency
+  async function fetchDetailsBatch(shas) {
+    const results = [];
+    for (let i = 0; i < shas.length; i += CONCURRENCY) {
+      const batch = shas.slice(i, i + CONCURRENCY);
+      const promises = batch.map(async (sha) => {
+        const detailsRes = await fetch(`https://api.github.com/repos/${repo}/commits/${sha}`, { headers });
+        if (!detailsRes.ok) {
+          const txt = await detailsRes.text();
+          throw new Error(`Commit details fetch failed: ${detailsRes.status} ${detailsRes.statusText} - ${txt}`);
+        }
+        const details = await detailsRes.json();
+        const pullsRes = await fetch(`https://api.github.com/repos/${repo}/commits/${sha}/pulls`, { headers: { ...headers, Accept: 'application/vnd.github.groot-preview+json' } });
+        const pulls = pullsRes.ok ? await pullsRes.json() : [];
+        return { sha, author: details.author ? { login: details.author.login, id: details.author.id } : null, commitAuthor: details.commit?.author || null, commitMessage: details.commit?.message || '', stats: details.stats || null, files: (details.files || []).map(f => ({ filename: f.filename, additions: f.additions, deletions: f.deletions })), pulls: (pulls || []).map(p => ({ number: p.number, url: p.html_url, title: p.title, user: p.user?.login })), html_url: details.html_url };
+      });
+      const batchResults = await Promise.all(promises);
+      results.push(...batchResults);
+    }
+    return results;
+  }
+
   // simple fetch using node's global fetch (Node 18+)
-  /* eslint-disable no-undef */
   while (next) {
     const res = await fetch(next, { headers });
-    if (!res.ok) { const txt = await res.text(); throw new Error(`GitHub API request failed: ${res.status} ${res.statusText} - ${txt}`); }
-    const items = await res.json();
-    for (const item of items) {
-      const sha = item.sha;
-      const detailsRes = await fetch(`https://api.github.com/repos/${repo}/commits/${sha}`, { headers });
-      const details = await detailsRes.json();
-      const pullsRes = await fetch(`https://api.github.com/repos/${repo}/commits/${sha}/pulls`, { headers: { ...headers, Accept: 'application/vnd.github.groot-preview+json' } });
-      const pulls = pullsRes.ok ? await pullsRes.json() : [];
-      allCommits.push({ sha, author: details.author ? { login: details.author.login, id: details.author.id } : null, commitAuthor: details.commit?.author || null, commitMessage: details.commit?.message || '', stats: details.stats || null, files: (details.files || []).map(f => ({ filename: f.filename, additions: f.additions, deletions: f.deletions })), pulls: (pulls || []).map(p => ({ number: p.number, url: p.html_url, title: p.title, user: p.user?.login })), html_url: details.html_url });
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(`GitHub API request failed: ${res.status} ${res.statusText} - ${txt}`);
     }
+    const items = await res.json();
+    const shas = items.map(i => i.sha);
+    // fetch details in batches and write them as we go
+    const details = await fetchDetailsBatch(shas);
+    for (const d of details) {
+      if (total > 0) stream.write(',');
+      stream.write('\n');
+      stream.write(JSON.stringify(d));
+      total += 1;
+    }
+
+    // pagination
     const link = res.headers.get('link');
     if (link) {
       const match = link.match(/<([^>]+)>; rel="next"/);
@@ -78,11 +114,24 @@ async function fetchGithubCommits({ repo, since, until, out }) {
     } else {
       next = null;
     }
+
+    // Basic rate-limit handling: pause if remaining is low
+    const remaining = res.headers.get('x-ratelimit-remaining');
+    const reset = res.headers.get('x-ratelimit-reset');
+    if (remaining !== null && Number(remaining) < 10 && reset) {
+      const waitMs = Math.max(0, (Number(reset) * 1000) - Date.now());
+      console.warn(`Approaching GitHub rate limit, waiting ${Math.ceil(waitMs/1000)}s`);
+      if (waitMs > 0) await new Promise(r => setTimeout(r, waitMs + 1000));
+    }
   }
-  const outData = { meta: { source: 'github', repo, fetchedAt: new Date().toISOString(), count: allCommits.length }, commits: allCommits };
-  fs.mkdirSync(require('path').dirname(out), { recursive: true });
-  fs.writeFileSync(out, JSON.stringify(outData, null, 2), 'utf8');
-  console.log(`Wrote ${allCommits.length} commits to ${out}`);
+
+  // finalize JSON
+  stream.write('\n] }');
+  stream.end();
+
+  // replace existing file
+  fs.renameSync(out + '.tmp', out);
+  console.log(`Wrote ${total} commits to ${out}`);
 }
 
 async function main() {

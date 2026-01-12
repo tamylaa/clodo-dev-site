@@ -141,12 +141,23 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     // All pages get WebSite schema  
     schemas.push(generateWebSiteSchema(locale));
     
-    // All pages get SoftwareApplication schema
-    schemas.push(generateSoftwareApplicationSchema(locale));
-    
     // Load all page-specific schema files
     const pageName = filename.replace(/\.html$/, '');
     const pageSchemas = loadPageSchemas(pageName);
+
+    // If the page provides its own SoftwareApplication schema, prefer that and skip the generated one
+    const hasSoftwareSchema = pageSchemas.some(s => (s && (s['@type'] === 'SoftwareApplication' || (Array.isArray(s['@type']) && s['@type'].includes('SoftwareApplication')))));
+    if (!hasSoftwareSchema) {
+      // All pages get SoftwareApplication schema (unless overridden by page file)
+      // For product pages that mention Wrangler, add an explicit feature highlighting Wrangler automation
+      const softwareSchema = generateSoftwareApplicationSchema(locale);
+      const mentionsWrangler = /wrangler/i.test(htmlContent) || pageName === 'product';
+      if (mentionsWrangler) {
+        softwareSchema.featureList = Array.from(new Set([...(softwareSchema.featureList || []), 'Cloudflare Wrangler automation — deployments, D1 migrations, and rollbacks']));
+      }
+      schemas.push(softwareSchema);
+    }
+
     schemas.push(...pageSchemas);
     
     // Check if this page has a specific configuration

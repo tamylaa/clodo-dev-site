@@ -10,7 +10,7 @@ function parseArgs(argv){
 
 function monthKey(dateStr){ const d=new Date(dateStr); if(isNaN(d)) return 'unknown'; return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}`; }
 
-function tokenizeTitle(title){ return title.toLowerCase().replace(/["'`.,:;()\[\]{}<>]/g,'').split(/\s+/).filter(Boolean); }
+function tokenizeTitle(title){ return title.toLowerCase().replace(/[^^\w\s-]/g,'').split(/\s+/).filter(Boolean); }
 
 function topN(map, n=10){ return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,n); }
 

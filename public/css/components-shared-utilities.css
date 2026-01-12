@@ -346,7 +346,7 @@
 }
 
 /* ===== COPY BUTTON FEEDBACK ===== */
-.copy-button {
+.copy-button, .copy-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -361,17 +361,17 @@
   transition: all 0.3s ease;
 }
 
-.copy-button:hover {
+.copy-button:hover, .copy-btn:hover {
   background: #4ade80;
   color: #1e1e1e;
 }
 
-.copy-button.copied {
+.copy-button.copied, .copy-btn.copied {
   background: #4ade80;
   color: #1e1e1e;
 }
 
-.copy-button svg {
+.copy-button svg, .copy-btn svg {
   width: 14px;
   height: 14px;
 }

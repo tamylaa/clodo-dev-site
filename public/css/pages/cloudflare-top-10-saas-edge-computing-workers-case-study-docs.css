@@ -1425,39 +1425,102 @@
 
 /* Table of Contents */
 .table-of-contents {
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 2px solid #0ea5e9;
   border-radius: 1rem;
   padding: 2rem;
   margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.table-of-contents::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.toc-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .table-of-contents h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: #0c4a6e;
   margin: 0 0 1.5rem 0;
+  position: relative;
+  z-index: 2;
 }
 
-.table-of-contents ul {
+.toc-list-main {
   list-style: none;
   padding: 0;
   margin: 0;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
 }
 
-.table-of-contents li {
-  margin-bottom: 0.5rem;
+.toc-list-main li {
+  margin-bottom: 0;
 }
 
-.table-of-contents a {
-  color: #6366f1;
+.toc-main-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #0369a1;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(6, 182, 212, 0.3);
 }
 
-.table-of-contents a:hover {
-  color: #4f46e5;
+.toc-main-link:hover {
+  color: #0c4a6e;
+  background: white;
+  border-color: #0ea5e9;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+}
+
+.toc-main-link:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+.toc-main-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .toc-list-main {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Building Blocks */

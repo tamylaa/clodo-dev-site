@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Clodo Framework",
+  "url": "https://www.clodo.dev/product",
+  "description": "Clodo Framework — deployment orchestration for Cloudflare Workers and D1 with automated Wrangler integration.",
+  "softwareVersion": "4.0.13",
+  "applicationCategory": "DevTool",
+  "author": { "@type": "Organization", "name": "Clodo Framework", "url": "https://www.clodo.dev" },
+  "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "USD" },
+  "downloadUrl": "https://www.npmjs.com/package/@tamyla/clodo-framework",
+  "codeRepository": "https://github.com/tamylaa/clodo-framework",
+  "inLanguage": "en"
+}
