@@ -3,6 +3,10 @@
   "@type": "Article",
   "headline": "Analytics - Clodo Framework",
   "url": "https://www.clodo.dev/analytics",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Internal analytics dashboard for Clodo Framework administrators.",
+  "wordCount": 13,
+  "readingTime": "1 min",
+  "enriched": true
 }

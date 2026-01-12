@@ -3,6 +3,18 @@
   "@type": "Article",
   "headline": "Clodo Framework — From Prototype to Production with 98.9% Test Success | Clodo",
   "url": "https://www.clodo.dev/clodo-framework-promise-to-reality",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Read how Clodo became production-ready: validation process, automated tests, and practical lessons for Cloudflare developers.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework Team"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 575,
+  "readingTime": "3 min",
+  "enriched": true
 }
