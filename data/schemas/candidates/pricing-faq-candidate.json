@@ -1,0 +1,20 @@
+{
+  "page": "pricing",
+  "count": 3,
+  "confidence": 0.7,
+  "generatedAt": "2026-01-12T12:45:59.251Z",
+  "candidates": [
+    {
+      "name": "weeks instead of months",
+      "acceptedAnswer": "10x Faster Development\n                            \n                            \n                                Pre-built patterns, security, and deployment automation get you to production in .\n                                \n                                    75%\n                                    Estimated reduction in development time\n                                \n                            \n                            vs building from scratch"
+    },
+    {
+      "name": "compute costs, cold starts, and expensive infrastructure",
+      "acceptedAnswer": "80% Cost Reduction\n                            \n                            \n                                Cloudflare Workers + Clodo Framework eliminates .\n                                \n                                    $1,200\n                                    Estimated annual savings (USD)\n                                \n                            \n                            vs AWS Lambda"
+    },
+    {
+      "name": "HIPAA/GDPR/SOC2 compliance features included from day one",
+      "acceptedAnswer": "Enterprise Security\n                            \n                            \n                                Authentication, encryption, rate limiting, and .\n                                \n                                    Full\n                                    Security features to help meet HIPAA/GDPR/SOC2 requirements\n                                \n                            \n                            built-in"
+    }
+  ]
+}

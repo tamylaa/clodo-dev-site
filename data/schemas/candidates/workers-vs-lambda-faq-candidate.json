@@ -1,0 +1,132 @@
+{
+  "page": "workers-vs-lambda",
+  "count": 31,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:46:00.160Z",
+  "candidates": [
+    {
+      "name": "Ready to Choose Your Serverless Platform?",
+      "acceptedAnswer": "Both Cloudflare Workers and AWS Lambda are powerful platforms. Choose based on your performance needs, existing infrastructure, and development preferences."
+    },
+    {
+      "name": "Near-zero cold starts",
+      "acceptedAnswer": "- Always warm due to edge distribution"
+    },
+    {
+      "name": "100-1000ms cold starts",
+      "acceptedAnswer": "depending on language and memory"
+    },
+    {
+      "name": "<50ms latency",
+      "acceptedAnswer": "to users worldwide"
+    },
+    {
+      "name": "100-500ms latency",
+      "acceptedAnswer": "depending on region"
+    },
+    {
+      "name": "Up to 30 seconds",
+      "acceptedAnswer": "execution time"
+    },
+    {
+      "name": "Up to 15 minutes",
+      "acceptedAnswer": "execution time"
+    },
+    {
+      "name": "Workers:",
+      "acceptedAnswer": "~$1.50/month (Bundled)"
+    },
+    {
+      "name": "Lambda:",
+      "acceptedAnswer": "~$2.00/month + data transfer"
+    },
+    {
+      "name": "Workers:",
+      "acceptedAnswer": "Predictable CPU-second pricing"
+    },
+    {
+      "name": "Lambda:",
+      "acceptedAnswer": "Cheaper for bursty workloads"
+    },
+    {
+      "name": "Workers:",
+      "acceptedAnswer": "No additional CDN costs"
+    },
+    {
+      "name": "Lambda:",
+      "acceptedAnswer": "+ CloudFront costs"
+    },
+    {
+      "name": "Cloudflare Products:",
+      "acceptedAnswer": "Pages, KV, D1, Durable Objects, R2"
+    },
+    {
+      "name": "CDN Integration:",
+      "acceptedAnswer": "Built-in global CDN"
+    },
+    {
+      "name": "Security:",
+      "acceptedAnswer": "WAF, Bot Management, Rate Limiting"
+    },
+    {
+      "name": "Storage:",
+      "acceptedAnswer": "Integrated object storage and databases"
+    },
+    {
+      "name": "AWS Services:",
+      "acceptedAnswer": "200+ integrated services"
+    },
+    {
+      "name": "Third-party:",
+      "acceptedAnswer": "Extensive marketplace"
+    },
+    {
+      "name": "Enterprise:",
+      "acceptedAnswer": "Deep integration with enterprise tools"
+    },
+    {
+      "name": "Customization:",
+      "acceptedAnswer": "VPC, custom runtimes, containers"
+    },
+    {
+      "name": "Language:",
+      "acceptedAnswer": "Convert to JavaScript/TypeScript"
+    },
+    {
+      "name": "Storage:",
+      "acceptedAnswer": "Migrate from DynamoDB to D1/KV"
+    },
+    {
+      "name": "APIs:",
+      "acceptedAnswer": "Adapt to Web APIs instead of AWS SDK"
+    },
+    {
+      "name": "Deployment:",
+      "acceptedAnswer": "Use Wrangler instead of AWS CLI"
+    },
+    {
+      "name": "Language:",
+      "acceptedAnswer": "Choose from multiple runtime options"
+    },
+    {
+      "name": "Storage:",
+      "acceptedAnswer": "Use DynamoDB, S3, or RDS"
+    },
+    {
+      "name": "Global:",
+      "acceptedAnswer": "Add CloudFront for global distribution"
+    },
+    {
+      "name": "Security:",
+      "acceptedAnswer": "Configure WAF and Shield separately"
+    },
+    {
+      "name": "Workers for Edge:",
+      "acceptedAnswer": "API endpoints, content modification, global user-facing features"
+    },
+    {
+      "name": "Lambda for Cloud:",
+      "acceptedAnswer": "Data processing, batch jobs, complex business logic, integrations"
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "page": "faq",
+  "count": 74,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:56.037Z",
+  "candidates": [
+    {
+      "name": "CPU time:",
+      "acceptedAnswer": "30 seconds for Workers, up to 15 minutes for Durable Objects"
+    },
+    {
+      "name": "Memory:",
+      "acceptedAnswer": "128MB standard, up to 512MB available"
+    },
+    {
+      "name": "Request timeout:",
+      "acceptedAnswer": "30 seconds default"
+    },
+    {
+      "name": "File size:",
+      "acceptedAnswer": "25MB max upload size"
+    },
+    {
+      "name": "~0ms cold start:",
+      "acceptedAnswer": "✅  Code is pre-compiled at edge"
+    },
+    {
+      "name": "Always hot:",
+      "acceptedAnswer": "✅  Replicated to 200+ locations globally"
+    },
+    {
+      "name": "Instant response:",
+      "acceptedAnswer": "✅  No initialization delay"
+    },
+    {
+      "name": "Perfect for:",
+      "acceptedAnswer": "✅  P99 latency matters (customer-facing apps)"
+    },
+    {
+      "name": "CORS handling:",
+      "acceptedAnswer": "✅  Simple declarative syntax"
+    },
+    {
+      "name": "Security headers:",
+      "acceptedAnswer": "✅  CSP, X-Frame-Options, HSTS"
+    },
+    {
+      "name": "JWT validation:",
+      "acceptedAnswer": "✅  Built-in middleware"
+    },
+    {
+      "name": "Rate limiting:",
+      "acceptedAnswer": "✅  Per-tenant or per-IP"
+    },
+    {
+      "name": "WAF rules:",
+      "acceptedAnswer": "✅  Cloudflare WAF included"
+    },
+    {
+      "name": "D1 (SQLite):",
+      "acceptedAnswer": "✅  Built-in, recommended"
+    },
+    {
+      "name": "PostgreSQL:",
+      "acceptedAnswer": "✅  Via Neon, Supabase"
+    },
+    {
+      "name": "MySQL:",
+      "acceptedAnswer": "✅  Via PlanetScale"
+    },
+    {
+      "name": "MongoDB:",
+      "acceptedAnswer": "✅  Via Atlas"
+    },
+    {
+      "name": "Custom APIs:",
+      "acceptedAnswer": "✅  HTTP calls to any service"
+    },
+    {
+      "name": "R2 Object Storage:",
+      "acceptedAnswer": "✅  Store files permanently (recommended)"
+    },
+    {
+      "name": "Base64 encoding:",
+      "acceptedAnswer": "✅  Small files in D1 database"
+    },
+    {
+      "name": "Multipart form data:",
+      "acceptedAnswer": "✅  Full HTTP upload support"
+    },
+    {
+      "name": "Signed URLs:",
+      "acceptedAnswer": "✅  Direct browser-to-R2 uploads"
+    },
+    {
+      "name": "Size limits:",
+      "acceptedAnswer": "✅  Up to 25MB per request"
+    },
+    {
+      "name": "Standard Web APIs:",
+      "acceptedAnswer": "✅  Most code runs anywhere"
+    },
+    {
+      "name": "Cloudflare-specific:",
+      "acceptedAnswer": "⚠ï¸  Durable Objects, D1, R2 (but documented)"
+    },
+    {
+      "name": "Migration path:",
+      "acceptedAnswer": "✅  Can move to other platforms if needed"
+    },
+    {
+      "name": "Open source:",
+      "acceptedAnswer": "✅  You own your code, not locked in"
+    },
+    {
+      "name": "Compute:",
+      "acceptedAnswer": "$0.00001667 per request (first 100M/month free)"
+    },
+    {
+      "name": "Storage (D1):",
+      "acceptedAnswer": "Included (SQLite database)"
+    },
+    {
+      "name": "KV Storage:",
+      "acceptedAnswer": "$0.50/million operations"
+    },
+    {
+      "name": "R2 Object Storage:",
+      "acceptedAnswer": "$0.015/GB (first 10GB free)"
+    },
+    {
+      "name": "Community Support:",
+      "acceptedAnswer": "GitHub Discussions (free)"
+    },
+    {
+      "name": "Priority Support:",
+      "acceptedAnswer": "Email + Slack (contact sales)"
+    },
+    {
+      "name": "Enterprise Support:",
+      "acceptedAnswer": "Dedicated engineer (contact sales)"
+    },
+    {
+      "name": "Linear pricing:",
+      "acceptedAnswer": "2x traffic = 2x cost"
+    },
+    {
+      "name": "No overprovisioning:",
+      "acceptedAnswer": "Pay only for actual requests"
+    },
+    {
+      "name": "Free tier covers:",
+      "acceptedAnswer": "100M requests/month (enough for 1M users with average usage)"
+    },
+    {
+      "name": "Rate limiting:",
+      "acceptedAnswer": "Built-in, no surprise costs"
+    },
+    {
+      "name": "Before deployment:",
+      "acceptedAnswer": "Validates all worker rules, environment variables, database connections"
+    },
+    {
+      "name": "Prevents crashes:",
+      "acceptedAnswer": "Catches errors before they hit production"
+    },
+    {
+      "name": "Reduces downtime:",
+      "acceptedAnswer": "Failed deployments never go live"
+    },
+    {
+      "name": "Enterprise-ready:",
+      "acceptedAnswer": "Integrates with CI/CD pipelines"
+    },
+    {
+      "name": "Tenant isolation:",
+      "acceptedAnswer": "Data automatically separated by tenant"
+    },
+    {
+      "name": "Namespace management:",
+      "acceptedAnswer": "Automatic routing by tenant ID"
+    },
+    {
+      "name": "Database per tenant or shared:",
+      "acceptedAnswer": "You choose the architecture"
+    },
+    {
+      "name": "Cost per tenant:",
+      "acceptedAnswer": "Transparent, automatic billing if needed"
+    },
+    {
+      "name": "JavaScript/TypeScript",
+      "acceptedAnswer": "✅  (primary, full support)"
+    },
+    {
+      "name": "Python",
+      "acceptedAnswer": "✅  (via community packages)"
+    },
+    {
+      "name": "Rust",
+      "acceptedAnswer": "✅  (via WebAssembly)"
+    },
+    {
+      "name": "Go, Java:",
+      "acceptedAnswer": "🔄  Coming soon"
+    },
+    {
+      "name": "WebSockets:",
+      "acceptedAnswer": "✅  Supported via Durable Objects"
+    },
+    {
+      "name": "Real-time messaging:",
+      "acceptedAnswer": "✅  Low-latency global pub/sub"
+    },
+    {
+      "name": "Chat applications:",
+      "acceptedAnswer": "✅  Built-in for multi-user sync"
+    },
+    {
+      "name": "Live dashboards:",
+      "acceptedAnswer": "✅  Server-Sent Events (SSE)"
+    },
+    {
+      "name": "Collaboration tools:",
+      "acceptedAnswer": "✅  CRDT support available"
+    },
+    {
+      "name": "First deployment:",
+      "acceptedAnswer": "2-3 minutes"
+    },
+    {
+      "name": "Subsequent deploys:",
+      "acceptedAnswer": "10-30 seconds"
+    },
+    {
+      "name": "Zero downtime:",
+      "acceptedAnswer": "Blue-green deployments automatic"
+    },
+    {
+      "name": "Rollback:",
+      "acceptedAnswer": "1 click, instant"
+    },
+    {
+      "name": "99.99% SLA",
+      "acceptedAnswer": "✅  for Enterprise customers"
+    },
+    {
+      "name": "200+ data centers",
+      "acceptedAnswer": "✅  worldwide (automatic failover)"
+    },
+    {
+      "name": "DDoS protection",
+      "acceptedAnswer": "✅  included"
+    },
+    {
+      "name": "Automatic scaling:",
+      "acceptedAnswer": "✅  No manual intervention needed"
+    },
+    {
+      "name": "Zero cold starts:",
+      "acceptedAnswer": "✅  Always ready to serve"
+    },
+    {
+      "name": "GitHub Actions:",
+      "acceptedAnswer": "✅  Deploy on push"
+    },
+    {
+      "name": "GitLab CI:",
+      "acceptedAnswer": "✅  Full integration"
+    },
+    {
+      "name": "CircleCI:",
+      "acceptedAnswer": "✅  Pre-flight validation"
+    },
+    {
+      "name": "Jenkins:",
+      "acceptedAnswer": "✅  Custom webhook support"
+    },
+    {
+      "name": "Environment promotion:",
+      "acceptedAnswer": "✅  Dev → Staging → Production"
+    },
+    {
+      "name": "Real-time logs:",
+      "acceptedAnswer": "All requests/errors in Cloudflare dashboard"
+    },
+    {
+      "name": "Metrics:",
+      "acceptedAnswer": "CPU, memory, errors, latency"
+    },
+    {
+      "name": "Analytics:",
+      "acceptedAnswer": "Page views, geographic distribution, browser stats"
+    },
+    {
+      "name": "Alerts:",
+      "acceptedAnswer": "Set thresholds for errors, latency"
+    },
+    {
+      "name": "Integrations:",
+      "acceptedAnswer": "DataDog, New Relic, Grafana"
+    }
+  ]
+}

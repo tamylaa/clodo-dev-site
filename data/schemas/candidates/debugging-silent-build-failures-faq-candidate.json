@@ -1,0 +1,112 @@
+{
+  "page": "debugging-silent-build-failures",
+  "count": 26,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:53.208Z",
+  "candidates": [
+    {
+      "name": "What Are Git Submodules?",
+      "acceptedAnswer": "Git submodules allow you to include one git repository inside another. They're commonly used for:\n\nEmbedding third-party libraries\n                    Sharing code between projects\n                    Managing mono-repos"
+    },
+    {
+      "name": "Why No Error Message?",
+      "acceptedAnswer": "The build system didn't consider missing submodule initialization a build failure—just a skipped step. The actual build command (npm run build) succeeded because it didn't reference the missing directory."
+    },
+    {
+      "name": "Building on Cloudflare Workers?",
+      "acceptedAnswer": "Clodo Framework handles deployment complexity so you can focus on building great products.\n\nRead Documentation\n                        Try It Now"
+    },
+    {
+      "name": "Clone repository",
+      "acceptedAnswer": "- Gets commit references including submodule pointer"
+    },
+    {
+      "name": "Check for .gitmodules",
+      "acceptedAnswer": "- Not found!"
+    },
+    {
+      "name": "Skip submodule init",
+      "acceptedAnswer": "- Can't fetch without configuration"
+    },
+    {
+      "name": "Continue build",
+      "acceptedAnswer": "- Directory doesn't exist, but build doesn't fail immediately"
+    },
+    {
+      "name": "Use cached build",
+      "acceptedAnswer": "- Falls back to last successful build"
+    },
+    {
+      "name": "npm/yarn packages",
+      "acceptedAnswer": "for JavaScript dependencies"
+    },
+    {
+      "name": "Separate repositories",
+      "acceptedAnswer": "with CI/CD integration"
+    },
+    {
+      "name": "Mono-repos",
+      "acceptedAnswer": "with tools like Nx or Turborepo"
+    },
+    {
+      "name": "Git subtrees",
+      "acceptedAnswer": "if you need embedded repos"
+    },
+    {
+      "name": "clodo-dev-site",
+      "acceptedAnswer": "- Marketing website"
+    },
+    {
+      "name": "clodo-starter-template",
+      "acceptedAnswer": "- StackBlitz demo (separate repo)"
+    },
+    {
+      "name": "clodo-framework",
+      "acceptedAnswer": "- Framework npm package"
+    },
+    {
+      "name": "Independent versioning",
+      "acceptedAnswer": "- Update demo without touching website"
+    },
+    {
+      "name": "No build dependencies",
+      "acceptedAnswer": "- Each deploys independently"
+    },
+    {
+      "name": "Clear separation",
+      "acceptedAnswer": "- Demo code isn't mixed with marketing site"
+    },
+    {
+      "name": "GitHub template",
+      "acceptedAnswer": "- Can mark demo as template for easy forking"
+    },
+    {
+      "name": "StackBlitz integration",
+      "acceptedAnswer": "- Direct URL to separate repo"
+    },
+    {
+      "name": "Verify the source",
+      "acceptedAnswer": "- Don't assume pushed code is deployed code"
+    },
+    {
+      "name": "Submodules need full configuration",
+      "acceptedAnswer": "- Or avoid them entirely"
+    },
+    {
+      "name": "Test fresh clones",
+      "acceptedAnswer": "- Your local environment lies"
+    },
+    {
+      "name": "Check build logs",
+      "acceptedAnswer": "- Even \"successful\" builds can hide issues"
+    },
+    {
+      "name": "Simplify when possible",
+      "acceptedAnswer": "- Separate repos beat complex submodule hierarchies"
+    },
+    {
+      "name": "Tamyla",
+      "acceptedAnswer": "Founder & Principal Engineer at Clodo Framework"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "page": "healthcare-saas-platform",
+  "count": 7,
+  "confidence": 0.7,
+  "generatedAt": "2026-01-12T12:45:53.548Z",
+  "candidates": [
+    {
+      "name": "Pre-flight validation:",
+      "acceptedAnswer": "Caught 95% of potential issues before deployment"
+    },
+    {
+      "name": "Edge computing:",
+      "acceptedAnswer": "Improved global performance and compliance"
+    },
+    {
+      "name": "Built-in monitoring:",
+      "acceptedAnswer": "Reduced operational overhead significantly"
+    },
+    {
+      "name": "Rapid iteration:",
+      "acceptedAnswer": "Faster development cycles enabled quick feature delivery"
+    },
+    {
+      "name": "Legacy integration:",
+      "acceptedAnswer": "Successfully migrated from monolithic architecture"
+    },
+    {
+      "name": "Compliance requirements:",
+      "acceptedAnswer": "Met strict HIPAA and GDPR standards"
+    },
+    {
+      "name": "Team training:",
+      "acceptedAnswer": "Upskilled developers on serverless and edge computing"
+    }
+  ]
+}

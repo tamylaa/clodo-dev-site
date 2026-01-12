@@ -1,0 +1,36 @@
+{
+  "page": "subscribe",
+  "count": 7,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:59.917Z",
+  "candidates": [
+    {
+      "name": "How often will I receive emails?",
+      "acceptedAnswer": "1-2 times per month, only when we have valuable content to share. No filler, no fluff."
+    },
+    {
+      "name": "Can I unsubscribe anytime?",
+      "acceptedAnswer": "Absolutely. Every email has a one-click unsubscribe link at the bottom. No questions asked."
+    },
+    {
+      "name": "What kind of content do you send?",
+      "acceptedAnswer": "Technical guides, code examples, migration strategies, performance case studies, and early access to new features."
+    },
+    {
+      "name": "Do you share my email?",
+      "acceptedAnswer": "Never. Your email stays private. We don't sell, rent, or share subscriber data with anyone."
+    },
+    {
+      "name": "Multi-Tenant Templates",
+      "acceptedAnswer": "- Copy-paste ready customer isolation patterns"
+    },
+    {
+      "name": "D1 Migration Guide",
+      "acceptedAnswer": "- Step-by-step PostgreSQL → D1 migration with zero downtime"
+    },
+    {
+      "name": "Performance Case Study",
+      "acceptedAnswer": "- How we reduced API latency by 73%"
+    }
+  ]
+}

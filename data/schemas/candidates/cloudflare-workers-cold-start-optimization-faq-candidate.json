@@ -1,0 +1,64 @@
+{
+  "page": "cloudflare-workers-cold-start-optimization",
+  "count": 14,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:54.864Z",
+  "candidates": [
+    {
+      "name": "Ready to Eliminate Cold Starts?",
+      "acceptedAnswer": "Join thousands of developers who have achieved zero-cold-start performance with Clodo Framework.\n\nGet Started Free\n                                    View Documentation"
+    },
+    {
+      "name": "100-5000ms",
+      "acceptedAnswer": "added latency"
+    },
+    {
+      "name": "50-90%",
+      "acceptedAnswer": "performance degradation"
+    },
+    {
+      "name": "10-50%",
+      "acceptedAnswer": "user abandonment rate"
+    },
+    {
+      "name": "$100K+",
+      "acceptedAnswer": "annual revenue impact"
+    },
+    {
+      "name": "Edge-Specific Caching:",
+      "acceptedAnswer": "Cache different content per geographic region"
+    },
+    {
+      "name": "Predictive Warming:",
+      "acceptedAnswer": "Pre-load data based on usage patterns"
+    },
+    {
+      "name": "Cache Invalidation:",
+      "acceptedAnswer": "Smart invalidation strategies for dynamic content"
+    },
+    {
+      "name": "Compression:",
+      "acceptedAnswer": "Use Brotli/Gzip for cached responses"
+    },
+    {
+      "name": "Cold Start Duration:",
+      "acceptedAnswer": "Time to first response"
+    },
+    {
+      "name": "P95 Response Time:",
+      "acceptedAnswer": "95th percentile performance"
+    },
+    {
+      "name": "Cache Hit Rate:",
+      "acceptedAnswer": "Percentage of cached requests"
+    },
+    {
+      "name": "Bundle Size:",
+      "acceptedAnswer": "JavaScript payload size"
+    },
+    {
+      "name": "Error Rate:",
+      "acceptedAnswer": "Failed request percentage"
+    }
+  ]
+}

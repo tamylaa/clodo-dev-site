@@ -1,0 +1,56 @@
+{
+  "page": "components",
+  "count": 12,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:55.310Z",
+  "candidates": [
+    {
+      "name": "Font Family:",
+      "acceptedAnswer": "var(--font-sans) = -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu..."
+    },
+    {
+      "name": "Font Size Base:",
+      "acceptedAnswer": "1rem (16px)"
+    },
+    {
+      "name": "Heading Font Size:",
+      "acceptedAnswer": "Fluid scaling with clamp()"
+    },
+    {
+      "name": "Letter Spacing:",
+      "acceptedAnswer": "-0.02em for headings, normal for body"
+    },
+    {
+      "name": "Use Component Classes:",
+      "acceptedAnswer": "Apply the appropriate component classes (btn, card, alert, etc.) rather than custom styling"
+    },
+    {
+      "name": "Mobile First:",
+      "acceptedAnswer": "Design for mobile screens first, then enhance for larger viewports"
+    },
+    {
+      "name": "Accessibility First:",
+      "acceptedAnswer": "Ensure all components have proper semantic HTML, ARIA labels, and focus states"
+    },
+    {
+      "name": "Consistent Spacing:",
+      "acceptedAnswer": "Use spacing tokens consistently throughout your layouts"
+    },
+    {
+      "name": "Color Contrast:",
+      "acceptedAnswer": "Maintain WCAG AA (4.5:1) or AAA (7:1) contrast ratios for text"
+    },
+    {
+      "name": "Touch Targets:",
+      "acceptedAnswer": "Keep interactive elements at least 44px high for touch accessibility"
+    },
+    {
+      "name": "Dark Mode:",
+      "acceptedAnswer": "All components support dark mode through CSS custom properties"
+    },
+    {
+      "name": "Responsive Design:",
+      "acceptedAnswer": "Use media queries and fluid sizing for responsive components"
+    }
+  ]
+}
