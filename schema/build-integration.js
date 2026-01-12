@@ -27,7 +27,6 @@ import {
 } from './schema-generator.js';
 import {
   detectLocaleFromPath,
-  getLocaleConfig,
   shouldInjectSchemas
 } from './locale-utils.js';
 import { readFileSync, existsSync, readdirSync } from 'fs';

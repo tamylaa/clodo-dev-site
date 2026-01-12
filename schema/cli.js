@@ -12,8 +12,7 @@
 
 import {
   preGenerateAllSchemas,
-  getConfigurationReport,
-  validateSchemaConfigs
+  getConfigurationReport
 } from './build-integration.js';
 import { loadPageConfiguration } from './schema-generator.js';
 
