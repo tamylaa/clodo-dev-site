@@ -4,7 +4,7 @@
   "headline": "Advanced Cloudflare Workers: Enterprise Patterns & Best Practices | Clodo Framework",
   "url": "https://www.clodo.dev/advanced-cloudflare-workers-tutorial",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Master advanced Cloudflare Workers patterns: service meshes, distributed systems, performance optimization, and enterprise architecture.",
   "author": {
     "@type": "Person",
@@ -18,13 +18,12 @@
   "readingTime": "6 min",
   "enriched": true,
   "keywords": [
-    "Cloudflare Workers",
-    "Cloudflare",
-    "Workers",
-    "Advanced",
-    "Enterprise",
-    "Patterns",
-    "Practices",
-    "Clodo Framework"
-  ]
+    "advanced cloudflare workers",
+    "worker patterns",
+    "enterprise workers",
+    "distributed systems",
+    "service mesh",
+    "performance optimization"
+  ],
+  "datePublished": "2026-01-06T10:33:21.788Z"
 }

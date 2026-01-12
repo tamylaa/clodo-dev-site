@@ -1,10 +1,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Cloudflare Workers Boilerplates: Starter-Vorlagen & Frameworks Vergleich",
+  "headline": "Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison",
   "url": "https://www.clodo.dev/workers-boilerplate",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Compare top Cloudflare Workers boilerplates and starter templates. Find the best framework for your project with feature comparisons, setup guides, and deployment examples.",
   "image": {
     "@type": "ImageObject",
@@ -22,5 +22,6 @@
     "Vorlagen",
     "Frameworks",
     "Clodo Framework"
-  ]
+  ],
+  "datePublished": "2026-01-06T10:33:21.831Z"
 }

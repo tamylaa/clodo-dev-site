@@ -1,18 +1,28 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Serverless Architecture Best Practices",
-  "description": "Best practices for building resilient serverless applications using Clodo Framework and Cloudflare Workers.",
+  "headline": "Serverless Architecture Best Practices 2025 - Complete Guide | Clodo Framework",
+  "description": "Master serverless architecture in 2025. Complete guide covering design patterns, cost optimization, performance, security, and deployment strategies for scalable applications.",
   "url": "https://www.clodo.dev/serverless-architecture-best-practices",
   "keywords": [
-    "Cloudflare Workers",
-    "Workers",
-    "Cloudflare",
-    "Serverless",
-    "Practices",
-    "Architecture",
-    "Building",
-    "Resilient",
-    "Clodo Framework"
-  ]
+    "serverless architecture",
+    "serverless best practices",
+    "serverless design patterns",
+    "serverless cost optimization",
+    "serverless performance",
+    "serverless security",
+    "cloudflare workers serverless",
+    "aws lambda best practices",
+    "serverless deployment",
+    "serverless monitoring"
+  ],
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "datePublished": "2026-01-06T05:16:25.794Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 981,
+  "readingTime": "5 min"
 }

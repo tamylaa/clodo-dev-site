@@ -4,7 +4,7 @@
   "headline": "Cloudflare Workers Enterprise Features: Advanced Capabilities & Security",
   "url": "https://www.clodo.dev/cloudflare-workers-enterprise-features",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Discover Cloudflare Workers enterprise features: advanced security, compliance, multi-tenant architecture, enterprise integrations, and production-ready capabilities for large-scale deployments.",
   "author": {
     "@type": "Person",
@@ -18,13 +18,14 @@
   "readingTime": "3 min",
   "enriched": true,
   "keywords": [
-    "Cloudflare Workers",
-    "Cloudflare",
-    "Workers",
-    "Enterprise",
-    "Features",
-    "Advanced",
-    "Capabilities",
+    "Cloudflare Workers enterprise",
+    "enterprise features",
+    "multi-tenant",
+    "compliance",
+    "security",
+    "enterprise integrations",
+    "production deployment",
     "Clodo Framework"
-  ]
+  ],
+  "datePublished": "2026-01-06T05:16:25.758Z"
 }

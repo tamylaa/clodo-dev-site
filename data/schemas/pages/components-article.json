@@ -1,10 +1,10 @@
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "WebPage",
   "headline": "Component Library - Clodo Framework",
   "url": "https://www.clodo.dev/components",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Comprehensive component documentation and showcase for Clodo Framework UI components.",
   "wordCount": 785,
   "readingTime": "4 min",
@@ -17,5 +17,6 @@
     "Comprehensive",
     "Documentation",
     "Clodo Framework"
-  ]
+  ],
+  "datePublished": "2026-01-10T16:55:47.911Z"
 }

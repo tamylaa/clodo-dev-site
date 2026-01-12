@@ -4,7 +4,7 @@
   "headline": "Authentication on Cloudflare Workers: JWT, OAuth, & Session Management",
   "url": "https://www.clodo.dev/cloudflare-workers-auth",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Complete guide to implementing authentication in Cloudflare Workers. Learn JWT, OAuth, Cloudflare Access, Turnstile, and session management with code examples.",
   "image": {
     "@type": "ImageObject",
@@ -22,5 +22,6 @@
     "Session",
     "Management",
     "Clodo Framework"
-  ]
+  ],
+  "datePublished": "2026-01-06T10:33:21.804Z"
 }
