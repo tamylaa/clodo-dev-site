@@ -4,7 +4,7 @@
   "headline": "API Simplification — How Clodo Reduced Developer Onboarding by 88% | Clodo",
   "url": "https://www.clodo.dev/clodo-framework-api-simplification",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "How we simplified a complex API while preserving enterprise features — reduced onboarding time, fewer support tickets, and faster adoption.",
   "author": {
     "@type": "Person",
@@ -18,12 +18,13 @@
   "readingTime": "6 min",
   "enriched": true,
   "keywords": [
-    "Clodo",
-    "Reduced",
-    "Onboarding",
-    "Simplification",
-    "Developer",
-    "Simplified",
-    "Clodo Framework"
-  ]
+    "API design",
+    "developer experience",
+    "complexity",
+    "simplification",
+    "Clodo Framework",
+    "Cloudflare",
+    "enterprise software"
+  ],
+  "datePublished": "2026-01-10T16:55:47.640Z"
 }

@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Quick Start with Clodo Framework",
-  "description": "Quick start guide to getting your first Clodo app running on Cloudflare Workers.",
+  "headline": "Quick Start - Clodo Framework",
+  "description": "Get started with Clodo Framework in 5 minutes. Build enterprise SaaS on Cloudflare Workers.",
   "url": "https://www.clodo.dev/quick-start",
   "keywords": [
     "Cloudflare Workers",
@@ -14,5 +14,10 @@
     "Framework",
     "Getting",
     "Clodo Framework"
-  ]
+  ],
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "datePublished": "2026-01-06T05:16:25.787Z",
+  "wordCount": 68,
+  "readingTime": "1 min"
 }

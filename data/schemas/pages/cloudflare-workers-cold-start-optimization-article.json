@@ -4,7 +4,7 @@
   "headline": "Cloudflare Workers Cold Start Optimization: Eliminate Latency Spikes | Clodo Framework",
   "url": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Eliminate Cloudflare Workers cold starts completely. Learn advanced optimization techniques, caching strategies, and Clodo Framework's zero-cold-start architecture for consistent sub-100ms responses.",
   "image": {
     "@type": "ImageObject",
@@ -14,13 +14,13 @@
   "readingTime": "3 min",
   "enriched": true,
   "keywords": [
-    "Cloudflare Workers",
-    "Cloudflare",
-    "Workers",
-    "Cold",
-    "Start",
-    "Optimization",
-    "Eliminate",
-    "Clodo Framework"
-  ]
+    "cloudflare workers cold start",
+    "cold start optimization",
+    "edge computing performance",
+    "zero cold starts",
+    "latency optimization",
+    "serverless performance",
+    "clodo framework"
+  ],
+  "datePublished": "2026-01-06T10:33:21.805Z"
 }

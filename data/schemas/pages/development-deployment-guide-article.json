@@ -4,7 +4,7 @@
   "headline": "Development & Deployment Guide: Edge Application Lifecycle",
   "url": "https://www.clodo.dev/development-deployment-guide",
   "generatedBy": "skeleton-enricher.js",
-  "generated": true,
+  "generated": false,
   "description": "Master the complete development and deployment lifecycle for edge applications. Learn workflows, CI/CD, performance optimization, security, and scaling strategies.",
   "image": {
     "@type": "ImageObject",
@@ -21,5 +21,6 @@
     "Application",
     "Master",
     "Clodo Framework"
-  ]
+  ],
+  "datePublished": "2026-01-10T16:55:47.983Z"
 }
