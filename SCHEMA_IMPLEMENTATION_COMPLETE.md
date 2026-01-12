@@ -19,7 +19,7 @@ A **complete data-driven schema.org infrastructure** has been built to replace 5
 | File | Lines | Purpose |
 |------|-------|---------|
 | `schema/schema-generator.js` | 450+ | Generates valid JSON-LD schemas from data |
-| `schema/defaults.json` | ~150 | Centralized config for organization, software metrics |
+| `data/schemas/defaults.json` | ~150 | Centralized config for organization, software metrics (preferred location) |
 | `schema/page-config.json` | ~250 | Blog posts, case studies, pages configuration |
 | `schema/build-integration.js` | 150+ | Integration layer for build system |
 | `schema/cli.js` | 180+ | CLI tool for status, generation, validation |
@@ -89,7 +89,7 @@ A **complete data-driven schema.org infrastructure** has been built to replace 5
 ## Key Capabilities
 
 ### 1. Single Source of Truth
-- Organization data in `defaults.json` → used everywhere
+- Organization data in `data/schemas/defaults.json` → used everywhere
 - Blog post authors in `blog-data.json` → pulled automatically  
 - Page metadata in `page-config.json` → mapped to filenames
 

@@ -40,8 +40,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate schema configuration
+        run: node schema/cli.js validate
+
       - name: Build site
         run: npm run build
+
+      - name: Enforce required schemas
+        run: npm run check:required-schemas
 
       - name: Normalize links & inject nav
         run: npm run normalize

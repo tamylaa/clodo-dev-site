@@ -211,8 +211,8 @@ build().catch(err => {
    - No harm in calling on all HTML files
 
 3. DEPENDENCIES:
-   - schema/page-config.json must exist
-   - schema/defaults.json must exist
+   - data/schemas/page-config.json should exist (legacy `schema/page-config.json` supported)
+   - data/schemas/defaults.json should exist (legacy `schema/defaults.json` supported)
    - schema/schema-generator.js must exist
    - blog-data.json must exist (for author data)
 

@@ -1,0 +1,40 @@
+{
+  "organization": {
+    "name": "Clodo Framework",
+    "url": "https://www.clodo.dev",
+    "logo": "https://clodo.dev/icons/icon.svg",
+    "email": "product@clodo.dev",
+    "founded": "2024",
+    "sameAs": [
+      "https://github.com/tamylaa/clodo-framework",
+      "https://www.npmjs.com/package/@tamyla/clodo-framework",
+      "https://twitter.com/clodoframework",
+      "https://linkedin.com/company/clodo-framework"
+    ]
+  },
+  "softwareApplication": {
+    "name": "Clodo Framework",
+    "applicationCategory": "DeveloperApplication",
+    "runtimePlatform": "Cloudflare Workers",
+    "downloads": 1974,
+    "versions": 79,
+    "testCoverage": "98.9%",
+    "testsPassing": 463,
+    "rating": {
+      "value": 4.8,
+      "count": 1974,
+      "reviews": 127
+    }
+  },
+  "blogPost": {
+    "section": "Technical",
+    "wordCount": 2500,
+    "proficiencyLevel": "Intermediate",
+    "image": "https://clodo.dev/og-image.png"
+  },
+  "caseStudy": {
+    "image": "https://clodo.dev/og-image.png",
+    "publisher": "Clodo Framework",
+    "section": "Case Study"
+  }
+}

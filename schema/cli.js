@@ -169,10 +169,10 @@ Example usage:
   node schema/cli.js validate | grep "Case Studies"
 
 Configuration files:
-  schema/page-config.json    - Page and blog post configurations
-  schema/defaults.json       - Default values for organization, software, etc.
-  schema/schema-generator.js - Schema generation module
-  schema/build-integration.js - Build system integration
+  data/schemas/page-config.json - Page and blog post configurations (preferred)
+  data/schemas/defaults.json    - Default values for organization, software, etc. (preferred; legacy 'schema/defaults.json' supported)
+  schema/schema-generator.js    - Schema generation module
+  schema/build-integration.js   - Build system integration
 
 To integrate into build process:
   In build.js, add:

@@ -315,7 +315,7 @@ node schema/cli.js validate
 3. Run build → Schemas auto-generated! ✨
 
 ### To Update Organization Info
-1. Edit `schema/defaults.json`
+1. Edit `data/schemas/defaults.json`
 2. Run build
 3. All 10+ pages automatically updated! ✨
 

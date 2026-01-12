@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Enforce required schemas for pages based on schema/page-config.json
+ * Enforce required schemas for pages based on data/schemas/page-config.json (preferred)
  * Usage: node tools/enforce-required-schemas.js [distPath] [--fail]
  */
 import { readFileSync, readdirSync } from 'fs';

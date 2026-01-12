@@ -273,7 +273,7 @@ Then it automatically generates with `inLanguage: "de-DE"` and German organizati
 
 - ✅ `schema/schema-generator.js` - Added `locale` parameter to all generation functions
 - ✅ `schema/build-integration.js` - Added locale detection and passing
-- ✅ `schema/defaults.json` - Original (still supported)
+- ✅ `data/schemas/defaults.json` - Preferred location (legacy `schema/defaults.json` still supported)
 - ✅ `schema/defaults-i18n.json` - **NEW** - All 9 locale configurations
 - ✅ `schema/locale-utils.js` - **NEW** - Locale utilities and detection
 - ✅ `build/build.js` - Already calling injectSchemasIntoHTML with file paths
