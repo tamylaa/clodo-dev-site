@@ -509,6 +509,118 @@
         "Article",
         "BreadcrumbList"
       ]
+    },
+    "cli-commands": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "edge-vs-cloud-computing": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "how-to-migrate-from-wrangler-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "how-to-migrate-from-wrangler-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "faq": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "google1234567890abcdef": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "serverless-framework-comparison": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "what-is-cloudflare-workers": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "worker-scaffolding-tools": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "workers-vs-lambda": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "wrangler-to-clodo-migration": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "workers-boilerplate": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     }
   }
 }
