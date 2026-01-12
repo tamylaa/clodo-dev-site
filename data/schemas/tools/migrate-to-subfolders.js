@@ -14,7 +14,6 @@ let moved = 0;
 for(const e of entries){
   if(!e.isFile()) continue;
   const name = e.name;
-  const start = name;
   const src = path.join(schemasDir, name);
 
   if(/-article\.json$/i.test(name)){

@@ -22,7 +22,7 @@ function findHtmlFiles(dir) {
 }
 
 function safeReadJson(p) {
-  try { return JSON.parse(fs.readFileSync(p,'utf8')); } catch(e){return null};
+  try { return JSON.parse(fs.readFileSync(p,'utf8')); } catch (e) { return null; }
 }
 
 function loadPageConfig() {
@@ -182,7 +182,7 @@ function writeCandidate(pageName, candidates, score) {
 
 // Run
 const htmlFiles = findHtmlFiles(publicDir);
-const pageConfig = loadPageConfig();
+const _pageConfig = loadPageConfig();
 const report = [];
 for (const f of htmlFiles) {
   const name = path.basename(f).replace(/\.html$/, '');
