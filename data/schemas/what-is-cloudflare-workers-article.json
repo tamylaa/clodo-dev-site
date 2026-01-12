@@ -3,6 +3,14 @@
   "@type": "Article",
   "headline": "ما هي Cloudflare Workers؟ دليل كامل للمطورين",
   "url": "https://www.clodo.dev/what-is-cloudflare-workers",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Learn what Cloudflare Workers are, how they work, and why they're revolutionizing serverless computing. Complete guide for developers.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 294,
+  "readingTime": "2 min",
+  "enriched": true
 }

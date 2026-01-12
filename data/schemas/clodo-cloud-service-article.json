@@ -3,6 +3,14 @@
   "@type": "Article",
   "headline": "Clodo Cloud Service: Managed Cloudflare Workers Hosting & Support",
   "url": "https://www.clodo.dev/clodo-cloud-service",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Clodo Cloud Service provides managed hosting, monitoring, and expert support for Cloudflare Workers applications. Enterprise-grade infrastructure with 99.9% uptime SLA.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework Team"
+  },
+  "wordCount": 128,
+  "readingTime": "1 min",
+  "enriched": true
 }

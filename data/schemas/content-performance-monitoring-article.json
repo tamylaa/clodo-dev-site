@@ -3,6 +3,14 @@
   "@type": "Article",
   "headline": "Content Performance Monitoring: SEO Rankings & Long-Tail Keywords",
   "url": "https://www.clodo.dev/content-performance-monitoring",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Monitor SEO performance for long-tail keywords and content effectiveness. Track rankings for Cloudflare Workers optimization, enterprise features, and developer-focused content.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework"
+  },
+  "wordCount": 472,
+  "readingTime": "3 min",
+  "enriched": true
 }

@@ -3,6 +3,14 @@
   "@type": "Article",
   "headline": "D1 Database Errors: Troubleshooting Guide for Cloudflare Workers",
   "url": "https://www.clodo.dev/cloudflare-d1-errors",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Fix common D1 database errors in Cloudflare Workers. Complete troubleshooting guide with error codes, causes, and solutions for D1 overloaded, timeout, and query issues.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 967,
+  "readingTime": "5 min",
+  "enriched": true
 }

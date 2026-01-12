@@ -482,13 +482,6 @@
         "BreadcrumbList"
       ]
     },
-    "welcome": {
-      "type": "Article",
-      "requiredSchemas": [
-        "Article",
-        "BreadcrumbList"
-      ]
-    },
     "components": {
       "type": "WebPage",
       "requiredSchemas": [
