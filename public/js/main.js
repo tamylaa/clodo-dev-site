@@ -602,14 +602,21 @@ async function init() {
  * Enhanced code examples with clipboard support
  */
 function initCopyButtons() {
-    const copyButtons = document.querySelectorAll('.copy-button');
+    // Support both global `.copy-button` and legacy/inline `.copy-btn`
+    const copyButtons = document.querySelectorAll('.copy-button, .copy-btn');
 
     copyButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            const textToCopy = button.getAttribute('data-clipboard-text');
+            // Prefer explicit attribute, otherwise fall back to nearest <pre><code> text
+            let textToCopy = button.getAttribute('data-clipboard-text');
+            if (!textToCopy) {
+                // Attempt to find a nearby code block
+                const target = button.getAttribute('data-copy-target') ? document.querySelector(button.getAttribute('data-copy-target') + ' code') : button.closest('.code-snippet') ? button.closest('.code-snippet').querySelector('code') : null;
+                if (target) textToCopy = target.innerText || target.textContent;
+            }
 
             if (!textToCopy) {
-                console.warn('Copy button missing data-clipboard-text attribute');
+                console.warn('Copy button missing data-clipboard-text and no nearby code block found');
                 return;
             }
 
@@ -618,12 +625,13 @@ function initCopyButtons() {
 
                 // Visual feedback
                 button.classList.add('copied');
+                const originalText = button.textContent;
                 button.textContent = 'Copied!';
 
                 // Reset after 2 seconds
                 setTimeout(() => {
                     button.classList.remove('copied');
-                    button.textContent = 'Copy';
+                    button.textContent = originalText || 'Copy';
                 }, 2000);
 
             } catch (err) {

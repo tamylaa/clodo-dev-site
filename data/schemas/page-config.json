@@ -1,0 +1,261 @@
+{
+  "blogPosts": {
+    "cloudflare-infrastructure-myth.html": {
+      "title": "The Myth of Cloudflare Infrastructure: Understanding Edge Computing Reality",
+      "headline": "The Myth of Cloudflare Infrastructure: Understanding Edge Computing Reality",
+      "author": "tamyla",
+      "published": "2024-11-28",
+      "updated": "2024-11-28",
+      "url": "https://clodo.dev/blog/cloudflare-infrastructure-myth",
+      "description": "Dispel myths about Cloudflare Workers and edge computing. Learn the real costs, latency benefits, and architecture advantages of edge deployment.",
+      "section": "Technical",
+      "proficiencyLevel": "Intermediate",
+      "dependencies": "Cloudflare account, Node.js 18+, Wrangler CLI",
+      "keywords": ["edge computing", "Cloudflare Workers", "serverless", "latency", "cost optimization"],
+      "requiredSchemas": ["BlogPosting", "BreadcrumbList"]
+    },
+    "stackblitz-integration-journey.html": {
+      "title": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
+      "headline": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
+      "author": "tamyla",
+      "published": "2024-11-15",
+      "updated": "2024-11-28",
+      "url": "https://clodo.dev/blog/stackblitz-integration-journey",
+      "description": "How we built a one-click coding environment using StackBlitz, npm packages, and smart cache-busting.",
+      "section": "Technical",
+      "proficiencyLevel": "Intermediate",
+      "dependencies": "StackBlitz account, npm packages, Node.js 18+",
+      "keywords": ["StackBlitz", "developer experience", "npm", "ESM", "cache busting"]
+    },
+    "v8-isolates-comprehensive-guide.html": {
+      "title": "V8 Isolates: From Concept to Production – Building Efficient Architectures That Scale",
+      "headline": "V8 Isolates: From Concept to Production – Building Efficient Architectures That Scale",
+      "author": "tamyla",
+      "published": "2025-12-26",
+      "updated": "2025-12-26",
+      "url": "https://clodo.dev/blog/v8-isolates-comprehensive-guide",
+      "description": "Comprehensive guide covering V8 isolates for serverless architecture with 63% cost reduction and 96% latency improvement.",
+      "section": "Architecture",
+      "proficiencyLevel": "Intermediate",
+      "dependencies": "JavaScript, Cloudflare account",
+      "keywords": ["V8 isolates", "Cloudflare Workers", "serverless efficiency", "edge computing"],
+      "wordCount": 4500
+    },
+    "debugging-silent-build-failures.html": {
+      "title": "Debugging Production: When Git Submodules Fail Silently",
+      "headline": "Debugging Production: When Git Submodules Fail Silently",
+      "author": "tamyla",
+      "published": "2024-11-15",
+      "updated": "2024-11-28",
+      "url": "https://clodo.dev/blog/debugging-silent-build-failures",
+      "description": "Forensic analysis of how a broken git submodule caused silent Cloudflare Pages builds to fail without error messages.",
+      "section": "Technical Deep-Dive",
+      "proficiencyLevel": "Advanced",
+      "dependencies": "Git knowledge, Cloudflare Pages, CI/CD experience",
+      "keywords": ["git submodules", "debugging", "Cloudflare Pages", "deployment"]
+    },
+    "instant-try-it-impact.html": {
+      "title": "30x Faster Developer Onboarding: The Impact of Instant Try-It Experiences",
+      "headline": "30x Faster Developer Onboarding: The Impact of Instant Try-It Experiences",
+      "author": "tamyla",
+      "published": "2024-11-15",
+      "updated": "2024-11-28",
+      "url": "https://clodo.dev/blog/instant-try-it-impact",
+      "description": "How reducing time-to-first-code from 30 minutes to 60 seconds transformed developer engagement and conversion rates.",
+      "section": "Impact Analysis",
+      "proficiencyLevel": "Beginner",
+      "dependencies": "Basic understanding of developer tools",
+      "keywords": ["developer experience", "onboarding", "conversion rate", "metrics"],
+      "wordCount": 2400
+    },
+    "building-developer-communities.html": {
+      "title": "Building Developer Communities: From Code to Culture",
+      "headline": "Building Developer Communities: From Code to Culture",
+      "author": "tamyla",
+      "published": "2024-11-20",
+      "updated": "2024-11-28",
+      "url": "https://clodo.dev/blog/building-developer-communities",
+      "description": "How successful open source projects build thriving communities. Lessons from Clodo Framework's 500+ developer community.",
+      "section": "Community",
+      "proficiencyLevel": "Intermediate",
+      "dependencies": "Open source experience, community management interest",
+      "keywords": ["developer community", "open source", "community building"],
+      "wordCount": 2100
+    }
+  },
+  "caseStudies": {
+    "fintech-payment-platform.html": {
+      "title": "FinTech Payment Platform: 80% Cost Reduction & Zero Downtime Migration",
+      "headline": "FinTech Payment Platform: 80% Cost Reduction & Zero Downtime Migration",
+      "url": "https://clodo.dev/case-studies/fintech-payment-platform",
+      "description": "How a regional bank migrated legacy payment systems to Clodo Framework, achieving 80% cost reduction and zero-downtime deployment.",
+      "industry": "Financial Technology",
+      "metrics": [
+        {
+          "name": "Cost Reduction",
+          "description": "Annual operational cost reduction from legacy infrastructure migration",
+          "value": 80,
+          "unitText": "percent"
+        },
+        {
+          "name": "Downtime During Migration",
+          "description": "Zero-downtime migration with full rollback capability",
+          "value": 0,
+          "unitText": "hours"
+        },
+        {
+          "name": "Performance Improvement",
+          "description": "Response time acceleration for transaction processing",
+          "value": 10,
+          "unitText": "times faster"
+        },
+        {
+          "name": "Daily Transactions",
+          "description": "Volume handled by migrated platform",
+          "value": 10000000,
+          "unitText": "transactions per day"
+        },
+        {
+          "name": "Migration Timeline",
+          "description": "Duration of complete migration from planning to legacy decommissioning",
+          "value": 6,
+          "unitText": "weeks"
+        },
+        {
+          "name": "Annual Cost Savings",
+          "description": "Calculated annual savings from cost reduction percentage",
+          "value": 4320000,
+          "unitText": "USD"
+        }
+      ]
+    },
+    "saas-product-startups-cloudflare-case-studies.html": {
+      "title": "10 Companies Using Cloudflare: Real Case Studies 2026",
+      "headline": "10 Companies Using Cloudflare: Real Case Studies 2026",
+      "url": "https://clodo.dev/saas-product-startups-cloudflare-case-studies",
+      "description": "See how Discord (85% edge), Shopify (100% Workers), GitHub (95% CDN) and 7 other major SaaS companies leverage Cloudflare's edge computing platform for global performance, security, and scale.",
+      "industry": "Enterprise SaaS Case Studies",
+      "metrics": [
+        {
+          "name": "Average Edge Delivery",
+          "description": "Percentage of requests processed at Cloudflare edge",
+          "value": 89,
+          "unitText": "percent"
+        },
+        {
+          "name": "Cloudflare Workers Adoption",
+          "description": "Companies using Cloudflare Workers for serverless functions",
+          "value": 7,
+          "unitText": "of 10 companies"
+        },
+        {
+          "name": "Security Uptime",
+          "description": "Average DDoS mitigation and security enhancement",
+          "value": 99.9,
+          "unitText": "percent uptime"
+        },
+        {
+          "name": "Performance Gain",
+          "description": "Average latency reduction",
+          "value": 40,
+          "unitText": "percent faster"
+        },
+        {
+          "name": "Cost Efficiency",
+          "description": "Infrastructure cost reduction vs traditional CDN",
+          "value": 65,
+          "unitText": "percent savings"
+        },
+        {
+          "name": "Global Coverage",
+          "description": "Cloudflare edge locations providing redundancy",
+          "value": 300,
+          "unitText": "locations worldwide"
+        }
+      ]
+    },
+    "healthcare-saas-platform.html": {
+      "title": "Healthcare SaaS Platform: 67% Cost Reduction with Clodo Framework",
+      "headline": "Healthcare SaaS Platform: 67% Cost Reduction with Clodo Framework",
+      "url": "https://clodo.dev/case-studies/healthcare-saas-platform",
+      "description": "How a Fortune 500 healthcare company reduced custom software development costs by 67% using Clodo Framework.",
+      "industry": "Healthcare Technology",
+      "metrics": [
+        {
+          "name": "Development Cost Reduction",
+          "description": "Reduction in custom software development costs from legacy approach",
+          "value": 67,
+          "unitText": "percent"
+        },
+        {
+          "name": "Previous Annual Cost",
+          "description": "Annual development costs before Clodo Framework adoption",
+          "value": 180000,
+          "unitText": "USD"
+        },
+        {
+          "name": "New Annual Cost",
+          "description": "Annual development costs after Clodo Framework implementation",
+          "value": 60000,
+          "unitText": "USD"
+        },
+        {
+          "name": "Annual Savings",
+          "description": "Total annual savings achieved through framework adoption",
+          "value": 120000,
+          "unitText": "USD"
+        },
+        {
+          "name": "Development Time Reduction",
+          "description": "Average time reduction per feature implementation",
+          "value": 60,
+          "unitText": "percent"
+        },
+        {
+          "name": "User Base Scaling",
+          "description": "Organization's user base after implementation",
+          "value": 500000,
+          "unitText": "active users"
+        },
+        {
+          "name": "System Uptime",
+          "description": "Achieved service availability after migration",
+          "value": 99.99,
+          "unitText": "percent"
+        }
+      ]
+    }
+  },
+  "pages": {
+    "pricing": {
+      "type": "FAQPage",
+      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"],
+      "faqs": [
+        {
+          "name": "Is Clodo Framework really free?",
+          "acceptedAnswer": "Yes, Clodo Framework is completely free and open source under the MIT License. You can use it for personal projects, startups, and enterprise applications without any licensing fees."
+        },
+        {
+          "name": "How much can I save compared to AWS Lambda?",
+          "acceptedAnswer": "Most applications see 80-90% cost reduction. For example, a SaaS with 100K monthly active users typically pays $25/month on Cloudflare Workers vs $125+/month on AWS Lambda."
+        }
+      ]
+    },
+    "product": {
+      "type": "FAQPage",
+      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"]
+    },
+    "cloudflare-framework": {
+      "type": "Article",
+      "requiredSchemas": ["Article", "BreadcrumbList", "FAQPage", "SoftwareApplication"]
+    },
+    "docs": {
+      "type": "LearningResource",
+      "requiredSchemas": ["BreadcrumbList", "WebSite"],
+      "name": "Clodo Framework Documentation Hub",
+      "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
+      "url": "https://clodo.dev/docs",
+      "educationalLevel": "Intermediate to Advanced"
+    }
+  }
+}

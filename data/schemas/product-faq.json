@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Clodo replace Wrangler?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Clodo complements Wrangler by providing orchestration, deployments, and D1 lifecycle tools on top of Wrangler's CLI." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I run D1 migrations safely in production?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Clodo provides migration helpers; we recommend staging dry-runs and verification steps before applying production migrations." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I roll back a problematic deployment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Clodo provides rollback helpers and supports atomic deploy strategies; see the docs for the recommended process." }
+    },
+    {
+      "@type": "Question",
+      "name": "What versions of Wrangler are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Clodo works with current Wrangler releases; check compatibility notes in release notes and run `npx wrangler --version` to confirm your environment." }
+    }
+  ]
+}

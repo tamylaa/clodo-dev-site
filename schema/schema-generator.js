@@ -480,9 +480,10 @@ export function generatePageSchemas(pageConfig) {
  */
 export function loadPageConfiguration() {
   try {
-    return JSON.parse(readFileSync(join('schema', 'page-config.json'), 'utf8'));
+    // Page configuration is authoritative and now lives under data/schemas/page-config.json
+    return JSON.parse(readFileSync(join('data','schemas', 'page-config.json'), 'utf8'));
   } catch (e) {
-    console.error('Failed to load page-config.json:', e.message);
+    console.error('Failed to load page-config.json from data/schemas:', e.message);
     return { blogPosts: {}, caseStudies: {}, pages: {} };
   }
 }

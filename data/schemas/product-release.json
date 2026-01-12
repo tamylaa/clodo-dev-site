@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareRelease",
+  "name": "Clodo Framework v4.0.13",
+  "softwareVersion": "4.0.13",
+  "datePublished": "2026-01-11",
+  "url": "https://github.com/tamylaa/clodo-framework/releases/tag/v4.0.13",
+  "description": "v4.0.13: Stabilization, automation improvements (semantic-release), D1 migration enhancements, and CI/test hardening.",
+  "releaseNotes": {
+    "@type": "CreativeWork",
+    "url": "https://github.com/tamylaa/clodo-framework/releases/tag/v4.0.13"
+  }
+}

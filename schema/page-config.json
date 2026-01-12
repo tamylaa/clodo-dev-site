@@ -11,7 +11,8 @@
       "section": "Technical",
       "proficiencyLevel": "Intermediate",
       "dependencies": "Cloudflare account, Node.js 18+, Wrangler CLI",
-      "keywords": ["edge computing", "Cloudflare Workers", "serverless", "latency", "cost optimization"]
+      "keywords": ["edge computing", "Cloudflare Workers", "serverless", "latency", "cost optimization"],
+      "requiredSchemas": ["BlogPosting", "BreadcrumbList"]
     },
     "stackblitz-integration-journey.html": {
       "title": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
@@ -228,6 +229,7 @@
   "pages": {
     "pricing": {
       "type": "FAQPage",
+      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"],
       "faqs": [
         {
           "name": "Is Clodo Framework really free?",
@@ -239,8 +241,13 @@
         }
       ]
     },
+    "product": {
+      "type": "FAQPage",
+      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"]
+    },
     "docs": {
       "type": "LearningResource",
+      "requiredSchemas": ["BreadcrumbList", "WebSite"],
       "name": "Clodo Framework Documentation Hub",
       "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
       "url": "https://clodo.dev/docs",
