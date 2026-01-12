@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Save 90% on Your Next SaaS Project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Get a free ROI assessment and see how much you can save with Clodo Framework."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cost Savings:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$165K (92% reduction)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Time to Market:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "8 months → 3 weeks (10x faster)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Performance:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "50ms global response time"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Uptime:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "99.9% vs previous 99.2%"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "User Satisfaction:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "40% increase in engagement"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Free Consultation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schedule a 30-minute call to discuss your requirements"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Architecture Review:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We'll analyze your current setup and identify savings opportunities"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Proof of Concept:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1-week pilot to demonstrate cost and performance benefits"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Full Migration:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Complete transition with our expert team"
+      }
+    }
+  ]
+}

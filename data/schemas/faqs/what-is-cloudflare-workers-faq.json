@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Global Performance",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Code runs at 200+ edge locations worldwide"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zero Cold Starts",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Functions are always ready to execute"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cost Effective",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Pay only for execution time, not idle resources"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Developer Friendly",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Write in JavaScript/TypeScript you already know"
+      }
+    }
+  ]
+}

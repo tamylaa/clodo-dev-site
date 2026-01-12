@@ -1,0 +1,222 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cold start time",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": 5-10ms (vs 100-500ms for containers, 3-30s for VMs)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Memory overhead",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": ~3MB per isolate (vs ~50MB for containers, ~512MB+ for VMs)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isolation level",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Memory-isolated but shares kernel and engine"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Language support",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": JavaScript/WebAssembly only"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Use case sweet spot",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": High-concurrency, short-lived computations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Computing Products",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": If your app processes user requests at the network edge, isolates can handle JavaScript execution without spinning up full VMs. Cloudflare Workers uses this to run code globally with minimal overhead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Microservices Architectures",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": For services that need rapid scaling, isolates provide isolation without the weight of containers. This reduces cold-start times from seconds to milliseconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Modularize Code",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Break features into isolated modules that can run in separate V8 contexts. This mirrors microservices but at a finer grain, improving fault tolerance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Resource Management",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Allocate CPU and memory per isolate, ensuring fair sharing. Tools like Deno or Node.js with worker threads can prototype this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Security by Design",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Isolates provide sandboxing, reducing attack surfaces. Integrate this early to avoid retrofitting security later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hybrid Stacks",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Deploy isolates within containers for portability, or use VMs to manage isolate pools. Kubernetes can orchestrate this, with isolates as pods for fine-grained scaling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Monitoring and Metrics",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": From day one, instrument for isolate-specific metrics like heap usage or execution time. Tools like Prometheus can track these, ensuring efficiency goals are met."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Structured logging",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Log everything meaningful with context"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Local development",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Use Wrangler (Cloudflare) or Deno CLI to run isolates locally before deploying"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Distributed tracing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Implement trace IDs across requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Compile to WebAssembly",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Port critical algorithms to Rust/C++ and compile to Wasm"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hybrid architecture",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Use isolates for API layer, call out to specialized services for heavy compute"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Evaluate Deno",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Supports TypeScript natively and has better tooling for mixed workloads"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Durable Objects",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(Cloudflare): Stateful isolates for persistent connections"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "External state",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Store in Redis, KV stores, or databases—treat isolates as pure functions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Session persistence",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Use cookies or JWTs for user state across isolate invocations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Keep bundles small",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Under 1MB compressed. Use dynamic imports for optional features"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warm-up strategies",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Send synthetic requests during deploys to pre-warm isolates"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Accept trade-offs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": 50ms cold start is still 10x faster than containers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Use Web Standards",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Stick to standard Fetch API, Request/Response objects, Web Crypto"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Abstraction layer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Wrap platform-specific features"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Multi-cloud deployment",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Run same code on multiple platforms for redundancy"
+      }
+    }
+  ]
+}

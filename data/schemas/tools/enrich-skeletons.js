@@ -4,11 +4,21 @@ import path from 'path';
 import { JSDOM } from 'jsdom';
 
 const schemasDir = path.join('data','schemas');
+const pagesDir = path.join(schemasDir, 'pages');
+
+// ensure pages dir exists (for backwards compat)
+if (!fs.existsSync(pagesDir)) {
+  // do nothing; fall back to root
+}
 const publicDir = 'public';
 const pageConfigPath = path.join(schemasDir, 'page-config.json');
 const blogDataPath = path.join('data','blog','blog-data.json');
 
 function listSchemaFiles() {
+  // Prefer the new pages directory but fall back to the legacy root directory
+  if (fs.existsSync(pagesDir)) {
+    return fs.readdirSync(pagesDir).filter(f => f.endsWith('-article.json')).map(f => `pages/${f}`);
+  }
   return fs.readdirSync(schemasDir).filter(f => f.endsWith('-article.json'));
 }
 

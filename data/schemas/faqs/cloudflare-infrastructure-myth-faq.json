@@ -1,0 +1,270 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Experience the Difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See Cloudflare Workers in action with Clodo Framework—enterprise orchestration made simple.\n\nTry Now - 60 Seconds\n                        Request Expert Assessment"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "under 5 milliseconds",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start in  (often microseconds)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "100ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "User hits your API (AWS region,  away)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "500ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lambda cold starts ( penalty)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "50ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fetch user data from database ()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "2000ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call OpenAI API ()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "10ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Process response ()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "20ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "User hits edge location ( away)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "5ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Worker starts (, imperceptible)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "10ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fetch user data from D1 at edge ()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "2000ms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call AI model ()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Traditional clouds",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "force trade-offs between performance, cost, and complexity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Workers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "collapse those trade-offs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Traditional clouds",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "separate compute, storage, and networking into distinct services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Workers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "unify them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Migrate more stateless APIs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Build confidence with low-risk, high-traffic endpoints"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Move authentication/authorization to the edge",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reduce latency for every authenticated request"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Experiment with D1 for frequently-accessed data",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Experience sub-10ms database queries globally"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Add AI features using Workers AI",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run inference at the edge without separate infrastructure"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Implement real-time features with Durable Objects",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebSockets, collaboration, coordination without complexity"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Shopify",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "processes 3.4 trillion requests monthly at 50ms globally"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Baselime",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "cut cloud costs by 80% while simplifying their architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Thousands of companies",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "are building AI applications that would be economically unviable on traditional platforms"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[1] Shopify on Cloudflare",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            Cloudflare Case Study: Shopify\n                            — Official case study detailing 3.4 trillion monthly requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[2] Baselime Migration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            Why We Chose Serverless\n                            — First-hand account of AWS to Cloudflare migration with cost analysis"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[3] V8 JavaScript Engine",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            V8 Embedding Guide\n                            — Official Google V8 documentation on isolate architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[4] Cloudflare Workers Documentation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            Cloudflare Workers Docs\n                            — Official platform documentation and pricing"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[5] AWS Lambda Cold Starts",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            AWS Lambda Execution Environments\n                            — Official AWS documentation on Lambda execution model"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "[6] Cloudflare Network",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— \n                            Cloudflare Global Network\n                            — Current network statistics (330+ cities)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sarah K.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— Senior Engineer, Series B SaaS Startup"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Marcus T.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— CTO, AI-first Startup"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dev R.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "— Platform Lead, E-commerce Platform"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tamyla",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Founder & Principal Engineer at Clodo Framework"
+      }
+    }
+  ]
+}

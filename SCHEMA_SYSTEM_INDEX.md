@@ -307,6 +307,8 @@ Output shows:
 - Blog post and case study defaults
 - Located: data/schemas/defaults.json (preferred; legacy `schema/defaults.json` still present)
 
+Note: page-level schema artifacts are now organized into `data/schemas/pages/`, `data/schemas/faqs/`, and `data/schemas/breadcrumbs/` to keep the root of `data/schemas/` focused on configs and tools. Tools are backward compatible with older flat layouts.
+
 ### page-config.json
 **Used For:** Page-specific metadata
 - Blog post configs (title, author, published, keywords)

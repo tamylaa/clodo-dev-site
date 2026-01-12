@@ -39,14 +39,22 @@ import { join } from 'path';
  * @returns {object|null} Parsed JSON schema or null if file doesn't exist
  */
 function loadSchemaFromFile(schemaName) {
-  const schemaPath = join('data', 'schemas', `${schemaName}.json`);
-  if (existsSync(schemaPath)) {
-    try {
-      const schemaContent = readFileSync(schemaPath, 'utf8');
-      return JSON.parse(schemaContent);
-    } catch (e) {
-      console.warn(`Failed to load schema file ${schemaPath}:`, e.message);
-      return null;
+  // Prefer canonical locations under data/schemas/{pages,faqs,breadcrumbs}, but fall back to the legacy root
+  const candidates = [
+    join('data','schemas','pages', `${schemaName}.json`),
+    join('data','schemas','faqs', `${schemaName}.json`),
+    join('data','schemas','breadcrumbs', `${schemaName}.json`),
+    join('data','schemas', `${schemaName}.json`)
+  ];
+  for (const schemaPath of candidates) {
+    if (existsSync(schemaPath)) {
+      try {
+        const schemaContent = readFileSync(schemaPath, 'utf8');
+        return JSON.parse(schemaContent);
+      } catch (e) {
+        console.warn(`Failed to load schema file ${schemaPath}:`, e.message);
+        return null;
+      }
     }
   }
   return null;
@@ -67,19 +75,23 @@ function loadPageSchemas(pageName) {
   }
   
   try {
-    // Get all files in the schemas directory
-    const files = readdirSync(schemasDir);
-    
-    // Look for files that match the pattern: ${pageName}-*.json
-    const pageSchemaPattern = new RegExp(`^${pageName}-.*.json$`);
-    
-    for (const file of files) {
-      if (pageSchemaPattern.test(file)) {
-        const schemaName = file.replace(/\.json$/, '');
-        const schema = loadSchemaFromFile(schemaName);
-        if (schema) {
-          schemas.push(schema);
+    // Search inside canonical subfolders and root for files matching the page pattern
+    const candidatesDirs = [ join(schemasDir, 'pages'), join(schemasDir, 'faqs'), join(schemasDir, 'breadcrumbs'), schemasDir ];
+    const pageSchemaPattern = new RegExp(`^${pageName}(-|\\.|_).*.json$|^${pageName}-.*.json$`);
+
+    for (const dir of candidatesDirs) {
+      if (!existsSync(dir)) continue;
+      try {
+        const files = readdirSync(dir);
+        for (const file of files) {
+          if (pageSchemaPattern.test(file)) {
+            const schemaName = file.replace(/\.json$/, '');
+            const schema = loadSchemaFromFile(schemaName);
+            if (schema) schemas.push(schema);
+          }
         }
+      } catch (e) {
+        // ignore read issues on optional dirs
       }
     }
   } catch (e) {

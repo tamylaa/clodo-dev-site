@@ -3,7 +3,20 @@ import fs from 'fs';
 import path from 'path';
 
 const schemasDir = path.join('data','schemas');
-const files = fs.readdirSync(schemasDir).filter(f => f.endsWith('.json'));
+
+function collectJsonFiles(dir, base = ''){
+  const items = fs.readdirSync(dir, { withFileTypes: true });
+  const out = [];
+  for(const it of items){
+    const p = path.join(dir, it.name);
+    const rel = base ? `${base}/${it.name}` : it.name;
+    if(it.isDirectory()) out.push(...collectJsonFiles(p, rel));
+    else if(it.isFile() && it.name.endsWith('.json')) out.push(rel);
+  }
+  return out;
+}
+
+const files = collectJsonFiles(schemasDir).filter(f => f.endsWith('.json'));
 
 const requiredFieldsByType = {
   'Article': ['headline','url','description','author','datePublished','image','keywords'],

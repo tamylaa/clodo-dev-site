@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use multiple authentication methods together?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can combine JWT for API auth with Cloudflare Access for admin routes, and Turnstile for bot protection on public forms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I handle authentication in a multi-tenant app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use tenant-specific JWT secrets, isolate sessions per tenant in Durable Objects, and implement tenant-scoped access controls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between JWT and sessions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JWT is stateless and stored client-side, while sessions require server-side storage but offer better control over token revocation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I secure my authentication endpoints?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use HTTPS, implement rate limiting, validate all inputs, use secure headers, and consider Cloudflare Access for additional protection."
+      }
+    }
+  ]
+}

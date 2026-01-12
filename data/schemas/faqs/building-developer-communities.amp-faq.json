@@ -1,0 +1,174 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Experience Our Community?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Join 500+ developers building the future of edge computing with Clodo Framework.\n\nTry Now - 60 Seconds\n                        Read the Docs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Progressive disclosure:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start simple, reveal complexity gradually"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real-world examples:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every concept includes production-ready code"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Decision frameworks:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Help developers choose the right approach for their use case"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Structured discussions:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Feature requests, help questions, success stories"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Issue templates:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guided bug reports and feature requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Contribution guides:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clear paths for first-time contributors"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Recognition system:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shoutouts for community contributions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Engagement metrics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily active users, message volume, issue resolution time"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Growth metrics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "New member acquisition, retention rates"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quality metrics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Helpfulness scores, contributor satisfaction"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Impact metrics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Framework adoption, enterprise deployments"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Inclusivity:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Everyone belongs, regardless of experience level"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Helpfulness:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "\"No question is too basic\" is our mantra"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Transparency:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Share decisions, celebrate wins, admit mistakes"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Recognition:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Celebrate contributions, big and small"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Discord:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "discord.gg/clodo - Real-time chat and support"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GitHub:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "github.com/tamylaa/clodo-framework - Code, issues, and discussions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Blog:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "clodo.dev/blog - Technical deep-dives and insights"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Newsletter:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subscribe for updates and community highlights"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tamyla",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Founder & Community Lead at Clodo Framework"
+      }
+    }
+  ]
+}

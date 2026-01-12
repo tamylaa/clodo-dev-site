@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Deploy Rails on the Edge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Join developers building the next generation of Rails applications on Cloudflare Workers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ActiveRecord:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Full ORM support with D1 database"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ActionController:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RESTful API controllers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ActiveModel:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Validations and serialization"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ActionView:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Template rendering (optional)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ActiveSupport:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Core extensions and utilities"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Devise:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Authentication framework"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cancancan:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Authorization library"
+      }
+    }
+  ]
+}

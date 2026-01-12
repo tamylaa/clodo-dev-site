@@ -1,0 +1,214 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Are Git Submodules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Git submodules allow you to include one git repository inside another. They're commonly used for:\n\nEmbedding third-party libraries\n                    Sharing code between projects\n                    Managing mono-repos"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why No Error Message?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The build system didn't consider missing submodule initialization a build failure—just a skipped step. The actual build command (npm run build) succeeded because it didn't reference the missing directory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Building on Cloudflare Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clodo Framework handles deployment complexity so you can focus on building great products.\n\nRead Documentation\n                        Try It Now"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clone repository",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Gets commit references including submodule pointer"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Check for .gitmodules",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Not found!"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Skip submodule init",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Can't fetch without configuration"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Continue build",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Directory doesn't exist, but build doesn't fail immediately"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Use cached build",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Falls back to last successful build"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "npm/yarn packages",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "for JavaScript dependencies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Separate repositories",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "with CI/CD integration"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mono-repos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "with tools like Nx or Turborepo"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Git subtrees",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "if you need embedded repos"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "clodo-dev-site",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Marketing website"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "clodo-starter-template",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- StackBlitz demo (separate repo)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "clodo-framework",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Framework npm package"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Independent versioning",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Update demo without touching website"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "No build dependencies",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Each deploys independently"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clear separation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Demo code isn't mixed with marketing site"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GitHub template",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Can mark demo as template for easy forking"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "StackBlitz integration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Direct URL to separate repo"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Verify the source",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Don't assume pushed code is deployed code"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Submodules need full configuration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Or avoid them entirely"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Test fresh clones",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Your local environment lies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Check build logs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Even \"successful\" builds can hide issues"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Simplify when possible",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Separate repos beat complex submodule hierarchies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tamyla",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Founder & Principal Engineer at Clodo Framework"
+      }
+    }
+  ]
+}
