@@ -1,5 +1,5 @@
 {
-  "$schema": "../blog-post.schema.json",
+  "$schema": "../../json-schemas/blog-post.schema.json",
   "slug": "cloudflare-infrastructure-myth",
   "title": "Cloudflare Workers: The Infrastructure Revolution You're Missing",
   "subtitle": "Why the misconception that Cloudflare is 'just a CDN' is costing enterprises millions",

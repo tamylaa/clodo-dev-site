@@ -19,11 +19,21 @@ const __dirname = path.dirname(__filename);
 
 // Paths
 const DATA_DIR = path.join(__dirname, '../data');
-const POSTS_DIR = path.join(DATA_DIR, 'posts');
-const SCHEMA_PATH = path.join(DATA_DIR, 'blog-post.schema.json');
+const POSTS_DIR = path.join(DATA_DIR, 'blog', 'posts');
+const SCHEMA_PATH = path.join(DATA_DIR, 'json-schemas', 'blog-post.schema.json');
 
-// Load central blog data
-const BLOG_DATA = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'blog-data.json'), 'utf-8'));
+// Load central blog data (prefer new location data/blog/blog-data.json)
+let BLOG_DATA;
+try {
+  try {
+    BLOG_DATA = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'blog', 'blog-data.json'), 'utf-8'));
+  } catch (inner) {
+    BLOG_DATA = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'blog-data.json'), 'utf-8'));
+  }
+} catch (e) {
+  console.error('Failed to load blog-data.json:', e.message);
+  BLOG_DATA = { authors: {}, testimonials: {} };
+}
 
 /**
  * Load and parse a blog post JSON file

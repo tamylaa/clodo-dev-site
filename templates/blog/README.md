@@ -335,7 +335,7 @@ Validate your post JSON before generating:
 
 ```bash
 # Using ajv-cli
-npx ajv validate -s data/blog-post.schema.json -d data/posts/your-post.json
+npx ajv validate -s data/json-schemas/blog-post.schema.json -d data/blog/posts/your-post.json
 ```
 
 ## Best Practices

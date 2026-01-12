@@ -214,7 +214,7 @@ build().catch(err => {
    - data/schemas/page-config.json should exist (legacy `schema/page-config.json` supported)
    - data/schemas/defaults.json should exist (legacy `schema/defaults.json` supported)
    - schema/schema-generator.js must exist
-   - blog-data.json must exist (for author data)
+   - data/blog/blog-data.json should exist (for author data; legacy `data/blog-data.json` supported)
 
 4. ERROR HANDLING:
    - injectSchemasIntoHTML() handles missing config gracefully

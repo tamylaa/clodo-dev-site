@@ -298,7 +298,7 @@ Output shows:
 **Used For:** Author information in blog post schemas
 - Reads: author.name, author.url
 - Prevents: duplication of author data
-- Located: data/blog-data.json
+- Located: data/blog/blog-data.json (preferred; legacy `data/blog-data.json` still supported)
 
 ### defaults.json
 **Used For:** Organization and shared values

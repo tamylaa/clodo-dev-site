@@ -1,5 +1,5 @@
 {
-  "$schema": "../blog-post.schema.json",
+  "$schema": "../../json-schemas/blog-post.schema.json",
   "slug": "cloudflare-workers-tutorial-beginners",
   "title": "Cloudflare Workers Tutorial for Beginners: Build Your First API in 10 Minutes",
   "subtitle": "A practical, step-by-step guide to building and deploying your first serverless API",

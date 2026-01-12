@@ -44,7 +44,7 @@
 - `config/wrangler.toml` - Cloudflare Workers/Pages config
 - `config/vite.config.js` - Development server config
 - `config/playwright.config.js` - E2E testing config
-- `data/blog-data.json` - Content configuration
+- `data/blog/blog-data.json` - Content configuration (preferred)
 - `package.json` - Dependencies and scripts
 
 #### **Missing: Central Configuration**

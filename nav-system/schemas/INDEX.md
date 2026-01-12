@@ -13,7 +13,7 @@
 
 #### 1. Blog Data Schema
 **File:** `nav-system/schemas/blog-data.schema.json`  
-**Original:** `data/blog-data.schema.json`  
+**Original:** `data/json-schemas/blog-data.schema.json`  
 **Size:** 3.72 KB | **Lines:** 124  
 **Status:** ACTIVE
 
@@ -118,7 +118,7 @@ import schema from './nav-system/schemas/blog-data.schema.json';
 const ajv = new Ajv();
 const validate = ajv.compile(schema);
 
-const data = require('./data/blog-data.json');
+const data = require('../../data/blog/blog-data.json');
 const valid = validate(data);
 
 if (!valid) {
@@ -160,7 +160,7 @@ function validateBlogData(data) {
 
 #### 2. Blog Post Schema
 **File:** `nav-system/schemas/blog-post.schema.json`  
-**Original:** `data/blog-post.schema.json`  
+**Original:** `data/json-schemas/blog-post.schema.json`  
 **Size:** 8.13 KB | **Lines:** 276  
 **Status:** ACTIVE
 
