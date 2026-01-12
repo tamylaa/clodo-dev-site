@@ -11,8 +11,17 @@
       "section": "Technical",
       "proficiencyLevel": "Intermediate",
       "dependencies": "Cloudflare account, Node.js 18+, Wrangler CLI",
-      "keywords": ["edge computing", "Cloudflare Workers", "serverless", "latency", "cost optimization"],
-      "requiredSchemas": ["BlogPosting", "BreadcrumbList"]
+      "keywords": [
+        "edge computing",
+        "Cloudflare Workers",
+        "serverless",
+        "latency",
+        "cost optimization"
+      ],
+      "requiredSchemas": [
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
     },
     "stackblitz-integration-journey.html": {
       "title": "Building an Instant Try Now Experience: Our StackBlitz Integration Journey",
@@ -25,7 +34,13 @@
       "section": "Technical",
       "proficiencyLevel": "Intermediate",
       "dependencies": "StackBlitz account, npm packages, Node.js 18+",
-      "keywords": ["StackBlitz", "developer experience", "npm", "ESM", "cache busting"]
+      "keywords": [
+        "StackBlitz",
+        "developer experience",
+        "npm",
+        "ESM",
+        "cache busting"
+      ]
     },
     "v8-isolates-comprehensive-guide.html": {
       "title": "V8 Isolates: From Concept to Production – Building Efficient Architectures That Scale",
@@ -38,7 +53,12 @@
       "section": "Architecture",
       "proficiencyLevel": "Intermediate",
       "dependencies": "JavaScript, Cloudflare account",
-      "keywords": ["V8 isolates", "Cloudflare Workers", "serverless efficiency", "edge computing"],
+      "keywords": [
+        "V8 isolates",
+        "Cloudflare Workers",
+        "serverless efficiency",
+        "edge computing"
+      ],
       "wordCount": 4500
     },
     "debugging-silent-build-failures.html": {
@@ -52,7 +72,12 @@
       "section": "Technical Deep-Dive",
       "proficiencyLevel": "Advanced",
       "dependencies": "Git knowledge, Cloudflare Pages, CI/CD experience",
-      "keywords": ["git submodules", "debugging", "Cloudflare Pages", "deployment"]
+      "keywords": [
+        "git submodules",
+        "debugging",
+        "Cloudflare Pages",
+        "deployment"
+      ]
     },
     "instant-try-it-impact.html": {
       "title": "30x Faster Developer Onboarding: The Impact of Instant Try-It Experiences",
@@ -65,7 +90,12 @@
       "section": "Impact Analysis",
       "proficiencyLevel": "Beginner",
       "dependencies": "Basic understanding of developer tools",
-      "keywords": ["developer experience", "onboarding", "conversion rate", "metrics"],
+      "keywords": [
+        "developer experience",
+        "onboarding",
+        "conversion rate",
+        "metrics"
+      ],
       "wordCount": 2400
     },
     "building-developer-communities.html": {
@@ -79,7 +109,11 @@
       "section": "Community",
       "proficiencyLevel": "Intermediate",
       "dependencies": "Open source experience, community management interest",
-      "keywords": ["developer community", "open source", "community building"],
+      "keywords": [
+        "developer community",
+        "open source",
+        "community building"
+      ],
       "wordCount": 2100
     }
   },
@@ -229,7 +263,11 @@
   "pages": {
     "pricing": {
       "type": "FAQPage",
-      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"],
+      "requiredSchemas": [
+        "FAQPage",
+        "BreadcrumbList",
+        "SoftwareApplication"
+      ],
       "faqs": [
         {
           "name": "Is Clodo Framework really free?",
@@ -243,15 +281,27 @@
     },
     "product": {
       "type": "FAQPage",
-      "requiredSchemas": ["FAQPage", "BreadcrumbList", "SoftwareApplication"]
+      "requiredSchemas": [
+        "FAQPage",
+        "BreadcrumbList",
+        "SoftwareApplication"
+      ]
     },
     "cloudflare-framework": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList", "FAQPage", "SoftwareApplication"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "SoftwareApplication"
+      ]
     },
     "docs": {
       "type": "LearningResource",
-      "requiredSchemas": ["BreadcrumbList", "WebSite"],
+      "requiredSchemas": [
+        "BreadcrumbList",
+        "WebSite"
+      ],
       "name": "Clodo Framework Documentation Hub",
       "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
       "url": "https://clodo.dev/docs",
@@ -259,39 +309,206 @@
     },
     "index": {
       "type": "WebPage",
-      "requiredSchemas": ["WebSite", "BreadcrumbList"]
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
     },
     "about": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "edge-computing-guide": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "quick-start": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "framework-comparison": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "how-to-migrate-from-wrangler": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "serverless-architecture-best-practices": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "examples": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     },
     "ruby-on-rails-cloudflare-integration": {
       "type": "Article",
-      "requiredSchemas": ["Article", "BreadcrumbList"]
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "advanced-cloudflare-workers-tutorial": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "analytics": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-enterprise-roi": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-tutorial-beginners": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-cloud-service": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-guide": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-vs-lambda": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-d1-errors": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-top-10-saas-edge-computing-workers-case-study-docs": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-auth": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-cold-start-optimization": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-development-guide": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-enterprise-features": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cloudflare-workers-guide": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "welcome": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "components": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "content-performance-monitoring": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "development-deployment-guide": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
     }
   }
 }
