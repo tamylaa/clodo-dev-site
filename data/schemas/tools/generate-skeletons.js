@@ -61,10 +61,11 @@ const missingPages = [];
 for (const f of htmlFiles) {
   const name = basename(f).replace(/\.html$/, '');
 
-  // Skip experimental variant pages (A/B tests) and standalone experiment pages
+  // Skip experimental variant pages (A/B tests), standalone experiment pages, and site verification files
   const isExperiment = f.includes('/experiments/') || f.includes('\\experiments\\');
-  if (name.includes('-variant-') || isExperiment) {
-    console.log(`Skipping experiment/variant page: ${name}`);
+  const isVerification = name.startsWith('google') || /^google[0-9a-f]{8,}$/i.test(name);
+  if (name.includes('-variant-') || isExperiment || isVerification) {
+    console.log(`Skipping experiment/variant/verification page: ${name}`);
     continue;
   }
 
