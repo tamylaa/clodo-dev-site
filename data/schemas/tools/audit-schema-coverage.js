@@ -54,8 +54,20 @@ function loadPageConfig(){
 
 function collectSchemaFiles(){
   if (!existsSync(schemasDir)) return [];
-  const files = readdirSync(schemasDir).filter(f=>f.endsWith('.json'));
-  return files;
+
+  function collect(dir, base=''){
+    const items = readdirSync(dir, { withFileTypes: true });
+    const out = [];
+    for(const it of items){
+      const p = join(dir, it.name);
+      const rel = base ? `${base}/${it.name}` : it.name;
+      if(it.isDirectory()) out.push(...collect(p, rel));
+      else if(it.isFile() && it.name.endsWith('.json')) out.push(rel);
+    }
+    return out;
+  }
+
+  return collect(schemasDir);
 }
 
 function runAudit(){

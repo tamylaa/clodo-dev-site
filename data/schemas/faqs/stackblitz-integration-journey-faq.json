@@ -1,0 +1,158 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why StackBlitz Over CodeSandbox/Replit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "StackBlitz runs Node.js natively in the browser using WebContainers\n                    Faster startup time (no container spin-up)\n                    Native npm install support\n                    Clean GitHub integration\n                    Free for open-source projects"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why Separate Repository for Demo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "StackBlitz fetches entire repos - we wanted minimal demo, not full framework source\n                    Independent versioning and updates\n                    Cleaner demo experience without framework internals\n                    Can mark as GitHub template for easy forking"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why Commit Hash in URL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Immutable reference - specific version always works\n                    Bypasses StackBlitz cache\n                    Prevents breaking changes from affecting live demo\n                    Can update main branch while keeping stable demo"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ready to experience Clodo Framework yourself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Try our instant coding environment—no installation required.\n\nTry Now - 60 Seconds\n                        Read the Docs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "30-60 minutes",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "⏱️ Time to first code:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "60 seconds",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "⚡ Time to first code:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Simplicity wins.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Remove complexity ruthlessly. A direct onclick handler beat complex modal systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Git submodules are tricky.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Either configure them properly or avoid them. Silent failures are the worst."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cache is both friend and foe.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use commit hashes for immutable references and cache-busting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ESM is the future.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern JavaScript should use import, not require()."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real packages matter.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock code doesn't showcase the actual developer experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Test production.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local development can hide deployment issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "StackBlitz",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "runs Node.js natively in the browser using WebContainers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Analytics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "📊  Track how many developers click \"Try Now\" and actually run code"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Guided tutorials:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🎯  Interactive coding challenges in StackBlitz"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Multiple templates:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🔀  Different starting points (REST API, WebSocket service, D1 database integration)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Save to GitHub:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "💾  One-click fork to user's GitHub account"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deploy from StackBlitz:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🚀  Direct deployment to Cloudflare Workers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tamyla",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Founder & Principal Engineer at Clodo Framework"
+      }
+    }
+  ]
+}

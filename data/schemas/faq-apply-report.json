@@ -1,0 +1,98 @@
+{
+  "applied": 40,
+  "appliedList": [
+    "building-developer-communities",
+    "building-developer-communities.amp",
+    "clodo-framework-enterprise-roi",
+    "clodo-framework-enterprise-roi.amp",
+    "clodo-framework-guide",
+    "cloudflare-d1-errors",
+    "cloudflare-infrastructure-myth",
+    "cloudflare-infrastructure-myth.amp",
+    "cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
+    "cloudflare-workers-auth",
+    "cloudflare-workers-cold-start-optimization",
+    "cloudflare-workers-development-guide",
+    "cloudflare-workers-guide",
+    "cloudflare-workers-tutorial-beginners",
+    "cloudflare-workers-tutorial-beginners.amp",
+    "components",
+    "debugging-silent-build-failures",
+    "debugging-silent-build-failures.amp",
+    "docs",
+    "edge-computing-guide",
+    "edge-vs-cloud-computing",
+    "faq",
+    "fintech-payment-platform",
+    "framework-comparison",
+    "instant-try-it-impact",
+    "instant-try-it-impact.amp",
+    "migrate",
+    "ruby-on-rails-cloudflare-integration",
+    "saas-product-startups-cloudflare-case-studies",
+    "serverless-architecture-best-practices",
+    "serverless-framework-comparison",
+    "stackblitz-integration-journey",
+    "stackblitz-integration-journey.amp",
+    "subscribe",
+    "v8-isolates-comprehensive-guide",
+    "v8-isolates-comprehensive-guide.amp",
+    "welcome",
+    "what-is-cloudflare-workers",
+    "what-is-edge-computing",
+    "workers-vs-lambda"
+  ],
+  "skipped": [
+    {
+      "page": "clodo-framework-api-simplification",
+      "reason": "low-confidence",
+      "confidence": 0.5
+    },
+    {
+      "page": "clodo-vs-lambda",
+      "reason": "low-confidence",
+      "confidence": 0.5
+    },
+    {
+      "page": "development-deployment-guide",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "healthcare-saas-platform",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "how-to-migrate-from-wrangler",
+      "reason": "low-confidence",
+      "confidence": 0.4
+    },
+    {
+      "page": "multi-tenant-saas",
+      "reason": "no-question-like-or-long-answer",
+      "confidence": 0.9
+    },
+    {
+      "page": "pricing",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "privacy",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "worker-scaffolding-tools",
+      "reason": "low-confidence",
+      "confidence": 0.4
+    },
+    {
+      "page": "wrangler-to-clodo-migration",
+      "reason": "low-confidence",
+      "confidence": 0.6
+    }
+  ],
+  "generatedAt": "2026-01-12T12:51:51.635Z"
+}

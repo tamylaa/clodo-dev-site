@@ -1,0 +1,406 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do Cloudflare Workers compare to AWS Lambda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare Workers offer several advantages over AWS Lambda: zero cold starts (always warm), 200+ global locations vs Lambda's ~20 regions, and cost efficiency with pay-per-request pricing. Workers run in V8 isolates rather than containers, providing faster startup times and better performance for edge computing workloads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between KV and D1 storage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "KV (Key-Value) is optimized for high-read, low-write scenarios like caching, sessions, and configuration. D1 is a relational database perfect for complex queries, transactions, and structured data. Use KV for simple key lookups and D1 for SQL queries and relationships."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I handle authentication in Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use JSON Web Tokens (JWT) stored in encrypted cookies or Authorization headers. Validate tokens at the edge to reduce origin load. For session management, combine JWT with KV storage for fast lookups. Cloudflare Access provides enterprise SSO integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best way to deploy Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Wrangler CLI for development and GitHub Actions for CI/CD. Implement staging environments with preview deployments. Use Cloudflare Pages for full-stack applications combining Workers with static assets. Monitor performance with Cloudflare's analytics and set up alerts for errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ready to Accelerate Your Development?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stop wasting weeks on boilerplate. Generate production-ready services in minutes with Clodo Framework's intelligent automation.\n\nStart Automating Now\n                                View CLI Reference"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ready to Build Production SaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clodo Framework reduces development time from months to weeks and costs by 60%. Get started with enterprise-grade components today.\n\nGet Started with Clodo\n                                View Documentation"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: Can I import internal `dist/*` files directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: No — always prefer public exports from the main package. Internal files may change between versions. If you need internal functionality exposed, request it explicitly and we'll evaluate adding it to the public API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: Is the CLI intended for programmatic use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: No — the CLI is optimized for human use and automation scripts. For programmatic tasks, use the library exports directly. This gives you better error handling and doesn't spawn subprocesses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: What's the difference between `clodo-service` and `clodo-simple`?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: clodo-service provides full control and all options. clodo-simple provides a streamlined experience with smart defaults. Choose simple for quick setup, service for advanced customization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: How do I handle multiple domains and services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: Use the MultiDomainOrchestrator for orchestrated deployments. It handles service dependencies, deployment ordering, and environment consistency automatically across all domains."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: What happens if deployment fails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: Framework automatically rolls back to the previous version. Check logs with npx clodo-service diagnose and validate configuration with npx clodo-service validate before re-deploying."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q: How do I customize generated code without losing updates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A: Generated code uses clear sections marking framework-generated vs. custom areas. Keep custom logic in separate files or marked blocks, and regenerate with npx clodo-service update when needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zero Cold Starts",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Always-on compute with sub-millisecond startup times"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Global Edge Network",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Deploy to 200+ locations instantly"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cost Effective",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Pay only for execution time, not idle resources"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Developer Friendly",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- JavaScript/TypeScript runtime with familiar APIs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fetch API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Make HTTP requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Web Crypto API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Cryptographic operations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Web Streams API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Stream processing"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "URL API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- URL parsing and manipulation"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Headers API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- HTTP header management"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cache API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Edge caching"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "HTMLRewriter",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- HTML transformation"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "WebSockets",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Real-time communication"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Durable Objects",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Stateful coordination"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Configuration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- App settings and feature flags"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "User Sessions",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Session data storage"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cache",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Application-level caching"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rate Limiting",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Request throttling data"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Dashboard",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Real-time metrics and logs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wrangler tail",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Live log streaming"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Analytics Engine",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Custom analytics and insights"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Service Scaffolding",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🔄  - Creating consistent project structures for 10+ services"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Database Setup",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🗄️  - D1 migrations, schema definitions, and connection handling"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Storage Configuration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "💾  - KV namespaces, R2 buckets, and cache strategies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Authentication & Security",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🔐  - JWT validation, rate limiting, CORS policies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Monitoring & Logging",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "📊  - Structured logging, error tracking, performance metrics"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deployment Automation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🚀  - Multi-environment configs, CI/CD pipelines, rollback strategies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "🔄 Automation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Input Collection → Code Generation → Configuration → Validation → Deployment. What takes days manually happens in minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "🎼 Orchestration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Manage multi-domain services with automatic dependency management, cross-service communication, and environment consistency across dev/staging/prod."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "⚙️ Configuration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Convention over Configuration with sensible defaults for 80% of cases, plus environment-specific overrides and validation to prevent \"works on my machine\" issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "✅ Validation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Pre-deploy checks, runtime validation, deployment verification, and continuous monitoring to catch issues before production."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "📏 Consistency",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Standardized code patterns, naming conventions, security standards, and auto-generated documentation across all services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Source Code:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Service handlers, middleware, utilities, types"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Database:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "D1 migrations, schema validation, queries"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Security:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Authentication, authorization, validation schemas"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Testing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unit tests, integration tests, test fixtures"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Configuration:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Environment configs, secrets management, build config"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deployment:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wrangler config, CI/CD scripts, monitoring setup"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Documentation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "API docs, architecture guide, deployment guide"
+      }
+    }
+  ]
+}

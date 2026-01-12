@@ -4,6 +4,8 @@ import path from 'path';
 
 const publicDir = 'public';
 const schemasDir = path.join('data','schemas');
+const breadcrumbsDir = path.join(schemasDir, 'breadcrumbs');
+if (!fs.existsSync(breadcrumbsDir)) try { fs.mkdirSync(breadcrumbsDir, { recursive: true }); } catch(e){}
 const pageConfigPath = path.join(schemasDir, 'page-config.json');
 
 function findHtmlFiles(dir) {
@@ -28,7 +30,7 @@ function saveBreadcrumb(pageName, crumbs) {
     '@type': 'BreadcrumbList',
     'itemListElement': crumbs.map((c, i) => ({ '@type': 'ListItem', 'position': i+1, 'name': c.name, 'item': c.url }))
   };
-  const outPath = path.join(schemasDir, `${pageName}-breadcrumbs.json`);
+  const outPath = path.join(breadcrumbsDir, `${pageName}-breadcrumbs.json`);
   fs.writeFileSync(outPath, JSON.stringify(schema, null, 2) + '\n', 'utf8');
 }
 

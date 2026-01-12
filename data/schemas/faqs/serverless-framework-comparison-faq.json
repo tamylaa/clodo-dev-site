@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Experience Better Serverless?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Migrate from Lambda or upgrade from Workers. Get enterprise features with edge performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AWS Lambda:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOC 2, HIPAA, extensive compliance"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enterprise-grade security"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clodo:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOC 2 compliant, automated validation"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AWS Lambda:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Manual implementation"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basic support"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clodo:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Built-in multi-tenant architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AWS Lambda:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CloudWatch, X-Ray"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basic analytics"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clodo:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Real-time monitoring, automated alerts"
+      }
+    }
+  ]
+}
