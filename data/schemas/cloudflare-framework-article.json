@@ -20,6 +20,19 @@
   "datePublished": "2024-01-15",
   "dateModified": "2024-01-20",
   "articleBody": "Comprehensive guide to Cloudflare frameworks including Clodo, Hono, and Worktop. Learn architecture, deployment strategies, and best practices for edge computing.",
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Cloudflare Workers",
+    "url": "https://developers.cloudflare.com/workers/",
+    "sameAs": "https://developers.cloudflare.com/workers/"
+  },
+  "keywords": [
+    "Cloudflare Workers",
+    "edge computing",
+    "serverless",
+    "Clodo Framework",
+    "Cloudflare"
+  ],
   "isPartOf": {
     "@type": "WebSite",
     "name": "Clodo Framework",
