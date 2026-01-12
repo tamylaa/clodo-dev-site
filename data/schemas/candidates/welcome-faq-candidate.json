@@ -1,0 +1,60 @@
+{
+  "page": "welcome",
+  "count": 13,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:55.233Z",
+  "candidates": [
+    {
+      "name": "🆕 New to Clodo Framework?",
+      "acceptedAnswer": "Perfect! Start your journey with our beginner-friendly resources.\n\nQuick Start Guide\n                        Interactive Examples\n                        Join Discord Community"
+    },
+    {
+      "name": "💪 Experienced Developer?",
+      "acceptedAnswer": "Dive deep into advanced features and contribute to the framework.\n\nAPI Documentation\n                        Advanced Features\n                        GitHub Repository"
+    },
+    {
+      "name": "Create a feature branch",
+      "acceptedAnswer": "(git checkout -b feature/amazing-feature)"
+    },
+    {
+      "name": "Make your changes",
+      "acceptedAnswer": "following our coding standards"
+    },
+    {
+      "name": "Test thoroughly",
+      "acceptedAnswer": "- we have comprehensive test suites"
+    },
+    {
+      "name": "Submit a pull request",
+      "acceptedAnswer": "with a clear description"
+    },
+    {
+      "name": "Be specific:",
+      "acceptedAnswer": "Include error messages, code snippets, and what you've tried"
+    },
+    {
+      "name": "Provide context:",
+      "acceptedAnswer": "Share your use case and environment details"
+    },
+    {
+      "name": "Search first:",
+      "acceptedAnswer": "Check existing discussions and documentation"
+    },
+    {
+      "name": "Stay on topic:",
+      "acceptedAnswer": "Use appropriate channels for different types of questions"
+    },
+    {
+      "name": "Enterprise:",
+      "acceptedAnswer": "Contact your account manager"
+    },
+    {
+      "name": "General:",
+      "acceptedAnswer": "product@clodo.dev"
+    },
+    {
+      "name": "Security:",
+      "acceptedAnswer": "security@clodo.dev"
+    }
+  ]
+}

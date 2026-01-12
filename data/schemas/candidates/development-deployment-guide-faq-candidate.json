@@ -1,0 +1,36 @@
+{
+  "page": "development-deployment-guide",
+  "count": 7,
+  "confidence": 0.7,
+  "generatedAt": "2026-01-12T12:45:55.444Z",
+  "candidates": [
+    {
+      "name": "Ready to Deploy at Scale?",
+      "acceptedAnswer": "Master the development and deployment lifecycle with Clodo Framework's enterprise-grade tools and best practices."
+    },
+    {
+      "name": "Stateless Design:",
+      "acceptedAnswer": "Design applications to be stateless for easy scaling"
+    },
+    {
+      "name": "Auto-scaling:",
+      "acceptedAnswer": "Let the platform handle scaling automatically"
+    },
+    {
+      "name": "Monitoring:",
+      "acceptedAnswer": "Monitor key metrics to identify scaling needs"
+    },
+    {
+      "name": "Cost Optimization:",
+      "acceptedAnswer": "Scale down during low-traffic periods"
+    },
+    {
+      "name": "Global Distribution:",
+      "acceptedAnswer": "Use edge locations to reduce latency worldwide"
+    },
+    {
+      "name": "Failover:",
+      "acceptedAnswer": "Implement automatic failover for high availability"
+    }
+  ]
+}

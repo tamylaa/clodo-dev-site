@@ -1,0 +1,84 @@
+{
+  "page": "stackblitz-integration-journey",
+  "count": 19,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:53.399Z",
+  "candidates": [
+    {
+      "name": "Why StackBlitz Over CodeSandbox/Replit?",
+      "acceptedAnswer": "StackBlitz runs Node.js natively in the browser using WebContainers\n                    Faster startup time (no container spin-up)\n                    Native npm install support\n                    Clean GitHub integration\n                    Free for open-source projects"
+    },
+    {
+      "name": "Why Separate Repository for Demo?",
+      "acceptedAnswer": "StackBlitz fetches entire repos - we wanted minimal demo, not full framework source\n                    Independent versioning and updates\n                    Cleaner demo experience without framework internals\n                    Can mark as GitHub template for easy forking"
+    },
+    {
+      "name": "Why Commit Hash in URL?",
+      "acceptedAnswer": "Immutable reference - specific version always works\n                    Bypasses StackBlitz cache\n                    Prevents breaking changes from affecting live demo\n                    Can update main branch while keeping stable demo"
+    },
+    {
+      "name": "Ready to experience Clodo Framework yourself?",
+      "acceptedAnswer": "Try our instant coding environment—no installation required.\n\nTry Now - 60 Seconds\n                        Read the Docs"
+    },
+    {
+      "name": "30-60 minutes",
+      "acceptedAnswer": "⏱️ Time to first code:"
+    },
+    {
+      "name": "60 seconds",
+      "acceptedAnswer": "⚡ Time to first code:"
+    },
+    {
+      "name": "Simplicity wins.",
+      "acceptedAnswer": "Remove complexity ruthlessly. A direct onclick handler beat complex modal systems."
+    },
+    {
+      "name": "Git submodules are tricky.",
+      "acceptedAnswer": "Either configure them properly or avoid them. Silent failures are the worst."
+    },
+    {
+      "name": "Cache is both friend and foe.",
+      "acceptedAnswer": "Use commit hashes for immutable references and cache-busting."
+    },
+    {
+      "name": "ESM is the future.",
+      "acceptedAnswer": "Modern JavaScript should use import, not require()."
+    },
+    {
+      "name": "Real packages matter.",
+      "acceptedAnswer": "Mock code doesn't showcase the actual developer experience."
+    },
+    {
+      "name": "Test production.",
+      "acceptedAnswer": "Local development can hide deployment issues."
+    },
+    {
+      "name": "StackBlitz",
+      "acceptedAnswer": "runs Node.js natively in the browser using WebContainers"
+    },
+    {
+      "name": "Analytics:",
+      "acceptedAnswer": "📊  Track how many developers click \"Try Now\" and actually run code"
+    },
+    {
+      "name": "Guided tutorials:",
+      "acceptedAnswer": "🎯  Interactive coding challenges in StackBlitz"
+    },
+    {
+      "name": "Multiple templates:",
+      "acceptedAnswer": "🔀  Different starting points (REST API, WebSocket service, D1 database integration)"
+    },
+    {
+      "name": "Save to GitHub:",
+      "acceptedAnswer": "💾  One-click fork to user's GitHub account"
+    },
+    {
+      "name": "Deploy from StackBlitz:",
+      "acceptedAnswer": "🚀  Direct deployment to Cloudflare Workers"
+    },
+    {
+      "name": "Tamyla",
+      "acceptedAnswer": "Founder & Principal Engineer at Clodo Framework"
+    }
+  ]
+}

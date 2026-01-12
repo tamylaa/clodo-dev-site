@@ -1,0 +1,32 @@
+{
+  "page": "wrangler-to-clodo-migration",
+  "count": 6,
+  "confidence": 0.6,
+  "generatedAt": "2026-01-12T12:46:00.193Z",
+  "candidates": [
+    {
+      "name": "Ready to Migrate?",
+      "acceptedAnswer": "Start your Wrangler to Clodo migration today. Our tools handle 90% of the work automatically."
+    },
+    {
+      "name": "10x Faster Development:",
+      "acceptedAnswer": "Automated scaffolding and code generation"
+    },
+    {
+      "name": "Enterprise Security:",
+      "acceptedAnswer": "Built-in authentication, validation, and compliance"
+    },
+    {
+      "name": "Multi-Tenant Ready:",
+      "acceptedAnswer": "Automatic tenant isolation and management"
+    },
+    {
+      "name": "Global Performance:",
+      "acceptedAnswer": "50ms worldwide response times"
+    },
+    {
+      "name": "Zero Cold Starts:",
+      "acceptedAnswer": "V8 isolates with instant scaling"
+    }
+  ]
+}

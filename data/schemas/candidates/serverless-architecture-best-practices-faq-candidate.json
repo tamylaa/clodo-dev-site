@@ -1,0 +1,188 @@
+{
+  "page": "serverless-architecture-best-practices",
+  "count": 45,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:59.784Z",
+  "candidates": [
+    {
+      "name": "What is Serverless?",
+      "acceptedAnswer": "Serverless computing is a cloud computing model where the cloud provider manages the infrastructure, automatically scaling resources based on demand. You focus on code, not servers."
+    },
+    {
+      "name": "Event-Driven",
+      "acceptedAnswer": "- Functions execute in response to events"
+    },
+    {
+      "name": "Auto-Scaling",
+      "acceptedAnswer": "- Resources scale automatically with demand"
+    },
+    {
+      "name": "Pay-Per-Use",
+      "acceptedAnswer": "- Billing based on actual execution time"
+    },
+    {
+      "name": "Managed Infrastructure",
+      "acceptedAnswer": "- No server management required"
+    },
+    {
+      "name": "Stateless",
+      "acceptedAnswer": "- Functions should be stateless by design"
+    },
+    {
+      "name": "Single Responsibility",
+      "acceptedAnswer": "- Each function does one thing well"
+    },
+    {
+      "name": "Event Sourcing",
+      "acceptedAnswer": "- Use events to trigger function execution"
+    },
+    {
+      "name": "Choreography vs Orchestration",
+      "acceptedAnswer": "- Choose the right coordination pattern"
+    },
+    {
+      "name": "Circuit Breaker",
+      "acceptedAnswer": "- Prevent cascading failures"
+    },
+    {
+      "name": "Retry with Backoff",
+      "acceptedAnswer": "- Handle transient failures"
+    },
+    {
+      "name": "Dead Letter Queues",
+      "acceptedAnswer": "- Handle persistent failures"
+    },
+    {
+      "name": "Graceful Degradation",
+      "acceptedAnswer": "- Maintain partial functionality"
+    },
+    {
+      "name": "Memory Allocation",
+      "acceptedAnswer": "- Match memory to workload requirements"
+    },
+    {
+      "name": "Execution Time",
+      "acceptedAnswer": "- Optimize code for faster execution"
+    },
+    {
+      "name": "Bundle Size",
+      "acceptedAnswer": "- Minimize package size to reduce cold start times"
+    },
+    {
+      "name": "Set Budget Alerts",
+      "acceptedAnswer": "- Monitor spending in real-time"
+    },
+    {
+      "name": "Analyze Usage Patterns",
+      "acceptedAnswer": "- Identify optimization opportunities"
+    },
+    {
+      "name": "Implement Caching",
+      "acceptedAnswer": "- Reduce function invocations"
+    },
+    {
+      "name": "Use Appropriate Storage",
+      "acceptedAnswer": "- Choose cost-effective storage solutions"
+    },
+    {
+      "name": "Minimize Latency",
+      "acceptedAnswer": "- Optimize for sub-100ms responses"
+    },
+    {
+      "name": "Use Caching",
+      "acceptedAnswer": "- Cache frequently accessed data"
+    },
+    {
+      "name": "Optimize Database Queries",
+      "acceptedAnswer": "- Use indexes and efficient queries"
+    },
+    {
+      "name": "Implement Compression",
+      "acceptedAnswer": "- Compress responses and requests"
+    },
+    {
+      "name": "Identify Bottlenecks",
+      "acceptedAnswer": "- Test under realistic load"
+    },
+    {
+      "name": "Monitor Resource Usage",
+      "acceptedAnswer": "- Track memory and CPU usage"
+    },
+    {
+      "name": "Test Failure Scenarios",
+      "acceptedAnswer": "- Ensure graceful degradation"
+    },
+    {
+      "name": "Validate Auto-Scaling",
+      "acceptedAnswer": "- Confirm scaling behavior"
+    },
+    {
+      "name": "Use JWT Tokens",
+      "acceptedAnswer": "- Secure token-based authentication"
+    },
+    {
+      "name": "Implement RBAC",
+      "acceptedAnswer": "- Role-based access control"
+    },
+    {
+      "name": "Validate Input",
+      "acceptedAnswer": "- Sanitize and validate all inputs"
+    },
+    {
+      "name": "Use HTTPS",
+      "acceptedAnswer": "- Encrypt all communications"
+    },
+    {
+      "name": "Structured Logging",
+      "acceptedAnswer": "- Use consistent log formats"
+    },
+    {
+      "name": "Log Levels",
+      "acceptedAnswer": "- ERROR, WARN, INFO, DEBUG"
+    },
+    {
+      "name": "Correlation IDs",
+      "acceptedAnswer": "- Track requests across services"
+    },
+    {
+      "name": "Performance Metrics",
+      "acceptedAnswer": "- Monitor execution time and resource usage"
+    },
+    {
+      "name": "Cloudflare Analytics",
+      "acceptedAnswer": "- Built-in performance metrics"
+    },
+    {
+      "name": "Custom Dashboards",
+      "acceptedAnswer": "- Application-specific monitoring"
+    },
+    {
+      "name": "Alerting",
+      "acceptedAnswer": "- Set up alerts for critical issues"
+    },
+    {
+      "name": "Distributed Tracing",
+      "acceptedAnswer": "- Track requests across services"
+    },
+    {
+      "name": "Zero Cold Starts",
+      "acceptedAnswer": "- Always-warm execution on Cloudflare's edge"
+    },
+    {
+      "name": "Built-in Security",
+      "acceptedAnswer": "- Enterprise-grade security patterns implemented"
+    },
+    {
+      "name": "Cost Optimization",
+      "acceptedAnswer": "- Automatic resource optimization and caching"
+    },
+    {
+      "name": "Monitoring Dashboard",
+      "acceptedAnswer": "- Real-time performance and cost insights"
+    },
+    {
+      "name": "Multi-Tenant Ready",
+      "acceptedAnswer": "- Built for SaaS applications from day one"
+    }
+  ]
+}
