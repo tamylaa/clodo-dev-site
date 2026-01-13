@@ -6,8 +6,44 @@ async function main() {
   const url = argv[2] || 'https://www.clodo.dev/pricing';
   console.log(`Checking production URL: ${url}`);
 
-  const pageRes = await fetch(url, { timeout: 15000 });
-  if (!pageRes.ok) throw new Error(`Failed to fetch page: ${pageRes.status}`);
+  // Helper to fetch with retries for transient errors (403/429/5xx or network errors)
+  async function fetchWithRetry(target, options = {}, attempts = 5, delayMs = 2000) {
+    const ua = { 'User-Agent': 'Clodo-Site-Checks/1.0 (+https://github.com/tamylaa/clodo-dev-site)' };
+    const opts = { ...options, headers: { ...(options.headers || {}), ...ua } };
+    for (let i = 1; i <= attempts; i++) {
+      try {
+        const res = await fetch(target, opts);
+        if (res.ok) return res;
+
+        // Treat 403/429/5xx as transient and retry
+        const status = res.status;
+        if ((status === 403 || status === 429 || (status >= 500 && status < 600)) && i < attempts) {
+          console.warn(`Fetch returned status ${status}, retrying (${i}/${attempts}) after ${delayMs}ms...`);
+          await new Promise(r => setTimeout(r, delayMs));
+          delayMs *= 2;
+          continue;
+        }
+
+        // Non-retriable or final attempt
+        return res;
+      } catch (err) {
+        if (i < attempts) {
+          console.warn(`Fetch error (${err.message}), retrying (${i}/${attempts}) after ${delayMs}ms...`);
+          await new Promise(r => setTimeout(r, delayMs));
+          delayMs *= 2;
+          continue;
+        }
+        throw err;
+      }
+    }
+  }
+
+  const pageRes = await fetchWithRetry(url, { timeout: 15000 });
+  if (!pageRes) throw new Error('Failed to fetch page: no response');
+  if (!pageRes.ok) {
+    const snippet = (await pageRes.text()).slice(0, 200);
+    throw new Error(`Failed to fetch page: ${pageRes.status}. Response snippet: ${snippet}`);
+  }
   const html = await pageRes.text();
 
   // Find the first styles-pricing link (supports hashed filename like styles-pricing.<hash>.css)
