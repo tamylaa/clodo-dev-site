@@ -1,0 +1,48 @@
+{
+  "page": "serverless-framework-comparison",
+  "count": 10,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:59.830Z",
+  "candidates": [
+    {
+      "name": "Ready to Experience Better Serverless?",
+      "acceptedAnswer": "Migrate from Lambda or upgrade from Workers. Get enterprise features with edge performance."
+    },
+    {
+      "name": "AWS Lambda:",
+      "acceptedAnswer": "SOC 2, HIPAA, extensive compliance"
+    },
+    {
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": "Enterprise-grade security"
+    },
+    {
+      "name": "Clodo:",
+      "acceptedAnswer": "SOC 2 compliant, automated validation"
+    },
+    {
+      "name": "AWS Lambda:",
+      "acceptedAnswer": "Manual implementation"
+    },
+    {
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": "Basic support"
+    },
+    {
+      "name": "Clodo:",
+      "acceptedAnswer": "Built-in multi-tenant architecture"
+    },
+    {
+      "name": "AWS Lambda:",
+      "acceptedAnswer": "CloudWatch, X-Ray"
+    },
+    {
+      "name": "Cloudflare Workers:",
+      "acceptedAnswer": "Basic analytics"
+    },
+    {
+      "name": "Clodo:",
+      "acceptedAnswer": "Real-time monitoring, automated alerts"
+    }
+  ]
+}

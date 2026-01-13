@@ -1,0 +1,406 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ready to Build with Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start building powerful edge applications with Clodo Framework and Cloudflare Workers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Built-in Authentication Middleware:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Implement OAuth, JWT, and API key validation across all workers with zero setup"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Standardized Authorization Patterns:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Role-based and attribute-based access control templates"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Environment-Based Secrets Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unified approach to handling API keys, tokens, and credentials across worker deployments"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Input Validation Framework:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schema-based validation to prevent injection attacks and malformed data processing"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CORS and Security Headers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pre-configured templates for compliance requirements across all workers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Single Configuration Source:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Define worker behavior, environment variables, KV bindings, and Durable Objects once. All generated workers inherit these settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Batch Deployment:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deploy 10, 50, or 100 workers with a single command. Clodo handles orchestration and rollout strategies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Version Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Workers generated from the same Clodo template are version-aligned, enabling staged rollouts and canary deployments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Automated Testing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pre-built test templates validate all generated workers against the same quality standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Infrastructure-as-Code:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Track all worker definitions in git. Regenerate workers from updated templates to manage fleet-wide changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real-time content moderation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- AI-powered filtering at the network edge"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Personalized recommendations",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Instant user-specific suggestions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Computer vision processing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Edge-based image analysis and recognition"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Natural language processing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Chatbots and text analysis at the edge"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OpenAI API",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Edge-side prompt engineering and response caching"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Anthropic Claude",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Low-latency AI chat interfaces"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hugging Face",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Deploy open-source models at the edge"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Google AI",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Vertex AI integration for enterprise applications"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sign up for Cloudflare:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Create a free account at cloudflare.com"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Install Wrangler CLI (optional):",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "npm install -g wrangler or use npx wrangler for one-time commands"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Authenticate with Wrangler:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "npx wrangler auth login"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Create your first Cloudflare Worker:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "npx wrangler init my-worker"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Develop locally with Wrangler:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "npx wrangler dev"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deploy globally with Wrangler:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "npx wrangler deploy"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Path-based routing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Route requests based on URL paths (/api/users, /api/posts)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Method-based routing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Handle different HTTP methods (GET, POST, PUT, DELETE)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Header-based routing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Route based on request headers (API versioning, content negotiation)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Microservices:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each Worker handles a specific business domain"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layered architecture:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Separate authentication, business logic, and data access layers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Plugin architecture:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modular Workers that can be combined for different use cases"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Avoid memory leaks:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Properly clean up event listeners and timers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Stream processing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use streaming APIs for large data processing"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Object pooling:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reuse objects to reduce garbage collection pressure"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Asynchronous operations:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use async/await for I/O operations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Efficient algorithms:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose O(n) over O(n²) algorithms"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Caching strategies:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cache expensive computations and API responses"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Compression:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enable gzip/brotli compression for text responses"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Streaming:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stream large responses to reduce memory usage"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Caching headers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set appropriate cache-control headers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Schema validation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use JSON Schema or similar for API requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Type checking:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Validate data types and ranges"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sanitization:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Remove or escape potentially dangerous characters"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Token verification:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Validate JWT signatures and expiration"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Claims checking:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verify user permissions and roles"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Token refresh:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Handle token renewal securely"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Request throttling:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Limit requests per IP or user"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Burst handling:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Allow short bursts while preventing sustained abuse"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Progressive delays:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Implement exponential backoff for repeated violations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Request costs:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$0.15 per million requests (first 10 million free)"
+      }
+    }
+  ]
+}

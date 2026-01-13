@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ruby on Rails + Cloudflare Workers: Full-Stack Serverless | Clodo Framework",
+  "description": "Deploy Ruby on Rails applications on Cloudflare Workers with Clodo Framework. Database integration, API routes, and edge computing.",
+  "url": "https://www.clodo.dev/ruby-on-rails-cloudflare-integration",
+  "keywords": [
+    "ruby on rails",
+    "cloudflare workers",
+    "ruby cloudflare",
+    "rails serverless",
+    "edge computing rails"
+  ],
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework Team"
+  },
+  "datePublished": "2026-01-06T10:33:21.828Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 439,
+  "readingTime": "3 min"
+}

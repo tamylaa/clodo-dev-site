@@ -260,14 +260,51 @@
       ]
     }
   },
+  "validatorAllowList": [
+    "blog/index.html",
+    "case-studies/index.html",
+    "community/welcome.html",
+    "index.html",
+    "multi-tenant-saas.html",
+    "serverless-framework-comparison.html",
+    "subscribe.html",
+    "what-is-cloudflare-workers.html",
+    "what-is-edge-computing.html",
+    "worker-scaffolding-tools.html",
+    "wrangler-to-clodo-migration.html"
+  ],
+  "validatorAllowListLocalized": [],
   "pages": {
     "pricing": {
-      "type": "FAQPage",
+      "type": "Product",
       "requiredSchemas": [
         "FAQPage",
         "BreadcrumbList",
-        "SoftwareApplication"
+        "SoftwareApplication",
+        "Offer"
       ],
+      "schema": {
+        "type": "Product",
+        "name": "Clodo Framework Pricing",
+        "description": "Pricing plans for Clodo Framework including free open-source offering and enterprise support",
+        "url": "https://clodo.dev/pricing",
+        "offers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "description": "Open source with community support"
+          },
+          {
+            "name": "Enterprise",
+            "price": "5000",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "description": "Enterprise support and SLA options"
+          }
+        ]
+      },
       "faqs": [
         {
           "name": "Is Clodo Framework really free?",
@@ -285,6 +322,20 @@
         "FAQPage",
         "BreadcrumbList",
         "SoftwareApplication"
+      ],
+      "faqs": [
+        {
+          "name": "How do I install Clodo Framework?",
+          "acceptedAnswer": "Install via npm: `npm install @tamyla/clodo-framework`. Use the quickstart to scaffold a service with `npx create-clodo-service my-app --type data-service`."
+        },
+        {
+          "name": "Does Clodo integrate with Cloudflare Wrangler and D1?",
+          "acceptedAnswer": "Yes. Clodo provides Wrangler automation for deployments and built-in helpers to run D1 migrations as part of CI and deployment workflows."
+        },
+        {
+          "name": "Is Clodo Framework free for production use?",
+          "acceptedAnswer": "Yes. Clodo Framework is open source under the MIT License. You only pay for Cloudflare usage (Workers, D1, and any other paid services)."
+        }
       ]
     },
     "cloudflare-framework": {
@@ -300,19 +351,13 @@
       "type": "LearningResource",
       "requiredSchemas": [
         "BreadcrumbList",
-        "WebSite"
+        "WebSite",
+        "FAQPage"
       ],
       "name": "Clodo Framework Documentation Hub",
       "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
       "url": "https://clodo.dev/docs",
       "educationalLevel": "Intermediate to Advanced"
-    },
-    "index": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
     },
     "about": {
       "type": "Article",
@@ -325,7 +370,8 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "quick-start": {
@@ -339,7 +385,8 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "how-to-migrate-from-wrangler": {
@@ -353,7 +400,8 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "examples": {
@@ -367,7 +415,8 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "advanced-cloudflare-workers-tutorial": {
@@ -377,25 +426,20 @@
         "BreadcrumbList"
       ]
     },
-    "analytics": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
-    },
     "clodo-framework-enterprise-roi": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-workers-tutorial-beginners": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "clodo-cloud-service": {
@@ -416,7 +460,8 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "clodo-framework-promise-to-reality": {
@@ -437,35 +482,40 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-top-10-saas-edge-computing-workers-case-study-docs": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-workers-auth": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-workers-cold-start-optimization": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-workers-development-guide": {
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "cloudflare-workers-enterprise-features": {
@@ -479,21 +529,16 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
-      ]
-    },
-    "welcome": {
-      "type": "Article",
-      "requiredSchemas": [
-        "Article",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "components": {
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
       ]
     },
     "content-performance-monitoring": {
@@ -507,6 +552,417 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "cli-commands": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "edge-vs-cloud-computing": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "how-to-migrate-from-wrangler-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "how-to-migrate-from-wrangler-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "faq": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "serverless-framework-comparison": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-cloudflare-workers": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "worker-scaffolding-tools": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "workers-vs-lambda": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "wrangler-to-clodo-migration": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "workers-boilerplate": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    "building-developer-communities.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "clodo-framework-enterprise-roi.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "cloudflare-infrastructure-myth.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "cloudflare-workers-tutorial-beginners.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "debugging-silent-build-failures.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "index.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "instant-try-it-impact.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "stackblitz-integration-journey.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "v8-isolates-comprehensive-guide.amp": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "building-developer-communities": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "cloudflare-infrastructure-myth": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "debugging-silent-build-failures": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "instant-try-it-impact": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "stackblitz-integration-journey": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "v8-isolates-comprehensive-guide": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "fintech-payment-platform": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "healthcare-saas-platform": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "welcome": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-api-simplification-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-a": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "clodo-framework-promise-to-reality-variant-b": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "migrate": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "multi-tenant-saas": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "performance-dashboard": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "privacy": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "roi-calculator": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "saas-product-startups-cloudflare-case-studies": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "structured-data": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "thanks": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "subscribe": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-edge-computing": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    }
+  },
+  "pagesByPath": {
+    "blog/index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "case-studies/index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "community/welcome.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "multi-tenant-saas.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "pricing.html": {
+      "type": "FAQPage",
+      "requiredSchemas": [
+        "FAQPage",
+        "BreadcrumbList",
+        "SoftwareApplication"
+      ]
+    },
+    "serverless-framework-comparison.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "subscribe.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-cloudflare-workers.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-edge-computing.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "worker-scaffolding-tools.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "wrangler-to-clodo-migration.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
         "BreadcrumbList"
       ]
     }

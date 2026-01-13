@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Edge Computing vs Cloud Computing: Key Differences & When to Use Each",
+  "url": "https://www.clodo.dev/edge-vs-cloud-computing",
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "description": "Compare edge computing vs cloud computing: performance, cost, security, and use cases. Learn when to choose edge over cloud and vice versa for optimal application architecture.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 1224,
+  "readingTime": "7 min",
+  "enriched": true,
+  "keywords": [
+    "edge computing",
+    "cloud computing",
+    "comparison",
+    "performance",
+    "latency",
+    "cost optimization",
+    "hybrid architecture",
+    "serverless",
+    "Clodo Framework"
+  ],
+  "datePublished": "2026-01-10T16:55:48.176Z"
+}

@@ -1,0 +1,28 @@
+{
+  "page": "clodo-vs-lambda",
+  "count": 5,
+  "confidence": 0.5,
+  "generatedAt": "2026-01-12T12:44:16.421Z",
+  "candidates": [
+    {
+      "name": "Heavy Compute:",
+      "acceptedAnswer": "If you need 50+ seconds per request (training, video processing), Clodo has 30-second limit"
+    },
+    {
+      "name": "AWS-Specific Services:",
+      "acceptedAnswer": "If you need SageMaker, Rekognition, etc., stay on AWS"
+    },
+    {
+      "name": "Compliance:",
+      "acceptedAnswer": "If you need specific region isolation (GDPR in Germany only), Lambda offers more options"
+    },
+    {
+      "name": "Home",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "Clodo vs AWS Lambda",
+      "acceptedAnswer": ""
+    }
+  ]
+}

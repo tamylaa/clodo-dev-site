@@ -1,0 +1,196 @@
+{
+  "page": "framework-comparison",
+  "count": 47,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:56.117Z",
+  "candidates": [
+    {
+      "name": "Smallest Bundle Size",
+      "acceptedAnswer": "(~10KB gzipped)"
+    },
+    {
+      "name": "Largest Community",
+      "acceptedAnswer": "- Most integrations and examples"
+    },
+    {
+      "name": "Maximum Flexibility",
+      "acceptedAnswer": "- Bring your own everything"
+    },
+    {
+      "name": "Zero Opinionation",
+      "acceptedAnswer": "- You control the architecture"
+    },
+    {
+      "name": "Excellent Docs",
+      "acceptedAnswer": "- Extensive tutorials and guides"
+    },
+    {
+      "name": "Multi-Platform",
+      "acceptedAnswer": "- Works on Workers, Deno, Bun, Node.js"
+    },
+    {
+      "name": "More Setup Required",
+      "acceptedAnswer": "- Need to add database, auth, etc."
+    },
+    {
+      "name": "More Decisions",
+      "acceptedAnswer": "- Choose your own patterns"
+    },
+    {
+      "name": "Middleware-Only",
+      "acceptedAnswer": "- No built-in database layer"
+    },
+    {
+      "name": "Learning Curve",
+      "acceptedAnswer": "- Need to understand architecture"
+    },
+    {
+      "name": "Built-In Database Layer",
+      "acceptedAnswer": "- D1 integration out of the box"
+    },
+    {
+      "name": "Type Safety",
+      "acceptedAnswer": "- Full TypeScript support with compile-time safety"
+    },
+    {
+      "name": "Faster Development",
+      "acceptedAnswer": "- Less code, more features"
+    },
+    {
+      "name": "Production Ready",
+      "acceptedAnswer": "- Best practices baked in"
+    },
+    {
+      "name": "Integrated Testing",
+      "acceptedAnswer": "- Test utilities included"
+    },
+    {
+      "name": "Growing Community",
+      "acceptedAnswer": "- Rapidly expanding ecosystem"
+    },
+    {
+      "name": "Larger Bundle Size",
+      "acceptedAnswer": "(~25KB gzipped)"
+    },
+    {
+      "name": "Less Flexible",
+      "acceptedAnswer": "- Opinionated architecture"
+    },
+    {
+      "name": "Smaller Community",
+      "acceptedAnswer": "- Fewer third-party integrations"
+    },
+    {
+      "name": "Might Not Fit Your Style",
+      "acceptedAnswer": "- Opinions may not align"
+    },
+    {
+      "name": "Tiny Bundle",
+      "acceptedAnswer": "(~5KB gzipped)"
+    },
+    {
+      "name": "Minimal Abstraction",
+      "acceptedAnswer": "- Close to native Workers"
+    },
+    {
+      "name": "Great for Learning",
+      "acceptedAnswer": "- Understand how Workers work"
+    },
+    {
+      "name": "Easy to Debug",
+      "acceptedAnswer": "- Simple, transparent code"
+    },
+    {
+      "name": "Limited Features",
+      "acceptedAnswer": "- Bare essentials only"
+    },
+    {
+      "name": "Small Community",
+      "acceptedAnswer": "- Fewer resources and examples"
+    },
+    {
+      "name": "No Database Support",
+      "acceptedAnswer": "- You handle all persistence"
+    },
+    {
+      "name": "More Boilerplate",
+      "acceptedAnswer": "- Less automation, more manual work"
+    },
+    {
+      "name": "🚀 Clodo",
+      "acceptedAnswer": ": Full-stack, batteries-included, best for SaaS and when you want to ship fast"
+    },
+    {
+      "name": "⚡ Hono",
+      "acceptedAnswer": ": Lightweight, flexible, huge community, best for APIs and microservices"
+    },
+    {
+      "name": "🎯 Worktop",
+      "acceptedAnswer": ": Minimalist, tiny, best for learning or ultra-lightweight functions"
+    },
+    {
+      "name": "📊 Performance",
+      "acceptedAnswer": ": All are fast. Choose based on features, not speed (< 5ms difference)"
+    },
+    {
+      "name": "🔄 Migration",
+      "acceptedAnswer": ": You can switch between them later (1-2 weeks effort)"
+    },
+    {
+      "name": "🎓 Learning",
+      "acceptedAnswer": ": Start with Worktop to understand Workers, then move to Hono or Clodo"
+    },
+    {
+      "name": "🏢 Production",
+      "acceptedAnswer": ": All production-ready. Match your architecture needs"
+    },
+    {
+      "name": "💡 Pro Tip",
+      "acceptedAnswer": ": Don't overthink it. You can change later. Pick one and start building"
+    },
+    {
+      "name": "Clodo:",
+      "acceptedAnswer": "Get started with the Clodo quick-start guide or learn how to build SaaS"
+    },
+    {
+      "name": "Hono:",
+      "acceptedAnswer": "Visit Hono official docs"
+    },
+    {
+      "name": "Worktop:",
+      "acceptedAnswer": "Visit Worktop GitHub"
+    },
+    {
+      "name": "Cost Analysis:",
+      "acceptedAnswer": "See cost comparison with AWS Lambda"
+    },
+    {
+      "name": "Learn More:",
+      "acceptedAnswer": "Complete guide to Cloudflare frameworks"
+    },
+    {
+      "name": "Which framework has the best documentation?",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "Can I mix multiple frameworks in the same project?",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "Which is best for production?",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "How hard is it to migrate between frameworks?",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "Which has the best TypeScript support?",
+      "acceptedAnswer": ""
+    },
+    {
+      "name": "What about serverless cold starts?",
+      "acceptedAnswer": ""
+    }
+  ]
+}

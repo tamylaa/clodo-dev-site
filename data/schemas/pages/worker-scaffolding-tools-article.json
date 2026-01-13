@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "headline": "Cloudflare Worker Scaffolding: Generate Enterprise-Ready Services | Clodo Framework",
+  "url": "https://www.clodo.dev/worker-scaffolding-tools",
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "description": "Automated scaffolding tools for Cloudflare Workers. Generate complete services with authentication, database, and API endpoints.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework Team"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 492,
+  "readingTime": "3 min",
+  "enriched": true,
+  "keywords": [
+    "worker scaffolding",
+    "cloudflare workers scaffolding",
+    "automated code generation",
+    "worker templates",
+    "enterprise scaffolding"
+  ],
+  "datePublished": "2026-01-06T10:33:21.830Z"
+}

@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Framework Comparison: Clodo vs Hono vs Worktop",
+  "description": "Complete Cloudflare framework comparison: Clodo vs Hono vs Worktop for Cloudflare Workers. Features, performance, and which framework to choose for your edge applications.",
+  "url": "https://www.clodo.dev/framework-comparison",
+  "keywords": [
+    "cloudflare framework",
+    "cloudflare workers framework",
+    "clodo framework",
+    "hono framework",
+    "worktop framework",
+    "framework comparison",
+    "edge computing",
+    "serverless"
+  ],
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "datePublished": "2026-01-06T05:16:25.772Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 1182,
+  "readingTime": "6 min"
+}

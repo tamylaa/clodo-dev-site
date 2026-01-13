@@ -1,0 +1,118 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's Next?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Personalized demos - Detect user's tech stack, show relevant examples\n                    Guided tutorials - Interactive challenges that teach while coding\n                    Instant deployment - From demo to production in one click\n                    Collaborative demos - Share your demo instance with team members\n                    AI-assisted exploration - \"Show me how to build X\" generates working code"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ready to Experience Instant Onboarding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the 30x improvement for yourself—start coding in 60 seconds.\n\nTry Now - 60 Seconds\n                        Read the Docs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Personalized demos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Detect user's tech stack, show relevant examples"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Guided tutorials",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Interactive challenges that teach while coding"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Instant deployment",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- From demo to production in one click"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Collaborative demos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Share your demo instance with team members"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI-assisted exploration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- \"Show me how to build X\" generates working code"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"I should try this someday\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From  to \"Let me try this right now\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"Let me try this right now\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From \"I should try this someday\" to"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"Setup is too complex\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From  to \"This is so easy to use\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"This is so easy to use\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From \"Setup is too complex\" to"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"Is this worth my time?\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From  to \"I'm already building something\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"I'm already building something\"",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From \"Is this worth my time?\" to"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tamyla",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Founder & Principal Engineer at Clodo Framework"
+      }
+    }
+  ]
+}

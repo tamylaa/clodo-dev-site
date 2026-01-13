@@ -1,0 +1,116 @@
+{
+  "page": "v8-isolates-comprehensive-guide.amp",
+  "count": 27,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:52.897Z",
+  "candidates": [
+    {
+      "name": "Cold start time",
+      "acceptedAnswer": ": 5-10ms (vs 100-500ms for containers, 3-30s for VMs)"
+    },
+    {
+      "name": "Memory overhead",
+      "acceptedAnswer": ": ~3MB per isolate (vs ~50MB for containers, ~512MB+ for VMs)"
+    },
+    {
+      "name": "Isolation level",
+      "acceptedAnswer": ": Memory-isolated but shares kernel and engine"
+    },
+    {
+      "name": "Language support",
+      "acceptedAnswer": ": JavaScript/WebAssembly only"
+    },
+    {
+      "name": "Use case sweet spot",
+      "acceptedAnswer": ": High-concurrency, short-lived computations"
+    },
+    {
+      "name": "Edge Computing Products",
+      "acceptedAnswer": ": If your app processes user requests at the network edge, isolates can handle JavaScript execution without spinning up full VMs. Cloudflare Workers uses this to run code globally with minimal overhead."
+    },
+    {
+      "name": "Microservices Architectures",
+      "acceptedAnswer": ": For services that need rapid scaling, isolates provide isolation without the weight of containers. This reduces cold-start times from seconds to milliseconds."
+    },
+    {
+      "name": "Modularize Code",
+      "acceptedAnswer": ": Break features into isolated modules that can run in separate V8 contexts. This mirrors microservices but at a finer grain, improving fault tolerance."
+    },
+    {
+      "name": "Resource Management",
+      "acceptedAnswer": ": Allocate CPU and memory per isolate, ensuring fair sharing. Tools like Deno or Node.js with worker threads can prototype this."
+    },
+    {
+      "name": "Security by Design",
+      "acceptedAnswer": ": Isolates provide sandboxing, reducing attack surfaces. Integrate this early to avoid retrofitting security later."
+    },
+    {
+      "name": "Hybrid Stacks",
+      "acceptedAnswer": ": Deploy isolates within containers for portability, or use VMs to manage isolate pools. Kubernetes can orchestrate this, with isolates as pods for fine-grained scaling."
+    },
+    {
+      "name": "Monitoring and Metrics",
+      "acceptedAnswer": ": From day one, instrument for isolate-specific metrics like heap usage or execution time. Tools like Prometheus can track these, ensuring efficiency goals are met."
+    },
+    {
+      "name": "Structured logging",
+      "acceptedAnswer": ": Log everything meaningful with context"
+    },
+    {
+      "name": "Local development",
+      "acceptedAnswer": ": Use Wrangler (Cloudflare) or Deno CLI to run isolates locally before deploying"
+    },
+    {
+      "name": "Distributed tracing",
+      "acceptedAnswer": ": Implement trace IDs across requests"
+    },
+    {
+      "name": "Compile to WebAssembly",
+      "acceptedAnswer": ": Port critical algorithms to Rust/C++ and compile to Wasm"
+    },
+    {
+      "name": "Hybrid architecture",
+      "acceptedAnswer": ": Use isolates for API layer, call out to specialized services for heavy compute"
+    },
+    {
+      "name": "Evaluate Deno",
+      "acceptedAnswer": ": Supports TypeScript natively and has better tooling for mixed workloads"
+    },
+    {
+      "name": "Durable Objects",
+      "acceptedAnswer": "(Cloudflare): Stateful isolates for persistent connections"
+    },
+    {
+      "name": "External state",
+      "acceptedAnswer": ": Store in Redis, KV stores, or databases—treat isolates as pure functions"
+    },
+    {
+      "name": "Session persistence",
+      "acceptedAnswer": ": Use cookies or JWTs for user state across isolate invocations"
+    },
+    {
+      "name": "Keep bundles small",
+      "acceptedAnswer": ": Under 1MB compressed. Use dynamic imports for optional features"
+    },
+    {
+      "name": "Warm-up strategies",
+      "acceptedAnswer": ": Send synthetic requests during deploys to pre-warm isolates"
+    },
+    {
+      "name": "Accept trade-offs",
+      "acceptedAnswer": ": 50ms cold start is still 10x faster than containers"
+    },
+    {
+      "name": "Use Web Standards",
+      "acceptedAnswer": ": Stick to standard Fetch API, Request/Response objects, Web Crypto"
+    },
+    {
+      "name": "Abstraction layer",
+      "acceptedAnswer": ": Wrap platform-specific features"
+    },
+    {
+      "name": "Multi-cloud deployment",
+      "acceptedAnswer": ": Run same code on multiple platforms for redundancy"
+    }
+  ]
+}

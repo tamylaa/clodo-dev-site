@@ -43,6 +43,7 @@ Start here and work through in order:
 - Phase 2 tasks (Blog, FAQ, Guides) - Week 2
 - Phase 3 tasks (Advanced pages) - Weeks 3-4
 - Validation procedures
+- Validator exceptions: configured in `data/schemas/page-config.json` via `validatorAllowList` (preferred source for per-page validation exceptions)
 - Success metrics to track
 - Common issues & solutions
 
@@ -242,6 +243,7 @@ Tasks:
 - **Google Rich Results Test**: https://search.google.com/test/rich-results
 - **Schema.org Validator**: https://validator.schema.org/
 - **Google Search Console**: https://search.google.com/search-console
+- **CSP note:** The build system injects JSON-LD with a `nonce` attribute to comply with the site's Content-Security-Policy; ensure your CSP header/meta contains the matching nonce (default: `N0Nc3Cl0d0`) and the validator checks JSON-LD scripts are present.
 
 ### Build & Test Commands
 ```bash

@@ -1,0 +1,40 @@
+{
+  "page": "edge-computing-guide",
+  "count": 8,
+  "confidence": 0.8,
+  "generatedAt": "2026-01-12T12:45:55.694Z",
+  "candidates": [
+    {
+      "name": "What is Edge Computing?",
+      "acceptedAnswer": "Get started with the fundamentals of edge computing and understand how it differs from traditional cloud architectures."
+    },
+    {
+      "name": "Ready to Build on the Edge?",
+      "acceptedAnswer": "Join thousands of developers building faster, more reliable applications with Clodo Framework."
+    },
+    {
+      "name": "Design for Failure:",
+      "acceptedAnswer": "Plan for edge node failures and implement graceful degradation"
+    },
+    {
+      "name": "Optimize Data Flow:",
+      "acceptedAnswer": "Minimize data transfer between edge and cloud layers"
+    },
+    {
+      "name": "Security First:",
+      "acceptedAnswer": "Implement end-to-end encryption and secure edge-to-cloud communication"
+    },
+    {
+      "name": "Monitor Performance:",
+      "acceptedAnswer": "Track latency, throughput, and error rates across edge locations"
+    },
+    {
+      "name": "Version Management:",
+      "acceptedAnswer": "Handle application updates across distributed edge infrastructure"
+    },
+    {
+      "name": "Cost Optimization:",
+      "acceptedAnswer": "Balance edge processing costs with performance benefits"
+    }
+  ]
+}

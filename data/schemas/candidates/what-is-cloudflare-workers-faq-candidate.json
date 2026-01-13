@@ -1,0 +1,24 @@
+{
+  "page": "what-is-cloudflare-workers",
+  "count": 4,
+  "confidence": 0.8,
+  "generatedAt": "2026-01-12T12:45:59.945Z",
+  "candidates": [
+    {
+      "name": "Global Performance",
+      "acceptedAnswer": ": Code runs at 200+ edge locations worldwide"
+    },
+    {
+      "name": "Zero Cold Starts",
+      "acceptedAnswer": ": Functions are always ready to execute"
+    },
+    {
+      "name": "Cost Effective",
+      "acceptedAnswer": ": Pay only for execution time, not idle resources"
+    },
+    {
+      "name": "Developer Friendly",
+      "acceptedAnswer": ": Write in JavaScript/TypeScript you already know"
+    }
+  ]
+}

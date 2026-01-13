@@ -21,6 +21,13 @@ This document describes the new **data-driven schema architecture** for clodo.de
    - Single source of truth for shared values
 
 3. **`data/schemas/page-config.json`** (JSON configuration, preferred location; legacy `schema/page-config.json` still supported)
+
+Note: Page-level schema files are now organized into subfolders under `data/schemas/` to reduce root-level clutter:
+- `data/schemas/pages/` — per-page Article/WebPage JSON files
+- `data/schemas/faqs/` — auto-extracted and manual FAQPage JSON files
+- `data/schemas/breadcrumbs/` — BreadcrumbList JSON files
+
+The tooling prefers the new subfolders but retains compatibility with legacy flat files placed directly under `data/schemas/`.
    - Blog post configurations (6 posts)
    - Case study configurations (2 studies)
    - Page-specific configurations (pricing, docs)

@@ -1,0 +1,406 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "CPU time:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 seconds for Workers, up to 15 minutes for Durable Objects"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Memory:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "128MB standard, up to 512MB available"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Request timeout:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 seconds default"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "File size:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "25MB max upload size"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "~0ms cold start:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Code is pre-compiled at edge"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Always hot:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Replicated to 200+ locations globally"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Instant response:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  No initialization delay"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Perfect for:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  P99 latency matters (customer-facing apps)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CORS handling:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Simple declarative syntax"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Security headers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  CSP, X-Frame-Options, HSTS"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "JWT validation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Built-in middleware"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rate limiting:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Per-tenant or per-IP"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "WAF rules:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Cloudflare WAF included"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "D1 (SQLite):",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Built-in, recommended"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PostgreSQL:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Via Neon, Supabase"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MySQL:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Via PlanetScale"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MongoDB:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Via Atlas"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Custom APIs:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  HTTP calls to any service"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "R2 Object Storage:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Store files permanently (recommended)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Base64 encoding:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Small files in D1 database"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Multipart form data:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Full HTTP upload support"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Signed URLs:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Direct browser-to-R2 uploads"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Size limits:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Up to 25MB per request"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Standard Web APIs:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Most code runs anywhere"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare-specific:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "⚠ï¸  Durable Objects, D1, R2 (but documented)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Migration path:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  Can move to other platforms if needed"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Open source:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  You own your code, not locked in"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Compute:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$0.00001667 per request (first 100M/month free)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Storage (D1):",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Included (SQLite database)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "KV Storage:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$0.50/million operations"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "R2 Object Storage:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$0.015/GB (first 10GB free)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Community Support:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GitHub Discussions (free)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Priority Support:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email + Slack (contact sales)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Enterprise Support:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dedicated engineer (contact sales)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Linear pricing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2x traffic = 2x cost"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "No overprovisioning:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pay only for actual requests"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Free tier covers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "100M requests/month (enough for 1M users with average usage)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rate limiting:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Built-in, no surprise costs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Before deployment:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Validates all worker rules, environment variables, database connections"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Prevents crashes:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Catches errors before they hit production"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reduces downtime:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Failed deployments never go live"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Enterprise-ready:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Integrates with CI/CD pipelines"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tenant isolation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Data automatically separated by tenant"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Namespace management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Automatic routing by tenant ID"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Database per tenant or shared:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You choose the architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cost per tenant:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transparent, automatic billing if needed"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "JavaScript/TypeScript",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  (primary, full support)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Python",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  (via community packages)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rust",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "✅  (via WebAssembly)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Go, Java:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "🔄  Coming soon"
+      }
+    }
+  ]
+}
