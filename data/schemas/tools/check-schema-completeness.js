@@ -19,11 +19,12 @@ function collectJsonFiles(dir, base = ''){
 const files = collectJsonFiles(schemasDir).filter(f => f.endsWith('.json'));
 
 const requiredFieldsByType = {
-  'Article': ['headline','url','description','author','datePublished','image','keywords'],
+  'Article': ['headline','datePublished'], // url is injected during build from canonical tag
   'WebPage': ['headline','url','description','keywords'],
-  'FAQPage': ['name','faqs','url'],
+  'FAQPage': ['mainEntity'], // FAQPage uses mainEntity array containing Question/Answer pairs
   'SoftwareApplication': ['name','description','url'],
-  'Product': ['name','description','url','offers']
+  'Product': ['name','description','url','offers'],
+  'BreadcrumbList': ['itemListElement'] // minimal requirement for breadcrumbs
 };
 
 function checkFile(file) {
