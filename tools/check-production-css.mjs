@@ -10,7 +10,7 @@ async function main() {
   async function fetchWithRetry(target, options = {}, attempts = 5, delayMs = 2000) {
     const ua = { 'User-Agent': 'Clodo-Site-Checks/1.0 (+https://github.com/tamylaa/clodo-dev-site)' };
     const opts = { ...options, headers: { ...(options.headers || {}), ...ua } };
-    for (let i = 1; i <= attempts; i++) {
+      for (let i = 1; i <= attempts; i++) {
       try {
         const res = await fetch(target, opts);
         if (res.ok) return res;
@@ -38,12 +38,30 @@ async function main() {
     }
   }
 
-  const pageRes = await fetchWithRetry(url, { timeout: 15000 });
-  if (!pageRes) throw new Error('Failed to fetch page: no response');
-  if (!pageRes.ok) {
-    const snippet = (await pageRes.text()).slice(0, 200);
+  // Check Pages deployment via API to help decide when Cloudflare blocks public URL
+  async function checkPagesDeployment(accountId, projectName, apiToken) {
+    const endpoint = `https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`;
+    const res = await fetch(endpoint, { headers: { Authorization: `Bearer ${apiToken}`, Accept: 'application/json' }, timeout: 10000 });
+    if (!res.ok) throw new Error(`Pages API returned ${res.status}`);
+    const json = await res.json();
+    // Look for indicators of a successful latest deployment
+    const results = json && (json.result || json.results || json.deployments || []);
+    if (!Array.isArray(results) || results.length === 0) return false;
+    const latest = results[0];
+    const candidateValues = [latest.status, latest.phase, latest.state, latest.deployment_status, latest.result];
+    const asString = JSON.stringify(candidateValues).toLowerCase();
+    // Consider success if any common success keywords appear
+    return /success|built|ready|succeeded/.test(asString);
+  }
+
+      }
+
+      throw new Error(`Failed to fetch page: ${pageRes.status}. Response snippet: ${snippet}. Cloudflare protection detected and no Pages API credentials/override configured.`);
+    }
+
     throw new Error(`Failed to fetch page: ${pageRes.status}. Response snippet: ${snippet}`);
   }
+
   const html = await pageRes.text();
 
   // Find the first styles-pricing link (supports hashed filename like styles-pricing.<hash>.css)
