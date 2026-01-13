@@ -69,7 +69,7 @@ for (const u of urls) {
       } catch (e) {
         console.error(`Report written but invalid for ${fullUrl}: ${e.message}`);
         // Remove bad temp file
-        try { await fs.rm(tmpOut, { force: true }); } catch(_){}
+        try { await fs.rm(tmpOut, { force: true }); } catch (_) { /* ignore cleanup errors */ }
         throw new Error('Invalid report generated');
       }
     } catch (err) {
