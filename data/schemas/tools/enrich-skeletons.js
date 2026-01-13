@@ -78,7 +78,12 @@ function extractMetadataFromHtml(html) {
 }
 
 function shouldEnrich(json) {
-  return json.generated === true && json.generatedBy && json.generatedBy.startsWith('generate-skeletons');
+  // Enrich explicit generated skeletons OR any non-manually-locked file that is missing important fields
+  if (json.generated === true && json.generatedBy && json.generatedBy.startsWith('generate-skeletons')) return true;
+  if (json.generated === false) return false; // explicitly enriched or managed, skip
+  // For files without an explicit generated flag, attempt safe enrichment when key fields are missing
+  const missing = (!json.datePublished) || (!json.author) || (!json.image);
+  return !!missing;
 }
 
 // Load site metadata
@@ -99,7 +104,8 @@ for (const f of files) {
   const json = loadJson(f);
   if (!shouldEnrich(json)) continue;
 
-  const pageName = f.replace(/-article.json$/, '');
+  // Normalize file path like 'pages/about-article.json' -> pageName 'about'
+  const pageName = f.replace(/^pages\//, '').replace(/-article\.json$/, '');
 
   // Skip verification/utility pages and experiments
   if (/^google[0-9a-f]{6,}$/i.test(pageName) || pageName === 'robots' || pageName === 'sitemap' || pageName === 'welcome' || pageName === 'analytics') {
@@ -162,7 +168,17 @@ for (const f of files) {
   if (authorName && authorMap[authorName]) authorName = authorMap[authorName];
   if (authorName) enriched.author = { '@type': 'Person', 'name': authorName };
 
+  // dates: prefer meta, fall back to file mtime when missing
   if (meta.datePublished) enriched.datePublished = meta.datePublished;
+  else {
+    try {
+      const stat = fs.statSync(publicPath);
+      enriched.datePublished = stat && stat.mtime ? stat.mtime.toISOString() : undefined;
+    } catch (e) {
+      // ignore
+    }
+  }
+
   if (meta.dateModified) enriched.dateModified = meta.dateModified;
   if (meta.image) enriched.image = { '@type': 'ImageObject', 'url': meta.image };
   if (meta.keywords && meta.keywords.length) enriched.keywords = meta.keywords;

@@ -58,7 +58,7 @@
 })();
 </script>
 
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -90,7 +90,7 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -108,7 +108,7 @@
   }
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -204,7 +204,291 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Vercel",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Next.js (App/Pages), KV, Blob, Edge Config, Cron, Postgres"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Railway",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Services (web/worker), PG/Redis, variables, domains"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Netlify",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(roadmap): redirects, functions, edge middleware, envs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Render",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(roadmap): services, cron, disk flags"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Pages",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Next.js plugin, functions/, headers.json, _routes.json"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloudflare Workers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Hono/itty router, Durable Objects, KV/R2/D1 bindings"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "vercel.json → wrangler.toml",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": routes/rewrites/redirects to Pages/Workers routing or _routes.json; headers to headers.json or Workers handlers; env to [vars] + secrets"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "next.config.js",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": images domains → Cloudflare Images/static fallback; experimental flags warned if unsupported"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pages Router",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": use Pages + Next plugin with minimal changes"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "App Router",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": supported for many cases; warn on Node-only APIs in Server Actions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Middleware",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": map to Pages/Workers middleware equivalents; validate edge-runtime compatibility"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ISR/SSG",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": revalidate via cache + Workers route or Pages functions; fallback SSG at build, dynamic via SSR"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "API Routes",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": map to Pages Functions or Workers routes"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vercel KV → Cloudflare KV",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": namespace mapping, TTL semantics, size limits, eventual consistency notes"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vercel Blob → Cloudflare R2",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": public/private buckets, signed URLs, migration script with checksum"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Config → KV/DO",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": hierarchical config with per-environment overrides"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cron → Cloudflare Cron",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": schedule translation, prefixed names"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Postgres",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": keep external PG (e.g., Neon) via HTTP/Prisma for parity, or migrate to D1 where constraints fit"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Detection & discovery",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": identify platform, build project graph"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Parsers & domain model",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": App, Route, Service, Policy"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mapping library",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": rules and severities (auto/manual/blocker)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Transformers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": config, code (codemods), env/secret mappers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Generators",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Pages/Workers structures, wrangler.toml bindings"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Orchestration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": provision with safeguards, env alignment"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Validation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": parity, SSR snapshots, performance checks"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Data tools",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": KV/Blob/DB migration pipelines"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reporting",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": migration report with risk and effort"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Extensibility",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": source/target adapters, rule packs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ISourceAdapter",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": detect, parse, extract"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ITargetAdapter",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": plan, generate, provision, deploy"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rule",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": applies(model) → transform(model)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ParityReport",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": coverage %, auto/manual, blockers, risk"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Migrate",
+      "item": "https://www.clodo.dev/migrate"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -216,14 +500,6 @@
       "item": "https://www.clodo.dev"
     }
   ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Migrate to Clodo - From Wrangler/Serverless to Enterprise",
-  "url": null
 }
 </script>
 </head>

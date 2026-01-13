@@ -5,7 +5,13 @@ import path from 'path';
 const publicDir = 'public';
 const schemasDir = path.join('data','schemas');
 const breadcrumbsDir = path.join(schemasDir, 'breadcrumbs');
-if (!fs.existsSync(breadcrumbsDir)) try { fs.mkdirSync(breadcrumbsDir, { recursive: true }); } catch(e){}
+if (!fs.existsSync(breadcrumbsDir)) {
+  try {
+    fs.mkdirSync(breadcrumbsDir, { recursive: true });
+  } catch (e) {
+    console.warn('Could not create breadcrumbs directory:', e.message);
+  }
+}
 const pageConfigPath = path.join(schemasDir, 'page-config.json');
 
 function findHtmlFiles(dir) {
