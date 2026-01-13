@@ -34,7 +34,7 @@
     <!-- BreadcrumbList Schema -->
     <link rel="stylesheet" href="/styles.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -66,7 +66,7 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -84,7 +84,7 @@
   }
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -180,22 +180,93 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Authentication on Cloudflare Workers: JWT, OAuth, & Session Management",
   "url": "https://www.clodo.dev/cloudflare-workers-auth",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "description": "Complete guide to implementing authentication in Cloudflare Workers. Learn JWT, OAuth, Cloudflare Access, Turnstile, and session management with code examples.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 1911,
+  "readingTime": "10 min",
+  "enriched": true,
+  "keywords": [
+    "Cloudflare Workers",
+    "Cloudflare",
+    "Workers",
+    "Authentication",
+    "Oauth",
+    "Session",
+    "Management",
+    "Clodo Framework"
+  ],
+  "datePublished": "2026-01-06T10:33:21.804Z"
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Authentication on Cloudflare Workers: JWT, OAuth, & Session Management",
-  "url": null
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use multiple authentication methods together?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can combine JWT for API auth with Cloudflare Access for admin routes, and Turnstile for bot protection on public forms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I handle authentication in a multi-tenant app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use tenant-specific JWT secrets, isolate sessions per tenant in Durable Objects, and implement tenant-scoped access controls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between JWT and sessions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JWT is stateless and stored client-side, while sessions require server-side storage but offer better control over token revocation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I secure my authentication endpoints?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use HTTPS, implement rate limiting, validate all inputs, use secure headers, and consider Cloudflare Access for additional protection."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cloudflare Workers Auth",
+      "item": "https://www.clodo.dev/cloudflare-workers-auth"
+    }
+  ]
 }
 </script>
 </head>

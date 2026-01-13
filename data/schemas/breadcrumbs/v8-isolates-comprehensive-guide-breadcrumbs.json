@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "I18n",
+      "item": "https://www.clodo.dev/i18n"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "De",
+      "item": "https://www.clodo.dev/i18n/de"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "V8 Isolates Comprehensive Guide",
+      "item": "https://www.clodo.dev/v8-isolates-comprehensive-guide"
+    }
+  ]
+}

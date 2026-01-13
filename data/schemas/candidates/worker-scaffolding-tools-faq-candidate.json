@@ -1,0 +1,24 @@
+{
+  "page": "worker-scaffolding-tools",
+  "count": 4,
+  "confidence": 0.4,
+  "generatedAt": "2026-01-12T12:46:00.044Z",
+  "candidates": [
+    {
+      "name": "Edge Caching:",
+      "acceptedAnswer": "Automatic cache headers and CDN optimization"
+    },
+    {
+      "name": "Database Optimization:",
+      "acceptedAnswer": "Connection pooling and query optimization"
+    },
+    {
+      "name": "Asset Optimization:",
+      "acceptedAnswer": "Minification and compression"
+    },
+    {
+      "name": "Monitoring:",
+      "acceptedAnswer": "Real-time performance tracking"
+    }
+  ]
+}

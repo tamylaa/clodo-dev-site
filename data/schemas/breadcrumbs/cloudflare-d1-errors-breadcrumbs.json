@@ -1,0 +1,18 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cloudflare D1 Errors",
+      "item": "https://www.clodo.dev/cloudflare-d1-errors"
+    }
+  ]
+}

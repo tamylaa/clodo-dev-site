@@ -91,7 +91,7 @@
 })();
 </script>
 
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -123,7 +123,7 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -141,7 +141,7 @@
   }
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -237,17 +237,469 @@
   ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "10 Companies Using Cloudflare: Real Case Studies 2026",
   "url": "https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
-  "generatedBy": "generate-skeletons.js",
-  "generated": true
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "See how Discord (85% edge), Shopify (100% Workers), GitHub (95% CDN) and 7 other companies use Cloudflare. Real metrics, architecture patterns, and enterprise implementation strategies from 2026 research.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework"
+  },
+  "datePublished": "2026-01-04T00:00:00.000Z",
+  "dateModified": "2026-01-05T00:00:00.000Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image-saas-research.png"
+  },
+  "wordCount": 2542,
+  "readingTime": "13 min",
+  "enriched": true,
+  "keywords": [
+    "Cloudflare Workers",
+    "Cloudflare",
+    "Companies",
+    "Real",
+    "Workers",
+    "Case",
+    "Studies",
+    "Clodo Framework"
+  ]
 }
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which major companies use Cloudflare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Major companies using Cloudflare include Discord, Shopify, GitHub, Slack, Zoom, Notion, Figma, Stripe, Canva, and Reddit. These platforms collectively serve hundreds of millions to over a billion users and deliver an average of 85% of their traffic through Cloudflare's edge network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What percentage of traffic do companies deliver through Cloudflare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edge delivery percentages vary by architecture: Shopify achieves 100% edge delivery using Workers, while GitHub delivers 95%. Discord, Slack, Stripe, and Reddit average 80-90% through hybrid architectures combining Cloudflare CDN with proprietary infrastructure. The average across all 10 analyzed companies is 85%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do companies choose Cloudflare Workers over traditional cloud providers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Companies choose Cloudflare Workers for several key advantages: Global scale without regional infrastructure investment, sub-50ms response times worldwide, automatic DDoS protection, and cost efficiency compared to AWS Lambda or Azure Functions. The platform enables instant worldwide deployment and automatically handles traffic spikes without capacity planning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between hybrid and all-in Cloudflare architecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hybrid architecture: Uses Cloudflare for CDN, security, and static assets while maintaining proprietary servers for core logic. Example: Discord (80-90% edge) keeps WebSocket servers proprietary for real-time chat.\n                                    All-in architecture: Runs the entire platform on Cloudflare Workers. Example: Shopify achieves 100% edge delivery with complete platform execution on Workers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Shopify run entirely on Cloudflare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Shopify runs its entire storefront platform on Cloudflare Workers, achieving 100% edge delivery. This enables instant global deployment for millions of merchants, edge-side personalization, A/B testing capabilities, and sub-second page loads worldwide while reducing origin load by over 90%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Discord maintain low-latency real-time messaging with Cloudflare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Discord uses a hybrid approach: Cloudflare handles 80-90% of traffic including website, API endpoints, CDN, and DDoS protection. Real-time chat and voice services run on proprietary WebSocket servers optimized for ultra-low-latency communication. This pattern—edge CDN with proprietary real-time backends—is common among communication platforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Cloudflare Workers suitable for mission-critical enterprise SaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, absolutely. Enterprise platforms like Stripe (payments processing), Notion (productivity suite), and Figma (design tools) run mission-critical workloads on Cloudflare Workers. The platform provides enterprise-grade security features (including encryption), 99.99% uptime SLAs, compliance certifications (SOC 2, ISO 27001, etc.), and handles billions of requests daily for Fortune 500 companies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "💡 Evaluating Cloudflare for your stack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See detailed architecture analysis, performance metrics & implementation patterns for each platform below.\n\nExplore Case Studies\n                        Implementation Guide"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ready to Build on Cloudflare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inspired by how these companies scale with Cloudflare? Here are your next steps:\n\nCloudflare Workers Development Guide — Learn how to build edge-first applications with complete tutorial covering Workers, D1 Database, KV Storage, and production deployment.\n                            Serverless Architecture Best Practices — Master design patterns, cost optimization, performance tuning, and security for edge computing platforms.\n                            Migration Guide: From Traditional to Edge — Step-by-step instructions for migrating existing infrastructure to Cloudflare edge computing.\n                            5-Minute Quick Start — Get up and running with Clodo Framework in minutes and deploy your first edge service."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Shopify:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "100% edge delivery via Workers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GitHub:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "95% edge delivery via CDN"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reddit:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "95% edge delivery via CDN + Security"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zoom:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "90-95% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Canva:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "85-90% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Discord:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "85-90% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Slack:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "85-90% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Stripe:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "85-90% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Notion:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "80-85% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Figma:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "80-85% hybrid architecture"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "All-In Edge (10%):",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Complete platform on Cloudflare Workers (Shopify)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hybrid CDN-Heavy (90%):",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare for CDN/security + proprietary backends"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DDoS Protection:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All 10 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CDN/Asset Delivery:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All 10 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Computing/Workers:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "7-8 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bot Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "7 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "WAF/Security:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "8 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "KV Storage/Database:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "4-5 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Load Balancing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3-4 companies"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ML-based DDoS Detection:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Identifies and blocks sophisticated attacks in real-time"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Bot Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Filters malicious traffic before API hits"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Global CDN:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Caches and delivers assets from 200+ data centers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zero Trust Access:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Secures employee access without VPNs"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge-side Personalization:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A/B testing and geolocation-based content (reduces origin load by 90%)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Serverless Storefronts:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sub-second global loads via Workers/Pages"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bot Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Protects against inventory scraping and credential stuffing"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real-time Analytics:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instant insights without sampling"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Massive DDoS Mitigation:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absorbs largest recorded attacks"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge API Rate Limiting:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Custom logic for high-volume users"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Global Code Delivery:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fast downloads worldwide"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SSL at Scale:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Auto-provisioning for millions of custom domains"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Message Processing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formatting and emoji rendering"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Advanced Bot Protection:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prevents channel spam"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Global Performance:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consistent performance for distributed teams"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Session Management:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reduces backend state overhead"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Load Balancing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Distributes sudden usage surges"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Meeting Protection:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prevents automated bot disruptions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Global Web Assets:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fast client loading worldwide"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Geo-aware Routing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compliance with data residency requirements"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real-time Collaboration:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Operational transformation at edge"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Caching:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Queries and permissions cached globally"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cloudflare Top 10 Saas Edge Computing Workers Case Study Docs",
+      "item": "https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -271,14 +723,6 @@
       "item": "https://www.clodo.dev"
     }
   ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "10 Companies Using Cloudflare: Real Case Studies 2026",
-  "url": null
 }
 </script>
 </head>

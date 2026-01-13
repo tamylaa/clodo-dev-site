@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use transactions with D1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, D1 supports transactions. Use db.batch() for multiple operations or wrap queries in transaction blocks for atomicity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I migrate from SQLite to D1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Cloudflare's migration tools or export your SQLite database and import it using D1's REST API or Wrangler commands."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between D1 and other databases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "D1 is serverless and globally distributed, making it perfect for edge computing but with different consistency guarantees than traditional databases."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does D1 cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "D1 pricing is based on rows read/written and storage used. Check Cloudflare's pricing page for current rates."
+      }
+    }
+  ]
+}

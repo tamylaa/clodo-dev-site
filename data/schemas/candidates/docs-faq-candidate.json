@@ -1,0 +1,64 @@
+{
+  "page": "docs",
+  "count": 14,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:55.514Z",
+  "candidates": [
+    {
+      "name": "What are Cloudflare Workers?",
+      "acceptedAnswer": "Learn the fundamentals of serverless functions at the edge. Understand how Workers differ from traditional serverless platforms."
+    },
+    {
+      "name": "API Token Security",
+      "acceptedAnswer": ": AES-256-CBC encrypted storage with automatic prompting"
+    },
+    {
+      "name": "Dummy Key Prevention",
+      "acceptedAnswer": ": Blocks deployment of development/test keys to production"
+    },
+    {
+      "name": "Weak Secret Detection",
+      "acceptedAnswer": ": Validates password strength and entropy"
+    },
+    {
+      "name": "URL Security",
+      "acceptedAnswer": ": Enforces HTTPS in production, blocks localhost in live environments"
+    },
+    {
+      "name": "JWT Validation",
+      "acceptedAnswer": ": Ensures proper JWT secret strength and configuration"
+    },
+    {
+      "name": "JSON-based Configuration",
+      "acceptedAnswer": ": Environment-specific settings with validation"
+    },
+    {
+      "name": "Runtime Discovery",
+      "acceptedAnswer": ": Services automatically discover and configure themselves"
+    },
+    {
+      "name": "Feature Flags",
+      "acceptedAnswer": ": Declarative feature management with domain-specific overrides"
+    },
+    {
+      "name": "Multi-tenant Support",
+      "acceptedAnswer": ": Customer isolation and configuration management"
+    },
+    {
+      "name": "Schema Caching",
+      "acceptedAnswer": ": Database schema caching for improved performance"
+    },
+    {
+      "name": "SQL Query Caching",
+      "acceptedAnswer": ": Intelligent query result caching"
+    },
+    {
+      "name": "Validation Caching",
+      "acceptedAnswer": ": Security validation result caching"
+    },
+    {
+      "name": "Global Replication",
+      "acceptedAnswer": ": Edge-optimized data distribution"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "page": "cloudflare-workers-tutorial-beginners.amp",
+  "count": 18,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:52.594Z",
+  "candidates": [
+    {
+      "name": "⚠ï¸ Permission Error on Mac/Linux?",
+      "acceptedAnswer": "If you get EACCES errors, either use sudo npm install -g wrangler or configure npm to use a different directory. See npm's guide."
+    },
+    {
+      "name": "⚡ Want to Skip Setup?",
+      "acceptedAnswer": "Try the Clodo Framework starter template—pre-configured with routing, authentication, and database. Start coding in 60 seconds."
+    },
+    {
+      "name": "🌍 Notice request.cf?",
+      "acceptedAnswer": "Cloudflare automatically adds geo data to every request: city, country, timezone, ASN, and more. This is free and works globally. Perfect for personalization, compliance, and analytics."
+    },
+    {
+      "name": "🎉 What Just Happened?",
+      "acceptedAnswer": "Your code was bundled and uploaded to Cloudflare\n                            It's now running in 330+ data centers simultaneously\n                            Users in Tokyo get served from Tokyo, users in Lagos from Lagos\n                            Zero configuration, zero DevOps, zero servers to manage"
+    },
+    {
+      "name": "Zero cold starts",
+      "acceptedAnswer": "— Code starts in under 5ms (Lambda: 500ms-10s)"
+    },
+    {
+      "name": "Global by default",
+      "acceptedAnswer": "— Deploy once, run everywhere"
+    },
+    {
+      "name": "Generous free tier",
+      "acceptedAnswer": "— 100,000 requests/day, no credit card needed"
+    },
+    {
+      "name": "Pay for CPU only",
+      "acceptedAnswer": "— Not billed while waiting on database/API calls"
+    },
+    {
+      "name": "Node.js 18+",
+      "acceptedAnswer": "— Download here"
+    },
+    {
+      "name": "A Cloudflare account",
+      "acceptedAnswer": "— Sign up free (no credit card required)"
+    },
+    {
+      "name": "Basic JavaScript knowledge",
+      "acceptedAnswer": "— If you can write a function, you're ready"
+    },
+    {
+      "name": "A code editor",
+      "acceptedAnswer": "— VS Code recommended"
+    },
+    {
+      "name": "What type of application?",
+      "acceptedAnswer": "→ Select \"Hello World\" Worker"
+    },
+    {
+      "name": "TypeScript or JavaScript?",
+      "acceptedAnswer": "→ Choose TypeScript (recommended) or JavaScript"
+    },
+    {
+      "name": "Use git?",
+      "acceptedAnswer": "→ Yes (recommended)"
+    },
+    {
+      "name": "Deploy now?",
+      "acceptedAnswer": "→ No (we'll explore the code first)"
+    },
+    {
+      "name": "330+ data centers",
+      "acceptedAnswer": "It's now running in  simultaneously"
+    },
+    {
+      "name": "Tamyla",
+      "acceptedAnswer": "Founder & Principal Engineer at Clodo Framework"
+    }
+  ]
+}

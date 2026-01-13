@@ -1,0 +1,36 @@
+{
+  "page": "edge-vs-cloud-computing",
+  "count": 7,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:55.744Z",
+  "candidates": [
+    {
+      "name": "What's the main difference between edge and cloud computing?",
+      "acceptedAnswer": "Edge computing processes data closer to where it's generated (at the network edge), while cloud computing centralizes processing in remote data centers. Edge offers lower latency and reduced bandwidth costs, while cloud provides massive scalability and computational power."
+    },
+    {
+      "name": "Can I use both edge and cloud computing together?",
+      "acceptedAnswer": "Yes! A hybrid approach is often optimal. Use edge computing for real-time processing, data filtering, and immediate responses, then send aggregated data to the cloud for complex analytics, long-term storage, and batch processing."
+    },
+    {
+      "name": "Which is more secure: edge or cloud computing?",
+      "acceptedAnswer": "Both can be secure with proper implementation. Edge computing reduces data in transit (a common attack vector), while cloud computing benefits from centralized security controls and compliance frameworks. The best choice depends on your specific security requirements."
+    },
+    {
+      "name": "Is edge computing more expensive than cloud computing?",
+      "acceptedAnswer": "Not necessarily. Edge computing can reduce bandwidth costs and data transfer fees, especially for IoT applications or remote locations. However, edge infrastructure may require different operational approaches and potentially higher maintenance costs."
+    },
+    {
+      "name": "When should I choose edge computing over cloud?",
+      "acceptedAnswer": "Choose edge computing when you need sub-100ms latency, have bandwidth constraints, process sensitive data locally, serve global users with consistent performance, or generate high volumes of data that would be expensive to send to the cloud."
+    },
+    {
+      "name": "How does Clodo Framework help with edge-cloud hybrid architectures?",
+      "acceptedAnswer": "Clodo Framework provides unified development tools that let you deploy the same codebase to both edge and cloud environments. It includes automatic routing, data synchronization, and performance optimization features for seamless hybrid deployments."
+    },
+    {
+      "name": "Ready to Choose the Right Architecture?",
+      "acceptedAnswer": "Learn more about edge computing fundamentals and how Clodo Framework can help you build the perfect hybrid solution."
+    }
+  ]
+}

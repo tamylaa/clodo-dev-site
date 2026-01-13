@@ -1,0 +1,102 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Font Family:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "var(--font-sans) = -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu..."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Font Size Base:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1rem (16px)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Heading Font Size:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fluid scaling with clamp()"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Letter Spacing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "-0.02em for headings, normal for body"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Use Component Classes:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apply the appropriate component classes (btn, card, alert, etc.) rather than custom styling"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mobile First:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Design for mobile screens first, then enhance for larger viewports"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Accessibility First:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ensure all components have proper semantic HTML, ARIA labels, and focus states"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Consistent Spacing:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use spacing tokens consistently throughout your layouts"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Color Contrast:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maintain WCAG AA (4.5:1) or AAA (7:1) contrast ratios for text"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Touch Targets:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep interactive elements at least 44px high for touch accessibility"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dark Mode:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All components support dark mode through CSS custom properties"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Responsive Design:",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use media queries and fluid sizing for responsive components"
+      }
+    }
+  ]
+}

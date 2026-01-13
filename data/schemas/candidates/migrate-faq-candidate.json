@@ -1,0 +1,136 @@
+{
+  "page": "migrate",
+  "count": 32,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:59.041Z",
+  "candidates": [
+    {
+      "name": "Vercel",
+      "acceptedAnswer": ": Next.js (App/Pages), KV, Blob, Edge Config, Cron, Postgres"
+    },
+    {
+      "name": "Railway",
+      "acceptedAnswer": ": Services (web/worker), PG/Redis, variables, domains"
+    },
+    {
+      "name": "Netlify",
+      "acceptedAnswer": "(roadmap): redirects, functions, edge middleware, envs"
+    },
+    {
+      "name": "Render",
+      "acceptedAnswer": "(roadmap): services, cron, disk flags"
+    },
+    {
+      "name": "Cloudflare Pages",
+      "acceptedAnswer": ": Next.js plugin, functions/, headers.json, _routes.json"
+    },
+    {
+      "name": "Cloudflare Workers",
+      "acceptedAnswer": ": Hono/itty router, Durable Objects, KV/R2/D1 bindings"
+    },
+    {
+      "name": "vercel.json → wrangler.toml",
+      "acceptedAnswer": ": routes/rewrites/redirects to Pages/Workers routing or _routes.json; headers to headers.json or Workers handlers; env to [vars] + secrets"
+    },
+    {
+      "name": "next.config.js",
+      "acceptedAnswer": ": images domains → Cloudflare Images/static fallback; experimental flags warned if unsupported"
+    },
+    {
+      "name": "Pages Router",
+      "acceptedAnswer": ": use Pages + Next plugin with minimal changes"
+    },
+    {
+      "name": "App Router",
+      "acceptedAnswer": ": supported for many cases; warn on Node-only APIs in Server Actions"
+    },
+    {
+      "name": "Middleware",
+      "acceptedAnswer": ": map to Pages/Workers middleware equivalents; validate edge-runtime compatibility"
+    },
+    {
+      "name": "ISR/SSG",
+      "acceptedAnswer": ": revalidate via cache + Workers route or Pages functions; fallback SSG at build, dynamic via SSR"
+    },
+    {
+      "name": "API Routes",
+      "acceptedAnswer": ": map to Pages Functions or Workers routes"
+    },
+    {
+      "name": "Vercel KV → Cloudflare KV",
+      "acceptedAnswer": ": namespace mapping, TTL semantics, size limits, eventual consistency notes"
+    },
+    {
+      "name": "Vercel Blob → Cloudflare R2",
+      "acceptedAnswer": ": public/private buckets, signed URLs, migration script with checksum"
+    },
+    {
+      "name": "Edge Config → KV/DO",
+      "acceptedAnswer": ": hierarchical config with per-environment overrides"
+    },
+    {
+      "name": "Cron → Cloudflare Cron",
+      "acceptedAnswer": ": schedule translation, prefixed names"
+    },
+    {
+      "name": "Postgres",
+      "acceptedAnswer": ": keep external PG (e.g., Neon) via HTTP/Prisma for parity, or migrate to D1 where constraints fit"
+    },
+    {
+      "name": "Detection & discovery",
+      "acceptedAnswer": ": identify platform, build project graph"
+    },
+    {
+      "name": "Parsers & domain model",
+      "acceptedAnswer": ": App, Route, Service, Policy"
+    },
+    {
+      "name": "Mapping library",
+      "acceptedAnswer": ": rules and severities (auto/manual/blocker)"
+    },
+    {
+      "name": "Transformers",
+      "acceptedAnswer": ": config, code (codemods), env/secret mappers"
+    },
+    {
+      "name": "Generators",
+      "acceptedAnswer": ": Pages/Workers structures, wrangler.toml bindings"
+    },
+    {
+      "name": "Orchestration",
+      "acceptedAnswer": ": provision with safeguards, env alignment"
+    },
+    {
+      "name": "Validation",
+      "acceptedAnswer": ": parity, SSR snapshots, performance checks"
+    },
+    {
+      "name": "Data tools",
+      "acceptedAnswer": ": KV/Blob/DB migration pipelines"
+    },
+    {
+      "name": "Reporting",
+      "acceptedAnswer": ": migration report with risk and effort"
+    },
+    {
+      "name": "Extensibility",
+      "acceptedAnswer": ": source/target adapters, rule packs"
+    },
+    {
+      "name": "ISourceAdapter",
+      "acceptedAnswer": ": detect, parse, extract"
+    },
+    {
+      "name": "ITargetAdapter",
+      "acceptedAnswer": ": plan, generate, provision, deploy"
+    },
+    {
+      "name": "Rule",
+      "acceptedAnswer": ": applies(model) → transform(model)"
+    },
+    {
+      "name": "ParityReport",
+      "acceptedAnswer": ": coverage %, auto/manual, blockers, risk"
+    }
+  ]
+}

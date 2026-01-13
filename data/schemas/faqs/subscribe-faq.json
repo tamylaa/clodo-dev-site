@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often will I receive emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1-2 times per month, only when we have valuable content to share. No filler, no fluff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I unsubscribe anytime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Every email has a one-click unsubscribe link at the bottom. No questions asked."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of content do you send?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technical guides, code examples, migration strategies, performance case studies, and early access to new features."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you share my email?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. Your email stays private. We don't sell, rent, or share subscriber data with anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Multi-Tenant Templates",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Copy-paste ready customer isolation patterns"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "D1 Migration Guide",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- Step-by-step PostgreSQL → D1 migration with zero downtime"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Performance Case Study",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- How we reduced API latency by 73%"
+      }
+    }
+  ]
+}

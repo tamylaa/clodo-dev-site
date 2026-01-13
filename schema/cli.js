@@ -12,8 +12,7 @@
 
 import {
   preGenerateAllSchemas,
-  getConfigurationReport,
-  validateSchemaConfigs
+  getConfigurationReport
 } from './build-integration.js';
 import { loadPageConfiguration } from './schema-generator.js';
 
@@ -106,6 +105,26 @@ function showValidate() {
   console.log('\n========================================');
   console.log('SCHEMA CONFIGURATION VALIDATION');
   console.log('========================================\n');
+  
+  // Check that generated schema blocks include the CSP nonce (prevents CSP blocking of inline JSON-LD)
+  try {
+    const schemas = preGenerateAllSchemas();
+    const missingNonce = [];
+    Object.entries(schemas).forEach(([filename, markup]) => {
+      if (markup && /<script[^>]*type\s*=\s*["']?application\/ld\+json["']?/i.test(markup)) {
+        if (!/nonce=["']?N0Nc3Cl0d0["']?/.test(markup)) {
+          missingNonce.push(filename);
+        }
+      }
+    });
+    if (missingNonce.length) {
+      console.warn(`\n⚠️  Warning: ${missingNonce.length} generated schema outputs are missing CSP nonce attributes. Run 'node schema/cli.js generate' to inspect samples.`);
+      missingNonce.slice(0,5).forEach(f => console.warn(`  - ${f}`));
+      console.warn('\n');
+    }
+  } catch (e) {
+    console.warn('Nonce check failed:', e.message);
+  }
   
   console.log('✅ Configuration valid\n');
   

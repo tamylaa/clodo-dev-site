@@ -1,0 +1,40 @@
+{
+  "page": "ruby-on-rails-cloudflare-integration",
+  "count": 8,
+  "confidence": 0.8,
+  "generatedAt": "2026-01-12T12:45:59.378Z",
+  "candidates": [
+    {
+      "name": "Ready to Deploy Rails on the Edge?",
+      "acceptedAnswer": "Join developers building the next generation of Rails applications on Cloudflare Workers."
+    },
+    {
+      "name": "ActiveRecord:",
+      "acceptedAnswer": "Full ORM support with D1 database"
+    },
+    {
+      "name": "ActionController:",
+      "acceptedAnswer": "RESTful API controllers"
+    },
+    {
+      "name": "ActiveModel:",
+      "acceptedAnswer": "Validations and serialization"
+    },
+    {
+      "name": "ActionView:",
+      "acceptedAnswer": "Template rendering (optional)"
+    },
+    {
+      "name": "ActiveSupport:",
+      "acceptedAnswer": "Core extensions and utilities"
+    },
+    {
+      "name": "Devise:",
+      "acceptedAnswer": "Authentication framework"
+    },
+    {
+      "name": "Cancancan:",
+      "acceptedAnswer": "Authorization library"
+    }
+  ]
+}

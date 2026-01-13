@@ -23,11 +23,13 @@ import {
   generateFAQPageSchema,
   generateLearningResourceSchema,
   generateBreadcrumbList,
+  generateProductSchema,
+  generateOfferSchema,
+  wrapSchemaTag,
   loadPageConfiguration
 } from './schema-generator.js';
 import {
   detectLocaleFromPath,
-  getLocaleConfig,
   shouldInjectSchemas
 } from './locale-utils.js';
 import { readFileSync, existsSync, readdirSync } from 'fs';
@@ -39,14 +41,22 @@ import { join } from 'path';
  * @returns {object|null} Parsed JSON schema or null if file doesn't exist
  */
 function loadSchemaFromFile(schemaName) {
-  const schemaPath = join('data', 'schemas', `${schemaName}.json`);
-  if (existsSync(schemaPath)) {
-    try {
-      const schemaContent = readFileSync(schemaPath, 'utf8');
-      return JSON.parse(schemaContent);
-    } catch (e) {
-      console.warn(`Failed to load schema file ${schemaPath}:`, e.message);
-      return null;
+  // Prefer canonical locations under data/schemas/{pages,faqs,breadcrumbs}, but fall back to the legacy root
+  const candidates = [
+    join('data','schemas','pages', `${schemaName}.json`),
+    join('data','schemas','faqs', `${schemaName}.json`),
+    join('data','schemas','breadcrumbs', `${schemaName}.json`),
+    join('data','schemas', `${schemaName}.json`)
+  ];
+  for (const schemaPath of candidates) {
+    if (existsSync(schemaPath)) {
+      try {
+        const schemaContent = readFileSync(schemaPath, 'utf8');
+        return JSON.parse(schemaContent);
+      } catch (e) {
+        console.warn(`Failed to load schema file ${schemaPath}:`, e.message);
+        return null;
+      }
     }
   }
   return null;
@@ -67,19 +77,23 @@ function loadPageSchemas(pageName) {
   }
   
   try {
-    // Get all files in the schemas directory
-    const files = readdirSync(schemasDir);
-    
-    // Look for files that match the pattern: ${pageName}-*.json
-    const pageSchemaPattern = new RegExp(`^${pageName}-.*.json$`);
-    
-    for (const file of files) {
-      if (pageSchemaPattern.test(file)) {
-        const schemaName = file.replace(/\.json$/, '');
-        const schema = loadSchemaFromFile(schemaName);
-        if (schema) {
-          schemas.push(schema);
+    // Search inside canonical subfolders and root for files matching the page pattern
+    const candidatesDirs = [ join(schemasDir, 'pages'), join(schemasDir, 'faqs'), join(schemasDir, 'breadcrumbs'), schemasDir ];
+    const pageSchemaPattern = new RegExp(`^${pageName}(-|\\.|_).*.json$|^${pageName}-.*.json$`);
+
+    for (const dir of candidatesDirs) {
+      if (!existsSync(dir)) continue;
+      try {
+        const files = readdirSync(dir);
+        for (const file of files) {
+          if (pageSchemaPattern.test(file)) {
+            const schemaName = file.replace(/\.json$/, '');
+            const schema = loadSchemaFromFile(schemaName);
+            if (schema) schemas.push(schema);
+          }
         }
+      } catch (e) {
+        // ignore read issues on optional dirs
       }
     }
   } catch (e) {
@@ -112,22 +126,25 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
   
   // Extract just the filename for config lookup
   const filename = htmlFilePath.split(/[\\/]/).pop();
-  
-  console.log(`   📋 Injecting schemas into: ${filename} (locale: ${locale})`);
+
+  // Normalize lookup name for AMP variants and other filename variants (e.g., page.amp.html -> page.html)
+  const lookupFilename = filename.replace(/\.amp\.html$/i, '.html');
+
+  console.log(`   📋 Injecting schemas into: ${filename} (lookup: ${lookupFilename}, locale: ${locale})`);
   
   // Check if this file has a schema config
   let generatedSchemas = null;
 
-  // Check blog posts
-  if (pageConfig.blogPosts?.[filename]) {
-    const config = pageConfig.blogPosts[filename];
-    generatedSchemas = generateBlogPostSchemas(filename, config, locale);
+  // Check blog posts (support .amp variants by looking up normalized filename)
+  if (pageConfig.blogPosts?.[filename] || pageConfig.blogPosts?.[lookupFilename]) {
+    const config = pageConfig.blogPosts[filename] || pageConfig.blogPosts[lookupFilename];
+    generatedSchemas = generateBlogPostSchemas(lookupFilename, config, locale);
   }
 
-  // Check case studies
-  else if (pageConfig.caseStudies?.[filename]) {
-    const config = pageConfig.caseStudies[filename];
-    generatedSchemas = generateCaseStudySchemas(filename, config, locale);
+  // Check case studies (support .amp variants by looking up normalized filename)
+  else if (pageConfig.caseStudies?.[filename] || pageConfig.caseStudies?.[lookupFilename]) {
+    const config = pageConfig.caseStudies[filename] || pageConfig.caseStudies[lookupFilename];
+    generatedSchemas = generateCaseStudySchemas(lookupFilename, config, locale);
   }
 
   // For all pages (including root pages like index.html, docs.html, etc.)
@@ -168,6 +185,19 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
         schemas.push(generateFAQPageSchema(config.faqs || []));
       } else if (config.type === 'LearningResource') {
         schemas.push(generateLearningResourceSchema(config));
+      } else if (config.type === 'Product' || (config.schema && config.schema.type === 'Product')) {
+        // Product pages: generate Product schema and separate Offer blocks for each offer to satisfy validators
+        const productCfg = config.schema || config;
+        schemas.push(generateProductSchema(productCfg, locale));
+        if (Array.isArray(productCfg.offers)) {
+          for (const offer of productCfg.offers) {
+            schemas.push(generateOfferSchema(offer, productCfg, locale));
+          }
+        }
+        // If the Product page also includes FAQs in the config, add FAQPage schema as well
+        if (Array.isArray(config.faqs) && config.faqs.length) {
+          schemas.push(generateFAQPageSchema(config.faqs));
+        }
       }
     }
     // Heuristics for pages without explicit config:
@@ -225,7 +255,7 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
         const canonicalMatch = htmlContent.match(/<link rel=["']canonical["'] href=["']([^"']+)["']\s*\/>/i);
         const pageUrl = canonicalMatch ? canonicalMatch[1] : null;
         const headline = titleMatch ? titleMatch[1].trim() : '';
-        if (headline) {
+        if (headline && pageUrl) {
           const articleSchema = {
             '@context': 'https://schema.org',
             '@type': 'Article',
@@ -233,15 +263,34 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
             'url': pageUrl
           };
           schemas.push(articleSchema);
+        } else if (headline && !pageUrl) {
+          // Skip heuristic Article schema when canonical URL is missing to avoid inserting
+          // minimal/ambiguous Article blocks that duplicate page-level schemas.
+          console.log(`   ⚠️  Skipping heuristic Article schema for ${filename} as canonical URL missing`);
         }
       }
     } catch (e) {
       console.warn('Schema heuristics failed:', e.message);
     }    
-    // Wrap all schemas with tags and join
-    generatedSchemas = schemas
-      .filter(Boolean)
-      .map(schema => `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`)
+    // Deduplicate schemas (avoid inserting identical JSON-LD blocks)
+    const seen = new Set();
+    const uniqueSchemas = [];
+    for (const s of schemas.filter(Boolean)) {
+      try {
+        const key = JSON.stringify(s);
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueSchemas.push(s);
+        }
+      } catch (e) {
+        // if serialization fails, include the schema as-is
+        uniqueSchemas.push(s);
+      }
+    }
+
+    // Wrap all schemas with tags and join (use wrapSchemaTag to include CSP nonce)
+    generatedSchemas = uniqueSchemas
+      .map(schema => wrapSchemaTag(schema))
       .join('\n');
   }
 

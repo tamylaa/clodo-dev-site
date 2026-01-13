@@ -1,0 +1,257 @@
+{
+  "applied": 0,
+  "appliedList": [],
+  "skipped": [
+    {
+      "page": "building-developer-communities",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "building-developer-communities.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "clodo-framework-api-simplification",
+      "reason": "low-confidence",
+      "confidence": 0.5
+    },
+    {
+      "page": "clodo-framework-enterprise-roi",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "clodo-framework-enterprise-roi.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "clodo-framework-guide",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "clodo-vs-lambda",
+      "reason": "low-confidence",
+      "confidence": 0.5
+    },
+    {
+      "page": "cloudflare-d1-errors",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "cloudflare-infrastructure-myth",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-infrastructure-myth.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-workers-auth",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "cloudflare-workers-cold-start-optimization",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-workers-development-guide",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-workers-guide",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-workers-tutorial-beginners",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "cloudflare-workers-tutorial-beginners.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "components",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "debugging-silent-build-failures",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "debugging-silent-build-failures.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "development-deployment-guide",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "docs",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "edge-computing-guide",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "edge-vs-cloud-computing",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "faq",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "fintech-payment-platform",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "framework-comparison",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "healthcare-saas-platform",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "how-to-migrate-from-wrangler",
+      "reason": "low-confidence",
+      "confidence": 0.4
+    },
+    {
+      "page": "instant-try-it-impact",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "instant-try-it-impact.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "migrate",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "multi-tenant-saas",
+      "reason": "no-question-like-or-long-answer",
+      "confidence": 0.9
+    },
+    {
+      "page": "pricing",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "privacy",
+      "reason": "low-confidence",
+      "confidence": 0.7
+    },
+    {
+      "page": "ruby-on-rails-cloudflare-integration",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "saas-product-startups-cloudflare-case-studies",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "serverless-architecture-best-practices",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "serverless-framework-comparison",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "stackblitz-integration-journey",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "stackblitz-integration-journey.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "subscribe",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "v8-isolates-comprehensive-guide",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "v8-isolates-comprehensive-guide.amp",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "welcome",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "what-is-cloudflare-workers",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "what-is-edge-computing",
+      "reason": "manual-faq-exists",
+      "confidence": 0.8
+    },
+    {
+      "page": "worker-scaffolding-tools",
+      "reason": "low-confidence",
+      "confidence": 0.4
+    },
+    {
+      "page": "workers-vs-lambda",
+      "reason": "manual-faq-exists",
+      "confidence": 1
+    },
+    {
+      "page": "wrangler-to-clodo-migration",
+      "reason": "low-confidence",
+      "confidence": 0.6
+    }
+  ],
+  "generatedAt": "2026-01-12T15:11:19.274Z"
+}

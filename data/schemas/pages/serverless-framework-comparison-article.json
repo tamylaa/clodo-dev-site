@@ -1,0 +1,29 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "headline": "Serverless Framework Comparison: AWS Lambda vs Cloudflare Workers vs Clodo | 2025",
+  "url": "https://www.clodo.dev/serverless-framework-comparison",
+  "generatedBy": "skeleton-enricher.js",
+  "generated": false,
+  "description": "Complete comparison of serverless platforms. Performance, cost, developer experience, and enterprise features for modern applications.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework Team"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image.png"
+  },
+  "wordCount": 530,
+  "readingTime": "3 min",
+  "enriched": true,
+  "keywords": [
+    "serverless",
+    "serverless framework",
+    "aws lambda",
+    "cloudflare workers",
+    "serverless comparison",
+    "serverless platforms"
+  ],
+  "datePublished": "2026-01-06T10:33:21.829Z"
+}

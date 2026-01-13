@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Workers Guide: Master Serverless Edge Computing | Complete Developer Tutorial",
+  "url": "https://www.clodo.dev/cloudflare-workers-guide",
+  "generatedBy": "skeleton-enricher.js",
+  "generated": true,
+  "description": "Master Cloudflare Workers with this comprehensive 2026 guide. Learn serverless edge computing, Wrangler CLI, AI integration, performance optimization, and enterprise deployment patterns. Complete tutorial for developers and architects building globally distributed applications.",
+  "author": {
+    "@type": "Person",
+    "name": "Clodo Framework"
+  },
+  "datePublished": "2025-11-01T00:00:00.000Z",
+  "dateModified": "2025-11-22T00:00:00.000Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://clodo.dev/og-image-workers-guide.png"
+  },
+  "wordCount": 155,
+  "readingTime": "1 min",
+  "enriched": true,
+  "keywords": [
+    "Cloudflare Workers",
+    "Cloudflare",
+    "Workers",
+    "Master",
+    "Serverless",
+    "Edge",
+    "Computing",
+    "Clodo Framework"
+  ]
+}

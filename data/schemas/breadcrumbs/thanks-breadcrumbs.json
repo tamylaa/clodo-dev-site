@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Subscribe",
+      "item": "https://www.clodo.dev/subscribe"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Thanks",
+      "item": "https://www.clodo.dev/thanks"
+    }
+  ]
+}

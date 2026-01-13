@@ -10,6 +10,13 @@ import { join, basename } from 'path';
 
 const publicDir = process.argv.includes('--public') ? process.argv[process.argv.indexOf('--public') + 1] : 'public';
 const schemasDir = join('data','schemas');
+const pagesDir = join(schemasDir, 'pages');
+
+// ensure new pages directory exists
+import { mkdirSync } from 'fs';
+if (!existsSync(pagesDir)) {
+  try { mkdirSync(pagesDir, { recursive: true }); } catch(e) { /* ignore */ }
+}
 const pageConfigPath = join(schemasDir, 'page-config.json');
 const pilotArgIndex = process.argv.indexOf('--pilot');
 const pilotCount = pilotArgIndex !== -1 ? parseInt(process.argv[pilotArgIndex + 1], 10) : 20;
@@ -49,7 +56,10 @@ function savePageConfig(cfg) {
 
 function pageHasSchemaFiles(pageName) {
   try {
-    const files = readdirSync(schemasDir);
+    // Check both the new pages dir and the legacy root dir for existing files
+    const filesRoot = existsSync(schemasDir) ? readdirSync(schemasDir) : [];
+    const filesPages = existsSync(pagesDir) ? readdirSync(pagesDir) : [];
+    const files = filesRoot.concat(filesPages);
     return files.some(f => f.startsWith(`${pageName}-`) || f === `${pageName}.json`);
   } catch (e) { return false; }
 }
@@ -60,6 +70,15 @@ const pageConfig = loadPageConfig();
 const missingPages = [];
 for (const f of htmlFiles) {
   const name = basename(f).replace(/\.html$/, '');
+
+  // Skip experimental variant pages (A/B tests), standalone experiment pages, and site verification files
+  const isExperiment = f.includes('/experiments/') || f.includes('\\experiments\\');
+  const isVerification = name.startsWith('google') || /^google[0-9a-f]{8,}$/i.test(name);
+  if (name.includes('-variant-') || isExperiment || isVerification) {
+    console.log(`Skipping experiment/variant/verification page: ${name}`);
+    continue;
+  }
+
   if (pageConfig.pages?.[name] || pageConfig.blogPosts?.[`${name}.html`] || pageConfig.caseStudies?.[`${name}.html`]) continue;
   if (pageHasSchemaFiles(name)) continue;
   missingPages.push({ name, path: f });
@@ -92,8 +111,8 @@ for (const p of chosen) {
     console.log(`Added page-config entry: ${pageName} -> ${type}`);
   }
 
-  // Create minimal page-level schema file if none exists
-  const schemaFile = join(schemasDir, `${pageName}-article.json`);
+  // Create minimal page-level schema file if none exists (store in pages/)
+  const schemaFile = join(pagesDir, `${pageName}-article.json`);
   if (!existsSync(schemaFile)) {
     const article = {
       '@context': 'https://schema.org',
@@ -104,7 +123,7 @@ for (const p of chosen) {
       'generated': true
     };
     writeFileSync(schemaFile, JSON.stringify(article, null, 2) + '\n', 'utf8');
-    console.log(`Created schema file: data/schemas/${pageName}-article.json`);
+    console.log(`Created schema file: data/schemas/pages/${pageName}-article.json`);
   } else {
     console.log(`Schema file already exists for ${pageName}, skipping file creation`);
   }

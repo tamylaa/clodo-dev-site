@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Device Layer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": IoT devices, mobile phones, and user devices"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Edge Layer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Edge servers and gateways that process data locally"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloud Layer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Centralized servers for heavy processing and storage"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Performance",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Applications respond instantly to user interactions"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reliability",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Services continue working even when cloud connectivity is poor"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cost Efficiency",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Reduced data transfer costs and cloud computing fees"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Privacy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Sensitive data can be processed locally without leaving the device"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Scalability",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": ": Distributed processing handles massive scale more efficiently"
+      }
+    }
+  ]
+}

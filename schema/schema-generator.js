@@ -351,8 +351,8 @@ export function generateMetricsItemList(items) {
  * Generate Product schema with offers
  * @param {Object} product - {name, description, offers: [...]}
  */
-export function generateProductSchema(product) {
-  return {
+export function generateProductSchema(product, locale='en') {
+  const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     'name': product.name,
@@ -363,7 +363,7 @@ export function generateProductSchema(product) {
       '@type': 'Brand',
       'name': product.brand || 'Clodo'
     },
-    'offers': product.offers.map(offer => ({
+    'offers': (product.offers || []).map(offer => ({
       '@type': 'Offer',
       'name': offer.name,
       'price': offer.price,
@@ -380,7 +380,28 @@ export function generateProductSchema(product) {
         'bestRating': '5',
         'worstRating': '1'
       }
-    })
+    }),
+    'inLanguage': locale
+  };
+
+  return productSchema;
+}
+
+export function generateOfferSchema(offer, product, locale='en') {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    'name': offer.name,
+    'price': offer.price,
+    'priceCurrency': offer.priceCurrency || 'USD',
+    'availability': offer.availability || 'https://schema.org/InStock',
+    'description': offer.description,
+    'url': offer.url,
+    'itemOffered': {
+      '@type': 'Product',
+      'name': product.name
+    },
+    'inLanguage': locale
   };
 }
 
@@ -566,7 +587,20 @@ export function generateBlogPostSchemas(htmlFilename, config, locale = 'en') {
     articleSchema.wordCount = config.wordCount;
   }
 
+  // Add BlogPosting schema
   schemas.push(wrapSchemaTag(articleSchema));
+
+  // Also include a TechArticle / Article variant to ensure pages with Article expectations are satisfied
+  try {
+    const techArticle = generateTechArticleSchema(Object.assign({}, config, {
+      headline: config.headline || config.title,
+      published: config.published,
+      updated: config.updated
+    }));
+    schemas.push(wrapSchemaTag(techArticle));
+  } catch (e) {
+    // If tech article generation fails, continue without it
+  }
 
   // Breadcrumb for blog post (localized absolute urls)
   const breadcrumbs = [
@@ -672,6 +706,15 @@ export function generateAllPageSchemas() {
         schemas.push(wrapSchemaTag(generateFAQPageSchema(config.faqs || [])));
       } else if (config.type === 'LearningResource') {
         schemas.push(wrapSchemaTag(generateLearningResourceSchema(config)));
+      } else if (config.type === 'Product' || (config.schema && config.schema.type === 'Product')) {
+        const productCfg = config.schema || config;
+        schemas.push(wrapSchemaTag(generateProductSchema(productCfg)));
+        if (Array.isArray(productCfg.offers)) {
+          for (const offer of productCfg.offers) schemas.push(wrapSchemaTag(generateOfferSchema(offer, productCfg)));
+        }
+        if (Array.isArray(config.faqs) && config.faqs.length) {
+          schemas.push(wrapSchemaTag(generateFAQPageSchema(config.faqs)));
+        }
       }
 
       allSchemas[`${pageName}.html`] = schemas.join('\n');

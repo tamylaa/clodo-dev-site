@@ -1,0 +1,40 @@
+{
+  "page": "what-is-edge-computing",
+  "count": 8,
+  "confidence": 0.8,
+  "generatedAt": "2026-01-12T12:45:59.966Z",
+  "candidates": [
+    {
+      "name": "Device Layer",
+      "acceptedAnswer": ": IoT devices, mobile phones, and user devices"
+    },
+    {
+      "name": "Edge Layer",
+      "acceptedAnswer": ": Edge servers and gateways that process data locally"
+    },
+    {
+      "name": "Cloud Layer",
+      "acceptedAnswer": ": Centralized servers for heavy processing and storage"
+    },
+    {
+      "name": "Performance",
+      "acceptedAnswer": ": Applications respond instantly to user interactions"
+    },
+    {
+      "name": "Reliability",
+      "acceptedAnswer": ": Services continue working even when cloud connectivity is poor"
+    },
+    {
+      "name": "Cost Efficiency",
+      "acceptedAnswer": ": Reduced data transfer costs and cloud computing fees"
+    },
+    {
+      "name": "Privacy",
+      "acceptedAnswer": ": Sensitive data can be processed locally without leaving the device"
+    },
+    {
+      "name": "Scalability",
+      "acceptedAnswer": ": Distributed processing handles massive scale more efficiently"
+    }
+  ]
+}

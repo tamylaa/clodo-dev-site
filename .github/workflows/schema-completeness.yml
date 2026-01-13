@@ -1,0 +1,27 @@
+name: Schema completeness check
+
+on:
+  pull_request:
+    paths:
+      - 'data/schemas/**'
+      - 'schema/**'
+      - 'data/schemas/tools/**'
+      - '.github/workflows/**'
+  push:
+    branches: [ main, master ]
+
+jobs:
+  validate-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run schema completeness validation (warn by default)
+        env:
+          SCHEMA_ENFORCE: 'true'
+        run: node data/schemas/tools/validate-completeness.mjs

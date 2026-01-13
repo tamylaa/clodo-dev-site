@@ -1,0 +1,160 @@
+{
+  "page": "clodo-framework-guide",
+  "count": 38,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:54.312Z",
+  "candidates": [
+    {
+      "name": "❓ Is Clodo Framework free to use?",
+      "acceptedAnswer": "Yes! Clodo Framework itself is open-source and free. You pay only for Cloudflare Workers compute time used, which offers a generous free tier: 100,000 free requests per day. Most small to medium projects run completely free."
+    },
+    {
+      "name": "❓ How much does Clodo cost to deploy?",
+      "acceptedAnswer": "Pricing is simple and transparent: Pay only for what you use. No minimum costs, no monthly fees. Standard pricing starts at $0.50 per million requests after the free tier. For an API with 10 million requests/month, expect to pay around $5."
+    },
+    {
+      "name": "❓ Does Clodo support databases?",
+      "acceptedAnswer": "Yes! Clodo integrates with multiple database solutions:\n                                    \n                                        Cloudflare D1: Native SQL database (recommended)\n                                        Cloudflare KV: Key-value storage for caching\n                                        External Databases: PostgreSQL, MySQL, MongoDB via Prisma or direct connections\n                                        Durable Objects: Strong consistency storage for stateful apps"
+    },
+    {
+      "name": "❓ Can I use Clodo in production for real applications?",
+      "acceptedAnswer": "Absolutely! Clodo powers production applications handling millions of requests. Key production capabilities include:\n                                    \n                                        Global edge deployment across 200+ data centers\n                                        Built-in authentication and authorization\n                                        Rate limiting and DDoS protection\n                                        API monitoring and analytics\n                                        SLA support with 99.99% uptime guarantee"
+    },
+    {
+      "name": "❓ I'm using Express.js. Can I migrate to Clodo?",
+      "acceptedAnswer": "Yes! Migration from Express is smooth thanks to Clodo's Express-compatible syntax. Most Express middleware works with minimal changes. We provide:\n                                    \n                                        Express compatibility layer\n                                        Migration guides and code examples\n                                        Gradual migration options (coexist with Express initially)\n                                        Dedicated migration support\n                                    \n                                    See our Migration Guide section for detailed steps."
+    },
+    {
+      "name": "❓ What are the limits? Can Clodo handle high traffic?",
+      "acceptedAnswer": "Clodo scales automatically. Limits are generous:\n                                    \n                                        Request size: Up to 100MB\n                                        Execution time: 30 seconds per request\n                                        Concurrent executions: Unlimited (auto-scaled)\n                                        Throughput: Handles millions of requests per minute\n                                    \n                                    Even if you're expecting 100,000 requests per day, Clodo handles it with no configuration needed."
+    },
+    {
+      "name": "❓ Do I need to manage servers with Clodo?",
+      "acceptedAnswer": "No server management needed! That's the entire point of edge computing. Clodo handles:\n                                    \n                                        Infrastructure provisioning\n                                        Auto-scaling\n                                        Security updates and patches\n                                        Monitoring and logging\n                                        Global distribution\n                                    \n                                    You focus on code, we handle operations."
+    },
+    {
+      "name": "❓ Can I use TypeScript with Clodo?",
+      "acceptedAnswer": "Yes, fully supported! TypeScript is a first-class citizen in Clodo:\n                                    \n                                        Full type safety for routes and handlers\n                                        Auto-completion in your IDE\n                                        Automatic compilation during deploy\n                                        Type definitions for all Clodo APIs\n                                    \n                                    All our examples work equally well in JavaScript or TypeScript."
+    },
+    {
+      "name": "Cloudflare D1:",
+      "acceptedAnswer": "Native SQL database (recommended)"
+    },
+    {
+      "name": "Cloudflare KV:",
+      "acceptedAnswer": "Key-value storage for caching"
+    },
+    {
+      "name": "External Databases:",
+      "acceptedAnswer": "PostgreSQL, MySQL, MongoDB via Prisma or direct connections"
+    },
+    {
+      "name": "Durable Objects:",
+      "acceptedAnswer": "Strong consistency storage for stateful apps"
+    },
+    {
+      "name": "Why Choose Clodo?",
+      "acceptedAnswer": "🚀 Production Ready\n                                Built for enterprise scale with comprehensive error handling, logging, and monitoring capabilities.\n                            \n                            \n                                ⚡ Edge Optimized\n                                Designed specifically for Cloudflare Workers with optimal performance and resource utilization.\n                            \n                            \n                                🛠️ Developer Experience\n                                Intuitive APIs, excellent documentation, and powerful CLI tools for rapid development.\n                            \n                            \n                                🔧 Full-Stack Features\n                                Routing, middleware, database integration, authentication, and more out of the box.\n                            \n                            \n                                📈 Enterprise Support\n                                Dedicated enterprise support, SLAs, and custom development services available.\n                            \n                            \n                                🌐 Global by Default\n                                Applications automatically scale across 200+ edge locations worldwide."
+    },
+    {
+      "name": "Ready to Build Your Use Case?",
+      "acceptedAnswer": "These examples prove Clodo works for virtually any backend scenario. Start building today:\n\nGet Started - Create your first project in 5 minutes\n                                Follow the Tutorial - Learn best practices from scratch\n                                Check the FAQ - Answer any remaining questions"
+    },
+    {
+      "name": "Ready to Build with Clodo?",
+      "acceptedAnswer": "Join thousands of developers building the future of edge computing. Start your free trial today - 100,000 requests per day included free."
+    },
+    {
+      "name": "Building Enterprise APIs:",
+      "acceptedAnswer": "Need production-ready features out of the box"
+    },
+    {
+      "name": "Global Applications:",
+      "acceptedAnswer": "Want automatic edge deployment without infrastructure overhead"
+    },
+    {
+      "name": "Cost-Critical Projects:",
+      "acceptedAnswer": "Need low latency and minimal compute costs"
+    },
+    {
+      "name": "Rapid Prototyping:",
+      "acceptedAnswer": "Want quick deployment without complex configuration"
+    },
+    {
+      "name": "Cloudflare Integration:",
+      "acceptedAnswer": "Leverage D1, KV, Durable Objects, and Workers ecosystem"
+    },
+    {
+      "name": "From Express:",
+      "acceptedAnswer": "Use our Express compatibility layer - most routes work with minimal changes"
+    },
+    {
+      "name": "From Hono:",
+      "acceptedAnswer": "Clodo builds on similar patterns - familiar syntax with more features"
+    },
+    {
+      "name": "From Raw Workers:",
+      "acceptedAnswer": "Gradually wrap existing handlers with Clodo's routing system"
+    },
+    {
+      "name": "Get Started",
+      "acceptedAnswer": "- Create your first project in 5 minutes"
+    },
+    {
+      "name": "Follow the Tutorial",
+      "acceptedAnswer": "- Learn best practices from scratch"
+    },
+    {
+      "name": "Check the FAQ",
+      "acceptedAnswer": "- Answer any remaining questions"
+    },
+    {
+      "name": "Clodo:",
+      "acceptedAnswer": "~$50/month"
+    },
+    {
+      "name": "Hono:",
+      "acceptedAnswer": "~$55/month"
+    },
+    {
+      "name": "Express on AWS:",
+      "acceptedAnswer": "~$1,200-2,000/month (100x more expensive!)"
+    },
+    {
+      "name": "Code as you learn:",
+      "acceptedAnswer": "Don't just watch/read - build projects while learning"
+    },
+    {
+      "name": "Start with Phase 1:",
+      "acceptedAnswer": "Even if advanced, understand the fundamentals"
+    },
+    {
+      "name": "Join community:",
+      "acceptedAnswer": "Ask questions in our community"
+    },
+    {
+      "name": "Build projects:",
+      "acceptedAnswer": "The best learning is building real applications"
+    },
+    {
+      "name": "Refer to docs:",
+      "acceptedAnswer": "Full documentation for reference while building"
+    },
+    {
+      "name": "Cost:",
+      "acceptedAnswer": "10-50x cheaper than Lambda for most workloads"
+    },
+    {
+      "name": "Speed:",
+      "acceptedAnswer": "10ms cold start vs 100-500ms on Lambda"
+    },
+    {
+      "name": "Global:",
+      "acceptedAnswer": "Automatic edge distribution (200+ cities)"
+    },
+    {
+      "name": "Developer Experience:",
+      "acceptedAnswer": "Better tooling and less configuration"
+    }
+  ]
+}

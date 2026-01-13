@@ -1,0 +1,140 @@
+{
+  "page": "cloudflare-infrastructure-myth",
+  "count": 33,
+  "confidence": 1,
+  "generatedAt": "2026-01-12T12:45:53.089Z",
+  "candidates": [
+    {
+      "name": "Ready to Experience the Difference?",
+      "acceptedAnswer": "See Cloudflare Workers in action with Clodo Framework—enterprise orchestration made simple.\n\nTry Now - 60 Seconds\n                        Request Expert Assessment"
+    },
+    {
+      "name": "under 5 milliseconds",
+      "acceptedAnswer": "Start in  (often microseconds)"
+    },
+    {
+      "name": "100ms",
+      "acceptedAnswer": "User hits your API (AWS region,  away)"
+    },
+    {
+      "name": "500ms",
+      "acceptedAnswer": "Lambda cold starts ( penalty)"
+    },
+    {
+      "name": "50ms",
+      "acceptedAnswer": "Fetch user data from database ()"
+    },
+    {
+      "name": "2000ms",
+      "acceptedAnswer": "Call OpenAI API ()"
+    },
+    {
+      "name": "10ms",
+      "acceptedAnswer": "Process response ()"
+    },
+    {
+      "name": "20ms",
+      "acceptedAnswer": "User hits edge location ( away)"
+    },
+    {
+      "name": "5ms",
+      "acceptedAnswer": "Worker starts (, imperceptible)"
+    },
+    {
+      "name": "10ms",
+      "acceptedAnswer": "Fetch user data from D1 at edge ()"
+    },
+    {
+      "name": "2000ms",
+      "acceptedAnswer": "Call AI model ()"
+    },
+    {
+      "name": "Traditional clouds",
+      "acceptedAnswer": "force trade-offs between performance, cost, and complexity."
+    },
+    {
+      "name": "Workers",
+      "acceptedAnswer": "collapse those trade-offs."
+    },
+    {
+      "name": "Traditional clouds",
+      "acceptedAnswer": "separate compute, storage, and networking into distinct services."
+    },
+    {
+      "name": "Workers",
+      "acceptedAnswer": "unify them."
+    },
+    {
+      "name": "Migrate more stateless APIs",
+      "acceptedAnswer": "Build confidence with low-risk, high-traffic endpoints"
+    },
+    {
+      "name": "Move authentication/authorization to the edge",
+      "acceptedAnswer": "Reduce latency for every authenticated request"
+    },
+    {
+      "name": "Experiment with D1 for frequently-accessed data",
+      "acceptedAnswer": "Experience sub-10ms database queries globally"
+    },
+    {
+      "name": "Add AI features using Workers AI",
+      "acceptedAnswer": "Run inference at the edge without separate infrastructure"
+    },
+    {
+      "name": "Implement real-time features with Durable Objects",
+      "acceptedAnswer": "WebSockets, collaboration, coordination without complexity"
+    },
+    {
+      "name": "Shopify",
+      "acceptedAnswer": "processes 3.4 trillion requests monthly at 50ms globally"
+    },
+    {
+      "name": "Baselime",
+      "acceptedAnswer": "cut cloud costs by 80% while simplifying their architecture"
+    },
+    {
+      "name": "Thousands of companies",
+      "acceptedAnswer": "are building AI applications that would be economically unviable on traditional platforms"
+    },
+    {
+      "name": "[1] Shopify on Cloudflare",
+      "acceptedAnswer": "— \n                            Cloudflare Case Study: Shopify\n                            — Official case study detailing 3.4 trillion monthly requests"
+    },
+    {
+      "name": "[2] Baselime Migration",
+      "acceptedAnswer": "— \n                            Why We Chose Serverless\n                            — First-hand account of AWS to Cloudflare migration with cost analysis"
+    },
+    {
+      "name": "[3] V8 JavaScript Engine",
+      "acceptedAnswer": "— \n                            V8 Embedding Guide\n                            — Official Google V8 documentation on isolate architecture"
+    },
+    {
+      "name": "[4] Cloudflare Workers Documentation",
+      "acceptedAnswer": "— \n                            Cloudflare Workers Docs\n                            — Official platform documentation and pricing"
+    },
+    {
+      "name": "[5] AWS Lambda Cold Starts",
+      "acceptedAnswer": "— \n                            AWS Lambda Execution Environments\n                            — Official AWS documentation on Lambda execution model"
+    },
+    {
+      "name": "[6] Cloudflare Network",
+      "acceptedAnswer": "— \n                            Cloudflare Global Network\n                            — Current network statistics (330+ cities)"
+    },
+    {
+      "name": "Sarah K.",
+      "acceptedAnswer": "— Senior Engineer, Series B SaaS Startup"
+    },
+    {
+      "name": "Marcus T.",
+      "acceptedAnswer": "— CTO, AI-first Startup"
+    },
+    {
+      "name": "Dev R.",
+      "acceptedAnswer": "— Platform Lead, E-commerce Platform"
+    },
+    {
+      "name": "Tamyla",
+      "acceptedAnswer": "Founder & Principal Engineer at Clodo Framework"
+    }
+  ]
+}
