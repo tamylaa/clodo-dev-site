@@ -9,6 +9,9 @@ dist-astro/
 build/build-output.txt
 build/build.log
 build/link-health-report.json
+# Generated HTML snapshots (visual QA) - do not commit
+build/feat_product.html
+build/prod_master_product.html
 
 # Astro cache
 .astro/
