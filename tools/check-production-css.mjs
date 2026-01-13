@@ -54,6 +54,52 @@ async function main() {
     return /success|built|ready|succeeded/.test(asString);
   }
 
+  // Now perform the page fetch
+  let pageRes = await fetchWithRetry(url, { timeout: 15000 });
+  if (!pageRes) throw new Error('Failed to fetch page: no response');
+
+  // If final response is not OK, attempt to handle Cloudflare challenge or fallback to Pages API
+  if (!pageRes.ok) {
+    const fullText = await pageRes.text();
+    const snippet = fullText.slice(0, 200);
+
+    const isChallenge = /Just a moment|Cloudflare/i.test(fullText) || pageRes.status === 403;
+    if (isChallenge) {
+      console.warn('Detected Cloudflare challenge or protection page in response.');
+
+      // Optionally treat challenge as non-fatal (CI override)
+      const treatAsWarning = (process.env.CHECK_CHALLENGE_AS_WARNING === '1' || process.env.CHECK_CHALLENGE_AS_WARNING === 'true');
+      if (treatAsWarning) {
+        console.warn('Environment flag CHECK_CHALLENGE_AS_WARNING set — treating challenge as a warning and passing check.');
+        process.exit(0);
+      }
+
+      // If Pages API credentials are present, verify latest deployment status
+      const accountId = process.env.CF_PAGES_ACCOUNT_ID;
+      const projectName = process.env.CF_PAGES_PROJECT_NAME;
+      const apiToken = process.env.CF_API_TOKEN;
+
+      if (accountId && projectName && apiToken) {
+        console.log('Pages API credentials detected; checking Pages deployment status as fallback.');
+        try {
+          const ok = await checkPagesDeployment(accountId, projectName, apiToken);
+          if (ok) {
+            console.log('Pages API indicates most recent deployment is successful — passing check despite challenge.');
+            // allow rest of checks to proceed by re-fetching the page once
+            const retryRes = await fetchWithRetry(url, { timeout: 15000 }, 3, 1000);
+            if (retryRes && retryRes.ok) {
+              console.log('Succeeded fetching public URL after Pages API reported success.');
+              pageRes = retryRes; // eslint-disable-line no-param-reassign
+            } else {
+              console.warn('Retry after Pages API success did not return OK; proceeding to use Pages API success as justification to pass.');
+              return;
+            }
+          } else {
+            throw new Error('Pages API did not report a successful deployment');
+          }
+        } catch (e) {
+          throw new Error(`Failed to fetch page: ${pageRes.status}. Response snippet: ${snippet}. Pages API check failed: ${e.message}`);
+        }
       }
 
       throw new Error(`Failed to fetch page: ${pageRes.status}. Response snippet: ${snippet}. Cloudflare protection detected and no Pages API credentials/override configured.`);
