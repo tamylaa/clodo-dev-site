@@ -26,6 +26,7 @@ for (const u of urls) {
   const fullUrl = u.startsWith('http') ? u : `https://www.clodo.dev/${u.replace(/^public\//,'')}`;
   const safeName = u.replace(/[^a-z0-9]/gi, '_').toLowerCase();
   const outFile = path.join(outDir, `${safeName}.report.json`);
+  const tmpOut = outFile + '.tmp';
 
   // Preflight: skip URLs that don't return a successful response (helps avoid running Lighthouse on 404s)
   try {
@@ -56,9 +57,21 @@ for (const u of urls) {
     try {
       // Safer chrome flags for CI and Windows environments, with explicit user-data-dir per run
       const chromeFlags = `--emulated-form-factor=mobile --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage --user-data-dir=${tmpDir}"`;
-      execSync(`npx lighthouse "${fullUrl}" --output=json --output-path="${outFile}" ${chromeFlags} --quiet`, { stdio: 'inherit' });
-      console.log('Saved report to', outFile);
-      succeeded = true;
+      // Write to a temporary output file and rename on success to avoid invalid JSON leftovers
+      execSync(`npx lighthouse "${fullUrl}" --output=json --output-path="${tmpOut}" ${chromeFlags} --quiet`, { stdio: 'inherit' });
+      // Ensure temp file exists and is valid JSON before moving
+      try {
+        const raw = await fs.readFile(tmpOut, 'utf8');
+        JSON.parse(raw);
+        await fs.rename(tmpOut, outFile);
+        console.log('Saved report to', outFile);
+        succeeded = true;
+      } catch (e) {
+        console.error(`Report written but invalid for ${fullUrl}: ${e.message}`);
+        // Remove bad temp file
+        try { await fs.rm(tmpOut, { force: true }); } catch(_){}
+        throw new Error('Invalid report generated');
+      }
     } catch (err) {
       console.error(`Lighthouse run failed for ${fullUrl} (attempt ${attempt}): ${err.message}`);
       if (attempt < maxAttempts) {
