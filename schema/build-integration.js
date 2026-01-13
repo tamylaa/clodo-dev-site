@@ -80,12 +80,18 @@ function loadPageSchemas(pageName) {
     // Search inside canonical subfolders and root for files matching the page pattern
     const candidatesDirs = [ join(schemasDir, 'pages'), join(schemasDir, 'faqs'), join(schemasDir, 'breadcrumbs'), schemasDir ];
     const pageSchemaPattern = new RegExp(`^${pageName}(-|\\.|_).*.json$|^${pageName}-.*.json$`);
+    
+    // Exclude internal build reports and non-schema JSON files
+    const excludePatterns = /-report\.json$|-candidates\.json$|completeness-report\.json$/i;
 
     for (const dir of candidatesDirs) {
       if (!existsSync(dir)) continue;
       try {
         const files = readdirSync(dir);
         for (const file of files) {
+          // Skip internal build report files
+          if (excludePatterns.test(file)) continue;
+          
           if (pageSchemaPattern.test(file)) {
             const schemaName = file.replace(/\.json$/, '');
             const schema = loadSchemaFromFile(schemaName);
