@@ -222,9 +222,17 @@ function expectedForFile(filePath, html) {
   if (isConfiguredPage) {
     const cfg = pageConfig.pages?.[pageKey];
     if (cfg?.requiredSchemas && Array.isArray(cfg.requiredSchemas)) {
-      for (const s of cfg.requiredSchemas) expected.add(s);
+      for (const s of cfg.requiredSchemas) {
+        // If a configured page is actually a blog post (path contains /blog/), prefer BlogPosting
+        // instead of Article to avoid AMP/blog false-positive criticals
+        if (/\/blog\//i.test(filePath) && s === 'Article') expected.add('BlogPosting');
+        else expected.add(s);
+      }
     }
-    if (cfg?.type === 'Article') expected.add('Article');
+    if (cfg?.type === 'Article') {
+      if (/\/blog\//i.test(filePath)) expected.add('BlogPosting');
+      else expected.add('Article');
+    }
   }
 
   // If page-config explicitly lists requiredSchemas for a page path (pagesByPath), include those and respect their type
