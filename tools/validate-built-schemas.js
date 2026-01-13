@@ -58,6 +58,12 @@ function expectedForFile(filePath, html) {
       expected.add('BreadcrumbList');
     }
   }
+
+  // Blogs should not be expected to include FAQPage (FAQ belongs to product/docs pages)
+  // This prevents AMP/blog variants from being flagged for missing FAQPage
+  if (/\/blog\//i.test(filePath)) {
+    expected.delete('FAQPage');
+  }
   // Case studies
   if (/\/case-studies\//i.test(filePath)) {
     expected.add('Article');
