@@ -736,32 +736,28 @@
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "stackblitz-integration-journey": {
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "v8-isolates-comprehensive-guide": {
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "fintech-payment-platform": {
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "healthcare-saas-platform": {
@@ -775,8 +771,7 @@
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "clodo-framework-api-simplification-variant-a": {
@@ -811,8 +806,7 @@
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "multi-tenant-saas": {
@@ -847,8 +841,7 @@
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ]
     },
     "structured-data": {
