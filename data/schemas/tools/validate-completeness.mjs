@@ -5,15 +5,13 @@ import { join } from 'path';
 const schemasDir = join('data','schemas');
 const reportPath = join(schemasDir, 'completeness-report.json');
 
-// Ensure completeness report exists (run generator if necessary)
-if (!existsSync(reportPath)) {
-  console.log('Completeness report not found — generating using check-schema-completeness.js');
-  try {
-    execSync('node data/schemas/tools/check-schema-completeness.js', { stdio: 'inherit' });
-  } catch (e) {
-    console.error('Failed to run completeness generator:', e.message);
-    process.exit(2);
-  }
+// Always regenerate completeness report to avoid stale data in CI
+console.log('Generating completeness report using check-schema-completeness.js');
+try {
+  execSync('node data/schemas/tools/check-schema-completeness.js', { stdio: 'inherit' });
+} catch (e) {
+  console.error('Failed to run completeness generator:', e.message);
+  process.exit(2);
 }
 
 let report;
