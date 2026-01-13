@@ -260,14 +260,51 @@
       ]
     }
   },
+  "validatorAllowList": [
+    "blog/index.html",
+    "case-studies/index.html",
+    "community/welcome.html",
+    "index.html",
+    "multi-tenant-saas.html",
+    "serverless-framework-comparison.html",
+    "subscribe.html",
+    "what-is-cloudflare-workers.html",
+    "what-is-edge-computing.html",
+    "worker-scaffolding-tools.html",
+    "wrangler-to-clodo-migration.html"
+  ],
+  "validatorAllowListLocalized": [],
   "pages": {
     "pricing": {
-      "type": "FAQPage",
+      "type": "Product",
       "requiredSchemas": [
         "FAQPage",
         "BreadcrumbList",
-        "SoftwareApplication"
+        "SoftwareApplication",
+        "Offer"
       ],
+      "schema": {
+        "type": "Product",
+        "name": "Clodo Framework Pricing",
+        "description": "Pricing plans for Clodo Framework including free open-source offering and enterprise support",
+        "url": "https://clodo.dev/pricing",
+        "offers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "description": "Open source with community support"
+          },
+          {
+            "name": "Enterprise",
+            "price": "5000",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "description": "Enterprise support and SLA options"
+          }
+        ]
+      },
       "faqs": [
         {
           "name": "Is Clodo Framework really free?",
@@ -285,6 +322,20 @@
         "FAQPage",
         "BreadcrumbList",
         "SoftwareApplication"
+      ],
+      "faqs": [
+        {
+          "name": "How do I install Clodo Framework?",
+          "acceptedAnswer": "Install via npm: `npm install @tamyla/clodo-framework`. Use the quickstart to scaffold a service with `npx create-clodo-service my-app --type data-service`."
+        },
+        {
+          "name": "Does Clodo integrate with Cloudflare Wrangler and D1?",
+          "acceptedAnswer": "Yes. Clodo provides Wrangler automation for deployments and built-in helpers to run D1 migrations as part of CI and deployment workflows."
+        },
+        {
+          "name": "Is Clodo Framework free for production use?",
+          "acceptedAnswer": "Yes. Clodo Framework is open source under the MIT License. You only pay for Cloudflare usage (Workers, D1, and any other paid services)."
+        }
       ]
     },
     "cloudflare-framework": {
@@ -307,13 +358,6 @@
       "description": "Complete guide to building enterprise SaaS applications on Cloudflare Workers with Clodo Framework",
       "url": "https://clodo.dev/docs",
       "educationalLevel": "Intermediate to Advanced"
-    },
-    "index": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
-        "BreadcrumbList"
-      ]
     },
     "about": {
       "type": "Article",
@@ -379,13 +423,6 @@
       "type": "Article",
       "requiredSchemas": [
         "Article",
-        "BreadcrumbList"
-      ]
-    },
-    "analytics": {
-      "type": "WebPage",
-      "requiredSchemas": [
-        "WebSite",
         "BreadcrumbList"
       ]
     },
@@ -842,6 +879,98 @@
         "WebSite",
         "BreadcrumbList",
         "FAQPage"
+      ]
+    }
+  },
+  "pagesByPath": {
+    "blog/index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "case-studies/index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "community/welcome.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "index.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "multi-tenant-saas.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "pricing.html": {
+      "type": "FAQPage",
+      "requiredSchemas": [
+        "FAQPage",
+        "BreadcrumbList",
+        "SoftwareApplication"
+      ]
+    },
+    "serverless-framework-comparison.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "subscribe.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-cloudflare-workers.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "what-is-edge-computing.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
+    "worker-scaffolding-tools.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
+      ]
+    },
+    "wrangler-to-clodo-migration.html": {
+      "type": "WebPage",
+      "requiredSchemas": [
+        "WebSite",
+        "BreadcrumbList"
       ]
     }
   }

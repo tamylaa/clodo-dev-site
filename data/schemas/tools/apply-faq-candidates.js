@@ -5,7 +5,13 @@ import path from 'path';
 const candidatesDir = path.join('data','schemas','candidates');
 const schemasDir = path.join('data','schemas');
 const faqsDir = path.join(schemasDir, 'faqs');
-if (!fs.existsSync(faqsDir)) try { fs.mkdirSync(faqsDir, { recursive: true }); } catch(e){}
+if (!fs.existsSync(faqsDir)) {
+  try {
+    fs.mkdirSync(faqsDir, { recursive: true });
+  } catch (e) {
+    console.warn('Could not create faqs directory:', e.message);
+  }
+}
 const pageConfigPath = path.join(schemasDir, 'page-config.json');
 
 function safeReadJson(p){ try { return JSON.parse(fs.readFileSync(p,'utf8')); } catch(e){ return null } }

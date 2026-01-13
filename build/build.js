@@ -5,7 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
 import { injectSchemasIntoHTML } from '../schema/build-integration.js';
-import { generateOrganizationSchema, generateWebSiteSchema, generateSoftwareApplicationSchema } from '../schema/schema-generator.js';
+import { generateOrganizationSchema, generateWebSiteSchema, generateSoftwareApplicationSchema, wrapSchemaTag } from '../schema/schema-generator.js';
 import { fixCanonicalUrls } from './fix-canonicals-fn.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -568,7 +568,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                             generateWebSiteSchema(),
                             generateSoftwareApplicationSchema()
                         ];
-                        const scripts = defaultSchemas.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n    ');
+                        const scripts = defaultSchemas.map(s => wrapSchemaTag(s)).join('\n    ');
                         if (content.includes('</head>')) {
                             content = content.replace('</head>', `    ${scripts}\n</head>`);
                             console.log(`   ℹ️  Fallback: injected default schemas into ${file}`);
@@ -680,7 +680,7 @@ function copyStandaloneHtml() {
                             generateWebSiteSchema(),
                             generateSoftwareApplicationSchema()
                         ];
-                        const scripts = defaultSchemas.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n    ');
+                        const scripts = defaultSchemas.map(s => wrapSchemaTag(s)).join('\n    ');
                         if (content.includes('</head>')) {
                             content = content.replace('</head>', `    ${scripts}\n</head>`);
                             console.log(`   ℹ️  Fallback: injected default schemas into ${filePath}`);

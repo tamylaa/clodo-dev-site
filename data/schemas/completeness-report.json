@@ -1,7 +1,7 @@
 {
-  "total": 218,
-  "minimal": 154,
-  "missingImportant": 80,
+  "total": 216,
+  "minimal": 131,
+  "missingImportant": 60,
   "details": [
     {
       "file": "breadcrumbs/about-breadcrumbs.json",
@@ -2426,7 +2426,7 @@
       "generated": false,
       "generatedBy": null,
       "present": {},
-      "keyCount": 3,
+      "keyCount": 4,
       "missing": [],
       "isMinimal": true,
       "hasArticleBody": false,
@@ -2437,50 +2437,27 @@
       "file": "pages/about-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
-      "present": {},
-      "keyCount": 6,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
-      "isMinimal": false,
-      "hasArticleBody": false,
-      "hasKeywords": true,
-      "hasAuthor": false
-    },
-    {
-      "file": "pages/advanced-cloudflare-workers-tutorial-article.json",
-      "type": "Article",
-      "generated": true,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
       "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": true
     },
     {
-      "file": "pages/analytics-article.json",
+      "file": "pages/advanced-cloudflare-workers-tutorial-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 11,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
-      "hasAuthor": false
+      "hasAuthor": true
     },
     {
       "file": "pages/cli-commands-article.json",
@@ -2502,15 +2479,12 @@
     },
     {
       "file": "pages/clodo-cloud-service-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
-      "missing": [
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 13,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2519,13 +2493,11 @@
     {
       "file": "pages/clodo-framework-api-simplification-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2552,13 +2524,12 @@
     {
       "file": "pages/clodo-framework-guide-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2568,13 +2539,11 @@
     {
       "file": "pages/clodo-framework-promise-to-reality-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2582,15 +2551,12 @@
     },
     {
       "file": "pages/clodo-vs-lambda-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
-      "missing": [
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 13,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2599,13 +2565,12 @@
     {
       "file": "pages/cloudflare-d1-errors-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2643,13 +2608,12 @@
     {
       "file": "pages/cloudflare-workers-auth-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2659,13 +2623,12 @@
     {
       "file": "pages/cloudflare-workers-cold-start-optimization-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2688,13 +2651,11 @@
     {
       "file": "pages/cloudflare-workers-enterprise-features-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2733,16 +2694,12 @@
     },
     {
       "file": "pages/components-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 11,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 12,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2751,12 +2708,11 @@
     {
       "file": "pages/content-performance-monitoring-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "datePublished",
         "image"
       ],
       "isMinimal": false,
@@ -2767,13 +2723,12 @@
     {
       "file": "pages/development-deployment-guide-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2784,29 +2739,25 @@
       "file": "pages/edge-computing-guide-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
+      "keyCount": 12,
       "missing": [
-        "author",
-        "datePublished",
-        "image"
+        "author"
       ],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": false
     },
     {
       "file": "pages/edge-vs-cloud-computing-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2816,29 +2767,25 @@
       "file": "pages/examples-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
+      "keyCount": 12,
       "missing": [
-        "author",
-        "datePublished",
-        "image"
+        "author"
       ],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": false
     },
     {
       "file": "pages/faq-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2848,31 +2795,11 @@
       "file": "pages/framework-comparison-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
-      "present": {},
-      "keyCount": 6,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
-      "isMinimal": false,
-      "hasArticleBody": false,
-      "hasKeywords": true,
-      "hasAuthor": false
-    },
-    {
-      "file": "pages/google1234567890abcdef-article.json",
-      "type": "Article",
-      "generated": true,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 10,
+      "keyCount": 12,
       "missing": [
-        "description",
-        "author",
-        "datePublished",
-        "image"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -2883,31 +2810,25 @@
       "file": "pages/how-to-migrate-from-wrangler-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
+      "keyCount": 12,
       "missing": [
-        "author",
-        "datePublished",
-        "image"
+        "author"
       ],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": false
     },
     {
       "file": "pages/how-to-migrate-from-wrangler-variant-a-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 11,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 12,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -2915,35 +2836,14 @@
     },
     {
       "file": "pages/how-to-migrate-from-wrangler-variant-b-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 11,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 12,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
-      "hasKeywords": true,
-      "hasAuthor": false
-    },
-    {
-      "file": "pages/index-article.json",
-      "type": "Article",
-      "generated": false,
-      "generatedBy": null,
-      "present": {},
-      "keyCount": 6,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
-      "isMinimal": false,
-      "hasArticleBody": false,
       "hasKeywords": true,
       "hasAuthor": false
     },
@@ -2966,16 +2866,15 @@
       "file": "pages/quick-start-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
+      "keyCount": 11,
       "missing": [
         "author",
-        "datePublished",
         "image"
       ],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": false
     },
@@ -2983,46 +2882,38 @@
       "file": "pages/ruby-on-rails-cloudflare-integration-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
-      "missing": [
-        "author",
-        "datePublished",
-        "image"
-      ],
+      "keyCount": 13,
+      "missing": [],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
-      "hasAuthor": false
+      "hasAuthor": true
     },
     {
       "file": "pages/serverless-architecture-best-practices-article.json",
       "type": "Article",
       "generated": false,
-      "generatedBy": null,
+      "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 6,
+      "keyCount": 12,
       "missing": [
-        "author",
-        "datePublished",
-        "image"
+        "author"
       ],
       "isMinimal": false,
-      "hasArticleBody": false,
+      "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": false
     },
     {
       "file": "pages/serverless-framework-comparison-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -3030,15 +2921,12 @@
     },
     {
       "file": "pages/what-is-cloudflare-workers-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
-      "missing": [
-        "author",
-        "datePublished"
-      ],
+      "keyCount": 13,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -3046,14 +2934,12 @@
     },
     {
       "file": "pages/worker-scaffolding-tools-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -3062,13 +2948,12 @@
     {
       "file": "pages/workers-boilerplate-article.json",
       "type": "Article",
-      "generated": true,
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 12,
+      "keyCount": 13,
       "missing": [
-        "author",
-        "datePublished"
+        "author"
       ],
       "isMinimal": false,
       "hasArticleBody": true,
@@ -3090,14 +2975,12 @@
     },
     {
       "file": "pages/wrangler-to-clodo-migration-article.json",
-      "type": "Article",
-      "generated": true,
+      "type": "WebPage",
+      "generated": false,
       "generatedBy": "skeleton-enricher.js",
       "present": {},
-      "keyCount": 13,
-      "missing": [
-        "datePublished"
-      ],
+      "keyCount": 14,
+      "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
@@ -3128,6 +3011,19 @@
       "hasArticleBody": false,
       "hasKeywords": false,
       "hasAuthor": true
+    },
+    {
+      "file": "validator-allowlist.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 0,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
     }
   ]
 }
