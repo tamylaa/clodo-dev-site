@@ -110,6 +110,28 @@ async function main() {
 
   const html = await pageRes.text();
 
+  // If HTML contains rel=preload as=style or page-specific css pages, ensure an inline asset manifest was injected
+  const needsManifest = /<link[^>]+rel=("|')preload\1[^>]+as=("|')style\2/i.test(html) || /css\/pages\//i.test(html);
+  const hasManifest = /window\.__assetManifest__/i.test(html);
+  if (needsManifest && !hasManifest) {
+    // Try to fetch external /asset-manifest.json as a fallback — if present and non-empty, allow but warn
+    try {
+      const amRes = await fetch(new URL('/asset-manifest.json', url).toString(), { timeout: 5000 });
+      if (amRes && amRes.ok) {
+        const json = await amRes.json();
+        if (json && Object.keys(json).length) {
+          console.warn('Asset manifest not found inline in HTML, but /asset-manifest.json is present and non-empty in production — this is a WARN-level condition.');
+        } else {
+          throw new Error('Asset manifest missing from deployed HTML and /asset-manifest.json is empty; page contains style preloads or page-specific CSS.');
+        }
+      } else {
+        throw new Error('Asset manifest missing from deployed HTML and /asset-manifest.json is not accessible; page contains style preloads or page-specific CSS.');
+      }
+    } catch (e) {
+      throw new Error(e.message || 'Asset manifest missing from deployed HTML, but page contains style preloads or page-specific CSS. Manifest must be inlined during build/deploy.');
+    }
+  }
+
   // Find the first styles-pricing link (supports hashed filename like styles-pricing.<hash>.css)
   const match = html.match(/href=["']([^"']*styles-pricing(?:\.[0-9a-f]{6,})?\.css[^"']*)["']/i);
   if (!match) throw new Error('No styles-pricing CSS link found in page HTML');

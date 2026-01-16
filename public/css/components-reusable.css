@@ -109,6 +109,35 @@
     border-radius: var(--radius-sm);
 }
 
+/* ===== HERO COMPATIBILITY (legacy classes) ===== */
+/* Small compatibility helpers so pages using legacy `.hero` / `.subtitle` classes
+   get the consolidated, consistent hero look without per-page overrides. */
+.hero,
+.hero-section {
+    padding: 3.5rem 0;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero h1,
+.hero-section h1,
+#hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin: 0 0 var(--spacing-md);
+    font-weight: 700;
+}
+
+.subtitle,
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 64ch;
+    margin: 0 auto;
+}
+
+
 /* duplicate TOC nav removed (moved earlier) */
 
 /* FAQ-style table of contents */
@@ -199,6 +228,32 @@
     margin-bottom: var(--spacing-xl);
     position: sticky;
     top: var(--spacing-lg);
+}
+
+/* ===== STAT COMPATIBILITY (legacy classes) ===== */
+/* Provide minimal baseline for `.stat`, `.stat-number`, and `.stat-label` so pages
+   using legacy rules get a consistent appearance without per-page duplication. */
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: var(--stat-number-size, 2rem);
+    font-weight: 700;
+    color: var(--stat-number-color, var(--accent-color, #ffd700));
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Compact variant for tighter layouts */
+@media (max-width: 768px) {
+  .stat-number { font-size: calc(var(--stat-number-size, 2rem) - 0.5rem); }
 }
 
 .cluster-nav-container {
@@ -379,6 +434,48 @@
     margin: 2rem 0;
 }
 
+/* Code copy button - reuses .btn utilities for consistent visuals */
+.code-copy-btn { position: absolute; top: 8px; right: 8px; z-index: 2; }
+.code-copy-btn:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+
+/* ===== COMPARISON TABLE COMPONENT ===== */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-base);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+  background: var(--color-bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.comparison-table tr:nth-child(even) {
+  background: var(--color-bg-muted);
+}
+
+.comparison-table tr:hover {
+  background: var(--color-bg-hover);
+}
+
+@media (max-width: 768px) {
+  .comparison-table { font-size: var(--font-size-sm); }
+  .comparison-table th, .comparison-table td { padding: var(--spacing-sm); }
+}
+
 /* ===== COMMON GRID UTILITY CLASSES ===== */
 
 /* Standard responsive grid layouts - consolidate duplicated patterns */
@@ -453,4 +550,1161 @@
         position: static;
         order: -1;
     }
+}
+/* ===== Consolidated from public\css\components-animations-shared.css ===== */
+/* ===== SHARED ANIMATIONS & KEYFRAMES ===== */
+/* Common animation patterns used across multiple pages */
+
+/* Fade in with upward movement */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse effect for persistent elements */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Fade in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse border effect */
+@keyframes pulse-border {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* Arrow pulse animation */
+@keyframes arrow-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale in effect */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bounce effect for attention */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ===== Consolidated from public\css\framework\design-tokens.css ===== */
+/* ===== DESIGN TOKENS (CSS Custom Properties) ===== */
+:root {
+  /* Colors */
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-secondary: #a855f7;
+  --color-accent: #f59e0b;
+
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Typography */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ===== Consolidated from public\css\framework\framework.css ===== */
+/* ===== CLODO DESIGN SYSTEM ===== */
+
+/* Import design tokens first */
+@import url('design-tokens.css');
+
+/* Import base styles */
+@import url('base.css');
+
+/* Import component library */
+@import url('components.css');
+
+/* Import utility classes */
+@import url('utilities.css');
+
+/* Import responsive styles */
+@import url('responsive.css');
+/* ===== Consolidated from public\css\pages\blog\header.css ===== */
+/* ===========================================
+   BLOG HEADER COMPONENT
+   ===========================================
+   
+   Sticky navigation with accessible menu,
+   mobile-first responsive design
+   =========================================== */
+
+/* ===== BASE: Mobile-First (0-767px) ===== */
+
+.blog-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    /* Ensure header stays above content */
+    will-change: transform;
+
+    /* Optimize for smooth scrolling */
+}
+
+.blog-nav {
+    padding: 1rem 0;
+}
+
+.blog-nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+
+    /* Mobile: smaller padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* ===== LOGO ===== */
+
+.blog-nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    /* Minimum touch target: 44x44px */
+    min-height: 44px;
+    padding: 0.5rem 0;
+}
+
+.blog-nav__logo:hover {
+    color: var(--primary-color);
+}
+
+/* Focus state for keyboard navigation - WCAG 2.4.7 */
+.blog-nav__logo:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.blog-nav__logo .logo-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+}
+
+/* ===== MENU ===== */
+
+.blog-nav__menu {
+    display: none;
+
+    /* Hidden on mobile by default */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+
+    /* Reduced gap for mobile */
+}
+
+.blog-nav__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+
+    /* Minimum touch target */
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.blog-nav__link:hover {
+    color: var(--primary-color);
+}
+
+/* Active state indicator */
+.blog-nav__link--active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.blog-nav__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* Focus state for keyboard navigation */
+.blog-nav__link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===== ACTIONS ===== */
+
+.blog-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    /* Reduced gap for mobile */
+}
+
+.blog-nav__actions .github-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+
+    /* Ensure 44px height */
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    min-height: 44px;
+
+    /* WCAG touch target */
+}
+
+.blog-nav__actions .github-btn:hover {
+    background: var(--bg-hover, var(--bg-secondary));
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.blog-nav__actions .github-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.blog-nav__actions .github-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== MOBILE MENU TOGGLE (準備) ===== */
+
+.blog-nav__toggle {
+
+    /* Visible on mobile */
+    background: none;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-nav__toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===== TABLET: 768px+ ===== */
+
+@media (width >= 768px) {
+    .blog-nav .nav-container {
+        padding: 0 var(--spacing-lg);
+        gap: 2rem;
+    }
+
+    .blog-nav__menu {
+        display: flex;
+
+        /* Show menu on tablet+ */
+        gap: 2rem;
+    }
+
+    .blog-nav__toggle {
+        display: none;
+
+        /* Hide hamburger on tablet+ */
+    }
+
+    .blog-nav__actions {
+        gap: 1rem;
+    }
+}
+
+/* ===== DESKTOP: 1024px+ ===== */
+
+@media (width >= 1024px) {
+    .blog-nav__menu {
+        gap: 2.5rem;
+    }
+
+    .blog-nav__link {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-nav__logo,
+    .blog-nav__link,
+    .blog-nav__actions .github-btn {
+        transition: none;
+    }
+
+    .blog-header {
+        will-change: auto;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    .blog-header {
+        position: static;
+        border-bottom: 2px solid var(--color-black);
+    }
+
+    .blog-nav__actions {
+        display: none;
+    }
+}
+
+/* ===== Consolidated from public\css\pages\pricing\components\floating-widgets.css ===== */
+/* ===========================================
+   PRICING PAGE - FLOATING WIDGETS
+   ===========================================
+   
+   Floating contact button and live chat
+   Message bubbles, animations, positioning
+   =========================================== */
+
+/* ===== FLOATING CONTACT BUTTON ===== */
+.floating-contact-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), rgba(59, 130, 246, 0.8));
+    box-shadow: 0 4px 12px rgb(59 130 246 / 30%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.floating-contact-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgb(59 130 246 / 40%);
+}
+
+.floating-contact-button:active {
+    transform: scale(0.95);
+}
+
+.floating-contact-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-contact-button.expanded {
+    width: auto;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+}
+
+/* ===== FLOATING CHAT WIDGET ===== */
+.floating-chat-widget {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    z-index: 99;
+    width: 0;
+    height: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+}
+
+.floating-chat-widget.active {
+    display: flex;
+    width: 360px;
+    height: 500px;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.chat-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), rgba(59, 130, 246, 0.8));
+    color: white;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-header-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.chat-header-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.chat-close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.chat-close-button:hover {
+    transform: rotate(90deg);
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ===== CHAT MESSAGE BUBBLES ===== */
+.message {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    max-width: 75%;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message.bot .message-bubble {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom-left-radius: 2px;
+}
+
+.message.user .message-bubble {
+    background: linear-gradient(135deg, var(--primary-color), rgba(59, 130, 246, 0.8));
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.message-timestamp {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+}
+
+.message.user .message-timestamp {
+    text-align: right;
+}
+
+/* ===== CHAT INPUT ===== */
+.chat-input-container {
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-input-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input-field {
+    flex: 1;
+    padding: 0.625rem 0.875rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.chat-input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.chat-send-button {
+    padding: 0.625rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color), rgba(59, 130, 246, 0.8));
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+}
+
+.chat-send-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(59 130 246 / 25%);
+}
+
+.chat-send-button:active {
+    transform: translateY(0);
+}
+
+/* ===== CHAT STATUS INDICATOR ===== */
+.chat-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ===== WIDGET MENU ANIMATION ===== */
+.floating-widget-menu {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    z-index: 98;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.floating-contact-button.menu-active + .floating-widget-menu,
+.floating-widget-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.widget-menu-item {
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.widget-menu-item:hover {
+    background: var(--bg-secondary);
+    transform: translateX(-4px);
+}
+
+/* ===== NOTIFICATION BADGE ===== */
+.floating-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background: var(--error-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .floating-contact-button {
+        width: 48px;
+        height: 48px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .floating-chat-widget.active {
+        width: calc(100vw - 2rem);
+        height: 60vh;
+        max-width: 360px;
+        bottom: 5.5rem;
+        right: 1rem;
+    }
+
+    .floating-widget-menu {
+        bottom: 5rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-contact-button {
+        width: 48px;
+        height: 48px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .floating-chat-widget.active {
+        width: calc(100% - 2rem);
+        height: 50vh;
+        max-height: 400px;
+        bottom: 5rem;
+        right: 1rem;
+        left: 1rem;
+    }
+
+    .message-bubble {
+        max-width: 85%;
+    }
+}
+
+/* ===== Consolidated from public\css\pages\pricing\components\hero-animations.css ===== */
+/* ===========================================
+   PRICING PAGE - HERO ANIMATIONS
+   ===========================================
+   
+   Keyframe animations for hero section
+   Smooth transitions and entrance effects
+   =========================================== */
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+/* ===== Consolidated from public\css\pages\pricing\index.css ===== */
+/* ========================================================================
+   PRICING PAGE - MASTER INDEX
+   ========================================================================
+   This file serves as the entry point for all pricing page styles.
+   Components are organized by feature/section for better maintainability.
+   ======================================================================== */
+
+/* Import all pricing components in order */
+@import url('./components/hero-animations.css');
+@import url('./components/hero-base.css');
+@import url('./components/value-proposition.css');
+@import url('./components/savings-calculator.css');
+@import url('./components/pricing-cards.css');
+@import url('./components/testimonials.css');
+@import url('./components/social-proof.css');
+@import url('./components/contact-form.css');
+@import url('./components/cost-comparison.css');
+@import url('./components/savings-visualization.css');
+@import url('./components/floating-widgets.css');
+@import url('./components/responsive-mobile.css');
+@import url('./components/print-styles.css');
+@import url('./components/accessibility.css');
+
+/* ===== Consolidated from public\css\rtl.css ===== */
+/* ===========================================
+   ARABIC/HEBREW/PERSIAN RTL (RIGHT-TO-LEFT) SUPPORT
+   ===========================================
+
+   This file contains RTL-specific overrides for Arabic, Hebrew, and Persian language support.
+   It should be loaded after the main stylesheet for RTL pages.
+   =========================================== */
+
+/* ===== HTML DIRECTION ===== */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ===== BODY AND CONTAINER ALIGNMENT ===== */
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+/* ===== TEXT ALIGNMENT ===== */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6,
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+html[dir="rtl"] .text-center {
+  text-align: center;
+}
+
+/* ===== NAVIGATION ===== */
+html[dir="rtl"] .nav-main {
+  direction: rtl;
+}
+
+html[dir="rtl"] .nav-main .nav-links {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-main .nav-item {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+html[dir="rtl"] .nav-main .nav-item:first-child {
+  margin-right: 0;
+}
+
+/* ===== BUTTONS ===== */
+html[dir="rtl"] .btn {
+  direction: rtl;
+}
+
+html[dir="rtl"] .btn .icon {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* ===== CARDS AND COMPONENTS ===== */
+html[dir="rtl"] .card {
+  text-align: right;
+}
+
+html[dir="rtl"] .feature-card .icon {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+html[dir="rtl"] .comparison-table {
+  direction: rtl;
+}
+
+html[dir="rtl"] .comparison-table th,
+html[dir="rtl"] .comparison-table td {
+  text-align: right;
+}
+
+/* ===== FORMS ===== */
+html[dir="rtl"] .form-group {
+  text-align: right;
+}
+
+html[dir="rtl"] input[type="text"],
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .form-row {
+  direction: rtl;
+}
+
+html[dir="rtl"] .form-row .form-group {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* ===== LANGUAGE-SPECIFIC TYPOGRAPHY ===== */
+/* Hebrew-specific quotes and punctuation */
+html[dir="rtl"][lang="he"] q:before { content: '"'; }
+html[dir="rtl"][lang="he"] q:after { content: '"'; }
+
+/* Persian-specific number formatting */
+html[dir="rtl"][lang="fa"] {
+  font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* ===== RTL ENHANCED COMPONENTS ===== */
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+html[dir="rtl"] .sr-only {
+  /* Screen reader text remains LTR for consistency */
+  direction: ltr;
+}
+
+/* ===== ENHANCED FORM HANDLING ===== */
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="url"],
+html[dir="rtl"] input[type="tel"] {
+  direction: ltr; /* Keep email/URL/phone LTR */
+  text-align: left;
+}
+
+/* ===== RTL-SPECIFIC SPACING ===== */
+html[dir="rtl"] .space-x-reverse > * + * {
+  margin-left: 0;
+  margin-right: var(--space-x-reverse);
+}
+
+/* ===== IMPROVED FOCUS INDICATORS ===== */
+html[dir="rtl"] .focus\:ring:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+/* ===== ICONS AND MEDIA ===== */
+html[dir="rtl"] .icon-left {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .icon-right {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* ===== LISTS ===== */
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+/* ===== QUOTES ===== */
+html[dir="rtl"] blockquote {
+  border-right: 4px solid var(--primary-color);
+  border-left: none;
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+/* ===== TABLES ===== */
+html[dir="rtl"] table {
+  direction: rtl;
+}
+
+html[dir="rtl"] th,
+html[dir="rtl"] td {
+  text-align: right;
+}
+
+/* ===== FLEXBOX UTILITIES ===== */
+html[dir="rtl"] .flex-row-reverse {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .justify-start {
+  justify-content: flex-end;
+}
+
+html[dir="rtl"] .justify-end {
+  justify-content: flex-start;
+}
+
+/* ===== MARGINS AND PADDING ===== */
+html[dir="rtl"] .ml-1 { margin-left: 0; margin-right: 0.25rem; }
+html[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+html[dir="rtl"] .ml-3 { margin-left: 0; margin-right: 1rem; }
+html[dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1.5rem; }
+html[dir="rtl"] .ml-5 { margin-left: 0; margin-right: 3rem; }
+
+html[dir="rtl"] .mr-1 { margin-right: 0; margin-left: 0.25rem; }
+html[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+html[dir="rtl"] .mr-3 { margin-right: 0; margin-left: 1rem; }
+html[dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1.5rem; }
+html[dir="rtl"] .mr-5 { margin-right: 0; margin-left: 3rem; }
+
+html[dir="rtl"] .pl-1 { padding-left: 0; padding-right: 0.25rem; }
+html[dir="rtl"] .pl-2 { padding-left: 0; padding-right: 0.5rem; }
+html[dir="rtl"] .pl-3 { padding-left: 0; padding-right: 1rem; }
+html[dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1.5rem; }
+html[dir="rtl"] .pl-5 { padding-left: 0; padding-right: 3rem; }
+
+html[dir="rtl"] .pr-1 { padding-right: 0; padding-left: 0.25rem; }
+html[dir="rtl"] .pr-2 { padding-right: 0; padding-left: 0.5rem; }
+html[dir="rtl"] .pr-3 { padding-right: 0; padding-left: 1rem; }
+html[dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1.5rem; }
+html[dir="rtl"] .pr-5 { padding-right: 0; padding-left: 3rem; }
+
+/* ===== FLOATS ===== */
+html[dir="rtl"] .float-left { float: right; }
+html[dir="rtl"] .float-right { float: left; }
+
+/* ===== BORDERS ===== */
+html[dir="rtl"] .border-left { border-left: none; border-right: 1px solid var(--border-color); }
+html[dir="rtl"] .border-right { border-right: none; border-left: 1px solid var(--border-color); }
+
+/* ===== POSITIONING ===== */
+html[dir="rtl"] .left-0 { left: auto; right: 0; }
+html[dir="rtl"] .right-0 { right: auto; left: 0; }
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  html[dir="rtl"] .nav-main .nav-links {
+    flex-direction: column;
+  }
+
+  html[dir="rtl"] .nav-main .nav-item {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
 }

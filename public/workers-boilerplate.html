@@ -8,7 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</title>
-    <link rel="canonical" href="https://www.clodo.dev/workers-boilerplate">
+    <link rel="canonical" href="https://www.clodo.dev/workers-boilerplate/"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Hreflang tags for international SEO -->
     <link rel="alternate" hreflang="en" href="https://www.clodo.dev/workers-boilerplate/">
@@ -20,40 +22,82 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Cloudflare Workers Boilerplates: Ultimate Starter Template Guide">
     <meta property="og:description" content="Comprehensive comparison of Workers boilerplates including Clodo, Wrangler templates, and community frameworks.">
-    <meta property="og:image" content="https://clodo.dev/og-image.png">
-    <meta property="og:url" content="https://clodo.dev/workers-boilerplate/">
+    <meta property="og:image" content="https://www.clodo.dev/og-image.png">
+    <meta property="og:url" content="https://www.clodo.dev/workers-boilerplate/">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Workers Boilerplates: Template Comparison Guide">
     <meta name="twitter:description" content="Find the perfect Cloudflare Workers starter template for your project.">
-    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:image" content="https://www.clodo.dev/og-image.png">
 
-    <!-- Article Schema -->
-    <!-- FAQ Schema -->
-    <!-- SoftwareApplication Schema for Clodo -->
+    <!-- Article & Structured Data -->
+    <!-- Preload critical styles and use init-preload.js to swap to hashed assets when available -->
+    <link rel="preload" href="/css/components-reusable.css" as="style"><noscript><link rel="stylesheet" href="/css/components-reusable.css"></noscript>
+    <link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>
+    
+    <meta name="author" content="Clodo Framework">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison",
+          "description": "Compare top Cloudflare Workers boilerplates and starter templates with feature comparisons and setup guides.",
+          "author": {"@type": "Organization","name": "Clodo"},
+          "publisher": {"@type":"Organization","name":"Clodo","logo":{"@type":"ImageObject","url":"https://www.clodo.dev/logo.png"}},
+          "datePublished": "2024-11-01",
+          "mainEntityOfPage": {"@type":"WebPage","@id":"https://www.clodo.dev/workers-boilerplate/"},
+          "image": "https://www.clodo.dev/og-image.png"
+        },
+        {
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.clodo.dev/"},
+            {"@type":"ListItem","position":2,"name":"Workers Boilerplates","item":"https://www.clodo.dev/workers-boilerplate/"}
+          ]
+        },
+        {
+          "@type":"SoftwareApplication",
+          "name":"Clodo",
+          "url":"https://www.clodo.dev",
+          "applicationCategory":"DeveloperTool",
+          "offers":{"@type":"Offer","price":"0.00","priceCurrency":"USD"}
+        },
+        {
+          "@type":"FAQPage",
+          "mainEntity":[
+            {"@type":"Question","name":"Which boilerplate is best for multi-tenant SaaS?","acceptedAnswer":{"@type":"Answer","text":"Clodo is designed for multi-tenant SaaS with built-in auth and DB integrations, making it a strong option for enterprise use."}},
+            {"@type":"Question","name":"Can I migrate from Wrangler to Clodo?","acceptedAnswer":{"@type":"Answer","text":"Yes — check our Wrangler migration guide for step-by-step instructions to adapt routes, env bindings, and datastore integrations."}}
+          ]
+        }
+      ]
+    }
+    </script>
     </head>
 <body>
-<body>
-    <header><!--#include file="../templates/nav-main.html" --></header>
+    <header><!--#include file="../templates/nav-main.html" --></header> 
 
     <main>
         <article>
-            <header class="hero">
-                <h1>Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</h1>
-                <p class="subtitle">Find the perfect starting point for your Cloudflare Workers project with our comprehensive comparison of popular boilerplates and frameworks.</p>
+            <header id="hero" class="hero hero-section">
+                <h1 id="hero-title">Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</h1>
+                <p class="subtitle hero-subtitle">Find the perfect starting point for your Cloudflare Workers project with our comprehensive comparison of popular boilerplates and frameworks.</p>
             </header>
 
-            <section id="table-of-contents">
-                <h2>Table of Contents</h2>
-                <ul>
+            <nav id="page-toc" class="page-toc table-of-contents" aria-label="Table of contents">
+                <h2>On this page</h2>
+                <!-- JS will populate this list. The content below is a fallback for non-JS users -->
+                <ul id="page-toc-list" class="toc-list">
                     <li><a href="#popular-boilerplates">Popular Workers Boilerplates</a></li>
                     <li><a href="#feature-comparison">Feature Comparison</a></li>
                     <li><a href="#getting-started">Getting Started Guide</a></li>
                     <li><a href="#migration">Migration Strategies</a></li>
                     <li><a href="#best-practices">Best Practices</a></li>
                 </ul>
-            </section>
+                <button class="toc-toggle" aria-expanded="true" aria-controls="page-toc-list" aria-label="Toggle table of contents">Toggle</button>
+            </nav>    
 
             <section id="popular-boilerplates">
                 <h2>Popular Cloudflare Workers Boilerplates</h2>
@@ -70,7 +114,7 @@
                         </div>
                         <div class="actions">
                             <a href="/docs" class="btn-primary">Get Started</a>
-                            <a href="https://github.com/clodo/clodo" class="btn-secondary">GitHub</a>
+                            <a href="https://github.com/clodo/clodo" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
 
@@ -85,7 +129,7 @@
                         </div>
                         <div class="actions">
                             <a href="https://developers.cloudflare.com/workers/get-started/guide/" class="btn-primary">Official Guide</a>
-                            <a href="https://github.com/cloudflare/workers-sdk/tree/main/templates" class="btn-secondary">Templates</a>
+                            <a href="https://github.com/cloudflare/workers-sdk/tree/main/templates" class="btn-secondary" target="_blank" rel="noopener noreferrer">Templates</a>
                         </div>
                     </div>
 
@@ -100,7 +144,7 @@
                         </div>
                         <div class="actions">
                             <a href="https://hono.dev" class="btn-primary">Documentation</a>
-                            <a href="https://github.com/honojs/hono" class="btn-secondary">GitHub</a>
+                            <a href="https://github.com/honojs/hono" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
 
@@ -115,7 +159,7 @@
                         </div>
                         <div class="actions">
                             <a href="https://itty.dev" class="btn-primary">Documentation</a>
-                            <a href="https://github.com/kwhitley/itty-router" class="btn-secondary">GitHub</a>
+                            <a href="https://github.com/kwhitley/itty-router" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -202,26 +246,84 @@
                 
                 <div class="code-example">
                     <h3>Quick Setup</h3>
-                    <pre><code>npm create clodo@latest my-app
+                    <p class="lead">Create and run a new Clodo app in minutes — zero-configuration demo below. For production, follow the environment and deployment steps after the quick start.</p>
+                    <pre><code class="language-bash"># Create a project
+npm create clodo@latest my-app
 cd my-app
+# Install deps and run locally
 npm install
 npm run dev</code></pre>
+                    <div class="try-it">
+                        <h4>Try it (curl)</h4>
+                        <pre><code class="language-bash"># From project root (after npm run dev)
+curl -s http://localhost:8787/ | head -n 40</code></pre>
+                        <p class="note">Tip: bind D1 and KV namespaces via env and test locally using Wrangler or the Clodo CLI.</p>
+                    </div>
                 </div>
 
                 <div class="steps">
                     <div class="step">
                         <h3>1. Create Your Project</h3>
-                        <p>Use our CLI to scaffold a new Clodo project with all enterprise features pre-configured.</p>
+                        <p>Use our CLI to scaffold a Clodo project with enterprise features: auth, DB migrations, metrics and observability pre-configured.</p>
                     </div>
                     <div class="step">
                         <h3>2. Configure Environment</h3>
-                        <p>Set up your Cloudflare account, D1 database, and KV namespaces through our guided setup.</p>
+                        <p>Set up your Cloudflare account, provision D1 and KV namespaces, and add secrets (e.g., <code>CF_ACCOUNT_ID</code>, <code>D1_DB</code>, <code>SECRET_KEY</code>).</p>
                     </div>
                     <div class="step">
                         <h3>3. Deploy to Production</h3>
-                        <p>One-command deployment with automatic scaling, monitoring, and security.</p>
+                        <p>One-command production deploy with automatic scaling, monitoring, and security. Use the Clodo upgrade guide for zero-downtime migrations.</p>
                     </div>
-                </div>
+                </div> 
+            </section>
+
+            <section id="generated-service">
+                <h2>Lessons from a generated worker: analytics-service</h2>
+                <p>We reviewed a generated Cloudflare Worker (the <code>analytics-service</code> example) and distilled practical boilerplate requirements so you can scaffold production-ready services quickly.</p>
+
+                <h3>Key takeaways</h3>
+                <ul>
+                    <li><strong>Consistent project layout:</strong> include <code>src/</code>, <code>routes/</code>, <code>tests/</code>, and <code>examples/</code> in the scaffold for discoverability.</li>
+                    <li><strong>Bindings & typed helpers:</strong> a template <code>wrangler.toml</code> with placeholders for D1/KV/R2/secrets and small typed wrappers reduces onboarding friction.</li>
+                    <li><strong>Routing & middleware:</strong> a clear handler/router pattern with middleware hooks for auth, validation, and metrics improves maintainability.</li>
+                    <li><strong>Observability:</strong> include a lightweight metrics middleware (counters & timing) and a <code>/health</code> endpoint for quick uptime checks.</li>
+                    <li><strong>Testing & CI:</strong> unit tests + a minimal e2e visual or smoke test and a GitHub Actions workflow ensure code quality and repeatable deploys.</li>
+                </ul>
+
+                <h3>Generator checklist</h3>
+                <ol>
+                    <li>Scaffold basic layout and sample requests in <code>examples/</code>.</li>
+                    <li>Include a template <code>wrangler.toml</code> with binding placeholders and comments.</li>
+                    <li>Add typed binding helpers and a simple middleware stack.</li>
+                    <li>Add a health endpoint, basic metrics, and structured logging.</li>
+                    <li>Add unit tests, a simple smoke test, and GitHub Actions workflow templates.</li>
+                    <li>Provide README + quickstart + how-to snippet in the docs (JSON-LD <code>HowTo</code> where applicable).</li>
+                </ol>
+
+                <h3>Minimal handler example</h3>
+                <pre><code class="language-js">// Minimal analytics-service handler
+addEventListener('fetch', event =&gt; {
+  event.respondWith(handle(event.request));
+});
+
+async function handle(req) {
+  const url = new URL(req.url);
+  if (url.pathname === '/health') return new Response('OK', { status: 200 });
+
+  if (req.method === 'POST' && url.pathname === '/events') {
+    try {
+      const payload = await req.json();
+      // TODO: validate and persist to KV/D1/R2
+      return new Response(JSON.stringify({ status: 'accepted' }), { status: 202, headers: { 'content-type': 'application/json' } });
+    } catch (err) {
+      return new Response(JSON.stringify({ error: 'invalid payload' }), { status: 400, headers: { 'content-type': 'application/json' } });
+    }
+  }
+
+  return new Response('Not Found', { status: 404 });
+}</code></pre>
+
+                <p><strong>Why include this in the docs?</strong> Embedding concrete boilerplate guidance helps teams onboard faster, ship with sensible security and observability defaults, and avoid repeating integration work across projects.</p>
             </section>
 
             <section id="migration">
@@ -249,14 +351,16 @@ npm run dev</code></pre>
             <p>&copy; 2026 Clodo Framework. All rights reserved.</p>
             <nav>
                 <a href="/privacy">Privacy</a>
-                <a href="https://github.com/clodo/clodo">GitHub</a>
+                <a href="https://github.com/clodo/clodo" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
         </div>
     </footer>
 
     <!-- Load CSS and JS -->
-    <link rel="stylesheet" href="/styles.css">
-    <script src="/script.js" nonce="N0Nc3Cl0d0"></script>
+    <script src="/script.js" defer nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Page TOC and code helpers (moved to external file) -->
+    <script src="/js/workers-boilerplate.js" nonce="N0Nc3Cl0d0" defer></script>
 </body>
-</html></content>
+</html>
 <parameter name="filePath">G:\coding\clodo-dev-site\public\workers-boilerplate.html

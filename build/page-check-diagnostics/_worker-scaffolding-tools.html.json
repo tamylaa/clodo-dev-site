@@ -1,0 +1,14 @@
+{
+  "url": "https://www.clodo.dev/worker-scaffolding-tools.html",
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://www.clodo.dev/worker-scaffolding-tools",
+  "canonical": "https://www.clodo.dev/worker-scaffolding-tools",
+  "console": [
+    {
+      "type": "warning",
+      "text": "A preload for 'https://www.clodo.dev/js/main.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute."
+    }
+  ],
+  "screenshot": "build\\page-check-diagnostics\\_worker-scaffolding-tools.html.png"
+}

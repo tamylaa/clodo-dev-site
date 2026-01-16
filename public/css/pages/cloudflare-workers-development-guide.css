@@ -110,7 +110,8 @@ html {
   z-index: 1;
 }
 
-.hero-content {
+/* Scoped hero layout to guide page */
+.cloudflare-workers-guide .hero-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
