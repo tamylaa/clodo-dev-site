@@ -62,6 +62,25 @@ const SCHEMA_TEMPLATES = {
     "mainEntity": extractFAQItems(page.content)
   }),
 
+  HowTo: (page) => ({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": extractHowToName(page.content),
+    "description": extractHowToDescription(page.content),
+    "step": extractHowToSteps(page.content)
+  }),
+
+  SoftwareSourceCode: (project) => ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": project.name || "Repository",
+    "codeRepository": project.repo || "",
+    "programmingLanguage": project.language || "",
+    "url": project.url || project.repo || "",
+    "license": project.license || "",
+    "runtimePlatform": project.platform || "Cloudflare Workers"
+  }),
+
   SoftwareApplication: (page) => ({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -118,10 +137,11 @@ function extractFAQItems(html) {
   const document = dom.window.document;
   const items = [];
   
+  // Prefer explicit FAQ sections using <h3>/<h4> followed by a paragraph
   const headers = Array.from(document.querySelectorAll('h3, h4'));
   headers.forEach(h => {
     const nextP = h.nextElementSibling;
-    if (nextP) {
+    if (nextP && nextP.tagName.toLowerCase() === 'p') {
       items.push({
         "@type": "Question",
         "name": h.textContent.trim(),
@@ -129,6 +149,20 @@ function extractFAQItems(html) {
           "@type": "Answer",
           "text": nextP.textContent.trim()
         }
+      });
+    }
+  });
+
+  // Fallback: look for details/summary FAQ patterns
+  const details = Array.from(document.querySelectorAll('details'));
+  details.forEach(d => {
+    const summary = d.querySelector('summary');
+    const p = d.querySelector('p');
+    if (summary && p) {
+      items.push({
+        "@type": "Question",
+        "name": summary.textContent.trim(),
+        "acceptedAnswer": {"@type":"Answer","text": p.textContent.trim()}
       });
     }
   });
@@ -140,6 +174,46 @@ function extractFAQItems(html) {
       "acceptedAnswer": { "@type": "Answer", "text": "This page provides comprehensive information." }
     }
   ];
+}
+
+function extractHowToName(html) {
+  const m = html.match(/<h3[^>]*>(Quick Setup|Quickstart|Getting Started)<\/h3>/i);
+  return m ? m[1] : 'Quick Setup';
+}
+
+function extractHowToDescription(html) {
+  const m = html.match(/<h3[^>]*>(Quick Setup|Quickstart|Getting Started)<\/h3>\s*<p>([^<]+)<\/p>/i);
+  return m ? m[2] : '';
+}
+
+function extractHowToSteps(html) {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+  const steps = [];
+  const stepEls = Array.from(document.querySelectorAll('.steps .step'));
+  if (stepEls.length > 0) {
+    stepEls.forEach((el, i) => {
+      const heading = el.querySelector('h3') || el.querySelector('h4');
+      const p = el.querySelector('p');
+      steps.push({
+        "@type": "HowToStep",
+        "name": heading ? heading.textContent.trim() : `Step ${i+1}`,
+        "text": p ? p.textContent.trim() : ''
+      });
+    });
+    return steps;
+  }
+
+  // Fallback: parse ordered lists after Quick Setup heading
+  const quick = document.querySelector('h3:contains("Quick Setup")');
+  // Note: :contains not supported in querySelector; fallback to regex
+  const m = html.match(/<h3[^>]*>\s*(Quick Setup|Quickstart|Getting Started)[\s\S]*?<ol>([\s\S]*?)<\/ol>/i);
+  if (m) {
+    const items = m[2].match(/<li[^>]*>([\s\S]*?)<\/li>/gi) || [];
+    return items.map((li, idx) => ({"@type":"HowToStep","name": `Step ${idx+1}`, "text": li.replace(/<[^>]*>/g,'').trim()}));
+  }
+
+  return [];
 }
 
 function generateBreadcrumbs(url) {
@@ -184,11 +258,48 @@ async function processFile(filePath) {
     if (filePath.includes('blog')) schemaType = 'BlogPosting';
     
     const schema = SCHEMA_TEMPLATES[schemaType](metadata);
-    
+
+    // Extra schemas: HowTo from Quick Setup steps
+    const extraSchemas = [];
+    const howToSteps = extractHowToSteps(html);
+    if (howToSteps && howToSteps.length > 0) {
+      extraSchemas.push(SCHEMA_TEMPLATES['HowTo'](metadata));
+    }
+
+    // Generate SoftwareSourceCode entries for GitHub / npm links
+    const dom = new JSDOM(html);
+    const document = dom.window.document;
+    const anchors = Array.from(document.querySelectorAll('a[href]'));
+    const repoMap = new Map();
+    anchors.forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href) return;
+
+      if (/github\.com\//i.test(href) || /npmjs\.com\//i.test(href)) {
+        // Prefer the boilerplate card title if available
+        let name = a.textContent.trim();
+        const card = a.closest('.boilerplate-card');
+        if (card) {
+          const titleEl = card.querySelector('h3');
+          if (titleEl) name = titleEl.textContent.trim();
+        }
+
+        const kind = /github\.com\//i.test(href) ? 'GitHub' : 'npm';
+        if (!repoMap.has(href)) {
+          repoMap.set(href, { name: name || kind, repo: href, url: href, platform: kind });
+        }
+      }
+    });
+
+    for (const r of repoMap.values()) {
+      extraSchemas.push(SCHEMA_TEMPLATES['SoftwareSourceCode'](r));
+    }
+
     return {
       file: filePath,
       schemaType,
       schema,
+      extraSchemas,
       hasExistingSchema: html.includes('application/ld+json'),
       status: 'processed'
     };
@@ -210,7 +321,7 @@ async function main() {
   console.log(`🔍 Schema Generator & Validator`);
   console.log(`📁 Scanning: ${dir}`);
   
-  const results = [];
+  let results = [];
   
   function walkDir(currentPath) {
     const files = fs.readdirSync(currentPath);
@@ -221,13 +332,16 @@ async function main() {
       if (stat.isDirectory() && !file.startsWith('.') && file !== 'i18n') {
         walkDir(fullPath);
       } else if (file.endsWith('.html')) {
-        const result = processFile(fullPath);
-        results.push(result);
+        // processFile is async; collect promises and await them below
+        results.push(processFile(fullPath));
       }
     });
   }
   
   walkDir(dir);
+
+  // Wait for all async processing to complete
+  results = await Promise.all(results);
   
   // Summarize results
   const summary = {

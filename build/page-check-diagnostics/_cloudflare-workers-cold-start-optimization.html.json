@@ -1,0 +1,18 @@
+{
+  "url": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization.html",
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization",
+  "canonical": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization",
+  "console": [
+    {
+      "type": "error",
+      "text": "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    },
+    {
+      "type": "error",
+      "text": "Refused to apply inline style because it violates the following Content Security Policy directive: \"style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com\". Either the 'unsafe-inline' keyword, a hash ('sha256-DxnsNGXWrUTKqHReDzj0/4T+Jj0GmGWAO/bcqVCSJ+k='), or a nonce ('nonce-...') is required to enable inline execution.\n"
+    }
+  ],
+  "screenshot": "build\\page-check-diagnostics\\_cloudflare-workers-cold-start-optimization.html.png"
+}

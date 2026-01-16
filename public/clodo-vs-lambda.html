@@ -14,34 +14,9 @@
     <link rel="canonical" href="https://www.clodo.dev/clodo-vs-lambda">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/components-reusable.css">
     <style>
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .comparison-table th,
-        .comparison-table td {
-            padding: 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .comparison-table th {
-            background: var(--primary-color);
-            color: var(--color-white);
-            font-weight: 600;
-        }
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-        .comparison-table td:first-child {
-            font-weight: 600;
-            color: var(--text-primary);
-            width: 25%;
-        }
+        /* `.comparison-table` styles moved to `/css/components-reusable.css` to avoid duplication. */
         .winner {
             background: rgba(34, 197, 94, 0.1);
             color: var(--success-color);
@@ -99,10 +74,10 @@
                 </li>
             </ol>
         </nav>
-        <section class="hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #172554 100%); padding: 4rem 2rem; text-align: center; color: var(--color-white);">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Clodo vs AWS Lambda</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">The Complete Cost & Performance Comparison</p>
-            <p style="font-size: 1rem; opacity: 0.9;">Why enterprises are switching to Clodo Framework for 60% cost savings and zero cold starts</p>
+        <section id="hero" class="hero hero-section" aria-labelledby="hero-title">
+            <h1 id="hero-title">Clodo vs AWS Lambda</h1>
+            <p class="subtitle hero-subtitle">The Complete Cost & Performance Comparison</p>
+            <p class="subtitle hero-subtitle">Why enterprises are switching to Clodo Framework for 60% cost savings and zero cold starts</p>
         </section>
 
         <section style="max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;">
