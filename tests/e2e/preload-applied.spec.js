@@ -47,7 +47,7 @@ test.describe('preload -> stylesheet mapping', () => {
     }
   });
 
-  test.skip('falls back to fetching external manifest when inline manifest missing', async ({ page }) => {
+  test('falls back to fetching external manifest when inline manifest missing', async ({ page }) => {
     // TODO: Fix flakiness caused by CSP/environment differences. Currently skipped until we can reliably simulate
     // inline manifest removal without CSP blocking local asset loads.
     const url = process.env.TEST_BASE_URL || 'http://localhost:8000/cloudflare-top-10-saas-edge-computing-workers-case-study-docs';
