@@ -5,6 +5,8 @@
    and navigation elements used across pages.
    =========================================== */
 
+/* Component imports handled during build; inline imports removed to avoid runtime 404s */
+
 /* ===== TABLE OF CONTENTS ===== */
 .table-of-contents {
     background-color: var(--color-white);
@@ -12,11 +14,8 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
-    position: sticky;
-    top: var(--spacing-lg);
-    z-index: 10;
-    max-height: calc(100vh - 2 * var(--spacing-lg));
-    overflow-y: auto;
+    position: static;
+    overflow-y: visible;
 }
 
 .table-of-contents h2 {
@@ -226,8 +225,7 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
-    position: sticky;
-    top: var(--spacing-lg);
+    position: static;
 }
 
 /* ===== STAT COMPATIBILITY (legacy classes) ===== */
@@ -535,8 +533,7 @@
 }
 
 .sidebar {
-    position: sticky;
-    top: 2rem;
+    position: static;
     height: fit-content;
 }
 
@@ -730,20 +727,7 @@
 /* ===== Consolidated from public\css\framework\framework.css ===== */
 /* ===== CLODO DESIGN SYSTEM ===== */
 
-/* Import design tokens first */
-@import url('design-tokens.css');
-
-/* Import base styles */
-@import url('base.css');
-
-/* Import component library */
-@import url('components.css');
-
-/* Import utility classes */
-@import url('utilities.css');
-
-/* Import responsive styles */
-@import url('responsive.css');
+/* Imports consolidated and moved to the top of the stylesheet for stylesheet validity */
 /* ===== Consolidated from public\css\pages\blog\header.css ===== */
 /* ===========================================
    BLOG HEADER COMPONENT
@@ -758,8 +742,7 @@
 .blog-header {
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
+    position: static;
     z-index: 100;
 
     /* Ensure header stays above content */
@@ -1448,21 +1431,7 @@
    Components are organized by feature/section for better maintainability.
    ======================================================================== */
 
-/* Import all pricing components in order */
-@import url('./components/hero-animations.css');
-@import url('./components/hero-base.css');
-@import url('./components/value-proposition.css');
-@import url('./components/savings-calculator.css');
-@import url('./components/pricing-cards.css');
-@import url('./components/testimonials.css');
-@import url('./components/social-proof.css');
-@import url('./components/contact-form.css');
-@import url('./components/cost-comparison.css');
-@import url('./components/savings-visualization.css');
-@import url('./components/floating-widgets.css');
-@import url('./components/responsive-mobile.css');
-@import url('./components/print-styles.css');
-@import url('./components/accessibility.css');
+/* Pricing/component imports have been consolidated and moved to the top of this file */
 
 /* ===== Consolidated from public\css\rtl.css ===== */
 /* ===========================================

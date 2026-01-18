@@ -1,0 +1,68 @@
+class BrevoChatManager {
+constructor() {
+this.isLoaded = false;
+this.isEnabled = true; // Feature flag
+this.websiteId = null; // To be set from config
+}
+init(config = {}) {
+if (!this.isEnabled) {
+console.log('[BrevoChat] Disabled by feature flag');
+return;
+}
+this.websiteId = config.websiteId || '68fe79edfbaca7d0230ae87d'; // Your actual Brevo website ID
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', () => this.loadChat());
+} else {
+setTimeout(() => this.loadChat(), 100);
+}
+}
+loadChat() {
+if (this.isLoaded) return;
+try {
+(function(d, w, c) {
+w.BrevoConversationsID = this.websiteId;
+w[c] = w[c] || function() {
+(w[c].q = w[c].q || []).push(arguments);
+};
+var s = d.createElement('script');
+s.async = true;
+s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+const nonce = d.querySelector('script[nonce]')?.nonce;
+if (nonce) {
+s.nonce = nonce;
+}
+s.onload = () => {
+this.isLoaded = true;
+console.log('[BrevoChat] Widget loaded successfully');
+this.trackEngagement();
+};
+s.onerror = (error) => {
+console.error('[BrevoChat] Failed to load widget:', error);
+this.handleFallback();
+};
+if (d.head) d.head.appendChild(s);
+}).call(this, document, window, 'BrevoConversations');
+} catch (error) {
+console.error('[BrevoChat] Initialization error:', error);
+this.handleFallback();
+}
+}
+trackEngagement() {
+if (window.gtag) {
+}
+}
+handleFallback() {
+console.log('[BrevoChat] Using fallback contact method');
+}
+show() {
+if (window.BrevoConversations && window.BrevoConversations.show) {
+window.BrevoConversations.show();
+}
+}
+hide() {
+if (window.BrevoConversations && window.BrevoConversations.hide) {
+window.BrevoConversations.hide();
+}
+}
+}
+export default BrevoChatManager;

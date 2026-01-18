@@ -1,0 +1,83 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Analyze 10 Major SaaS Platforms Using Cloudflare",
+  "description": "A curated collection of real-world Cloudflare implementation case studies from top SaaS companies including Discord, Shopify, GitHub, and Slack. Evaluates edge computing, collaboration, and delivery metrics.",
+  "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "10 SaaS Platforms Using Cloudflare",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Discord",
+        "description": "Hybrid architecture using Cloudflare for CDN, DDoS, and API protection for world-class real-time scaling.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#discord-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shopify",
+        "description": "Powering millions of storefronts with 70-80% edge delivery using Workers and KV for global e-commerce performance.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#shopify-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "GitHub",
+        "description": "Utilizing Cloudflare for 95% edge delivery of static assets and robust DDoS protection for the global developer ecosystem.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#github-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Slack",
+        "description": "Enterprise-grade team collaboration secured and accelerated via Cloudflare's WAF and global network.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#slack-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Zoom",
+        "description": "Hybrid delivery model leveraging Cloudflare for web asset delivery and signaling to ensure global meeting reliability.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#zoom-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Notion",
+        "description": "100% edge-delivered workspace platform using Workers for collaborative state and real-time synchronization.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#notion-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Figma",
+        "description": "Design collaboration tool utilizing Cloudflare for static asset delivery and API acceleration.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#figma-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Stripe",
+        "description": "Payments infrastructure using Cloudflare for secure checkout pages and global API latency reduction.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#stripe-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "Canva",
+        "description": "Visual design platform leveraging Cloudflare Workers for edge image processing and global asset delivery.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#canva-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "name": "Reddit",
+        "description": "Scaling community interactions and content delivery globally with Cloudflare's CDN and Bot Management functionality.",
+        "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies#reddit-analysis"
+      }
+    ]
+  }
+}

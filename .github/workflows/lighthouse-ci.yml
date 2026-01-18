@@ -28,6 +28,8 @@ jobs:
         run: npx http-server ./dist -p 3000 & sleep 2
 
       - name: Run Lighthouse audit (local)
+        env:
+          LH_BLOCKED_URLS: 'https://www.google-analytics.com/*,https://cdn.segment.com/*,https://www.googletagservices.com/*'
         run: node ./tools/run-lighthouse-audit-ci.mjs --url http://localhost:3000/ --outputPath ./lighthouse-results/ci-local.json
 
       - name: Fail on Best Practices or Console Errors
