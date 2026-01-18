@@ -55,8 +55,38 @@ async function main() {
       if (match) {
         const candidateValues = [match.status, match.phase, match.state, match.deployment_status, match.result];
         const asString = JSON.stringify(candidateValues).toLowerCase();
-        console.log('Pages API: found deployment matching commit hash');
-        return /success|built|ready|succeeded/.test(asString);
+        console.log('Pages API: found deployment matching commit hash with status:', asString);
+
+        // If the matched deployment isn't yet successful, poll the Pages API briefly
+        if (!/success|built|ready|succeeded/.test(asString)) {
+          console.log('Matched deployment not successful yet; polling Pages API for up to 60s for it to reach a ready state');
+          const pollAttempts = 12; // ~60s total with 5s interval
+          for (let attempt = 1; attempt <= pollAttempts; attempt++) {
+            await new Promise(r => setTimeout(r, 5000));
+            const followRes = await fetch(endpoint, { headers: { Authorization: `Bearer ${apiToken}`, Accept: 'application/json' }, timeout: 10000 });
+            if (!followRes.ok) {
+              console.warn(`Pages API poll returned ${followRes.status} (attempt ${attempt}/${pollAttempts})`);
+              continue;
+            }
+            const followJson = await followRes.json();
+            const followResults = followJson && (followJson.result || followJson.results || followJson.deployments || []);
+            const followMatch = Array.isArray(followResults) && followResults.find(r => JSON.stringify(r).includes(commitHash));
+            if (followMatch) {
+              const followValues = [followMatch.status, followMatch.phase, followMatch.state, followMatch.deployment_status, followMatch.result];
+              const followStr = JSON.stringify(followValues).toLowerCase();
+              console.log(`Pages API poll attempt ${attempt}: status ${followStr}`);
+              if (/success|built|ready|succeeded/.test(followStr)) {
+                console.log('Pages API: deployment reached success state on poll');
+                return true;
+              }
+            }
+          }
+
+          console.warn('Pages API: matched deployment did not reach a ready state within poll window');
+          return false;
+        }
+
+        return true;
       }
       console.warn('Pages API: no deployment matched commit hash; falling back to latest deployment status.');
     }
