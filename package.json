@@ -47,7 +47,7 @@
     "postbuild": "npm run normalize && node tools/validate-built-schemas.js dist --fail && npm run check:required-schemas",
     "check:required-schemas": "node tools/enforce-required-schemas.js dist --fail",
     "audit:schemas:coverage": "node data/schemas/tools/audit-schema-coverage.js",
-    "ci:premerge": "npm run normalize && npm run test:navigation:static",
+    "ci:premerge": "npm run normalize && npm run test:navigation:static && npm run test:e2e",
     "test:all": "npm run test:e2e",
     "lighthouse": "lhci autorun",
     "lighthouse:report": "lhci autorun && npx lighthouse http://localhost:8000 --view",

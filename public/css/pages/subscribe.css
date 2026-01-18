@@ -79,21 +79,7 @@
   margin-bottom: var(--spacing-xl);
 }
 
-.stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
+/* Use canonical `.stat`, `.stat-number`, and `.stat-label` from `components-reusable.css` */
 
 .subscribe-form-container {
   max-width: 500px;

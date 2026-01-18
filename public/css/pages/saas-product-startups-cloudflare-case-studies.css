@@ -1314,18 +1314,19 @@
   margin-top: 1rem;
 }
 
-.stat {
+/* Scoped to .hero-stats to avoid global duplication */
+.hero-stats .stat {
   text-align: center;
 }
 
-.stat-number {
+.hero-stats .stat-number {
   font-size: 2rem;
   font-weight: 800;
   color: #6366f1;
   display: block;
 }
 
-.stat-label {
+.hero-stats .stat-label {
   font-size: 0.875rem;
   color: #6b7280;
   font-weight: 500;
@@ -1971,5 +1972,121 @@
 
   .progress-bar {
     transition: none;
+  }
+}
+/* Frontend Cloud Evaluation Section */
+.evaluation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3.5rem 0;
+}
+
+.evaluation-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.evaluation-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #6366f1;
+}
+
+.evaluation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.evaluation-card:hover::before {
+  opacity: 1;
+}
+
+.eval-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.eval-icon {
+  font-size: 2.25rem;
+  background: #f3f4f6;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+.eval-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+
+.eval-score {
+  font-weight: 800;
+  color: #6366f1;
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.evaluation-card p {
+  color: #4b5563;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+}
+
+.eval-points {
+  margin-top: auto;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1.5rem;
+}
+
+.eval-points li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.75rem;
+  position: relative;
+  font-size: 0.9375rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.eval-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .evaluation-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }

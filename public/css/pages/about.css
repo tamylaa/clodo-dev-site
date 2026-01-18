@@ -500,13 +500,14 @@ main section:nth-child(even) {
     text-align: center;
 }
 
-.hero-content {
+/* Scope hero content to about page */
+.about-page .hero-content {
     max-width: 1200px;
     margin: 0 auto;
     animation-delay: 0.1s;
 }
 
-.hero-content h1 {
+.about-page .hero-content h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--text-primary);
@@ -514,7 +515,7 @@ main section:nth-child(even) {
     line-height: 1.1;
 }
 
-.hero-content p {
+.about-page .hero-content p {
     font-size: 1.25rem;
     color: var(--text-primary);
     margin-bottom: var(--spacing-xl);

@@ -1,0 +1,265 @@
+function generateId() {
+return `component-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+class Component {
+constructor(element, options = {}) {
+if (!element) {
+throw new Error('Component requires a DOM element');
+}
+this.id = options.id || generateId();
+this.element = element;
+this.options = { ...this.constructor.defaultOptions, ...options };
+this._state = {};
+this._observers = new Map();
+this._eventHandlers = new Map();
+this._isInitialized = false;
+this._isMounted = false;
+this._isDestroyed = false;
+this._performanceMarks = new Map();
+this._errorHandler = options.onError || this._defaultErrorHandler.bind(this);
+element._component = this;
+if (!options.deferInit) {
+this.init();
+}
+}
+static get defaultOptions() {
+return {
+debug: false,
+autoMount: true,
+trackPerformance: false,
+};
+}
+init() {
+if (this._isInitialized) {
+this._warn('Component already initialized');
+return this;
+}
+try {
+this._startPerformance('init');
+this.onInit();
+this._isInitialized = true;
+this._emit('init');
+if (this.options.autoMount) {
+this.mount();
+}
+this._endPerformance('init');
+this._log('Component initialized');
+} catch (error) {
+this._handleError('init', error);
+}
+return this;
+}
+mount() {
+if (this._isMounted) {
+this._warn('Component already mounted');
+return this;
+}
+if (!this._isInitialized) {
+this._warn('Component not initialized, initializing now');
+this.init();
+}
+try {
+this._startPerformance('mount');
+this.element.classList.add('component-mounted');
+this.onMount();
+this._isMounted = true;
+this._emit('mount');
+this._endPerformance('mount');
+this._log('Component mounted');
+} catch (error) {
+this._handleError('mount', error);
+}
+return this;
+}
+unmount() {
+if (!this._isMounted) {
+this._warn('Component not mounted');
+return this;
+}
+try {
+this._startPerformance('unmount');
+this.onUnmount();
+this.element.classList.remove('component-mounted');
+this._isMounted = false;
+this._emit('unmount');
+this._endPerformance('unmount');
+this._log('Component unmounted');
+} catch (error) {
+this._handleError('unmount', error);
+}
+return this;
+}
+destroy() {
+if (this._isDestroyed) {
+this._warn('Component already destroyed');
+return;
+}
+try {
+this._startPerformance('destroy');
+if (this._isMounted) {
+this.unmount();
+}
+this.onDestroy();
+this._eventHandlers.forEach((handlers, eventName) => {
+handlers.forEach(handler => {
+this.element.removeEventListener(eventName, handler);
+});
+});
+this._eventHandlers.clear();
+this._observers.clear();
+delete this.element._component;
+this._isDestroyed = true;
+this._emit('destroy');
+this._endPerformance('destroy');
+this._log('Component destroyed');
+} catch (error) {
+this._handleError('destroy', error);
+}
+}
+onInit() {
+}
+onMount() {
+}
+onUnmount() {
+}
+onDestroy() {
+}
+getState(key) {
+return key ? this._state[key] : { ...this._state };
+}
+setState(keyOrState, value) {
+const isObject = typeof keyOrState === 'object';
+const updates = isObject ? keyOrState : { [keyOrState]: value };
+const previousState = { ...this._state };
+Object.assign(this._state, updates);
+Object.keys(updates).forEach(key => {
+if (this._observers.has(key)) {
+this._observers.get(key).forEach(callback => {
+try {
+callback(this._state[key], previousState[key]);
+} catch (error) {
+this._handleError('observer', error);
+}
+});
+}
+});
+this._emit('statechange', {
+state: this._state,
+previousState,
+updates,
+});
+return this;
+}
+observe(key, callback) {
+if (!this._observers.has(key)) {
+this._observers.set(key, new Set());
+}
+this._observers.get(key).add(callback);
+return () => {
+if (this._observers.has(key)) {
+this._observers.get(key).delete(callback);
+}
+};
+}
+on(eventName, handler, options = {}) {
+if (!this._eventHandlers.has(eventName)) {
+this._eventHandlers.set(eventName, new Set());
+}
+this._eventHandlers.get(eventName).add(handler);
+this.element.addEventListener(eventName, handler, options);
+return this;
+}
+off(eventName, handler) {
+if (this._eventHandlers.has(eventName)) {
+this._eventHandlers.get(eventName).delete(handler);
+this.element.removeEventListener(eventName, handler);
+}
+return this;
+}
+_emit(eventName, detail = {}) {
+const event = new CustomEvent(`component:${eventName}`, {
+detail: {
+componentId: this.id,
+component: this,
+...detail,
+},
+bubbles: true,
+cancelable: true,
+});
+this.element.dispatchEvent(event);
+return event;
+}
+$(selector, all = false) {
+return all 
+? this.element.querySelectorAll(selector)
+: this.element.querySelector(selector);
+}
+get isInitialized() {
+return this._isInitialized;
+}
+get isMounted() {
+return this._isMounted;
+}
+get isDestroyed() {
+return this._isDestroyed;
+}
+_startPerformance(operation) {
+if (this.options.trackPerformance) {
+this._performanceMarks.set(operation, performance.now());
+}
+}
+_endPerformance(operation) {
+if (this.options.trackPerformance && this._performanceMarks.has(operation)) {
+const start = this._performanceMarks.get(operation);
+const duration = performance.now() - start;
+this._performanceMarks.delete(operation);
+this._log(`${operation} took ${duration.toFixed(2)}ms`);
+this._emit('performance', {
+operation,
+duration,
+});
+}
+}
+_handleError(operation, error) {
+const errorEvent = this._emit('error', {
+operation,
+error,
+message: error.message,
+stack: error.stack,
+});
+if (!errorEvent.defaultPrevented) {
+this._errorHandler(error, operation);
+}
+}
+_defaultErrorHandler(error, operation) {
+console.error(`[Component ${this.id}] Error in ${operation}:`, error);
+}
+_log(...args) {
+if (this.options.debug) {
+console.log(`[Component ${this.id}]`, ...args);
+}
+}
+_warn(...args) {
+if (this.options.debug) {
+console.warn(`[Component ${this.id}]`, ...args);
+}
+}
+}
+function createComponent(ComponentClass, element, options) {
+return new ComponentClass(element, options);
+}
+function getComponent(element) {
+return element._component;
+}
+function hasComponent(element) {
+return !!element._component;
+}
+if (typeof window !== 'undefined') {
+window.Component = Component;
+window.ComponentAPI = {
+Component,
+createComponent,
+getComponent,
+hasComponent,
+};
+}

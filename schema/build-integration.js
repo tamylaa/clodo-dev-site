@@ -294,6 +294,9 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
       }
     }
 
+    console.log('   Debug: schemas count', schemas.length, 'uniqueSchemas count', uniqueSchemas.length);
+    console.log('   Debug: sample schemas keys', Array.from(seen).slice(0,3).map(s=>s.substring(0,120)));
+
     // Wrap all schemas with tags and join (use wrapSchemaTag to include CSP nonce)
     generatedSchemas = uniqueSchemas
       .map(schema => wrapSchemaTag(schema))
@@ -306,14 +309,14 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     return htmlContent;
   }
 
-  console.log(`   ✅ Generated ${(generatedSchemas.match(/<script type="application\/ld\+json">/g) || []).length} schema(s) for: ${filename}`);
+  console.log(`   ✅ Generated ${(generatedSchemas.match(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>/gi) || []).length} schema(s) for: ${filename}`);
 
   // Replace or inject schemas
   // Strategy: Remove old inline schemas and inject new ones in <head>
   
-  // Remove existing schema script tags to avoid duplication
+  // Remove existing schema script tags to avoid duplication (match with any attributes)
   let cleanedHTML = htmlContent.replace(
-    /<script type="application\/ld\+json">[\s\S]*?<\/script>/g,
+    /<script\b[^>]*type=["']application\/ld\+json["'][\s\S]*?<\/script>/gi,
     ''
   );
 
@@ -421,6 +424,9 @@ export function validateSchemaConfigs(builtFiles) {
     report: getConfigurationReport()
   };
 }
+
+// Export internal helper for debugging and testing (not part of public API)
+export { loadPageSchemas };
 
 export default {
   injectSchemasIntoHTML,
