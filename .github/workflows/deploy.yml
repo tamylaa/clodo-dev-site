@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: production-${{ github.ref }}
+  group: production-deploy
   cancel-in-progress: true
 
 jobs:
@@ -72,6 +72,11 @@ jobs:
         run: node tools/check-production-css.mjs https://www.clodo.dev/pricing
         env:
           NODE_TLS_REJECT_UNAUTHORIZED: '0'
+          CF_PAGES_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_PAGES_PROJECT_NAME: 'clododev'
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          COMMIT_HASH: ${{ github.sha }}
+
 
       - name: Production manifest + CSS smoke check (case study)
         run: node tools/check-production-css.mjs https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs
