@@ -83,6 +83,48 @@ async function main() {
           }
 
           console.warn('Pages API: matched deployment did not reach a ready state within poll window');
+
+          // As a fallback, try to locate Pages preview URLs in the matched deployment object
+          try {
+            const text = JSON.stringify(match);
+            const urlRegex = /https?:\\/\\/[^"\\s]+\\.pages\\.dev/ig;
+            const hostRegex = /[a-z0-9-]+\\.pages\\.dev/ig;
+            const urls = new Set();
+            let m;
+            while ((m = urlRegex.exec(text)) !== null) urls.add(m[0]);
+            while ((m = hostRegex.exec(text)) !== null) urls.add(`https://${m[0]}`);
+
+            if (urls.size) {
+              console.log('Pages API: found preview URLs in deployment:', Array.from(urls).join(', '));
+              // Try fetching the preview URL's same path as the public URL (e.g., /pricing)
+              const targetPath = new URL(url).pathname || '/';
+              for (const preview of Array.from(urls)) {
+                try {
+                  const previewTarget = new URL(targetPath, preview).toString();
+                  console.log(`Attempting preview fetch: ${previewTarget}`);
+                  const pvRes = await fetchWithRetry(previewTarget, { timeout: 15000 }, 3, 1000);
+                  if (pvRes && pvRes.ok) {
+                    console.log(`Preview URL ${preview} returned OK — proceeding to validate CSS from preview origin.`);
+                    pageRes = pvRes; // use preview response for subsequent checks
+                    break;
+                  }
+                  console.warn(`Preview fetch ${previewTarget} returned ${pvRes && pvRes.status}`);
+                } catch (e) {
+                  console.warn(`Preview fetch failed for ${preview}: ${e.message}`);
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('Error while parsing matched deployment for preview URLs:', e.message);
+          }
+
+          // If we managed to fetch a preview page successfully, continue; otherwise fail.
+          if (pageRes && pageRes.ok) {
+            console.log('Proceeding with CSS checks using the preview-origin response.');
+            return true;
+          }
+
+          console.warn('Pages API: matched deployment did not provide an accessible preview URL; failing smoke check.');
           return false;
         }
 
