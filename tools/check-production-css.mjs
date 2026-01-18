@@ -39,14 +39,28 @@ async function main() {
   }
 
   // Check Pages deployment via API to help decide when Cloudflare blocks public URL
-  async function checkPagesDeployment(accountId, projectName, apiToken) {
+  // If a COMMIT_HASH is provided via env, prefer a deployment that matches that commit. Falls back to latest deployment if not found.
+  async function checkPagesDeployment(accountId, projectName, apiToken, commitHash) {
     const endpoint = `https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`;
     const res = await fetch(endpoint, { headers: { Authorization: `Bearer ${apiToken}`, Accept: 'application/json' }, timeout: 10000 });
     if (!res.ok) throw new Error(`Pages API returned ${res.status}`);
     const json = await res.json();
-    // Look for indicators of a successful latest deployment
+    // Look for indicators of a successful deployment
     const results = json && (json.result || json.results || json.deployments || []);
     if (!Array.isArray(results) || results.length === 0) return false;
+
+    // If a commit hash is provided, try to find a matching deployment
+    if (commitHash) {
+      const match = results.find(r => JSON.stringify(r).includes(commitHash));
+      if (match) {
+        const candidateValues = [match.status, match.phase, match.state, match.deployment_status, match.result];
+        const asString = JSON.stringify(candidateValues).toLowerCase();
+        console.log('Pages API: found deployment matching commit hash');
+        return /success|built|ready|succeeded/.test(asString);
+      }
+      console.warn('Pages API: no deployment matched commit hash; falling back to latest deployment status.');
+    }
+
     const latest = results[0];
     const candidateValues = [latest.status, latest.phase, latest.state, latest.deployment_status, latest.result];
     const asString = JSON.stringify(candidateValues).toLowerCase();
@@ -82,7 +96,7 @@ async function main() {
       if (accountId && projectName && apiToken) {
         console.log('Pages API credentials detected; checking Pages deployment status as fallback.');
         try {
-          const ok = await checkPagesDeployment(accountId, projectName, apiToken);
+          const ok = await checkPagesDeployment(accountId, projectName, apiToken, process.env.COMMIT_HASH);
           if (ok) {
             console.log('Pages API indicates most recent deployment is successful — passing check despite challenge.');
             // allow rest of checks to proceed by re-fetching the page once

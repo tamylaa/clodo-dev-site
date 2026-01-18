@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: staging-${{ github.ref }}
+  group: staging-deploy
   cancel-in-progress: true
 
 jobs:
