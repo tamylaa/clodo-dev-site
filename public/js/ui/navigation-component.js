@@ -15,7 +15,7 @@
  * Navigation component configuration
  */
 const config = {
-    debug: false, // Debug mode disabled
+    debug: true, // Debug mode ENABLED for diagnosis
     mobileBreakpoint: 768,
     dropdownDelay: 200, // ms
     animationDuration: 300, // ms
@@ -84,16 +84,28 @@ function isMobile() {
  * Toggle mobile menu
  */
 function toggleMobileMenu(forceState = null) {
+    console.log('toggleMobileMenu called with forceState:', forceState);
     const toggle = document.querySelector(config.selectors.toggle);
     const menu = document.querySelector(config.selectors.menu);
     
-    if (!toggle || !menu) return;
+    if (!toggle || !menu) {
+        console.error('toggleMobileMenu: Elements not found', { toggle: !!toggle, menu: !!menu });
+        return;
+    }
     
     const isOpen = forceState !== null ? forceState : !state.mobileMenuOpen;
+    console.log('toggleMobileMenu: current state.mobileMenuOpen:', state.mobileMenuOpen, 'new isOpen:', isOpen);
     
     state.mobileMenuOpen = isOpen;
+    console.log('toggleMobileMenu: Setting aria-expanded to:', String(isOpen));
     toggle.setAttribute('aria-expanded', String(isOpen));
+    console.log('toggleMobileMenu: Setting data-visible to:', String(isOpen));
     menu.setAttribute('data-visible', String(isOpen));
+    
+    // Verify attributes were set
+    const ariaAfter = toggle.getAttribute('aria-expanded');
+    const dataAfter = menu.getAttribute('data-visible');
+    console.log('toggleMobileMenu: Verification - aria-expanded:', ariaAfter, 'data-visible:', dataAfter);
     
     // Emit event
     window.dispatchEvent(new CustomEvent('nav:mobile-toggle', {
@@ -127,6 +139,7 @@ function openDropdown(dropdown) {
     }
     
     state.activeDropdown = dropdown;
+    console.log('openDropdown: Setting aria-expanded="true" on toggle');
     toggle.setAttribute('aria-expanded', 'true');
     dropdown.classList.add(config.classes.open);
     
@@ -164,8 +177,16 @@ function closeAllDropdowns() {
  * Handle mobile menu toggle click
  */
 function handleToggleClick(event) {
+    console.log('handleToggleClick called', { type: event.type, target: event.target, currentTarget: event.currentTarget });
+    log('handleToggleClick called', { type: event.type, target: event.target });
     event.stopPropagation();
+    // Prevent default for touch events to avoid double firing
+    if (event.type === 'touchstart') {
+        event.preventDefault();
+    }
+    console.log('About to call toggleMobileMenu()');
     toggleMobileMenu();
+    console.log('toggleMobileMenu() completed');
 }
 
 /**
@@ -201,9 +222,11 @@ function handleDropdownToggleClick(event) {
  * Handle dropdown mouse enter (desktop only)
  */
 function handleDropdownMouseEnter(event) {
+    console.log('handleDropdownMouseEnter called, isMobile:', isMobile());
     if (isMobile()) return;
     
     const dropdown = event.currentTarget;
+    console.log('handleDropdownMouseEnter: Opening dropdown');
     
     // Clear any pending close timer
     const timer = state.dropdownTimers.get(dropdown);
@@ -315,12 +338,20 @@ function setupMobileMenu() {
     const menu = document.querySelector(config.selectors.menu);
     
     if (!toggle || !menu) {
-        log('Mobile menu elements not found');
+        log('Mobile menu elements not found', { toggle: !!toggle, menu: !!menu });
         return;
     }
     
-    // Toggle button
+    log('Found mobile menu elements', { toggle, menu });
+    
+    // Toggle button - add both click and touch events for mobile compatibility
     toggle.addEventListener('click', handleToggleClick);
+    
+    // Add touch events for better mobile support (especially iOS)
+    if ('ontouchstart' in window) {
+        toggle.addEventListener('touchstart', handleToggleClick, { passive: false });
+        log('Added touchstart event listener');
+    }
     
     // Close menu when clicking links
     const menuLinks = menu.querySelectorAll(config.selectors.navLink);
@@ -336,14 +367,25 @@ function setupMobileMenu() {
  */
 function setupDropdowns() {
     const dropdowns = document.querySelectorAll(config.selectors.dropdown);
+    console.log('setupDropdowns: Found', dropdowns.length, 'dropdowns');
+    console.log('setupDropdowns: selector used:', config.selectors.dropdown);
     
     if (dropdowns.length === 0) {
+        console.error('%c❌ NO DROPDOWNS FOUND! Navigation dropdowns not initialized!', 'color: red; font-size: 14px; font-weight: bold;');
         log('No dropdown elements found');
+        // DIAGNOSTIC: List all elements with "dropdown" in their class
+        const allElements = document.querySelectorAll('[class*="dropdown"]');
+        console.log('setupDropdowns: Elements with "dropdown" in class:', allElements.length);
+        allElements.forEach((el, idx) => {
+            console.log('setupDropdowns: Element', idx, ':', el.tagName, el.className);
+        });
         return;
     }
     
-    dropdowns.forEach(dropdown => {
+    console.log('%c✓ Found dropdowns, setting up event listeners', 'color: green; font-size: 14px;');
+    dropdowns.forEach((dropdown, idx) => {
         const toggle = dropdown.querySelector(config.selectors.dropdownToggle);
+        console.log('setupDropdowns: Dropdown', idx, 'has toggle:', !!toggle);
         if (!toggle) return;
         
         // Click handler for mobile
@@ -385,6 +427,7 @@ function setupGlobalListeners() {
  * Initialize navigation component
  */
 function init(options = {}) {
+    console.log('Navigation init() called with options:', options);
     if (state.initialized) {
         log('Already initialized');
         return;
@@ -392,21 +435,42 @@ function init(options = {}) {
     
     log('Initializing...');
     
-    // Merge config
-    Object.assign(config, options);
-    
-    // Setup components
-    setupMobileMenu();
-    setupDropdowns();
-    setupGlobalListeners();
-    initScrollSpy();
-    
-    state.initialized = true;
-    
-    // Emit ready event
-    window.dispatchEvent(new CustomEvent('nav:ready'));
-    
-    log('Initialized ✓');
+    try {
+        // Merge config
+        Object.assign(config, options);
+        
+        // Setup components
+        setupMobileMenu();
+        setupDropdowns();
+        setupGlobalListeners();
+        initScrollSpy();
+        
+        state.initialized = true;
+        
+        // Mark navigation as initialized
+        console.log('About to set data-nav-init attribute on document.body');
+        document.body.setAttribute('data-nav-init', 'true');
+        console.log('Set data-nav-init attribute');
+        
+        // Debug: Check if attribute was set
+        const attrValue = document.body.getAttribute('data-nav-init');
+        console.log('Attribute check after setting:', attrValue);
+        
+        if (attrValue !== 'true') {
+            console.error('ERROR: Attribute was not set correctly! Expected "true", got:', attrValue);
+        } else {
+            console.log('SUCCESS: Attribute set correctly to "true"');
+        }
+        
+        // Emit ready event
+        window.dispatchEvent(new CustomEvent('nav:ready'));
+        
+        log('Initialized ✓');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+        log('Error during initialization:', error);
+        throw error;
+    }
 }
 
 /**
@@ -421,6 +485,9 @@ function destroy() {
     const toggle = document.querySelector(config.selectors.toggle);
     if (toggle) {
         toggle.removeEventListener('click', handleToggleClick);
+        if ('ontouchstart' in window) {
+            toggle.removeEventListener('touchstart', handleToggleClick);
+        }
     }
     
     // Remove menu link listeners
@@ -590,15 +657,27 @@ function handleNavLinkClick(event) {
 function initScrollSpy() {
     if (!config.scrollSpy.enabled) return;
     
-    // Show scroll spy navigation on index page
-    const isIndexPage = window.location.pathname === '/' || 
-                       window.location.pathname.endsWith('/index.html') ||
-                       window.location.pathname === '';
+    // Determine if we're on the homepage/index page
+    const pathname = window.location.pathname.toLowerCase();
+    const isIndexPage = pathname === '/' || 
+                       pathname === '' ||
+                       pathname.endsWith('/index.html') ||
+                       pathname.endsWith('/index');
+    
+    const scrollSpyItems = document.querySelectorAll('.nav-scroll-spy');
     
     if (isIndexPage) {
-        const scrollSpyItems = document.querySelectorAll('.nav-scroll-spy');
+        // Show scroll spy items ONLY on homepage
         scrollSpyItems.forEach(item => {
             item.style.display = '';
+        });
+    } else {
+        // Ensure scroll spy items are hidden on non-homepage pages
+        scrollSpyItems.forEach(item => {
+            // Force the display property to ensure .hidden class is respected
+            if (item.classList.contains('hidden')) {
+                item.style.display = 'none';
+            }
         });
     }
     
@@ -711,11 +790,20 @@ const NavigationComponentAPI = {
 export { NavigationComponentAPI as default, init, destroy, toggleMobileMenu, closeMobileMenu, openDropdown, closeDropdown, closeAllDropdowns, getState, configure, enableDebug, disableDebug, isMobile };
 
 // Auto-initialize when loaded as ES module (for pages that load this directly)
-if (typeof document !== 'undefined' && document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+if (typeof document !== 'undefined') {
+    console.log('Navigation component module loaded, checking DOM state:', document.readyState);
+    
+    if (document.readyState === 'loading') {
+        console.log('Navigation component: DOM loading, adding DOMContentLoaded listener');
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Navigation component: DOMContentLoaded fired, calling init()');
+            init();
+        });
+    } else {
+        // DOM already loaded
+        console.log('Navigation component: DOM already loaded, calling init() immediately');
         init();
-    });
-} else if (typeof document !== 'undefined') {
-    // DOM already loaded
-    init();
+    }
+} else {
+    console.log('Navigation component: document is undefined, skipping auto-init');
 }
