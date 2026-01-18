@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" width="800" height="220" role="img" aria-labelledby="demoTitle demoDesc">
+  <title id="demoTitle">Deploy and migrate demo</title>
+  <desc id="demoDesc">Diagram showing steps: validate, deploy, run migrations, verify</desc>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect x="16" y="40" width="180" height="64" rx="8" fill="#f3f4f6" stroke="#e5e7eb" />
+  <text x="106" y="80" fill="#0b1220" font-size="13" font-weight="600" text-anchor="middle">Validate (preflight)</text>
+
+  <rect x="210" y="40" width="180" height="64" rx="8" fill="#eef2ff" stroke="#c7d2fe" />
+  <text x="300" y="70" fill="#0b1220" font-size="13" font-weight="600" text-anchor="middle">Deploy (WranglerDeployer)</text>
+
+  <rect x="404" y="40" width="180" height="64" rx="8" fill="#ecfdf5" stroke="#bbf7d0" />
+  <text x="494" y="70" fill="#0b1220" font-size="13" font-weight="600" text-anchor="middle">Migrate (D1 manager)</text>
+
+  <rect x="598" y="40" width="180" height="64" rx="8" fill="#fff7ed" stroke="#ffedd5" />
+  <text x="688" y="70" fill="#0b1220" font-size="13" font-weight="600" text-anchor="middle">Verify & Monitor</text>
+
+  <g stroke="#111827" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="196" y1="72" x2="210" y2="72" />
+    <line x1="390" y1="72" x2="404" y2="72" />
+    <line x1="584" y1="72" x2="598" y2="72" />
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#111827" />
+    </marker>
+  </defs>
+
+  <!-- Small status badge -->
+  <g transform="translate(620,120)">
+    <rect width="140" height="40" rx="6" fill="url(#g1)" />
+    <text x="70" y="25" text-anchor="middle" font-weight="700" font-size="12" fill="#fff">Demo: Deploy → Migrate</text>
+  </g>
+</svg>

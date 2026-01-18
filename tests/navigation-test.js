@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Test configuration
-const BASE_URL = 'http://localhost:8002';
+const BASE_URL = 'http://localhost:8000';
 const VIEWPORTS = {
     mobile: { width: 375, height: 667, name: 'iPhone SE' },
     mobileLarge: { width: 414, height: 896, name: 'iPhone 11' },
@@ -130,7 +130,7 @@ async function testInitialState(page, viewport, pagePath) {
     }
 }
 
-async function testToggleFunctionality(page, viewport, pagePath) {
+async function testToggleFunctionality(page, viewport, pagePath, consoleLogs) {
     const testName = `[${viewport.name}] ${pagePath} - Toggle Functionality`;
     
     // Skip toggle test on desktop (menu always visible)
@@ -140,19 +140,53 @@ async function testToggleFunctionality(page, viewport, pagePath) {
     }
     
     try {
+        // Wait for navigation to initialize
+        await page.waitForFunction(() => {
+            return document.body.getAttribute('data-nav-init') === 'true';
+        }, { timeout: 5000 });
+        
+        // Check if navigation initialized
+        const currentUrl = await page.url();
+        const navInit = await page.$eval('body', el => el.getAttribute('data-nav-init'));
+        console.log(`Page ${currentUrl}: Navigation initialized: ${navInit}`);
+        
+        // Log initial state
+        const initialAria = await page.$eval('#mobile-menu-toggle', el => el.getAttribute('aria-expanded'));
+        const initialData = await page.$eval('#mobile-menu', el => el.getAttribute('data-visible'));
+        console.log(`Initial state: aria-expanded=${initialAria}, data-visible=${initialData}`);
+        
         // Click to open
+        console.log('About to click mobile menu toggle');
         await page.click('#mobile-menu-toggle');
+        console.log('Clicked mobile menu toggle');
         await page.waitForTimeout(300); // Wait for animation
         
-        const ariaExpandedOpen = await page.$eval('#mobile-menu-toggle', el => el.getAttribute('aria-expanded'));
-        const dataVisibleOpen = await page.$eval('#mobile-menu', el => el.getAttribute('data-visible'));
+        const ariaExpandedOpen = await page.$eval('#mobile-menu-toggle', el => {
+            console.log('Checking aria-expanded after click:', el.getAttribute('aria-expanded'));
+            return el.getAttribute('aria-expanded');
+        });
+        const dataVisibleOpen = await page.$eval('#mobile-menu', el => {
+            console.log('Checking data-visible after click:', el.getAttribute('data-visible'));
+            return el.getAttribute('data-visible');
+        });
+        const bodyHasClass = await page.$eval('body', el => el.classList.contains('mobile-menu-open'));
         const isVisibleOpen = await page.$eval('#mobile-menu', el => {
             const style = window.getComputedStyle(el);
+            console.log('Checking visibility after click:', {
+                display: style.display,
+                visibility: style.visibility,
+                opacity: style.opacity,
+                dataVisible: el.getAttribute('data-visible'),
+                computedDisplay: style.display !== 'none'
+            });
             return style.display !== 'none';
         });
         
+        console.log(`After click: aria-expanded=${ariaExpandedOpen}, data-visible=${dataVisibleOpen}, body-has-class=${bodyHasClass}, visible=${isVisibleOpen}`);
+        
         if (ariaExpandedOpen !== 'true' || dataVisibleOpen !== 'true' || !isVisibleOpen) {
-            recordTest(testName, false, `Open failed: aria-expanded=${ariaExpandedOpen}, data-visible=${dataVisibleOpen}, visible=${isVisibleOpen}`);
+            const debugInfo = consoleLogs.length > 0 ? `\nDebug logs:\n${consoleLogs.join('\n')}` : '';
+            recordTest(testName, false, `Open failed: aria-expanded=${ariaExpandedOpen}, data-visible=${dataVisibleOpen}, body-has-class=${bodyHasClass}, visible=${isVisibleOpen}${debugInfo}`);
             log(`${testName}: FAIL - Menu didn't open properly`, 'error');
             return false;
         }
@@ -163,13 +197,14 @@ async function testToggleFunctionality(page, viewport, pagePath) {
         
         const ariaExpandedClosed = await page.$eval('#mobile-menu-toggle', el => el.getAttribute('aria-expanded'));
         const dataVisibleClosed = await page.$eval('#mobile-menu', el => el.getAttribute('data-visible'));
+        const bodyHasClassClosed = await page.$eval('body', el => el.classList.contains('mobile-menu-open'));
         const isVisibleClosed = await page.$eval('#mobile-menu', el => {
             const style = window.getComputedStyle(el);
             return style.display !== 'none';
         });
         
         if (ariaExpandedClosed !== 'false' || dataVisibleClosed !== 'false' || isVisibleClosed) {
-            recordTest(testName, false, `Close failed: aria-expanded=${ariaExpandedClosed}, data-visible=${dataVisibleClosed}, visible=${isVisibleClosed}`);
+            recordTest(testName, false, `Close failed: aria-expanded=${ariaExpandedClosed}, data-visible=${dataVisibleClosed}, body-has-class=${bodyHasClassClosed}, visible=${isVisibleClosed}`);
             log(`${testName}: FAIL - Menu didn't close properly`, 'error');
             return false;
         }
@@ -275,18 +310,25 @@ async function runTestSuite() {
             });
             const page = await context.newPage();
             
+            // Capture console logs
+            const consoleLogs = [];
+            page.on('console', msg => {
+                consoleLogs.push(`${msg.type()}: ${msg.text()}`);
+                console.log(`[${new Date().toLocaleTimeString()}] ${msg.type()}: ${msg.text()}`);
+            });
+            
             for (const testPage of TEST_PAGES) {
                 const url = `${BASE_URL}${testPage.path}`;
                 log(`\n  🌐 Loading: ${testPage.name}`, 'info');
                 
                 try {
                     await page.goto(url, { waitUntil: 'networkidle' });
-                    await page.waitForTimeout(500); // Wait for JS initialization
+                    await page.waitForTimeout(1000); // Wait longer for JS initialization
                     
                     // Run all tests for this page/viewport combo
                     await testNavigationElements(page, viewport, testPage.name);
                     await testInitialState(page, viewport, testPage.name);
-                    await testToggleFunctionality(page, viewport, testPage.name);
+                    await testToggleFunctionality(page, viewport, testPage.name, consoleLogs);
                     await testCSSConsistency(page, viewport, testPage.name);
                     await testJavaScriptExecution(page, viewport, testPage.name);
                     

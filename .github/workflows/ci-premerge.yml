@@ -46,6 +46,9 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Verify asset manifest injected
+        run: node tools/verify_manifest.mjs
+
       - name: Enforce required schemas
         run: npm run check:required-schemas
 
@@ -86,6 +89,15 @@ jobs:
 
       - name: Run Playwright smoke tests
         run: npx playwright test --config=config/playwright.config.js tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
+
+      - name: Run preload-applied E2E test
+        run: npx playwright test --config=config/playwright.config.js tests/e2e/preload-applied.spec.js --project=chromium --reporter=github
+
+      - name: Upload preload diagnostics artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: preload-diagnostics
+          path: build/page-check-diagnostics/**
 
       - name: Run runtime smoke checks
         run: npm run test:smoke

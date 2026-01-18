@@ -1,0 +1,6 @@
+if (typeof window !== 'undefined') {
+window.Features = {
+Newsletter: typeof window.NewsletterAPI !== 'undefined' ? window.NewsletterAPI : null,
+Forms: typeof window.FormsAPI !== 'undefined' ? window.FormsAPI : null,
+};
+}

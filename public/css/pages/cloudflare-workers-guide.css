@@ -196,11 +196,12 @@
   flex-wrap: wrap;
 }
 
-.stat {
+/* Scoped to .hero-stats to avoid global duplication */
+.hero-stats .stat {
   text-align: center;
 }
 
-.stat-number {
+.hero-stats .stat-number {
   font-size: 2rem;
   font-weight: 700;
   color: #ffd700;
@@ -208,7 +209,7 @@
   margin-bottom: 0.25rem;
 }
 
-.stat-label {
+.hero-stats .stat-label {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
@@ -396,16 +397,14 @@
 
 /* ===== ENHANCED TABLE OF CONTENTS ===== */
 .sticky-toc {
-  position: sticky;
-  top: 2rem;
+  position: static;
   background: white;
   border: 1px solid var(--border-color);
   border-radius: var(--guide-border-radius);
   padding: 1.5rem;
   box-shadow: var(--guide-shadow);
   margin-bottom: 2rem;
-  max-height: calc(100vh - 4rem);
-  overflow-y: auto;
+  overflow-y: visible;
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) transparent;
 }
@@ -480,16 +479,13 @@
 }
 
 .sidebar {
-  position: sticky;
-  top: 2rem;
+  position: static;
   height: fit-content;
 }
 
 .sidebar .sticky-toc {
-  position: sticky;
-  top: 2rem;
-  max-height: calc(100vh - 4rem);
-  margin-bottom: 0;
+  position: static;
+  margin-bottom: 2rem;
 }
 
 /* Responsive behavior for mobile */
@@ -617,9 +613,7 @@
 /* Make TOC sticky only on larger screens where content layout allows */
 @media (min-width: 1200px) {
   .sticky-toc {
-    position: sticky;
-    top: 2rem;
-    max-height: calc(100vh - 4rem);
+    position: static;
   }
 }
 

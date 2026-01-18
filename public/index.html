@@ -38,6 +38,7 @@
     <!-- Preload Critical Resources ONLY -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/components-reusable.css"> <!-- canonical reusable components -->
     <!-- Page-specific styles deferred (non-critical content) -->
     <link rel="stylesheet" href="css/pages/index.css" media="print" onload="this.media='all'">
     
@@ -1086,18 +1087,18 @@ const token = clodo.generateToken({
                             <span>Open Source</span>
                         </div>
 
-                        <div class="cta-stats" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
-                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">60%</span>
-                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Cost Reduction</span>
+                        <div class="cta-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">60%</span>
+                                <span class="stat-label">Cost Reduction</span>
                             </div>
-                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">4hrs</span>
-                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Setup Time</span>
+                            <div class="stat-item">
+                                <span class="stat-number">4hrs</span>
+                                <span class="stat-label">Setup Time</span>
                             </div>
-                            <div class="stat-item" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                                <span class="stat-number" style="font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">50ms</span>
-                                <span class="stat-label" style="font-size: 0.875rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Global Latency</span>
+                            <div class="stat-item">
+                                <span class="stat-number">50ms</span>
+                                <span class="stat-label">Global Latency</span>
                             </div>
                         </div>
                     </div>
@@ -1230,9 +1231,6 @@ const token = clodo.generateToken({
     <!-- Lazy load below-the-fold CSS to improve LCP -->
     <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
     
-    <!-- Navigation component for mobile menu -->
-    <script type="module" src="js/ui/navigation-component.js" nonce="N0Nc3Cl0d0"></script>
-    
     <!-- Community Section Component -->
     <script src="js/components/community-section.js" nonce="N0Nc3Cl0d0"></script>
     
@@ -1243,6 +1241,7 @@ const token = clodo.generateToken({
     <!-- Using system fonts for optimal performance (removed Google Fonts) -->
 </body>
 </html>
+
 
 
 
