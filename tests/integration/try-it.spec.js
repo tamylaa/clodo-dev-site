@@ -94,8 +94,8 @@ test('Try It Live opens StackBlitz in popup window with correct dimensions', asy
     // Click the Try It Live button
     await btn.click();
 
-    // Wait for the click to be processed
-    await page.waitForTimeout(1000);
+    // Wait for the click to be processed and for the popup calls to appear
+    await page.waitForFunction(() => window.__popupCalls && window.__popupCalls.length > 0, { timeout: 5000 });
 
     // Check that window.open was called
     const calls = await page.evaluate(() => window.__popupCalls);
@@ -139,8 +139,8 @@ test('Try It Live popup contains valid StackBlitz URL', async ({ page }) => {
     // Click the button
     await btn.click();
 
-    // Wait for the click to be processed
-    await page.waitForTimeout(500);
+    // Wait for the click to be processed and for the URL to be captured
+    await page.waitForFunction(() => window.openedUrl, { timeout: 5000 });
 
     // Get the captured URL
     openedUrl = await page.evaluate(() => window.openedUrl);
@@ -184,8 +184,8 @@ test('Try It Live fallback works when module fails to load', async ({ page }) =>
     // Click the button
     await btn.click();
 
-    // Wait a bit for async operations
-    await page.waitForTimeout(500);
+    // Wait for async operations and for the popup params to be set
+    await page.waitForFunction(() => window.__popupParams, { timeout: 5000 });
 
     // Get the captured params
     popupParams = await page.evaluate(() => window.__popupParams);

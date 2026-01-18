@@ -13,7 +13,24 @@ console.log(`Running Lighthouse for ${url} -> ${outputPath}`);
 
 try {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  const baseCmd = `npx lighthouse ${url} --quiet --output=json --output-path=${outputPath} --chrome-flags="--headless"`;
+  const defaultBlocked = [
+    'https://www.clodo.dev/cdn-cgi/*',
+    'https://www.googletagmanager.com/*',
+    'https://static.cloudflareinsights.com/*',
+    'https://conversations-widget.brevo.com/*',
+    'https://widget.brevo.com/*'
+  ];
+
+  function buildBlockedArg(list) {
+    return `--blocked-url-patterns='${JSON.stringify([...new Set(list)])}'`;
+  }
+
+  // Allow optional overrides via LH_BLOCKED_URLS env var (comma-separated)
+  const envBlocked = process.env.LH_BLOCKED_URLS ? process.env.LH_BLOCKED_URLS.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const blockedList = defaultBlocked.concat(envBlocked);
+  const blockedArg = buildBlockedArg(blockedList);
+
+  const baseCmd = `npx lighthouse ${url} --quiet --output=json --output-path=${outputPath} --chrome-flags="--headless" ${blockedArg}`;
 
   // Run initial audit
   try {
@@ -24,20 +41,20 @@ try {
     const msg = err && err.message ? err.message : '';
     if (/interstitial|challenge|ERR_ADDRESS_UNREACHABLE|ERR_CONNECTION_REFUSED/i.test(msg) || err.status === 1) {
       console.warn('Runtime error encountered: Chrome interstitial or blocked resource detected. Retrying with blocked external patterns...');
-      const blocked = [
-        'https://www.clodo.dev/cdn-cgi/*',
-        'https://www.googletagmanager.com/*',
-        'https://static.cloudflareinsights.com/*'
-      ];
-      const retryCmd = `${baseCmd} --blocked-url-patterns='${JSON.stringify(blocked)}'`;
+      // Retry using the same blocked list (honoring any LH_BLOCKED_URLS overrides); log for debugging
+      console.warn('Retrying with blocked URL patterns to avoid interstitials or noisy third-party scripts...');
+      console.log('Blocked URL patterns in use:', JSON.stringify(blockedList, null, 2));
+
+      const retryCmd = `npx lighthouse ${url} --quiet --output=json --output-path=${outputPath} --chrome-flags="--headless" ${buildBlockedArg(blockedList)}`;
       try {
         execSync(retryCmd, { stdio: 'inherit' });
         console.log('Lighthouse audit completed with blocked URL patterns');
       } catch (err2) {
         console.warn('Blocking external URLs did not resolve the interstitial. Trying to map production host to localhost to avoid Cloudflare challenges...');
-        const mapCmd = baseCmd.replace('--chrome-flags="--headless"', `--chrome-flags="--headless --host-resolver-rules='MAP www.clodo.dev 127.0.0.1,MAP *.clodo.dev 127.0.0.1' --allow-insecure-localhost --ignore-certificate-errors"`);
+        const mapChromeFlags = `--headless --host-resolver-rules='MAP www.clodo.dev 127.0.0.1,MAP *.clodo.dev 127.0.0.1' --allow-insecure-localhost --ignore-certificate-errors`;
+        const mapCmd = `npx lighthouse ${url} --quiet --output=json --output-path=${outputPath} --chrome-flags="${mapChromeFlags}" ${buildBlockedArg(blockedList)}`;
         try {
-          execSync(`${mapCmd} --blocked-url-patterns='${JSON.stringify(blocked)}'`, { stdio: 'inherit' });
+          execSync(mapCmd, { stdio: 'inherit' });
           console.log('Lighthouse audit completed with host mapping to localhost');
         } catch (err3) {
           console.warn('Lighthouse audit failed after mapping host to localhost as well:', err3.message);
@@ -48,7 +65,7 @@ try {
             const trimmedUrl = url.replace(/\/+$/,'');
             const fallbackUrl = trimmedUrl + p;
             const fallbackOut = outputPath.replace(/(\.json)$/,'') + `.${p.replace(/[^a-z0-9]/gi,'_')}.json`;
-            const fbCmd = `npx lighthouse ${fallbackUrl} --quiet --output=json --output-path=${fallbackOut} --chrome-flags="--headless" --blocked-url-patterns='${JSON.stringify(blocked)}'`;
+            const fbCmd = `npx lighthouse ${fallbackUrl} --quiet --output=json --output-path=${fallbackOut} --chrome-flags="--headless" ${buildBlockedArg(blockedList)}`;
             try {
               execSync(fbCmd, { stdio: 'inherit' });
               console.log(`Lighthouse audit completed for fallback: ${fallbackUrl} -> ${fallbackOut}`);

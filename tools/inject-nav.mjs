@@ -4,7 +4,7 @@ import path from 'path';
 
 const ROOT = process.cwd();
 const TEMPLATE_NAV = path.join(ROOT, 'templates', 'nav-main.html');
-const TARGETS = [
+const TARGET_LIST = [
   'public/experiments/clodo-framework-api-simplification-variant-a.html',
   'public/experiments/clodo-framework-api-simplification-variant-b.html',
   'public/experiments/clodo-framework-promise-to-reality-variant-a.html',
@@ -12,26 +12,34 @@ const TARGETS = [
   'public/experiments/how-to-migrate-from-wrangler-variant-a.html',
   'public/experiments/how-to-migrate-from-wrangler-variant-b.html',
   'public/framework-comparison.html',
-  'public/i18n/de/clodo-framework-api-simplification.html',
-  'public/i18n/de/clodo-framework-promise-to-reality.html',
-  'public/i18n/de/how-to-migrate-from-wrangler.html',
   'public/multi-tenant-saas.html',
   'public/subscribe/thanks.html'
 ];
 
-const ALT_TARGETS = TARGETS.map(p => p.replace(/^public\//, 'dist/'));
+async function getHtmlFiles(dir) {
+  let results = [];
+  const list = await fs.readdir(dir);
+  for (const file of list) {
+    const filePath = path.join(dir, file);
+    const stat = await fs.stat(filePath);
+    if (stat && stat.isDirectory()) {
+      results = results.concat(await getHtmlFiles(filePath));
+    } else if (file.endsWith('.html')) {
+      results.push(path.relative(ROOT, filePath).replace(/\\/g, '/'));
+    }
+  }
+  return results;
+}
 
 async function injectNavInto(filePath, navHtml) {
   try {
     let content = await fs.readFile(filePath, 'utf8');
     if (content.includes('<nav class="navbar"')) {
-      console.log(`Already has nav: ${filePath}`);
       return false;
     }
 
     const bodyOpen = content.match(/<body[^>]*>/i);
     if (!bodyOpen) {
-      console.warn(`No <body> tag found in ${filePath} — skipping`);
       return false;
     }
 
@@ -51,7 +59,11 @@ async function injectNavInto(filePath, navHtml) {
     const navHtml = await fs.readFile(TEMPLATE_NAV, 'utf8');
     let changed = 0;
 
-    for (const rel of TARGETS) {
+    // Get all i18n files dynamically
+    const i18nFiles = await getHtmlFiles(path.join(ROOT, 'public', 'i18n'));
+    const allTargets = [...TARGET_LIST, ...i18nFiles];
+
+    for (const rel of allTargets) {
       const p = path.join(ROOT, rel);
       try {
         await fs.access(p);
@@ -62,16 +74,21 @@ async function injectNavInto(filePath, navHtml) {
       }
     }
 
-    for (const rel of ALT_TARGETS) {
-      const p = path.join(ROOT, rel);
-      try {
-        await fs.access(p);
-        const ok = await injectNavInto(p, navHtml);
-        if (ok) changed++;
-      } catch (e) {
-        // ignore missing dist copy
+    // Also handle dist if exists
+    const distI18n = path.join(ROOT, 'dist', 'i18n');
+    try {
+      await fs.access(distI18n);
+      const distFiles = await getHtmlFiles(distI18n);
+      const altTargets = TARGET_LIST.map(p => p.replace(/^public\//, 'dist/'));
+      for (const rel of [...altTargets, ...distFiles]) {
+        const p = path.join(ROOT, rel);
+        try {
+          await fs.access(p);
+          const ok = await injectNavInto(p, navHtml);
+          if (ok) changed++;
+        } catch (e) {}
       }
-    }
+    } catch (e) {}
 
     console.log(`\nDone. Nav injected into ${changed} files.`);
   } catch (err) {

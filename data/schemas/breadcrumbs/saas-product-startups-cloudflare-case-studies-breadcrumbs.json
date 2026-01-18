@@ -11,7 +11,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Saas Product Startups Cloudflare Case Studies",
+      "name": "Case Studies",
+      "item": "https://www.clodo.dev/case-studies"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Companies Using Cloudflare",
       "item": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies"
     }
   ]

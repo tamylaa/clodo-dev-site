@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dropdown Debug Test</title>
+</head>
+<body>
+    <h1>Dropdown Element Detection</h1>
+    <div id="results"></div>
+    
+    <script>
+        // Check if dropdowns exist in the page
+        const results = document.getElementById('results');
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        const toggles = document.querySelectorAll('.nav-dropdown-toggle');
+        const menus = document.querySelectorAll('.nav-dropdown-menu');
+        
+        results.innerHTML = `
+            <pre>
+Page loaded at: ${new Date().toLocaleTimeString()}
+
+Dropdowns found: ${dropdowns.length}
+Toggle buttons found: ${toggles.length}
+Dropdown menus found: ${menus.length}
+
+Dropdown Details:
+${Array.from(dropdowns).map((dd, i) => `
+  Dropdown ${i}:
+    - HTML: ${dd.outerHTML.substring(0, 100)}...
+    - Toggle: ${dd.querySelector('.nav-dropdown-toggle')?.textContent}
+    - aria-expanded: ${dd.querySelector('.nav-dropdown-toggle')?.getAttribute('aria-expanded')}
+`).join('\n')}
+
+Navigation Component State:
+${window.navigationComponent ? 'Navigation component found' : 'Navigation component NOT found'}
+${window.navigationInit ? 'navigationInit function found' : 'navigationInit NOT found'}
+            </pre>
+        `;
+    </script>
+</body>
+</html>

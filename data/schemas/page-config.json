@@ -164,47 +164,41 @@
       ]
     },
     "saas-product-startups-cloudflare-case-studies.html": {
-      "title": "10 Companies Using Cloudflare: Real Case Studies 2026",
-      "headline": "10 Companies Using Cloudflare: Real Case Studies 2026",
+      "title": "Evaluate 10 Companies Using Cloudflare: Case Studies 2026",
+      "headline": "Evaluate 10 Companies Using Cloudflare: Case Studies 2026",
       "url": "https://clodo.dev/saas-product-startups-cloudflare-case-studies",
-      "description": "See how Discord (85% edge), Shopify (100% Workers), GitHub (95% CDN) and 7 other major SaaS companies leverage Cloudflare's edge computing platform for global performance, security, and scale.",
+      "description": "Comprehensive evaluation of Cloudflare as a frontend cloud platform using case studies from Discord, Shopify, & GitHub. Metrics on collaboration, application delivery, and edge computing.",
       "industry": "Enterprise SaaS Case Studies",
       "metrics": [
         {
           "name": "Average Edge Delivery",
           "description": "Percentage of requests processed at Cloudflare edge",
-          "value": 89,
+          "value": 60,
           "unitText": "percent"
         },
         {
           "name": "Cloudflare Workers Adoption",
           "description": "Companies using Cloudflare Workers for serverless functions",
-          "value": 7,
+          "value": 4,
           "unitText": "of 10 companies"
         },
         {
           "name": "Security Uptime",
           "description": "Average DDoS mitigation and security enhancement",
-          "value": 99.9,
+          "value": 99.99,
           "unitText": "percent uptime"
         },
         {
           "name": "Performance Gain",
-          "description": "Average latency reduction",
-          "value": 40,
+          "description": "Average latency reduction for edge assets",
+          "value": 45,
           "unitText": "percent faster"
         },
         {
           "name": "Cost Efficiency",
-          "description": "Infrastructure cost reduction vs traditional CDN",
-          "value": 65,
+          "description": "Infrastructure cost reduction vs traditional hosting",
+          "value": 55,
           "unitText": "percent savings"
-        },
-        {
-          "name": "Global Coverage",
-          "description": "Cloudflare edge locations providing redundancy",
-          "value": 300,
-          "unitText": "locations worldwide"
         }
       ]
     },
