@@ -91,7 +91,7 @@ jobs:
         run: npx playwright test --config=config/playwright.config.js tests/integration/seo-smoke.spec.js tests/integration/newsletter-redirect.spec.js tests/integration/try-it.spec.js --project=chromium --reporter=github
 
       - name: Run preload-applied E2E test
-        run: npx playwright test tests/e2e/preload-applied.spec.js --project=chromium --reporter=github
+        run: npx playwright test --config=config/playwright.config.js tests/e2e/preload-applied.spec.js --project=chromium --reporter=github
 
       - name: Upload preload diagnostics artifacts
         uses: actions/upload-artifact@v4
