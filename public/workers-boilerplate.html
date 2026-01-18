@@ -35,6 +35,8 @@
     <!-- Preload critical styles and use init-preload.js to swap to hashed assets when available -->
     <link rel="preload" href="/css/components-reusable.css" as="style"><noscript><link rel="stylesheet" href="/css/components-reusable.css"></noscript>
     <link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>
+    <!-- Page-specific styles deferred (non-critical content) -->
+    <link rel="stylesheet" href="/css/pages/workers-boilerplate.css" media="print" onload="this.media='all'">
     
     <meta name="author" content="Clodo Framework">
     <script type="application/ld+json">
@@ -77,15 +79,36 @@
     </script>
     </head>
 <body>
-    <header><!--#include file="../templates/nav-main.html" --></header> 
+    <!--#include file="../templates/nav-main.html" -->
+    <header>
+    </header>
 
     <main>
-        <article>
-            <header id="hero" class="hero hero-section">
-                <h1 id="hero-title">Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison</h1>
-                <p class="subtitle hero-subtitle">Find the perfect starting point for your Cloudflare Workers project with our comprehensive comparison of popular boilerplates and frameworks.</p>
-            </header>
+        <!-- Enhanced Hero Section -->
+        <section class="hero-section enhanced-hero">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="hero-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Complete Guide
+                    </span>
+                </div>
+                <h1 id="hero-title">Cloudflare Workers Boilerplates</h1>
+                <p class="hero-subtitle">Find the perfect starter template for your Cloudflare Workers project. Compare frameworks, features, and deployment options.</p>
+                <div class="hero-actions">
+                    <a href="#popular-boilerplates" class="btn btn--primary">
+                        Explore Templates
+                    </a>
+                    <a href="#feature-comparison" class="btn btn--secondary">
+                        Compare Features
+                    </a>
+                </div>
+            </div>
+        </section>
 
+        <article>
             <nav id="page-toc" class="page-toc table-of-contents" aria-label="Table of contents">
                 <h2>On this page</h2>
                 <!-- JS will populate this list. The content below is a fallback for non-JS users -->
@@ -344,23 +367,26 @@ async function handle(req) {
                 <p>Begin with a minimal template and add features as needed. Most boilerplates support incremental enhancement without complete rewrites.</p>
             </section>
         </article>
-    </main>
+   </main>
+    <!--#include file="../templates/footer.html" -->
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Clodo Framework. All rights reserved.</p>
-            <nav>
-                <a href="/privacy">Privacy</a>
-                <a href="https://github.com/clodo/clodo" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </nav>
-        </div>
-    </footer>
+    <!-- Defer JavaScript - load after LCP for better performance -->
+    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/announcements-manager.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
 
-    <!-- Load CSS and JS -->
-    <script src="/script.js" defer nonce="N0Nc3Cl0d0"></script>
+    <!-- Lazy load below-the-fold CSS to improve LCP -->
+    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
 
-    <!-- Page TOC and code helpers (moved to external file) -->
-    <script src="/js/workers-boilerplate.js" nonce="N0Nc3Cl0d0" defer></script>
+    <!-- Interactive features for enhanced user experience -->
+    <script src="js/pages/workers-boilerplate.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
+    <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
+    <!-- This replaces Cloudflare auto-injection with optimized manual control -->
+    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+
 </body>
 </html>
 <parameter name="filePath">G:\coding\clodo-dev-site\public\workers-boilerplate.html
+

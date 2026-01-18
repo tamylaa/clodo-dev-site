@@ -575,6 +575,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'css/pages/migrate.css', manifestKey: 'styles-migrate.css' },
                     { name: 'css/pages/case-studies.css', manifestKey: 'styles-case-studies.css' },
                     { name: 'css/pages/community.css', manifestKey: 'styles-community.css' },
+                    { name: 'css/pages/workers-boilerplate.css', manifestKey: 'styles-workers-boilerplate.css' },
                     { name: 'css/pages/saas-product-startups-cloudflare-case-studies.css', manifestKey: 'styles-saas-product-startups-cloudflare-case-studies.css' },
                     { name: 'css/pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css', manifestKey: 'styles-cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css' }
                 ];
@@ -833,6 +834,9 @@ function bundleCss() {
         ],
         'community': [
             'css/pages/community.css'
+        ],
+        'workers-boilerplate': [
+            'css/pages/workers-boilerplate.css'
         ],
         'clodo-framework-guide': [
             'css/pages/clodo-framework-guide.css'
@@ -1210,6 +1214,27 @@ function copyAssets() {
                 copyFileSync(srcPath, destPath);
             }
         }
+    }
+
+    // Copy images directory if present
+    const imagesSrc = join('public', 'images');
+    const imagesDest = join('dist', 'images');
+    if (existsSync(imagesSrc)) {
+        mkdirSync(imagesDest, { recursive: true });
+        for (const entry of readdirSync(imagesSrc)) {
+            const srcPath = join(imagesSrc, entry);
+            const destPath = join(imagesDest, entry);
+            const stat = statSync(srcPath);
+            if (stat.isDirectory()) {
+                mkdirSync(destPath, { recursive: true });
+                for (const sub of readdirSync(srcPath)) {
+                    copyFileSync(join(srcPath, sub), join(destPath, sub));
+                }
+            } else {
+                copyFileSync(srcPath, destPath);
+            }
+        }
+        console.log('[ASSETS] Copied images/ to dist/images/');
     }
 
     // Copy downloads directory (contains validator-scripts.zip) if present at repo root

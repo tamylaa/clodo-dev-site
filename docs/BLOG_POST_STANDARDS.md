@@ -242,11 +242,12 @@ Minimum 3 related articles with:
     <h4>📬 Stay Informed</h4>
     <p>Get monthly insights on edge computing...</p>
     <form class="newsletter-form">
-        <input type="email" placeholder="Enter your email" required>
+        <label for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" name="email" placeholder="Enter your email" required>
         <button type="submit" class="btn btn--primary">Subscribe</button>
         <div class="consent">
-            <input type="checkbox" required>
-            <label>I accept the Privacy Policy</label>
+            <input id="newsletter-consent" type="checkbox" name="consent" required>
+            <label for="newsletter-consent">I accept the Privacy Policy</label>
         </div>
     </form>
 </div>
