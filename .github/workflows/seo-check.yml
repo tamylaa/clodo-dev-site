@@ -15,9 +15,15 @@ jobs:
         with:
           node-version: '22'
       
+      - name: Generate SEO URL list from sitemap
+        run: |
+          echo "Generating data/seo-urls.txt from public/sitemap.xml"
+          mkdir -p data
+          node -e "const fs=require('fs'); const xml=fs.readFileSync('public/sitemap.xml','utf8'); const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]); fs.writeFileSync('data/seo-urls.txt', urls.join('\n')); console.log('Wrote', urls.length, 'URLs')"
+
       - name: Run SEO check
         run: |
-          echo "🔍 Running SEO checker on 59 URLs..."
+          echo "🔍 Running SEO checker on $(wc -l < data/seo-urls.txt || echo '?') URLs..."
           node scripts/seo/seo-checker.mjs --input data/seo-urls.txt --config config/seo-checker.json --output reports/seo-report-${{ github.run_id }}.csv
           echo "✅ SEO check complete"
       
