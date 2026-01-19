@@ -48,8 +48,34 @@ async function loadConfig(file) {
 }
 
 function readUrls(file) {
-  const raw = fs.readFileSync(path.resolve(process.cwd(), file), 'utf8');
-  return raw.split(/\r?\n/).map(s => s.trim()).filter(Boolean).filter(s => !s.startsWith('#'));
+  const p = path.resolve(process.cwd(), file);
+  try {
+    const raw = fs.readFileSync(p, 'utf8');
+    return raw.split(/\r?\n/).map(s => s.trim()).filter(Boolean).filter(s => !s.startsWith('#'));
+  } catch (e) {
+    // If the requested input file is missing, try to generate it from public/sitemap.xml (makes CI resilient).
+    const sitemapPath = path.resolve(process.cwd(), 'public', 'sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      try {
+        const xml = fs.readFileSync(sitemapPath, 'utf8');
+        const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+        if (urls.length) {
+          try {
+            fs.mkdirSync(path.dirname(p), { recursive: true });
+            fs.writeFileSync(p, urls.join('\n'), 'utf8');
+            console.warn(`Input file ${file} not found; generated from sitemap.xml (${urls.length} URLs)`);
+            return urls;
+          } catch (writeErr) {
+            console.warn('Generated URL list but failed to write input file:', writeErr.message);
+            return urls;
+          }
+        }
+      } catch (readSitemapErr) {
+        // Fall through to the generic error below.
+      }
+    }
+    throw new Error(`Input URL file not found: ${file} (tried to generate from public/sitemap.xml)`);
+  }
 }
 
 function normalizeForCompare(url) {
