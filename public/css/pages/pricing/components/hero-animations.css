@@ -1,78 +1,26 @@
-/* ===========================================
-   PRICING PAGE - HERO ANIMATIONS
-   ===========================================
-   
-   Keyframe animations for hero section
-   Smooth transitions and entrance effects
-   =========================================== */
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* Hero Animations - pricing copy (copied from index hero animations) */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-badge {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+@keyframes expandWidth {
+    from { width: 0; opacity: 0; }
+    to { width: 100%; opacity: 1; }
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 0 rgba(59, 130, 246, 0.7);
-    }
-    70% {
-        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 10px rgba(59, 130, 246, 0);
-    }
-    100% {
-        box-shadow: 0 8px 25px rgb(59 130 246 / 30%), 0 0 0 0 rgba(59, 130, 246, 0);
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
+
+/* Local animation hooks */
+.hero-badge__icon { animation: pulse 2s ease-in-out infinite; }
+
+.btn-primary { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn-secondary { transition: all var(--transition-normal); }

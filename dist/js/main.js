@@ -21,6 +21,7 @@
 // Static imports for critical features to avoid CSP issues with dynamic imports
 // import { init as newsletterInit } from './features/newsletter.js';
 import { init as stackblitzInit } from './integrations/stackblitz.js';
+import { init as navigationInit } from './ui/navigation-component.js';
 
 // Core modules are loaded as IIFEs and available on window object
 // import PerformanceMonitor from './core/performance-monitor.js';
@@ -393,6 +394,14 @@ async function initFeatures() {
     console.log('[Main.js] Initializing page features...');
     console.log('[Main.js] DOM ready state:', document.readyState);
     console.log('[Main.js] Current URL:', window.location.href);
+
+    // Initialize navigation component immediately (critical for mobile menu)
+    try {
+        navigationInit();
+        console.log('[Main.js] ✓ Navigation component initialized');
+    } catch (error) {
+        console.error('[Main.js] Failed to initialize navigation component:', error);
+    }
 
     // Start resource failure diagnostics (detect 503s and other resource-level errors)
     initResourceFailureMonitoring();

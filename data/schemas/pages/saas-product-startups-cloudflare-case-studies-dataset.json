@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Cloudflare Edge Delivery Metrics for 10 SaaS Platforms (2026)",
+  "description": "A technical dataset covering edge delivery percentages, architecture patterns, and Cloudflare product adoption (Workers, KV, WAF, CDN) across 10 major SaaS platforms including Discord, Shopify, GitHub, and Notion.",
+  "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": [
+    "cloudflare metrics",
+    "edge delivery percentage",
+    "saas infrastructure data",
+    "cloudflare workers adoption rates",
+    "edge computing benchmarks"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "Clodo Framework Research"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies"
+    }
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "Edge Delivery Percentage",
+      "description": "Estimated percentage of traffic delivered from Cloudflare edge locations"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Architecture Pattern",
+      "description": "Classification as All-In Edge or Hybrid architecture"
+    }
+  ],
+  "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "Clodo Framework Performance Lab"
+  }
+}

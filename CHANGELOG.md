@@ -13,6 +13,8 @@
 
 ### Fixed
 - Updated navigation component tests to assert `data-visible` attribute for mobile menu state to match implementation; all unit tests now pass ✅
+- JS minifier fixed to avoid stripping characters inside regex literals which caused a SyntaxError in `init-preload.js`; added unit test for `minifyJs`. ✅
+- Added Playwright E2E test `tests/e2e/preload-applied.spec.js` to assert that `rel="preload" as="style"` links are converted/applied and that no critical console errors occur. ✅
 
 ---
 

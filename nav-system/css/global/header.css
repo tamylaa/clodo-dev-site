@@ -263,7 +263,7 @@ header {
     background: var(--bg-secondary);
 }
 
-.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu {
+.nav-dropdown.open .nav-dropdown-menu {
     display: block;
 }
 

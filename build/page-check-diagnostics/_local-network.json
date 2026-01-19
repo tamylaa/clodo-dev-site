@@ -1,0 +1,77 @@
+{
+  "url": "http://localhost:8002/cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
+  "cssRequests": [
+    {
+      "url": "http://localhost:8002/css/components-reusable.css",
+      "status": 200,
+      "length": 0,
+      "snippet": ".table-of-contents{background-color:var(--color-white);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:var(--spacing-xl);margin-bottom:var(--spacing-xl);position:sticky;top:var(--spacing-lg);z-index:10;max-height:calc(100vh - 2 * var(--spacing-lg));overflow-y:auto}.table-of-contents h2{margin:0 0 var(--spacing-lg) 0;font-size:1.25rem;font-weight:600;color:var(--text-color)}.table-of-contents nav ul{list-style:none;padding:0;margin:0}.table-of-contents nav li{margin-bo"
+    },
+    {
+      "url": "http://localhost:8002/styles.617ad8d4.css",
+      "status": 200,
+      "length": 0,
+      "snippet": "*{box-sizing:border-box}html{scroll-behavior:smooth;transition:background-color var(--transition-normal),color var(--transition-normal);color-scheme:light dark}img{max-width:100%;height:auto}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.1s !important;animation-iteration-count:1 !important;transition-duration:0ms !important}}:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-"
+    },
+    {
+      "url": "http://localhost:8002/styles-cloudflare-top-10-saas-edge-computing-workers-case-study-docs.9539a5cc.css",
+      "status": 200,
+      "length": 0,
+      "snippet": ".enhanced-hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:4rem 0;position:relative;overflow:hidden}.enhanced-hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"grid\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><path d=\"M 10 0 L 0 0 0 10\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"0.5\"/></pattern></defs>"
+    }
+  ],
+  "styleSheets": [
+    {
+      "href": "http://localhost:8002/css/components-reusable.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": "http://localhost:8002/styles.617ad8d4.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": "http://localhost:8002/styles-cloudflare-top-10-saas-edge-computing-workers-case-study-docs.9539a5cc.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": null,
+      "ownerNode": "STYLE"
+    },
+    {
+      "href": null,
+      "ownerNode": "STYLE"
+    }
+  ],
+  "computedStyles": {
+    "hero": null,
+    "toc": {
+      "display": "block",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(17, 24, 39)",
+      "borderTopColor": "rgb(14, 165, 233)",
+      "position": "relative"
+    },
+    "comparison": {
+      "display": "block",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "color": "rgb(17, 24, 39)",
+      "borderTopColor": "rgb(128, 128, 128)",
+      "position": "static"
+    }
+  },
+  "console": [
+    {
+      "type": "log",
+      "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+    },
+    {
+      "type": "log",
+      "text": "[Announcements] Manager initialized"
+    },
+    {
+      "type": "log",
+      "text": "[Announcements] Found 1 global announcement(s) for this page"
+    }
+  ],
+  "screenshot": "G:\\coding\\clodo-dev-site\\build\\page-check-diagnostics\\_local-network.png"
+}

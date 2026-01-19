@@ -534,7 +534,8 @@
     text-align: center;
 }
 
-.stat-number {
+/* Scoped to .stat-card to avoid global duplication */
+.stat-card .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--color-text-secondary);
@@ -550,7 +551,7 @@
     color: var(--color-text-secondary);
 }
 
-.stat-label {
+.stat-card .stat-label {
     font-size: 0.9rem;
     color: var(--color-text-secondary);
     margin-top: 0.5rem;
