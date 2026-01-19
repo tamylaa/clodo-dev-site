@@ -38,8 +38,12 @@ jobs:
       - name: Generate priority fixes report
         run: |
           echo "📊 Generating priority fixes report..."
-          node reports/generate-priority-fixes.mjs
-          echo "✅ Priority fixes report generated"
+          if [ -f "reports/generate-priority-fixes.mjs" ]; then
+            node reports/generate-priority-fixes.mjs
+            echo "✅ Priority fixes report generated"
+          else
+            echo "⚠️ Skipping: reports/generate-priority-fixes.mjs not found"
+          fi
       
       - name: Generate summary
         if: always()
