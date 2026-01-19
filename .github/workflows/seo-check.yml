@@ -30,7 +30,9 @@ jobs:
       - name: Run canonical consistency check
         run: |
           echo "🔗 Checking canonical consistency..."
-          node scripts/seo/check-canonical-consistency.mjs
+          REPORT_JSON=reports/seo-report-${{ github.run_id }}.json
+          if [ ! -f "$REPORT_JSON" ]; then echo "Expected report not found: $REPORT_JSON"; exit 1; fi
+          node scripts/seo/check-canonical-consistency.mjs "$REPORT_JSON"
           echo "✅ Canonical check complete"
       
       - name: Generate priority fixes report
