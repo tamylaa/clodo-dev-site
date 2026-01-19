@@ -131,8 +131,34 @@
             
             // Always load common deferred styles (interactive states, animations)
             if (deferredStyles['common']) {
-                debugLog('Loading common deferred styles');
-                loadDeferredCSS(deferredStyles['common']);
+                // Avoid duplicating work when the stylesheet is already present (preloaded or applied).
+                try {
+                    const hrefToCheck = deferredStyles['common'];
+                    const basename = hrefToCheck.split('/').pop();
+
+                    // Look for existing link elements (stylesheet or preload) matching the same basename
+                    const existingLink = Array.from(document.querySelectorAll('link[rel="stylesheet"], link[rel="preload"]'))
+                        .find(ln => {
+                            try {
+                                const h = ln.getAttribute('href') || '';
+                                return h.endsWith(basename) || h.indexOf(basename) !== -1;
+                            } catch (e) { return false; }
+                        });
+
+                    // Also check applied styleSheets for the same basename
+                    const sheetDetected = Array.from(document.styleSheets)
+                        .some(s => s && s.href && s.href.indexOf(basename) !== -1);
+
+                    if (existingLink || sheetDetected) {
+                        debugLog('Skipping deferred load; stylesheet already present: ' + (existingLink ? (existingLink.href || existingLink.getAttribute('href')) : 'detected in document.styleSheets'));
+                    } else {
+                        debugLog('Loading common deferred styles');
+                        loadDeferredCSS(deferredStyles['common']);
+                    }
+                } catch (e) {
+                    debugLog('Error while checking existing styles, proceeding to load: ' + (e && e.message ? e.message : e));
+                    loadDeferredCSS(deferredStyles['common']);
+                }
             } else {
                 debugLog('ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest');
             }
