@@ -212,13 +212,8 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Cloudflare Pages Setup -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-pages-setup</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+    <!-- Cloudflare Pages Setup — removed (no corresponding page found in repo) -->
+    <!-- Removed <url> for https://www.clodo.dev/cloudflare-pages-setup to avoid canonical mismatch in SEO scans -->
 
     <!-- Cloudflare Workers Guide -->
     <url>
