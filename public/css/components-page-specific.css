@@ -132,36 +132,7 @@
 }
 
 /* ===== COMPARISON TABLES ===== */
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--spacing-lg) 0;
-    background-color: var(--color-white);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-
-.comparison-table th,
-.comparison-table td {
-    padding: var(--spacing-md);
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.comparison-table th {
-    background-color: var(--color-gray-50);
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.comparison-table tr:last-child td {
-    border-bottom: none;
-}
-
-.comparison-table tr:hover {
-    background-color: var(--color-gray-25);
-}
+/* Moved to `public/css/components-reusable.css` to avoid duplication across pages */
 
 /* ===== USE CASES ===== */
 .use-cases {
@@ -757,14 +728,7 @@ dd {
         grid-template-columns: 1fr;
     }
 
-    .comparison-table {
-        font-size: 0.875rem;
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-        padding: var(--spacing-sm);
-    }
+    /* `.comparison-table` compact variant moved to `public/css/components-reusable.css` under responsive rules. */
 
     dl {
         grid-template-columns: 1fr;

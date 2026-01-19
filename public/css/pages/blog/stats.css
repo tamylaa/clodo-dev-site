@@ -40,7 +40,8 @@
 
 /* ===== STAT NUMBER ===== */
 
-.stat-number {
+/* Scoped to .stat-card to avoid global duplication */
+.stat-card .stat-number {
     font-size: clamp(2rem, 8vw, 2.5rem);
 
     /* Fluid size */
@@ -96,7 +97,8 @@
 
 /* ===== STAT LABEL ===== */
 
-.stat-label {
+/* Scoped to .stat-card to avoid global duplication */
+.stat-card .stat-label {
     font-size: 0.875rem;
 
     /* Smaller on mobile */

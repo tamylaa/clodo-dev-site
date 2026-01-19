@@ -85,7 +85,8 @@
     border-radius: 12px;
 }
 
-.stat-number {
+/* Scoped to .stat-card to reduce global duplication */
+.stat-card .stat-number {
     font-size: clamp(2.25rem, 6vw, 3.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
@@ -101,7 +102,8 @@
     transform: scale(1.05);
 }
 
-.stat-label {
+/* Scoped to .stat-card to reduce global duplication */
+.stat-card .stat-label {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);

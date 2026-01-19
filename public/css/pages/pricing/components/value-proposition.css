@@ -220,7 +220,8 @@
     border-left-color: #fbbf24;
 }
 
-.stat-number {
+/* Scoped to .value-stat to avoid global duplication */
+.value-stat .stat-number {
     font-size: clamp(1.5rem, 4vw, 1.875rem);
     font-weight: 900;
     color: var(--accent-color, var(--primary-color));
@@ -231,7 +232,8 @@
     color: #fbbf24;
 }
 
-.stat-label {
+/* Scoped to .value-stat to avoid global duplication */
+.value-stat .stat-label {
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text-secondary);

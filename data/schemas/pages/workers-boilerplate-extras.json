@@ -1,0 +1,73 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Quick Setup",
+    "description": "Quick setup steps to scaffold and deploy a Clodo project.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "1. Create Your Project",
+        "text": "Use our CLI to scaffold a new Clodo project with all enterprise features pre-configured."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "2. Configure Environment",
+        "text": "Set up your Cloudflare account, D1 database, and KV namespaces through our guided setup."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "3. Deploy to Production",
+        "text": "One-command deployment with automatic scaling, monitoring, and security."
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Clodo Framework",
+    "codeRepository": "https://github.com/clodo/clodo",
+    "programmingLanguage": "TypeScript",
+    "url": "https://github.com/clodo/clodo",
+    "license": "MIT",
+    "runtimePlatform": "Cloudflare Workers"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Wrangler Templates",
+    "codeRepository": "https://github.com/cloudflare/workers-sdk/tree/main/templates",
+    "programmingLanguage": "",
+    "url": "https://github.com/cloudflare/workers-sdk/tree/main/templates",
+    "license": "",
+    "runtimePlatform": "GitHub"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Hono Framework",
+    "codeRepository": "https://github.com/honojs/hono",
+    "programmingLanguage": "",
+    "url": "https://github.com/honojs/hono",
+    "license": "",
+    "runtimePlatform": "GitHub"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Itty Router",
+    "codeRepository": "https://github.com/kwhitley/itty-router",
+    "programmingLanguage": "",
+    "url": "https://github.com/kwhitley/itty-router",
+    "license": "",
+    "runtimePlatform": "GitHub"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "analytics-service (generated example)",
+    "description": "Example generated Cloudflare Worker used to derive boilerplate recommendations.",
+    "programmingLanguage": "TypeScript",
+    "runtimePlatform": "Cloudflare Workers"
+  }
+]

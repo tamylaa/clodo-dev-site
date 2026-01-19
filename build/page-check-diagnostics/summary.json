@@ -1,0 +1,1816 @@
+{
+  "checked": 13,
+  "timestamp": "2026-01-15T17:59:24.706Z",
+  "results": [
+    {
+      "url": "https://www.clodo.dev/clodo-framework-guide.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/clodo-framework-guide",
+      "canonical": "https://www.clodo.dev/clodo-framework-guide",
+      "console": [
+        {
+          "type": "error",
+          "text": "Refused to execute inline script because it violates the following Content Security Policy directive: \"script-src-elem 'self' 'nonce-N0Nc3Cl0d0' https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com https://conversations-widget.brevo.com\". Either the 'unsafe-inline' keyword, a hash ('sha256-EGXdwO8NqxELdPuEVCw958nwPA517DP4ONV8w7TUAJg='), or a nonce ('nonce-...') is required to enable inline execution.\n"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/clodo-framework-guide"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 64 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> styles-index-deferred.246a782f.css"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":\"/styles-index-deferred.246a782f.css\",\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /clodo-framework-guide)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_clodo-framework-guide.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/clodo-framework-promise-to-reality.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/clodo-framework-promise-to-reality",
+      "canonical": "https://www.clodo.dev/clodo-framework-promise-to-reality",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/clodo-framework-promise-to-reality"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 0 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /clodo-framework-promise-to-reality)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_clodo-framework-promise-to-reality.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/clodo-vs-lambda.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/clodo-vs-lambda",
+      "canonical": "https://www.clodo.dev/clodo-vs-lambda",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/clodo-vs-lambda"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 0 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: complete"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /clodo-vs-lambda)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_clodo-vs-lambda.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/cloudflare-framework.html",
+      "ok": false,
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.clodo.dev/cloudflare-framework.html\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/cloudflare-framework"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 64 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> styles-index-deferred.246a782f.css"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":\"/styles-index-deferred.246a782f.css\",\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /cloudflare-framework)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Copy button functionality initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Manager initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Found 1 global announcement(s) for this page"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: Organization"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: WebSite"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with structured data"
+        },
+        {
+          "type": "warning",
+          "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+        },
+        {
+          "type": "warning",
+          "text": "Form input without label (selector): input[placeholder=\"your@email.com\"]"
+        },
+        {
+          "type": "log",
+          "text": "✅ Accessibility enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Accessibility] accessibility.js loaded dynamically"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Rendered with 2500ms delay: migration-2025"
+        },
+        {
+          "type": "log",
+          "text": "[BrevoChat] Widget loaded successfully"
+        }
+      ]
+    },
+    {
+      "url": "https://www.clodo.dev/cloudflare-workers-guide.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/cloudflare-workers-guide",
+      "canonical": "https://www.clodo.dev/cloudflare-workers-guide",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/cloudflare-workers-guide"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 64 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> styles-index-deferred.246a782f.css"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":\"/styles-index-deferred.246a782f.css\",\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /cloudflare-workers-guide)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Manager initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Found 1 page-specific announcement(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Copy button functionality initialized"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: Organization"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: WebSite"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with structured data"
+        },
+        {
+          "type": "warning",
+          "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Accessibility enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Accessibility] accessibility.js loaded dynamically"
+        },
+        {
+          "type": "log",
+          "text": "[BrevoChat] Widget loaded successfully"
+        },
+        {
+          "type": "log",
+          "text": "{AKGCx8: b}"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Rendered with 3000ms delay: workers-guide-tip"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_cloudflare-workers-guide.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/cloudflare-workers-development-guide.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/cloudflare-workers-development-guide",
+      "canonical": "https://www.clodo.dev/cloudflare-workers-development-guide",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/cloudflare-workers-development-guide"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 64 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> styles-index-deferred.246a782f.css"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":\"/styles-index-deferred.246a782f.css\",\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Manager initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Announcements] Found 1 global announcement(s) for this page"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /cloudflare-workers-development-guide)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: Organization"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: WebSite"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with structured data"
+        },
+        {
+          "type": "warning",
+          "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_cloudflare-workers-development-guide.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization",
+      "canonical": "https://www.clodo.dev/cloudflare-workers-cold-start-optimization",
+      "console": [
+        {
+          "type": "error",
+          "text": "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+        },
+        {
+          "type": "error",
+          "text": "Refused to apply inline style because it violates the following Content Security Policy directive: \"style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com\". Either the 'unsafe-inline' keyword, a hash ('sha256-DxnsNGXWrUTKqHReDzj0/4T+Jj0GmGWAO/bcqVCSJ+k='), or a nonce ('nonce-...') is required to enable inline execution.\n"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_cloudflare-workers-cold-start-optimization.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/workers-boilerplate.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/workers-boilerplate",
+      "canonical": "https://www.clodo.dev/workers-boilerplate",
+      "console": [],
+      "screenshot": "build\\page-check-diagnostics\\_workers-boilerplate.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/workers-vs-lambda.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/workers-vs-lambda",
+      "canonical": "https://www.clodo.dev/workers-vs-lambda",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/workers-vs-lambda"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 0 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /workers-vs-lambda)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Copy button functionality initialized"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: Organization"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: WebSite"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with structured data"
+        },
+        {
+          "type": "warning",
+          "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Accessibility enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Accessibility] accessibility.js loaded dynamically"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_workers-vs-lambda.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/wrangler-to-clodo-migration.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/wrangler-to-clodo-migration",
+      "canonical": "https://www.clodo.dev/wrangler-to-clodo-migration",
+      "console": [
+        {
+          "type": "warning",
+          "text": "A preload for 'https://www.clodo.dev/js/main.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute."
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_wrangler-to-clodo-migration.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/worker-scaffolding-tools.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/worker-scaffolding-tools",
+      "canonical": "https://www.clodo.dev/worker-scaffolding-tools",
+      "console": [
+        {
+          "type": "warning",
+          "text": "A preload for 'https://www.clodo.dev/js/main.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute."
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_worker-scaffolding-tools.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/what-is-cloudflare-workers.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/what-is-cloudflare-workers",
+      "canonical": "https://www.clodo.dev/what-is-cloudflare-workers",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/what-is-cloudflare-workers"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 0 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /what-is-cloudflare-workers)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: Organization"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Added structured data: WebSite"
+        },
+        {
+          "type": "log",
+          "text": "[SEO] Initialized with structured data"
+        },
+        {
+          "type": "warning",
+          "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_what-is-cloudflare-workers.html.png"
+    },
+    {
+      "url": "https://www.clodo.dev/how-to-migrate-from-wrangler.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.clodo.dev/how-to-migrate-from-wrangler",
+      "canonical": "https://www.clodo.dev/how-to-migrate-from-wrangler",
+      "console": [
+        {
+          "type": "log",
+          "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing core features..."
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing page features..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Current URL: https://www.clodo.dev/how-to-migrate-from-wrangler"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found newsletter forms: 1"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found StackBlitz buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Found onclick buttons: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Importing newsletter module..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Script started"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Asset manifest loaded: 0 entries"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Document already loaded, calling immediately"
+        },
+        {
+          "type": "log",
+          "text": "Analytics: Already loaded, skipping"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] requestAnimationFrame fired"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Initializing deferred features..."
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] loadPageDeferredCSS called"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.readyState: interactive"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] document.head: exists"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Is index page: false (pathname: /how-to-migrate-from-wrangler)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Not loading index styles (non-index page detected)"
+        },
+        {
+          "type": "log",
+          "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+        },
+        {
+          "type": "warning",
+          "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] Newsletter import successful, init function: function"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Form initialized: JSHandle@node"
+        },
+        {
+          "type": "log",
+          "text": "[Newsletter] Initialized 1 form(s)"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Newsletter form handler initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] StackBlitz check: false Elements found: 0"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] No StackBlitz elements found, skipping module load"
+        },
+        {
+          "type": "log",
+          "text": "[Main.js] ✓ Brevo chat loaded"
+        }
+      ],
+      "screenshot": "build\\page-check-diagnostics\\_how-to-migrate-from-wrangler.html.png"
+    }
+  ]
+}

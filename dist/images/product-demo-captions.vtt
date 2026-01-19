@@ -1,0 +1,13 @@
+WEBVTT
+
+00:00.000 --> 00:03.000
+Validate environment and Wrangler auth
+
+00:03.000 --> 00:08.000
+Deploy to staging via Clodo
+
+00:08.000 --> 00:12.000
+Run D1 migrations
+
+00:12.000 --> 00:15.000
+Verify deployment and health checks

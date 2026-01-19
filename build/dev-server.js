@@ -218,9 +218,17 @@ let server = createServer((req, res) => {
             }
         }
 
+        const bytes = Buffer.byteLength(data, 'utf8');
+        console.log(`[dev-server] Serving ${req.url} -> ${filePath} (${bytes} bytes, type=${contentType})`);
         res.writeHead(200, { 'Content-Type': contentType });
-        res.end(data);
+        try {
+            res.end(data, () => { console.log(`[dev-server] Finished ${req.url}`); });
+        } catch (err) {
+            console.error(`[dev-server] Error while sending ${req.url}:`, err);
+            try { res.end(); } catch (e) { /* ignore */ }
+        }
     } catch (error) {
+        console.error('[dev-server] Unhandled server error while serving', req.url, error);
         res.writeHead(500);
         res.end('Server error');
     }

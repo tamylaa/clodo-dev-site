@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS :has() Selector Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .test-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        /* Test 1: Basic :has() selector */
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .dropdown {
+            position: relative;
+            width: 200px;
+        }
+        
+        .dropdown-toggle {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 4px;
+            list-style: none;
+            padding: 0;
+            z-index: 1000;
+        }
+        
+        /* This is the key test - does :has() work? */
+        .dropdown:has(.dropdown-toggle[aria-expanded="true"]) .dropdown-menu {
+            display: block;
+            background: #f0f0f0;
+        }
+        
+        .dropdown-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .result.pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .result.fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS :has() Selector & Navigation Dropdown Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: :has() Selector Support</h2>
+        <div class="container">
+            <div class="dropdown" id="test-dropdown">
+                <button class="dropdown-toggle" id="test-toggle" aria-expanded="false">
+                    Click to toggle dropdown
+                </button>
+                <ul class="dropdown-menu">
+                    <li>Option 1</li>
+                    <li>Option 2</li>
+                    <li>Option 3</li>
+                </ul>
+            </div>
+        </div>
+        <p id="has-result" class="result"></p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Navigation Dropdowns from Actual Page</h2>
+        <iframe src="http://localhost:8000/" style="width: 100%; height: 400px; border: 1px solid #ccc;"></iframe>
+    </div>
+    
+    <script>
+        // Test :has() selector
+        const dropdown = document.getElementById('test-dropdown');
+        const toggle = document.getElementById('test-toggle');
+        const result = document.getElementById('has-result');
+        
+        // Test if :has() works
+        function testHas() {
+            // Try to get computed styles of the menu when toggle is expanded
+            const testToggle = document.createElement('button');
+            testToggle.className = 'dropdown-toggle';
+            testToggle.setAttribute('aria-expanded', 'true');
+            
+            const testContainer = document.createElement('div');
+            testContainer.className = 'dropdown';
+            testContainer.style.display = 'none';
+            testContainer.appendChild(testToggle);
+            
+            const testMenu = document.createElement('ul');
+            testMenu.className = 'dropdown-menu';
+            testContainer.appendChild(testMenu);
+            
+            document.body.appendChild(testContainer);
+            
+            const computedDisplay = window.getComputedStyle(testMenu).display;
+            document.body.removeChild(testContainer);
+            
+            return computedDisplay === 'block';
+        }
+        
+        const hasSupported = testHas();
+        result.className = 'result ' + (hasSupported ? 'pass' : 'fail');
+        result.textContent = (hasSupported ? '✓ PASS' : '✗ FAIL') + ': CSS :has() selector ' + (hasSupported ? 'IS' : 'IS NOT') + ' supported';
+        
+        // Toggle test
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !isExpanded);
+        });
+        
+        // Also test the actual navigation dropdown on the page
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const navDropdowns = document.querySelectorAll('.nav-dropdown');
+                const navToggles = document.querySelectorAll('.nav-dropdown-toggle');
+                console.log('Navigation dropdowns found:', navDropdowns.length);
+                console.log('Navigation toggles found:', navToggles.length);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

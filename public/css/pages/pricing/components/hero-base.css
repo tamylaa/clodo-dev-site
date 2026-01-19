@@ -45,7 +45,8 @@
     margin: 0 auto;
 }
 
-.hero-content {
+/* Scoped for pricing hero variant */
+.hero-section.pricing-hero .hero-content {
     position: relative;
     z-index: 2;
     width: 100%;

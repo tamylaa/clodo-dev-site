@@ -7,8 +7,204 @@
   <meta name="description" content="Comparación completa de frameworks Cloudflare: Clodo vs Hono vs Worktop para Cloudflare Workers. Características, performance y cuál framework elegir para tus aplicaciones edge.">
   <link rel="canonical" href="https://www.clodo.dev/i18n/es-419/framework-comparison">
   
-    </head>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+      {
+            "@type": "Question",
+            "name": "¿Cuál es la diferencia entre Clodo, Hono y Worktop?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Clodo ofrece funciones de nivel empresarial sin inicios en frío, mientras que Hono se enfoca en enrutamiento ligero y Worktop proporciona utilidades mínimas. Clodo incluye integración de base de datos integrada, soporte multi-tenant y herramientas de implementación listas para producción."
+            }
+      },
+      {
+            "@type": "Question",
+            "name": "¿Qué framework debería elegir para aplicaciones de producción?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Elija Clodo para aplicaciones empresariales que requieren alto rendimiento y confiabilidad. Use Hono para APIs ligeras y Worktop para utilidades simples. Clodo proporciona el conjunto de funciones más completo para implementaciones de producción."
+            }
+      },
+      {
+            "@type": "Question",
+            "name": "¿Clodo soporta todas las funciones de Cloudflare Workers?",
+            "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, Clodo es completamente compatible con todas las APIs y funciones de Cloudflare Workers mientras agrega capacidades empresariales como integración de base de datos, caché avanzado y soporte multi-tenant."
+            }
+      }
+]
+    }
+    </script>
+</head>
 <body>
+<nav class="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="/" class="logo" aria-label="Clodo Framework home">
+            <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                <defs>
+                    <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1d4ed8"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                </defs>
+                <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+            </svg>
+            <span class="logo-text">Clodo</span>
+        </a>
+
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle touch-target" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="hamburger">
+                <span class="hamburger__line hamburger__line--top"></span>
+                <span class="hamburger__line hamburger__line--middle"></span>
+                <span class="hamburger__line hamburger__line--bottom"></span>
+            </span>
+        </button>
+
+        <ul class="nav-menu" id="mobile-menu" data-visible="false" role="menu" aria-label="Main navigation">
+            <li role="none"><a href="/" class="nav-link touch-target" role="menuitem">Home</a></li>
+            <li class="nav-dropdown" role="none">
+                <a href="/product" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Product</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/product" class="nav-dropdown-link touch-target" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="/migrate" class="nav-dropdown-link touch-target" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link touch-target" role="menuitem">Community</a></li>
+
+                    <li class="nav-dropdown-divider" role="separator"></li>
+
+                    <!-- Comparisons Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>⚖️ Comparisons</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Edge Computing</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown" role="none">
+                <a href="#" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Learn</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <!-- Documentation Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/docs" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
+                            <strong>📚 Documentation</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Components</a></li>
+                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Development & Deployment</a></li>
+                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">API Simplification</a></li>
+
+                    <li class="nav-dropdown-divider" role="separator"></li>
+
+                    <!-- Guides Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>🚀 Guides</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="/cloudflare-framework" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Framework Guide</a></li>
+                    <li role="none"><a href="/workers-boilerplate" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers Boilerplates</a></li>
+                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Migration Guide</a></li>
+                    <li role="none"><a href="/product#wrangler-automation" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Wrangler Automation</a></li>
+                    <li role="none"><a href="/clodo-framework-promise-to-reality" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Framework Promise to Reality</a></li>
+
+                    <li class="nav-dropdown-divider" role="separator"></li>
+
+                    <!-- Examples Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/examples" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
+                            <strong>💡 Examples</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/examples" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Code Examples & Templates</a></li>
+
+                    <li class="nav-dropdown-divider" role="separator"></li>
+
+                    <!-- Help & Support Section -->
+                    <li class="nav-dropdown-section">
+                        <span class="nav-dropdown-link nav-dropdown-section-title">
+                            <strong>❓ Help & Support</strong>
+                        </span>
+                    </li>
+                    <li role="none"><a href="/faq" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Frequently Asked Questions</a></li>
+
+                    <li class="nav-dropdown-divider" role="separator"></li>
+
+                    <!-- Case Studies Section -->
+                    <li class="nav-dropdown-section">
+                        <a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem">
+                            <strong>📈 Case Studies</strong>
+                        </a>
+                    </li>
+                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Real-world Implementations</a></li>
+                    <li role="none"><a href="/saas-product-startups-cloudflare-case-studies" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Companies Using Cloudflare</a></li>
+                </ul>
+            </li>
+            <li role="none"><a href="/blog" class="nav-link touch-target" role="menuitem">Blog</a></li>
+            <li role="none"><a href="/pricing" class="nav-link touch-target" role="menuitem">Pricing</a></li>
+            <!-- Scroll spy navigation for index page -->
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#key-benefits" class="nav-link touch-target" role="menuitem">Benefits</a>
+            </li>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#features" class="nav-link touch-target" role="menuitem">Features</a>
+            </li>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#comparison" class="nav-link touch-target" role="menuitem">Comparison</a>
+            </li>
+            <li class="nav-scroll-spy hidden" role="none">
+                <a href="#architecture" class="nav-link touch-target" role="menuitem">Architecture</a>
+            </li>
+            <li class="nav-dropdown" role="none">
+                <a href="/about" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">About</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/about" class="nav-dropdown-link touch-target" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="/privacy" class="nav-dropdown-link touch-target" role="menuitem">Privacy Policy</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle touch-target" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn touch-target" target="_blank" rel="noopener" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span id="star-count" aria-label="GitHub stars">0</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="/js/ui/nav-fallback.js"></script>
+</nav>
+
+
   <div style="padding:1rem; background:#f3f4f6; border-left:4px solid #3b82f6;">
     <strong>Localized page</strong> — es-419
   </div>

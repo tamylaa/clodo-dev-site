@@ -143,6 +143,49 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
         if (existsSync(srcPath)) {
             let content = readFileSync(srcPath, 'utf8');
 
+            // Inject asset manifest into the page <head> EARLY so init-preload and defer-css
+            // can access hashed filenames immediately and avoid 'preloaded but not used' warnings
+            try {
+                const manifestScript = `<script nonce="N0Nc3Cl0d0">window.__assetManifest__=${JSON.stringify(assetManifest)};</script>`;
+                if (content.indexOf('<head>') !== -1) {
+                    content = content.replace('<head>', `<head>\n    ${manifestScript}`);
+                }
+
+                // Rewrite known preload hrefs to hashed filenames when available (avoid timing mismatch)
+                try {
+                    if (assetManifest['styles.css']) {
+                        content = content.replace(/<link rel="preload" href="\/styles\.css"/g, `<link rel="preload" href="/${assetManifest['styles.css']}"`);
+                        content = content.replace(/<noscript><link rel="stylesheet" href="\/styles\.css"><\/noscript>/g, `<noscript><link rel="stylesheet" href="/${assetManifest['styles.css']}"></noscript>`);
+                    }
+                    const componentsKey = assetManifest['css/components-reusable.css'] || assetManifest['components-reusable.css'] || null;
+                    if (componentsKey) {
+                        content = content.replace(/<link rel="preload" href="\/css\/components-reusable\.css"/g, `<link rel="preload" href="/${componentsKey}"`);
+                        content = content.replace(/<noscript><link rel="stylesheet" href="\/css\/components-reusable\.css"><\/noscript>/g, `<noscript><link rel="stylesheet" href="/${componentsKey}"></noscript>`);
+                    }
+                } catch (e) {
+                    console.warn('[MANIFEST] Failed to rewrite preload hrefs for ' + srcPath + ':', e.message);
+                }
+
+                // If we have preloaded styles, ensure init-preload script runs AFTER all preload links
+                try {
+                    const initPreloadJs = assetManifest['js/init-preload.js'] || 'js/init-preload.js';
+                    if (content.includes('<link rel="preload"') && !content.includes(`<script src="/${initPreloadJs}"></script>`)) {
+                        // Prefer inserting right before the page-specific styles deferred comment so it runs after all preloads
+                        if (content.includes('<!-- Page-specific styles deferred (non-critical content) -->')) {
+                            content = content.replace('<!-- Page-specific styles deferred (non-critical content) -->', `    <script src="/${initPreloadJs}"></script>\n    <!-- Page-specific styles deferred (non-critical content) -->`);
+                        } else {
+                            // Fallback: append after the last preload occurrence
+                            content = content.replace(/(<link rel="preload" href="[^"]+" as="style">)(?![\s\S]*<link rel="preload")/, `$1\n    <script src="/${initPreloadJs}"></script>`);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[MANIFEST] Failed to insert init-preload script for ' + srcPath + ':', e.message);
+                }
+
+            } catch (e) {
+                console.warn('[MANIFEST] Failed to inject asset manifest into ' + srcPath + ':', e.message);
+            }
+
             // Calculate path prefix for subdirectory files
             const fileDir = dirname(file);
             const isSubdirectory = fileDir !== '.' && fileDir !== '';
@@ -460,6 +503,17 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 }
             }
 
+            // Normalize any remaining relative references to styles.css to the hashed asset to avoid 404s
+            try {
+                const hashedCommon = assetManifest['styles.css'] || 'styles.css';
+                if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
+                    content = content.replace(/href="(?:\.\.\/)?styles\.css"/g, `href="/${hashedCommon}"`);
+                    console.log(`   ✅ Normalized remaining styles.css references to /${hashedCommon}`);
+                }
+            } catch (e) {
+                console.warn(`   ⚠️  Failed to normalize styles.css references: ${e && e.message ? e.message : e}`);
+            }
+
             // Add defer attribute to non-critical scripts to reduce main-thread blocking & improve LCP
             // Skip scripts that must run early (theme/init-preload) or are module scripts (type="module")
             try {
@@ -503,7 +557,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'config/features.js', variable: configFeaturesJs },
                     { name: 'ui/navigation-component.js', variable: navigationJs },
                     { name: 'pages/cloudflare-workers-guide.js', variable: assetManifest['js/pages/cloudflare-workers-guide.js'] || 'js/pages/cloudflare-workers-guide.js' },
-                    { name: 'pages/cloudflare-framework.js', variable: assetManifest['js/pages/cloudflare-framework.js'] || 'js/pages/cloudflare-framework.js' }
+                    { name: 'pages/cloudflare-framework.js', variable: assetManifest['js/pages/cloudflare-framework.js'] || 'js/pages/cloudflare-framework.js' },
+                    { name: 'pages/workers-boilerplate.js', variable: assetManifest['js/workers-boilerplate.js'] || assetManifest['js/pages/workers-boilerplate.js'] || 'js/pages/workers-boilerplate.js' }
                 ];
 
                 scriptReplacements.forEach(({ name, variable }) => {
@@ -532,7 +587,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'css/pages/migrate.css', manifestKey: 'styles-migrate.css' },
                     { name: 'css/pages/case-studies.css', manifestKey: 'styles-case-studies.css' },
                     { name: 'css/pages/community.css', manifestKey: 'styles-community.css' },
-                    { name: 'css/pages/saas-product-startups-cloudflare-case-studies.css', manifestKey: 'styles-saas-product-startups-cloudflare-case-studies.css' }
+                    { name: 'css/pages/workers-boilerplate.css', manifestKey: 'styles-workers-boilerplate.css' },
+                    { name: 'css/pages/saas-product-startups-cloudflare-case-studies.css', manifestKey: 'styles-saas-product-startups-cloudflare-case-studies.css' },
+                    { name: 'css/pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css', manifestKey: 'styles-cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css' }
                 ];
 
                 pageCssReplacements.forEach(({ name, manifestKey }) => {
@@ -545,6 +602,24 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                         console.log(`   ✅ Replaced page CSS: ${name} → /${hashedFile}`);
                     }
                 });
+
+                // Fallback: replace any css/pages/<pageName>.css links with hashed assets when possible
+                // This covers any page bundles we might have missed in the explicit mapping above
+                try {
+                    Object.keys(assetManifest).forEach((key) => {
+                        if (!key.startsWith('styles-')) return;
+                        const pageName = key.replace(/^styles-/, '').replace(/\.css$/, '');
+                        const pageHref = `css/pages/${pageName}.css`;
+                        const hashed = assetManifest[key];
+                        const fallbackRegex = new RegExp(`(<link[^>]*href=["'])(?:\\.?\\/)?${pageHref}(["'][^>]*>)`, 'g');
+                        if (fallbackRegex.test(content)) {
+                            content = content.replace(fallbackRegex, `$1/${hashed}$2`);
+                            console.log(`   ✅ Fallback replaced ${pageHref} → /${hashed}`);
+                        }
+                    });
+                } catch (e) {
+                    console.warn(`   ⚠️  Page CSS fallback replacement failed: ${e.message}`);
+                }
             } catch (e) {
                 // Non-fatal - leave CSS as-is if replacement fails
                 console.warn(`⚠️  Page CSS href replacement failed: ${e.message}`);
@@ -772,6 +847,9 @@ function bundleCss() {
         'community': [
             'css/pages/community.css'
         ],
+        'workers-boilerplate': [
+            'css/pages/workers-boilerplate.css'
+        ],
         'clodo-framework-guide': [
             'css/pages/clodo-framework-guide.css'
         ],
@@ -993,15 +1071,7 @@ function minifyCss() {
     });
 }
 
-// Simple JS Minifier
-function minifyJs(code) {
-    return code
-        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
-        .replace(/(?<!:)\/\/.*/g, '') // Remove single-line comments
-        .replace(/^\s+|\s+$/gm, '') // Trim lines
-        .replace(/\n+/g, '\n') // Remove empty lines
-        ;
-}
+import { minifyJs } from './utils/minify.js';
 
 // Copy JavaScript with minification
 function copyJs() {
@@ -1156,6 +1226,27 @@ function copyAssets() {
                 copyFileSync(srcPath, destPath);
             }
         }
+    }
+
+    // Copy images directory if present
+    const imagesSrc = join('public', 'images');
+    const imagesDest = join('dist', 'images');
+    if (existsSync(imagesSrc)) {
+        mkdirSync(imagesDest, { recursive: true });
+        for (const entry of readdirSync(imagesSrc)) {
+            const srcPath = join(imagesSrc, entry);
+            const destPath = join(imagesDest, entry);
+            const stat = statSync(srcPath);
+            if (stat.isDirectory()) {
+                mkdirSync(destPath, { recursive: true });
+                for (const sub of readdirSync(srcPath)) {
+                    copyFileSync(join(srcPath, sub), join(destPath, sub));
+                }
+            } else {
+                copyFileSync(srcPath, destPath);
+            }
+        }
+        console.log('[ASSETS] Copied images/ to dist/images/');
     }
 
     // Copy downloads directory (contains validator-scripts.zip) if present at repo root

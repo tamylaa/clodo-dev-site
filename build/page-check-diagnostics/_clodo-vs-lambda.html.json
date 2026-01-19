@@ -1,0 +1,150 @@
+{
+  "url": "https://www.clodo.dev/clodo-vs-lambda.html",
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://www.clodo.dev/clodo-vs-lambda",
+  "canonical": "https://www.clodo.dev/clodo-vs-lambda",
+  "console": [
+    {
+      "type": "log",
+      "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing core features..."
+    },
+    {
+      "type": "warning",
+      "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing page features..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] DOM ready state: interactive"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Current URL: https://www.clodo.dev/clodo-vs-lambda"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found newsletter forms: 1"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found StackBlitz buttons: 0"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found onclick buttons: 0"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Importing newsletter module..."
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Script started"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Asset manifest loaded: 0 entries"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Document already loaded, calling immediately"
+    },
+    {
+      "type": "log",
+      "text": "Analytics: Already loaded, skipping"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] requestAnimationFrame fired"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing deferred features..."
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] loadPageDeferredCSS called"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] document.readyState: complete"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] document.head: exists"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Is index page: false (pathname: /clodo-vs-lambda)"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Not loading index styles (non-index page detected)"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+    }
+  ],
+  "screenshot": "build\\page-check-diagnostics\\_clodo-vs-lambda.html.png"
+}

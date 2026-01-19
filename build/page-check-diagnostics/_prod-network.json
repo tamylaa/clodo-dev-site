@@ -1,0 +1,267 @@
+{
+  "url": "https://clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
+  "cssRequests": [
+    {
+      "url": "https://www.clodo.dev/styles.617ad8d4.css",
+      "status": 200,
+      "length": 0,
+      "snippet": "*{box-sizing:border-box}html{scroll-behavior:smooth;transition:background-color var(--transition-normal),color var(--transition-normal);color-scheme:light dark}img{max-width:100%;height:auto}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.1s !important;animation-iteration-count:1 !important;transition-duration:0ms !important}}:root{--primary-50:rgb(239 246 255);--primary-100:rgb(219 234 254);--primary-200:rgb(191 219 254);--primary-300:rgb(147 197 253);--primary-"
+    },
+    {
+      "url": "https://www.clodo.dev/styles-saas-product-startups-cloudflare-case-studies.41ab1966.css",
+      "status": 200,
+      "length": 0,
+      "snippet": ".enhanced-hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:4rem 0;position:relative;overflow:hidden}.enhanced-hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"grid\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><path d=\"M 10 0 L 0 0 0 10\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"0.5\"/></pattern></defs>"
+    }
+  ],
+  "styleSheets": [
+    {
+      "href": null,
+      "ownerNode": "STYLE"
+    },
+    {
+      "href": "https://www.clodo.dev/styles.617ad8d4.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": "https://www.clodo.dev/styles-saas-product-startups-cloudflare-case-studies.41ab1966.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": "https://www.clodo.dev/styles-saas-product-startups-cloudflare-case-studies.41ab1966.css",
+      "ownerNode": "LINK"
+    },
+    {
+      "href": null,
+      "ownerNode": "STYLE"
+    }
+  ],
+  "computedStyles": {
+    "hero": null,
+    "toc": {
+      "display": "block",
+      "backgroundColor": "rgb(248, 250, 252)",
+      "color": "rgb(17, 24, 39)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "position": "static"
+    },
+    "comparison": {
+      "display": "block",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "color": "rgb(17, 24, 39)",
+      "borderTopColor": "rgb(128, 128, 128)",
+      "position": "static"
+    }
+  },
+  "console": [
+    {
+      "type": "error",
+      "text": "Refused to execute inline event handler because it violates the following Content Security Policy directive: \"script-src 'self' 'nonce-N0Nc3Cl0d0' https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com\". Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present.\n"
+    },
+    {
+      "type": "log",
+      "text": "ℹ️ init-systems.js: Core module loading has been disabled (unused modules removed)"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] 🚀 Initializing Clodo Framework modules..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing core features..."
+    },
+    {
+      "type": "warning",
+      "text": "[Main.js] PerformanceMonitor not found on window, attempting dynamic import..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing page features..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] DOM ready state: interactive"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Current URL: https://www.clodo.dev/saas-product-startups-cloudflare-case-studies"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] FeatureFlags object: {FEATURES: Object, isFeatureEnabled: , getFeatureConfig: , getEnabledFeatures: , isBrowserSupported: }"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Enabled features: [ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT]"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] NEWSLETTER_MODULE enabled: true"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Enabled features: ES6_MODULES, NEWSLETTER_MODULE, INTERSECTION_OBSERVER, IDLE_CALLBACK, PRELOAD_STRATEGY, BUTTON_RIPPLE_EFFECT, BUTTON_MICRO_INTERACTIONS, DARK_MODE, BREVO_CHAT"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found newsletter forms: 1"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found StackBlitz buttons: 0"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Found onclick buttons: 0"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Newsletter form check: true NEWSLETTER_MODULE enabled: true"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Importing newsletter module..."
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Script started"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Asset manifest loaded: 0 entries"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] WARNING: Manifest is empty! Possible browser cache issue or manifest not injected."
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Index deferred CSS lookup: \"styles-index-deferred.css\" -> NOT FOUND"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Common deferred CSS lookup: \"css/components-deferred.css\" -> NOT FOUND"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: Index deferred CSS not found in manifest - styles may not load!"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: Common deferred CSS not found in manifest - styles may not load!"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Deferred styles resolved: {\"index\":null,\"common\":null}"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Document already loaded, calling immediately"
+    },
+    {
+      "type": "log",
+      "text": "Analytics: Already loaded, skipping"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] requestAnimationFrame fired"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Initializing deferred features..."
+    },
+    {
+      "type": "log",
+      "text": "[Announcements] Manager initialized"
+    },
+    {
+      "type": "log",
+      "text": "[Announcements] Found 1 global announcement(s) for this page"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] loadPageDeferredCSS called"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] document.readyState: complete"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] document.head: exists"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] ERROR: No common deferred styles to load - manifest may be empty or CSS not found in manifest"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Is index page: false (pathname: /saas-product-startups-cloudflare-case-studies)"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Not loading index styles (non-index page detected)"
+    },
+    {
+      "type": "log",
+      "text": "[defer-css] Page-specific CSS is already preloaded and converted to stylesheet by init-preload.js"
+    },
+    {
+      "type": "warning",
+      "text": "[Main.js] SEO not found on window, attempting dynamic import..."
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] Newsletter import successful, init function: function"
+    },
+    {
+      "type": "log",
+      "text": "[Newsletter] Form initialized: JSHandle@node"
+    },
+    {
+      "type": "log",
+      "text": "[Newsletter] Initialized 1 form(s)"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] ✓ Newsletter form handler initialized"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] StackBlitz check: false Elements found: 0"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] No StackBlitz elements found, skipping module load"
+    },
+    {
+      "type": "log",
+      "text": "[Main.js] ✓ Brevo chat loaded"
+    },
+    {
+      "type": "log",
+      "text": "[SEO] Initialized with base URL: https://www.clodo.dev"
+    },
+    {
+      "type": "log",
+      "text": "[SEO] Added structured data: Organization"
+    },
+    {
+      "type": "log",
+      "text": "[SEO] Added structured data: WebSite"
+    },
+    {
+      "type": "log",
+      "text": "[SEO] Initialized with structured data"
+    },
+    {
+      "type": "warning",
+      "text": "[Accessibility] Not available - attempting dynamic import of accessibility module..."
+    },
+    {
+      "type": "log",
+      "text": "{AKGCx8: b}"
+    }
+  ],
+  "screenshot": "G:\\coding\\clodo-dev-site\\build\\page-check-diagnostics\\_prod-network.png"
+}

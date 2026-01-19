@@ -1,0 +1,55 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Evaluate 10 Companies Using Cloudflare: Case Studies 2026",
+  "url": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies",
+  "description": "Comprehensive evaluation of Cloudflare as a frontend cloud platform using case studies from Discord, Shopify, & GitHub. Detailed analysis of collaboration features, application delivery metrics, and edge computing maturity.",
+  "proficiencyLevel": "Intermediate",
+  "dependencies": "Cloudflare Workers, CDN, Security Suite",
+  "author": {
+    "@type": "Organization",
+    "name": "Clodo Framework Team",
+    "url": "https://www.clodo.dev"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clodo Framework",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.clodo.dev/icons/icon.svg"
+    }
+  },
+  "datePublished": "2026-01-04T00:00:00.000Z",
+  "dateModified": "2026-01-18T00:00:00.000Z",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.clodo.dev/og-image-saas-research.png"
+  },
+  "wordCount": 3500,
+  "readingTime": "35 min",
+  "keywords": [
+    "evaluate frontend cloud platforms",
+    "cloudflare collaboration evaluation",
+    "cloudflare application delivery metrics",
+    "cloudflare api request volume",
+    "edge computing case studies",
+    "Cloudflare Workers",
+    "SaaS architecture"
+  ],
+  "mentions": [
+    { "@type": "Organization", "name": "Discord" },
+    { "@type": "Organization", "name": "Shopify" },
+    { "@type": "Organization", "name": "GitHub" },
+    { "@type": "Organization", "name": "Slack" },
+    { "@type": "Organization", "name": "Notion" }
+  ],
+  "about": [
+    { "@type": "Thing", "name": "Edge Computing" },
+    { "@type": "Thing", "name": "Cloudflare Workers" },
+    { "@type": "Thing", "name": "SaaS Infrastructure" }
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.clodo.dev/saas-product-startups-cloudflare-case-studies"
+  }
+}

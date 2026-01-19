@@ -1183,14 +1183,15 @@
     gap: 0.25rem;
 }
 
-.stat-number {
+/* Scoped to .cta-stats to avoid global duplication */
+.cta-stats .stat-number {
     font-size: 2rem;
     font-weight: 700;
     color: var(--color-white);
     text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
 }
 
-.stat-label {
+.cta-stats .stat-label {
     font-size: 0.875rem;
     color: rgb(255 255 255 / 80%);
     text-transform: uppercase;
