@@ -3,7 +3,9 @@ import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
 async function main() {
-  const inPath = path.resolve('reports', 'seo-report.json');
+  // Accept an optional path to the seo report JSON, defaulting to 'reports/seo-report.json'
+  const inputArg = process.argv[2] && typeof process.argv[2] === 'string' ? process.argv[2] : null;
+  const inPath = inputArg ? path.resolve(inputArg) : path.resolve('reports', 'seo-report.json');
   const csvOut = path.resolve('reports', 'seo-canonical-mismatches.csv');
   const mdOut = path.resolve('reports', 'seo-canonical-mismatches.md');
 
