@@ -1,6 +1,31 @@
 // Finds preload links for styles and converts them to stylesheet (apply quickly to avoid FOUC).
 // This avoids inline onload handlers which are blocked by strict CSP but applies styles eagerly to reduce layout shift.
 (function () {
+
+    // Helper: map asset href/src to hashed asset using manifest keys (reused by styles & scripts)
+    function mapAssetHref(href) {
+      if (!href || !window.__assetManifest__ && typeof window.__assetManifest__ === 'undefined') return null;
+      // Use the live manifest reference if present
+      const manifestRef = (window && window.__assetManifest__) ? window.__assetManifest__ : null;
+      if (!manifestRef) return null;
+      const key = href.replace(/^\//, '');
+      // Direct key match
+      if (manifestRef[key]) return '/' + manifestRef[key];
+      // Basename match
+      const basename = key.split('/').pop();
+      if (manifestRef[basename]) return '/' + manifestRef[basename];
+      // Common transform: pages -> top-level js
+      if (key.includes('js/pages/')) {
+        const alt = key.replace('js/pages/', 'js/');
+        if (manifestRef[alt]) return '/' + manifestRef[alt];
+      }
+      // Fallback: any manifest key that ends with the key or basename
+      for (const mk in manifestRef) {
+        if (mk.endsWith(key) || mk.endsWith(basename)) return '/' + manifestRef[mk];
+      }
+      return null;
+    }
+
   try {
     const links = document.querySelectorAll('link[rel="preload"][as="style"]');
     if (!links || links.length === 0) return;
@@ -8,8 +33,6 @@
     // If an asset manifest is present, rewrite preload hrefs to hashed filenames before applying them
     let manifest = (window && window.__assetManifest__) ? window.__assetManifest__ : null;
     let manifestPresent = manifest && Object.keys(manifest).length > 0;
-
-    // If the inline manifest is missing after deploy transformations, attempt a fast fetch of a persisted JSON manifest
     if(!manifestPresent){
       try{
         console.error('[init-preload] WARNING: asset manifest missing or empty. Attempting to fetch /asset-manifest.json as fallback.');
@@ -25,8 +48,8 @@
                 try {
                   const href = ln.getAttribute('href');
                   if (href) {
-                    const key = href.replace(/^\//, '');
-                    if (manifest[key]) ln.setAttribute('href', '/' + manifest[key]);
+                    const mapped = mapAssetHref(href);
+                    if (mapped) ln.setAttribute('href', mapped);
                   }
                 } catch (e) { console.debug('[init-preload] mapping on fallback failed', e); }
               });
@@ -40,9 +63,9 @@
       try {
         const href = ln.getAttribute('href');
         if (href && manifestPresent) {
-          const key = href.replace(/^\//, '');
-          if (manifest[key]) {
-            ln.setAttribute('href', '/' + manifest[key]);
+          const mapped = mapAssetHref(href);
+          if (mapped) {
+            ln.setAttribute('href', mapped);
           }
         }
       } catch (e) {
@@ -121,6 +144,30 @@
         }
       }, 200);
     });
+
+    // Map script src attributes to hashed assets using asset manifest (prevents 404s for pages referencing un-hashed paths)
+    try {
+      if (manifestPresent) {
+        const scripts = document.querySelectorAll('script[src]:not([data-asset-mapped])');
+        scripts.forEach((s) => {
+          try {
+            const src = s.getAttribute('src');
+            if (!src) return;
+            // Skip if already appears hashed
+            if (/\.[0-9a-f]{6,}\./.test(src)) return;
+            const mapped = mapAssetHref(src);
+            if (mapped) {
+              s.setAttribute('src', mapped);
+              s.setAttribute('data-asset-mapped', '1');
+              console.log('[init-preload] mapped script', src, '->', mapped);
+            }
+          } catch (e) { console.debug('[init-preload] script mapping failure', e); }
+        });
+      }
+    } catch (e) {
+      console.debug('[init-preload] script mapping top-level error', e);
+    }
+
   } catch (e) {
     console.warn('[init-preload] Unexpected error in init-preload script', e);
   }

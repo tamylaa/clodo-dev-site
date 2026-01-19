@@ -503,6 +503,17 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 }
             }
 
+            // Normalize any remaining relative references to styles.css to the hashed asset to avoid 404s
+            try {
+                const hashedCommon = assetManifest['styles.css'] || 'styles.css';
+                if (content.includes('href="styles.css"') || content.includes('href="../styles.css"')) {
+                    content = content.replace(/href="(?:\.\.\/)?styles\.css"/g, `href="/${hashedCommon}"`);
+                    console.log(`   ✅ Normalized remaining styles.css references to /${hashedCommon}`);
+                }
+            } catch (e) {
+                console.warn(`   ⚠️  Failed to normalize styles.css references: ${e && e.message ? e.message : e}`);
+            }
+
             // Add defer attribute to non-critical scripts to reduce main-thread blocking & improve LCP
             // Skip scripts that must run early (theme/init-preload) or are module scripts (type="module")
             try {
@@ -546,7 +557,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                     { name: 'config/features.js', variable: configFeaturesJs },
                     { name: 'ui/navigation-component.js', variable: navigationJs },
                     { name: 'pages/cloudflare-workers-guide.js', variable: assetManifest['js/pages/cloudflare-workers-guide.js'] || 'js/pages/cloudflare-workers-guide.js' },
-                    { name: 'pages/cloudflare-framework.js', variable: assetManifest['js/pages/cloudflare-framework.js'] || 'js/pages/cloudflare-framework.js' }
+                    { name: 'pages/cloudflare-framework.js', variable: assetManifest['js/pages/cloudflare-framework.js'] || 'js/pages/cloudflare-framework.js' },
+                    { name: 'pages/workers-boilerplate.js', variable: assetManifest['js/workers-boilerplate.js'] || assetManifest['js/pages/workers-boilerplate.js'] || 'js/pages/workers-boilerplate.js' }
                 ];
 
                 scriptReplacements.forEach(({ name, variable }) => {
