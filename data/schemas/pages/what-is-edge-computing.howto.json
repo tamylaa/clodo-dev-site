@@ -1,27 +1,40 @@
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "Deploy a simple Cloudflare edge function with Clodo",
-  "description": "Quick hands-on steps to deploy a small edge function on Cloudflare and observe latency improvements.",
-  "totalTime": "PT10M",
-  "step": [
+  "name": "Deploy a Clodo service to Cloudflare Workers",
+  "description": "Quick hands-on steps to scaffold, test, and deploy a Clodo service to Cloudflare Workers and measure latency improvements at the edge.",
+  "totalTime": "PT15M",
+  "steps": [
     {
       "@type": "HowToStep",
       "position": 1,
-      "name": "Create an edge function",
-      "text": "Use Clodo or Cloudflare Workers to create a simple function that returns a personalized response."
+      "name": "Install Clodo Framework",
+      "text": "Install Clodo Framework in your development environment: `npm install @tamyla/clodo-framework` or use the global installer as needed."
     },
     {
       "@type": "HowToStep",
       "position": 2,
-      "name": "Test locally",
-      "text": "Run the function locally or in a staging worker environment and test with sample requests to verify behavior."
+      "name": "Scaffold a Clodo service",
+      "text": "Run `npx create-clodo-service my-edge-service --type data-service` to generate a starter service scaffold with templates tuned for Cloudflare Workers.",
+      "url": "https://www.clodo.dev/examples"
     },
     {
       "@type": "HowToStep",
       "position": 3,
-      "name": "Deploy and monitor",
-      "text": "Deploy to Cloudflare, measure response times at the edge, and roll out progressively while monitoring performance."
+      "name": "Configure for Workers & D1",
+      "text": "Enable the Cloudflare Workers target and configure D1 and environment variables. Update routing and bindings in `wrangler.toml` or Clodo deploy configuration."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Test locally and benchmark",
+      "text": "Run the service locally (e.g., `wrangler dev` or `clodo dev`) and measure latency vs a cloud-hosted variant to validate edge gains."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Deploy & monitor",
+      "text": "Deploy to Cloudflare, verify edge responses, and monitor metrics. Use progressive rollout and synthetic latency tests in production."
     }
   ]
 }

@@ -1014,6 +1014,20 @@
         "FAQPage",
         "Article"
       ],
+      "schema": {
+        "type": "TechArticle",
+        "headline": "Cloudflare: What Is Edge Computing — Deep Developer Guide",
+        "description": "A developer-focused deep dive into edge computing, tied to Clodo Framework implementation examples and benchmarks.",
+        "url": "https://www.clodo.dev/what-is-edge-computing",
+        "datePublished": "2026-02-08",
+        "author": "Clodo Framework",
+        "keywords": ["cloudflare","edge computing","clodo framework","serverless","cloudflare workers"],
+        "citation": [
+          "https://en.wikipedia.org/wiki/Edge_computing",
+          "https://www.cloudflare.com/learning/serverless/what-is-edge-computing/"
+        ],
+        "wordCount": 2200
+      },
       "faqs": [
         {
           "name": "What is the difference between edge computing and cloud computing?",

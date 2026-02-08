@@ -179,6 +179,43 @@ test.describe('Structured Data Hub Tests', () => {
         }
     });
 
+    test('should inject HowTo and TechArticle schemas on /what-is-edge-computing', async ({ page }) => {
+        await page.goto('/what-is-edge-computing.html');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+        const schemas = await page.$$eval(
+            'script[type="application/ld+json"]',
+            scripts => scripts.map(s => JSON.parse(s.textContent))
+        );
+
+        const howTo = schemas.find(s => s['@type'] === 'HowTo');
+        const article = schemas.find(s => s['@type'] === 'TechArticle' || s['@type'] === 'Article' || s['@type'] === 'TechArticle');
+
+        expect(howTo).toBeDefined();
+        expect(article).toBeDefined();
+
+        if (howTo) {
+            expect(Array.isArray(howTo.step)).toBe(true);
+            expect(howTo.step.length).toBeGreaterThanOrEqual(4);
+            // Ensure at least one step references the Clodo scaffold command
+            const containsClodo = howTo.step.some(s => (s.text || s.name || '').includes('create-clodo-service'));
+            expect(containsClodo).toBe(true);
+            console.log('HowTo steps:', howTo.step.length);
+        }
+
+        if (article) {
+            // The TechArticle should be authored by Clodo Framework (fallback allowed)
+            if (article.author) {
+                const authorName = typeof article.author === 'string' ? article.author : (article.author.name || '');
+                expect(authorName.toLowerCase()).toContain('clodo');
+            } else {
+                console.log('Article author not present; ensure page-config schema is set');
+            }
+            console.log('Article schema present:', article.headline || article.name || 'unknown');
+        }
+    });
+
     test('should have valid JSON-LD syntax', async ({ page }) => {
         const schemas = await page.$$eval(
             'script[type="application/ld+json"]',

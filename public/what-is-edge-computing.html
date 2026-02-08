@@ -123,27 +123,27 @@
                             <li><strong>Scalability</strong>: Distributed processing handles massive scale more efficiently</li>
                         </ul>
 
-                        <h3>Getting Started with Edge Computing</h3>
-                        <p>Clodo Framework makes building edge applications simple:</p>
-                        <div class="code-example">
-                            <pre><code>// Edge function with Clodo Framework
-export async function handleRequest(request) {
-  // Process data at the edge
-  const userLocation = getUserLocation(request);
-  const personalizedContent = await generateContent(userLocation);
+                        <h3>Edge + Clodo Framework — Quick start</h3>
+                        <p>Clodo Framework provides batteries-included scaffolding and helpers to build production-grade edge services for Cloudflare Workers in minutes.</p>
 
-  return new Response(personalizedContent, {
-    headers: {
-      'content-type': 'text/html',
-      'cache-control': 'public, max-age=300'
-    }
-  });
-}</code></pre>
+                        <div class="code-example">
+                            <pre><code># Scaffold a new Clodo edge service
+npx create-clodo-service my-edge-service --type data-service
+
+# From the generated project: install deps & run locally
+cd my-edge-service
+npm install
+npm run dev  # or `wrangler dev` depending on setup
+
+# Deploy to Cloudflare when ready
+npm run deploy  # configured by Clodo to use Wrangler or your CI pipeline</code></pre>
                         </div>
 
+                        <p>Read the full Clodo Framework guide and examples for Workers and D1: <a href="/clodo-framework-guide">Clodo Framework Guide</a> • <a href="/examples">Examples</a></p>
+
                         <div class="cta-section">
-                            <h3>Build Your First Edge Application</h3>
-                            <p>Experience the power of edge computing with Clodo Framework.</p>
+                            <h3>Build an edge-ready service</h3>
+                            <p>Scaffold, test, and deploy a Clodo-powered edge service and measure latency improvements compared to a cloud-only deployment.</p>
                             <a href="/product" class="btn btn--primary">Start Building</a>
                         </div>
 
@@ -170,13 +170,15 @@ export async function handleRequest(request) {
                         </section>
 
                         <section id="howto" class="howto-section">
-                            <h3>How to deploy a simple edge function (quick start)</h3>
+                            <h3>How to deploy a Clodo service to the edge (quick start)</h3>
                             <ol>
-                                <li><strong>Create an edge function</strong>: Use Clodo or Cloudflare Workers to write a small handler that returns a fast, cached response.</li>
-                                <li><strong>Test locally</strong>: Run the function locally or in a staging worker environment and validate behavior and latency.</li>
-                                <li><strong>Deploy and monitor</strong>: Deploy to Cloudflare, measure edge response times, and roll out progressively while tracking metrics.</li>
+                                <li><strong>Install Clodo Framework</strong>: Install the package and any CLI helpers with `npm install @tamyla/clodo-framework`.</li>
+                                <li><strong>Scaffold a service</strong>: Run `npx create-clodo-service my-edge-service --type data-service` to generate a Cloudflare Workers-ready project.</li>
+                                <li><strong>Configure bindings</strong>: Add D1 bindings, API keys, and your `wrangler.toml` settings for routes and accounts.</li>
+                                <li><strong>Test & benchmark</strong>: Use `npm run dev` or `wrangler dev` to test locally and measure latency improvements versus a cloud deployment.</li>
+                                <li><strong>Deploy & monitor</strong>: Deploy to Cloudflare, run synthetic latency tests, and use monitoring / logs to verify performance and reliability.</li>
                             </ol>
-                            <p class="howto-note">Tip: Start with a tiny function and benchmark latency before moving more logic to the edge.</p>
+                            <p class="howto-note">Tip: Start tiny, benchmark often, and only move critical latency-sensitive logic to the edge.</p>
                         </section>
                     </article>
 
