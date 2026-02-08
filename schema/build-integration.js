@@ -153,6 +153,54 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     generatedSchemas = generateCaseStudySchemas(lookupFilename, config, locale);
   }
 
+  // Check explicit path-based page configs (pagesByPath keys like 'pricing.html')
+  else if (pageConfig.pagesByPath?.[lookupFilename]) {
+    const config = pageConfig.pagesByPath[lookupFilename];
+    const schemas = [];
+    schemas.push(generateOrganizationSchema(locale));
+    schemas.push(generateWebSiteSchema(locale));
+
+    // SoftwareApplication by default unless overridden by page schema files
+    const pageName = filename.replace(/\.html$/, '');
+    const pageSchemas = loadPageSchemas(pageName);
+    const hasSoftwareSchema = pageSchemas.some(s => (s && (s['@type'] === 'SoftwareApplication' || (Array.isArray(s['@type']) && s['@type'].includes('SoftwareApplication')))));
+    if (!hasSoftwareSchema) schemas.push(generateSoftwareApplicationSchema(locale));
+
+    // Respect configured type
+    if (config.type === 'FAQPage') {
+      schemas.push(generateFAQPageSchema(config.faqs || []));
+    } else if (config.type === 'LearningResource') {
+      schemas.push(generateLearningResourceSchema(config));
+    } else if (config.type === 'Product' || (config.schema && config.schema.type === 'Product')) {
+      const productCfg = config.schema || config;
+      schemas.push(generateProductSchema(productCfg, locale));
+      if (Array.isArray(productCfg.offers)) {
+        for (const offer of productCfg.offers) schemas.push(generateOfferSchema(offer, productCfg, locale));
+      }
+      if (Array.isArray(config.faqs) && config.faqs.length) schemas.push(generateFAQPageSchema(config.faqs));
+    }
+
+    // Add Article if explicitly required
+    if (config.requiredSchemas && Array.isArray(config.requiredSchemas) && config.requiredSchemas.includes('Article')) {
+      const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\/title>/i);
+      const canonicalMatch = htmlContent.match(/<link rel=["']canonical["'] href=["']([^"']+)["']\s*\/>/i);
+      const headline = titleMatch ? titleMatch[1].trim() : (config.title || config.headline || '');
+      const pageUrl = canonicalMatch ? canonicalMatch[1] : `https://www.clodo.dev/${pageName}`;
+      if (headline || pageUrl) {
+        const articleSchema = {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          'headline': headline || undefined,
+          'url': pageUrl
+        };
+        schemas.push(articleSchema);
+      }
+    }
+
+    schemas.push(...pageSchemas);
+    generatedSchemas = schemas.map(schema => wrapSchemaTag(schema)).join('\n');
+  }
+
   // For all pages (including root pages like index.html, docs.html, etc.)
   // Always inject Organization, WebSite, and other default schemas
   else {
