@@ -1250,6 +1250,7 @@ function copyAssets() {
     }
 
     // Copy downloads directory (contains validator-scripts.zip) if present at repo root
+    // Only copy directories and .zip files to avoid accidentally including secrets (e.g., .json)
     const downloadsSrc = join('downloads');
     const downloadsDest = join('dist', 'downloads');
     if (existsSync(downloadsSrc)) {
@@ -1263,11 +1264,14 @@ function copyAssets() {
                 for (const sub of readdirSync(srcPath)) {
                     copyFileSync(join(srcPath, sub), join(destPath, sub));
                 }
-            } else {
+            } else if (entry.endsWith('.zip')) {
+                // Whitelisted file type
                 copyFileSync(srcPath, destPath);
+            } else {
+                console.log(`[ASSETS] Skipped downloads/${entry} (not allowed by whitelist)`);
             }
         }
-        console.log('[ASSETS] Copied downloads/ to dist/downloads/');
+        console.log('[ASSETS] Copied downloads/ to dist/downloads/ (whitelisted files only)');
     }
 
     // Copy config JSON files (announcements.json, etc.)
