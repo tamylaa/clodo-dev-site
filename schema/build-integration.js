@@ -205,6 +205,24 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
           schemas.push(generateFAQPageSchema(config.faqs));
         }
       }
+
+      // Respect explicit requiredSchemas in page config (ensure critical schemas are present)
+      if (config.requiredSchemas && Array.isArray(config.requiredSchemas) && config.requiredSchemas.includes('Article')) {
+        const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\/title>/i);
+        const canonicalMatch = htmlContent.match(/<link rel=["']canonical["'] href=["']([^"']+)["']\s*\/?\>/i);
+        const headline = titleMatch ? titleMatch[1].trim() : (config.title || config.headline || '');
+        const pageUrl = canonicalMatch ? canonicalMatch[1] : `https://www.clodo.dev/${pageName}`;
+        // Generate a minimal Article block to satisfy validators
+        if (headline || pageUrl) {
+          const articleSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'headline': headline || undefined,
+            'url': pageUrl
+          };
+          schemas.push(articleSchema);
+        }
+      }
     }
     // Heuristics for pages without explicit config:
     //  - If the HTML contains breadcrumb markup, auto-generate BreadcrumbList
