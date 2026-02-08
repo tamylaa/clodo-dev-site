@@ -717,6 +717,28 @@ export function generateAllPageSchemas() {
         }
       }
 
+      // If page-config explicitly lists Article as a required schema, include a minimal Article schema
+      if (Array.isArray(config.requiredSchemas) && config.requiredSchemas.includes('Article')) {
+        const headline = config.headline || config.title || '';
+        const pageUrl = `https://www.clodo.dev/${pageName.replace(/\.html$/, '')}`;
+        if (headline) {
+          const articleSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'headline': headline,
+            'url': pageUrl
+          };
+          schemas.push(wrapSchemaTag(articleSchema));
+        } else {
+          const articleSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'url': pageUrl
+          };
+          schemas.push(wrapSchemaTag(articleSchema));
+        }
+      }
+
       allSchemas[`${pageName}.html`] = schemas.join('\n');
     }
   }
