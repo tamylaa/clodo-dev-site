@@ -1012,8 +1012,27 @@
         "WebSite",
         "BreadcrumbList",
         "FAQPage"
+      ],
+      "faqs": [
+        {
+          "name": "What is the difference between edge computing and cloud computing?",
+          "acceptedAnswer": "Edge computing processes data near users for lower latency and reduced bandwidth, while cloud computing uses centralized data centers for heavy processing and storage."
+        },
+        {
+          "name": "How does Cloudflare implement edge computing?",
+          "acceptedAnswer": "Cloudflare runs Workers and caches at global edge locations so code and content execute close to users for better performance and reliability."
+        },
+        {
+          "name": "When should I use edge computing?",
+          "acceptedAnswer": "Use edge computing for latency-sensitive features, real-time personalization, streaming, and IoT data processing where responsiveness matters."
+        },
+        {
+          "name": "How do I get started as a developer?",
+          "acceptedAnswer": "Build small edge functions, measure latency gains, and progressively move logic to the edge while monitoring performance and cost."
+        }
       ]
     },
+
     "worker-scaffolding-tools.html": {
       "type": "WebPage",
       "requiredSchemas": [
