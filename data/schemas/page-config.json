@@ -1011,7 +1011,8 @@
       "requiredSchemas": [
         "WebSite",
         "BreadcrumbList",
-        "FAQPage"
+        "FAQPage",
+        "Article"
       ],
       "faqs": [
         {
