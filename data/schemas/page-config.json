@@ -167,8 +167,18 @@
       "title": "Top 10 Brands Achieving Super Fast, Secure Page Loads with Cloudflare",
       "headline": "Top 10 Brands Achieving Super Fast, Secure Page Loads with Cloudflare",
       "url": "https://clodo.dev/saas-product-startups-cloudflare-case-studies",
+      "image": "/images/seo/optimized/hero-cloudflare-collab-1200x630.png",
+      "imageAlt": "Cloudflare collaboration overview with logos of Discord, Shopify and GitHub.",
+      "ogImageWidth": 1200,
+      "ogImageHeight": 630,
       "description": "Discover Top 10 SaaS Brands achieving super fast, secure page loads with Cloudflare. Case studies from Discord, Shopify & GitHub on frontend platforms for speed, security, collaboration.",
       "industry": "Enterprise SaaS Case Studies",
+      "images": [
+        "hero-collab",
+        "architecture-cloudflare-collab",
+        "benchmark-discord-shopify-github",
+        "screenshot-collab-features"
+      ],
       "metrics": [
         {
           "name": "Average Edge Delivery",

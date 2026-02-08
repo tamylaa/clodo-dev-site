@@ -5,6 +5,7 @@
  */
 
 import { test, expect } from '@playwright/test';
+import fs from 'fs';
 
 test.describe('Structured Data Hub Tests', () => {
     test.beforeEach(async ({ page }) => {
@@ -232,6 +233,49 @@ test.describe('Structured Data Hub Tests', () => {
         expect(hasBenchmarks).toBeTruthy();
     });
 
+    // Verify SSI includes are expanded and HowTo is visible
+    test('should expand HowTo include and render visible howto and benchmarks', async ({ page }) => {
+        await page.goto('/what-is-edge-computing.html');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+        // HowTo section should be present and the include comment should be removed
+        // Template uses id '#howto' and class '.howto-section'
+        const howToSection = await page.$('section.howto-section') || await page.$('#howto');
+        expect(howToSection).toBeTruthy();
+
+        const pageHtml = await page.content();
+        expect(pageHtml.includes('<!--#include file="../templates/howto-section.html" -->')).toBe(false);
+
+        const bench = await page.$('section.benchmark-section');
+        expect(bench).toBeTruthy();
+    });
+
+    // Regression test: all pages configured with TechArticle must include metrics as hasPart
+    test('should generate TechArticle with metrics for pages configured as TechArticle', async ({ page }) => {
+        const pageConfig = JSON.parse(fs.readFileSync('data/schemas/page-config.json', 'utf8'));
+        const techPages = Object.entries(pageConfig.pagesByPath || {}).filter(([k, v]) => v.schema && v.schema.type === 'TechArticle').map(([k]) => k);
+        expect(techPages.length).toBeGreaterThan(0);
+
+        for (const file of techPages) {
+            const url = `/${file}`;
+            await page.goto(url);
+            await page.waitForLoadState('domcontentloaded');
+            await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+            const schemas = await page.$$eval(
+                'script[type="application/ld+json"]',
+                scripts => scripts.map(s => JSON.parse(s.textContent))
+            );
+
+            const article = schemas.find(s => s['@type'] === 'TechArticle' || s['@type'] === 'Article');
+            expect(article).toBeDefined();
+            expect(article.hasPart).toBeDefined();
+            expect(Array.isArray(article.hasPart.itemListElement)).toBe(true);
+            expect(article.hasPart.itemListElement.length).toBeGreaterThan(0);
+        }
+    });
+
     test('should have valid JSON-LD syntax', async ({ page }) => {
         const schemas = await page.$$eval(
             'script[type="application/ld+json"]',
@@ -298,6 +342,27 @@ test.describe('Structured Data Hub Tests', () => {
         // Should have schemas injected
         expect(finalCount).toBeGreaterThan(0);
         console.log('Schemas injected:', { initial: initialCount, final: finalCount });
+    });
+
+    test('should expose hero og:image and ImageObject JSON-LD on case studies page', async ({ page }) => {
+        await page.goto('/saas-product-startups-cloudflare-case-studies.html');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+        const ogImage = await page.getAttribute('meta[property="og:image"]', 'content');
+        expect(ogImage).toBe('https://www.clodo.dev/images/seo/optimized/hero-cloudflare-collab-1200x630.png');
+
+        const schemas = await page.$$eval(
+            'script[type="application/ld+json"]',
+            scripts => scripts.map(s => JSON.parse(s.textContent))
+        );
+
+        const imgSchema = schemas.find(s => s['@type'] === 'ImageObject');
+        expect(imgSchema).toBeDefined();
+        if (imgSchema) {
+            expect(imgSchema.url).toContain('/images/seo/optimized/hero-cloudflare-collab-1200x630.png');
+            expect(imgSchema.caption).toContain('Evaluating Cloudflare');
+        }
     });
 
     test('should work across different pages', async ({ page }) => {

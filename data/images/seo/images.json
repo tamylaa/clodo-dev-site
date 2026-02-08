@@ -1,0 +1,72 @@
+[
+  {
+    "id": "hero-collab",
+    "file": "/images/seo/hero-cloudflare-collab-1200x630.png",
+    "alt": "Cloudflare collaboration overview with logos of Discord, Shopify and GitHub.",
+    "caption": "Evaluating Cloudflare for team collaboration and performance.",
+    "width": 1200,
+    "height": 630,
+    "format": "image/png",
+    "optimized": {
+      "png_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630.png",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630.webp",
+      "png_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.png",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.webp"
+    },
+    "role": "hero",
+    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
+    "locales": ["en"]
+  },
+  {
+    "id": "architecture-cloudflare-collab",
+    "file": "/images/seo/architecture-cloudflare-collab.svg",
+    "alt": "Diagram of Git-based collaboration workflow deploying to Cloudflare Workers at the edge.",
+    "caption": "How a collaborative workflow deploys to Cloudflare’s edge.",
+    "width": 1200,
+    "height": 800,
+    "format": "image/svg+xml",
+    "optimized": {
+      "svg": "/images/seo/architecture-cloudflare-collab.svg",
+      "png_1x": "/images/seo/optimized/architecture-cloudflare-collab-1200x800.png"
+    },
+    "role": "diagram",
+    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
+    "locales": ["en"]
+  },
+  {
+    "id": "benchmark-discord-shopify-github",
+    "file": "/images/seo/benchmark-discord-shopify-github-1200x675.png",
+    "alt": "Benchmark chart showing page load time improvements after using Cloudflare.",
+    "caption": "Real-world median speed improvement after adopting Cloudflare.",
+    "width": 1200,
+    "height": 675,
+    "format": "image/png",
+    "optimized": {
+      "png_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.png",
+      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.webp",
+      "png_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.png",
+      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.webp"
+    },
+    "role": "benchmark",
+    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
+    "locales": ["en"]
+  },
+  {
+    "id": "screenshot-collab-features",
+    "file": "/images/seo/screenshot-collab-features-1280x720.png",
+    "alt": "Cloudflare dashboard showing preview environments and team controls.",
+    "caption": "Preview environments and team controls in Cloudflare.",
+    "width": 1280,
+    "height": 720,
+    "format": "image/png",
+    "optimized": {
+      "png_1x": "/images/seo/optimized/screenshot-collab-features-1280x720.png",
+      "webp_1x": "/images/seo/optimized/screenshot-collab-features-1280x720.webp",
+      "png_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440.png",
+      "webp_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440.webp"
+    },
+    "role": "screenshot",
+    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
+    "locales": ["en"]
+  }
+]
