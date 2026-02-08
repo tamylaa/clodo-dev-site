@@ -22,6 +22,7 @@ import {
   generateSoftwareApplicationSchema,
   generateFAQPageSchema,
   generateLearningResourceSchema,
+  generateHowToSchema,
   generateBreadcrumbList,
   generateProductSchema,
   generateOfferSchema,
