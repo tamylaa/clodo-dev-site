@@ -23,18 +23,34 @@ import {
   generateFAQPageSchema,
   generateLearningResourceSchema,
   generateHowToSchema,
+  generateTechArticleSchema,
   generateBreadcrumbList,
   generateProductSchema,
   generateOfferSchema,
   wrapSchemaTag,
   loadPageConfiguration
 } from './schema-generator.js';
-import {
-  detectLocaleFromPath,
-  shouldInjectSchemas
-} from './locale-utils.js';
+import { buildLocaleUrl, detectLocaleFromPath } from './locale-utils.js';
+
+// Load image manifest (optional) - will be initialized after necessary imports
+let imagesManifest = [];
+
 import { readFileSync, existsSync, readdirSync } from 'fs';
+import { shouldInjectSchemas } from './locale-utils.js';
 import { join } from 'path';
+
+// Now that fs/join are imported, attempt to load images manifest
+try {
+  if (existsSync(join('data','images','seo','images.json'))) {
+    imagesManifest = JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8'));
+    console.log('[IMAGES] Loaded images manifest with', imagesManifest.length, 'entries');
+  } else {
+    console.log('[IMAGES] No images manifest file found at data/images/seo/images.json');
+  }
+} catch (e) {
+  console.warn('[IMAGES] Failed to load images manifest:', e && e.message ? e.message : e);
+  imagesManifest = [];
+}
 
 /**
  * Loads schema from a separate JSON file if it exists
@@ -152,6 +168,26 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
   else if (pageConfig.caseStudies?.[filename] || pageConfig.caseStudies?.[lookupFilename]) {
     const config = pageConfig.caseStudies[filename] || pageConfig.caseStudies[lookupFilename];
     generatedSchemas = generateCaseStudySchemas(lookupFilename, config, locale);
+
+    // If case study provides image IDs, add ImageObject schemas from manifest
+    if (Array.isArray(config.images) && config.images.length && imagesManifest.length) {
+      for (const imgId of config.images) {
+        const entry = imagesManifest.find(i => i.id === imgId);
+        if (entry) {
+          const src = entry.optimized?.png_1x || entry.optimized?.webp_1x || entry.file;
+          const absUrl = `${buildLocaleUrl('', detectLocaleFromPath(htmlFilePath)).replace(/\/$/, '')}${src.startsWith('/') ? src : `/${src}`}`;
+          const imageSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'ImageObject',
+            'url': absUrl,
+            'width': entry.width || undefined,
+            'height': entry.height || undefined,
+            'caption': entry.caption || undefined
+          };
+          generatedSchemas += '\n' + wrapSchemaTag(imageSchema);
+        }
+      }
+    }
   }
 
   // Check explicit path-based page configs (pagesByPath keys like 'pricing.html')
@@ -186,6 +222,11 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
       schemas.push(generateFAQPageSchema(config.faqs));
     }
 
+    // If the page config provides a TechArticle schema object, generate a full TechArticle schema (includes metrics if present)
+    if (config.schema && config.schema.type === 'TechArticle') {
+      schemas.push(generateTechArticleSchema(config.schema));
+    }
+
     // Add Article if explicitly required
     if (config.requiredSchemas && Array.isArray(config.requiredSchemas) && config.requiredSchemas.includes('Article')) {
       const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\/title>/i);
@@ -206,6 +247,27 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
     // If the pagesByPath config includes a howTo object, inject HowTo schema
     if (config.howTo && typeof config.howTo === 'object') {
       schemas.push(generateHowToSchema(config.howTo));
+    }
+
+    // If page config provides image IDs, add ImageObject schemas from manifest (helps rich results)
+    if (Array.isArray(config.images) && config.images.length && imagesManifest.length) {
+      for (const imgId of config.images) {
+        const entry = imagesManifest.find(i => i.id === imgId);
+        if (entry) {
+          // Prefer optimized png_1x or svg fallback
+          const src = entry.optimized?.png_1x || entry.optimized?.webp_1x || entry.file;
+          const absUrl = `${buildLocaleUrl('', detectLocaleFromPath(htmlFilePath)).replace(/\/$/, '')}${src.startsWith('/') ? src : `/${src}`}`;
+          const imageSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'ImageObject',
+            'url': absUrl,
+            'width': entry.width || undefined,
+            'height': entry.height || undefined,
+            'caption': entry.caption || undefined
+          };
+          schemas.push(imageSchema);
+        }
+      }
     }
 
     schemas.push(...pageSchemas);

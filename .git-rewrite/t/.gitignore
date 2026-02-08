@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Env files
+.env
+.env.*
+public/brevo-secure-config.js
+
+# Coverage / reports
+coverage/
+*.lcov

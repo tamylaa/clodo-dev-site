@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library - Clodo Framework</title>
+    <meta name="description" content="Comprehensive component documentation and showcase for Clodo Framework UI components.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0b1220">
+    <style>
+        .breadcrumb-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .component-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(100, 200, 255, 0.05));
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .component-header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+        }
+
+        .component-header p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        .component-nav {
+            position: sticky;
+            top: 60px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 50;
+            padding: 1rem 2rem;
+        }
+
+        .component-nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .component-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .component-nav a:hover,
+        .component-nav a.active {
+            color: var(--primary-color);
+        }
+
+        .components-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .component-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 120px;
+        }
+
+        .component-section h2 {
+            font-size: 1.75rem;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .component-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .component-showcase {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .component-showcase.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .component-usage {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .component-usage h4 {
+            margin: 0 0 1rem 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .variant-group {
+            margin-bottom: 2rem;
+        }
+
+        .variant-group h3 {
+            font-size: 1.125rem;
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .properties-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .properties-table td {
+            color: var(--text-secondary);
+        }
+
+        .property-name {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .property-type {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            color: var(--text-primary);
+        }
+
+        .badge-demo {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .alert-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .icon-demo {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .icon-demo .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-demo .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .form-demo {
+            max-width: 400px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: '✓ ';
+            color: var(--success-color);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .design-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .design-token {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .token-preview {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .token-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .token-value {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+
+        .accessibility-note {
+            background: rgb(59 130 246 / 0.1);
+            border-left: 4px solid var(--info-color);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .accessibility-note strong {
+            color: var(--info-color);
+        }
+
+        @media (max-width: 768px) {
+            .component-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .component-nav ul {
+                gap: 1rem;
+            }
+
+            .button-grid,
+            .design-system {
+                grid-template-columns: 1fr;
+            }
+
+            .component-showcase.grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Clodo</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="#components" class="active">Components</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" data-theme="light" aria-label="Toggle theme">
+                    <span class="theme-icon theme-icon--light">☀️</span>
+                    <span class="theme-icon theme-icon--dark">🌙</span>
+                </button>
+                <a href="https://github.com/tamylaa/clodo" target="_blank" rel="noopener noreferrer" class="github-btn">
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumb-nav">
+        <a href="/">Home</a> / <span>Component Library</span>
+    </div>
+
+    <!-- Header -->
+    <div class="component-header">
+        <h1>Component Library</h1>
+        <p>Comprehensive UI component documentation for Clodo Framework</p>
+    </div>
+
+    <!-- Component Navigation -->
+    <div class="component-nav">
+        <ul>
+            <li><a href="#buttons" class="nav-link">Buttons</a></li>
+            <li><a href="#cards" class="nav-link">Cards</a></li>
+            <li><a href="#forms" class="nav-link">Forms</a></li>
+            <li><a href="#badges" class="nav-link">Badges</a></li>
+            <li><a href="#alerts" class="nav-link">Alerts</a></li>
+            <li><a href="#loaders" class="nav-link">Loaders</a></li>
+            <li><a href="#design-tokens" class="nav-link">Design Tokens</a></li>
+        </ul>
+    </div>
+
+    <!-- Components Container -->
+    <div class="components-container">
+
+        <!-- Buttons Section -->
+        <section id="buttons" class="component-section">
+            <h2>Buttons</h2>
+            <p class="component-description">
+                Buttons are the primary call-to-action elements. They support multiple variants, sizes, and states.
+                All buttons follow the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standard.
+            </p>
+
+            <div class="accessibility-note">
+                <strong>♿ Accessibility:</strong> All buttons have focus states, appropriate ARIA labels, and minimum 44px height for touch targets.
+            </div>
+
+            <div class="variant-group">
+                <h3>Variants</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary">Primary Button</button>
+                    <button class="btn btn--secondary">Secondary Button</button>
+                    <button class="btn btn--outline">Outline Button</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Sizes</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary btn--sm">Small</button>
+                    <button class="btn btn--primary">Default</button>
+                    <button class="btn btn--primary btn--lg">Large</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>States</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary">Normal</button>
+                    <button class="btn btn--primary" disabled>Disabled</button>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Full Width</h3>
+                <div class="component-showcase">
+                    <button class="btn btn--primary btn--full">Full Width Button</button>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;button class="btn btn--primary"&gt;Click Me&lt;/button&gt;
+&lt;button class="btn btn--secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn--outline"&gt;Outline&lt;/button&gt;
+
+&lt;!-- Sizes --&gt;
+&lt;button class="btn btn--primary btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn--primary btn--lg"&gt;Large&lt;/button&gt;
+
+&lt;!-- States --&gt;
+&lt;button class="btn btn--primary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="btn btn--primary btn--full"&gt;Full Width&lt;/button&gt;</div>
+            </div>
+
+            <table class="properties-table">
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Purpose</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="property-name">.btn</td>
+                        <td>Base button styles</td>
+                        <td>Required on all buttons</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--primary</td>
+                        <td>Primary action button</td>
+                        <td>Main CTAs and actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--secondary</td>
+                        <td>Secondary action button</td>
+                        <td>Alternative actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--outline</td>
+                        <td>Outline button</td>
+                        <td>Tertiary actions</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--lg</td>
+                        <td>Large button size</td>
+                        <td>Prominent CTAs</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--sm</td>
+                        <td>Small button size</td>
+                        <td>Compact layouts</td>
+                    </tr>
+                    <tr>
+                        <td class="property-name">.btn--full</td>
+                        <td>Full width button</td>
+                        <td>Form submissions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Cards Section -->
+        <section id="cards" class="component-section">
+            <h2>Cards</h2>
+            <p class="component-description">
+                Cards are container components for grouping related content. They support headers, bodies, and footers with
+                consistent spacing and hover effects.
+            </p>
+
+            <div class="component-showcase grid">
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Card Title</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__subtitle">This is a basic card with header, body, and content.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3 class="card__title">Simple Card</h3>
+                        <p class="card__subtitle">Card without header or footer sections.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Full Card</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__subtitle">This card has all three sections.</p>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn--primary btn--sm">Action</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;div class="card"&gt;
+    &lt;div class="card__header"&gt;
+        &lt;h3 class="card__title"&gt;Card Title&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="card__body"&gt;
+        &lt;p class="card__subtitle"&gt;Card content&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__footer"&gt;
+        &lt;button class="btn btn--primary"&gt;Action&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Forms Section -->
+        <section id="forms" class="component-section">
+            <h2>Forms</h2>
+            <p class="component-description">
+                Form components include text inputs, labels, error messages, and textarea fields.
+                All form elements are fully accessible with proper ARIA attributes.
+            </p>
+
+            <div class="accessibility-note">
+                <strong>♿ Accessibility:</strong> All form inputs include focus states, error messages, and are associated with labels.
+            </div>
+
+            <div class="component-showcase">
+                <form class="form-demo">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-input form-textarea" placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;form&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label class="form-label" for="input-id"&gt;Label&lt;/label&gt;
+        &lt;input type="text" id="input-id" class="form-input" placeholder="Placeholder"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label class="form-label" for="textarea-id"&gt;Message&lt;/label&gt;
+        &lt;textarea id="textarea-id" class="form-input form-textarea"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-error"&gt;This field is required&lt;/div&gt;
+&lt;/form&gt;</div>
+            </div>
+        </section>
+
+        <!-- Badges Section -->
+        <section id="badges" class="component-section">
+            <h2>Badges</h2>
+            <p class="component-description">
+                Badges are small inline labels for status, categories, or priority indicators.
+                They come in different colors and should be used sparingly.
+            </p>
+
+            <div class="component-showcase">
+                <div class="badge-demo">
+                    <span class="badge badge--primary">Primary</span>
+                    <span class="badge badge--success">Success</span>
+                    <span class="badge badge--warning">Warning</span>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;span class="badge badge--primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge badge--success"&gt;Success&lt;/span&gt;
+&lt;span class="badge badge--warning"&gt;Warning&lt;/span&gt;</div>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="component-section">
+            <h2>Alerts</h2>
+            <p class="component-description">
+                Alerts communicate messages to users. They come in four variants: success, warning, error, and info.
+                Use them to provide feedback about actions or inform users about important information.
+            </p>
+
+            <div class="component-showcase alert-demo">
+                <div class="alert alert--success">
+                    <strong>Success!</strong> Your changes have been saved successfully.
+                </div>
+                <div class="alert alert--warning">
+                    <strong>Warning:</strong> Please review your information before proceeding.
+                </div>
+                <div class="alert alert--error">
+                    <strong>Error:</strong> Something went wrong. Please try again.
+                </div>
+                <div class="alert alert--info">
+                    <strong>Info:</strong> This is an informational message for your attention.
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;div class="alert alert--success"&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--warning"&gt;
+    &lt;strong&gt;Warning:&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--error"&gt;
+    &lt;strong&gt;Error:&lt;/strong&gt; Message content
+&lt;/div&gt;
+
+&lt;div class="alert alert--info"&gt;
+    &lt;strong&gt;Info:&lt;/strong&gt; Message content
+&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Loaders Section -->
+        <section id="loaders" class="component-section">
+            <h2>Loading States</h2>
+            <p class="component-description">
+                Loading indicators provide visual feedback when content is being processed or fetched.
+                They come in different sizes and colors.
+            </p>
+
+            <div class="variant-group">
+                <h3>Spinners</h3>
+                <div class="component-showcase">
+                    <div class="spinner spinner--sm"></div>
+                    <div class="spinner"></div>
+                    <div class="spinner spinner--lg"></div>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Spinner Variants</h3>
+                <div class="component-showcase">
+                    <div class="spinner spinner--primary"></div>
+                    <div class="spinner spinner--white" style="background: #333; padding: 1rem; border-radius: 8px;"></div>
+                </div>
+            </div>
+
+            <div class="component-usage">
+                <h4>HTML Usage</h4>
+                <div class="code-block">&lt;!-- Basic spinner --&gt;
+&lt;div class="spinner"&gt;&lt;/div&gt;
+
+&lt;!-- Size variants --&gt;
+&lt;div class="spinner spinner--sm"&gt;&lt;/div&gt;
+&lt;div class="spinner spinner--lg"&gt;&lt;/div&gt;
+
+&lt;!-- Color variants --&gt;
+&lt;div class="spinner spinner--primary"&gt;&lt;/div&gt;
+&lt;div class="spinner spinner--white"&gt;&lt;/div&gt;</div>
+            </div>
+        </section>
+
+        <!-- Design Tokens Section -->
+        <section id="design-tokens" class="component-section">
+            <h2>Design Tokens</h2>
+            <p class="component-description">
+                Clodo Framework uses CSS custom properties (variables) for consistent styling across all components.
+                These tokens ensure visual consistency and make theming easier.
+            </p>
+
+            <div class="variant-group">
+                <h3>Color Tokens</h3>
+                <div class="design-system">
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--primary-color);"></div>
+                        <div class="token-label">Primary</div>
+                        <div class="token-value">--primary-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--primary-dark);"></div>
+                        <div class="token-label">Primary Dark</div>
+                        <div class="token-value">--primary-dark</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--success-color);"></div>
+                        <div class="token-label">Success</div>
+                        <div class="token-value">--success-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--warning-color);"></div>
+                        <div class="token-label">Warning</div>
+                        <div class="token-value">--warning-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--error-color);"></div>
+                        <div class="token-label">Error</div>
+                        <div class="token-value">--error-color</div>
+                    </div>
+                    <div class="design-token">
+                        <div class="token-preview" style="background: var(--info-color);"></div>
+                        <div class="token-label">Info</div>
+                        <div class="token-value">--info-color</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <h3>Spacing Tokens</h3>
+                <table class="properties-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="property-name">--spacing-xs</td>
+                            <td class="property-type">0.25rem (4px)</td>
+                            <td>Minimal spacing</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-sm</td>
+                            <td class="property-type">0.5rem (8px)</td>
+                            <td>Small gaps</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-md</td>
+                            <td class="property-type">1rem (16px)</td>
+                            <td>Default spacing</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-lg</td>
+                            <td class="property-type">1.5rem (24px)</td>
+                            <td>Large gaps</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--spacing-xl</td>
+                            <td class="property-type">2rem (32px)</td>
+                            <td>Extra large gaps</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="variant-group">
+                <h3>Border Radius Tokens</h3>
+                <table class="properties-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="property-name">--radius-sm</td>
+                            <td class="property-type">0.25rem (4px)</td>
+                            <td>Subtle curves</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-md</td>
+                            <td class="property-type">0.5rem (8px)</td>
+                            <td>Standard radius</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-lg</td>
+                            <td class="property-type">1rem (16px)</td>
+                            <td>Prominent radius</td>
+                        </tr>
+                        <tr>
+                            <td class="property-name">--radius-full</td>
+                            <td class="property-type">9999px</td>
+                            <td>Circular elements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="variant-group">
+                <h3>Typography Tokens</h3>
+                <ul class="feature-list">
+                    <li><strong>Font Family:</strong> var(--font-sans) = -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu...</li>
+                    <li><strong>Font Size Base:</strong> 1rem (16px)</li>
+                    <li><strong>Line Height Base:</strong> 1.5</li>
+                    <li><strong>Heading Font Size:</strong> Fluid scaling with clamp()</li>
+                    <li><strong>Letter Spacing:</strong> -0.02em for headings, normal for body</li>
+                </ul>
+            </div>
+
+            <div class="component-usage">
+                <h4>Using Design Tokens in CSS</h4>
+                <div class="code-block">.my-component {
+    /* Color tokens */
+    color: var(--text-primary);
+    background: var(--primary-color);
+    
+    /* Spacing tokens */
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    
+    /* Border radius tokens */
+    border-radius: var(--radius-md);
+    
+    /* Shadow tokens */
+    box-shadow: var(--shadow-md);
+    
+    /* Transition tokens */
+    transition: all var(--transition-fast);
+}</div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="component-section">
+            <h2>Design System Best Practices</h2>
+            <div class="accessibility-note" style="border-color: var(--primary-color); background: rgba(0, 102, 204, 0.05);">
+                <strong>💡 Tip:</strong> Always use design tokens instead of hardcoded values to maintain consistency.
+            </div>
+
+            <ul class="feature-list">
+                <li><strong>Use Component Classes:</strong> Apply the appropriate component classes (btn, card, alert, etc.) rather than custom styling</li>
+                <li><strong>Mobile First:</strong> Design for mobile screens first, then enhance for larger viewports</li>
+                <li><strong>Accessibility First:</strong> Ensure all components have proper semantic HTML, ARIA labels, and focus states</li>
+                <li><strong>Consistent Spacing:</strong> Use spacing tokens consistently throughout your layouts</li>
+                <li><strong>Color Contrast:</strong> Maintain WCAG AA (4.5:1) or AAA (7:1) contrast ratios for text</li>
+                <li><strong>Touch Targets:</strong> Keep interactive elements at least 44px high for touch accessibility</li>
+                <li><strong>Dark Mode:</strong> All components support dark mode through CSS custom properties</li>
+                <li><strong>Responsive Design:</strong> Use media queries and fluid sizing for responsive components</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <span class="logo-icon" aria-hidden="true">⚡</span>
+                    <span class="logo-text">Clodo</span>
+                </div>
+                <p>Building the future of edge computing, one service at a time. Join thousands of developers deploying on Cloudflare Workers with enterprise-grade performance and security.</p>
+
+                <div class="footer-newsletter" id="newsletter">
+                    <h4>Stay Updated</h4>
+                    <p id="newsletter-helper" class="form-helper">Product updates, engineering posts, and launch notes. <strong>1–2 emails/month.</strong></p>
+                    <form class="newsletter-form" action="#" method="post" data-newsletter-form>
+                        <input type="text" name="website" class="hp-field" aria-hidden="true" tabindex="-1" autocomplete="off">
+                        <input type="hidden" name="source" value="footer">
+                        <div class="form-group">
+                            <label for="newsletter-email" class="sr-only">Email address</label>
+                            <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" inputmode="email" aria-describedby="newsletter-helper" required>
+                            <button type="submit" class="btn btn--primary" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </div>
+                        <div class="reassurance">No spam. Unsubscribe anytime.</div>
+                        <div class="consent">
+                            <input type="checkbox" id="newsletter-consent" name="consent" required>
+                            <label for="newsletter-consent">I agree to receive emails from Clodo Framework and accept the <a href="privacy.html">Privacy Policy</a>.</label>
+                        </div>
+                        <p class="form-message" aria-live="polite" role="status"></p>
+                        <noscript>
+                            <p class="form-helper">JavaScript is required to submit this form. Please email <a href="mailto:hello@clodo.dev">hello@clodo.dev</a>.</p>
+                        </noscript>
+                    </form>
+                </div>
+            </div>
+
+            <nav class="footer-section" aria-labelledby="footer-product">
+                <h4 id="footer-product">Product</h4>
+                <ul role="list">
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="docs.html#api">API Reference</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-section" aria-labelledby="footer-company">
+                <h4 id="footer-company">Company</h4>
+                <ul role="list">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.html#roadmap">Roadmap</a></li>
+                    <li><a href="pricing.html#contact">Contact</a></li>
+                    <li><a href="about.html#team">Team</a></li>
+                    <li><a href="about.html#careers">Careers</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-section" aria-labelledby="footer-community">
+                <h4 id="footer-community">Community</h4>
+                <ul role="list">
+                    <li><a href="#" target="_blank">Discord</a></li>
+                    <li><a href="https://twitter.com/clodoframework" target="_blank" rel="noopener">Twitter</a></li>
+                    <li><a href="about.html#contact">Email</a></li>
+                    <li><a href="https://github.com/tamylaa/clodo-framework/discussions" target="_blank" rel="noopener">Discussions</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="https://twitter.com/clodoframework" target="_blank" rel="noopener" aria-label="Follow us on Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/tamylaa/clodo-framework" target="_blank" rel="noopener" aria-label="View on GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="Join our Discord">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; 2025 Clodo Framework. Open source under MIT License.
+                <span aria-hidden="true">•</span>
+                <a href="privacy.html">Privacy Policy</a>
+                <span aria-hidden="true">•</span>
+                <a href="privacy.html#terms">Terms of Service</a>
+                <span aria-hidden="true">•</span>
+                Made with <span class="text-heart">♥</span> for developers
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js" nonce="N0Nc3Cl0d0"></script>
+    <script>
+        // Smooth scroll spy for component navigation
+        function setupComponentNav() {
+            const navLinks = document.querySelectorAll('.component-nav .nav-link');
+            const sections = document.querySelectorAll('.component-section');
+
+            function updateActiveLink() {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+        }
+
+        setupComponentNav();
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

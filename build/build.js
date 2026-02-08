@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import * as crypto from 'crypto';
 import { injectSchemasIntoHTML } from '../schema/build-integration.js';
 import { generateOrganizationSchema, generateWebSiteSchema, generateSoftwareApplicationSchema, wrapSchemaTag } from '../schema/schema-generator.js';
+import { detectLocaleFromPath } from '../schema/locale-utils.js';
 import { fixCanonicalUrls } from './fix-canonicals-fn.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -47,6 +48,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const relatedContentFaqTemplate = readFileSync(join('templates', 'related-content-faq.html'), 'utf8');
     const relatedContentComparisonTemplate = readFileSync(join('templates', 'related-content-comparison.html'), 'utf8');
     const relatedContentWorkersTemplate = readFileSync(join('templates', 'related-content-workers.html'), 'utf8');
+    // HowTo / Benchmarks template for reuse across pages
+    const howtoTemplate = readFileSync(join('templates', 'howto-section.html'), 'utf8');
     // Static announcement banner no longer used - replaced with dynamic announcements-manager.js system
     const themeScriptTemplate = readFileSync(join('templates', 'theme-script.html'), 'utf8'); // Critical theme initialization
 
@@ -66,6 +69,59 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
     const criticalCss = existsSync(criticalCssPath) ? readFileSync(criticalCssPath, 'utf8') : '';
 
     // Note: assetManifest is now passed as parameter
+
+    // Load image manifest for SEO images (used to generate responsive picture markup & ImageObject JSON-LD)
+    let imagesManifest = null;
+    try {
+        imagesManifest = JSON.parse(readFileSync(join('data','images','seo','images.json'), 'utf8'));
+    } catch (e) {
+        console.warn('[IMAGES] No images manifest found at data/images/seo/images.json - responsive images will not be generated');
+        imagesManifest = [];
+    }
+
+    function findImageManifestEntriesForPage(pageFileName, locale) {
+        // Return entries whose pages include this filename and optionally match locale
+        const entries = imagesManifest.filter(img => Array.isArray(img.pages) && img.pages.includes(pageFileName));
+        if (!entries.length) return [];
+        if (!locale || locale === 'en') return entries;
+        // Prefer entries that include requested locale
+        const matching = entries.filter(e => Array.isArray(e.locales) && e.locales.includes(locale));
+        return matching.length ? matching : entries;
+    }
+
+    // Function to build responsive <picture> markup given an image manifest entry and path prefix
+    function buildPictureMarkup(entry, pathPrefix) {
+        // Prefer webp variants if available in optimized
+        const opt = entry.optimized || {};
+        const webp1 = opt.webp_1x || null;
+        const webp2 = opt.webp_2x || null;
+        const png1 = opt.png_1x || entry.file || null;
+        const png2 = opt.png_2x || null;
+        const alt = entry.alt || '';
+        const width = entry.width || '';
+        const height = entry.height || '';
+
+        // Build srcset strings
+        const webpSrcset = [webp1 ? `${pathPrefix}${webp1.replace(/^\//, '')} 1x` : null, webp2 ? `${pathPrefix}${webp2.replace(/^\//, '')} 2x` : null].filter(Boolean).join(', ');
+        const pngSrcset = [png1 ? `${pathPrefix}${png1.replace(/^\//, '')} 1x` : null, png2 ? `${pathPrefix}${png2.replace(/^\//, '')} 2x` : null].filter(Boolean).join(', ');
+
+        // Fallback img src uses png1
+        const imgSrc = png1 ? `${pathPrefix}${png1.replace(/^\//, '')}` : '';
+
+        const picture = [`<picture class="hero-image" aria-hidden="false">`];
+        if (webpSrcset) picture.push(`    <source type="image/webp" srcset="${webpSrcset}">`);
+        if (pngSrcset) picture.push(`    <source type="image/png" srcset="${pngSrcset}">`);
+        picture.push(`    <img src="${imgSrc}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="eager" decoding="async">`);
+        picture.push(`</picture>`);
+        return picture.join('\n');
+    }
+
+    function escapeHtml(str) {
+        return (str || '').replace(/[&<>"]/g, function (s) {
+            return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[s];
+        });
+    }
+
     // Function to adjust template paths for subdirectory files
     function adjustTemplatePaths(template, prefix) {
         if (!prefix) return template;
@@ -205,6 +261,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             const adjustedRelatedContentComparisonTemplate = adjustTemplatePaths(relatedContentComparisonTemplate, pathPrefix);
             const adjustedRelatedContentWorkersTemplate = adjustTemplatePaths(relatedContentWorkersTemplate, pathPrefix);
             const adjustedPricingCardsTemplate = adjustTemplatePaths(pricingCardsTemplate, pathPrefix);
+            const adjustedHowToTemplate = adjustTemplatePaths(howtoTemplate, pathPrefix);
 
             // Create adjusted component templates for this file's directory level
             const adjustedNewsletterFormFooterTemplate = adjustTemplatePaths(newsletterFormFooterTemplate, pathPrefix);
@@ -297,6 +354,8 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/related-content-comparison\.html" -->/g, adjustedRelatedContentComparisonTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/related-content-workers\.html" -->/g, adjustedRelatedContentWorkersTemplate);
+            content = content.replace(/<!--#include file="\.\.\/templates\/howto-section\.html" -->/g, adjustedHowToTemplate);
+            content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/howto-section\.html" -->/g, adjustedHowToTemplate);
             content = content.replace(/<!--#include file="\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
             content = content.replace(/<!--#include file="\.\.\/\.\.\/templates\/partials\/pricing-cards\.html" -->/g, adjustedPricingCardsTemplate);
 
@@ -326,6 +385,60 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
                 content = content.replace('<!-- HERO_PLACEHOLDER -->', adjustedHeroPricingTemplate);
             } else {
                 content = content.replace('<!-- HERO_PLACEHOLDER -->', adjustedHeroTemplate);
+            }
+
+            // If this page has images configured in data/schemas/page-config.json, inject responsive hero image <picture>
+            try {
+                const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
+                const lookup = file; // filename relative path as used in pagesByPath
+                const fileName = (file || '').split(/[\\\/]/).pop();
+                // Prefer explicit path-based page configs (pagesByPath)
+                let config = pageConfig.pagesByPath && pageConfig.pagesByPath[lookup] ? pageConfig.pagesByPath[lookup] : null;
+                // Fallback: check top-level pages mapping
+                if (!config && pageConfig.pages && pageConfig.pages[fileName.replace('.html','')]) {
+                    config = pageConfig.pages[fileName.replace('.html','')];
+                }
+                // If generic page config lacks images, prefer caseStudies mapping when available
+                if (config && (!Array.isArray(config.images) || !config.images.length) && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) {
+                    console.log(`   🔁 Fallback: replacing generic page config with caseStudies config for ${file} (images present in caseStudies)`);
+                    config = pageConfig.caseStudies[fileName];
+                }
+                // Fallback: check caseStudies mapping (case studies are stored separately)
+                if (!config && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) {
+                    config = pageConfig.caseStudies[fileName];
+                }
+                // Debugging: log whether we found a page config and its images
+                if (config) {
+                    console.log(`   🧭 Found page config for ${file}: images=${JSON.stringify(config.images || [])}`);
+                }
+                if (config && Array.isArray(config.images) && config.images.length && content.includes('<div class="hero-visual">')) {
+                    const locale = detectLocaleFromPath(join('public', file));
+                    const entries = [];
+                    for (const imgId of config.images) {
+                        const found = imagesManifest.find(i => i.id === imgId);
+                        if (found) entries.push(found);
+                    }
+                    const chosen = entries.length ? entries : findImageManifestEntriesForPage(lookup, locale);
+                    if (chosen && chosen.length) {
+                        // Use the first suitable hero image entry for visible hero
+                        const heroEntry = chosen[0];
+                        const pictureHtml = buildPictureMarkup(heroEntry, pathPrefix);
+
+                        // Insert the picture as the first child of hero-visual
+                        content = content.replace('<div class="hero-visual">', `<div class="hero-visual">\n    ${pictureHtml}`);
+
+                        // Also add minimal hero image CSS inline to avoid flash of unstyled images (small footprint)
+                        const heroCss = `.hero-image{max-width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 6px 20px rgba(5,16,40,0.06);margin:0 auto}`;
+                        // Inject into head-critical CSS if not already present
+                        if (headerCriticalCss && !headerCriticalCss.includes('.hero-image')) {
+                            headerCriticalCss += heroCss;
+                        }
+
+                        console.log(`   🖼️ Injected hero image for ${file} from manifest id: ${heroEntry.id}`);
+                    }
+                }
+            } catch (e) {
+                console.warn('[IMAGES] Failed to inject hero image for ' + file + ':', e.message);
             }
 
             // Replace footer placeholder with actual footer content (legacy support)
@@ -745,6 +858,44 @@ function copyStandaloneHtml() {
                     
                     const filePath = relativePath ? join(relativePath, entry) : entry;
                     
+                    // Attempt to inject responsive hero image for standalone pages when configured
+                    try {
+                        const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
+                        if (entry === 'saas-product-startups-cloudflare-case-studies.html') console.log('   🔎 Processing standalone case-study page for hero injection');
+                        const fileName = entry; // filename within this directory
+                        let config = pageConfig.pagesByPath && pageConfig.pagesByPath[fileName] ? pageConfig.pagesByPath[fileName] : null;
+                        if (!config && pageConfig.pages && pageConfig.pages[fileName.replace('.html','')]) {
+                            config = pageConfig.pages[fileName.replace('.html','')];
+                        }
+                        // If the generic page config lacks image info, prefer the caseStudies mapping when available
+                        if (config && (!Array.isArray(config.images) || !config.images.length) && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) {
+                            console.log(`   🔁 Fallback: replacing generic page config with caseStudies config for ${fileName} (images present in caseStudies)`);
+                            config = pageConfig.caseStudies[fileName];
+                        }
+                        if (!config && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) {
+                            config = pageConfig.caseStudies[fileName];
+                        }
+
+                        if (config && Array.isArray(config.images) && config.images.length && content.includes('<div class="hero-visual">')) {
+                            const imagesManifest = JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8'));
+                            const entries = [];
+                            for (const imgId of config.images) {
+                                const found = imagesManifest.find(i => i.id === imgId);
+                                if (found) entries.push(found);
+                            }
+                            const chosen = entries.length ? entries : imagesManifest.filter(img => Array.isArray(img.pages) && img.pages.includes(fileName));
+                            if (chosen && chosen.length) {
+                                const heroEntry = chosen[0];
+                                const pathPrefix = '';
+                                const pictureHtml = buildPictureMarkup(heroEntry, pathPrefix);
+                                content = content.replace('<div class="hero-visual">', `<div class="hero-visual">\n    ${pictureHtml}`);
+                                console.log(`   🖼️ Injected hero image (standalone) for ${filePath} from manifest id: ${heroEntry.id}`);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('[IMAGES] Failed to inject hero image for standalone ' + entry + ':', e.message);
+                    }
+
                     // Inject generated schemas (data-driven schema system)
                     content = injectSchemasIntoHTML(filePath, content);
 
@@ -1240,7 +1391,38 @@ function copyAssets() {
             if (stat.isDirectory()) {
                 mkdirSync(destPath, { recursive: true });
                 for (const sub of readdirSync(srcPath)) {
-                    copyFileSync(join(srcPath, sub), join(destPath, sub));
+                    const subSrc = join(srcPath, sub);
+                    const subDest = join(destPath, sub);
+                    const subStat = statSync(subSrc);
+                    if (subStat.isDirectory()) {
+                        // Create nested directory and copy its files (one level deep)
+                        mkdirSync(subDest, { recursive: true });
+                        for (const nested of readdirSync(subSrc)) {
+                            const nestedSrc = join(subSrc, nested);
+                            const nestedDest = join(subDest, nested);
+                            // Only copy files to avoid attempting to copy further directories
+                            if (statSync(nestedSrc).isDirectory()) {
+                                // If deeper nesting exists, copy recursively
+                                const copyRecursive = (s, d) => {
+                                    mkdirSync(d, { recursive: true });
+                                    for (const f of readdirSync(s)) {
+                                        const sPath = join(s, f);
+                                        const dPath = join(d, f);
+                                        if (statSync(sPath).isDirectory()) {
+                                            copyRecursive(sPath, dPath);
+                                        } else {
+                                            copyFileSync(sPath, dPath);
+                                        }
+                                    }
+                                };
+                                copyRecursive(nestedSrc, nestedDest);
+                            } else {
+                                copyFileSync(nestedSrc, nestedDest);
+                            }
+                        }
+                    } else {
+                        copyFileSync(subSrc, subDest);
+                    }
                 }
             } else {
                 copyFileSync(srcPath, destPath);

@@ -14,9 +14,9 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What is Edge Computing? - Complete Guide for Developers</title>
+    <title>Cloudflare: What Is Edge Computing — Deep Developer Guide</title>
     <link rel="canonical" href="https://www.clodo.dev/what-is-edge-computing">
-    <meta name="description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications. Complete guide with examples and use cases.">
+    <meta name="description" content="Explore Cloudflare edge computing: how it works, real use cases, performance tips, and hands-on examples for developers. Learn why it matters and how to start.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,14 +25,14 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
-    <meta property="og:title" content="What is Edge Computing? - Complete Developer Guide">
-    <meta property="og:description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications with practical examples.">
+    <meta property="og:title" content="Cloudflare: What Is Edge Computing — Deep Developer Guide">
+    <meta property="og:description" content="Explore Cloudflare edge computing: how it works, real use cases, performance tips, and hands-on examples for developers. Learn why it matters and how to start.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://clodo.dev/what-is-edge-computing">
     <meta property="og:image" content="https://clodo.dev/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="What is Edge Computing? - Complete Developer Guide">
-    <meta name="twitter:description" content="Learn what edge computing is, how it works, and why it's revolutionizing web applications with practical examples.">
+    <meta name="twitter:title" content="Cloudflare: What Is Edge Computing — Deep Developer Guide">
+    <meta name="twitter:description" content="Explore Cloudflare edge computing: how it works, real use cases, performance tips, and hands-on examples for developers. Learn why it matters and how to start.">
     <meta name="twitter:image" content="https://clodo.dev/og-image.png">
         <style>header {position: sticky;top: 0;z-index: 1000;background-color: var(--bg-primary);}.navbar {background-color: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 1px 3px rgb(0 0 0 / 5%);}.nav-container {display: flex;align-items: center;justify-content: space-between;padding: var(--spacing-sm) var(--spacing-md);max-width: 1200px;margin: 0 auto;gap: var(--spacing-sm);}@media (width <= 767px) {.nav-container {justify-content: space-between;}.logo {order: 1;}.mobile-menu-toggle {order: 3;}.nav-menu {order: 2;}.nav-actions {order: 4;display: flex;gap: var(--spacing-xs);}}@media (width >= 768px) {.nav-container {padding: var(--spacing-sm) var(--spacing-lg);}}.logo {display: flex;align-items: center;gap: 0.5rem;font-size: 1.25rem;font-weight: 700;color: var(--text-primary);text-decoration: none;transition: opacity var(--transition-fast);min-height: 44px;}.logo:hover {opacity: 0.8;}.logo:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.logo-icon {display: inline-flex;align-items: center;justify-content: center;width: 24px;height: 24px;flex-shrink: 0;}.logo-text {background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, var(--primary-color)));background-clip: text;-webkit-text-fill-color: transparent;}.mobile-menu-toggle {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;background: transparent;border: 1px solid var(--border-color);border-radius: var(--radius-md);cursor: pointer;transition: all var(--transition-fast);}.mobile-menu-toggle:hover {background: var(--bg-secondary);border-color: var(--primary-color);}.mobile-menu-toggle:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}.mobile-menu-toggle[aria-expanded="true"] {background: var(--bg-secondary);}.hamburger {display: flex;flex-direction: column;gap: 4px;width: 20px;}.hamburger__line {display: block;width: 100%;height: 2px;background: var(--text-primary);transition: all var(--transition-fast);border-radius: 2px;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top {transform: translateY(6px) rotate(45deg);}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--middle {opacity: 0;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: translateY(-6px) rotate(-45deg);}.nav-menu {display: none;list-style: none;margin: 0;padding: 0;position: absolute;top: 100%;left: 0;right: 0;background: var(--bg-primary);border-bottom: 1px solid var(--border-color);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);}.nav-menu[data-visible="false"] {display: none;}.nav-menu[data-visible="true"] {display: flex;flex-direction: column;}.nav-menu li {margin: 0;border-bottom: 1px solid var(--border-color);}.nav-menu li:last-child {border-bottom: none;}.nav-link {display: flex;align-items: center;padding: var(--spacing-md);color: var(--text-primary);text-decoration: none;font-weight: 500;font-size: 1rem;transition: all var(--transition-fast);min-height: 44px;}.nav-link:hover {background: var(--bg-secondary);color: var(--primary-color);}.nav-link:focus-visible {outline: 2px solid var(--primary-color);outline-offset: -2px;}.nav-link[aria-current="page"] {color: var(--primary-color);font-weight: 600;background: var(--bg-hover, var(--bg-secondary));}.nav-dropdown {position: relative;}.nav-dropdown-toggle::after {content: "▾";margin-left: 0.375rem;font-size: 0.875rem;transition: transform var(--transition-fast);}.nav-dropdown-toggle[aria-expanded="true"]::after {transform: rotate(180deg);}.nav-dropdown-menu {display: none;list-style: none;margin: 0;padding: var(--spacing-sm) 0;background: var(--bg-secondary);}.nav-dropdown:has(.nav-dropdown-toggle[aria-expanded="true"]) .nav-dropdown-menu {display: block;}.nav-dropdown-link {display: block;padding: var(--spacing-sm) var(--spacing-lg);color: var(--text-secondary);text-decoration: none;font-size: 0.875rem;transition: all var(--transition-fast);}.nav-dropdown-link:hover {background: var(--bg-hover, var(--bg-primary));color: var(--primary-color);}.nav-dropdown-divider {padding: var(--spacing-xs) var(--spacing-lg);font-size: 0.75rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.05em;color: var(--text-muted, var(--text-secondary));margin-top: var(--spacing-sm);}.nav-dropdown-section {margin: var(--spacing-sm) 0 var(--spacing-xs) 0;}.nav-dropdown-section-title {padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-xs) var(--spacing-lg) !important;font-size: 0.875rem !important;font-weight: 600 !important;color: var(--text-primary) !important;cursor: pointer;border-bottom: 1px solid var(--border-color, rgb(255 255 255 / 10%));margin-bottom: var(--spacing-xs);}.nav-dropdown-section-title:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;}.nav-dropdown-subitem {padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) calc(var(--spacing-lg) + var(--spacing-md)) !important;font-size: 0.8125rem !important;color: var(--text-secondary) !important;border-left: 2px solid transparent;}.nav-dropdown-subitem:hover {background: var(--bg-hover, var(--bg-primary)) !important;color: var(--primary-color) !important;border-left-color: var(--primary-color);}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}.github-btn {display: flex;align-items: center;justify-content: center;width: 44px;height: 44px;color: var(--text-primary);text-decoration: none;border: 1px solid var(--border-color);border-radius: var(--radius-md);transition: all var(--transition-fast);}.github-btn:hover {background: var(--bg-secondary);border-color: var(--primary-color);color: var(--primary-color);}.github-btn:focus-visible {outline: 2px solid var(--primary-color);outline-offset: 2px;}@media (width >= 768px) {.nav-container {padding: var(--spacing-md) var(--spacing-lg);}.logo {font-size: 1.5rem;}.mobile-menu-toggle {display: none;}.nav-menu,.nav-menu[data-visible="false"],.nav-menu[data-visible="true"] {display: flex !important;position: static;flex-direction: row;align-items: center;gap: var(--spacing-sm);background: transparent;border: none;box-shadow: none;}.nav-menu li {border-bottom: none;}.nav-link {padding: var(--spacing-sm) var(--spacing-md);}.nav-dropdown-menu {position: absolute;top: 100%;left: 0;min-width: 250px;background: var(--bg-primary);border: 1px solid var(--border-color);border-radius: var(--radius-md);box-shadow: 0 8px 16px rgb(0 0 0 / 10%);margin-top: 0.5rem;z-index: 1001;max-height: 70vh;overflow-y: auto;}.nav-actions {display: flex;align-items: center;gap: var(--spacing-sm);}}@media (width >= 1024px) {.nav-menu {gap: var(--spacing-md);}.nav-dropdown-menu {min-width: 300px;}}@media (prefers-reduced-motion: reduce) {.hamburger__line,.nav-dropdown-toggle::after {transition: none;}.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--top,.mobile-menu-toggle[aria-expanded="true"] .hamburger__line--bottom {transform: none;}}@media (prefers-contrast: high) {.navbar {border-bottom: 2px solid var(--border-color);}.mobile-menu-toggle,.github-btn {border: 2px solid var(--border-color);}}@media print {.navbar {position: static;border-bottom: 2px solid var(--color-black);}.mobile-menu-toggle,.nav-dropdown-menu,.nav-actions {display: none;}.nav-menu {display: flex;flex-direction: row;gap: 1rem;}}.breadcrumbs{max-width:1280px;margin:0 auto;padding:1rem;font-size:.875rem;color:var(--text-muted)}.breadcrumbs ol{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;margin:0;padding:0}.breadcrumbs li{display:flex;align-items:center}.breadcrumbs li:not(:last-child):after{content:"/";margin-left:.5rem}.breadcrumbs a{color:var(--primary-color);text-decoration:none}.breadcrumbs a:hover{text-decoration:underline}.navbar{transition:none !important}.css-ready .navbar{transition:all var(--transition-fast)}</style>
     <!-- Critical Theme Script - Prevents FOUC (Flash of Unstyled Content) -->
@@ -139,8 +139,7 @@
     "Zero cold starts with sub-50ms response",
     "Automated security validation",
     "TypeScript support with 500+ type definitions",
-    "One-click deployment to Cloudflare Pages",
-    "Cloudflare Wrangler automation — deployments, D1 migrations, and rollbacks"
+    "One-click deployment to Cloudflare Pages"
   ],
   "screenshot": "https://www.clodo.dev/images/icon.svg",
   "downloadUrl": "https://www.npmjs.com/package/@tamyla/clodo-framework",
@@ -198,6 +197,309 @@
         "bestRating": "5",
         "worstRating": "1"
       }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between edge computing and cloud computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edge computing processes data near users for lower latency and reduced bandwidth, while cloud computing uses centralized data centers for heavy processing and storage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Cloudflare implement edge computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare runs Workers and caches at global edge locations so code and content execute close to users for better performance and reliability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I use edge computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use edge computing for latency-sensitive features, real-time personalization, streaming, and IoT data processing where responsiveness matters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started as a developer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Build small edge functions, measure latency gains, and progressively move logic to the edge while monitoring performance and cost."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Cloudflare: What Is Edge Computing — Deep Developer Guide",
+  "description": "A developer-focused deep dive into edge computing, tied to Clodo Framework implementation examples and benchmarks.",
+  "image": "https://www.clodo.dev/og-image.png",
+  "datePublished": "2026-02-08",
+  "dateModified": "2026-02-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Clodo Framework"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clodo Framework",
+    "url": "https://www.clodo.dev",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.clodo.dev/icons/icon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.clodo.dev/what-is-edge-computing"
+  },
+  "articleSection": "Technical",
+  "keywords": [
+    "cloudflare",
+    "edge computing",
+    "clodo framework",
+    "serverless",
+    "cloudflare workers"
+  ],
+  "wordCount": 2200,
+  "proficiencyLevel": "Intermediate",
+  "dependencies": "",
+  "url": "https://www.clodo.dev/what-is-edge-computing",
+  "hasPart": {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Key Performance Indicators",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Thing",
+          "name": "Median response time — Edge (Cloudflare Workers)",
+          "description": "Synthetic median RTT measured for a small edge function (sample), representing typical real-world response times at the edge.",
+          "quantitativeValue": {
+            "@type": "QuantitativeValue",
+            "value": 25,
+            "unitText": "ms"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Thing",
+          "name": "Median response time — Cloud-only",
+          "description": "Synthetic median RTT for a comparable cloud-hosted endpoint (sample), representative of centralized cloud latencies.",
+          "quantitativeValue": {
+            "@type": "QuantitativeValue",
+            "value": 150,
+            "unitText": "ms"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Thing",
+          "name": "Cache hit latency (P95)",
+          "description": "Cache hit 95th percentile latency for edge cache hits (sample).",
+          "quantitativeValue": {
+            "@type": "QuantitativeValue",
+            "value": 8,
+            "unitText": "ms"
+          }
+        }
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare: What Is Edge Computing — Deep Developer Guide",
+  "url": "https://www.clodo.dev/what-is-edge-computing"
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Deploy a Clodo service to the edge (quick start)",
+  "description": "Scaffold, test, and deploy a Clodo service to Cloudflare Workers and observe latency gains.",
+  "totalTime": "PT15M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Install Clodo Framework",
+      "text": "Install Clodo Framework with `npm install @tamyla/clodo-framework` or add it to your project dependencies."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Scaffold a service",
+      "text": "Run `npx create-clodo-service my-edge-service --type data-service` to generate a Workers-ready starter project.",
+      "url": "https://www.clodo.dev/examples"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Configure Workers & D1",
+      "text": "Add D1 bindings, environment variables and `wrangler.toml` settings for routes, accounts and secrets."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Test & benchmark",
+      "text": "Run locally (e.g., `npm run dev` or `wrangler dev`) and measure latency improvements compared to a cloud-based variant."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Deploy & monitor",
+      "text": "Deploy to Cloudflare, run synthetic latency tests, and use monitoring/logs to verify performance and reliability."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Clodo-Service am Edge bereitstellen",
+  "description": "Kurzanleitung zum Scaffolden, Testen und Bereitstellen eines Clodo-Service auf Cloudflare Workers.",
+  "totalTime": "PT15M",
+  "steps": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Clodo installieren",
+      "text": "Installieren Sie Clodo: `npm install @tamyla/clodo-framework`."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Service erstellen",
+      "text": "Führen Sie `npx create-clodo-service my-edge-service --type data-service` aus, um ein Starter-Projekt zu generieren."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Konfigurieren",
+      "text": "Fügen Sie D1-Bindings und `wrangler.toml`-Einstellungen hinzu."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Testen &amp; Benchmarken",
+      "text": "Führen Sie `npm run dev` oder `wrangler dev` aus und messen Sie die Latenz."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Bereitstellen",
+      "text": "Bereitstellen, synthetische Tests ausführen und die Leistung überwachen."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Desplegar un servicio Clodo en el edge",
+  "description": "Pasos rápidos para generar, probar y desplegar un servicio Clodo en Cloudflare Workers.",
+  "totalTime": "PT15M",
+  "steps": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Instalar Clodo",
+      "text": "Instale Clodo: `npm install @tamyla/clodo-framework`."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Crear servicio",
+      "text": "Ejecute `npx create-clodo-service my-edge-service --type data-service` para generar un proyecto inicial."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Configurar",
+      "text": "Agregue bindings para D1 y settings en `wrangler.toml`."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Probar y medir",
+      "text": "Use `npm run dev` o `wrangler dev` y compare latencias con una variante basada en la nube."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Desplegar y monitorizar",
+      "text": "Despliegue en Cloudflare y verifique métricas y registros."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Deploy a Clodo service to Cloudflare Workers",
+  "description": "Quick hands-on steps to scaffold, test, and deploy a Clodo service to Cloudflare Workers and measure latency improvements at the edge.",
+  "totalTime": "PT15M",
+  "steps": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Install Clodo Framework",
+      "text": "Install Clodo Framework in your development environment: `npm install @tamyla/clodo-framework` or use the global installer as needed."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Scaffold a Clodo service",
+      "text": "Run `npx create-clodo-service my-edge-service --type data-service` to generate a starter service scaffold with templates tuned for Cloudflare Workers.",
+      "url": "https://www.clodo.dev/examples"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Configure for Workers & D1",
+      "text": "Enable the Cloudflare Workers target and configure D1 and environment variables. Update routing and bindings in `wrangler.toml` or Clodo deploy configuration."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Test locally and benchmark",
+      "text": "Run the service locally (e.g., `wrangler dev` or `clodo dev`) and measure latency vs a cloud-hosted variant to validate edge gains."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Deploy & monitor",
+      "text": "Deploy to Cloudflare, verify edge responses, and monitor metrics. Use progressive rollout and synthetic latency tests in production."
     }
   ]
 }
@@ -290,26 +592,6 @@
       "position": 2,
       "name": "What Is Edge Computing",
       "item": "https://www.clodo.dev/what-is-edge-computing"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json" nonce="N0Nc3Cl0d0">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.clodo.dev"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "/",
-      "item": "https://www.clodo.dev"
     }
   ]
 }
@@ -580,29 +862,85 @@
                             <li><strong>Scalability</strong>: Distributed processing handles massive scale more efficiently</li>
                         </ul>
 
-                        <h3>Getting Started with Edge Computing</h3>
-                        <p>Clodo Framework makes building edge applications simple:</p>
-                        <div class="code-example">
-                            <pre><code>// Edge function with Clodo Framework
-export async function handleRequest(request) {
-  // Process data at the edge
-  const userLocation = getUserLocation(request);
-  const personalizedContent = await generateContent(userLocation);
+                        <h3>Edge + Clodo Framework — Quick start</h3>
+                        <p>Clodo Framework provides batteries-included scaffolding and helpers to build production-grade edge services for Cloudflare Workers in minutes.</p>
 
-  return new Response(personalizedContent, {
-    headers: {
-      'content-type': 'text/html',
-      'cache-control': 'public, max-age=300'
-    }
-  });
-}</code></pre>
+                        <div class="code-example">
+                            <pre><code># Scaffold a new Clodo edge service
+npx create-clodo-service my-edge-service --type data-service
+
+# From the generated project: install deps & run locally
+cd my-edge-service
+npm install
+npm run dev  # or `wrangler dev` depending on setup
+
+# Deploy to Cloudflare when ready
+npm run deploy  # configured by Clodo to use Wrangler or your CI pipeline</code></pre>
                         </div>
+
+                        <p>Read the full Clodo Framework guide and examples for Workers and D1: <a href="/clodo-framework-guide">Clodo Framework Guide</a> • <a href="/examples">Examples</a></p>
 
                         <div class="cta-section">
-                            <h3>Build Your First Edge Application</h3>
-                            <p>Experience the power of edge computing with Clodo Framework.</p>
+                            <h3>Build an edge-ready service</h3>
+                            <p>Scaffold, test, and deploy a Clodo-powered edge service and measure latency improvements compared to a cloud-only deployment.</p>
                             <a href="/product" class="btn btn--primary">Start Building</a>
                         </div>
+
+                        <section id="faqs" class="faq-section">
+                            <h3>Frequently Asked Questions</h3>
+                            <div class="faq-list">
+                                <details class="faq">
+                                    <summary>What is the difference between edge computing and cloud computing?</summary>
+                                    <p>The edge processes data near users for lower latency and reduced bandwidth compared to centralized cloud processing. Cloud remains useful for heavy, centralized workloads.</p>
+                                </details>
+                                <details class="faq">
+                                    <summary>How does Cloudflare implement edge computing?</summary>
+                                    <p>Cloudflare runs lightweight Workers and caches at global edge locations, enabling code execution and content delivery close to users for better performance and reliability.</p>
+                                </details>
+                                <details class="faq">
+                                    <summary>When should I use edge computing?</summary>
+                                    <p>Use the edge for latency-sensitive apps, real-time personalization, and bandwidth-sensitive workloads like streaming or IoT data processing where responsiveness matters.</p>
+                                </details>
+                                <details class="faq">
+                                    <summary>How do I get started as a developer?</summary>
+                                    <p>Start with small edge functions, profile latency improvements, and use progressive rollout to move logic closer to users while monitoring performance.</p>
+                                </details>
+                            </div>
+                        </section>
+
+                        <section id="howto" class="howto-section">
+  <h3>How to deploy a Clodo service to the edge (quick start)</h3>
+  <ol>
+    <li><strong>Install Clodo Framework</strong>: Install the package and CLI helpers with <code>npm install @tamyla/clodo-framework</code>.</li>
+    <li><strong>Scaffold a service</strong>: Run <code>npx create-clodo-service my-edge-service --type data-service</code> to generate a Workers-ready starter project.</li>
+    <li><strong>Configure bindings</strong>: Add D1 bindings, environment variables and <code>wrangler.toml</code> settings for routes, accounts and secrets.</li>
+    <li><strong>Test &amp; benchmark</strong>: Run locally (<code>npm run dev</code> or <code>wrangler dev</code>) and measure latency improvements against a cloud-hosted variant.</li>
+    <li><strong>Deploy &amp; monitor</strong>: Deploy to Cloudflare, run synthetic latency tests, and use monitoring/logs to verify performance and reliability.</li>
+  </ol>
+  <p class="howto-note">Tip: Start tiny, benchmark often, and only move critical latency-sensitive logic to the edge.</p>
+
+  <h4>Benchmarks (sample)</h4>
+  <section class="benchmark-section">
+    <div class="comparison-grid">
+      <div class="comparison-item">
+        <div class="comparison-content">
+          <h4>Edge (Cloudflare Workers)</h4>
+          <p class="metric">Median response time: <strong>~25 ms</strong></p>
+          <p class="metric">Cache hit (P95): <strong>~8 ms</strong></p>
+        </div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="comparison-content">
+          <h4>Cloud-only (centralized)</h4>
+          <p class="metric">Median response time: <strong>~150 ms</strong></p>
+          <p class="metric">Notes: higher transit latency &amp; variability</p>
+        </div>
+      </div>
+    </div>
+    <p class="howto-note">Sources: <a href="https://www.cloudflare.com/learning/serverless/what-is-edge-computing/" target="_blank" rel="noopener">Cloudflare Learning</a>, <a href="https://doi.org/10.1109/JIOT.2016.2579198" target="_blank" rel="noopener">Shi et al. (2016)</a>, State of the Edge reports.</p>
+  </section>
+</section>
                     </article>
 
                     <aside class="sidebar">

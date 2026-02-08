@@ -365,6 +365,29 @@ test.describe('Structured Data Hub Tests', () => {
         }
     });
 
+    test('should render hero picture with responsive sources and correct alt', async ({ page }) => {
+        await page.goto('/saas-product-startups-cloudflare-case-studies.html');
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(process.env.CI ? 500 : 1000);
+
+        const picture = await page.$('picture.hero-image');
+        expect(picture).toBeTruthy();
+
+        const img = await page.$('picture.hero-image img');
+        expect(img).toBeTruthy();
+
+        const alt = await img.getAttribute('alt');
+        expect(alt).toBe('Cloudflare collaboration overview with logos of Discord, Shopify and GitHub.');
+
+        // ensure webp source exists
+        const webpSource = await page.$('picture.hero-image source[type="image/webp"]');
+        expect(webpSource).toBeTruthy();
+
+        // ensure png fallback source exists
+        const pngSource = await page.$('picture.hero-image source[type="image/png"]');
+        expect(pngSource).toBeTruthy();
+    });
+
     test('should work across different pages', async ({ page }) => {
         // Only test pages that have init-systems.js loaded
         const pages = [

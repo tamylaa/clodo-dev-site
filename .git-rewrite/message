@@ -1,0 +1,19 @@
+feat: transform subscribe page with Cloudflare Turnstile
+
+IMPROVEMENTS:
+- Remove consent checkbox friction (now inline text)
+- Replace reCAPTCHA with Cloudflare Turnstile (privacy-focused, better UX)
+- Add social proof: subscriber count, testimonials, recent subscribers
+- Add lead magnet offer (free guides and templates)
+- Include newsletter preview sample
+- Add FAQ section addressing common concerns
+- Enhanced visual hierarchy with benefit callouts
+- Add final CTA section for conversion
+- Update CSP headers for Turnstile
+- Include comprehensive Turnstile setup documentation
+
+BENEFITS:
+- Faster form submission (no checkbox)
+- Better privacy (no Google tracking)
+- Higher conversion (social proof + value proposition)
+- Professional onboarding experience matching top newsletter platforms

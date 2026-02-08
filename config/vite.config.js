@@ -39,7 +39,8 @@ function templatePlugin() {
             'header.html': 'header',
             'footer.html': 'footer',
             'hero.html': 'hero',
-            'nav-main.html': 'nav-main'
+            'nav-main.html': 'nav-main',
+            'howto-section.html': 'howto'
           };
           
           const templates = {};
@@ -70,6 +71,16 @@ function templatePlugin() {
           if (html.includes('<!--#include file="../../templates/nav-main.html" -->')) {
             html = html.replace(/<!--#include file="\.\.\/\.\.\/templates\/nav-main\.html" -->/g, templates['nav-main']);
             console.log('  ✓ Nav-main template injected (blog)');
+          }
+
+          // Replace SSI include for HowTo section
+          if (html.includes('<!--#include file="../templates/howto-section.html" -->')) {
+            html = html.replace(/<!--#include file="\.\.\/templates\/howto-section\.html" -->/g, templates['howto']);
+            console.log('  ✓ HowTo template injected');
+          }
+          if (html.includes('<!--#include file="../../templates/howto-section.html" -->')) {
+            html = html.replace(/<!--#include file="\.\.\/\.\.\/templates\/howto-section\.html" -->/g, templates['howto']);
+            console.log('  ✓ HowTo template injected (blog)');
           }
           
           // Replace hero placeholder

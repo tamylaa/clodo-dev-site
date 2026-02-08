@@ -1,0 +1,24 @@
+tree bcf645446559ab440fc3d6cabced3c2f84cb783c
+parent 8c4d9c89d176ea725853c17f14517796bd09fc21
+author tamylaa <tamylatrading@gmail.com> 1761818524 +0400
+committer tamylaa <tamylatrading@gmail.com> 1761818524 +0400
+
+feat: transform subscribe page with Cloudflare Turnstile
+
+IMPROVEMENTS:
+- Remove consent checkbox friction (now inline text)
+- Replace reCAPTCHA with Cloudflare Turnstile (privacy-focused, better UX)
+- Add social proof: subscriber count, testimonials, recent subscribers
+- Add lead magnet offer (free guides and templates)
+- Include newsletter preview sample
+- Add FAQ section addressing common concerns
+- Enhanced visual hierarchy with benefit callouts
+- Add final CTA section for conversion
+- Update CSP headers for Turnstile
+- Include comprehensive Turnstile setup documentation
+
+BENEFITS:
+- Faster form submission (no checkbox)
+- Better privacy (no Google tracking)
+- Higher conversion (social proof + value proposition)
+- Professional onboarding experience matching top newsletter platforms
