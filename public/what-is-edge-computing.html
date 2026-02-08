@@ -168,6 +168,16 @@ export async function handleRequest(request) {
                                 </details>
                             </div>
                         </section>
+
+                        <section id="howto" class="howto-section">
+                            <h3>How to deploy a simple edge function (quick start)</h3>
+                            <ol>
+                                <li><strong>Create an edge function</strong>: Use Clodo or Cloudflare Workers to write a small handler that returns a fast, cached response.</li>
+                                <li><strong>Test locally</strong>: Run the function locally or in a staging worker environment and validate behavior and latency.</li>
+                                <li><strong>Deploy and monitor</strong>: Deploy to Cloudflare, measure edge response times, and roll out progressively while tracking metrics.</li>
+                            </ol>
+                            <p class="howto-note">Tip: Start with a tiny function and benchmark latency before moving more logic to the edge.</p>
+                        </section>
                     </article>
 
                     <aside class="sidebar">

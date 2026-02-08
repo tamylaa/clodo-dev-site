@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Deploy a simple Cloudflare edge function with Clodo",
+  "description": "Quick hands-on steps to deploy a small edge function on Cloudflare and observe latency improvements.",
+  "totalTime": "PT10M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Create an edge function",
+      "text": "Use Clodo or Cloudflare Workers to create a simple function that returns a personalized response."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Test locally",
+      "text": "Run the function locally or in a staging worker environment and test with sample requests to verify behavior."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Deploy and monitor",
+      "text": "Deploy to Cloudflare, measure response times at the edge, and roll out progressively while monitoring performance."
+    }
+  ]
+}
