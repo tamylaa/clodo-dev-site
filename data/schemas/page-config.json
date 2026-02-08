@@ -978,7 +978,8 @@
       "requiredSchemas": [
         "FAQPage",
         "BreadcrumbList",
-        "SoftwareApplication"
+        "SoftwareApplication",
+        "Article"
       ]
     },
     "serverless-framework-comparison.html": {
