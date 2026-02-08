@@ -1047,21 +1047,30 @@
         }
       ],
       "howTo": {
-        "name": "Deploy a simple Cloudflare edge function (quick start)",
-        "description": "Deploy a tiny edge function using Clodo/Workers to measure latency improvements and deploy safely.",
-        "totalTime": "PT10M",
+        "name": "Deploy a Clodo service to the edge (quick start)",
+        "description": "Scaffold, test, and deploy a Clodo service to Cloudflare Workers and observe latency gains.",
+        "totalTime": "PT15M",
         "steps": [
           {
-            "name": "Create an edge function",
-            "text": "Write a small handler using Clodo or Cloudflare Workers that returns a simple cached response."
+            "name": "Install Clodo Framework",
+            "text": "Install Clodo Framework with `npm install @tamyla/clodo-framework` or add it to your project dependencies."
           },
           {
-            "name": "Test locally",
-            "text": "Run and test the function locally or in staging to validate behavior and performance."
+            "name": "Scaffold a service",
+            "text": "Run `npx create-clodo-service my-edge-service --type data-service` to generate a Workers-ready starter project.",
+            "url": "https://www.clodo.dev/examples"
           },
           {
-            "name": "Deploy and monitor",
-            "text": "Deploy to Cloudflare, measure edge response times, and roll out progressively while tracking metrics."
+            "name": "Configure Workers & D1",
+            "text": "Add D1 bindings, environment variables and `wrangler.toml` settings for routes, accounts and secrets."
+          },
+          {
+            "name": "Test & benchmark",
+            "text": "Run locally (e.g., `npm run dev` or `wrangler dev`) and measure latency improvements compared to a cloud-based variant."
+          },
+          {
+            "name": "Deploy & monitor",
+            "text": "Deploy to Cloudflare, run synthetic latency tests, and use monitoring/logs to verify performance and reliability."
           }
         ]
       }
