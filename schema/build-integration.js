@@ -180,6 +180,11 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
       if (Array.isArray(config.faqs) && config.faqs.length) schemas.push(generateFAQPageSchema(config.faqs));
     }
 
+    // If the pagesByPath config includes an explicit faqs array, inject it even when the page type is not set to FAQPage
+    if (Array.isArray(config.faqs) && config.faqs.length) {
+      schemas.push(generateFAQPageSchema(config.faqs));
+    }
+
     // Add Article if explicitly required
     if (config.requiredSchemas && Array.isArray(config.requiredSchemas) && config.requiredSchemas.includes('Article')) {
       const titleMatch = htmlContent.match(/<title[^>]*>([^<]+)<\/title>/i);
