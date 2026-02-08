@@ -1,9 +1,26 @@
-(function () {
+(function () {
+function mapAssetHref(href) {
+if (!href || !window.__assetManifest__ && typeof window.__assetManifest__ === 'undefined') return null;
+const manifestRef = (window && window.__assetManifest__) ? window.__assetManifest__ : null;
+if (!manifestRef) return null;
+const key = href.replace(/^\//, '');
+if (manifestRef[key]) return '/' + manifestRef[key];
+const basename = key.split('/').pop();
+if (manifestRef[basename]) return '/' + manifestRef[basename];
+if (key.includes('js/pages/')) {
+const alt = key.replace('js/pages/', 'js/');
+if (manifestRef[alt]) return '/' + manifestRef[alt];
+}
+for (const mk in manifestRef) {
+if (mk.endsWith(key) || mk.endsWith(basename)) return '/' + manifestRef[mk];
+}
+return null;
+}
 try {
 const links = document.querySelectorAll('link[rel="preload"][as="style"]');
 if (!links || links.length === 0) return;
 let manifest = (window && window.__assetManifest__) ? window.__assetManifest__ : null;
-let manifestPresent = manifest && Object.keys(manifest).length > 0;
+let manifestPresent = manifest && Object.keys(manifest).length > 0;
 if(!manifestPresent){
 try{
 console.error('[init-preload] WARNING: asset manifest missing or empty. Attempting to fetch /asset-manifest.json as fallback.');
@@ -17,8 +34,8 @@ document.querySelectorAll('link[rel="preload"][as="style"]').forEach(ln => {
 try {
 const href = ln.getAttribute('href');
 if (href) {
-const key = href.replace(/^\//, '');
-if (manifest[key]) ln.setAttribute('href', '/' + manifest[key]);
+const mapped = mapAssetHref(href);
+if (mapped) ln.setAttribute('href', mapped);
 }
 } catch (e) { console.debug('[init-preload] mapping on fallback failed', e); }
 });
@@ -31,9 +48,9 @@ links.forEach((ln) => {
 try {
 const href = ln.getAttribute('href');
 if (href && manifestPresent) {
-const key = href.replace(/^\//, '');
-if (manifest[key]) {
-ln.setAttribute('href', '/' + manifest[key]);
+const mapped = mapAssetHref(href);
+if (mapped) {
+ln.setAttribute('href', mapped);
 }
 }
 } catch (e) {
@@ -99,7 +116,27 @@ ln.setAttribute('data-applied', '1');
 }
 }
 }, 200);
+});
+try {
+if (manifestPresent) {
+const scripts = document.querySelectorAll('script[src]:not([data-asset-mapped])');
+scripts.forEach((s) => {
+try {
+const src = s.getAttribute('src');
+if (!src) return;
+if (/\.[0-9a-f]{6,}\./.test(src)) return;
+const mapped = mapAssetHref(src);
+if (mapped) {
+s.setAttribute('src', mapped);
+s.setAttribute('data-asset-mapped', '1');
+console.log('[init-preload] mapped script', src, '->', mapped);
+}
+} catch (e) { console.debug('[init-preload] script mapping failure', e); }
 });
+}
+} catch (e) {
+console.debug('[init-preload] script mapping top-level error', e);
+}
 } catch (e) {
 console.warn('[init-preload] Unexpected error in init-preload script', e);
 }

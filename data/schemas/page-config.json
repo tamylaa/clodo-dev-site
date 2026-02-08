@@ -952,7 +952,18 @@
       "type": "WebPage",
       "requiredSchemas": [
         "WebSite",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "faqs": [
+        {
+          "name": "What is Clodo Company?",
+          "acceptedAnswer": "Clodo Company is a leading cloud service provider specializing in enterprise SaaS development frameworks, offering Cloudflare Workers orchestration to reduce development costs by 60%."
+        },
+        {
+          "name": "How does Clodo cloud service work?",
+          "acceptedAnswer": "Our cloud service provides a pre-built framework for Cloudflare Workers, enabling developers to build production SaaS applications 10x faster with built-in security, multi-tenancy, and cost optimization."
+        }
       ]
     },
     "multi-tenant-saas.html": {
