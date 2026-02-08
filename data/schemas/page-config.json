@@ -1036,7 +1036,7 @@
         "name": "Deploy a simple Cloudflare edge function (quick start)",
         "description": "Deploy a tiny edge function using Clodo/Workers to measure latency improvements and deploy safely.",
         "totalTime": "PT10M",
-        "step": [
+        "steps": [
           {
             "name": "Create an edge function",
             "text": "Write a small handler using Clodo or Cloudflare Workers that returns a simple cached response."
