@@ -42,6 +42,7 @@ scripts/analytics/
 
 # Sensitive files
 Downloads/service-account-key.json
+dist/downloads/service-account-key.json
 data/seo-urls.txt
 
 # Coverage / reports
