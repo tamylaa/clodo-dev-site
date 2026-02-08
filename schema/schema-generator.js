@@ -245,7 +245,7 @@ export function generateTechArticleSchema(post) {
   const { blogData } = loadData();
   const author = post.author ? blogData.authors?.[post.author] : null;
 
-  return {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     'headline': post.headline || post.title,
@@ -289,6 +289,14 @@ export function generateTechArticleSchema(post) {
       'url': post.url
     })
   };
+
+  // Attach quantitive metrics as an ItemList (hasPart) when provided in page config
+  if (post.metrics && Array.isArray(post.metrics) && post.metrics.length) {
+    // @ts-ignore - dynamic schema property to attach metrics (ItemList)
+    schema.hasPart = generateMetricsItemList(post.metrics);
+  }
+
+  return schema;
 }
 
 /**

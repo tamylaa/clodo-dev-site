@@ -205,6 +205,18 @@ test.describe('Structured Data Hub Tests', () => {
         }
 
         if (article) {
+            // Ensure metrics were attached as hasPart ItemList
+            if (article.hasPart) {
+                expect(article.hasPart['@type']).toBe('ItemList');
+                expect(Array.isArray(article.hasPart.itemListElement)).toBe(true);
+                expect(article.hasPart.itemListElement.length).toBeGreaterThan(0);
+                const metricNames = article.hasPart.itemListElement.map(e => e.item.name);
+                expect(metricNames.some(n => n.toLowerCase().includes('median response'))).toBe(true);
+                console.log('Article metrics items:', article.hasPart.itemListElement.length);
+            } else {
+                throw new Error('Article schema missing metrics (hasPart)');
+            }
+
             // The TechArticle should be authored by Clodo Framework (fallback allowed)
             if (article.author) {
                 const authorName = typeof article.author === 'string' ? article.author : (article.author.name || '');
@@ -214,6 +226,10 @@ test.describe('Structured Data Hub Tests', () => {
             }
             console.log('Article schema present:', article.headline || article.name || 'unknown');
         }
+
+        // Visible benchmarks section should be present in the page
+        const hasBenchmarks = await page.$('section.benchmark-section');
+        expect(hasBenchmarks).toBeTruthy();
     });
 
     test('should have valid JSON-LD syntax', async ({ page }) => {
