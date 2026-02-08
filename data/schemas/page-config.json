@@ -1031,7 +1031,26 @@
           "name": "How do I get started as a developer?",
           "acceptedAnswer": "Build small edge functions, measure latency gains, and progressively move logic to the edge while monitoring performance and cost."
         }
-      ]
+      ],
+      "howTo": {
+        "name": "Deploy a simple Cloudflare edge function (quick start)",
+        "description": "Deploy a tiny edge function using Clodo/Workers to measure latency improvements and deploy safely.",
+        "totalTime": "PT10M",
+        "step": [
+          {
+            "name": "Create an edge function",
+            "text": "Write a small handler using Clodo or Cloudflare Workers that returns a simple cached response."
+          },
+          {
+            "name": "Test locally",
+            "text": "Run and test the function locally or in staging to validate behavior and performance."
+          },
+          {
+            "name": "Deploy and monitor",
+            "text": "Deploy to Cloudflare, measure edge response times, and roll out progressively while tracking metrics."
+          }
+        ]
+      }
     },
 
     "worker-scaffolding-tools.html": {

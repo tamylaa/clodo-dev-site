@@ -202,6 +202,11 @@ export function injectSchemasIntoHTML(htmlFilePath, htmlContent) {
       }
     }
 
+    // If the pagesByPath config includes a howTo object, inject HowTo schema
+    if (config.howTo && typeof config.howTo === 'object') {
+      schemas.push(generateHowToSchema(config.howTo));
+    }
+
     schemas.push(...pageSchemas);
     generatedSchemas = schemas.map(schema => wrapSchemaTag(schema)).join('\n');
   }
