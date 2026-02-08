@@ -1,0 +1,82 @@
+{
+  "how-to-migrate-from-wrangler": {
+    "title": "הגירה מ-Wrangler ל-Clodo — הגירה ב-5 שלבים (בטוחה והפיכה)",
+    "meta": "העבר את Cloudflare Workers שלך מ-Wrangler ל-Clodo ב-5 שלבים בטוחים — מנתח אוטומטי ותוכנית הגירה הפיכה."
+  },
+  "clodo-framework-api-simplification": {
+    "title": "פישוט API — איך הפחית Clodo את זמן ההתקנה ב-88%",
+    "meta": "איך פישטנו API מורכב תוך שמירה על פונקציונליות ארגונית — אימוץ מהיר יותר ופחות בקשות תמיכה."
+  },
+  "clodo-framework-promise-to-reality": {
+    "title": "מסגרת Clodo — מרעיון לייצור עם אחוז הצלחה של 98.9% בבדיקות",
+    "meta": "למד איך הפך Clodo למוכן לייצור: תהליך האימות, בדיקות אוטומטיות, ולקחים מעשיים למפתחים."
+  },
+  "wrangler-to-clodo-migration": {
+    "title": "הגירה מ-Wrangler ל-Clodo: מדריך מלא (2025) | מסגרת Clodo",
+    "meta": "העבר מ-Cloudflare Wrangler ל-Clodo Framework ב-5 שלבים. כלי הגירה אוטומטיים, פריסה ללא השבתה, ותכונות מוכנות לארגונים."
+  },
+  "ruby-on-rails-cloudflare-integration": {
+    "title": "Ruby on Rails + Cloudflare Workers: Serverless מלא | מסגרת Clodo",
+    "meta": "פרוס יישומי Ruby on Rails על Cloudflare Workers באמצעות מסגרת Clodo. אינטגרציית מסד נתונים, נתיבי API, וחישוב קצה."
+  },
+  "cloudflare-framework": {
+    "title": "מסגרת Cloudflare: פיתוח יישומי קצה עם Clodo על Cloudflare Workers",
+    "meta": "גלה את מסגרת Cloudflare הטובה ביותר לפיתוח יישומי קצה. למד על מסגרת Clodo, השוואות עם Hono ו-Worktop, הדרכות ומדריכי פריסה ל-Cloudflare Workers."
+  },
+  "serverless-framework-comparison": {
+    "title": "השוואת מסגרות Serverless: Clodo מול חלופות (2025) | מסגרת Clodo",
+    "meta": "השוואה מקיפה של מסגרת Clodo עם Vercel, Netlify, AWS Lambda ופלטפורמות serverless אחרות. תכונות, ביצועים ומדריכי הגירה."
+  },
+  "worker-scaffolding-tools": {
+    "title": "כלי בניית Cloudflare Workers: פיתוח אוטומטי",
+    "meta": "שפר את פיתוח Cloudflare Workers עם כלי בנייה אוטומטיים. צור יישומים מלאים, ממשקי API, ושירותים מיקרו בדקות."
+  },
+  "advanced-cloudflare-workers-tutorial": {
+    "title": "הדרכה מתקדמת ל-Cloudflare Workers: דפוסי ארגונים ושיטות מומלצות",
+    "meta": "השתלם בדפוסי Cloudflare Workers מתקדמים כולל רשת שירותים, ארכיטקטורה מרובת דיירים, אופטימיזציית ביצועים ואסטרטגיות פריסה ארגוניות."
+  },
+  "edge-vs-cloud-computing": {
+    "title": "חישוב קצה מול חישוב ענן: ההבדלים העיקריים ומתי להשתמש בכל אחד",
+    "meta": "השווה בין חישוב קצה לחישוב ענן: ביצועים, עלות, אבטחה ומקרי שימוש. למד מתי לבחור קצה על ענן ולהיפך לארכיטקטורת יישום אופטימלית."
+  },
+  "workers-vs-lambda": {
+    "title": "Cloudflare Workers מול AWS Lambda: ביצועים, עלות וחוויית מפתח",
+    "meta": "השווה Cloudflare Workers מול AWS Lambda: התחלה קרה, ביצועים גלובליים, תמחור וחוויית מפתח. בחר את פלטפורמת ה-serverless הנכונה ליישומי הקצה שלך."
+  },
+  "framework-comparison": {
+    "title": "השוואת מסגרת Cloudflare: Clodo מול Hono מול Worktop",
+    "meta": "השוואה מקיפה של מסגרות Cloudflare: Clodo מול Hono מול Worktop ל-Cloudflare Workers. תכונות, ביצועים ומסגרת לבחור ליישומי הקצה שלך."
+  },
+  "clodo-vs-lambda": {
+    "title": "Clodo מול AWS Lambda: ביצועים, עלות וחוויית מפתח",
+    "meta": "השווה Clodo מול AWS Lambda: התחלה קרה, ביצועים גלובליים, תמחור וחוויית מפתח. בחר את פלטפורמת ה-serverless הנכונה ליישומי הקצה שלך."
+  },
+  "edge-computing-guide": {
+    "title": "מדריך חישוב קצה: ארכיטקטורה, יתרונות ויישום",
+    "meta": "מדריך מקיף לחישוב קצה: ארכיטקטורה, יתרונות, יישום ושיטות מומלצות ליישומים מודרניים."
+  },
+  "what-is-cloudflare-workers": {
+    "title": "מה זה Cloudflare Workers? מדריך מלא למפתחים",
+    "meta": "גלה הכל על Cloudflare Workers: איך זה עובד, מקרי שימוש, יתרונות ואיך להתחיל עם מסגרת Clodo."
+  },
+  "quick-start": {
+    "title": "התחלה מהירה: יישום הקצה הראשון שלך עם מסגרת Clodo",
+    "meta": "התחל בדקות עם מסגרת Clodo. צור את יישום הקצה הראשון שלך עם מדריכי צעד אחר צעד ושיטות מומלצות."
+  },
+  "docs": {
+    "title": "תיעוד מסגרת Clodo: הפניה ל-API והדרכות",
+    "meta": "תיעוד מלא של מסגרת Clodo: הפניה ל-API, הדרכות, דוגמאות ושיטות מומלצות לפיתוח Cloudflare Workers."
+  },
+  "cloudflare-workers-cold-start-optimization": {
+    "title": "אופטימיזציית התחלה קרה ב-Cloudflare Workers: ביטול עיכובי תגובה | מסגרת Clodo",
+    "meta": "בטל לחלוטין התחלות קרות ב-Cloudflare Workers. למד טכניקות אופטימיזציה מתקדמות, אסטרטגיות מטמון, וארכיטקטורת אפס התחלה קרה של מסגרת Clodo לתגובות עקביות מתחת ל-100 אלפיות שנייה."
+  },
+  "workers-boilerplate": {
+    "title": "תבניות Cloudflare Workers: תבניות התחלה והשוואת מסגרות",
+    "meta": "השווה את תבניות Cloudflare Workers הטובות ביותר ותבניות התחלה. מצא את המסגרת הטובה ביותר לפרויקט שלך עם השוואות תכונות, מדריכי הגדרה ודוגמאות פריסה."
+  },
+  "saas-product-startups-cloudflare-case-studies": {
+    "title": "10 המותגים המובילים של SaaS המגיעים לטעינת עמודים מהירה במיוחד ובטוחה עם Cloudflare",
+    "meta": "גלה את 10 המותגים המובילים של SaaS המגיעים לטעינת עמודים מהירה במיוחד ובטוחה עם Cloudflare. חקרי מקרה מ-Discord, Shopify & GitHub על פלטפורמות frontend למהירות, אבטחה ושיתוף פעולה."
+  }
+}

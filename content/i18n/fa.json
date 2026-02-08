@@ -1,0 +1,82 @@
+{
+  "how-to-migrate-from-wrangler": {
+    "title": "مهاجرت از Wrangler به Clodo — مهاجرت در 5 مرحله (ایمن و قابل برگشت)",
+    "meta": "Cloudflare Workers خود را در 5 مرحله ایمن از Wrangler به Clodo منتقل کنید — تحلیلگر خودکار و برنامه مهاجرت قابل برگشت."
+  },
+  "clodo-framework-api-simplification": {
+    "title": "ساده‌سازی API — چگونه Clodo زمان راه‌اندازی را 88% کاهش داد",
+    "meta": "چگونه API پیچیده را ساده کردیم در حالی که عملکرد سازمانی را حفظ کردیم — پذیرش سریع‌تر و درخواست‌های پشتیبانی کمتر."
+  },
+  "clodo-framework-promise-to-reality": {
+    "title": "چارچوب Clodo — از ایده تا تولید با نرخ موفقیت 98.9% در تست‌ها",
+    "meta": "بیاموزید چگونه Clodo آماده تولید شد: فرآیند تأیید، تست‌های خودکار، و درس‌های عملی برای توسعه‌دهندگان."
+  },
+  "wrangler-to-clodo-migration": {
+    "title": "مهاجرت از Wrangler به Clodo: راهنمای کامل (2025) | چارچوب Clodo",
+    "meta": "در 5 مرحله از Cloudflare Wrangler به چارچوب Clodo مهاجرت کنید. ابزارهای مهاجرت خودکار، استقرار بدون توقف، و ویژگی‌های آماده سازمانی."
+  },
+  "ruby-on-rails-cloudflare-integration": {
+    "title": "Ruby on Rails + Cloudflare Workers: Serverless کامل | چارچوب Clodo",
+    "meta": "برنامه‌های Ruby on Rails را با استفاده از چارچوب Clodo روی Cloudflare Workers مستقر کنید. یکپارچه‌سازی پایگاه داده، مسیرهای API، و محاسبات لبه."
+  },
+  "cloudflare-framework": {
+    "title": "چارچوب Cloudflare: توسعه برنامه‌های لبه با Clodo روی Cloudflare Workers",
+    "meta": "بهترین چارچوب Cloudflare را برای توسعه برنامه‌های لبه کشف کنید. درباره چارچوب Clodo، مقایسه با Hono و Worktop، آموزش‌ها و راهنمای استقرار برای Cloudflare Workers بیاموزید."
+  },
+  "serverless-framework-comparison": {
+    "title": "مقایسه چارچوب‌های Serverless: Clodo در برابر جایگزین‌ها (2025) | چارچوب Clodo",
+    "meta": "مقایسه جامع چارچوب Clodo با Vercel، Netlify، AWS Lambda و سایر پلتفرم‌های serverless. ویژگی‌ها، عملکرد و راهنمای مهاجرت."
+  },
+  "worker-scaffolding-tools": {
+    "title": "ابزارهای ساخت Cloudflare Workers: توسعه خودکار",
+    "meta": "توسعه Cloudflare Workers را با ابزارهای ساخت خودکار بهبود بخشید. برنامه‌های کامل، APIها، و سرویس‌های میکرو را در چند دقیقه ایجاد کنید."
+  },
+  "advanced-cloudflare-workers-tutorial": {
+    "title": "آموزش پیشرفته Cloudflare Workers: الگوهای سازمانی و بهترین روش‌ها",
+    "meta": "در الگوهای پیشرفته Cloudflare Workers از جمله شبکه خدمات، معماری چند مستأجره، بهینه‌سازی عملکرد و استراتژی‌های استقرار سازمانی مهارت کسب کنید."
+  },
+  "edge-vs-cloud-computing": {
+    "title": "محاسبات لبه در برابر محاسبات ابری: تفاوت‌های کلیدی و زمان استفاده از هر کدام",
+    "meta": "بین محاسبات لبه و محاسبات ابری مقایسه کنید: عملکرد، هزینه، امنیت و موارد استفاده. بیاموزید چه زمانی لبه را بر ابر و بالعکس برای معماری برنامه بهینه انتخاب کنید."
+  },
+  "workers-vs-lambda": {
+    "title": "Cloudflare Workers در برابر AWS Lambda: عملکرد، هزینه و تجربه توسعه‌دهنده",
+    "meta": "Cloudflare Workers را در برابر AWS Lambda مقایسه کنید: شروع سرد، عملکرد جهانی، قیمت‌گذاری و تجربه توسعه‌دهنده. پلتفرم serverless مناسب را برای برنامه‌های لبه خود انتخاب کنید."
+  },
+  "framework-comparison": {
+    "title": "مقایسه چارچوب Cloudflare: Clodo در برابر Hono در برابر Worktop",
+    "meta": "مقایسه جامع چارچوب‌های Cloudflare: Clodo در برابر Hono در برابر Worktop برای Cloudflare Workers. ویژگی‌ها، عملکرد و چارچوبی که باید برای برنامه‌های لبه خود انتخاب کنید."
+  },
+  "clodo-vs-lambda": {
+    "title": "Clodo در برابر AWS Lambda: عملکرد، هزینه و تجربه توسعه‌دهنده",
+    "meta": "Clodo را در برابر AWS Lambda مقایسه کنید: شروع سرد، عملکرد جهانی، قیمت‌گذاری و تجربه توسعه‌دهنده. پلتفرم serverless مناسب را برای برنامه‌های لبه خود انتخاب کنید."
+  },
+  "edge-computing-guide": {
+    "title": "راهنمای محاسبات لبه: معماری، مزایا و پیاده‌سازی",
+    "meta": "راهنمای جامع محاسبات لبه: معماری، مزایا، پیاده‌سازی و بهترین روش‌ها برای برنامه‌های مدرن."
+  },
+  "what-is-cloudflare-workers": {
+    "title": "Cloudflare Workers چیست؟ راهنمای کامل برای توسعه‌دهندگان",
+    "meta": "همه چیز را درباره Cloudflare Workers کشف کنید: چگونه کار می‌کند، موارد استفاده، مزایا و چگونه با چارچوب Clodo شروع کنید."
+  },
+  "quick-start": {
+    "title": "شروع سریع: اولین برنامه لبه خود را با چارچوب Clodo",
+    "meta": "در چند دقیقه با چارچوب Clodo شروع کنید. اولین برنامه لبه خود را با راهنمای گام به گام و بهترین روش‌ها ایجاد کنید."
+  },
+  "docs": {
+    "title": "مستندات چارچوب Clodo: مرجع API و آموزش‌ها",
+    "meta": "مستندات کامل چارچوب Clodo: مرجع API، آموزش‌ها، مثال‌ها و بهترین روش‌ها برای توسعه Cloudflare Workers."
+  },
+  "cloudflare-workers-cold-start-optimization": {
+    "title": "بهینه‌سازی شروع سرد در Cloudflare Workers: حذف تأخیر پاسخ | چارچوب Clodo",
+    "meta": "شروع‌های سرد را در Cloudflare Workers به طور کامل حذف کنید. تکنیک‌های بهینه‌سازی پیشرفته، استراتژی‌های ذخیره‌سازی، و معماری شروع سرد صفر چارچوب Clodo را برای پاسخ‌های ثابت زیر 100 میلی‌ثانیه بیاموزید."
+  },
+  "workers-boilerplate": {
+    "title": "قالب‌های Cloudflare Workers: قالب‌های اولیه و مقایسه چارچوب‌ها",
+    "meta": "بهترین قالب‌ها و قالب‌های اولیه Cloudflare Workers را مقایسه کنید. بهترین چارچوب را برای پروژه خود با مقایسه ویژگی‌ها، راهنماهای راه‌اندازی و مثال‌های استقرار پیدا کنید."
+  },
+  "saas-product-startups-cloudflare-case-studies": {
+    "title": "بهترین 10 برند SaaS که بارگذاری صفحه فوق‌العاده سریع و امن را با Cloudflare به دست می‌آورند",
+    "meta": "بهترین 10 برند SaaS که بارگذاری صفحه فوق‌العاده سریع و امن را با Cloudflare به دست می‌آورند را کشف کنید. مطالعات موردی از Discord، Shopify & GitHub در مورد پلتفرم‌های frontend برای سرعت، امنیت و همکاری."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "cloudflare-framework": {
+    "title": "Cloudflare Framework: Build Edge Apps with Clodo on Cloudflare Workers",
+    "meta": "Discover the best Cloudflare framework for building edge applications. Learn about Clodo Framework, comparisons with Hono and Worktop, tutorials, and deployment guides for Cloudflare Workers."
+  },
+  "framework-comparison": {
+    "title": "Cloudflare Framework Comparison: Clodo vs Hono vs Worktop",
+    "meta": "Complete Cloudflare framework comparison: Clodo vs Hono vs Worktop for Cloudflare Workers. Features, performance and which framework to choose for your edge applications."
+  },
+  "clodo-vs-lambda": {
+    "title": "Clodo vs AWS Lambda: Performance, Cost & Developer Experience",
+    "meta": "Compare Clodo vs AWS Lambda: cold starts, global performance, pricing and developer experience. Choose the right serverless platform for your edge applications."
+  },
+  "edge-computing-guide": {
+    "title": "Edge Computing Guide: Architecture, Benefits & Implementation",
+    "meta": "Complete Edge Computing guide: architecture, benefits, implementation and best practices for modern applications."
+  },
+  "what-is-cloudflare-workers": {
+    "title": "What are Cloudflare Workers? Complete Guide for Developers",
+    "meta": "Discover everything about Cloudflare Workers: how they work, use cases, benefits and how to get started with Clodo Framework."
+  },
+  "quick-start": {
+    "title": "Quick Start: Your first Edge application with Clodo Framework",
+    "meta": "Get started in minutes with Clodo Framework. Create your first edge application with step-by-step guides and best practices."
+  },
+  "docs": {
+    "title": "Clodo Framework Documentation: API Reference & Tutorials",
+    "meta": "Complete Clodo Framework documentation: API reference, tutorials, examples and best practices for Cloudflare Workers development."
+  },
+  "cloudflare-workers-cold-start-optimization": {
+    "title": "Cloudflare Workers Cold Start Optimization: Eliminate Latency Spikes | Clodo Framework",
+    "meta": "Eliminate Cloudflare Workers cold starts completely. Learn advanced optimization techniques, caching strategies, and Clodo Framework's zero-cold-start architecture for consistent sub-100ms responses."
+  },
+  "how-to-migrate-from-wrangler": {
+    "title": "Migrate from Wrangler to Clodo — Automated Migration in 5 Steps (Safe & Reversible)",
+    "meta": "Migrate your Cloudflare Workers from Wrangler to Clodo in 5 safe steps — automated analyser and reversible migration plan."
+  },
+  "clodo-framework-api-simplification": {
+    "title": "API Simplification — How Clodo Reduced Developer Onboarding by 88%",
+    "meta": "How we simplified a complex API while maintaining enterprise features — faster adoption and fewer support tickets."
+  },
+  "clodo-framework-promise-to-reality": {
+    "title": "Clodo Framework — From Prototype to Production with 98.9% Test Success Rate",
+    "meta": "Discover how Clodo became production-ready: validation process, automated testing, and practical lessons for Cloudflare developers."
+  },
+  "wrangler-to-clodo-migration": {
+    "title": "Wrangler to Clodo Migration: Complete Guide (2025) | Clodo Framework",
+    "meta": "Migrate from Cloudflare Wrangler to Clodo Framework in 5 steps. Automated migration tools, zero-downtime deployment, and enterprise-ready features."
+  },
+  "ruby-on-rails-cloudflare-integration": {
+    "title": "Ruby on Rails + Cloudflare Workers: Complete Serverless | Clodo Framework",
+    "meta": "Deploy Ruby on Rails applications on Cloudflare Workers with Clodo Framework. Database integration, API routes, and edge computing."
+  },
+  "serverless-framework-comparison": {
+    "title": "Serverless Framework Comparison: Clodo vs Alternatives (2025) | Clodo Framework",
+    "meta": "Complete comparison of Clodo Framework with Vercel, Netlify, AWS Lambda and other serverless platforms. Features, performance, and migration guides."
+  },
+  "worker-scaffolding-tools": {
+    "title": "Worker Scaffolding Tools: Automated Cloudflare Workers Development",
+    "meta": "Optimise Cloudflare Workers development with automated scaffolding tools. Generate complete applications, APIs, and microservices in minutes."
+  },
+  "advanced-cloudflare-workers-tutorial": {
+    "title": "Advanced Cloudflare Workers Tutorial: Enterprise Patterns & Best Practices",
+    "meta": "Master advanced Cloudflare Workers patterns including service mesh, multi-tenant architecture, performance optimisation, and enterprise deployment strategies."
+  },
+  "workers-vs-lambda": {
+    "title": "Cloudflare Workers vs AWS Lambda: Performance, Costs & Developer Experience",
+    "meta": "Compare Cloudflare Workers vs AWS Lambda: cold starts, global performance, pricing and developer experience. Choose the right serverless platform for your edge applications."
+  },
+  "edge-vs-cloud-computing": {
+    "title": "Edge Computing vs Cloud Computing: Key Differences and When to Use Each",
+    "meta": "Compare edge computing and cloud computing: performance, cost, security, and use cases. Learn when to choose edge over cloud and vice versa for optimal application architecture."
+  },
+  "workers-boilerplate": {
+    "title": "Cloudflare Workers Boilerplates: Starter Templates & Frameworks Comparison",
+    "meta": "Compare top Cloudflare Workers boilerplates and starter templates. Find the best framework for your project with feature comparisons, setup guides, and deployment examples."
+  },
+  "saas-product-startups-cloudflare-case-studies": {
+    "title": "Top 10 SaaS Brands Achieving Super Fast, Secure Page Loads with Cloudflare",
+    "meta": "Discover Top 10 SaaS Brands achieving super fast, secure page loads with Cloudflare. Case studies from Discord, Shopify & GitHub on frontend platforms for speed, security, collaboration."
+  }
+}

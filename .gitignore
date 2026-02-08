@@ -36,6 +36,14 @@ Thumbs.db
 .env.*
 public/brevo-secure-config.js
 
+# Separate projects
+visibility-analytics/
+scripts/analytics/
+
+# Sensitive files
+Downloads/service-account-key.json
+data/seo-urls.txt
+
 # Coverage / reports
 coverage/
 *.lcov

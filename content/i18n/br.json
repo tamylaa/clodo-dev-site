@@ -1,0 +1,82 @@
+{
+  "cloudflare-framework": {
+    "title": "Cloudflare Framework: Crie Apps Edge com Clodo no Cloudflare Workers",
+    "meta": "Descubra o melhor framework Cloudflare para criar aplicações edge. Aprenda sobre Clodo Framework, comparações com Hono e Worktop, tutoriais e guias de deployment para Cloudflare Workers."
+  },
+  "framework-comparison": {
+    "title": "Comparação de Framework Cloudflare: Clodo vs Hono vs Worktop",
+    "meta": "Comparação completa de frameworks Cloudflare: Clodo vs Hono vs Worktop para Cloudflare Workers. Características, performance e qual framework escolher para suas aplicações edge."
+  },
+  "clodo-vs-lambda": {
+    "title": "Clodo vs AWS Lambda: Performance, Custo & Experiência do Desenvolvedor",
+    "meta": "Compare Clodo vs AWS Lambda: cold starts, performance global, preços e experiência do desenvolvedor. Escolha a plataforma serverless certa para suas aplicações edge."
+  },
+  "edge-computing-guide": {
+    "title": "Guia de Edge Computing: Arquitetura, Benefícios & Implementação",
+    "meta": "Guia completo de Edge Computing: arquitetura, benefícios, implementação e melhores práticas para aplicações modernas."
+  },
+  "what-is-cloudflare-workers": {
+    "title": "O que são Cloudflare Workers? Guia Completo para Desenvolvedores",
+    "meta": "Descubra tudo sobre Cloudflare Workers: como funcionam, casos de uso, benefícios e como começar com Clodo Framework."
+  },
+  "quick-start": {
+    "title": "Início Rápido: Sua primeira aplicação Edge com Clodo Framework",
+    "meta": "Comece em minutos com Clodo Framework. Crie sua primeira aplicação edge com guias passo a passo e melhores práticas."
+  },
+  "docs": {
+    "title": "Documentação Clodo Framework: Referência API & Tutoriais",
+    "meta": "Documentação completa do Clodo Framework: referência API, tutoriais, exemplos e melhores práticas para desenvolvimento Cloudflare Workers."
+  },
+  "cloudflare-workers-cold-start-optimization": {
+    "title": "Otimização de Cold Start Cloudflare Workers: Eliminar picos de latência | Clodo Framework",
+    "meta": "Eliminar completamente os cold starts do Cloudflare Workers. Aprenda técnicas de otimização avançadas, estratégias de cache e a arquitetura zero cold start do Clodo Framework para respostas consistentes abaixo de 100ms."
+  },
+  "how-to-migrate-from-wrangler": {
+    "title": "Migrar do Wrangler para Clodo — Migração automatizada em 5 passos (segura e reversível)",
+    "meta": "Migre seus Cloudflare Workers do Wrangler para Clodo em 5 passos seguros — analisador automatizado e plano de migração reversível."
+  },
+  "clodo-framework-api-simplification": {
+    "title": "Simplificação da API — Como Clodo reduziu o onboarding de desenvolvedores em 88%",
+    "meta": "Como simplificamos uma API complexa mantendo funcionalidades enterprise — adoção mais rápida e menos tickets de suporte."
+  },
+  "clodo-framework-promise-to-reality": {
+    "title": "Clodo Framework — Do protótipo à produção com sucesso de 98.9% nos testes",
+    "meta": "Descubra como Clodo se tornou pronto para produção: processo de validação, testes automatizados e lições práticas para desenvolvedores Cloudflare."
+  },
+  "wrangler-to-clodo-migration": {
+    "title": "Migração do Wrangler para Clodo: Guia Completo (2025) | Clodo Framework",
+    "meta": "Migre do Cloudflare Wrangler para Clodo Framework em 5 passos. Ferramentas de migração automatizadas, deployment zero-downtime e funcionalidades enterprise-ready."
+  },
+  "ruby-on-rails-cloudflare-integration": {
+    "title": "Ruby on Rails + Cloudflare Workers: Serverless Completo | Clodo Framework",
+    "meta": "Implante aplicações Ruby on Rails no Cloudflare Workers com Clodo Framework. Integração de banco de dados, rotas API e edge computing."
+  },
+  "serverless-framework-comparison": {
+    "title": "Comparação de Framework Serverless: Clodo vs Alternativas (2025) | Clodo Framework",
+    "meta": "Comparação completa do Clodo Framework com Vercel, Netlify, AWS Lambda e outras plataformas serverless. Características, performance e guias de migração."
+  },
+  "worker-scaffolding-tools": {
+    "title": "Ferramentas de Scaffolding Worker: Desenvolvimento Cloudflare Workers Automatizado",
+    "meta": "Otimize o desenvolvimento Cloudflare Workers com ferramentas de scaffolding automatizadas. Gere aplicações completas, APIs e microsserviços em minutos."
+  },
+  "advanced-cloudflare-workers-tutorial": {
+    "title": "Tutorial Avançado Cloudflare Workers: Padrões Enterprise & Melhores Práticas",
+    "meta": "Domine padrões avançados de Cloudflare Workers incluindo service mesh, arquitetura multi-tenant, otimização de performance e estratégias de deployment enterprise."
+  },
+  "workers-vs-lambda": {
+    "title": "Cloudflare Workers vs AWS Lambda: Performance, Custos & Experiência do Desenvolvedor",
+    "meta": "Compare Cloudflare Workers vs AWS Lambda: cold starts, performance global, preços e experiência do desenvolvedor. Escolha a plataforma serverless certa para suas aplicações edge."
+  },
+  "edge-vs-cloud-computing": {
+    "title": "Edge Computing vs Cloud Computing: Diferenças principais e quando usar cada um",
+    "meta": "Compare edge computing e cloud computing: performance, custo, segurança e casos de uso. Aprenda quando escolher edge sobre cloud e vice-versa para uma arquitetura de aplicação ótima."
+  },
+  "workers-boilerplate": {
+    "title": "Cloudflare Workers Boilerplates: Modelos Iniciais e Comparação de Frameworks",
+    "meta": "Compare os melhores boilerplates e modelos iniciais do Cloudflare Workers. Encontre o melhor framework para seu projeto com comparações de recursos, guias de configuração e exemplos de implantação."
+  },
+  "saas-product-startups-cloudflare-case-studies": {
+    "title": "Top 10 Marcas SaaS Alcançando Carregamento de Página Super Rápido e Seguro com Cloudflare",
+    "meta": "Descubra as top 10 marcas SaaS alcançando carregamento de página super rápido e seguro com Cloudflare. Estudos de caso do Discord, Shopify & GitHub sobre plataformas frontend para velocidade, segurança e colaboração."
+  }
+}
