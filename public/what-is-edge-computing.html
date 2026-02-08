@@ -169,17 +169,7 @@ npm run deploy  # configured by Clodo to use Wrangler or your CI pipeline</code>
                             </div>
                         </section>
 
-                        <section id="howto" class="howto-section">
-                            <h3>How to deploy a Clodo service to the edge (quick start)</h3>
-                            <ol>
-                                <li><strong>Install Clodo Framework</strong>: Install the package and any CLI helpers with `npm install @tamyla/clodo-framework`.</li>
-                                <li><strong>Scaffold a service</strong>: Run `npx create-clodo-service my-edge-service --type data-service` to generate a Cloudflare Workers-ready project.</li>
-                                <li><strong>Configure bindings</strong>: Add D1 bindings, API keys, and your `wrangler.toml` settings for routes and accounts.</li>
-                                <li><strong>Test & benchmark</strong>: Use `npm run dev` or `wrangler dev` to test locally and measure latency improvements versus a cloud deployment.</li>
-                                <li><strong>Deploy & monitor</strong>: Deploy to Cloudflare, run synthetic latency tests, and use monitoring / logs to verify performance and reliability.</li>
-                            </ol>
-                            <p class="howto-note">Tip: Start tiny, benchmark often, and only move critical latency-sensitive logic to the edge.</p>
-                        </section>
+                        <!--#include file="../templates/howto-section.html" -->
                     </article>
 
                     <aside class="sidebar">

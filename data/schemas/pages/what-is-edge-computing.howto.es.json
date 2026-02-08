@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Desplegar un servicio Clodo en el edge",
+  "description": "Pasos rápidos para generar, probar y desplegar un servicio Clodo en Cloudflare Workers.",
+  "totalTime": "PT15M",
+  "steps": [
+    { "@type": "HowToStep", "position": 1, "name": "Instalar Clodo", "text": "Instale Clodo: `npm install @tamyla/clodo-framework`." },
+    { "@type": "HowToStep", "position": 2, "name": "Crear servicio", "text": "Ejecute `npx create-clodo-service my-edge-service --type data-service` para generar un proyecto inicial." },
+    { "@type": "HowToStep", "position": 3, "name": "Configurar", "text": "Agregue bindings para D1 y settings en `wrangler.toml`." },
+    { "@type": "HowToStep", "position": 4, "name": "Probar y medir", "text": "Use `npm run dev` o `wrangler dev` y compare latencias con una variante basada en la nube." },
+    { "@type": "HowToStep", "position": 5, "name": "Desplegar y monitorizar", "text": "Despliegue en Cloudflare y verifique métricas y registros." }
+  ]
+}

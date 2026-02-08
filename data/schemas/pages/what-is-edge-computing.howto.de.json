@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Clodo-Service am Edge bereitstellen",
+  "description": "Kurzanleitung zum Scaffolden, Testen und Bereitstellen eines Clodo-Service auf Cloudflare Workers.",
+  "totalTime": "PT15M",
+  "steps": [
+    { "@type": "HowToStep", "position": 1, "name": "Clodo installieren", "text": "Installieren Sie Clodo: `npm install @tamyla/clodo-framework`." },
+    { "@type": "HowToStep", "position": 2, "name": "Service erstellen", "text": "Führen Sie `npx create-clodo-service my-edge-service --type data-service` aus, um ein Starter-Projekt zu generieren." },
+    { "@type": "HowToStep", "position": 3, "name": "Konfigurieren", "text": "Fügen Sie D1-Bindings und `wrangler.toml`-Einstellungen hinzu." },
+    { "@type": "HowToStep", "position": 4, "name": "Testen &amp; Benchmarken", "text": "Führen Sie `npm run dev` oder `wrangler dev` aus und messen Sie die Latenz." },
+    { "@type": "HowToStep", "position": 5, "name": "Bereitstellen", "text": "Bereitstellen, synthetische Tests ausführen und die Leistung überwachen." }
+  ]
+}

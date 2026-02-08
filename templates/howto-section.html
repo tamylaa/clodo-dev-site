@@ -1,0 +1,33 @@
+<section id="howto" class="howto-section">
+  <h3>How to deploy a Clodo service to the edge (quick start)</h3>
+  <ol>
+    <li><strong>Install Clodo Framework</strong>: Install the package and CLI helpers with <code>npm install @tamyla/clodo-framework</code>.</li>
+    <li><strong>Scaffold a service</strong>: Run <code>npx create-clodo-service my-edge-service --type data-service</code> to generate a Workers-ready starter project.</li>
+    <li><strong>Configure bindings</strong>: Add D1 bindings, environment variables and <code>wrangler.toml</code> settings for routes, accounts and secrets.</li>
+    <li><strong>Test &amp; benchmark</strong>: Run locally (<code>npm run dev</code> or <code>wrangler dev</code>) and measure latency improvements against a cloud-hosted variant.</li>
+    <li><strong>Deploy &amp; monitor</strong>: Deploy to Cloudflare, run synthetic latency tests, and use monitoring/logs to verify performance and reliability.</li>
+  </ol>
+  <p class="howto-note">Tip: Start tiny, benchmark often, and only move critical latency-sensitive logic to the edge.</p>
+
+  <h4>Benchmarks (sample)</h4>
+  <section class="benchmark-section">
+    <div class="comparison-grid">
+      <div class="comparison-item">
+        <div class="comparison-content">
+          <h4>Edge (Cloudflare Workers)</h4>
+          <p class="metric">Median response time: <strong>~25 ms</strong></p>
+          <p class="metric">Cache hit (P95): <strong>~8 ms</strong></p>
+        </div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="comparison-content">
+          <h4>Cloud-only (centralized)</h4>
+          <p class="metric">Median response time: <strong>~150 ms</strong></p>
+          <p class="metric">Notes: higher transit latency &amp; variability</p>
+        </div>
+      </div>
+    </div>
+    <p class="howto-note">Sources: <a href="https://www.cloudflare.com/learning/serverless/what-is-edge-computing/" target="_blank" rel="noopener">Cloudflare Learning</a>, <a href="https://doi.org/10.1109/JIOT.2016.2579198" target="_blank" rel="noopener">Shi et al. (2016)</a>, State of the Edge reports.</p>
+  </section>
+</section>
