@@ -61,14 +61,15 @@ jobs:
         run: npm run normalize
 
       - name: Validate built schemas
+        shell: bash
         run: |
-          echo "=== dist/ contents (HTML files) ==="
-          find dist -name '*.html' | head -60
-          echo "=== Running schema validator ==="
-          node tools/validate-built-schemas.js dist --fail 2>&1 || {
-            echo "=== VALIDATOR FAILED - checking for missing schemas ==="
-            echo "Re-running without --fail for full report..."
-            node tools/validate-built-schemas.js dist 2>&1
+          set -o pipefail
+          node tools/validate-built-schemas.js dist --fail 2>&1 | tee /tmp/schema-report.txt || {
+            echo "::error::Schema validation failed - see Job Summary for details"
+            echo "## ❌ Schema Validation Failed" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat /tmp/schema-report.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
             exit 1
           }
 
