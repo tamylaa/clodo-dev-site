@@ -28,6 +28,55 @@ function cleanDist() {
     mkdirSync('dist', { recursive: true });
 }
 
+// Shared image helper functions (moved to top-level so both template and standalone flows can use them)
+function findImageManifestEntriesForPage(pageFileName, locale) {
+    let imagesManifest = [];
+    try {
+        imagesManifest = JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8'));
+    } catch (e) {
+        return [];
+    }
+    const entries = imagesManifest.filter(img => Array.isArray(img.pages) && img.pages.includes(pageFileName));
+    if (!entries.length) return [];
+    if (!locale || locale === 'en') return entries;
+    // Prefer entries that include requested locale
+    const matching = entries.filter(e => Array.isArray(e.locales) && e.locales.includes(locale));
+    return matching.length ? matching : entries;
+}
+
+// Function to build responsive <picture> markup given an image manifest entry and path prefix
+function buildPictureMarkup(entry, pathPrefix) {
+    // Prefer webp variants if available in optimized
+    const opt = entry.optimized || {};
+    const webp1 = opt.webp_1x || null;
+    const webp2 = opt.webp_2x || null;
+    const png1 = opt.png_1x || entry.file || null;
+    const png2 = opt.png_2x || null;
+    const alt = entry.alt || '';
+    const width = entry.width || '';
+    const height = entry.height || '';
+
+    // Build srcset strings
+    const webpSrcset = [webp1 ? `${pathPrefix}${webp1.replace(/^\//, '')} 1x` : null, webp2 ? `${pathPrefix}${webp2.replace(/^\//, '')} 2x` : null].filter(Boolean).join(', ');
+    const pngSrcset = [png1 ? `${pathPrefix}${png1.replace(/^\//, '')} 1x` : null, png2 ? `${pathPrefix}${png2.replace(/^\//, '')} 2x` : null].filter(Boolean).join(', ');
+
+    // Fallback img src uses png1
+    const imgSrc = png1 ? `${pathPrefix}${png1.replace(/^\//, '')}` : '';
+
+    const picture = [`<picture class="hero-image" aria-hidden="false">`];
+    if (webpSrcset) picture.push(`    <source type="image/webp" srcset="${webpSrcset}">`);
+    if (pngSrcset) picture.push(`    <source type="image/png" srcset="${pngSrcset}">`);
+    picture.push(`    <img src="${imgSrc}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="eager" decoding="async">`);
+    picture.push(`</picture>`);
+    return picture.join('\n');
+}
+
+function escapeHtml(str) {
+    return (str || '').replace(/["&<>]/g, function (s) {
+        return ({'"':'&quot;','&':'&amp;','<':'&lt;','>':'&gt;'})[s];
+    });
+}
+
 // Copy HTML files with template processing
 function copyHtml(assetManifest = {}) {
     console.log('📄 Processing HTML files with templates...');
@@ -393,7 +442,7 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             try {
                 const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
                 const lookup = file; // filename relative path as used in pagesByPath
-                const fileName = (file || '').split(/[\\\/]/).pop();
+                const fileName = (file || '').split(/[\\/]/).pop();
                 // Prefer explicit path-based page configs (pagesByPath)
                 let config = pageConfig.pagesByPath && pageConfig.pagesByPath[lookup] ? pageConfig.pagesByPath[lookup] : null;
                 // Fallback: check top-level pages mapping
@@ -1493,6 +1542,51 @@ function generateBuildInfo() {
     );
 }
 
+// Post-build verification: ensure pages with configured images have OG + ImageObject JSON-LD + visible <picture>
+function verifySeoImageInjection() {
+    try {
+        const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
+        const imagesManifest = existsSync(join('data','images','seo','images.json')) ? JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8')) : [];
+        const failures = [];
+        const pagesToCheck = new Set();
+
+        if (pageConfig.pagesByPath) Object.keys(pageConfig.pagesByPath).forEach(p => pagesToCheck.add(p));
+        if (pageConfig.pages) Object.keys(pageConfig.pages).forEach(name => pagesToCheck.add(`${name}.html`));
+        if (pageConfig.caseStudies) Object.keys(pageConfig.caseStudies).forEach(name => pagesToCheck.add(`${name}.html`));
+
+        pagesToCheck.forEach(page => {
+            const distPath = join('dist', page);
+            if (!existsSync(distPath)) return; // Skip pages that weren't generated
+            const content = readFileSync(distPath, 'utf8');
+
+            let config = pageConfig.pagesByPath && pageConfig.pagesByPath[page] ? pageConfig.pagesByPath[page] : null;
+            const fileName = (page || '').split(/[\\/]/).pop();
+            if (!config && pageConfig.pages && pageConfig.pages[fileName.replace('.html','')]) config = pageConfig.pages[fileName.replace('.html','')];
+            if (config && (!Array.isArray(config.images) || !config.images.length) && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
+            if (!config && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
+
+            if (config && Array.isArray(config.images) && config.images.length) {
+                const missing = [];
+                if (!content.includes('<picture class="hero-image"')) missing.push('picture');
+                if (!content.includes('"@type":"ImageObject"') && !content.includes('"@type": "ImageObject"')) missing.push('ImageObject JSON-LD');
+                if (!content.includes('property="og:image"') && !content.includes("property='og:image'")) missing.push('og:image meta');
+                if (missing.length) failures.push({page, missing});
+            }
+        });
+
+        if (failures.length) {
+            console.error('[VERIFY] SEO image verification failed for the following pages:');
+            failures.forEach(f => console.error(`   - ${f.page}: missing ${f.missing.join(', ')}`));
+            throw new Error('SEO image verification failed');
+        }
+
+        console.log('[VERIFY] All pages with configured images contain hero <picture>, ImageObject JSON-LD, and og:image meta. ✅');
+    } catch (e) {
+        console.error('[VERIFY] Verification failed:', e.message);
+        throw e;
+    }
+}
+
 // Main build process
 try {
     cleanDist();
@@ -1555,52 +1649,8 @@ try {
     // Run link health check
     console.log('[CHECK] Running link health check...');
 
-    // Post-build verification: ensure pages with configured images have OG + ImageObject JSON-LD + visible <picture>
-    function verifySeoImageInjection() {
-        try {
-            const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
-            // images manifest used for reference; not strictly required for verification but useful for context
-            const imagesManifest = existsSync(join('data','images','seo','images.json')) ? JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8')) : [];
-            const failures = [];
-            const pagesToCheck = new Set();
+    // Post-build verification: defined at top-level (verifySeoImageInjection) - no nested declaration here to satisfy linting
 
-            if (pageConfig.pagesByPath) Object.keys(pageConfig.pagesByPath).forEach(p => pagesToCheck.add(p));
-            if (pageConfig.pages) Object.keys(pageConfig.pages).forEach(name => pagesToCheck.add(`${name}.html`));
-            if (pageConfig.caseStudies) Object.keys(pageConfig.caseStudies).forEach(name => pagesToCheck.add(`${name}.html`));
-
-            pagesToCheck.forEach(page => {
-                const distPath = join('dist', page);
-                if (!existsSync(distPath)) return; // Skip pages that weren't generated
-                const content = readFileSync(distPath, 'utf8');
-
-                // Resolve config similarly to build injection logic
-                let config = pageConfig.pagesByPath && pageConfig.pagesByPath[page] ? pageConfig.pagesByPath[page] : null;
-                const fileName = (page || '').split(/[\\\/]/).pop();
-                if (!config && pageConfig.pages && pageConfig.pages[fileName.replace('.html','')]) config = pageConfig.pages[fileName.replace('.html','')];
-                if (config && (!Array.isArray(config.images) || !config.images.length) && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
-                if (!config && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
-
-                if (config && Array.isArray(config.images) && config.images.length) {
-                    const missing = [];
-                    if (!content.includes('<picture class="hero-image"')) missing.push('picture');
-                    if (!content.includes('"@type":"ImageObject"') && !content.includes('"@type": "ImageObject"')) missing.push('ImageObject JSON-LD');
-                    if (!content.includes('property="og:image"') && !content.includes("property='og:image'")) missing.push('og:image meta');
-                    if (missing.length) failures.push({page, missing});
-                }
-            });
-
-            if (failures.length) {
-                console.error('[VERIFY] SEO image verification failed for the following pages:');
-                failures.forEach(f => console.error(`   - ${f.page}: missing ${f.missing.join(', ')}`));
-                throw new Error('SEO image verification failed');
-            }
-
-            console.log('[VERIFY] All pages with configured images contain hero <picture>, ImageObject JSON-LD, and og:image meta. ✅');
-        } catch (e) {
-            console.error('[VERIFY] Verification failed:', e.message);
-            throw e;
-        }
-    }
 
     import('./check-links.js').then(({ checkLinks }) => {
         return Promise.resolve(checkLinks()).then(() => {
