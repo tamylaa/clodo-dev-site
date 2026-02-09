@@ -11,7 +11,7 @@ import { join, dirname } from 'path';
 import { injectSchemasIntoHTML } from '../../schema/build-integration.js';
 import { generateOrganizationSchema, generateWebSiteSchema, generateSoftwareApplicationSchema, wrapSchemaTag } from '../../schema/schema-generator.js';
 import { detectLocaleFromPath } from '../../schema/locale-utils.js';
-import { loadImagesManifest, findImageEntriesForPage, buildPictureMarkup } from '../utils/image-helpers.js';
+import { loadImagesManifest, findImageEntriesForPage, buildPictureMarkup, injectMediaSlots } from '../utils/image-helpers.js';
 import { adjustTemplatePaths } from '../utils/fs-helpers.js';
 import { loadPageConfig, resolvePageConfig, resolvePageCssBundle, PAGE_CSS_REPLACEMENTS } from '../utils/page-config.js';
 
@@ -126,10 +126,12 @@ function injectHeroImage(content, file, fileName, pathPrefix, pageConfig, images
                 if (found) entries.push(found);
             }
             const chosen = entries.length ? entries : findImageEntriesForPage(imagesManifest, file, locale);
-            if (chosen?.length) {
-                const pictureHtml = buildPictureMarkup(chosen[0], pathPrefix);
+            // Pick the hero-role entry, or fall back to the first entry
+            const heroEntry = chosen.find(e => e.role === 'hero') || chosen[0];
+            if (heroEntry) {
+                const pictureHtml = buildPictureMarkup(heroEntry, pathPrefix, { cssClass: 'hero-image', loading: 'eager' });
                 content = content.replace('<div class="hero-visual">', `<div class="hero-visual">\n    ${pictureHtml}`);
-                console.log(`   🖼️ Injected hero image for ${file} from manifest id: ${chosen[0].id}`);
+                console.log(`   🖼️ Injected hero image for ${file} from manifest id: ${heroEntry.id}`);
             }
         }
     } catch (e) {
@@ -373,10 +375,15 @@ export function processTemplatedHtml(assetManifest = {}) {
         const fileName = (file || '').split(/[\\/]/).pop();
         content = injectHeroImage(content, file, fileName, pathPrefix, pageConfig, imagesManifest);
 
-        // Append hero-image CSS (runs after headerCriticalCss was already injected –
-        // this is the pre-existing behaviour; a future pass can fix ordering)
+        // ── 8b. Media-slot injection (diagram, benchmark, screenshot, video) ──
+        content = injectMediaSlots(content, imagesManifest, pathPrefix, file);
+
+        // Append hero-image CSS + media-figure CSS
         if (content.includes('<picture class="hero-image"') && !headerCriticalCss.includes('.hero-image')) {
             headerCriticalCss += '.hero-image{max-width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 6px 20px rgba(5,16,40,0.06);margin:0 auto}';
+        }
+        if (content.includes('data-media-slot=') || content.includes('class="media-image"') || content.includes('class="media-diagram"') || content.includes('class="media-video"')) {
+            headerCriticalCss += '.media-figure{margin:2rem 0;text-align:center}.media-figure figcaption{font-size:.875rem;color:#6b7280;margin-top:.75rem;font-style:italic}.media-image,.media-diagram{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px}.media-image{box-shadow:0 4px 12px rgba(0,0,0,.08)}.media-video{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px}.media-video-wrapper{border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}';
         }
 
         // ── 9. Footer + navbar safety fallbacks ─────────────────────
@@ -560,9 +567,12 @@ export function processStandaloneHtml() {
 
             // Hero image injection
             if (entry === 'saas-product-startups-cloudflare-case-studies.html') {
-                console.log('   🔎 Processing standalone case-study page for hero injection');
+                console.log('   🔎 Processing standalone case-study page for hero + media-slot injection');
             }
             content = injectHeroImage(content, filePath, entry, pathPrefix, pageConfig, imagesManifest);
+
+            // Media-slot injection (diagrams, benchmarks, screenshots, videos)
+            content = injectMediaSlots(content, imagesManifest, pathPrefix, filePath);
 
             // Schema injection
             content = injectSchemasIntoHTML(filePath, content);

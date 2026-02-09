@@ -2090,3 +2090,62 @@
     gap: 1.5rem;
   }
 }
+
+/* ─── Media Figure Slots (build-injected images, diagrams, videos) ─── */
+.media-figure {
+  margin: 2.5rem 0;
+  text-align: center;
+  padding: 0;
+}
+
+.media-figure figcaption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.media-figure .media-image,
+.media-figure .media-diagram {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.media-figure .media-image {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.media-figure .media-diagram {
+  box-shadow: none;
+  background: #f9fafb;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.media-figure .media-video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.media-figure .media-video-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .media-figure {
+    margin: 1.5rem 0;
+  }
+  .media-figure .media-diagram {
+    padding: 0.5rem;
+  }
+}
