@@ -245,7 +245,9 @@ const heroPricingTemplate = readFileSync(join('templates', 'hero-pricing.html'),
             // Calculate path prefix for subdirectory files
             const fileDir = dirname(file);
             const isSubdirectory = fileDir !== '.' && fileDir !== '';
-            const pathPrefix = isSubdirectory ? '../' : '';
+            // Use root-absolute paths for top-level pages so image URLs resolve correctly
+            // whether the page is served as '/page.html' or '/page/' on production
+            const pathPrefix = isSubdirectory ? '../' : '/';
             console.log(`   📁 Processing ${file}: isSubdirectory=${isSubdirectory}, pathPrefix='${pathPrefix}'`);
 
             // Create adjusted templates for this file's directory level
@@ -857,6 +859,7 @@ function copyStandaloneHtml() {
                     }
                     
                     const filePath = relativePath ? join(relativePath, entry) : entry;
+                    const pathPrefix = relativePath ? '../' : '/';
                     
                     // Attempt to inject responsive hero image for standalone pages when configured
                     try {
