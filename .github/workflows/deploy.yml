@@ -84,6 +84,27 @@ jobs:
         continue-on-error: true
         run: npm run check:required-schemas
 
+      - name: Verify dist contents before deploy
+        shell: bash
+        run: |
+          echo "=== Total files in dist/ ==="
+          find dist -type f | wc -l
+          echo ""
+          echo "=== dist/ top-level ==="
+          ls -la dist/
+          echo ""
+          echo "=== Images directory ==="
+          find dist/images -type f 2>/dev/null || echo "NO images directory found!"
+          echo ""
+          echo "=== Icons directory ==="
+          find dist/icons -type f 2>/dev/null || echo "NO icons directory found!"
+          echo ""
+          echo "=== Sample binary file check ==="
+          file dist/images/seo/optimized/hero-cloudflare-collab-1200x630.png 2>/dev/null || echo "File not found!"
+          echo ""
+          echo "=== Directory tree (depth 2) ==="
+          find dist -maxdepth 2 -type d | sort
+
       - name: Deploy to Cloudflare Pages (via wrangler)
         run: |
           npm install -g wrangler@3
