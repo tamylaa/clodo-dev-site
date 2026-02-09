@@ -37,11 +37,34 @@ jobs:
       - name: Type check
         run: npm run type-check
 
-      - name: Build for production
-        run: npm run build
+      - name: Validate blog posts
+        run: npm run validate:blog
+
+      - name: Validate headers & redirects
+        run: npm run validate:headers && npm run validate:redirects
+
+      - name: Validate reviews
+        run: npm run validate:reviews
+
+      - name: Check internal links
+        run: npm run check-links
+
+      - name: Build site
+        run: node build/build.js
         env:
           CI: true
 
+      - name: Generate AMP pages
+        run: npm run generate:amp
+
+      - name: Post-build normalize
+        run: npm run normalize
+
+      - name: Validate built schemas
+        run: node tools/validate-built-schemas.js dist --fail
+
+      - name: Enforce required schemas
+        run: npm run check:required-schemas
 
       - name: Deploy to Cloudflare Pages (via wrangler)
         run: |
