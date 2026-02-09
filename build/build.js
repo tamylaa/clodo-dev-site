@@ -1554,11 +1554,62 @@ try {
 
     // Run link health check
     console.log('[CHECK] Running link health check...');
+
+    // Post-build verification: ensure pages with configured images have OG + ImageObject JSON-LD + visible <picture>
+    function verifySeoImageInjection() {
+        try {
+            const pageConfig = JSON.parse(readFileSync(join('data','schemas','page-config.json'),'utf8'));
+            // images manifest used for reference; not strictly required for verification but useful for context
+            const imagesManifest = existsSync(join('data','images','seo','images.json')) ? JSON.parse(readFileSync(join('data','images','seo','images.json'),'utf8')) : [];
+            const failures = [];
+            const pagesToCheck = new Set();
+
+            if (pageConfig.pagesByPath) Object.keys(pageConfig.pagesByPath).forEach(p => pagesToCheck.add(p));
+            if (pageConfig.pages) Object.keys(pageConfig.pages).forEach(name => pagesToCheck.add(`${name}.html`));
+            if (pageConfig.caseStudies) Object.keys(pageConfig.caseStudies).forEach(name => pagesToCheck.add(`${name}.html`));
+
+            pagesToCheck.forEach(page => {
+                const distPath = join('dist', page);
+                if (!existsSync(distPath)) return; // Skip pages that weren't generated
+                const content = readFileSync(distPath, 'utf8');
+
+                // Resolve config similarly to build injection logic
+                let config = pageConfig.pagesByPath && pageConfig.pagesByPath[page] ? pageConfig.pagesByPath[page] : null;
+                const fileName = (page || '').split(/[\\\/]/).pop();
+                if (!config && pageConfig.pages && pageConfig.pages[fileName.replace('.html','')]) config = pageConfig.pages[fileName.replace('.html','')];
+                if (config && (!Array.isArray(config.images) || !config.images.length) && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
+                if (!config && pageConfig.caseStudies && pageConfig.caseStudies[fileName]) config = pageConfig.caseStudies[fileName];
+
+                if (config && Array.isArray(config.images) && config.images.length) {
+                    const missing = [];
+                    if (!content.includes('<picture class="hero-image"')) missing.push('picture');
+                    if (!content.includes('"@type":"ImageObject"') && !content.includes('"@type": "ImageObject"')) missing.push('ImageObject JSON-LD');
+                    if (!content.includes('property="og:image"') && !content.includes("property='og:image'")) missing.push('og:image meta');
+                    if (missing.length) failures.push({page, missing});
+                }
+            });
+
+            if (failures.length) {
+                console.error('[VERIFY] SEO image verification failed for the following pages:');
+                failures.forEach(f => console.error(`   - ${f.page}: missing ${f.missing.join(', ')}`));
+                throw new Error('SEO image verification failed');
+            }
+
+            console.log('[VERIFY] All pages with configured images contain hero <picture>, ImageObject JSON-LD, and og:image meta. ✅');
+        } catch (e) {
+            console.error('[VERIFY] Verification failed:', e.message);
+            throw e;
+        }
+    }
+
     import('./check-links.js').then(({ checkLinks }) => {
-        checkLinks();
-        console.log('[SUCCESS] Build completed successfully!');
-        console.log('[OUTPUT] Output directory: ./dist');
-        console.log('[READY] Ready for deployment');
+        return Promise.resolve(checkLinks()).then(() => {
+            // Run verification after link check completes
+            verifySeoImageInjection();
+            console.log('[SUCCESS] Build completed successfully!');
+            console.log('[OUTPUT] Output directory: ./dist');
+            console.log('[READY] Ready for deployment');
+        });
     }).catch(error => {
         console.error('❌ Link check failed:', error.message);
         process.exit(1);
