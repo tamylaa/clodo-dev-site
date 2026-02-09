@@ -61,17 +61,26 @@ jobs:
         run: npm run normalize
 
       - name: Validate built schemas
+        id: schema-validate
         shell: bash
         run: |
-          set -o pipefail
-          node tools/validate-built-schemas.js dist --fail 2>&1 | tee /tmp/schema-report.txt || {
-            echo "::error::Schema validation failed - see Job Summary for details"
+          node tools/validate-built-schemas.js dist --fail > /tmp/schema-report.txt 2>&1 || {
+            echo "SCHEMA_FAILED=true" >> $GITHUB_ENV
             echo "## ❌ Schema Validation Failed" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             cat /tmp/schema-report.txt >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
-            exit 1
           }
+          cat /tmp/schema-report.txt
+          if [ "$SCHEMA_FAILED" = "true" ]; then exit 1; fi
+
+      - name: Upload schema report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-validation-report
+          path: /tmp/schema-report.txt
+          if-no-files-found: ignore
 
       - name: Enforce required schemas
         run: npm run check:required-schemas
