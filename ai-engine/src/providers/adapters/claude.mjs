@@ -1,0 +1,70 @@
+/**
+ * Anthropic Claude Provider Adapter
+ * 
+ * Calls the Anthropic Messages API.
+ * Claude is the PREFERRED provider for complex SEO analysis.
+ * 
+ * Models: Claude Opus 4, Claude Sonnet 4, Claude 3.5 Haiku
+ * API docs: https://docs.anthropic.com/en/api/messages
+ */
+
+import { createLogger } from '@tamyla/clodo-framework';
+
+const logger = createLogger('provider-claude');
+
+/**
+ * Run text generation via Anthropic Claude.
+ * 
+ * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens }
+ * @param {Object} env - Worker env bindings
+ * @returns {Object} { text, tokensUsed, durationMs, model, provider }
+ */
+export async function runClaude(params, env) {
+  const { systemPrompt, userPrompt, model, maxTokens = 4096 } = params;
+
+  const apiKey = env.ANTHROPIC_API_KEY;
+  if (!apiKey) throw new Error('ANTHROPIC_API_KEY not configured');
+
+  const modelId = model?.id || env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
+  const start = Date.now();
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01'
+    },
+    body: JSON.stringify({
+      model: modelId,
+      max_tokens: maxTokens,
+      system: systemPrompt,
+      messages: [
+        { role: 'user', content: userPrompt }
+      ]
+    })
+  });
+
+  const durationMs = Date.now() - start;
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    logger.error(`Claude API error (${response.status}):`, err.error?.message || response.statusText);
+    throw new Error(`Claude API error: ${err.error?.message || response.statusText}`);
+  }
+
+  const data = await response.json();
+  const text = data.content?.[0]?.text || '';
+
+  return {
+    text,
+    tokensUsed: {
+      input: data.usage?.input_tokens || 0,
+      output: data.usage?.output_tokens || 0
+    },
+    durationMs,
+    model: modelId,
+    provider: 'claude',
+    stopReason: data.stop_reason
+  };
+}

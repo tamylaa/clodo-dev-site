@@ -1,0 +1,29 @@
+{
+  "name": "ai-engine",
+  "version": "1.0.0",
+  "description": "Standalone AI Engine — multi-model LLM worker for SEO analytics capabilities",
+  "type": "module",
+  "main": "src/worker.mjs",
+  "scripts": {
+    "dev": "wrangler dev --config config/wrangler.toml",
+    "deploy": "wrangler deploy --config config/wrangler.toml",
+    "deploy:staging": "wrangler deploy --config config/wrangler.toml --env staging",
+    "deploy:production": "wrangler deploy --config config/wrangler.toml --env production",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "tail": "wrangler tail --config config/wrangler.toml",
+    "kv:list": "wrangler kv:key list --config config/wrangler.toml --binding KV_AI"
+  },
+  "dependencies": {
+    "@tamyla/clodo-framework": "^4.4.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18",
+    "wrangler": "^3.57.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}

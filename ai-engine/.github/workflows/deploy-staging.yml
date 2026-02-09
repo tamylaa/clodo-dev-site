@@ -1,0 +1,85 @@
+# ═══════════════════════════════════════════════════════════════════════
+# AI Engine — Deploy to Staging
+# ═══════════════════════════════════════════════════════════════════════
+# Triggers on push to main branch.
+# Deploys to staging environment with health check validation.
+# ═══════════════════════════════════════════════════════════════════════
+
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm test
+
+  deploy-staging:
+    name: Deploy to Staging
+    needs: test
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Deploy to Cloudflare Workers (Staging)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config config/wrangler.toml --env staging
+          secrets: |
+            AI_ENGINE_TOKEN
+            ANTHROPIC_API_KEY
+            OPENAI_API_KEY
+            GOOGLE_AI_API_KEY
+            MISTRAL_API_KEY
+            DEEPSEEK_API_KEY
+        env:
+          AI_ENGINE_TOKEN: ${{ secrets.AI_ENGINE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+
+      - name: Post-deploy Health Check
+        run: |
+          echo "Waiting 10s for deployment to propagate..."
+          sleep 10
+
+          HEALTH_URL="https://ai-engine-staging.${WORKER_SUBDOMAIN}.workers.dev/health"
+          echo "Checking: $HEALTH_URL"
+
+          RESPONSE=$(curl -sf "$HEALTH_URL" || echo '{"healthy":false}')
+          echo "$RESPONSE" | jq .
+
+          HEALTHY=$(echo "$RESPONSE" | jq -r '.healthy')
+          if [ "$HEALTHY" != "true" ]; then
+            echo "::error::Health check failed!"
+            exit 1
+          fi
+          echo "✅ Staging deployment healthy"
+        env:
+          WORKER_SUBDOMAIN: ${{ secrets.CLOUDFLARE_WORKER_SUBDOMAIN }}

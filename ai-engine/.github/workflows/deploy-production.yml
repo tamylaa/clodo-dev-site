@@ -1,0 +1,131 @@
+# ═══════════════════════════════════════════════════════════════════════
+# AI Engine — Deploy to Production
+# ═══════════════════════════════════════════════════════════════════════
+# Triggers on:
+#   1. Manual dispatch (workflow_dispatch) — for controlled releases
+#   2. Release tags (v*.*.*)
+# Includes staging validation, production deploy, and health checks.
+# ═══════════════════════════════════════════════════════════════════════
+
+name: Deploy to Production
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      skip_staging_check:
+        description: 'Skip staging health check?'
+        required: false
+        default: 'false'
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm test
+
+  check-staging:
+    name: Verify Staging Health
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.skip_staging_check != 'true' }}
+    steps:
+      - name: Check staging is healthy
+        run: |
+          HEALTH_URL="https://ai-engine-staging.${WORKER_SUBDOMAIN}.workers.dev/health"
+          echo "Verifying staging at: $HEALTH_URL"
+
+          RESPONSE=$(curl -sf "$HEALTH_URL" || echo '{"healthy":false}')
+          HEALTHY=$(echo "$RESPONSE" | jq -r '.healthy')
+
+          if [ "$HEALTHY" != "true" ]; then
+            echo "::error::Staging is unhealthy — deploy to staging first!"
+            exit 1
+          fi
+          echo "✅ Staging is healthy"
+        env:
+          WORKER_SUBDOMAIN: ${{ secrets.CLOUDFLARE_WORKER_SUBDOMAIN }}
+
+  deploy-production:
+    name: Deploy to Production
+    needs: [test, check-staging]
+    if: always() && needs.test.result == 'success' && (needs.check-staging.result == 'success' || needs.check-staging.result == 'skipped')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Deploy to Cloudflare Workers (Production)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config config/wrangler.toml --env production
+          secrets: |
+            AI_ENGINE_TOKEN
+            ANTHROPIC_API_KEY
+            OPENAI_API_KEY
+            GOOGLE_AI_API_KEY
+            MISTRAL_API_KEY
+            DEEPSEEK_API_KEY
+        env:
+          AI_ENGINE_TOKEN: ${{ secrets.AI_ENGINE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+
+      - name: Post-deploy Health Check
+        run: |
+          echo "Waiting 15s for production deployment to propagate..."
+          sleep 15
+
+          HEALTH_URL="https://ai-engine-production.${WORKER_SUBDOMAIN}.workers.dev/health"
+          echo "Checking: $HEALTH_URL"
+
+          RESPONSE=$(curl -sf "$HEALTH_URL" || echo '{"healthy":false}')
+          echo "$RESPONSE" | jq .
+
+          HEALTHY=$(echo "$RESPONSE" | jq -r '.healthy')
+          if [ "$HEALTHY" != "true" ]; then
+            echo "::error::Production health check failed!"
+            exit 1
+          fi
+          echo "✅ Production deployment healthy"
+        env:
+          WORKER_SUBDOMAIN: ${{ secrets.CLOUDFLARE_WORKER_SUBDOMAIN }}
+
+      - name: Verify Provider Availability
+        run: |
+          CAP_URL="https://ai-engine-production.${WORKER_SUBDOMAIN}.workers.dev/ai/capabilities"
+
+          RESPONSE=$(curl -sf -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" "$CAP_URL" || echo '{}')
+          echo "$RESPONSE" | jq .
+
+          PROVIDERS=$(echo "$RESPONSE" | jq -r '.providers | length')
+          echo "Available providers: $PROVIDERS"
+
+          if [ "$PROVIDERS" -lt 1 ]; then
+            echo "::warning::No AI providers available! Check secrets."
+          fi
+        env:
+          WORKER_SUBDOMAIN: ${{ secrets.CLOUDFLARE_WORKER_SUBDOMAIN }}
+          AI_ENGINE_TOKEN: ${{ secrets.AI_ENGINE_TOKEN }}

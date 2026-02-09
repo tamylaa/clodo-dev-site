@@ -1,0 +1,93 @@
+# ═══════════════════════════════════════════════════════════════════════
+# AI Engine — Cloudflare Worker Configuration
+# ═══════════════════════════════════════════════════════════════════════
+# Standalone multi-model AI worker for SEO analytics
+# Deployment: wrangler deploy --config config/wrangler.toml
+# ═══════════════════════════════════════════════════════════════════════
+
+name = "ai-engine"
+main = "src/worker.mjs"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ── Cloudflare Workers AI Binding ─────────────────────────────────────
+# This gives access to all Workers AI models (Llama, BGE, etc.)
+# Free tier: 10,000 neurons/day — used as fallback provider
+[ai]
+binding = "AI"
+
+# ── KV Namespace for Usage Tracking & Rate Limiting ───────────────────
+[[kv_namespaces]]
+binding = "KV_AI"
+id = ""  # Run: wrangler kv:namespace create KV_AI
+
+# ── Vectorize Index (for semantic embeddings) ─────────────────────────
+# Uncomment after creating: wrangler vectorize create seo-embeddings --dimensions=768 --metric=cosine
+# [[vectorize]]
+# binding = "VECTORIZE"
+# index_name = "seo-embeddings"
+
+# ── Environment Variables (public config) ─────────────────────────────
+[vars]
+ENVIRONMENT = "development"
+
+# Provider routing: auto | claude | openai | gemini | mistral | deepseek | cloudflare
+AI_PROVIDER = "auto"
+
+# Preferred model for complex tasks (used in "auto" mode)
+AI_PREFERRED_PROVIDER = "claude"
+
+# Rate limiting
+MAX_REQUESTS_PER_HOUR = "120"
+
+# ── Cloudflare Workers AI Model Selection ─────────────────────────────
+CF_MODEL_LARGE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+CF_MODEL_SMALL = "@cf/meta/llama-3.1-8b-instruct-fast"
+CF_MODEL_EMBEDDING = "@cf/baai/bge-base-en-v1.5"
+
+# ── Capability Toggles (disable any capability with "false") ──────────
+CAPABILITY_INTENT = "true"
+CAPABILITY_ANOMALY = "true"
+CAPABILITY_EMBEDDINGS = "true"
+CAPABILITY_CHAT = "true"
+CAPABILITY_REWRITES = "true"
+CAPABILITY_REFINER = "true"
+CAPABILITY_FORECAST = "true"
+
+# ═══════════════════════════════════════════════════════════════════════
+# Staging Environment
+# ═══════════════════════════════════════════════════════════════════════
+[env.staging]
+name = "ai-engine-staging"
+vars = { ENVIRONMENT = "staging", AI_PROVIDER = "auto", MAX_REQUESTS_PER_HOUR = "60" }
+
+[[env.staging.kv_namespaces]]
+binding = "KV_AI"
+id = ""  # Run: wrangler kv:namespace create KV_AI --env staging
+
+# ═══════════════════════════════════════════════════════════════════════
+# Production Environment
+# ═══════════════════════════════════════════════════════════════════════
+[env.production]
+name = "ai-engine-production"
+vars = { ENVIRONMENT = "production", AI_PROVIDER = "auto", AI_PREFERRED_PROVIDER = "claude", MAX_REQUESTS_PER_HOUR = "300" }
+routes = [
+  { pattern = "ai.wetechfounders.workers.dev/*", zone_name = "" }
+]
+
+[[env.production.kv_namespaces]]
+binding = "KV_AI"
+id = ""  # Run: wrangler kv:namespace create KV_AI --env production
+
+# ═══════════════════════════════════════════════════════════════════════
+# Secrets (set via `wrangler secret put <NAME>`)
+# ═══════════════════════════════════════════════════════════════════════
+# Required:
+#   wrangler secret put AI_ENGINE_TOKEN
+#   wrangler secret put ANTHROPIC_API_KEY
+#
+# Optional (enables additional providers):
+#   wrangler secret put OPENAI_API_KEY
+#   wrangler secret put GOOGLE_AI_API_KEY
+#   wrangler secret put MISTRAL_API_KEY
+#   wrangler secret put DEEPSEEK_API_KEY
