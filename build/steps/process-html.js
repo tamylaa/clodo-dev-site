@@ -525,7 +525,7 @@ export function processStandaloneHtml() {
     try { pageConfig = loadPageConfig(); } catch { pageConfig = { pages: {}, pagesByPath: {} }; }
 
     const skipDirs = ['node_modules', 'css', 'js', 'icons', 'images', 'assets', 'fonts', 'vendor'];
-    const skipNavFiles = ['google1234567890abcdef.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest', '_redirects', '_headers', 'favicon.svg', 'favicon.ico'];
+    const skipNavFiles = ['google1234567890abcdef.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest', '_redirects', '_headers', '_routes.json', '404.html', 'favicon.svg', 'favicon.ico'];
 
     function walkDir(dir, relativePath = '') {
         const fullDirPath = join('public', dir);

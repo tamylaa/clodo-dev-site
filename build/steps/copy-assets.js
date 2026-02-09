@@ -14,9 +14,9 @@ export function copyAssets() {
         copyFileSync(join('public', 'styles-organized.css'), join('dist', 'styles-organized.css'));
     }
 
-    // Root assets (sitemap, robots, manifest, favicons, …)
+    // Root assets (sitemap, robots, manifest, favicons, CF Pages config, …)
     ['robots.txt', 'sitemap.xml', 'site.webmanifest', 'google1234567890abcdef.html',
-     'favicon.svg', 'favicon.ico', '_redirects', '_headers'
+     'favicon.svg', 'favicon.ico', '_redirects', '_headers', '_routes.json', '404.html'
     ].forEach(file => {
         const src = join('public', file);
         if (existsSync(src)) copyFileSync(src, join('dist', file));
