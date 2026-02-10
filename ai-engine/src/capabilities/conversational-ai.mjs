@@ -1,12 +1,18 @@
 /**
- * Capability 4: Conversational Analytics AI
- * 
+ * Capability 4: Conversational Analytics AI (v2)
+ *
  * Natural language Q&A about SEO data. Multi-turn conversation support.
  * Grounds all answers in actual analytics data to prevent hallucination.
+ *
+ * Note: Conversational responses are intentionally NOT parsed as JSON —
+ * the raw text response IS the product. We only pass jsonMode for
+ * structured follow-up suggestions when the model supports it.
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
+import { ConversationalOutputSchema, CONVERSATIONAL_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { parseAndValidate } from '../lib/response-parser.mjs';
 
 const logger = createLogger('ai-chat');
 
@@ -24,20 +30,38 @@ export async function chatWithData(body, env) {
     userPrompt: buildChatUserPrompt(message, history),
     complexity,
     capability: 'chat',
-    maxTokens: 2048
+    maxTokens: 2048,
+    jsonMode: true,
+    jsonSchema: CONVERSATIONAL_JSON_SCHEMA
   }, env);
 
-  logger.info(`Chat response via ${result.provider} (${result.durationMs}ms)`);
+  // Try structured parse for follow-up suggestions; fall back to raw text
+  const { data: parsed, meta } = parseAndValidate(
+    result.text,
+    ConversationalOutputSchema,
+    { fallback: () => ({ response: result.text }), expect: 'object' }
+  );
+
+  logger.info(`Chat response via ${result.provider} (${result.durationMs}ms)`, {
+    parseMethod: meta.parseMethod,
+    hasFollowUps: !!(parsed?.suggestedFollowUps?.length)
+  });
 
   return {
-    response: result.text,
+    response: parsed?.response || result.text,
+    suggestedFollowUps: parsed?.suggestedFollowUps || [],
+    dataCitations: parsed?.dataCitations || [],
     metadata: {
       provider: result.provider,
       model: result.model,
       tokensUsed: result.tokensUsed,
       cost: result.cost,
       durationMs: result.durationMs,
-      conversationLength: history.length + 1
+      conversationLength: history.length + 1,
+      parseQuality: {
+        method: meta.parseMethod,
+        schemaValid: meta.schemaValid
+      }
     }
   };
 }
@@ -91,6 +115,8 @@ function buildChatSystemPrompt(context) {
 Be specific: cite exact numbers, pages, and keywords from the data. Don't make up metrics.
 Be actionable: when possible, suggest what to do about findings.
 Be concise: 2-4 paragraphs max unless the user asks for detail.
+
+RESPOND with a JSON object: {"response": "your answer text", "suggestedFollowUps": ["follow-up question 1", "..."], "dataCitations": [{"metric": "name", "value": "number"}]}
 
 ${dataBlock}`;
 }

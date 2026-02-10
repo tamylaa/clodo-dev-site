@@ -8,19 +8,19 @@
  * Docs: https://developers.cloudflare.com/workers-ai/
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../../lib/framework-shims.mjs';
 
 const logger = createLogger('provider-cloudflare');
 
 /**
  * Run text generation via Cloudflare Workers AI.
  * 
- * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens }
+ * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }
  * @param {Object} env - Worker env bindings
  * @returns {Object} { text, tokensUsed, durationMs, model, provider }
  */
 export async function runCloudflare(params, env) {
-  const { systemPrompt, userPrompt, model, maxTokens = 2048 } = params;
+  const { systemPrompt, userPrompt, model, maxTokens = 2048, jsonMode = false, jsonSchema = null } = params;
 
   if (!env.AI) throw new Error('Cloudflare AI binding not available');
 
@@ -33,9 +33,17 @@ export async function runCloudflare(params, env) {
 
   const start = Date.now();
 
+  // Workers AI doesn't have native JSON mode — augment system prompt
+  let finalSystem = systemPrompt;
+  if (jsonSchema) {
+    finalSystem += `\n\nIMPORTANT: Respond ONLY with valid JSON matching this schema. No markdown fences, no explanation:\n${JSON.stringify(jsonSchema.schema || jsonSchema, null, 2)}`;
+  } else if (jsonMode) {
+    finalSystem += '\n\nIMPORTANT: Respond ONLY with valid JSON. No markdown fences, no explanation.';
+  }
+
   const result = await env.AI.run(modelId, {
     messages: [
-      { role: 'system', content: systemPrompt },
+      { role: 'system', content: finalSystem },
       { role: 'user', content: userPrompt }
     ],
     max_tokens: maxTokens

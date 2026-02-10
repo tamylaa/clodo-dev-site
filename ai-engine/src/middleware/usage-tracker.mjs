@@ -7,7 +7,7 @@
  * Now also tracks per-provider costs for billing transparency.
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 
 const logger = createLogger('ai-usage');
 

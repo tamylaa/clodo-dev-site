@@ -1,0 +1,41 @@
+# Manual workflow for checking/creating missing KV namespaces
+name: KV Maintenance
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment to operate on (staging or production)'
+        required: true
+        default: 'staging'
+      create:
+        description: 'If true, create missing KV namespaces in the account used by CLOUDFLARE_API_TOKEN'
+        required: false
+        default: 'false'
+
+jobs:
+  check-or-create:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: |
+          npm ci || npm install --no-save
+
+      - name: Ensure Wrangler v4 is available
+        run: npm install --no-save wrangler@4
+
+      - name: Check / Create KV namespaces
+        run: |
+          if [ "${{ github.event.inputs.create }}" = "true" ]; then
+            echo "CREATE_MISSING=true" > /tmp/kv-create-mode
+            export CREATE_MISSING=true
+          fi
+
+          node scripts/check-or-create-kv.mjs --env "${{ github.event.inputs.env }}"${{ github.event.inputs.create == 'true' && ' --create' || '' }} || exit $? 
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

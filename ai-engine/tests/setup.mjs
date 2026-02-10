@@ -6,32 +6,7 @@
 
 import { vi } from 'vitest';
 
-// Mock clodo-framework
-vi.mock('@tamyla/clodo-framework', () => ({
-  createLogger: () => ({
-    info: vi.fn(),
-    warn: vi.fn(),
-    error: vi.fn(),
-    debug: vi.fn()
-  }),
-  createEnhancedRouter: () => {
-    const routes = { get: {}, post: {} };
-    return {
-      get: (path, handler) => { routes.get[path] = handler; },
-      post: (path, handler) => { routes.post[path] = handler; },
-      handle: async (request) => {
-        const url = new URL(request.url);
-        const method = request.method.toLowerCase();
-        const handler = routes[method]?.[url.pathname];
-        if (handler) return handler(request);
-        return null;
-      },
-      _routes: routes
-    };
-  },
-  createCorsMiddleware: () => (req, res) => res,
-  createErrorHandler: () => (err) => new Response(JSON.stringify({ error: err.message }), { status: 500 })
-}));
+// No framework mocks needed — all utilities are local in src/lib/framework-shims.mjs
 
 // Helper: Create a mock Cloudflare Worker env
 export function createMockEnv(overrides = {}) {

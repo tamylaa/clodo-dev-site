@@ -1,12 +1,19 @@
 /**
- * Capability 5: Content Rewrite Suggestions
- * 
+ * Capability 5: Content Rewrite Suggestions (v2)
+ *
  * Generates optimized title, meta description, and H1 rewrites
  * based on target keywords, search intent, and SERP patterns.
+ *
+ * Enhanced with:
+ *   - Zod schema validation
+ *   - Structured output (jsonMode / jsonSchema)
+ *   - Character-count guardrails in post-processing
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
+import { ContentRewriteOutputSchema, CONTENT_REWRITE_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { parseAndValidate } from '../lib/response-parser.mjs';
 
 const logger = createLogger('ai-rewrites');
 
@@ -24,12 +31,57 @@ export async function generateRewrites(body, env) {
     userPrompt: buildRewriteUserPrompt(batch),
     complexity: 'standard',
     capability: 'content-rewrite',
-    maxTokens: 4096
+    maxTokens: 4096,
+    jsonMode: true,
+    jsonSchema: CONTENT_REWRITE_JSON_SCHEMA
   }, env);
 
-  const rewrites = parseRewriteResponse(result.text, batch);
+  const { data: parsed, meta } = parseAndValidate(
+    result.text,
+    ContentRewriteOutputSchema,
+    {
+      fallback: () => ({ rewrites: fallbackRewrites(batch) }),
+      expect: 'object'
+    }
+  );
 
-  logger.info(`Generated rewrites for ${rewrites.length} pages via ${result.provider}`);
+  const rewrites = (parsed?.rewrites || fallbackRewrites(batch)).map((r, i) => {
+    // Post-process: add character counts and flag issues
+    const sugTitle = r.title?.suggested || r.rewritten?.title || '';
+    const sugDesc = r.description?.suggested || r.rewritten?.description || '';
+    return {
+      url: r.url || batch[i]?.url || `page-${i}`,
+      title: typeof r.title === 'object' ? r.title : {
+        current: batch[i]?.title || '',
+        suggested: sugTitle,
+        reasoning: r.reasoning || ''
+      },
+      description: typeof r.description === 'object' ? r.description : {
+        current: batch[i]?.description || '',
+        suggested: sugDesc,
+        reasoning: r.reasoning || ''
+      },
+      h1: typeof r.h1 === 'object' ? r.h1 : {
+        current: batch[i]?.h1 || '',
+        suggested: r.rewritten?.h1 || '',
+        reasoning: r.reasoning || ''
+      },
+      estimatedCTRLift: r.estimatedCTRLift || r.estimatedImpact || 'Unknown',
+      titleLength: sugTitle.length,
+      descriptionLength: sugDesc.length,
+      warnings: [
+        ...(sugTitle.length > 60 ? [`Title too long (${sugTitle.length} chars, max 60)`] : []),
+        ...(sugDesc.length > 160 ? [`Description too long (${sugDesc.length} chars, max 160)`] : []),
+        ...(sugTitle.length < 30 ? [`Title too short (${sugTitle.length} chars, min 30)`] : [])
+      ],
+      source: meta.fallbackUsed ? 'ai-engine-fallback' : 'ai-engine'
+    };
+  });
+
+  logger.info(`Generated rewrites for ${rewrites.length} pages via ${result.provider}`, {
+    parseMethod: meta.parseMethod,
+    schemaValid: meta.schemaValid
+  });
 
   return {
     rewrites,
@@ -39,7 +91,12 @@ export async function generateRewrites(body, env) {
       pagesProcessed: batch.length,
       tokensUsed: result.tokensUsed,
       cost: result.cost,
-      durationMs: result.durationMs
+      durationMs: result.durationMs,
+      parseQuality: {
+        method: meta.parseMethod,
+        schemaValid: meta.schemaValid,
+        fallbackUsed: meta.fallbackUsed
+      }
     }
   };
 }
@@ -85,40 +142,7 @@ function buildRewriteUserPrompt(pages) {
   return `Generate optimized rewrites for these pages:\n\n${pageBlocks}`;
 }
 
-function parseRewriteResponse(text, originalPages) {
-  try {
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) return fallbackRewrites(originalPages);
-
-    const parsed = JSON.parse(jsonMatch[0]);
-    const rewrites = parsed.rewrites || parsed;
-    if (!Array.isArray(rewrites)) return fallbackRewrites(originalPages);
-
-    return rewrites.map((r, i) => ({
-      url: r.url || originalPages[i]?.url || `page-${i}`,
-      title: {
-        current: r.title?.current || originalPages[i]?.title || '',
-        suggested: r.title?.suggested || '',
-        reasoning: r.title?.reasoning || ''
-      },
-      description: {
-        current: r.description?.current || originalPages[i]?.description || '',
-        suggested: r.description?.suggested || '',
-        reasoning: r.description?.reasoning || ''
-      },
-      h1: {
-        current: r.h1?.current || originalPages[i]?.h1 || '',
-        suggested: r.h1?.suggested || '',
-        reasoning: r.h1?.reasoning || ''
-      },
-      estimatedCTRLift: r.estimatedCTRLift || 'Unknown',
-      source: 'ai-engine'
-    }));
-  } catch (err) {
-    logger.warn('Failed to parse rewrite response:', err.message);
-    return fallbackRewrites(originalPages);
-  }
-}
+// parseRewriteResponse replaced by parseAndValidate from response-parser.mjs
 
 function fallbackRewrites(pages) {
   return pages.map(p => ({

@@ -1,12 +1,19 @@
 /**
- * Capability 3: Semantic Keyword Clustering via Embeddings
- * 
+ * Capability 3: Semantic Keyword Clustering via Embeddings (v2)
+ *
  * Groups keywords by meaning using Cloudflare Workers AI embeddings.
  * Uses agglomerative clustering with Union-Find for efficiency.
+ *
+ * Enhanced with:
+ *   - Shared math-utils (cosineSimilarity)
+ *   - Zod schema validation on output
+ *   - Cluster labelling via LLM (optional)
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 import { runEmbeddings } from '../providers/ai-provider.mjs';
+import { cosineSimilarity } from '../lib/math-utils.mjs';
+import { EmbeddingClusterInputSchema, EmbeddingClusterOutputSchema } from '../lib/schemas/index.mjs';
 
 const logger = createLogger('ai-embeddings');
 
@@ -119,14 +126,4 @@ function enrichCluster(cluster, allKeywords) {
   };
 }
 
-function cosineSimilarity(a, b) {
-  if (!a || !b || a.length !== b.length) return 0;
-  let dot = 0, normA = 0, normB = 0;
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
-  }
-  const denom = Math.sqrt(normA) * Math.sqrt(normB);
-  return denom === 0 ? 0 : dot / denom;
-}
+// cosineSimilarity now imported from ../lib/math-utils.mjs

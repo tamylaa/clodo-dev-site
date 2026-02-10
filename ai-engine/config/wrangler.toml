@@ -6,7 +6,7 @@
 # ═══════════════════════════════════════════════════════════════════════
 
 name = "ai-engine"
-main = "src/worker.mjs"
+main = "../src/worker.mjs"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
@@ -19,7 +19,7 @@ binding = "AI"
 # ── KV Namespace for Usage Tracking & Rate Limiting ───────────────────
 [[kv_namespaces]]
 binding = "KV_AI"
-id = ""  # Run: wrangler kv:namespace create KV_AI
+id = "8cf5349f422941b8a049709070b0b4e4"
 
 # ── Vectorize Index (for semantic embeddings) ─────────────────────────
 # Uncomment after creating: wrangler vectorize create seo-embeddings --dimensions=768 --metric=cosine
@@ -59,25 +59,58 @@ CAPABILITY_FORECAST = "true"
 # ═══════════════════════════════════════════════════════════════════════
 [env.staging]
 name = "ai-engine-staging"
-vars = { ENVIRONMENT = "staging", AI_PROVIDER = "auto", MAX_REQUESTS_PER_HOUR = "60" }
+
+[env.staging.ai]
+binding = "AI"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+AI_PROVIDER = "auto"
+AI_PREFERRED_PROVIDER = "claude"
+MAX_REQUESTS_PER_HOUR = "60"
+CF_MODEL_LARGE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+CF_MODEL_SMALL = "@cf/meta/llama-3.1-8b-instruct-fast"
+CF_MODEL_EMBEDDING = "@cf/baai/bge-base-en-v1.5"
+CAPABILITY_INTENT = "true"
+CAPABILITY_ANOMALY = "true"
+CAPABILITY_EMBEDDINGS = "true"
+CAPABILITY_CHAT = "true"
+CAPABILITY_REWRITES = "true"
+CAPABILITY_REFINER = "true"
+CAPABILITY_FORECAST = "true"
 
 [[env.staging.kv_namespaces]]
 binding = "KV_AI"
-id = ""  # Run: wrangler kv:namespace create KV_AI --env staging
+id = "a73b6e72832740c48bd7698860004378"
 
 # ═══════════════════════════════════════════════════════════════════════
 # Production Environment
 # ═══════════════════════════════════════════════════════════════════════
 [env.production]
-name = "ai-engine-production"
-vars = { ENVIRONMENT = "production", AI_PROVIDER = "auto", AI_PREFERRED_PROVIDER = "claude", MAX_REQUESTS_PER_HOUR = "300" }
-routes = [
-  { pattern = "ai.wetechfounders.workers.dev/*", zone_name = "" }
-]
+name = "ai-engine"
+
+[env.production.ai]
+binding = "AI"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+AI_PROVIDER = "auto"
+AI_PREFERRED_PROVIDER = "claude"
+MAX_REQUESTS_PER_HOUR = "300"
+CF_MODEL_LARGE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+CF_MODEL_SMALL = "@cf/meta/llama-3.1-8b-instruct-fast"
+CF_MODEL_EMBEDDING = "@cf/baai/bge-base-en-v1.5"
+CAPABILITY_INTENT = "true"
+CAPABILITY_ANOMALY = "true"
+CAPABILITY_EMBEDDINGS = "true"
+CAPABILITY_CHAT = "true"
+CAPABILITY_REWRITES = "true"
+CAPABILITY_REFINER = "true"
+CAPABILITY_FORECAST = "true"
 
 [[env.production.kv_namespaces]]
 binding = "KV_AI"
-id = ""  # Run: wrangler kv:namespace create KV_AI --env production
+id = "cec4b8eb7fbd4f84bdc606ddf3d313a9"
 
 # ═══════════════════════════════════════════════════════════════════════
 # Secrets (set via `wrangler secret put <NAME>`)
