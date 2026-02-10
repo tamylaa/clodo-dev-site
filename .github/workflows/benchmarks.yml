@@ -1,0 +1,27 @@
+name: Benchmarks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 1' # weekly
+
+jobs:
+  run-benchmarks:
+    runs-on: ubuntu-latest
+    env:
+      WPT_API_KEY: ${{ secrets.WPT_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install deps
+        run: npm install node-fetch minimist
+      - name: Run WebPageTest benchmarks
+        run: node tools/benchmarks/run-wpt.js --urls https://clodo.dev/edge-vs-cloud-computing --locations Dulles:Chrome,ec2-us-west-2:Chrome,ec2-eu-west-2:Chrome,ec2-ap-southeast-1:Chrome
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloud-vs-edge-benchmarks
+          path: data/benchmarks/cloud-vs-edge/**
