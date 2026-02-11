@@ -1,13 +1,21 @@
 /**
- * Capability 6: Recommendation Refiner (Multi-Turn)
- * 
+ * Capability 6: Recommendation Refiner (v2 — Multi-Turn)
+ *
  * Two-pass AI refinement: Critic → Refiner.
  * Pass 1 critiques weak spots, Pass 2 rewrites with stronger evidence.
- * Claude preferred for refinement pass (complex task).
+ *
+ * Enhanced with:
+ *   - Few-shot examples for quality anchoring
+ *   - Structured output (jsonMode) on the refine pass
+ *   - Zod schema validation
+ *   - Improved parsing via response-parser
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
+import { RecommendationRefinerOutputSchema, RECOMMENDATION_REFINER_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { parseAndValidate } from '../lib/response-parser.mjs';
+import { formatRecommendationExamples } from '../lib/few-shot/index.mjs';
 
 const logger = createLogger('ai-refiner');
 
@@ -32,17 +40,37 @@ export async function refineRecommendations(body, env) {
   const critique = critiqueResult.text;
   logger.info(`Critique pass complete via ${critiqueResult.provider}`);
 
-  // Pass 2: Refine (prefer Claude — complex task)
+  // Pass 2: Refine (prefer Claude — complex task) with structured output
   const refineResult = await runTextGeneration({
     systemPrompt: buildRefinerSystemPrompt(),
     userPrompt: buildRefinerUserPrompt(batch, critique, analyticsContext),
     complexity: 'complex',
     capability: 'refine-recs',
-    maxTokens: 4096
+    maxTokens: 4096,
+    jsonMode: true,
+    jsonSchema: RECOMMENDATION_REFINER_JSON_SCHEMA
   }, env);
 
-  const refined = parseRefineResponse(refineResult.text, batch);
-  logger.info(`Refinement pass complete via ${refineResult.provider} — ${refined.length} recs refined`);
+  const { data: parsed, meta } = parseAndValidate(
+    refineResult.text,
+    RecommendationRefinerOutputSchema,
+    {
+      fallback: () => ({ refined: addRefinementFlags(batch) }),
+      expect: 'object'
+    }
+  );
+
+  const refined = (parsed?.refined || addRefinementFlags(batch)).map((r, i) => ({
+    ...r,
+    id: r.id || r.original || batch[i]?.id || `refined-${i}`,
+    refinedBy: meta.fallbackUsed ? 'ai-engine-fallback' : 'ai-engine',
+    refinedAt: new Date().toISOString()
+  }));
+
+  logger.info(`Refinement pass complete via ${refineResult.provider} — ${refined.length} recs refined`, {
+    parseMethod: meta.parseMethod,
+    schemaValid: meta.schemaValid
+  });
 
   return {
     refined,
@@ -61,7 +89,12 @@ export async function refineRecommendations(body, env) {
         refine: refineResult.cost,
         total: parseFloat(((critiqueResult.cost?.estimated || 0) + (refineResult.cost?.estimated || 0)).toFixed(6))
       },
-      totalDurationMs: critiqueResult.durationMs + refineResult.durationMs
+      totalDurationMs: critiqueResult.durationMs + refineResult.durationMs,
+      parseQuality: {
+        method: meta.parseMethod,
+        schemaValid: meta.schemaValid,
+        fallbackUsed: meta.fallbackUsed
+      }
     }
   };
 }
@@ -96,7 +129,11 @@ function buildCriticUserPrompt(recs, context) {
 }
 
 function buildRefinerSystemPrompt() {
+  const fewShot = formatRecommendationExamples(2);
+
   return `You are an expert SEO strategist. You've received recommendations AND a critique of those recommendations. Your job is to REWRITE each recommendation to address every critique point.
+
+${fewShot}
 
 RULES:
 1. Every recommendation MUST reference specific pages AND keywords
@@ -125,26 +162,7 @@ function buildRefinerUserPrompt(recs, critique, context) {
   return `ORIGINAL RECOMMENDATIONS:\n${recsJson}\n\nCRITIQUE:\n${critique}\n${contextBlock}\n\nRewrite every recommendation to address the critique. Make them specific, evidence-backed, and actionable.`;
 }
 
-function parseRefineResponse(text, originalRecs) {
-  try {
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) return addRefinementFlags(originalRecs);
-
-    const parsed = JSON.parse(jsonMatch[0]);
-    const refined = parsed.refined || parsed.recommendations || parsed;
-    if (!Array.isArray(refined)) return addRefinementFlags(originalRecs);
-
-    return refined.map((r, i) => ({
-      ...r,
-      id: r.id || originalRecs[i]?.id || `refined-${i}`,
-      refinedBy: 'ai-engine',
-      refinedAt: new Date().toISOString()
-    }));
-  } catch (err) {
-    logger.warn('Failed to parse refinement response:', err.message);
-    return addRefinementFlags(originalRecs);
-  }
-}
+// parseRefineResponse replaced by parseAndValidate from response-parser.mjs
 
 function addRefinementFlags(recs) {
   return recs.map(r => ({

@@ -1,0 +1,35 @@
+name: Deploy Cloudflare Worker (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy worker to Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install wrangler
+        run: npm install -g wrangler
+
+      - name: Authenticate Wrangler
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          echo "Configuring Wrangler..."
+          wrangler whoami || true
+
+      - name: Publish worker
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          cd tools/benchmarks/cloudflare-worker
+          # Use wrangler publish (requires CF_API_TOKEN and CF_ACCOUNT_ID configured as repo secrets)
+          wrangler publish --account-id $CF_ACCOUNT_ID --compatibility-date 2026-02-11

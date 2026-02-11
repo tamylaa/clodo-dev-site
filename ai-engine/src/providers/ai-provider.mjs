@@ -16,7 +16,7 @@
  * Cost tracking: every call returns cost estimate for billing transparency.
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 import { MODELS, PROVIDERS, CAPABILITY_MODEL_MAP, isProviderAvailable, getModel } from './model-registry.mjs';
 import { runClaude } from './adapters/claude.mjs';
 import { runOpenAI } from './adapters/openai.mjs';
@@ -51,6 +51,8 @@ const ADAPTER_MAP = {
  * @param {number} [params.maxTokens=4096] - Max output tokens
  * @param {string} [params.forceProvider] - Force a specific provider
  * @param {string} [params.forceModel] - Force a specific model key
+ * @param {boolean} [params.jsonMode] - Request JSON-formatted output from the model
+ * @param {Object} [params.jsonSchema] - JSON Schema for structured output (OpenAI format: { name, schema })
  * @param {Object} env - Worker env bindings
  * @returns {Object} { text, tokensUsed, durationMs, model, provider, cost, fallbackUsed }
  */
@@ -62,7 +64,9 @@ export async function runTextGeneration(params, env) {
     capability = null,
     maxTokens = 4096,
     forceProvider = null,
-    forceModel = null
+    forceModel = null,
+    jsonMode = false,
+    jsonSchema = null
   } = params;
 
   // Build the model chain to try
@@ -95,7 +99,7 @@ export async function runTextGeneration(params, env) {
 
       logger.info(`Trying ${providerId}/${model.id} for ${capability || 'generic'} (${complexity})`);
 
-      const result = await adapter({ systemPrompt, userPrompt, model, maxTokens }, env);
+      const result = await adapter({ systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }, env);
 
       // Calculate estimated cost
       const cost = estimateCost(model, result.tokensUsed);

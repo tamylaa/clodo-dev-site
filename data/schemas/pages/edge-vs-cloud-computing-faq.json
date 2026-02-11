@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between cloud and edge (cloud vs edge)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud computing centralizes processing in data centers; edge computing processes data near the user or device. The cloud offers massive scalability and complex analytics, while edge minimizes latency and reduces bandwidth for real-time or privacy-sensitive workloads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I choose edge over cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose edge for ultra-low-latency needs, IoT/high data-rate devices, or when privacy/regulatory requirements demand local processing. Use cloud when you need heavy batch compute, centralized analytics, or simpler operational tooling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use both (hybrid cloud and edge)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A hybrid approach is common: filter and act at the edge, then aggregate and analyze in the cloud. This gives the benefits of both cloud and edge while controlling costs and latency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I decide: cloud vs edge for my app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a decision framework: evaluate latency requirements, data volume, privacy, processing complexity, and operational resources. If latency or bandwidth drives requirements, prefer edge; for heavy analytics and central coordination, prefer cloud."
+      }
+    }
+  ]
+}

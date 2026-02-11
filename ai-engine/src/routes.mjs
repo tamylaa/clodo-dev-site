@@ -13,6 +13,9 @@ import { chatWithData } from './capabilities/conversational-ai.mjs';
 import { generateRewrites } from './capabilities/content-rewrites.mjs';
 import { refineRecommendations } from './capabilities/recommendation-refiner.mjs';
 import { smartForecast } from './capabilities/smart-forecasting.mjs';
+import { detectCannibalization } from './capabilities/cannibalization-detect.mjs';
+import { analyseContentGaps } from './capabilities/content-gaps.mjs';
+import { scorePages } from './capabilities/page-scorer.mjs';
 import { getProviderStatus } from './providers/ai-provider.mjs';
 
 /**
@@ -96,6 +99,30 @@ export function registerRoutes(router, env, usageTracker) {
     const body = await req.json();
     const result = await smartForecast(body, env);
     await logUsage(usageTracker, 'smart-forecast', result);
+    return jsonRes(result);
+  });
+
+  router.post('/ai/cannibalization-detect', async (req) => {
+    assertCapability('CAPABILITY_CANNIBALIZATION');
+    const body = await req.json();
+    const result = await detectCannibalization(body, env);
+    await logUsage(usageTracker, 'cannibalization-detect', result);
+    return jsonRes(result);
+  });
+
+  router.post('/ai/content-gaps', async (req) => {
+    assertCapability('CAPABILITY_CONTENT_GAPS');
+    const body = await req.json();
+    const result = await analyseContentGaps(body, env);
+    await logUsage(usageTracker, 'content-gaps', result);
+    return jsonRes(result);
+  });
+
+  router.post('/ai/page-score', async (req) => {
+    assertCapability('CAPABILITY_PAGE_SCORER');
+    const body = await req.json();
+    const result = await scorePages(body, env);
+    await logUsage(usageTracker, 'page-score', result);
     return jsonRes(result);
   });
 }

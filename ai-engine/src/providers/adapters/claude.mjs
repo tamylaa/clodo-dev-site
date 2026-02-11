@@ -8,25 +8,39 @@
  * API docs: https://docs.anthropic.com/en/api/messages
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../../lib/framework-shims.mjs';
 
 const logger = createLogger('provider-claude');
 
 /**
  * Run text generation via Anthropic Claude.
  * 
- * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens }
+ * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }
  * @param {Object} env - Worker env bindings
  * @returns {Object} { text, tokensUsed, durationMs, model, provider }
  */
 export async function runClaude(params, env) {
-  const { systemPrompt, userPrompt, model, maxTokens = 4096 } = params;
+  const { systemPrompt, userPrompt, model, maxTokens = 4096, jsonMode = false, jsonSchema = null } = params;
 
   const apiKey = env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY not configured');
 
   const modelId = model?.id || env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
   const start = Date.now();
+
+  // For JSON mode, add a prefilled assistant message to anchor JSON output
+  const messages = [{ role: 'user', content: userPrompt }];
+  if (jsonMode || jsonSchema) {
+    messages.push({ role: 'assistant', content: '{' });
+  }
+
+  // Augment system prompt with JSON instruction when schema is provided
+  let finalSystem = systemPrompt;
+  if (jsonSchema) {
+    finalSystem += `\n\nYou MUST respond with valid JSON matching this schema:\n${JSON.stringify(jsonSchema.schema || jsonSchema, null, 2)}`;
+  } else if (jsonMode) {
+    finalSystem += '\n\nYou MUST respond with valid JSON only. No markdown, no explanation.';
+  }
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -38,10 +52,8 @@ export async function runClaude(params, env) {
     body: JSON.stringify({
       model: modelId,
       max_tokens: maxTokens,
-      system: systemPrompt,
-      messages: [
-        { role: 'user', content: userPrompt }
-      ]
+      system: finalSystem,
+      messages
     })
   });
 
@@ -54,7 +66,12 @@ export async function runClaude(params, env) {
   }
 
   const data = await response.json();
-  const text = data.content?.[0]?.text || '';
+  let text = data.content?.[0]?.text || '';
+
+  // When we prefilled with '{', prepend it back to form valid JSON
+  if ((jsonMode || jsonSchema) && text && !text.trimStart().startsWith('{') && !text.trimStart().startsWith('[')) {
+    text = '{' + text;
+  }
 
   return {
     text,

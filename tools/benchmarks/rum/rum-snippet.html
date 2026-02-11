@@ -1,0 +1,35 @@
+<!-- RUM snippet: paste into <head> or near end of <body> -->
+<script>
+(function () {
+  // Minimal RUM using web-vitals via unpkg (lightweight)
+  function sendMetric(name, value) {
+    try {
+      const body = JSON.stringify({ name, value, url: location.href, ts: Date.now() });
+      // send to collector endpoint (should point to your collector)
+      const url = '/__rum-collector';
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, body);
+      } else {
+        fetch(url, { method: 'POST', body, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+      }
+    } catch (e) {}
+  }
+
+  (function loadWV(){
+    const s = document.createElement('script');
+    s.src = 'https://unpkg.com/web-vitals@3/dist/web-vitals.umd.js';
+    s.crossOrigin = 'anonymous';
+    s.onload = function() {
+      /* global webVitals */
+      try {
+        webVitals.getLCP(m => sendMetric('LCP', Math.round(m.value)));
+        webVitals.getCLS(m => sendMetric('CLS', m.value));
+        webVitals.getINP(m => sendMetric('INP', m.value));
+        webVitals.getFID && webVitals.getFID(m => sendMetric('FID', Math.round(m.value)));
+      } catch(e){}
+    };
+    document.head.appendChild(s);
+  })();
+})();
+</script>
+<!-- Collector endpoint should receive JSON POSTs at /__rum-collector -->

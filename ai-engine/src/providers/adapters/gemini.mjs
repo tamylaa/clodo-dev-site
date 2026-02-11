@@ -8,19 +8,19 @@
  * API docs: https://ai.google.dev/api/generate-content
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../../lib/framework-shims.mjs';
 
 const logger = createLogger('provider-gemini');
 
 /**
  * Run text generation via Google Gemini.
  * 
- * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens }
+ * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }
  * @param {Object} env - Worker env bindings
  * @returns {Object} { text, tokensUsed, durationMs, model, provider }
  */
 export async function runGemini(params, env) {
-  const { systemPrompt, userPrompt, model, maxTokens = 4096 } = params;
+  const { systemPrompt, userPrompt, model, maxTokens = 4096, jsonMode = false, jsonSchema = null } = params;
 
   const apiKey = env.GOOGLE_AI_API_KEY;
   if (!apiKey) throw new Error('GOOGLE_AI_API_KEY not configured');
@@ -29,6 +29,19 @@ export async function runGemini(params, env) {
   const start = Date.now();
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`;
+
+  const generationConfig = {
+    maxOutputTokens: maxTokens,
+    temperature: 0.7
+  };
+
+  // Gemini native JSON mode
+  if (jsonSchema) {
+    generationConfig.responseMimeType = 'application/json';
+    generationConfig.responseSchema = jsonSchema.schema || jsonSchema;
+  } else if (jsonMode) {
+    generationConfig.responseMimeType = 'application/json';
+  }
 
   const response = await fetch(url, {
     method: 'POST',
@@ -40,10 +53,7 @@ export async function runGemini(params, env) {
       contents: [{
         parts: [{ text: userPrompt }]
       }],
-      generationConfig: {
-        maxOutputTokens: maxTokens,
-        temperature: 0.7
-      }
+      generationConfig
     })
   });
 

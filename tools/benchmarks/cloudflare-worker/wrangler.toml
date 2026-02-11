@@ -1,0 +1,13 @@
+name = "cloud-vs-edge-worker"
+main = "worker.mjs"
+compatibility_date = "2026-02-11"
+type = "javascript"
+
+# To deploy, set your account_id and optionally a route/zone in the wrangler deploy step
+account_id = "YOUR_ACCOUNT_ID_HERE"
+
+[build]
+  command = ""
+
+[vars]
+  # example: TARGET_URL = "https://clodo.dev/edge-vs-cloud-computing"

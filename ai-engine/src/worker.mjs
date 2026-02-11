@@ -12,7 +12,7 @@ import {
   createLogger,
   createCorsMiddleware,
   createErrorHandler
-} from '@tamyla/clodo-framework';
+} from './lib/framework-shims.mjs';
 
 import { verifyToken } from './middleware/auth.mjs';
 import { UsageTracker } from './middleware/usage-tracker.mjs';

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "include": [
+    "/newsletter-subscribe",
+    "/download-delivery",
+    "/download-validator-scripts",
+    "/api/*"
+  ],
+  "exclude": []
+}

@@ -8,7 +8,7 @@
  * API docs: https://platform.openai.com/docs/api-reference/chat
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../../lib/framework-shims.mjs';
 
 const logger = createLogger('provider-openai');
 
@@ -18,12 +18,12 @@ const REASONING_MODELS = new Set(['o1', 'o3-mini', 'o1-mini', 'o1-preview']);
 /**
  * Run text generation via OpenAI.
  * 
- * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens }
+ * @param {Object} params - { systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }
  * @param {Object} env - Worker env bindings
  * @returns {Object} { text, tokensUsed, durationMs, model, provider }
  */
 export async function runOpenAI(params, env) {
-  const { systemPrompt, userPrompt, model, maxTokens = 4096 } = params;
+  const { systemPrompt, userPrompt, model, maxTokens = 4096, jsonMode = false, jsonSchema = null } = params;
 
   const apiKey = env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY not configured');
@@ -50,6 +50,15 @@ export async function runOpenAI(params, env) {
     body.max_completion_tokens = maxTokens;
   } else {
     body.max_tokens = maxTokens;
+  }
+
+  // Structured output: prefer json_schema (strict), fall back to json_object
+  if (!isReasoning) {
+    if (jsonSchema) {
+      body.response_format = { type: 'json_schema', json_schema: jsonSchema };
+    } else if (jsonMode) {
+      body.response_format = { type: 'json_object' };
+    }
   }
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {

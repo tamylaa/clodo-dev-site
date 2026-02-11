@@ -9,7 +9,7 @@
  * Production MUST have AI_ENGINE_TOKEN set via `wrangler secret put AI_ENGINE_TOKEN`
  */
 
-import { createLogger } from '@tamyla/clodo-framework';
+import { createLogger } from '../lib/framework-shims.mjs';
 
 const logger = createLogger('ai-auth');
 
