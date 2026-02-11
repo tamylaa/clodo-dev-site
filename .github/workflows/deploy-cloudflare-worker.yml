@@ -20,16 +20,18 @@ jobs:
 
       - name: Authenticate Wrangler
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Configuring Wrangler..."
           wrangler whoami || true
 
       - name: Publish worker
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           cd tools/benchmarks/cloudflare-worker
-          # Use wrangler publish (requires CF_API_TOKEN and CF_ACCOUNT_ID configured as repo secrets)
-          wrangler publish --account-id $CF_ACCOUNT_ID --compatibility-date 2026-02-11
+          # Deploy using wrangler (requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID configured as repo secrets)
+          # The account ID is used from the secret and/or wrangler.toml; explicit flags can change between wrangler versions,
+          # so we rely on the configuration and a plain `wrangler deploy` to avoid incompatible flags.
+          wrangler deploy --compatibility-date 2026-02-11
