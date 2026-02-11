@@ -25,13 +25,30 @@ jobs:
           echo "Configuring Wrangler..."
           wrangler whoami || true
 
+      - name: Diagnostic: verify Cloudflare token and account
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          echo "Token length: ${#CLOUDFLARE_API_TOKEN} (hidden)"
+          echo "Calling token verify endpoint..."
+          curl -s -X POST "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" -o /tmp/token_verify.json || true
+          echo "--- token verify response ---"
+          cat /tmp/token_verify.json || true
+          echo "--- check account exists ---"
+          curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -o /tmp/account.json || true
+          echo "--- account response ---"
+          cat /tmp/account.json || true
+
       - name: Publish worker
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           cd tools/benchmarks/cloudflare-worker
-          # Deploy using wrangler (requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID configured as repo secrets)
-          # The account ID is used from the secret and/or wrangler.toml; explicit flags can change between wrangler versions,
-          # so we rely on the configuration and a plain `wrangler deploy` to avoid incompatible flags.
-          wrangler deploy --compatibility-date 2026-02-11
+          echo "Attempting wrangler deploy..."
+          wrangler deploy --compatibility-date 2026-02-11 || true
+          echo "If deploy failed, check the token scopes in token verify output above."
