@@ -53,6 +53,8 @@
     "lighthouse:report": "lhci autorun && npx lighthouse http://localhost:8000 --view",
     "lighthouse:audit": "node tools/run-lighthouse-audit.js",
     "lighthouse:ci": "lhci autorun",
+    "bench:worker": "node tools/benchmarks/run-cloudflare-worker-synthetic.mjs",
+    "rum:collector": "node tools/benchmarks/rum/rum-collector.js",
     "seo:test": "node build/seo-performance-test.js",
     "seo:keywords": "node build/keyword-ranking-tracker.js",
     "seo:content": "node build/content-effectiveness-analyzer.js",
@@ -130,6 +132,7 @@
     "eslint-plugin-html": "^8.1.3",
     "http-server": "^14.1.1",
     "lighthouse": "^12.8.2",
+    "miniflare": "^3.20250718.3",
     "playwright": "^1.56.1",
     "postcss-import": "^16.1.1",
     "stylelint": "^16.25.0",
@@ -143,6 +146,8 @@
   },
   "dependencies": {
     "@tamyla/clodo-framework": "^4.0.12",
-    "jsdom": "^27.2.0"
+    "jsdom": "^27.2.0",
+    "minimist": "^1.2.8",
+    "node-fetch": "^2.7.0"
   }
 }
