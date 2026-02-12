@@ -1,0 +1,35 @@
+name: Cloudflare Token Verify (debug)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Verify Cloudflare API token
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Token verify and account check
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          echo "Token length: ${#CLOUDFLARE_API_TOKEN} (hidden)"
+          echo "Calling token verify endpoint..."
+          curl -s -X POST "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" -o /tmp/token_verify.json || true
+          echo "--- token verify response ---"
+          cat /tmp/token_verify.json || true
+          echo "--- check account exists ---"
+          curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -o /tmp/account.json || true
+          echo "--- account response ---"
+          cat /tmp/account.json || true
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-token-diagnostics
+          path: /tmp/token_verify.json,/tmp/account.json
