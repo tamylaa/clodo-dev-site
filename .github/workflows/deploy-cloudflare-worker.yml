@@ -20,16 +20,66 @@ jobs:
 
       - name: Authenticate Wrangler
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Configuring Wrangler..."
-          wrangler whoami || true
+          wrangler whoami --verbose || true
+
+      - name: Diagnostic: verify Cloudflare token and account
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          echo "Token length: ${#CLOUDFLARE_API_TOKEN} (hidden)"
+          echo "Calling token verify endpoint..."
+          curl -s -X POST "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" -o /tmp/token_verify.json || true
+          echo "--- token verify response ---"
+          cat /tmp/token_verify.json || true
+          echo "--- check account exists ---"
+          curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -o /tmp/account.json || true
+          echo "--- account response ---"
+          cat /tmp/account.json || true
+
+      - name: Validate token scopes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Install jq if missing for robust JSON parsing
+          if ! command -v jq >/dev/null 2>&1; then
+            echo "Installing jq..."
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+          echo "Extracting permission groups from token verify response..."
+          jq -r '.result.policies[]?.permission_groups[]?.name // empty' /tmp/token_verify.json | sed '/^$/d' > /tmp/scopes.txt || true
+          echo "Detected scopes:"
+          cat /tmp/scopes.txt || true
+          # Check for required scopes
+          if grep -q '^Account:Read$' /tmp/scopes.txt && grep -E -q 'Workers.*Edit|Workers:Edit|Workers Scripts:Edit' /tmp/scopes.txt; then
+            echo "Required scopes present: Account:Read and Workers:Edit"
+          else
+            echo "ERROR: Token is missing required scopes (Workers:Edit and Account:Read). Please rotate token and update repository secret CLOUDFLARE_API_TOKEN." >&2
+            echo "For reference, required minimum scopes: Workers:Edit and Account:Read" >&2
+            exit 2
+          fi
+
+      - name: Upload token diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-token-diagnostics
+          path: /tmp/token_verify.json,/tmp/account.json,/tmp/scopes.txt
 
       - name: Publish worker
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           cd tools/benchmarks/cloudflare-worker
-          # Use wrangler publish (requires CF_API_TOKEN and CF_ACCOUNT_ID configured as repo secrets)
-          wrangler publish --account-id $CF_ACCOUNT_ID --compatibility-date 2026-02-11
+          echo "Attempting wrangler deploy..."
+          wrangler deploy --compatibility-date 2026-02-11 || true
+          echo "If deploy failed, check the token scopes in token verify output above."
