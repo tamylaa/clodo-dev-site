@@ -322,11 +322,13 @@
   },
   "validatorAllowList": [
     "404.html",
+    "amp/en/blog/*.html",
     "blog/index.html",
     "case-studies/index.html",
     "community/welcome.html",
     "index.html",
     "multi-tenant-saas.html",
+    "pricing.html",
     "serverless-framework-comparison.html",
     "subscribe.html",
     "what-is-cloudflare-workers.html",
