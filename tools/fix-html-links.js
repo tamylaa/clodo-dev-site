@@ -37,7 +37,6 @@ const replacements = [
 ];
 
 let changedFiles = 0;
-let changedCount = 0;
 
 for (const file of fileList) {
   let content = fs.readFileSync(file, 'utf8');

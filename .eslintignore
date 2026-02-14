@@ -1,11 +1,17 @@
-dist/
+﻿dist/
 node_modules/
 public/**/*.html
 tests/**
+build/
+clodo-starter-template/
 
 # Ignore generated Playwright trace assets and test artifacts
 config/tests/playwright-report/
 config/tests/playwright-report/trace/
+
 # Ignore uploaded page-check logs and test artifacts
 test-results/
 build/page-check-logs/
+
+# Ignore entire visibility-analytics directory (generated/problematic files)
+visibility-analytics/

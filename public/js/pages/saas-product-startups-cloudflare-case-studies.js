@@ -7,7 +7,7 @@
     'use strict';
 
     // Platform Filter Functionality
-    function initPlatformFilters() {
+    function _initPlatformFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
         const platformRows = document.querySelectorAll('.platform-row');
 

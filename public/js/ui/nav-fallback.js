@@ -40,7 +40,7 @@
         var mobileToggle = document.getElementById('mobile-menu-toggle');
         var mobileMenu = document.getElementById('mobile-menu');
         if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', function (e) {
+            mobileToggle.addEventListener('click', function (_e) {
                 try {
                     var isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
                     mobileToggle.setAttribute('aria-expanded', String(!isOpen));
