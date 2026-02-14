@@ -69,3 +69,21 @@ export {
   PageScorerOutputSchema,
   PAGE_SCORER_JSON_SCHEMA
 } from './page-scorer.schema.mjs';
+
+export {
+  SiteHealthPulseInputSchema,
+  SiteHealthPulseOutputSchema
+} from './site-health-pulse.schema.mjs';
+
+export {
+  EATAssessmentInputSchema,
+  EATAssessmentOutputSchema,
+  EATScoreSchema,
+  EAT_JSON_SCHEMA
+} from './eat-assessment.schema.mjs';
+
+export {
+  ExperimentInputSchema,
+  ExperimentOutputSchema,
+  EXPERIMENT_JSON_SCHEMA
+} from './experiment.schema.mjs';

@@ -11,18 +11,22 @@
  */
 
 import { createLogger } from '../lib/framework-shims.mjs';
-import { runTextGeneration } from '../providers/ai-provider.mjs';
-import { ContentGapsOutputSchema, CONTENT_GAPS_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { runTextGeneration, runEmbeddings } from '../providers/ai-provider.mjs';
+import { ContentGapsInputSchema, ContentGapsOutputSchema, CONTENT_GAPS_JSON_SCHEMA } from '../lib/schemas/index.mjs';
 import { parseAndValidate } from '../lib/response-parser.mjs';
 import { formatContentGapExamples } from '../lib/few-shot/index.mjs';
-import { jaccardSimilarity } from '../lib/math-utils.mjs';
+import { jaccardSimilarity, cosineSimilarity, round, avg } from '../lib/math-utils.mjs';
+import { validateInput } from '../lib/validate-input.mjs';
 
 const logger = createLogger('ai-content-gaps');
 
 const MAX_GAPS = 30; // Cap analysis at 30 gaps to keep prompts focused
 
 export async function analyseContentGaps(body, env) {
-  const { siteKeywords = [], competitorKeywords = [], context = {} } = body;
+  const v = validateInput(ContentGapsInputSchema, body);
+  if (!v.valid) return v.error;
+
+  const { siteKeywords = [], competitorKeywords = [], context = {} } = v.data;
 
   if (!siteKeywords.length || !competitorKeywords.length) {
     return {
@@ -52,7 +56,7 @@ export async function analyseContentGaps(body, env) {
   const result = await runTextGeneration({
     systemPrompt,
     userPrompt,
-    complexity: 'moderate',
+    complexity: 'standard',
     capability: 'content-gaps',
     maxTokens: 4096,
     jsonMode: true,
@@ -61,17 +65,45 @@ export async function analyseContentGaps(body, env) {
 
   // ── Phase 3: Parse + validate ─────────────────────────────────────
   const { data, meta } = parseAndValidate(result.text, ContentGapsOutputSchema, {
-    fallback: buildFallback(gaps)
+    fallback: () => buildFallback(gaps)
   });
+
+  // ── Phase 4: Embedding-based gap clustering (group related gaps) ──
+  let gapClusters = [];
+  if (gaps.length >= 3 && gaps.length <= 50) {
+    try {
+      gapClusters = await clusterGapsByEmbedding(gaps, env);
+    } catch (e) {
+      logger.warn('Gap embedding clustering failed', { error: e.message });
+    }
+  }
+
+  // ── Phase 5: Generate content briefs for top gaps ─────────────────
+  const topGaps = (data.gaps || [])
+    .filter(g => g.opportunity === 'high')
+    .slice(0, 3);
+
+  let contentBriefs = [];
+  if (topGaps.length > 0) {
+    try {
+      contentBriefs = await generateContentBriefs(topGaps, context, env);
+    } catch (e) {
+      logger.warn('Content brief generation failed', { error: e.message });
+    }
+  }
 
   logger.info(`Content gap analysis complete`, {
     gapsFound: data.gaps?.length || 0,
     topOpportunities: data.topOpportunities?.length || 0,
+    gapClusters: gapClusters.length,
+    contentBriefs: contentBriefs.length,
     parseMethod: meta.parseMethod
   });
 
   return {
     ...data,
+    gapClusters,
+    contentBriefs,
     metadata: {
       provider: result.provider,
       model: result.model,
@@ -199,4 +231,84 @@ function buildFallback(gaps) {
     summary: `${gaps.length} content gap(s) identified. ${topOps.length} high-priority opportunities.`,
     topOpportunities: topOps.length > 0 ? topOps : mapped.slice(0, 3).map(g => g.keyword)
   };
+}
+
+// ── Embedding-based gap clustering ──────────────────────────────────
+
+/**
+ * Group related gap keywords using embeddings so content can be consolidated.
+ * Returns clusters of semantically related gaps.
+ */
+async function clusterGapsByEmbedding(gaps, env) {
+  const keywords = gaps.map(g => g.keyword);
+  const result = await runEmbeddings(keywords, env);
+  const embeddings = result.embeddings;
+
+  // Simple agglomerative clustering with cosine similarity >= 0.75
+  const n = embeddings.length;
+  const parent = Array.from({ length: n }, (_, i) => i);
+  const find = (x) => parent[x] === x ? x : (parent[x] = find(parent[x]));
+  const union = (a, b) => { parent[find(a)] = find(b); };
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (cosineSimilarity(embeddings[i], embeddings[j]) >= 0.75) {
+        union(i, j);
+      }
+    }
+  }
+
+  const groups = {};
+  for (let i = 0; i < n; i++) {
+    const root = find(i);
+    if (!groups[root]) groups[root] = [];
+    groups[root].push(i);
+  }
+
+  return Object.values(groups)
+    .filter(indices => indices.length >= 2)
+    .map(indices => {
+      const clusterGaps = indices.map(i => gaps[i]);
+      const totalVolume = clusterGaps.reduce((s, g) => s + (g.volume || 0), 0);
+      // Use highest-volume keyword as label
+      const sorted = [...clusterGaps].sort((a, b) => (b.volume || 0) - (a.volume || 0));
+      return {
+        label: sorted[0].keyword,
+        keywords: clusterGaps.map(g => g.keyword),
+        totalVolume,
+        count: indices.length,
+        suggestedStrategy: totalVolume > 2000 ? 'pillar-page' : 'blog-cluster'
+      };
+    })
+    .sort((a, b) => b.totalVolume - a.totalVolume);
+}
+
+// ── Content Brief Generation ────────────────────────────────────────
+
+/**
+ * Generate structured content briefs for top gap opportunities.
+ */
+async function generateContentBriefs(topGaps, context, env) {
+  const gapList = topGaps.map((g, i) =>
+    `${i + 1}. "${g.keyword}" — ${g.suggestedContentType || 'blog-post'}, opportunity: ${g.opportunity}`
+  ).join('\n');
+
+  const result = await runTextGeneration({
+    systemPrompt: `You are an SEO content strategist. Generate a concise content brief for each keyword gap.
+Each brief should include: target word count, H2 outline (3-5 headings), target audience, key points to cover, and internal linking suggestions.
+
+Respond with JSON: {"briefs":[{"keyword":"...","wordCount":1500,"outline":["H2: ...","H2: ..."],"targetAudience":"...","keyPoints":["..."],"internalLinks":["link to existing relevant content"]}]}`,
+    userPrompt: `Industry: ${context.industry || 'General'}\nSite: ${context.siteUrl || 'Not specified'}\n\nGenerate content briefs for:\n${gapList}`,
+    complexity: 'simple',
+    capability: 'content-gap-briefs',
+    maxTokens: 2048,
+    jsonMode: true
+  }, env);
+
+  try {
+    const parsed = JSON.parse(result.text);
+    return parsed.briefs || [];
+  } catch {
+    return [];
+  }
 }

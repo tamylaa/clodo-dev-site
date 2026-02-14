@@ -53,6 +53,9 @@ export const intentClassifyExpectedShape = {
     businessValue: 'number (1-10)',
     contentType: 'string (e.g. landing-page, guide)',
     reasoning: 'string',
+    explanation: 'string (optional)',
+    confidenceBreakdown: 'object (optional)',
+    nextSteps: 'array (optional)',
     source: 'ai-engine | ai-engine-fallback'
   }],
   metadata: {
@@ -138,7 +141,14 @@ export const anomalyDiagnoseExpectedShape = {
     investigationSteps: ['string'],
     isRealProblem: 'boolean',
     severity: 'critical|warning|info',
-    source: 'ai-engine | ai-engine-fallback'
+    source: 'ai-engine | ai-engine-fallback',
+    explanation: 'string (optional)',
+    confidenceBreakdown: {
+      primarySignal: 'string (optional)',
+      alternativeCauses: ['string'] + ' (optional)',
+      dataQuality: 'string (optional)'
+    } + ' (optional)',
+    nextSteps: ['string'] + ' (optional)'
   }],
   metadata: {
     provider: 'string',
@@ -313,7 +323,14 @@ export const contentRewriteExpectedShape = {
     description: { current: 'string', suggested: 'string', reasoning: 'string' },
     h1: { current: 'string', suggested: 'string', reasoning: 'string' },
     estimatedCTRLift: 'string',
-    source: 'ai-engine | ai-engine-fallback'
+    source: 'ai-engine | ai-engine-fallback',
+    explanation: 'string (optional)',
+    confidenceBreakdown: {
+      primarySignal: 'string (optional)',
+      alternativeApproaches: ['string'] + ' (optional)',
+      contentQuality: 'string (optional)'
+    } + ' (optional)',
+    nextSteps: ['string'] + ' (optional)'
   }],
   metadata: {
     provider: 'string',
@@ -322,6 +339,54 @@ export const contentRewriteExpectedShape = {
     tokensUsed: 'object',
     cost: 'object',
     durationMs: 'number'
+  }
+};
+
+
+// ═══════════════════════════════════════════════════════════════════════
+// 5.5 POST /ai/eat-assess
+// ═══════════════════════════════════════════════════════════════════════
+
+export const eatAssessPayloads = {
+  minimal: {
+    content: 'This is a comprehensive guide to SEO optimization techniques, backed by data from multiple studies and expert opinions.'
+  },
+  full: {
+    content: 'Advanced SEO strategies for 2026, including technical optimizations and content marketing best practices.',
+    url: 'https://example.com/seo-guide',
+    author: 'Jane Smith',
+    publishDate: '2026-01-15',
+    topic: 'SEO'
+  }
+};
+
+export const eatAssessExpectedShape = {
+  scores: {
+    expertise: 'number (0-1)',
+    authoritativeness: 'number (0-1)',
+    trustworthiness: 'number (0-1)',
+    overall: 'number (0-1)'
+  },
+  analysis: {
+    expertise: 'string',
+    authoritativeness: 'string',
+    trustworthiness: 'string'
+  },
+  recommendations: ['string'],
+  explanation: 'string (optional)',
+  confidenceBreakdown: {
+    primarySignal: 'string (optional)',
+    alternativeFactors: ['string'] + ' (optional)',
+    contentQuality: 'string (optional)'
+  } + ' (optional)',
+  nextSteps: ['string'] + ' (optional)',
+  metadata: {
+    provider: 'string',
+    model: 'string',
+    tokensUsed: 'object',
+    cost: 'object',
+    durationMs: 'number',
+    nlpAnalysis: 'object'
   }
 };
 
@@ -483,6 +548,127 @@ export const smartForecastExpectedShape = {
 
 
 // ═══════════════════════════════════════════════════════════════════════
+// Cannibalization Detection Payloads
+// ═══════════════════════════════════════════════════════════════════════
+
+export const cannibalizationPayloads = {
+  full: {
+    pages: [
+      { url: '/blog/best-crm', title: 'Best CRM Software 2025', keywords: ['best crm software'], position: 8, clicks: 120, impressions: 2000 },
+      { url: '/reviews/crm-comparison', title: 'CRM Comparison & Reviews', keywords: ['best crm software', 'crm comparison'], position: 12, clicks: 45, impressions: 800 },
+      { url: '/landing/crm', title: 'CRM Solutions for Business', keywords: ['crm software'], position: 5, clicks: 300, impressions: 5000 }
+    ],
+    context: { siteUrl: 'https://example.com', industry: 'SaaS' }
+  },
+  minimal: {
+    pages: [
+      { url: '/page-a', keywords: ['seo tools'] },
+      { url: '/page-b', keywords: ['seo tools'] }
+    ]
+  },
+  noOverlap: {
+    pages: [
+      { url: '/page-a', keywords: ['crm software'] },
+      { url: '/page-b', keywords: ['email marketing'] }
+    ]
+  },
+  tooFew: { pages: [{ url: '/only-one', keywords: ['test'] }] }
+};
+
+export const cannibalizationExpectedShape = {
+  conflicts: [{ keyword: 'string', severity: 'string', pages: 'array', recommendation: 'string' }],
+  summary: 'string',
+  overallSeverity: 'string',
+  metadata: 'object'
+};
+
+
+// ═══════════════════════════════════════════════════════════════════════
+// Content Gaps Payloads
+// ═══════════════════════════════════════════════════════════════════════
+
+export const contentGapsPayloads = {
+  full: {
+    siteKeywords: ['crm software', 'crm pricing', 'crm features'],
+    competitorKeywords: [
+      { keyword: 'crm for small business', source: 'competitor-a.com', position: 3, volume: 5400 },
+      { keyword: 'crm implementation guide', source: 'competitor-b.com', position: 2, volume: 2900 },
+      { keyword: 'crm vs erp', source: 'competitor-a.com', position: 5, volume: 3200 }
+    ],
+    context: { siteUrl: 'https://example.com', industry: 'SaaS', targetAudience: 'SMBs' }
+  },
+  minimal: {
+    siteKeywords: ['seo'],
+    competitorKeywords: [{ keyword: 'seo audit' }]
+  },
+  empty: { siteKeywords: [], competitorKeywords: [] },
+  noDifference: {
+    siteKeywords: ['crm software', 'crm pricing'],
+    competitorKeywords: [{ keyword: 'crm software' }, { keyword: 'crm pricing' }]
+  }
+};
+
+export const contentGapsExpectedShape = {
+  gaps: [{ keyword: 'string', opportunity: 'string', suggestedContentType: 'string', suggestedTitle: 'string', reasoning: 'string' }],
+  summary: 'string',
+  topOpportunities: ['string'],
+  metadata: 'object'
+};
+
+
+// ═══════════════════════════════════════════════════════════════════════
+// Page Scorer Payloads
+// ═══════════════════════════════════════════════════════════════════════
+
+export const pageScorerPayloads = {
+  full: {
+    pages: [{
+      url: '/blog/seo-tips',
+      title: 'SEO Tips for 2025',
+      description: 'Learn the best SEO tips and tricks for 2025 to improve your rankings.',
+      headings: ['SEO Tips for 2025', 'Tip 1: Keyword Research', 'Tip 2: On-Page SEO', 'Tip 3: Link Building'],
+      wordCount: 1800,
+      loadTimeMs: 2100,
+      mobileOptimised: true,
+      internalLinks: 5,
+      externalLinks: 3,
+      images: 6,
+      imagesWithAlt: 6,
+      schemaMarkup: true,
+      keywords: ['seo tips', 'seo tips 2025']
+    }],
+    context: { siteUrl: 'https://example.com', industry: 'Digital Marketing' }
+  },
+  minimal: {
+    pages: [{ url: '/page-a' }]
+  },
+  poorPage: {
+    pages: [{
+      url: '/blog/thin-content',
+      title: 'A',
+      description: 'Short.',
+      wordCount: 150,
+      loadTimeMs: 5000,
+      mobileOptimised: false,
+      internalLinks: 0,
+      externalLinks: 0,
+      images: 3,
+      imagesWithAlt: 0,
+      schemaMarkup: false
+    }]
+  },
+  empty: { pages: [] }
+};
+
+export const pageScorerExpectedShape = {
+  scores: [{ url: 'string', overallScore: 'number', grade: 'string', dimensions: 'object', topPriority: 'string', estimatedImpact: 'string' }],
+  averageScore: 'number',
+  summary: 'string',
+  metadata: 'object'
+};
+
+
+// ═══════════════════════════════════════════════════════════════════════
 // Discovery Endpoints (GET, no body)
 // ═══════════════════════════════════════════════════════════════════════
 
@@ -561,5 +747,32 @@ export const endpointRegistry = [
     payloads: smartForecastPayloads,
     expectedShape: smartForecastExpectedShape,
     description: 'Context-aware traffic/metric forecasting'
+  },
+  {
+    id: 'cannibalization-detect',
+    path: '/ai/cannibalization-detect',
+    method: 'POST',
+    envToggle: 'CAPABILITY_CANNIBALIZATION',
+    payloads: cannibalizationPayloads,
+    expectedShape: cannibalizationExpectedShape,
+    description: 'Keyword cannibalization detection across pages'
+  },
+  {
+    id: 'content-gaps',
+    path: '/ai/content-gaps',
+    method: 'POST',
+    envToggle: 'CAPABILITY_CONTENT_GAPS',
+    payloads: contentGapsPayloads,
+    expectedShape: contentGapsExpectedShape,
+    description: 'Content gap analysis vs competitors'
+  },
+  {
+    id: 'page-score',
+    path: '/ai/page-score',
+    method: 'POST',
+    envToggle: 'CAPABILITY_PAGE_SCORER',
+    payloads: pageScorerPayloads,
+    expectedShape: pageScorerExpectedShape,
+    description: 'SEO page scoring across 4 dimensions'
   }
 ];

@@ -28,7 +28,16 @@ export const IntentClassificationSchema = z.object({
   confidence: z.number().min(0).max(1),
   businessValue: z.number().min(1).max(10),
   contentType: z.string(),
-  reasoning: z.string()
+  reasoning: z.string(),
+  explanation: z.string().optional(), // Plain-language reasoning for user understanding
+  confidenceBreakdown: z.object({
+    certainty: z.string(), // e.g., "High", "Medium", "Low"
+    alternatives: z.array(z.object({
+      intent: IntentEnum,
+      confidence: z.number().min(0).max(1)
+    })).optional()
+  }).optional(),
+  nextSteps: z.array(z.string()).optional() // Simple, implementable actions
 });
 
 export const IntentClassifyOutputSchema = z.array(IntentClassificationSchema);
@@ -51,7 +60,30 @@ export const INTENT_JSON_SCHEMA = {
             confidence: { type: 'number' },
             businessValue: { type: 'number' },
             contentType: { type: 'string' },
-            reasoning: { type: 'string' }
+            reasoning: { type: 'string' },
+            explanation: { type: 'string' },
+            confidenceBreakdown: {
+              type: 'object',
+              properties: {
+                certainty: { type: 'string' },
+                alternatives: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      intent: { type: 'string', enum: ['transactional', 'commercial', 'informational', 'navigational'] },
+                      confidence: { type: 'number' }
+                    },
+                    required: ['intent', 'confidence']
+                  }
+                }
+              },
+              required: ['certainty']
+            },
+            nextSteps: {
+              type: 'array',
+              items: { type: 'string' }
+            }
           },
           required: ['query', 'intent', 'confidence', 'businessValue', 'contentType', 'reasoning'],
           additionalProperties: false

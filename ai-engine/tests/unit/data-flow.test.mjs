@@ -35,6 +35,9 @@ import { chatWithData } from '../../src/capabilities/conversational-ai.mjs';
 import { generateRewrites } from '../../src/capabilities/content-rewrites.mjs';
 import { refineRecommendations } from '../../src/capabilities/recommendation-refiner.mjs';
 import { smartForecast } from '../../src/capabilities/smart-forecasting.mjs';
+import { detectCannibalization } from '../../src/capabilities/cannibalization-detect.mjs';
+import { analyseContentGaps } from '../../src/capabilities/content-gaps.mjs';
+import { scorePages } from '../../src/capabilities/page-scorer.mjs';
 
 import {
   intentClassifyPayloads,
@@ -43,7 +46,10 @@ import {
   chatPayloads,
   contentRewritePayloads,
   refineRecsPayloads,
-  smartForecastPayloads
+  smartForecastPayloads,
+  cannibalizationPayloads,
+  contentGapsPayloads,
+  pageScorerPayloads
 } from '../fixtures/payloads.mjs';
 
 import {
@@ -53,7 +59,10 @@ import {
   validateChatResponse,
   validateContentRewriteResponse,
   validateRefineRecsResponse,
-  validateSmartForecastResponse
+  validateSmartForecastResponse,
+  validateCannibalizationResponse,
+  validateContentGapsResponse,
+  validatePageScorerResponse
 } from '../fixtures/validators.mjs';
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -503,5 +512,237 @@ describe('Data Flow: Smart Forecasting', () => {
     expect(result.stats.impressions.mean).toBeGreaterThan(0);
     expect(result.stats.impressions.stdDev).toBeGreaterThan(0);
     expect(['rising', 'falling', 'stable']).toContain(result.stats.impressions.direction);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// Data Flow: Cannibalization Detection
+// ═══════════════════════════════════════════════════════════════════════
+
+describe('Data Flow: Cannibalization Detection', () => {
+  const env = createMockEnv();
+
+  beforeEach(() => { mockTextGeneration.mockReset(); });
+
+  it('detects keyword overlaps and returns LLM analysis', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse(JSON.stringify({
+      conflicts: [{
+        keyword: 'best crm software',
+        severity: 'high',
+        pages: [
+          { url: '/blog/best-crm', title: 'Best CRM Software 2025', position: 8, clicks: 120 },
+          { url: '/reviews/crm-comparison', title: 'CRM Comparison & Reviews', position: 12, clicks: 45 }
+        ],
+        recommendation: 'Consolidate into a single page.',
+        suggestedCanonical: '/blog/best-crm',
+        estimatedTrafficLoss: 30
+      }],
+      summary: '1 conflict detected.',
+      overallSeverity: 'high'
+    })));
+
+    const result = await detectCannibalization(cannibalizationPayloads.full, env);
+
+    expect(result.conflicts.length).toBeGreaterThanOrEqual(1);
+    expect(result.overallSeverity).toBeTruthy();
+    expect(result.summary).toBeTruthy();
+    expect(result.metadata.provider).toBe('claude');
+    expect(() => validateCannibalizationResponse(result)).not.toThrow();
+  });
+
+  it('returns no conflicts for pages with no keyword overlap', async () => {
+    const result = await detectCannibalization(cannibalizationPayloads.noOverlap, env);
+
+    expect(result.conflicts).toEqual([]);
+    expect(result.overallSeverity).toBe('none');
+    expect(mockTextGeneration).not.toHaveBeenCalled();
+  });
+
+  it('returns early for fewer than 2 pages', async () => {
+    const result = await detectCannibalization(cannibalizationPayloads.tooFew, env);
+
+    expect(result.conflicts).toEqual([]);
+    expect(result.overallSeverity).toBe('none');
+    expect(mockTextGeneration).not.toHaveBeenCalled();
+  });
+
+  it('uses fallback on garbage LLM response', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse('NOT VALID JSON AT ALL!!!'));
+
+    const result = await detectCannibalization(cannibalizationPayloads.full, env);
+
+    // Should still return valid structure via fallback
+    expect(result.conflicts).toBeDefined();
+    expect(result.summary).toBeTruthy();
+    expect(result.overallSeverity).toBeTruthy();
+    expect(() => validateCannibalizationResponse(result)).not.toThrow();
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// Data Flow: Content Gap Analysis
+// ═══════════════════════════════════════════════════════════════════════
+
+describe('Data Flow: Content Gap Analysis', () => {
+  const env = createMockEnv();
+
+  beforeEach(() => { mockTextGeneration.mockReset(); });
+
+  it('identifies gaps and returns LLM enrichment', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse(JSON.stringify({
+      gaps: [
+        { keyword: 'crm for small business', opportunity: 'high', estimatedVolume: 5400, difficulty: 'moderate', suggestedContentType: 'comparison-guide', suggestedTitle: 'Best CRM for Small Business 2025', reasoning: 'High-volume gap.', competitorUrls: ['competitor-a.com'] },
+        { keyword: 'crm implementation guide', opportunity: 'medium', estimatedVolume: 2900, difficulty: 'easy', suggestedContentType: 'guide', suggestedTitle: 'CRM Implementation Guide', reasoning: 'Low competition.', competitorUrls: ['competitor-b.com'] }
+      ],
+      summary: '2 gaps found.',
+      topOpportunities: ['crm for small business', 'crm implementation guide']
+    })));
+
+    const result = await analyseContentGaps(contentGapsPayloads.full, env);
+
+    expect(result.gaps.length).toBeGreaterThanOrEqual(1);
+    expect(result.topOpportunities.length).toBeGreaterThanOrEqual(1);
+    expect(result.summary).toBeTruthy();
+    expect(result.metadata.provider).toBe('claude');
+    expect(() => validateContentGapsResponse(result)).not.toThrow();
+  });
+
+  it('returns empty for missing site/competitor keywords', async () => {
+    const result = await analyseContentGaps(contentGapsPayloads.empty, env);
+
+    expect(result.gaps).toEqual([]);
+    expect(mockTextGeneration).not.toHaveBeenCalled();
+  });
+
+  it('returns empty when site already covers competitor keywords', async () => {
+    const result = await analyseContentGaps(contentGapsPayloads.noDifference, env);
+
+    expect(result.gaps).toEqual([]);
+    expect(result.overallSeverity || result.summary).toBeTruthy();
+    expect(mockTextGeneration).not.toHaveBeenCalled();
+  });
+
+  it('uses fallback on garbage LLM response', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse('broken!!!'));
+
+    const result = await analyseContentGaps(contentGapsPayloads.full, env);
+
+    expect(result.gaps).toBeDefined();
+    expect(result.summary).toBeTruthy();
+    expect(result.topOpportunities).toBeDefined();
+    expect(() => validateContentGapsResponse(result)).not.toThrow();
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// Data Flow: Page Scorer
+// ═══════════════════════════════════════════════════════════════════════
+
+describe('Data Flow: Page Scorer', () => {
+  const env = createMockEnv();
+
+  beforeEach(() => { mockTextGeneration.mockReset(); });
+
+  it('scores pages with deterministic + LLM enrichment', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse(JSON.stringify({
+      scores: [{
+        url: '/blog/seo-tips',
+        overallScore: 82,
+        grade: 'A',
+        dimensions: {
+          technical: { score: 85, issues: [], suggestions: ['Add HTTP/2'] },
+          content: { score: 88, issues: [], suggestions: [] },
+          onPage: { score: 78, issues: ['Add more internal links'], suggestions: ['Link to cornerstone content'] },
+          ux: { score: 90, issues: [], suggestions: [] }
+        },
+        topPriority: 'Add more internal links to cornerstone content',
+        estimatedImpact: 'medium'
+      }],
+      averageScore: 82,
+      summary: '1 page scored. Average 82/100 (Grade A).'
+    })));
+
+    const result = await scorePages(pageScorerPayloads.full, env);
+
+    expect(result.scores.length).toBe(1);
+    expect(result.scores[0].overallScore).toBeGreaterThanOrEqual(0);
+    expect(result.scores[0].overallScore).toBeLessThanOrEqual(100);
+    expect(result.averageScore).toBeGreaterThanOrEqual(0);
+    expect(result.summary).toBeTruthy();
+    expect(result.metadata.provider).toBe('claude');
+    expect(() => validatePageScorerResponse(result)).not.toThrow();
+  });
+
+  it('returns empty for no pages', async () => {
+    const result = await scorePages(pageScorerPayloads.empty, env);
+
+    expect(result.scores).toEqual([]);
+    expect(result.averageScore).toBe(0);
+    expect(mockTextGeneration).not.toHaveBeenCalled();
+  });
+
+  it('scores a poor page lower than average', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse(JSON.stringify({
+      scores: [{
+        url: '/blog/thin-content',
+        overallScore: 25,
+        grade: 'F',
+        dimensions: {
+          technical: { score: 20, issues: ['Slow load', 'No schema', 'Not mobile-friendly'], suggestions: ['Fix all'] },
+          content: { score: 15, issues: ['Thin content', 'No alt text'], suggestions: ['Expand'] },
+          onPage: { score: 30, issues: ['Title too short', 'Description too short'], suggestions: ['Rewrite'] },
+          ux: { score: 35, issues: ['Slow', 'Not mobile-friendly'], suggestions: ['Improve'] }
+        },
+        topPriority: 'Expand thin content to 1500+ words',
+        estimatedImpact: 'high'
+      }],
+      averageScore: 25,
+      summary: 'Very poor page.'
+    })));
+
+    const result = await scorePages(pageScorerPayloads.poorPage, env);
+
+    expect(result.scores[0].overallScore).toBeLessThan(50);
+    expect(result.scores[0].estimatedImpact).toBe('high');
+    expect(() => validatePageScorerResponse(result)).not.toThrow();
+  });
+
+  it('uses fallback on garbage LLM response', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse('totally broken'));
+
+    const result = await scorePages(pageScorerPayloads.full, env);
+
+    // Deterministic fallback should still provide valid scores
+    expect(result.scores.length).toBe(1);
+    expect(result.scores[0].overallScore).toBeGreaterThanOrEqual(0);
+    expect(result.scores[0].dimensions).toBeDefined();
+    expect(result.summary).toBeTruthy();
+    expect(() => validatePageScorerResponse(result)).not.toThrow();
+  });
+
+  it('computes deterministic scores for minimal input', async () => {
+    mockTextGeneration.mockResolvedValue(makeLLMResponse(JSON.stringify({
+      scores: [{
+        url: '/page-a',
+        overallScore: 70,
+        grade: 'B',
+        dimensions: {
+          technical: { score: 70, issues: [], suggestions: [] },
+          content: { score: 70, issues: [], suggestions: [] },
+          onPage: { score: 70, issues: ['No title provided'], suggestions: ['Add a title'] },
+          ux: { score: 75, issues: [], suggestions: [] }
+        },
+        topPriority: 'Add a page title',
+        estimatedImpact: 'medium'
+      }],
+      averageScore: 70,
+      summary: 'Minimal input scored.'
+    })));
+
+    const result = await scorePages(pageScorerPayloads.minimal, env);
+
+    expect(result.scores.length).toBe(1);
+    expect(result.scores[0].url).toBe('/page-a');
+    expect(() => validatePageScorerResponse(result)).not.toThrow();
   });
 });

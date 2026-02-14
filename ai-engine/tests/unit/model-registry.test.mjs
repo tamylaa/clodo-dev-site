@@ -64,9 +64,10 @@ describe('Model Registry', () => {
   });
 
   describe('CAPABILITY_MODEL_MAP', () => {
-    it('should have routing for all 7 capabilities', () => {
+    it('should have routing for all 10 capabilities', () => {
       const expected = ['intent-classify', 'anomaly-diagnose', 'embedding-cluster',
-        'chat', 'content-rewrite', 'refine-recs', 'smart-forecast'];
+        'chat', 'content-rewrite', 'refine-recs', 'smart-forecast',
+        'cannibalization-detect', 'content-gaps', 'page-scorer'];
       for (const cap of expected) {
         expect(CAPABILITY_MODEL_MAP[cap]).toBeDefined();
         expect(CAPABILITY_MODEL_MAP[cap].simple).toBeInstanceOf(Array);

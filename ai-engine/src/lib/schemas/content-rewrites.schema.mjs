@@ -11,11 +11,22 @@ export const ContentRewriteInputSchema = z.object({
     description: z.string().optional(),
     h1: z.string().optional(),
     targetKeyword: z.string().optional(),
+    targetKeywords: z.array(z.union([
+      z.string(),
+      z.object({ query: z.string(), keyword: z.string().optional() })
+    ])).optional(),
     clicks: z.number().optional(),
     impressions: z.number().optional(),
     position: z.number().optional(),
-    ctr: z.number().optional()
+    ctr: z.number().optional(),
+    intent: z.string().optional()
   })).min(1).max(50),
+  competitors: z.array(z.object({
+    url: z.string(),
+    title: z.string().optional(),
+    description: z.string().optional(),
+    position: z.number().optional()
+  })).max(20).optional(),
   tone: z.enum(['professional', 'casual', 'technical', 'persuasive']).default('professional'),
   locale: z.string().default('en-US'),
   industry: z.string().optional()
@@ -36,7 +47,14 @@ const SingleRewriteSchema = z.object({
   reasoning: z.string().optional(),
   estimatedImpact: z.enum(['high', 'medium', 'low']).optional(),
   titleLength: z.number().optional(),
-  descriptionLength: z.number().optional()
+  descriptionLength: z.number().optional(),
+  explanation: z.string().optional(),
+  confidenceBreakdown: z.object({
+    primarySignal: z.string().optional(),
+    alternativeApproaches: z.array(z.string()).optional(),
+    contentQuality: z.string().optional()
+  }).optional(),
+  nextSteps: z.array(z.string()).optional()
 });
 
 export const ContentRewriteOutputSchema = z.object({
@@ -84,7 +102,17 @@ export const CONTENT_REWRITE_JSON_SCHEMA = {
             reasoning: { type: 'string' },
             estimatedImpact: { type: 'string', enum: ['high', 'medium', 'low'] },
             titleLength: { type: 'number' },
-            descriptionLength: { type: 'number' }
+            descriptionLength: { type: 'number' },
+            explanation: { type: 'string' },
+            confidenceBreakdown: {
+              type: 'object',
+              properties: {
+                primarySignal: { type: 'string' },
+                alternativeApproaches: { type: 'array', items: { type: 'string' } },
+                contentQuality: { type: 'string' }
+              }
+            },
+            nextSteps: { type: 'array', items: { type: 'string' } }
           },
           required: ['url', 'original', 'rewritten', 'reasoning', 'estimatedImpact', 'titleLength', 'descriptionLength'],
           additionalProperties: false

@@ -8,14 +8,29 @@ export const ConversationalInputSchema = z.object({
   message: z.string().min(1, 'Message is required'),
   analyticsContext: z.object({
     topPages: z.array(z.any()).optional(),
+    topQueries: z.array(z.any()).optional(),
     recentTrends: z.array(z.any()).optional(),
     alerts: z.array(z.any()).optional(),
-    dateRange: z.string().optional()
+    anomalies: z.array(z.any()).optional(),
+    recommendations: z.array(z.any()).optional(),
+    summary: z.object({
+      totalImpressions: z.number().optional(),
+      totalClicks: z.number().optional(),
+      avgCTR: z.number().optional(),
+      avgPosition: z.number().optional()
+    }).optional(),
+    period: z.object({
+      start: z.string().optional(),
+      end: z.string().optional()
+    }).optional(),
+    dateRange: z.string().optional(),
+    gsc: z.any().optional()
   }).optional(),
   history: z.array(z.object({
     role: z.enum(['user', 'assistant']),
     content: z.string()
   })).max(20).default([]),
+  conversationId: z.string().max(64).optional(),
   persona: z.enum(['analyst', 'advisor', 'technical']).default('analyst')
 });
 

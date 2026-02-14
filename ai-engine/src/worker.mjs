@@ -10,8 +10,7 @@
 import {
   createEnhancedRouter,
   createLogger,
-  createCorsMiddleware,
-  createErrorHandler
+  createCorsMiddleware
 } from './lib/framework-shims.mjs';
 
 import { verifyToken } from './middleware/auth.mjs';
@@ -67,13 +66,14 @@ class HealthChecker {
 
 // ── CORS ─────────────────────────────────────────────────────────────
 
-const cors = createCorsMiddleware({
-  origins: ['*'],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  headers: ['Content-Type', 'Authorization', 'x-ai-engine-service']
-});
+function createCors(env) {
+  return createCorsMiddleware({
+    origins: env.CORS_ALLOWED_ORIGINS ? env.CORS_ALLOWED_ORIGINS.split(',') : ['localhost', '127.0.0.1'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    headers: ['Content-Type', 'Authorization', 'x-ai-engine-service']
+  });
+}
 
-const errorHandler = createErrorHandler({ includeStack: false });
 
 // ── Worker Export ────────────────────────────────────────────────────
 
@@ -83,7 +83,7 @@ export default {
 
     // CORS preflight
     if (request.method === 'OPTIONS') {
-      return cors(request, new Response(null, { status: 204 }));
+      return createCors(env)(request, new Response(null, { status: 204 }));
     }
 
     // Health endpoint (no auth required)
@@ -99,7 +99,7 @@ export default {
         status: health.healthy ? 200 : 503,
         headers: { 'Content-Type': 'application/json' }
       });
-      return cors(request, response);
+      return createCors(env)(request, response);
     }
 
     // Authentication (all /ai/* routes)
@@ -113,7 +113,7 @@ export default {
           status: 401,
           headers: { 'Content-Type': 'application/json' }
         });
-        return cors(request, response);
+        return createCors(env)(request, response);
       }
 
       // Rate limiting
@@ -134,7 +134,7 @@ export default {
             'X-RateLimit-Reset': rateCheck.resetAt
           }
         });
-        return cors(request, response);
+        return createCors(env)(request, response);
       }
 
       // Route dispatch
@@ -143,7 +143,7 @@ export default {
         registerRoutes(router, env, usageTracker);
 
         const response = await router.handle(request);
-        if (response) return cors(request, response);
+        if (response) return createCors(env)(request, response);
       } catch (err) {
         if (err.status) {
           const response = new Response(JSON.stringify({
@@ -152,7 +152,7 @@ export default {
             status: err.status,
             headers: { 'Content-Type': 'application/json' }
           });
-          return cors(request, response);
+          return createCors(env)(request, response);
         }
 
         logger.error(`Unhandled error on ${url.pathname}:`, err.message);
@@ -163,16 +163,22 @@ export default {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
         });
-        return cors(request, response);
+        return createCors(env)(request, response);
       }
     }
 
     // 404 fallback
-    return cors(request, new Response(JSON.stringify({
+    return createCors(env)(request, new Response(JSON.stringify({
       error: 'Not found',
-      endpoints: ['/health', '/ai/capabilities', '/ai/providers', '/ai/usage',
+      endpoints: [
+        '/health', '/ai/capabilities', '/ai/providers', '/ai/usage',
+        '/ai/quality', '/ai/prompt-versions',
         '/ai/intent-classify', '/ai/anomaly-diagnose', '/ai/embedding-cluster',
-        '/ai/chat', '/ai/content-rewrite', '/ai/refine-recs', '/ai/smart-forecast']
+        '/ai/chat', '/ai/content-rewrite', '/ai/refine-recs', '/ai/smart-forecast',
+        '/ai/cannibalization-detect', '/ai/content-gaps', '/ai/page-score',
+        '/ai/site-health-pulse', '/ai/batch-analyze',
+        '/ai/feedback', '/ai/feedback/summary'
+      ]
     }), {
       status: 404,
       headers: { 'Content-Type': 'application/json' }

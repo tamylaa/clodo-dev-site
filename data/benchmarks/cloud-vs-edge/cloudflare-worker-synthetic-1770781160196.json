@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "target": "https://clodo.dev/edge-vs-cloud-computing",
+    "runs": 5,
+    "when": "2026-02-11T03:39:20.196Z"
+  },
+  "results": [
+    {
+      "success": true,
+      "json": {
+        "meta": {
+          "now": "2026-02-11T03:39:17.523Z",
+          "colo": "MAA"
+        },
+        "results": [
+          {
+            "status": 200,
+            "ttfb": 504,
+            "total": 554,
+            "bytes": 99631,
+            "contentType": "text/html; charset=utf-8",
+            "url": "https://clodo.dev/edge-vs-cloud-computing"
+          }
+        ]
+      }
+    },
+    {
+      "success": true,
+      "json": {
+        "meta": {
+          "now": "2026-02-11T03:39:18.111Z",
+          "colo": "MAA"
+        },
+        "results": [
+          {
+            "status": 200,
+            "ttfb": 149,
+            "total": 158,
+            "bytes": 99631,
+            "contentType": "text/html; charset=utf-8",
+            "url": "https://clodo.dev/edge-vs-cloud-computing"
+          }
+        ]
+      }
+    },
+    {
+      "success": true,
+      "json": {
+        "meta": {
+          "now": "2026-02-11T03:39:18.676Z",
+          "colo": "MAA"
+        },
+        "results": [
+          {
+            "status": 200,
+            "ttfb": 140,
+            "total": 146,
+            "bytes": 99631,
+            "contentType": "text/html; charset=utf-8",
+            "url": "https://clodo.dev/edge-vs-cloud-computing"
+          }
+        ]
+      }
+    },
+    {
+      "success": true,
+      "json": {
+        "meta": {
+          "now": "2026-02-11T03:39:19.236Z",
+          "colo": "MAA"
+        },
+        "results": [
+          {
+            "status": 200,
+            "ttfb": 140,
+            "total": 142,
+            "bytes": 99631,
+            "contentType": "text/html; charset=utf-8",
+            "url": "https://clodo.dev/edge-vs-cloud-computing"
+          }
+        ]
+      }
+    },
+    {
+      "success": true,
+      "json": {
+        "meta": {
+          "now": "2026-02-11T03:39:19.792Z",
+          "colo": "MAA"
+        },
+        "results": [
+          {
+            "status": 200,
+            "ttfb": 136,
+            "total": 141,
+            "bytes": 99631,
+            "contentType": "text/html; charset=utf-8",
+            "url": "https://clodo.dev/edge-vs-cloud-computing"
+          }
+        ]
+      }
+    }
+  ]
+}

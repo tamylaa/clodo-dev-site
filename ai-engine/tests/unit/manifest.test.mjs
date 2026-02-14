@@ -7,12 +7,12 @@ import { getCapabilityManifest } from '../../src/capabilities/manifest.mjs';
 import { createMockEnv } from '../setup.mjs';
 
 describe('Capability Manifest', () => {
-  it('returns all 7 capabilities', () => {
+  it('returns all 14 capabilities', () => {
     const manifest = getCapabilityManifest(createMockEnv());
 
-    expect(manifest.capabilities).toHaveLength(7);
+    expect(manifest.capabilities).toHaveLength(14);
     expect(manifest.engine).toBe('ai-engine');
-    expect(manifest.version).toBe('2.0.0');
+    expect(manifest.version).toBe('3.0.0');
   });
 
   it('includes provider availability info', () => {

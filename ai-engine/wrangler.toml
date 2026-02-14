@@ -53,6 +53,9 @@ CAPABILITY_CHAT = "true"
 CAPABILITY_REWRITES = "true"
 CAPABILITY_REFINER = "true"
 CAPABILITY_FORECAST = "true"
+CAPABILITY_CANNIBALIZATION = "true"
+CAPABILITY_CONTENT_GAPS = "true"
+CAPABILITY_PAGE_SCORER = "true"
 
 # ═══════════════════════════════════════════════════════════════════════
 # Staging Environment

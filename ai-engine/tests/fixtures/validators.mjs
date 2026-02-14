@@ -127,6 +127,21 @@ export function validateContentRewriteResponse(data) {
   return true;
 }
 
+export function validateEATAssessResponse(data) {
+  assertObject(data.scores, 'scores');
+  assertType(data.scores.expertise, 'number', 'scores.expertise');
+  assertType(data.scores.authoritativeness, 'number', 'scores.authoritativeness');
+  assertType(data.scores.trustworthiness, 'number', 'scores.trustworthiness');
+  assertType(data.scores.overall, 'number', 'scores.overall');
+  assertObject(data.analysis, 'analysis');
+  assertType(data.analysis.expertise, 'string', 'analysis.expertise');
+  assertType(data.analysis.authoritativeness, 'string', 'analysis.authoritativeness');
+  assertType(data.analysis.trustworthiness, 'string', 'analysis.trustworthiness');
+  assertArray(data.recommendations, 'recommendations');
+  validateMetadata(data.metadata);
+  return true;
+}
+
 export function validateRefineRecsResponse(data) {
   assertArray(data.refined, 'refined');
   for (let i = 0; i < data.refined.length; i++) {
@@ -182,6 +197,54 @@ export function validateProvidersResponse(data) {
   return true;
 }
 
+// ── Cannibalization Detection ──────────────────────────────────────
+
+export function validateCannibalizationResponse(data) {
+  assertArray(data.conflicts, 'conflicts');
+  for (const c of data.conflicts) {
+    assertType(c.keyword, 'string', 'conflict.keyword');
+    assertOneOf(c.severity, ['critical', 'high', 'medium', 'low'], 'conflict.severity');
+    assertArray(c.pages, 'conflict.pages');
+    assertType(c.recommendation, 'string', 'conflict.recommendation');
+  }
+  assertType(data.summary, 'string', 'summary');
+  assertOneOf(data.overallSeverity, ['critical', 'high', 'medium', 'low', 'none'], 'overallSeverity');
+  return true;
+}
+
+// ── Content Gaps ────────────────────────────────────────────────────
+
+export function validateContentGapsResponse(data) {
+  assertArray(data.gaps, 'gaps');
+  for (const g of data.gaps) {
+    assertType(g.keyword, 'string', 'gap.keyword');
+    assertOneOf(g.opportunity, ['high', 'medium', 'low'], 'gap.opportunity');
+    assertType(g.suggestedContentType, 'string', 'gap.suggestedContentType');
+    assertType(g.suggestedTitle, 'string', 'gap.suggestedTitle');
+    assertType(g.reasoning, 'string', 'gap.reasoning');
+  }
+  assertType(data.summary, 'string', 'summary');
+  assertArray(data.topOpportunities, 'topOpportunities');
+  return true;
+}
+
+// ── Page Scorer ─────────────────────────────────────────────────────
+
+export function validatePageScorerResponse(data) {
+  assertArray(data.scores, 'scores');
+  for (const s of data.scores) {
+    assertType(s.url, 'string', 'score.url');
+    assertRange(s.overallScore, 0, 100, 'score.overallScore');
+    assertOneOf(s.grade, ['A+', 'A', 'B', 'C', 'D', 'F'], 'score.grade');
+    assertObject(s.dimensions, 'score.dimensions');
+    assertType(s.topPriority, 'string', 'score.topPriority');
+    assertOneOf(s.estimatedImpact, ['high', 'medium', 'low'], 'score.estimatedImpact');
+  }
+  assertRange(data.averageScore, 0, 100, 'averageScore');
+  assertType(data.summary, 'string', 'summary');
+  return true;
+}
+
 // ── Validator registry (maps capability id → validator function) ─────
 
 export const VALIDATORS = {
@@ -190,8 +253,12 @@ export const VALIDATORS = {
   'embedding-cluster': validateEmbeddingClusterResponse,
   'chat': validateChatResponse,
   'content-rewrite': validateContentRewriteResponse,
+  'eat-assess': validateEATAssessResponse,
   'refine-recs': validateRefineRecsResponse,
   'smart-forecast': validateSmartForecastResponse,
+  'cannibalization-detect': validateCannibalizationResponse,
+  'content-gaps': validateContentGapsResponse,
+  'page-score': validatePageScorerResponse,
   'health': validateHealthResponse,
   'capabilities': validateCapabilitiesResponse,
   'providers': validateProvidersResponse

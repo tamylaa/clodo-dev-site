@@ -12,17 +12,21 @@
 
 import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
-import { PageScorerOutputSchema, PAGE_SCORER_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { PageScorerInputSchema, PageScorerOutputSchema, PAGE_SCORER_JSON_SCHEMA } from '../lib/schemas/index.mjs';
 import { parseAndValidate } from '../lib/response-parser.mjs';
 import { formatPageScorerExamples } from '../lib/few-shot/index.mjs';
 import { avg, round } from '../lib/math-utils.mjs';
+import { validateInput } from '../lib/validate-input.mjs';
 
 const logger = createLogger('ai-page-scorer');
 
 const MAX_PAGES = 20;
 
 export async function scorePages(body, env) {
-  const { pages = [], context = {} } = body;
+  const v = validateInput(PageScorerInputSchema, body);
+  if (!v.valid) return v.error;
+
+  const { pages = [], context = {} } = v.data;
 
   if (!pages.length) {
     return { scores: [], averageScore: 0, summary: 'No pages provided.', metadata: {} };
@@ -40,7 +44,7 @@ export async function scorePages(body, env) {
   const result = await runTextGeneration({
     systemPrompt,
     userPrompt,
-    complexity: 'moderate',
+    complexity: 'standard',
     capability: 'page-scorer',
     maxTokens: 6144,
     jsonMode: true,
@@ -49,7 +53,7 @@ export async function scorePages(body, env) {
 
   // ── Phase 3: Parse + validate ─────────────────────────────────────
   const { data, meta } = parseAndValidate(result.text, PageScorerOutputSchema, {
-    fallback: buildFallback(preScores)
+    fallback: () => buildFallback(preScores)
   });
 
   logger.info(`Page scoring complete`, {
