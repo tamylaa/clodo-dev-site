@@ -27,6 +27,11 @@
 - [ ] Copy Site Key → keep in template (already set)
 - [ ] Copy Secret Key → save as `TURNSTILE_SECRET_KEY`
 
+### Cloudflare API token (required for CI deploy)
+- Required minimum scopes: **Account:Read** and **Workers:Edit** (or equivalent "Workers Scripts:Edit").
+- Create a token at: https://dash.cloudflare.com/profile/api-tokens → **Create Token** → **Custom token** → add these permission groups and the account.
+- Add the resulting token to the repository secrets as `CLOUDFLARE_API_TOKEN`.
+
 ### Generate Token Secret
 - [ ] Create random string (e.g., using `openssl rand -base64 32`)
 - [ ] Save as `DOWNLOAD_TOKEN_SECRET`
