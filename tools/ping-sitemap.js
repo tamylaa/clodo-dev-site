@@ -28,9 +28,6 @@ import crypto from 'crypto';
 const SITEMAP_URL = process.env.SITEMAP_URL || 'https://www.clodo.dev/sitemap.xml';
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || crypto.randomBytes(32).toString('hex');
 
-// IndexNow endpoint (supports Bing, Yandex, Seznam, Naver)
-const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
-
 /**
  * Fetch sitemap and extract URLs
  */

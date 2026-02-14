@@ -65,7 +65,6 @@ for (const file of fileList) {
   if (content !== original) {
     fs.writeFileSync(file, content, 'utf8');
     changedFiles++;
-    changedCount += (content.match(/href=/g) || []).length - (original.match(/href=/g) || []).length;
     console.log(`Updated: ${file}`);
   }
 }

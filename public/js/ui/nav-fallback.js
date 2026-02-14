@@ -15,9 +15,9 @@
             if (!toggle) return;
 
             // Click to toggle (mobile)
-            toggle.addEventListener('click', function (e) {
+            toggle.addEventListener('click', function (_e) {
                 if (!isMobile()) return;
-                e.preventDefault();
+                _e.preventDefault();
                 var expanded = toggle.getAttribute('aria-expanded') === 'true';
                 toggle.setAttribute('aria-expanded', String(!expanded));
                 dropdown.classList.toggle('open', !expanded);
