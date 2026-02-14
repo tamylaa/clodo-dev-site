@@ -87,8 +87,8 @@ async function main() {
           // As a fallback, try to locate Pages preview URLs in the matched deployment object
           try {
             const text = JSON.stringify(match);
-            const urlRegex = /https?:\\/\\/[^"\\s]+\\.pages\\.dev/ig;
-            const hostRegex = /[a-z0-9-]+\\.pages\\.dev/ig;
+            const urlRegex = /https?:\/\/[^"\s]+\.pages\.dev/gi;
+            const hostRegex = /[a-z0-9-]+\.pages\.dev/gi;
             const urls = new Set();
             let m;
             while ((m = urlRegex.exec(text)) !== null) urls.add(m[0]);

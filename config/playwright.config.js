@@ -72,19 +72,17 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     
-    // Mobile testing (skip in CI for faster builds)
-    ...(process.env.CI ? [] : [{
+    {
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
-    }]),
+    },
     
-    // Tablet testing (skip in CI for faster builds)
-    ...(process.env.CI ? [] : [{
+    {
       name: 'tablet',
       use: {
         ...devices['iPad Pro'],
       },
-    }]),
+    },
     
     // Optional: Firefox (uncomment when needed)
     // {
