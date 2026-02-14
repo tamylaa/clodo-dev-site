@@ -85,6 +85,7 @@ export const MODELS = {
     speed: 'fast',
     quality: 'excellent',
     bestFor: ['analysis', 'recommendations', 'chat', 'rewrites', 'forecasting'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false },
     default: true
   },
   'claude-opus-4': {
@@ -97,7 +98,8 @@ export const MODELS = {
     costPer1kOutput: 0.075,
     speed: 'slow',
     quality: 'best',
-    bestFor: ['complex-refinement', 'deep-analysis', 'strategic-planning']
+    bestFor: ['complex-refinement', 'deep-analysis', 'strategic-planning'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false }
   },
   'claude-haiku-3.5': {
     id: 'claude-3-5-haiku-20241022',
@@ -109,7 +111,8 @@ export const MODELS = {
     costPer1kOutput: 0.004,
     speed: 'fastest',
     quality: 'good',
-    bestFor: ['classification', 'simple-tasks', 'high-volume']
+    bestFor: ['classification', 'simple-tasks', 'high-volume'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false }
   },
 
   // ── OpenAI ───────────────────────────────────────────────────────
@@ -123,7 +126,8 @@ export const MODELS = {
     costPer1kOutput: 0.01,
     speed: 'fast',
     quality: 'excellent',
-    bestFor: ['analysis', 'creative-writing', 'function-calling', 'rewrites']
+    bestFor: ['analysis', 'creative-writing', 'function-calling', 'rewrites'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: true }
   },
   'gpt-4o-mini': {
     id: 'gpt-4o-mini',
@@ -135,7 +139,8 @@ export const MODELS = {
     costPer1kOutput: 0.0006,
     speed: 'fastest',
     quality: 'good',
-    bestFor: ['classification', 'simple-tasks', 'high-volume']
+    bestFor: ['classification', 'simple-tasks', 'high-volume'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: true }
   },
   'o1': {
     id: 'o1',
@@ -147,7 +152,8 @@ export const MODELS = {
     costPer1kOutput: 0.06,
     speed: 'slow',
     quality: 'best',
-    bestFor: ['complex-reasoning', 'strategic-planning', 'deep-analysis']
+    bestFor: ['complex-reasoning', 'strategic-planning', 'deep-analysis'],
+    features: { json_mode: true, structured_output: true, tools: false, vision: false }
   },
   'o3-mini': {
     id: 'o3-mini',
@@ -159,7 +165,8 @@ export const MODELS = {
     costPer1kOutput: 0.0044,
     speed: 'medium',
     quality: 'excellent',
-    bestFor: ['reasoning', 'analysis', 'forecasting']
+    bestFor: ['reasoning', 'analysis', 'forecasting'],
+    features: { json_mode: true, structured_output: true, tools: false, vision: false }
   },
   'codex-mini': {
     id: 'codex-mini-latest',
@@ -171,7 +178,8 @@ export const MODELS = {
     costPer1kOutput: 0.006,
     speed: 'fast',
     quality: 'excellent',
-    bestFor: ['coding', 'structured-output', 'json-generation', 'data-analysis']
+    bestFor: ['coding', 'structured-output', 'json-generation', 'data-analysis'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false }
   },
 
   // ── Google Gemini ────────────────────────────────────────────────
@@ -185,7 +193,8 @@ export const MODELS = {
     costPer1kOutput: 0.0004,
     speed: 'fastest',
     quality: 'good',
-    bestFor: ['speed', 'simple-tasks', 'high-volume', 'cost-sensitive']
+    bestFor: ['speed', 'simple-tasks', 'high-volume', 'cost-sensitive'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: true }
   },
   'gemini-2.5-pro': {
     id: 'gemini-2.5-pro-preview-06-05',
@@ -197,7 +206,8 @@ export const MODELS = {
     costPer1kOutput: 0.01,
     speed: 'medium',
     quality: 'excellent',
-    bestFor: ['complex-analysis', 'long-context', 'multimodal']
+    bestFor: ['complex-analysis', 'long-context', 'multimodal'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: true }
   },
 
   // ── Mistral ──────────────────────────────────────────────────────
@@ -211,7 +221,8 @@ export const MODELS = {
     costPer1kOutput: 0.006,
     speed: 'fast',
     quality: 'excellent',
-    bestFor: ['analysis', 'multilingual', 'european-compliance']
+    bestFor: ['analysis', 'multilingual', 'european-compliance'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false }
   },
   'codestral': {
     id: 'codestral-latest',
@@ -223,7 +234,8 @@ export const MODELS = {
     costPer1kOutput: 0.0009,
     speed: 'fast',
     quality: 'excellent',
-    bestFor: ['coding', 'structured-output', 'json-generation']
+    bestFor: ['coding', 'structured-output', 'json-generation'],
+    features: { json_mode: true, structured_output: true, tools: false, vision: false }
   },
   'mistral-small': {
     id: 'mistral-small-latest',
@@ -235,7 +247,8 @@ export const MODELS = {
     costPer1kOutput: 0.0003,
     speed: 'fastest',
     quality: 'good',
-    bestFor: ['classification', 'simple-tasks', 'high-volume']
+    bestFor: ['classification', 'simple-tasks', 'high-volume'],
+    features: { json_mode: true, structured_output: true, tools: true, vision: false }
   },
 
   // ── DeepSeek ─────────────────────────────────────────────────────
@@ -249,7 +262,8 @@ export const MODELS = {
     costPer1kOutput: 0.0011,
     speed: 'fast',
     quality: 'excellent',
-    bestFor: ['analysis', 'reasoning', 'cost-sensitive']
+    bestFor: ['analysis', 'reasoning', 'cost-sensitive'],
+    features: { json_mode: true, structured_output: false, tools: true, vision: false }
   },
   'deepseek-reasoner': {
     id: 'deepseek-reasoner',
@@ -261,7 +275,8 @@ export const MODELS = {
     costPer1kOutput: 0.00219,
     speed: 'medium',
     quality: 'excellent',
-    bestFor: ['complex-reasoning', 'math', 'deep-analysis']
+    bestFor: ['complex-reasoning', 'math', 'deep-analysis'],
+    features: { json_mode: true, structured_output: false, tools: false, vision: false }
   },
 
   // ── Cloudflare Workers AI (free) ─────────────────────────────────
@@ -275,7 +290,8 @@ export const MODELS = {
     costPer1kOutput: 0,
     speed: 'medium',
     quality: 'good',
-    bestFor: ['simple-tasks', 'fallback', 'free-tier']
+    bestFor: ['simple-tasks', 'fallback', 'free-tier'],
+    features: { json_mode: false, structured_output: false, tools: false, vision: false }
   },
   'cf-llama-8b': {
     id: '@cf/meta/llama-3.1-8b-instruct-fast',
@@ -287,7 +303,8 @@ export const MODELS = {
     costPer1kOutput: 0,
     speed: 'fastest',
     quality: 'basic',
-    bestFor: ['classification', 'simple-extraction', 'free-tier']
+    bestFor: ['classification', 'simple-extraction', 'free-tier'],
+    features: { json_mode: false, structured_output: false, tools: false, vision: false }
   },
   'cf-bge-embedding': {
     id: '@cf/baai/bge-base-en-v1.5',
@@ -301,7 +318,8 @@ export const MODELS = {
     quality: 'good',
     bestFor: ['embeddings'],
     type: 'embedding',
-    dimensions: 768
+    dimensions: 768,
+    features: { json_mode: false, structured_output: false, tools: false, vision: false }
   }
 };
 
@@ -344,6 +362,21 @@ export const CAPABILITY_MODEL_MAP = {
     simple: ['claude-haiku-3.5', 'gpt-4o-mini', 'deepseek-chat', 'cf-llama-70b'],
     standard: ['claude-sonnet-4', 'o3-mini', 'deepseek-chat', 'mistral-large', 'cf-llama-70b'],
     complex: ['claude-sonnet-4', 'o3-mini', 'deepseek-reasoner', 'gemini-2.5-pro', 'cf-llama-70b']
+  },
+  'cannibalization-detect': {
+    simple: ['claude-haiku-3.5', 'gpt-4o-mini', 'gemini-2.0-flash', 'cf-llama-8b'],
+    standard: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.0-flash', 'mistral-large', 'cf-llama-70b'],
+    complex: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.5-pro', 'deepseek-chat', 'cf-llama-70b']
+  },
+  'content-gaps': {
+    simple: ['claude-haiku-3.5', 'gpt-4o-mini', 'gemini-2.0-flash', 'cf-llama-8b'],
+    standard: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.0-flash', 'deepseek-chat', 'cf-llama-70b'],
+    complex: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.5-pro', 'mistral-large', 'cf-llama-70b']
+  },
+  'page-scorer': {
+    simple: ['claude-haiku-3.5', 'gpt-4o-mini', 'gemini-2.0-flash', 'cf-llama-8b'],
+    standard: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.0-flash', 'mistral-large', 'cf-llama-70b'],
+    complex: ['claude-sonnet-4', 'gpt-4o', 'gemini-2.5-pro', 'deepseek-chat', 'cf-llama-70b']
   }
 };
 

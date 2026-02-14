@@ -13,14 +13,18 @@
 
 import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
-import { RecommendationRefinerOutputSchema, RECOMMENDATION_REFINER_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { RecommendationRefinerInputSchema, RecommendationRefinerOutputSchema, RECOMMENDATION_REFINER_JSON_SCHEMA } from '../lib/schemas/index.mjs';
 import { parseAndValidate } from '../lib/response-parser.mjs';
 import { formatRecommendationExamples } from '../lib/few-shot/index.mjs';
+import { validateInput } from '../lib/validate-input.mjs';
 
 const logger = createLogger('ai-refiner');
 
 export async function refineRecommendations(body, env) {
-  const { recommendations = [], analyticsContext = {} } = body;
+  const v = validateInput(RecommendationRefinerInputSchema, body);
+  if (!v.valid) return v.error;
+
+  const { recommendations = [], analyticsContext = {} } = v.data;
 
   if (!recommendations.length) {
     return { refined: [], message: 'No recommendations to refine' };

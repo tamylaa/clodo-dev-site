@@ -163,7 +163,7 @@ async function main() {
       // If Pages API credentials are present, verify latest deployment status
       const accountId = process.env.CF_PAGES_ACCOUNT_ID;
       const projectName = process.env.CF_PAGES_PROJECT_NAME;
-      const apiToken = process.env.CF_API_TOKEN;
+      const apiToken = process.env.CLOUDFLARE_API_TOKEN;
 
       if (accountId && projectName && apiToken) {
         console.log('Pages API credentials detected; checking Pages deployment status as fallback.');

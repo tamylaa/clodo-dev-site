@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "target": "https://clodo.dev/edge-vs-cloud-computing",
+    "runs": 5,
+    "when": "2026-02-11T03:37:08.196Z"
+  },
+  "results": [
+    {
+      "success": false,
+      "error": "Error: ENOENT: no such file or directory, open 'G:\\G:\\coding\\clodo-dev-site\\tools\\benchmarks\\cloudflare-worker\\worker.js'"
+    },
+    {
+      "success": false,
+      "error": "Error: ENOENT: no such file or directory, open 'G:\\G:\\coding\\clodo-dev-site\\tools\\benchmarks\\cloudflare-worker\\worker.js'"
+    },
+    {
+      "success": false,
+      "error": "Error: ENOENT: no such file or directory, open 'G:\\G:\\coding\\clodo-dev-site\\tools\\benchmarks\\cloudflare-worker\\worker.js'"
+    },
+    {
+      "success": false,
+      "error": "Error: ENOENT: no such file or directory, open 'G:\\G:\\coding\\clodo-dev-site\\tools\\benchmarks\\cloudflare-worker\\worker.js'"
+    },
+    {
+      "success": false,
+      "error": "Error: ENOENT: no such file or directory, open 'G:\\G:\\coding\\clodo-dev-site\\tools\\benchmarks\\cloudflare-worker\\worker.js'"
+    }
+  ]
+}

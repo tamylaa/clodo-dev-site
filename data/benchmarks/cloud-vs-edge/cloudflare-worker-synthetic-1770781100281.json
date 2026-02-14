@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "target": "https://clodo.dev/edge-vs-cloud-computing",
+    "runs": 5,
+    "when": "2026-02-11T03:38:20.281Z"
+  },
+  "results": [
+    {
+      "success": false,
+      "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above."
+    },
+    {
+      "success": false,
+      "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above."
+    },
+    {
+      "success": false,
+      "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above."
+    },
+    {
+      "success": false,
+      "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above."
+    },
+    {
+      "success": false,
+      "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above."
+    }
+  ]
+}

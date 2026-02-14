@@ -53,7 +53,11 @@ CAPABILITY_CHAT = "true"
 CAPABILITY_REWRITES = "true"
 CAPABILITY_REFINER = "true"
 CAPABILITY_FORECAST = "true"
-
+CAPABILITY_CANNIBALIZATION = "true"
+CAPABILITY_CONTENT_GAPS = "true"
+CAPABILITY_PAGE_SCORER = "true"
+CAPABILITY_SITE_HEALTH = "true"
+CAPABILITY_EAT = "true"
 # ═══════════════════════════════════════════════════════════════════════
 # Staging Environment
 # ═══════════════════════════════════════════════════════════════════════
@@ -78,6 +82,10 @@ CAPABILITY_CHAT = "true"
 CAPABILITY_REWRITES = "true"
 CAPABILITY_REFINER = "true"
 CAPABILITY_FORECAST = "true"
+CAPABILITY_CANNIBALIZATION = "true"
+CAPABILITY_CONTENT_GAPS = "true"
+CAPABILITY_PAGE_SCORER = "true"
+CAPABILITY_SITE_HEALTH = "true"
 
 [[env.staging.kv_namespaces]]
 binding = "KV_AI"
@@ -107,6 +115,10 @@ CAPABILITY_CHAT = "true"
 CAPABILITY_REWRITES = "true"
 CAPABILITY_REFINER = "true"
 CAPABILITY_FORECAST = "true"
+CAPABILITY_CANNIBALIZATION = "true"
+CAPABILITY_CONTENT_GAPS = "true"
+CAPABILITY_PAGE_SCORER = "true"
+CAPABILITY_SITE_HEALTH = "true"
 
 [[env.production.kv_namespaces]]
 binding = "KV_AI"

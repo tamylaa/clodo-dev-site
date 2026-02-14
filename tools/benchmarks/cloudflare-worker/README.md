@@ -14,7 +14,7 @@ Notes:
 - The worker measures approximate TTFB by reading the first stream chunk, and total time by draining the response. It is meant to provide reproducible, scriptable synthetic checks.
 
 Deploy instructions (recommended) — quick steps:
-1. Create a Cloudflare API token with Worker:Edit and Account:Read permissions and set repository secrets `CF_API_TOKEN` and `CF_ACCOUNT_ID`.
+1. Create a Cloudflare API token with Worker:Edit and Account:Read permissions and set repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 2. Update `wrangler.toml` `account_id` or leave as placeholder and rely on the GitHub Action secrets.
 3. Use the included GitHub Actions workflow `deploy-cloudflare-worker.yml` (manual dispatch) to publish the worker to Cloudflare.
 

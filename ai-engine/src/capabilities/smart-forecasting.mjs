@@ -12,18 +12,22 @@
 
 import { createLogger } from '../lib/framework-shims.mjs';
 import { runTextGeneration } from '../providers/ai-provider.mjs';
-import { SmartForecastOutputSchema, SMART_FORECAST_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { SmartForecastInputSchema, SmartForecastOutputSchema, SMART_FORECAST_JSON_SCHEMA } from '../lib/schemas/index.mjs';
 import { parseAndValidate } from '../lib/response-parser.mjs';
 import { formatForecastExamples } from '../lib/few-shot/index.mjs';
+import { validateInput } from '../lib/validate-input.mjs';
 import {
   descriptiveStats, avg, linearSlope, linearRegression, movingAverage,
-  exponentialSmoothing, holtWinters, detectChangePoints, round
+  exponentialSmoothing, holtWinters, seasonalDecompose, detectChangePoints, round
 } from '../lib/math-utils.mjs';
 
 const logger = createLogger('ai-forecast');
 
 export async function smartForecast(body, env) {
-  const { timeSeries = [], forecastDays = 14, context = '', metrics: requestedMetrics } = body;
+  const v = validateInput(SmartForecastInputSchema, body);
+  if (!v.valid) return v.error;
+
+  const { timeSeries = [], forecastDays = 14, context = '', metrics: requestedMetrics } = v.data;
 
   if (timeSeries.length < 7) {
     return { error: 'Need at least 7 data points for meaningful forecasting', dataPoints: timeSeries.length };
@@ -42,6 +46,13 @@ export async function smartForecast(body, env) {
     const slope = linearSlope(values);
     const changePoints = detectChangePoints(values, 7, 1.5);
 
+    // Seasonal decomposition — detect weekly patterns (period=7 for daily data)
+    const period = 7;
+    const decomp = values.length >= period * 2 ? seasonalDecompose(values, period) : null;
+    const hasSeasonality = decomp
+      ? decomp.seasonal.some(s => Math.abs(s) > ds.stdDev * 0.15)
+      : false;
+
     // Select forecast method based on data characteristics
     let forecastValues, method;
     if (values.length >= 14) {
@@ -49,6 +60,15 @@ export async function smartForecast(body, env) {
       const hw = holtWinters(values, 0.3, 0.1, forecastDays);
       forecastValues = hw.forecast;
       method = 'holt-winters';
+
+      // If seasonality detected, add seasonal adjustment to forecasts
+      if (hasSeasonality && decomp) {
+        forecastValues = forecastValues.map((v, i) => {
+          const seasonalAdj = decomp.seasonal[(values.length + i) % period];
+          return round(v + seasonalAdj, 2);
+        });
+        method = 'holt-winters+seasonal';
+      }
     } else {
       // Fallback to exponential smoothing for short series
       const lastSmoothed = exponentialSmoothing(values);
@@ -80,7 +100,8 @@ export async function smartForecast(body, env) {
       method,
       trend,
       trendStrength: round(Math.min(1, Math.abs(slope) / (ds.stdDev || 1)), 2),
-      seasonalityDetected: false, // TODO: add seasonality detection
+      seasonalityDetected: hasSeasonality,
+      seasonalPattern: hasSeasonality && decomp ? decomp.seasonal.slice(0, period).map(s => round(s, 2)) : null,
       forecast: forecastWithBounds,
       changePoints: changePoints.map(cp => ({
         index: cp.index,
@@ -97,7 +118,8 @@ export async function smartForecast(body, env) {
     complexity: 'standard',
     capability: 'smart-forecast',
     maxTokens: 3000,
-    jsonMode: true
+    jsonMode: true,
+    jsonSchema: SMART_FORECAST_JSON_SCHEMA
   }, env);
 
   // Parse LLM output for narrative insights
@@ -111,15 +133,43 @@ export async function smartForecast(body, env) {
   );
 
   // Merge: computational forecasts are authoritative, LLM provides narrative
+  // Dual output: both statistical and LLM-adjusted forecasts
   const mergedForecasts = {};
   for (const [metric, computed] of Object.entries(computedForecasts)) {
     const llmMetric = llmData?.forecasts?.[metric] || {};
     mergedForecasts[metric] = {
       ...computed,
-      // Override trend description from LLM if valid
       trend: llmMetric.trend || computed.trend,
-      keyInsight: llmMetric?.accuracy?.mape ? undefined : undefined // placeholder
+      keyInsight: llmMetric?.reasoning || null,
+      // Dual output: statistical vs LLM-adjusted forecasts
+      statisticalForecast: computed.forecast,
+      llmAdjusted: llmMetric.forecastMid != null ? {
+        mid: llmMetric.forecastMid,
+        low: llmMetric.forecastLow,
+        high: llmMetric.forecastHigh,
+        confidence: llmMetric.confidence
+      } : null
     };
+  }
+
+  // Store forecast in KV for future accuracy tracking
+  if (env.KV_AI) {
+    try {
+      const forecastKey = `forecast:${new Date().toISOString().split('T')[0]}:${forecastDays}d`;
+      const forecastRecord = {
+        date: new Date().toISOString(),
+        forecastDays,
+        metrics: Object.fromEntries(
+          Object.entries(computedForecasts).map(([k, v]) => [k, {
+            method: v.method,
+            values: v.forecast.slice(0, 7).map(p => p.value)
+          }])
+        )
+      };
+      await env.KV_AI.put(forecastKey, JSON.stringify(forecastRecord), { expirationTtl: 2592000 }); // 30 days
+    } catch (err) {
+      logger.warn('Failed to store forecast for accuracy tracking:', err.message);
+    }
   }
 
   logger.info(`Forecast generated via ${result.provider} — ${forecastDays} days ahead`, {
@@ -128,6 +178,10 @@ export async function smartForecast(body, env) {
   });
 
   return {
+    _input: {
+      dataPoints: timeSeries.length,
+      fieldsReceived: Object.keys(body)
+    },
     forecasts: mergedForecasts,
     summary: llmData?.summary || {
       dataPoints: timeSeries.length,

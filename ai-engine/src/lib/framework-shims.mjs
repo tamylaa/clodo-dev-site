@@ -52,25 +52,6 @@ export function createCorsMiddleware(options = {}) {
   };
 }
 
-// ── Error Handler ────────────────────────────────────────────────────
-
-export function createErrorHandler(options = {}) {
-  const { includeStack = false } = options;
-
-  return function handleError(err) {
-    const body = {
-      error: 'Internal Server Error',
-      message: err?.message || String(err),
-    };
-    if (includeStack && err?.stack) body.stack = err.stack;
-
-    return new Response(JSON.stringify(body), {
-      status: err?.status || 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  };
-}
-
 // ── Router ───────────────────────────────────────────────────────────
 // Minimal method + path → handler router with .get(), .post(), .handle().
 

@@ -58,6 +58,92 @@ export class UsageTracker {
   }
 
   /**
+   * Track quality metrics for a capability response.
+   * Records parse method, schema validity, and fallback usage.
+   */
+  async trackQuality({ capability, parseMethod, schemaValid, fallbackUsed, durationMs }) {
+    if (!this.kv) return;
+
+    const dayKey = `quality:${currentDayKey()}`;
+
+    try {
+      const existing = await this.kv.get(dayKey, 'json') || {
+        date: currentDayKey(),
+        totalResponses: 0,
+        schemaValidCount: 0,
+        fallbackCount: 0,
+        byParseMethod: {},
+        byCapability: {},
+        avgDurationMs: 0,
+        totalDurationMs: 0
+      };
+
+      existing.totalResponses += 1;
+      if (schemaValid) existing.schemaValidCount += 1;
+      if (fallbackUsed) existing.fallbackCount += 1;
+      existing.totalDurationMs += durationMs || 0;
+      existing.avgDurationMs = Math.round(existing.totalDurationMs / existing.totalResponses);
+
+      if (!existing.byParseMethod[parseMethod]) existing.byParseMethod[parseMethod] = 0;
+      existing.byParseMethod[parseMethod] += 1;
+
+      if (capability) {
+        if (!existing.byCapability[capability]) {
+          existing.byCapability[capability] = { total: 0, valid: 0, fallback: 0 };
+        }
+        existing.byCapability[capability].total += 1;
+        if (schemaValid) existing.byCapability[capability].valid += 1;
+        if (fallbackUsed) existing.byCapability[capability].fallback += 1;
+      }
+
+      await this.kv.put(dayKey, JSON.stringify(existing), { expirationTtl: 604800 });
+    } catch (err) {
+      logger.error('Quality tracking failed:', err.message);
+    }
+  }
+
+  /**
+   * Get quality summary for the last N days.
+   */
+  async getQualitySummary(days = 7) {
+    if (!this.kv) return { message: 'No KV binding available' };
+
+    const summaries = [];
+    for (let i = 0; i < days; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const key = `quality:${date.toISOString().split('T')[0]}`;
+      const data = await this.kv.get(key, 'json');
+      if (data) summaries.push(data);
+    }
+
+    const total = summaries.reduce((acc, day) => ({
+      totalResponses: acc.totalResponses + day.totalResponses,
+      schemaValidCount: acc.schemaValidCount + day.schemaValidCount,
+      fallbackCount: acc.fallbackCount + day.fallbackCount,
+      totalDurationMs: acc.totalDurationMs + day.totalDurationMs
+    }), { totalResponses: 0, schemaValidCount: 0, fallbackCount: 0, totalDurationMs: 0 });
+
+    const schemaValidRate = total.totalResponses > 0
+      ? parseFloat((total.schemaValidCount / total.totalResponses * 100).toFixed(1))
+      : 0;
+    const fallbackRate = total.totalResponses > 0
+      ? parseFloat((total.fallbackCount / total.totalResponses * 100).toFixed(1))
+      : 0;
+
+    return {
+      period: `Last ${days} days`,
+      total: {
+        ...total,
+        avgDurationMs: total.totalResponses > 0 ? Math.round(total.totalDurationMs / total.totalResponses) : 0,
+        schemaValidRate: `${schemaValidRate}%`,
+        fallbackRate: `${fallbackRate}%`
+      },
+      dailyBreakdown: summaries
+    };
+  }
+
+  /**
    * Log a completed request with provider and cost info.
    */
   async logRequest({ capability, provider, model, tokensUsed, cost, durationMs }) {

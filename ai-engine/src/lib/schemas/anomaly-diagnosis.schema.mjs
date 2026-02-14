@@ -37,7 +37,14 @@ export const DiagnosisSchema = z.object({
   investigationSteps: z.array(z.string()),
   isRealProblem: z.boolean(),
   severity: SeverityEnum,
-  correlatedUpdate: z.string().optional()
+  correlatedUpdate: z.string().optional(),
+  explanation: z.string().optional(),
+  confidenceBreakdown: z.object({
+    primarySignal: z.string().optional(),
+    alternativeCauses: z.array(z.string()).optional(),
+    dataQuality: z.string().optional()
+  }).optional(),
+  nextSteps: z.array(z.string()).optional()
 });
 
 export const AnomalyDiagnoseOutputSchema = z.object({
@@ -61,7 +68,17 @@ export const ANOMALY_JSON_SCHEMA = {
             immediateAction: { type: 'string' },
             investigationSteps: { type: 'array', items: { type: 'string' } },
             isRealProblem: { type: 'boolean' },
-            severity: { type: 'string', enum: ['critical', 'warning', 'info'] }
+            severity: { type: 'string', enum: ['critical', 'warning', 'info'] },
+            explanation: { type: 'string' },
+            confidenceBreakdown: {
+              type: 'object',
+              properties: {
+                primarySignal: { type: 'string' },
+                alternativeCauses: { type: 'array', items: { type: 'string' } },
+                dataQuality: { type: 'string' }
+              }
+            },
+            nextSteps: { type: 'array', items: { type: 'string' } }
           },
           required: ['anomalyId', 'likelyCause', 'confidence', 'immediateAction', 'investigationSteps', 'isRealProblem', 'severity'],
           additionalProperties: false

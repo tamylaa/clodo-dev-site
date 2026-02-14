@@ -99,7 +99,16 @@ export async function runTextGeneration(params, env) {
 
       logger.info(`Trying ${providerId}/${model.id} for ${capability || 'generic'} (${complexity})`);
 
-      const result = await adapter({ systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }, env);
+      // Add timeout wrapper around adapter calls
+      const timeoutMs = env.AI_TIMEOUT_MS ? parseInt(env.AI_TIMEOUT_MS) : 30000; // 30 second default
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error(`Provider ${providerId} timed out after ${timeoutMs}ms`)), timeoutMs);
+      });
+
+      const result = await Promise.race([
+        adapter({ systemPrompt, userPrompt, model, maxTokens, jsonMode, jsonSchema }, env),
+        timeoutPromise
+      ]);
 
       // Calculate estimated cost
       const cost = estimateCost(model, result.tokensUsed);

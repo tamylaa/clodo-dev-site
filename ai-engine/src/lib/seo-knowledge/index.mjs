@@ -15,3 +15,11 @@ export {
   estimateBusinessValue,
   suggestContentType
 } from './intent-heuristics.mjs';
+
+export {
+  SERP_FEATURES,
+  detectLikelySERPFeatures,
+  getSERPFeatureTips,
+  estimateSERPCTRImpact,
+  formatSERPContext
+} from './serp-features.mjs';

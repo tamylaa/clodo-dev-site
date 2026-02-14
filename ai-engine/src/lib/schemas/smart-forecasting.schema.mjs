@@ -46,6 +46,10 @@ const MetricForecastSchema = z.object({
 });
 
 export const SmartForecastOutputSchema = z.object({
+  _input: z.object({
+    dataPoints: z.number(),
+    fieldsReceived: z.array(z.string())
+  }).optional(),
   forecasts: z.record(z.string(), MetricForecastSchema),
   summary: z.object({
     dataPoints: z.number(),
@@ -53,7 +57,9 @@ export const SmartForecastOutputSchema = z.object({
     primaryTrend: z.string(),
     keyInsight: z.string()
   }).optional(),
-  warnings: z.array(z.string()).optional()
+  warnings: z.array(z.string()).optional(),
+  stats: z.any().optional(),
+  metadata: z.any().optional()
 });
 
 export const SMART_FORECAST_JSON_SCHEMA = {
@@ -62,6 +68,15 @@ export const SMART_FORECAST_JSON_SCHEMA = {
   schema: {
     type: 'object',
     properties: {
+      _input: {
+        type: 'object',
+        properties: {
+          dataPoints: { type: 'number' },
+          fieldsReceived: { type: 'array', items: { type: 'string' } }
+        },
+        required: ['dataPoints', 'fieldsReceived'],
+        additionalProperties: false
+      },
       forecasts: {
         type: 'object',
         additionalProperties: {
@@ -124,7 +139,9 @@ export const SMART_FORECAST_JSON_SCHEMA = {
         required: ['dataPoints', 'forecastHorizon', 'primaryTrend', 'keyInsight'],
         additionalProperties: false
       },
-      warnings: { type: 'array', items: { type: 'string' } }
+      warnings: { type: 'array', items: { type: 'string' } },
+      stats: {},
+      metadata: {}
     },
     required: ['forecasts'],
     additionalProperties: false

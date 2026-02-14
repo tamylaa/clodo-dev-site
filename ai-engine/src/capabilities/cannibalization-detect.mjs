@@ -11,18 +11,22 @@
  */
 
 import { createLogger } from '../lib/framework-shims.mjs';
-import { runTextGeneration } from '../providers/ai-provider.mjs';
-import { CannibalizationOutputSchema, CANNIBALIZATION_JSON_SCHEMA } from '../lib/schemas/index.mjs';
+import { runTextGeneration, runEmbeddings } from '../providers/ai-provider.mjs';
+import { CannibalizationInputSchema, CannibalizationOutputSchema, CANNIBALIZATION_JSON_SCHEMA } from '../lib/schemas/index.mjs';
 import { parseAndValidate } from '../lib/response-parser.mjs';
 import { formatCannibalizationExamples } from '../lib/few-shot/index.mjs';
-import { jaccardSimilarity } from '../lib/math-utils.mjs';
+import { jaccardSimilarity, cosineSimilarity, round } from '../lib/math-utils.mjs';
+import { validateInput } from '../lib/validate-input.mjs';
 
 const logger = createLogger('ai-cannibalization');
 
 const MAX_PAGES = 100;
 
 export async function detectCannibalization(body, env) {
-  const { pages = [], context = {} } = body;
+  const v = validateInput(CannibalizationInputSchema, body);
+  if (!v.valid) return v.error;
+
+  const { pages = [], context = {} } = v.data;
 
   if (pages.length < 2) {
     return { conflicts: [], summary: 'At least 2 pages required for cannibalization detection', overallSeverity: 'none', metadata: {} };
@@ -33,7 +37,20 @@ export async function detectCannibalization(body, env) {
   // ── Phase 1: Deterministic overlap detection ──────────────────────
   const candidateClusters = findOverlappingKeywords(trimmedPages);
 
-  if (candidateClusters.length === 0) {
+  // ── Phase 1b: Embedding-based semantic overlap (if >2 pages, <=50) ──
+  let embeddingOverlaps = [];
+  if (trimmedPages.length >= 2 && trimmedPages.length <= 50) {
+    try {
+      embeddingOverlaps = await findSemanticOverlaps(trimmedPages, env);
+    } catch (e) {
+      logger.warn('Embedding-based overlap detection failed, continuing with deterministic only', { error: e.message });
+    }
+  }
+
+  // Merge embedding overlaps with deterministic clusters
+  const allClusters = mergeClusters(candidateClusters, embeddingOverlaps);
+
+  if (allClusters.length === 0) {
     return {
       conflicts: [],
       summary: 'No keyword overlaps detected across the provided pages.',
@@ -44,12 +61,12 @@ export async function detectCannibalization(body, env) {
 
   // ── Phase 2: LLM severity analysis + recommendations ─────────────
   const systemPrompt = buildSystemPrompt();
-  const userPrompt = buildUserPrompt(candidateClusters, trimmedPages, context);
+  const userPrompt = buildUserPrompt(allClusters, trimmedPages, context);
 
   const result = await runTextGeneration({
     systemPrompt,
     userPrompt,
-    complexity: 'moderate',
+    complexity: 'standard',
     capability: 'cannibalization-detect',
     maxTokens: 4096,
     jsonMode: true,
@@ -58,7 +75,7 @@ export async function detectCannibalization(body, env) {
 
   // ── Phase 3: Parse + validate ─────────────────────────────────────
   const { data, meta } = parseAndValidate(result.text, CannibalizationOutputSchema, {
-    fallback: buildFallback(candidateClusters)
+    fallback: () => buildFallback(allClusters)
   });
 
   logger.info(`Cannibalization analysis complete`, {
@@ -75,7 +92,9 @@ export async function detectCannibalization(body, env) {
       tokensUsed: result.tokensUsed,
       cost: result.cost,
       pagesAnalysed: trimmedPages.length,
-      candidateClusters: candidateClusters.length,
+      candidateClusters: allClusters.length,
+      deterministicClusters: candidateClusters.length,
+      embeddingClusters: embeddingOverlaps.length,
       parseQuality: meta
     }
   };
@@ -155,6 +174,62 @@ function findFuzzyOverlaps(pages, existingMap) {
 
 function tokenize(text) {
   return text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(Boolean);
+}
+
+// ── Embedding-based semantic overlap ─────────────────────────────────
+
+/**
+ * Use embeddings to find pages with semantically similar titles/keywords
+ * that deterministic matching might miss.
+ */
+async function findSemanticOverlaps(pages, env) {
+  const texts = pages.map(p => {
+    const kws = (p.keywords || []).join(', ');
+    return `${p.title || ''} ${kws}`.trim() || p.url || '';
+  });
+
+  const result = await runEmbeddings(texts, env);
+  const embeddings = result.embeddings;
+  const overlaps = [];
+
+  for (let i = 0; i < embeddings.length; i++) {
+    for (let j = i + 1; j < embeddings.length; j++) {
+      const sim = cosineSimilarity(embeddings[i], embeddings[j]);
+      if (sim >= 0.85) { // High threshold — very similar content
+        overlaps.push({
+          keyword: `[semantic] ${pages[i].title || pages[i].url} ↔ ${pages[j].title || pages[j].url}`.slice(0, 80),
+          pages: [pages[i], pages[j]],
+          type: 'semantic',
+          similarity: round(sim, 4)
+        });
+      }
+    }
+  }
+
+  return overlaps.sort((a, b) => b.similarity - a.similarity).slice(0, 10);
+}
+
+/**
+ * Merge deterministic and embedding-based clusters, deduplicating page pairs.
+ */
+function mergeClusters(deterministicClusters, embeddingClusters) {
+  const seen = new Set();
+  const merged = [...deterministicClusters];
+
+  for (const dc of deterministicClusters) {
+    const key = dc.pages.map(p => p.url).sort().join('|');
+    seen.add(key);
+  }
+
+  for (const ec of embeddingClusters) {
+    const key = ec.pages.map(p => p.url).sort().join('|');
+    if (!seen.has(key)) {
+      merged.push(ec);
+      seen.add(key);
+    }
+  }
+
+  return merged.slice(0, 20);
 }
 
 // ── Prompt builders ──────────────────────────────────────────────────
