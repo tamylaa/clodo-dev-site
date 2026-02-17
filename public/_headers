@@ -15,6 +15,19 @@
   X-Content-Type-Options: nosniff
   Cache-Control: private, no-cache, no-store, must-revalidate
 
+# Explicit noindex for thank-you / utility pages (match meta)
+/subscribe/thanks.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+/download/thanks/index.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+/404.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
 # AI Agent Resources - ALLOW INDEXING (Critical for AI Discovery)
 /structured-data.html
   X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1
