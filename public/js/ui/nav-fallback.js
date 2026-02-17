@@ -15,9 +15,9 @@
             if (!toggle) return;
 
             // Click to toggle (mobile)
-            toggle.addEventListener('click', function (e) {
+            toggle.addEventListener('click', function (_e) {
                 if (!isMobile()) return;
-                e.preventDefault();
+                _e.preventDefault();
                 var expanded = toggle.getAttribute('aria-expanded') === 'true';
                 toggle.setAttribute('aria-expanded', String(!expanded));
                 dropdown.classList.toggle('open', !expanded);
@@ -40,7 +40,7 @@
         var mobileToggle = document.getElementById('mobile-menu-toggle');
         var mobileMenu = document.getElementById('mobile-menu');
         if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', function (e) {
+            mobileToggle.addEventListener('click', function (_e) {
                 try {
                     var isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
                     mobileToggle.setAttribute('aria-expanded', String(!isOpen));

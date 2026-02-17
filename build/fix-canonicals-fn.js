@@ -27,6 +27,31 @@ function getAllHtmlFiles(dir, rel = '') {
 }
 
 function toCanonicalUrl(filePath, baseUrl) {
+  // Special handling for AMP files: map AMP path -> non-AMP canonical
+  // Examples:
+  // - amp/en/blog/index.amp.html     -> https://www.clodo.dev/blog/
+  // - amp/en/blog/slug.amp.html      -> https://www.clodo.dev/blog/slug
+  // - amp/it/blog/slug.amp.html      -> https://www.clodo.dev/i18n/it/blog/slug
+  if (filePath.startsWith('amp/')) {
+    const parts = filePath.split('/'); // ['amp', '<locale>', ...rest]
+    const locale = parts[1] || 'en';
+    const rest = parts.slice(2).join('/'); // e.g. 'blog/index.amp.html' or 'blog/slug.amp.html'
+
+    // Strip AMP-specific extension
+    const withoutExt = rest.replace(/\.amp\.html$/, ''); // e.g. 'blog/index' or 'blog/slug'
+
+    // Normalize index pages to trailing-slash folder style
+    const normalized = withoutExt.replace(/\/index$/, '/');
+
+    if (locale === 'en') {
+      return baseUrl + '/' + normalized.replace(/^\//, '');
+    }
+
+    // Localized canonical paths live under /i18n/<locale>/...
+    return baseUrl + '/i18n/' + locale + '/' + normalized.replace(/^\//, '');
+  }
+
+  // Non-AMP (existing behavior)
   if (filePath === 'index.html') return baseUrl + '/';
   if (filePath.endsWith('/index.html')) {
     // e.g. case-studies/index.html -> /case-studies/
