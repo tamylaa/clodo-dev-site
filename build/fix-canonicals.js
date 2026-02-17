@@ -32,6 +32,17 @@ function getAllHtmlFiles(dir, rel = '') {
 }
 
 function toCanonicalUrl(filePath) {
+  // AMP-specific mapping
+  if (filePath.startsWith('amp/')) {
+    const parts = filePath.split('/');
+    const locale = parts[1] || 'en';
+    const rest = parts.slice(2).join('/');
+    const withoutExt = rest.replace(/\.amp\.html$/, '');
+    const normalized = withoutExt.replace(/\/index$/, '/');
+    if (locale === 'en') return BASE + '/' + normalized.replace(/^\//, '');
+    return BASE + '/i18n/' + locale + '/' + normalized.replace(/^\//, '');
+  }
+
   if (filePath === 'index.html') return BASE + '/';
   if (filePath.endsWith('/index.html')) {
     // e.g. case-studies/index.html -> /case-studies/
