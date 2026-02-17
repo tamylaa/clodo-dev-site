@@ -24,6 +24,12 @@ http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 # Redirect trailing slashes to no-trailing-slash for consistency
 /*/  /:splat 301
 
+# STRATEGY NOTE:
+# Cloudflare Pages serves both .html and extensionless URLs for the same content,
+# but does NOT automatically redirect. This creates duplicate content issues for SEO.
+# The explicit *.html -> extensionless redirects above consolidate to one canonical URL.
+# This is intentional and necessary for proper SEO consolidation (no redirect loops occur).
+
 # Legacy URL redirects (maintain SEO value)
 /old-framework/* /:splat 301
 /legacy/* /:splat 301
@@ -53,9 +59,9 @@ http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 /cloudflare-top-10-saas-edge-computing-workers-case-study-docs /saas-product-startups-cloudflare-case-studies 301
 
 # API documentation redirects
-/api-docs /docs.html 301
-/api-reference /docs.html 301
-/developer-docs /docs.html 301
+/api-docs /docs 301
+/api-reference /docs 301
+/developer-docs /docs 301
 
 # Blog redirects
 /blog /blog/ 301
@@ -72,8 +78,8 @@ http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 /newsletter /subscribe 301
 
 # Product pages
-/features /product.html 301
-/benefits /product.html 301
+/features /product 301
+/benefits /product 301
 
 # Documentation sections
 /getting-started /clodo-framework-guide 301
