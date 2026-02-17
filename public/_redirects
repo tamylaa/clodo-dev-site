@@ -1,6 +1,28 @@
 # Cloudflare Pages Redirects for Clodo Framework
 # Enterprise SEO and user experience optimization
-# Updated to fix redirect loops
+# Strategy: Force canonical domain (https://www.clodo.dev) and strip extensions
+
+# DOMAIN CANONICALIZATION (Highest Priority)
+# Redirect non-www to www with protocol normalization
+http://* https://www.clodo.dev:splat 301
+https://clodo.dev/* https://www.clodo.dev/:splat 301
+http://clodo.dev/* https://www.clodo.dev/:splat 301
+http://www.clodo.dev/* https://www.clodo.dev/:splat 301
+
+# EXTENSION NORMALIZATION
+# Strip .html extensions via explicit 301 redirects (SEO best practice)
+# This ensures Google consolidates crawl budget and canonical signals
+/*.html /:splat 301
+/*/index.html /* 301
+/blog/*.html /blog/:splat 301
+/blog/*.amp.html /blog/:splat 301
+/i18n/*/*.html /i18n/:splat 301
+/i18n/*/*.amp.html /i18n/:splat 301
+/case-studies/*.html /case-studies/:splat 301
+
+# TRAILING SLASH NORMALIZATION
+# Redirect trailing slashes to no-trailing-slash for consistency
+/*/  /:splat 301
 
 # Legacy URL redirects (maintain SEO value)
 /old-framework/* /:splat 301
@@ -19,10 +41,6 @@
 /pre-flight-validation / 301
 /multi-tenant-framework / 301
 /cloudflare-orchestration / 301
-
-# Note: Cloudflare Pages automatically strips .html extensions and serves extensionless URLs.
-# Manual redirects from extensionless to .html are NOT needed and cause redirect loops.
-# Pages handles /page.html -> /page internally, so we don't add explicit redirects here.
 
 # Developer-focused redirects
 /cloudflare-workers-framework / 301
