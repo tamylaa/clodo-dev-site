@@ -1,0 +1,764 @@
+{
+  "timestamp": "2026-02-18T06:40:40.949Z",
+  "totalUnindexed": 186,
+  "currentIndexed": 34,
+  "recommendedCount": 7,
+  "projectedCoverage": "17.4",
+  "categories": {
+    "High-Value Content": [],
+    "Documentation": [],
+    "Guides & Tutorials": [],
+    "Comparison Pages": [
+      {
+        "path": "/cloud-vs-edge",
+        "type": "page"
+      }
+    ],
+    "Technical Deep-Dives": [
+      {
+        "path": "/cloudflare-d1-errors",
+        "type": "page"
+      },
+      {
+        "path": "/cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
+        "type": "page"
+      },
+      {
+        "path": "/cloudflare-workers-auth",
+        "type": "page"
+      },
+      {
+        "path": "/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/cloudflare-workers-development-guide",
+        "type": "page"
+      },
+      {
+        "path": "/cloudflare-workers-enterprise-features",
+        "type": "page"
+      }
+    ],
+    "General Pages": [
+      {
+        "path": "/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/clodo-cloud-service",
+        "type": "page"
+      },
+      {
+        "path": "/clodo-framework-guide",
+        "type": "page"
+      },
+      {
+        "path": "/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/google1234567890abcdef",
+        "type": "page"
+      },
+      {
+        "path": "/multi-tenant-saas",
+        "type": "page"
+      },
+      {
+        "path": "/privacy",
+        "type": "page"
+      },
+      {
+        "path": "/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/roi-calculator",
+        "type": "page"
+      },
+      {
+        "path": "/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/serverless-architecture-best-practices",
+        "type": "page"
+      },
+      {
+        "path": "/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/structured-data",
+        "type": "page"
+      },
+      {
+        "path": "/subscribe",
+        "type": "page"
+      },
+      {
+        "path": "/test-has-selector",
+        "type": "page"
+      },
+      {
+        "path": "/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/wrangler-to-clodo-migration",
+        "type": "page"
+      }
+    ],
+    "Internationalized (i18n)": [
+      {
+        "path": "/i18n/ar/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/ar/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/br/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/v8-isolates-comprehensive-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/de/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/es-419/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/fa/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/he/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/in/wrangler-to-clodo-migration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/advanced-cloudflare-workers-tutorial",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/clodo-framework-api-simplification",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/clodo-framework-promise-to-reality",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/clodo-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/cloudflare-framework",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/cloudflare-workers-cold-start-optimization",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/docs",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/edge-computing-guide",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/edge-vs-cloud-computing",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/how-to-migrate-from-wrangler",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/quick-start",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/ruby-on-rails-cloudflare-integration",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/saas-product-startups-cloudflare-case-studies",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/serverless-framework-comparison",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/what-is-cloudflare-workers",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/worker-scaffolding-tools",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/workers-boilerplate",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/workers-vs-lambda",
+        "type": "page"
+      },
+      {
+        "path": "/i18n/it/wrangler-to-clodo-migration",
+        "type": "page"
+      }
+    ]
+  }
+}

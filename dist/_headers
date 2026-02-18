@@ -15,6 +15,19 @@
   X-Content-Type-Options: nosniff
   Cache-Control: private, no-cache, no-store, must-revalidate
 
+# Explicit noindex for thank-you / utility pages (match meta)
+/subscribe/thanks.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+/download/thanks/index.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
+/404.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-cache, no-store, must-revalidate
+
 # AI Agent Resources - ALLOW INDEXING (Critical for AI Discovery)
 /structured-data.html
   X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1
@@ -27,12 +40,12 @@
 # Main content pages - FULL INDEXING for SEO
 /*.html
   X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Vary: Accept-Encoding
+  # cf-bot-management-score: 100
 
 # Lighthouse audit bypass - allow bot for performance auditing
 # This prevents rate-limiting from blocking legitimate performance metrics
-/*.html
-  # cf-bot-management-score: 100
 
 # Default for all other pages
 /*
@@ -81,10 +94,6 @@
   Cache-Control: public, max-age=86400
 
 # HTML Pages - Short Cache for Fresh Content
-/*.html
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-  Vary: Accept-Encoding
-  # Note: Cloudflare automatically gzips content - enable in dashboard
 
 # Admin pages override (more specific rules above take precedence)
 

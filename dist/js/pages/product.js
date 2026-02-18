@@ -356,7 +356,7 @@
     const trackableElements = document.querySelectorAll('[data-analytics-event]');
     
     trackableElements.forEach(element => {
-      element.addEventListener('click', function(e){
+      element.addEventListener('click', function(_e){
         const event = this.getAttribute('data-analytics-event');
         const category = this.getAttribute('data-event-category');
         const label = this.getAttribute('data-event-label');

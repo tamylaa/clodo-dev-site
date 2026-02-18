@@ -1,496 +1,1375 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <!-- Homepage -->
-    <url>
-        <loc>https://www.clodo.dev/</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Clodo Framework - Pre-Flight Checker for Cloudflare Workers</image:title>
-            <image:caption>Enterprise orchestration framework that reduces custom software costs by 60%</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Documentation Pages -->
-    <url>
-        <loc>https://www.clodo.dev/docs</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Structured Data Hub (AI Agent Resource) - HIGH PRIORITY -->
-    <url>
-        <loc>https://www.clodo.dev/structured-data</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Admin pages excluded from sitemap (robots.txt blocks them) -->
-
-    <!-- Framework Guide -->
-    <url>
-        <loc>https://www.clodo.dev/clodo-framework-guide</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Cloudflare Framework - HIGH PRIORITY for "cloudflare framework" keyword -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-framework</loc>
-        <lastmod>2025-12-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Cloudflare SaaS Research 2026 - HIGH PRIORITY for enterprise research -->
-    <url>
-        <loc>https://www.clodo.dev/saas-product-startups-cloudflare-case-studies</loc>
-        <lastmod>2026-01-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image-saas-research.png</image:loc>
-            <image:title>Companies Using Cloudflare: Top 10 SaaS Edge Computing Case Studies</image:title>
-            <image:caption>Comprehensive analysis of how Discord, Shopify, GitHub, and 7 other top SaaS platforms leverage Cloudflare infrastructure</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Cloudflare Workers Development Guide - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-workers-development-guide</loc>
-        <lastmod>2025-12-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Cloudflare Workers Development Guide 2025</image:title>
-            <image:caption>Complete tutorial for Cloudflare Workers development with D1, KV, and edge computing</image:caption>
-        </image:image>
-    </url>
-
-    <!-- D1 Errors Troubleshooting - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-d1-errors</loc>
-        <lastmod>2025-12-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>D1 Database Errors: Complete Troubleshooting Guide</image:title>
-            <image:caption>Fix common D1 database errors in Cloudflare Workers with proven solutions</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Workers Boilerplate Showcase - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/workers-boilerplate</loc>
-        <lastmod>2026-01-01</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Cloudflare Workers Boilerplates: Starter Templates Comparison</image:title>
-            <image:caption>Compare top Workers boilerplates including Clodo, Wrangler, Hono, and Itty Router</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Workers Authentication Guide - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-workers-auth</loc>
-        <lastmod>2025-12-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Authentication on Cloudflare Workers: Complete Guide</image:title>
-            <image:caption>JWT, OAuth, Cloudflare Access, and session management for Workers</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Serverless Architecture Best Practices - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/serverless-architecture-best-practices</loc>
-        <lastmod>2025-12-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Serverless Architecture Best Practices 2025</image:title>
-            <image:caption>Complete guide to serverless design patterns, cost optimization, and performance</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Wrangler to Clodo Migration - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/wrangler-to-clodo-migration</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Wrangler to Clodo Migration Guide</image:title>
-            <image:caption>Complete migration guide from Cloudflare Wrangler to Clodo Framework</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Ruby on Rails Cloudflare Integration - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/ruby-on-rails-cloudflare-integration</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Ruby on Rails Cloudflare Workers Integration</image:title>
-            <image:caption>Deploy Rails applications on Cloudflare Workers with Clodo Framework</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Serverless Framework Comparison - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/serverless-framework-comparison</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Serverless Framework Comparison 2025</image:title>
-            <image:caption>Compare Clodo, Vercel, Netlify, and other serverless platforms</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Worker Scaffolding Tools - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/worker-scaffolding-tools</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Cloudflare Worker Scaffolding Tools</image:title>
-            <image:caption>Automated scaffolding for enterprise-ready Cloudflare Workers</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Advanced Cloudflare Workers Tutorial - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/advanced-cloudflare-workers-tutorial</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Advanced Cloudflare Workers Tutorial</image:title>
-            <image:caption>Enterprise patterns, service meshes, and performance optimization</image:caption>
-        </image:image>
-    </url>
-
-    <!-- API Simplification -->
-    <url>
-        <loc>https://www.clodo.dev/clodo-framework-api-simplification</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Promise to Reality -->
-    <url>
-        <loc>https://www.clodo.dev/clodo-framework-promise-to-reality</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Cloudflare Pages Setup — removed (no corresponding page found in repo) -->
-    <!-- Removed <url> for https://www.clodo.dev/cloudflare-pages-setup to avoid canonical mismatch in SEO scans -->
-
-    <!-- Cloudflare Workers Guide -->
-    <url>
-        <loc>https://www.clodo.dev/cloudflare-workers-guide</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Development Deployment Guide -->
-    <url>
-        <loc>https://www.clodo.dev/development-deployment-guide</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Edge Computing Guide -->
-    <url>
-        <loc>https://www.clodo.dev/edge-computing-guide</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- What is Edge Computing -->
-    <url>
-        <loc>https://www.clodo.dev/what-is-edge-computing</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- What is Cloudflare Workers -->
-    <url>
-        <loc>https://www.clodo.dev/what-is-cloudflare-workers</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Workers vs Lambda -->
-    <url>
-        <loc>https://www.clodo.dev/workers-vs-lambda</loc>
-        <lastmod>2025-11-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Clodo vs Lambda (Comparison) -->
-    <url>
-        <loc>https://www.clodo.dev/clodo-vs-lambda</loc>
-        <lastmod>2025-11-28</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Migration Guide -->
-    <url>
-        <loc>https://www.clodo.dev/migrate</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Examples -->
-    <url>
-        <loc>https://www.clodo.dev/examples</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Components -->
-    <url>
-        <loc>https://www.clodo.dev/components</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Pricing -->
-    <url>
-        <loc>https://www.clodo.dev/pricing</loc>
-        <lastmod>2025-12-18</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Clodo Cloud Service - HIGH PRIORITY SEO -->
-    <url>
-        <loc>https://www.clodo.dev/clodo-cloud-service</loc>
-        <lastmod>2025-12-23</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.clodo.dev/og-image.png</image:loc>
-            <image:title>Clodo Cloud Service: Managed Cloudflare Workers Hosting</image:title>
-            <image:caption>Managed hosting, monitoring, and expert support for Cloudflare Workers applications</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Framework Comparison - HIGH PRIORITY AEO -->
-    <url>
-        <loc>https://www.clodo.dev/framework-comparison</loc>
-        <lastmod>2025-12-18</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Multi-Tenant SaaS Guide - HIGH PRIORITY AEO -->
-    <url>
-        <loc>https://www.clodo.dev/multi-tenant-saas</loc>
-        <lastmod>2025-12-18</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- FAQ -->
-    <url>
-        <loc>https://www.clodo.dev/faq</loc>
-        <lastmod>2025-11-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Product -->
-    <url>
-        <loc>https://www.clodo.dev/product</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- About -->
-    <url>
-        <loc>https://www.clodo.dev/about</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Privacy -->
-    <url>
-        <loc>https://www.clodo.dev/privacy</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-
-    <!-- Newsletter Subscribe -->
-    <url>
-        <loc>https://www.clodo.dev/subscribe</loc>
-        <lastmod>2025-11-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Community -->
-    <url>
-        <loc>https://www.clodo.dev/community/welcome</loc>
-        <lastmod>2025-11-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Case Studies Hub -->
-    <url>
-        <loc>https://www.clodo.dev/case-studies/</loc>
-        <lastmod>2025-11-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Case Study: Fintech Payment Platform -->
-    <url>
-        <loc>https://www.clodo.dev/case-studies/fintech-payment-platform</loc>
-        <lastmod>2025-11-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Case Study: Healthcare SaaS Platform -->
-    <url>
-        <loc>https://www.clodo.dev/case-studies/healthcare-saas-platform</loc>
-        <lastmod>2025-11-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Blog Index -->
-    <url>
-        <loc>https://www.clodo.dev/blog/</loc>
-        <lastmod>2025-12-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Blog: Cloudflare Infrastructure Myth -->
-    <url>
-        <loc>https://www.clodo.dev/blog/cloudflare-infrastructure-myth</loc>
-        <lastmod>2025-12-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Blog: StackBlitz Integration Journey -->
-    <url>
-        <loc>https://www.clodo.dev/blog/stackblitz-integration-journey</loc>
-        <lastmod>2025-11-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Blog: Instant Try It Impact -->
-    <url>
-        <loc>https://www.clodo.dev/blog/instant-try-it-impact</loc>
-        <lastmod>2025-11-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Blog: Debugging Silent Build Failures -->
-    <url>
-        <loc>https://www.clodo.dev/blog/debugging-silent-build-failures</loc>
-        <lastmod>2025-11-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Blog: Building Developer Communities -->
-    <url>
-        <loc>https://www.clodo.dev/blog/building-developer-communities</loc>
-        <lastmod>2025-11-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- International Pages - German -->
-    <url>
-        <loc>https://www.clodo.dev/i18n/de/clodo-framework-api-simplification</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://www.clodo.dev/i18n/de/clodo-framework-promise-to-reality</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://www.clodo.dev/i18n/de/how-to-migrate-from-wrangler</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- International Pages - Italian -->
-    <url>
-        <loc>https://www.clodo.dev/i18n/it/clodo-framework-api-simplification</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://www.clodo.dev/i18n/it/clodo-framework-promise-to-reality</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://www.clodo.dev/i18n/it/how-to-migrate-from-wrangler</loc>
-        <lastmod>2025-12-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://clodo.dev/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/about</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/building-developer-communities</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/clodo-framework-enterprise-roi</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/cloudflare-infrastructure-myth</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/cloudflare-workers-tutorial-beginners</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/debugging-silent-build-failures</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/instant-try-it-impact</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/stackblitz-integration-journey</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/blog/v8-isolates-comprehensive-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/case-studies/fintech-payment-platform</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/case-studies/healthcare-saas-platform</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloud-vs-edge</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-d1-errors</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-framework</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-workers-auth</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-workers-development-guide</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-workers-enterprise-features</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-workers-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/community/welcome</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/components</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/development-deployment-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/docs/cli-commands</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/edge-vs-cloud-computing</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/examples</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/faq</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/v8-isolates-comprehensive-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/advanced-cloudflare-workers-tutorial</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/advanced-cloudflare-workers-tutorial" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/clodo-framework-api-simplification</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/clodo-framework-api-simplification" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/clodo-framework-promise-to-reality</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/clodo-framework-promise-to-reality" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/clodo-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/clodo-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/cloudflare-framework</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/cloudflare-workers-cold-start-optimization</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/cloudflare-workers-cold-start-optimization" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/docs</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/docs" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/edge-computing-guide</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/edge-computing-guide" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/edge-vs-cloud-computing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/edge-vs-cloud-computing" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/how-to-migrate-from-wrangler</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/how-to-migrate-from-wrangler" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/quick-start</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/quick-start" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/ruby-on-rails-cloudflare-integration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/ruby-on-rails-cloudflare-integration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/saas-product-startups-cloudflare-case-studies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/saas-product-startups-cloudflare-case-studies" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/serverless-framework-comparison</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/serverless-framework-comparison" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/what-is-cloudflare-workers" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/worker-scaffolding-tools</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/worker-scaffolding-tools" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/workers-boilerplate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/workers-boilerplate" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/workers-vs-lambda" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/wrangler-to-clodo-migration</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/wrangler-to-clodo-migration" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/migrate</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/pricing</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/product</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/what-is-cloudflare-workers</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/what-is-edge-computing</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/workers-boilerplate</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/workers-vs-lambda</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
-

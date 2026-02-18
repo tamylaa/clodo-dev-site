@@ -20,6 +20,10 @@ Disallow: /temp*.html
 Disallow: /experiments/
 Disallow: /ISSUES/
 
+# AMP directory - Should only be accessed via amphtml link from main pages
+# Not meant for direct crawling or indexing
+Disallow: /amp/
+
 # Major search engine bots with optimized crawl delays
 User-agent: Googlebot
 Allow: /

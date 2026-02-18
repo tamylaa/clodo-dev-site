@@ -54,7 +54,27 @@
     
     <!-- Schema.org AboutPage -->
     <!-- BreadcrumbList Schema -->
-    </head>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://clodo.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://clodo.dev/about"
+    }
+  ]
+}
+</script>
+</head>
 <body>
     <header>
 <!--#include file="../templates/nav-main.html" -->

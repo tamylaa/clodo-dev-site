@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-02-18T06:42:46.359Z",
+  "stats": {
+    "total": 235,
+    "filesystem": 235,
+    "indexed": 202,
+    "inNav": 24,
+    "inSitemap": 168,
+    "admin": 6,
+    "experiment": 6,
+    "i18n": 161,
+    "blog": 8,
+    "caseStudy": 2,
+    "orphaned": {
+      "inSitemap": 0,
+      "inNav": 0
+    },
+    "notIndexed": 21
+  },
+  "coverage": {
+    "indexing": "86.0",
+    "navigation": "10.2",
+    "i18n": "68.5"
+  },
+  "locales": [
+    "ar",
+    "br",
+    "de",
+    "es-419",
+    "fa",
+    "he",
+    "in",
+    "it"
+  ],
+  "priorityDistribution": {
+    "high": 0,
+    "medium": 235,
+    "low": 0
+  },
+  "healthScore": 86.7932,
+  "recommendations": [
+    "LOW PRIORITY: Only 10.2% of pages linked in nav. Consider adding more navigation links."
+  ]
+}

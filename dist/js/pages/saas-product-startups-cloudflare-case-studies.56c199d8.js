@@ -1,6 +1,6 @@
 (function() {
 'use strict';
-function initPlatformFilters() {
+function _initPlatformFilters() {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const platformRows = document.querySelectorAll('.platform-row');
 if (!filterBtns.length || !platformRows.length) return;

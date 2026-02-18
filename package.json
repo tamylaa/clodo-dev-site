@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "prebuild": "npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run validate:reviews && npm run check-links",
+    "prebuild": "node build/pre-build-checks.js && npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run validate:reviews && npm run check-links && node build/validate-build-manifest.js",
     "build": "node build/build.js && npm run generate:amp",
     "start": "npm run serve",
     "dev": "npm run serve",
@@ -43,8 +43,9 @@
     "test:smoke": "node ./tools/runtime-smoke-check.mjs",
     "fix-links": "node ./tools/fix-html-links.mjs",
     "inject-nav": "node ./tools/inject-nav.mjs",
+    "inject-schema": "node build/inject-schema.js",
     "normalize": "npm run fix-links && npm run inject-nav",
-    "postbuild": "npm run normalize && node tools/validate-built-schemas.js dist --fail && npm run check:required-schemas",
+    "postbuild": "npm run normalize && npm run inject-schema && node tools/validate-built-schemas.js dist --fail && npm run check:required-schemas",
     "check:required-schemas": "node tools/enforce-required-schemas.js dist --fail",
     "audit:schemas:coverage": "node data/schemas/tools/audit-schema-coverage.js",
     "ci:premerge": "npm run normalize && npm run test:navigation:static && npm run test:e2e",
@@ -71,7 +72,13 @@
     "analyze": "echo 'Bundle analysis: Add webpack-bundle-analyzer for optimization insights'",
     "collect-commits": "node content/scripts/collect-commits.js",
     "collect-commits:github:clodo-framework": "node content/scripts/collect-commits.js --source=github --repo=tamylaa/clodo-framework --out=content/release-notes/tamylaa/clodo-framework/commit-history.json",
-    "analyze-commits": "node content/scripts/analyze-commits.js --in=content/release-notes/tamylaa/clodo-framework/commit-history.json --out-json=content/release-notes/tamylaa/clodo-framework/commit-insights.json --out-md=content/release-notes/tamylaa/clodo-framework/commit-insights.md"
+    "analyze-commits": "node content/scripts/analyze-commits.js --in=content/release-notes/tamylaa/clodo-framework/commit-history.json --out-json=content/release-notes/tamylaa/clodo-framework/commit-insights.json --out-md=content/release-notes/tamylaa/clodo-framework/commit-insights.md",
+    "manifest:regenerate": "node tools/merge-manifests.js",
+    "manifest:validate": "node tools/validate-manifest.js",
+    "manifest:health": "node tools/manifest-health-dashboard.js",
+    "manifest:debug": "node tools/debug-manifest-issues.js",
+    "sitemap:generate": "node build/generate-sitemap-from-manifest.js",
+    "ci:check-manifest": "node build/ci-manifest-check.js"
   },
   "keywords": [
     "cloudflare",
