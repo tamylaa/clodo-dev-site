@@ -14,11 +14,17 @@ http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 # This ensures Google consolidates crawl budget and canonical signals
 /*.html /:splat 301
 /*/index.html /* 301
+/*/index.amp.html /* 301
+/index.amp.html / 301
+/amp/* /amp/:splat 301
 /blog/*.html /blog/:splat 301
+/blog/index.amp.html /blog/ 301
 /blog/*.amp.html /blog/:splat 301
 /i18n/*/*.html /i18n/:splat 301
-/i18n/*/*.amp.html /i18n/:splat 301
+/i18n/*/index.html /i18n/:splat 301
+/i18n/*.amp.html /i18n/:splat 301
 /case-studies/*.html /case-studies/:splat 301
+/case-studies/index.html /case-studies/ 301
 
 # TRAILING SLASH NORMALIZATION
 # Redirect trailing slashes to no-trailing-slash for consistency
@@ -66,6 +72,50 @@ http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 # Blog redirects
 /blog /blog/ 301
 # Note: removed wildcard redirect (/blog/* -> /blog/:splat) because it caused redirect loops for URLs that already include .html
+
+# FIX: Malformed paths where non-blog pages were crawled under /blog folder
+# These appear to be old cached URLs or discovery from previous site structure
+/blog/docs.html /docs 301
+/blog/docs /docs 301
+/blog/pricing.html /pricing 301
+/blog/pricing /pricing 301
+/blog/about.html /about 301
+/blog/about /about 301
+/blog/privacy.html /privacy 301
+/blog/privacy /privacy 301
+/blog/product.html /product 301
+/blog/product /product 301
+/blog/migrate.html /migrate 301
+/blog/migrate /migrate 301
+/blog/examples.html /examples 301
+/blog/examples /examples 301
+/blog/blog/* /blog/:splat 301
+
+# A/B Test variant cleanup
+# Redirect variant URLs to canonical version
+/how-to-migrate-from-wrangler-variant-a /how-to-migrate-from-wrangler 301
+/how-to-migrate-from-wrangler-variant-b /how-to-migrate-from-wrangler 301
+
+# Locale path normalization
+# Short locale codes redirect to proper i18n paths with trailing slash
+/ar/ /i18n/ar/ 301
+/br/ /i18n/br/ 301
+/in/ /i18n/in/ 301
+/de/ /i18n/de/ 301
+/es-419/ /i18n/es-419/ 301
+/fa/ /i18n/fa/ 301
+/he/ /i18n/he/ 301
+/it/ /i18n/it/ 301
+
+# Ensure i18n paths have trailing slashes (optional index access)
+/i18n/ar /i18n/ar/ 301
+/i18n/br /i18n/br/ 301
+/i18n/de /i18n/de/ 301
+/i18n/es-419 /i18n/es-419/ 301
+/i18n/fa /i18n/fa/ 301
+/i18n/he /i18n/he/ 301
+/i18n/in /i18n/in/ 301
+/i18n/it /i18n/it/ 301
 
 # Social media and external links (tracking)
 /github https://github.com/tamylaa/clodo-framework 301
