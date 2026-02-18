@@ -356,7 +356,7 @@
     "file": "cloud-vs-edge.html",
     "type": "page",
     "locale": "en",
-    "indexed": true,
+    "indexed": false,
     "inNav": false,
     "inSitemap": false,
     "priority": 0.5,
@@ -365,7 +365,7 @@
     "isExperiment": false,
     "isI18n": false,
     "isIndex": false,
-    "reason": "high-value-technical-content"
+    "reason": "redirect-page"
   },
   {
     "path": "/cloudflare-d1-errors",

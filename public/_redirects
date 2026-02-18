@@ -9,6 +9,10 @@ https://clodo.dev/* https://www.clodo.dev/:splat 301
 http://clodo.dev/* https://www.clodo.dev/:splat 301
 http://www.clodo.dev/* https://www.clodo.dev/:splat 301
 
+
+# CONTENT REDIRECTS
+# Redirect canonical aliases
+/cloud-vs-edge /edge-vs-cloud-computing 301
 # EXTENSION NORMALIZATION
 # Strip .html extensions via explicit 301 redirects (SEO best practice)
 # This ensures Google consolidates crawl budget and canonical signals
