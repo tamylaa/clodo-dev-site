@@ -7,6 +7,8 @@
   "scripts": {
     "prebuild": "node build/pre-build-checks.js && npm run lint && npm run type-check && npm run validate:blog && npm run validate:headers && npm run validate:redirects && npm run validate:reviews && npm run check-links && node build/validate-build-manifest.js",
     "build": "node build/build.js && npm run generate:amp",
+    "images:optimize": "powershell -ExecutionPolicy Bypass -File tools/optimize-images.ps1",
+    "images:manifest": "node tools/generate-image-manifest.mjs",
     "start": "npm run serve",
     "dev": "npm run serve",
     "preview": "vite preview --config config/vite.config.js",

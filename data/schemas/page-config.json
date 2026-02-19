@@ -401,6 +401,26 @@
         }
       ]
     },
+    "edge-vs-cloud-computing": {
+      "type": "Article",
+      "requiredSchemas": [
+        "Article",
+        "HowTo"
+      ],
+      "howTo": {
+        "name": "Migration playbook — 6 steps",
+        "description": "A practical, research-backed 6-step migration playbook for moving latency-sensitive paths to an edge-first or hybrid architecture.",
+        "totalTime": "P2W",
+        "steps": [
+          { "name": "Assess", "text": "Map latency targets, data gravity, regulatory constraints, and cost sensitivity." },
+          { "name": "Prototype", "text": "Build a narrow-edge pilot for the most latency-sensitive path." },
+          { "name": "Evaluate", "text": "Compare P95/P99 latency, error rates, and cost vs cloud baseline." },
+          { "name": "Pilot", "text": "Run a 2–4 week A/B test with representative traffic." },
+          { "name": "Migrate", "text": "Roll out phased migration with feature flags, blue/green or canary deploys." },
+          { "name": "Operate", "text": "Add distributed tracing, edge-aware observability, and runbook for incident response." }
+        ]
+      }
+    },
     "cloudflare-framework": {
       "type": "Article",
       "requiredSchemas": [

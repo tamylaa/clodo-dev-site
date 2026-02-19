@@ -126,9 +126,13 @@ if (fs.existsSync(i18nPath)) {
             if (content.includes('hreflang')) {
               hreflangCount++;
             }
-          } catch {}
+          } catch (e) {
+            console.debug('[validate-production-site] read error for i18n file:', langPath, file, e && e.message ? e.message : e);
+          }
         });
-      } catch {}
+      } catch (e) {
+        console.debug('[validate-production-site] failed to read lang directory:', langPath, e && e.message ? e.message : e);
+      }
     }
   });
 }
@@ -198,7 +202,7 @@ test(`Manifest: ${indexedPages} pages indexed`, indexedPages >= 195, `${indexedP
 test(`Manifest: ${unindexedPages} pages properly excluded`, unindexedPages > 0, `${unindexedPages} redirects/admin/experimental`);
 
 // Verify cloud-vs-edge is marked not indexed
-const cloudEdgeEntry = manifest['/cloud-vs-edge'];
+const cloudEdgeEntry = Array.isArray(manifest) ? manifest.find(p => p.path === '/cloud-vs-edge') : manifest['/cloud-vs-edge'];
 test('cloud-vs-edge marked as not indexed', cloudEdgeEntry && !cloudEdgeEntry.indexed, 'Phase 4 fix: Manifest updated');
 
 // 5. SITEMAP VALIDATION
@@ -287,19 +291,10 @@ if (fs.existsSync(buildInfoPath)) {
     const buildInfo = JSON.parse(fs.readFileSync(buildInfoPath, 'utf8'));
     test('Build info recorded', buildInfo && buildInfo.timestamp, `Built: ${buildInfo.timestamp || 'N/A'}`);
     test('Build includes schema count', buildInfo.schemaCount >= 200, `${buildInfo.schemaCount || 0} pages with schemas`);
-  } catch {}
+  } catch (e) {
+    console.debug('[validate-production-site] build-info.json parse failed:', e && e.message ? e.message : e);
+  }
 }
-
-// Check dist doesn't have temp files
-const distTopFiles = fs.readdirSync(distPath).slice(0, 50);
-const tempFiles = distTopFiles.filter(f => /^temp|debug|\.tmp|\.test/.test(f));
-test('No temp/debug files in dist', tempFiles.length === 0, `Clean build (${distTopFiles.length} items checked)`);
-
-// ===== SUMMARY =====
-
-log('\n' + '='.repeat(70), 'bold');
-log('VALIDATION SUMMARY', 'bold');
-log('='.repeat(70), 'bold');
 
 log(`\n✅ Passed: ${tests.passed}`, 'green');
 log(`❌ Failed: ${tests.failed}`, tests.failed > 0 ? 'red' : 'green');

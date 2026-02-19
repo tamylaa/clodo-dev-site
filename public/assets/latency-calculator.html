@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Latency & Recommendation Calculator</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;color:#0b1220}
+    .card{max-width:740px;margin:18px auto;padding:18px;border:1px solid #e2e8f0;border-radius:8px;background:#fff}
+    label{display:block;margin-top:10px;font-weight:600}
+    input[type=number]{width:140px;padding:6px;margin-right:8px}
+    .row{display:flex;gap:8px;align-items:center}
+    .result{margin-top:14px;padding:12px;border-radius:6px;background:#f1f5f9}
+    .verdict{font-weight:700;color:#1a202c}
+    .small{font-size:13px;color:#475569}
+    button{margin-top:12px;padding:8px 12px;border-radius:6px;border:0;background:#2b6cb0;color:#fff}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>Latency & Deployment Recommendation</h3>
+    <div class="small">Estimate tail latency and get a quick suggestion (Edge / Hybrid / Cloud).</div>
+
+    <label>User → nearest PoP RTT (ms)</label>
+    <div class="row"><input id="rtt_user" type="number" value="20"> <span class="small">e.g. 20</span></div>
+
+    <label>PoP → Origin RTT (ms)</label>
+    <div class="row"><input id="rtt_origin" type="number" value="80"> <span class="small">e.g. 80</span></div>
+
+    <label>Cache hit rate at edge (%)</label>
+    <div class="row"><input id="cache_hit" type="number" value="60"> <span class="small">0–100%</span></div>
+
+    <label>Server processing time (ms)</label>
+    <div class="row"><input id="proc" type="number" value="20"> <span class="small">average server compute</span></div>
+
+    <label>Target P95 latency (ms)</label>
+    <div class="row"><input id="target" type="number" value="50"> <span class="small">your SLA or goal</span></div>
+
+    <button id="calc">Calculate & Recommend</button>
+
+    <div id="out" class="result" aria-live="polite" style="display:none">
+      <div><span class="verdict" id="verdict"></span></div>
+      <div class="small" id="details"></div>
+      <div class="small" id="costest" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <script>
+    function estimateLatency(userRtt, originRtt, cacheHit, proc){
+      // Simple model:
+      // Edge-hit latency ~= userRtt + proc*0.8
+      // Edge-miss latency ~= userRtt + originRtt + proc*1.1
+      // Estimated tail = weighted by cache hit
+      const edgeHit = userRtt + proc*0.8;
+      const edgeMiss = userRtt + originRtt + proc*1.1;
+      const hitFrac = Math.min(Math.max(cacheHit/100,0),1);
+      const est = hitFrac*edgeHit + (1-hitFrac)*edgeMiss;
+      return {est: Math.round(est), edgeHit: Math.round(edgeHit), edgeMiss: Math.round(edgeMiss)};
+    }
+
+    function costSketch(requestsPerMillion=1000, cacheHit=60){
+      // Very rough cost sketch per 1M requests
+      // Cloud: $0.50 per 100k requests + compute base
+      // Edge: $1.5 per 100k requests + lower origin egress when cache hits
+      const per100kCloud = 0.5; const per100kEdge = 1.5;
+      const cloud = (requestsPerMillion/100000)*per100kCloud;
+      const edge = (requestsPerMillion/100000)*per100kEdge;
+      const egressSaving = Math.max(0, cacheHit/100);
+      const edgeEffective = edge*(1-egressSaving) + cloud*egressSaving*0.3;
+      return {cloud: cloud.toFixed(2), edge: edge.toFixed(2), edgeEffective: edgeEffective.toFixed(2)};
+    }
+
+    document.getElementById('calc').addEventListener('click',()=>{
+      const user = Number(document.getElementById('rtt_user').value)||0;
+      const origin = Number(document.getElementById('rtt_origin').value)||0;
+      const cache = Number(document.getElementById('cache_hit').value)||0;
+      const proc = Number(document.getElementById('proc').value)||0;
+      const target = Number(document.getElementById('target').value)||0;
+
+      const {est, edgeHit, edgeMiss} = estimateLatency(user, origin, cache, proc);
+      const costs = costSketch(1000000, cache);
+
+      const out = document.getElementById('out');
+      out.style.display = 'block';
+      document.getElementById('details').innerText = `Estimated P95 ≈ ${est} ms (edge hit ${edgeHit} ms, edge miss ${edgeMiss} ms).`;
+      document.getElementById('costest').innerText = `Rough cost per 1M requests: Cloud ≈ $${costs.cloud}, Edge ≈ $${costs.edge} (effective ≈ $${costs.edgeEffective} with ${cache}% cache hits).`;
+
+      let verdict = '';
+      if(est <= 50) verdict = 'Recommendation: Edge-first (low latency)';
+      else if(est <= 150) verdict = 'Recommendation: Hybrid (edge for latency-sensitive, cloud for heavy compute)';
+      else verdict = 'Recommendation: Cloud-first (data gravity / batch workloads)';
+
+      // Add guidance about pilots
+      verdict += ' — Pilot a representative slice and measure P95/P99 and cost.';
+      document.getElementById('verdict').innerText = verdict;
+    });
+  </script>
+</body>
+</html>

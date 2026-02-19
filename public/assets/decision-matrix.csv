@@ -1,0 +1,11 @@
+Factor,Cloud,Edge,Hybrid,Guidance
+Latency,"Good for high-latency tolerant workloads","Best for sub-50ms user latency","Use edge for low-latency paths with cloud fallback","If P95 target <50ms → Edge; 50–150ms → Hybrid; >150ms → Cloud"
+Throughput,"Best with autoscaling","Good for localized high-throughput","Blend for bursty global workloads","If sustained high throughput & batch compute → Cloud"
+Data gravity,"Ideal for centralized datasets","Not ideal for heavy centralized data","Use hybrid with sync","If dataset >TBs & centralized → Cloud"
+Regulatory scope,"Easy to enforce via cloud regions","Edge may help local compliance","Hybrid supports regional controls","If strict local data residency required → Edge/Hybrid"
+Cost sensitivity,"Lower TCO for large batch compute","Higher per-request cost at scale","Balance cost via hybrid","If cost per 1M requests critical → model both"
+Ops maturity,"Requires cloud ops","Requires distributed ops","Requires orchestration","If limited ops → Cloud-managed services"
+Dev complexity,"Lower with managed services","Higher for distributed systems","Moderate","If team lacks distributed systems experience → Cloud"
+Observability,"Centralized tooling","Requires distributed tracing","Combine both","If debugging complexity high → prefer Cloud+strong observability"
+Fault tolerance,"Strong multi-region support","Depends on provider presence","Use cloud failover","If global availability required → Cloud + regional edge cache"
+Example scenario,"Batch ETL, heavy compute in central region","Real-time personalization at PoP","Low-latency storefront with heavy analytics in cloud","Choose based on latency vs data gravity trade-off"

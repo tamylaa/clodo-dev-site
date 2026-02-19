@@ -7,10 +7,19 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-N0Nc3Cl0d0'; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud vs Edge — Edge vs Cloud Computing: Key Differences & When to Use Each</title>
-    <link rel="canonical" href="https://www.clodo.dev/edge-vs-cloud-computing">
-    <meta name="description" content="Compare cloud vs edge (edge vs cloud) computing: performance, cost, security, and use cases. Learn when to choose cloud or edge for optimal application architecture and real-world tradeoffs.">
-    <meta name="keywords" content="cloud vs edge, edge computing, cloud computing, comparison, performance, latency, cost optimization, hybrid architecture, serverless, Clodo Framework">
+    <title>Cloud vs Edge Computing: Complete 2026 Comparison Guide</title>
+    <link rel="canonical" href="https://www.clodo.dev/edge-vs-cloud-computing">    <!-- Hreflang (page-level) -->
+    <link rel="alternate" hreflang="en" href="https://www.clodo.dev/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="ar-SA" href="https://www.clodo.dev/i18n/ar/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="pt-BR" href="https://www.clodo.dev/i18n/br/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="de-DE" href="https://www.clodo.dev/i18n/de/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="es-419" href="https://www.clodo.dev/i18n/es-419/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="fa-IR" href="https://www.clodo.dev/i18n/fa/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="he-IL" href="https://www.clodo.dev/i18n/he/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="en-IN" href="https://www.clodo.dev/i18n/in/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="it-IT" href="https://www.clodo.dev/i18n/it/edge-vs-cloud-computing">
+    <link rel="alternate" hreflang="x-default" href="https://www.clodo.dev/edge-vs-cloud-computing">    <meta name="description" content="Compare cloud vs edge computing performance, costs & use cases. Discover which approach fits your needs with our complete 2026 guide.">
+    <meta name="keywords" content="cloud vs edge, edge computing, cloud computing, comparison, latency, cost, migration playbook, hybrid architecture, Clodo Framework">
     <meta name="author" content="Clodo Framework">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="language" content="English">
@@ -24,15 +33,15 @@
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0b1220">
-    <meta property="og:title" content="Edge Computing vs Cloud Computing: Key Differences & When to Use Each">
-    <meta property="og:description" content="Compare edge computing vs cloud computing: performance, cost, security, and use cases. Learn when to choose edge over cloud for optimal application architecture.">
+<meta property="og:title" content="Cloud vs Edge — Practical Decision Framework & Migration Playbook">
+    <meta property="og:description" content="Practical frameworks and step-by-step playbook to decide & implement cloud, edge or hybrid architectures. Includes KPIs, TCO sketch, and migration checklist.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://clodo.dev/edge-vs-cloud-computing.html">
-    <meta property="og:image" content="https://clodo.dev/og-image.png">
+    <meta property="og:url" content="https://www.clodo.dev/edge-vs-cloud-computing">
+    <meta property="og:image" content="https://www.clodo.dev/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Edge Computing vs Cloud Computing: Key Differences & When to Use Each">
-    <meta name="twitter:description" content="Compare edge computing vs cloud computing: performance, cost, security, and use cases. Learn when to choose edge over cloud for optimal application architecture.">
-    <meta name="twitter:image" content="https://clodo.dev/og-image.png">
+    <meta name="twitter:title" content="Cloud vs Edge — Decision Framework & Migration Playbook">
+    <meta name="twitter:description" content="Actionable decision framework and migration playbook for choosing cloud, edge, or hybrid architectures—KPIs, cost sketch, and pilot plan included.">
+    <meta name="twitter:image" content="https://www.clodo.dev/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,6 +60,72 @@
       "item": "https://clodo.dev/edge-vs-cloud-computing"
     }
   ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What's the main difference between edge and cloud computing?", "acceptedAnswer": { "@type": "Answer", "text": "Edge processes data close to where it is generated to reduce latency and bandwidth; cloud centralizes processing in remote data centers for large-scale compute and storage." } },
+    { "@type": "Question", "name": "Can I use both edge and cloud computing together?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — a hybrid approach is common: use edge for low-latency or bandwidth-sensitive tasks and cloud for heavy analytics, storage, and coordination." } },
+    { "@type": "Question", "name": "Which is more secure: edge or cloud computing?", "acceptedAnswer": { "@type": "Answer", "text": "Both can be secure when properly implemented; edge reduces data in transit while cloud benefits from centralized compliance and mature security controls." } },
+    { "@type": "Question", "name": "Is edge computing more expensive than cloud computing?", "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily — edge can lower bandwidth and egress costs but may add operational complexity; cost depends on workload and deployment model." } },
+    { "@type": "Question", "name": "When should I choose edge computing over cloud?", "acceptedAnswer": { "@type": "Answer", "text": "Choose edge when you need sub-100ms latency, local data processing, bandwidth savings, or consistent global performance for users." } },
+    { "@type": "Question", "name": "How does Clodo Framework help with edge-cloud hybrid architectures?", "acceptedAnswer": { "@type": "Answer", "text": "Clodo provides unified tooling to deploy and route workloads across edge and cloud with data sync, smart routing, and performance tuning built in." } }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.clodo.dev/edge-vs-cloud-computing" },
+  "headline": "Cloud vs Edge — Practical Decision Framework, Costs & Migration Playbook",
+  "description": "Practical decision framework with KPIs, migration playbook, TCO sketch, and case studies to help architects choose and implement cloud, edge, or hybrid solutions.",
+  "author": { "@type": "Person", "name": "Clodo Editorial Team", "url": "https://www.clodo.dev/about" },
+  "publisher": { "@type": "Organization", "name": "Clodo Framework", "url": "https://www.clodo.dev", "logo": { "@type": "ImageObject", "url": "https://www.clodo.dev/icons/icon.svg" } },
+  "datePublished": "2026-02-18",
+  "dateModified": "2026-02-18",
+  "image": { "@type": "ImageObject", "url": "https://www.clodo.dev/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.png", "width": 1200, "height": 630 },
+  "keywords": "cloud vs edge, edge computing, hybrid architecture, latency",
+  "timeRequired": "PT8M",
+  "citation": ["https://www.cloudflare.com/case-studies/shopify/"],
+  "hasPart": [
+    {
+      "@type": "Article",
+      "headline": "Retail storefront (anonymized) — pilot results",
+      "articleSection": "Case Study",
+      "description": "P95 latency −62%, conversion +7%, origin egress −28% (3-month pilot)",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.clodo.dev/edge-vs-cloud-computing#retail-pilot" }
+    },
+    {
+      "@type": "Article",
+      "headline": "IoT telemetry (anonymized) — pilot results",
+      "articleSection": "Case Study",
+      "description": "Edge filtering: egress −82%, downstream storage −70%",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.clodo.dev/edge-vs-cloud-computing#iot-pilot" }
+    },
+    {
+      "@type": "HowTo",
+      "headline": "Migration playbook — 6 steps",
+      "articleSection": "HowTo",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.clodo.dev/edge-vs-cloud-computing#migration-playbook" }
+    }
+  ],
+  "potentialAction": {
+    "@type": "ViewAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.clodo.dev/demo/",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    }
+  }
 }
 </script>
 </head>
@@ -76,12 +151,29 @@
         <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Edge Computing vs Cloud Computing</h1>
+                    <h1>Cloud vs Edge — Practical Decision Framework</h1>
+                    <div class="byline" style="color:#64748b;font-size:0.95rem;margin-top:8px">
+                      <span>By <a href="/about" style="color:inherit;text-decoration:underline">Clodo Editorial Team</a></span>
+                      <span style="margin:0 8px">•</span>
+                      <time datetime="2026-02-18">Feb 18, 2026</time>
+                      <span style="margin:0 8px">•</span>
+                      <span>8 min read</span>
+                    </div>
                     <h2 class="subheading">Cloud vs Edge: quick summary</h2>
-                    <p>Understanding the fundamental differences between edge and cloud computing to make informed architectural decisions for your applications. This page focuses on the practical tradeoffs in the cloud vs edge decision so you can choose correctly for latency, cost, privacy and scale.</p>
+                    <p>Understanding the fundamental differences between edge and cloud computing to make informed architectural decisions for your applications. This page focuses on practical tradeoffs and gives you a step-by-step playbook to decide and implement cloud, edge, or hybrid solutions.</p>
+
+                    <figure class="hero-figure" style="margin:18px 0;max-width:960px;">
+                      <picture>
+                        <source type="image/webp" srcset="/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400.webp 2400w, /images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600.webp 1600w, /images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.webp 1200w" sizes="(min-width: 1200px) 960px, 100vw">
+                        <img src="/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.png" alt="Cloud vs Edge decision overview" style="width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(2,6,23,0.08)" loading="lazy">
+                      </picture>
+                      <figcaption class="small">A practical decision framework to choose Cloud, Edge, or Hybrid.</figcaption>
+                    </figure>
+
                     <div class="hero-actions">
                         <a href="/edge-computing-guide" class="btn btn--primary">Edge Computing Guide</a>
                         <a href="/what-is-edge-computing" class="btn btn--secondary">What is Edge Computing?</a>
+                        <a href="/services/consulting" class="btn btn--secondary" style="margin-left:8px">Get a migration playbook</a>
                     </div>
                 </div>
             </div>
@@ -387,6 +479,17 @@ export default {
 
                         <h2 id="decision-framework">Making the Choice: Decision Framework</h2>
                         <div class="decision-framework">
+                            <!-- Inline decision flowchart + CSV download -->
+                            <figure style="margin:18px 0;">
+                                <img src="/assets/decision-flowchart.svg" alt="Decision flowchart: cloud vs edge" style="max-width:100%;height:auto;border:1px solid #e6eef8;padding:8px;border-radius:6px;" />
+                                <figcaption class="small" style="margin-top:8px;">Use this quick decision flowchart to pick Cloud / Edge / Hybrid. <a href="/assets/decision-matrix.csv">Download decision matrix (CSV)</a>.</figcaption>
+                            </figure>
+
+                            <!-- Link to interactive latency calculator -->
+                            <div style="margin-bottom:16px">
+                                <a class="btn btn--secondary" href="/assets/latency-calculator.html" target="_blank" rel="noopener">Open latency & recommendation calculator</a>
+                                <span class="small" style="margin-left:8px;color:#64748b">(opens in a new tab)</span>
+                            </div>
                             <div class="decision-factor">
                                 <h4>Latency Requirements</h4>
                                 <p>If your application needs &lt;100ms response times, edge computing is likely the better choice.</p>
@@ -416,10 +519,150 @@ export default {
                                 <h4>Development Resources</h4>
                                 <p>Cloud has more mature tooling; edge requires specialized knowledge but offers better performance.</p>
                             </div>
+
+                            <!-- Decision matrix (HTML) -->
+                            <div style="margin-top:18px;">
+                              <h3>Decision matrix — quick reference</h3>
+                              <div style="overflow:auto;border:1px solid #e6eef8;padding:12px;border-radius:8px;background:#fcfdff">
+                                <table class="comparison-table" style="width:100%;border-collapse:collapse">
+                                  <thead>
+                                    <tr style="background:#f1f5f9;text-align:left">
+                                      <th style="padding:8px;border-bottom:1px solid #e6eef8">Factor</th>
+                                      <th style="padding:8px;border-bottom:1px solid #e6eef8">Cloud</th>
+                                      <th style="padding:8px;border-bottom:1px solid #e6eef8">Edge</th>
+                                      <th style="padding:8px;border-bottom:1px solid #e6eef8">Hybrid</th>
+                                      <th style="padding:8px;border-bottom:1px solid #e6eef8">Guidance</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding:8px;border-top:1px solid #fff">Latency</td>
+                                      <td style="padding:8px">Good for latency-tolerant workloads</td>
+                                      <td style="padding:8px">Best for sub-50ms user latency</td>
+                                      <td style="padding:8px">Edge for latency-sensitive paths; cloud for heavy compute</td>
+                                      <td style="padding:8px">If P95 &lt;50ms → Edge; 50–150ms → Hybrid; &gt;150ms → Cloud</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding:8px;border-top:1px solid #fff">Throughput</td>
+                                      <td style="padding:8px">Autoscale-friendly for sustained high throughput</td>
+                                      <td style="padding:8px">Good for localized bursts</td>
+                                      <td style="padding:8px">Use hybrid for bursty global traffic</td>
+                                      <td style="padding:8px">If sustained batch compute → Cloud</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding:8px;border-top:1px solid #fff">Data gravity</td>
+                                      <td style="padding:8px">Ideal for centralized datasets</td>
+                                      <td style="padding:8px">Not ideal for heavy central datasets</td>
+                                      <td style="padding:8px">Hybrid with sync to cloud</td>
+                                      <td style="padding:8px">If dataset &gt; TBs &amp; centralized → Cloud</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding:8px;border-top:1px solid #fff">Regulatory scope</td>
+                                      <td style="padding:8px">Easier via cloud regions</td>
+                                      <td style="padding:8px">Edge can meet local residency needs</td>
+                                      <td style="padding:8px">Hybrid supports regional controls</td>
+                                      <td style="padding:8px">If strict local residency required → Edge/Hybrid</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding:8px;border-top:1px solid #fff">Cost sensitivity</td>
+                                      <td style="padding:8px">Lower TCO for large centralized compute</td>
+                                      <td style="padding:8px">Higher per-request cost at scale</td>
+                                      <td style="padding:8px">Balance cost with hybrid routing</td>
+                                      <td style="padding:8px">Model both; pilot to validate TCO</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="small" style="margin-top:8px">Download full decision matrix: <a href="/assets/decision-matrix.csv">CSV</a></div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Migration playbook — 6 steps",
+  "description": "A practical 6-step migration playbook to pilot and deploy edge/cloud hybrid workloads.",
+  "totalTime": "P4W",
+  "supply": [
+    {"@type":"HowToSupply","name":"Representative traffic for pilot"},
+    {"@type":"HowToSupply","name":"Observability dashboard"},
+    {"@type":"HowToSupply","name":"Feature flags / canary tooling"}
+  ],
+  "tool": [
+    {"@type":"HowToTool","name":"Clodo Framework"},
+    {"@type":"HowToTool","name":"Monitoring/Tracing (e.g., Datadog)"},
+    {"@type":"HowToTool","name":"Load generator (k6, wrk)"}
+  ],
+  "step": [
+    {"@type":"HowToStep","position":1,"name":"Assess","text":"Map latency targets, data gravity, regulatory constraints, and cost sensitivity.","timeRequired":"PT8H"},
+    {"@type":"HowToStep","position":2,"name":"Prototype","text":"Build a narrow-edge pilot for the most latency-sensitive path.","timeRequired":"PT40H"},
+    {"@type":"HowToStep","position":3,"name":"Evaluate","text":"Compare P95/P99, error rates, and cost vs cloud baseline.","timeRequired":"PT16H"},
+    {"@type":"HowToStep","position":4,"name":"Pilot","text":"Run a 2–4 week A/B test with representative traffic.","timeRequired":"P2W"},
+    {"@type":"HowToStep","position":5,"name":"Migrate","text":"Roll out phased migration with feature flags, blue/green or canary deploys.","timeRequired":"PT40H"},
+    {"@type":"HowToStep","position":6,"name":"Operate","text":"Add distributed tracing, edge-aware observability, and runbook for incident response.","timeRequired":"PT16H"}
+  ],
+  "mainEntityOfPage": {"@type":"WebPage","@id":"https://www.clodo.dev/edge-vs-cloud-computing#migration-playbook"}
+}
+</script>
+                              <h3 id="migration-playbook" style="margin-top:16px">Migration playbook — 6 steps</h3>
+                              <ol>
+                                <li><strong>Assess:</strong> Map latency targets, data gravity, regulatory constraints, and cost sensitivity. Deliverables: latency map, data residency matrix, cost model.</li>
+                                <li><strong>Prototype:</strong> Build a narrow-edge pilot for the most latency-sensitive path. Deliverables: pilot app, observability dashboard, baseline metrics.</li>
+                                <li><strong>Evaluate:</strong> Compare P95/P99, error rates, and cost vs cloud baseline. Iterate on caching & routing rules.</li>
+                                <li><strong>Pilot:</strong> Run a 2–4 week A/B test with representative traffic. Success metrics: P95 reduction, error-rate parity, acceptable TCO.</li>
+                                <li><strong>Migrate:</strong> Roll out phased migration with feature flags, blue/green or canary deploys, and automated rollback plans.</li>
+                                <li><strong>Operate:</strong> Add distributed tracing, edge-aware observability, and runbook for incident response.</li>
+                              </ol>
+
+                              <h3 style="margin-top:16px">KPIs &amp; pilot plan</h3>
+                              <ul>
+                                <li>P95 / P99 latency (target: reduce P95 by ≥40% for latency-sensitive flows)</li>
+                                <li>Request success rate &gt;99.9%</li>
+                                <li>Cost per 1M requests (track edge vs cloud delta)</li>
+                                <li>Deployment frequency / Mean time to rollback</li>
+                                <li>Business metric: conversion uplift or task completion time</li>
+                                <li>Run a 2-week A/B test with statistical significance on the primary business KPI</li>
+                              </ul>
+
+                              <h3 style="margin-top:16px">Short (anonymized) case studies</h3>
+                              <div class="case-study" style="border-left:4px solid #e6f2ff;padding:12px;margin-top:8px;background:#fbfeff;border-radius:6px">
+                                <strong>Retail storefront (anonymized)</strong>
+                                <p>Problem: global storefront with 200ms tail latency in key markets. Result after edge pilot: P95 latency ↓ 62%, page conversion ↑ 7%, origin egress cost ↓ 28% over 3 months.</p>
+                              </div>
+
+                              <div class="case-study" style="border-left:4px solid #fff4e6;padding:12px;margin-top:8px;background:#fffbf6;border-radius:6px">
+                                <strong>IoT telemetry (anonymized)</strong>
+                                <p>Problem: high-volume sensor telemetry generating large egress. Result using edge filtering + aggregation: egress ↓ 82%, downstream cloud storage costs ↓ 70%, data pipeline latency improved.</p>
+                              </div>
+
+                              <!-- Expert perspectives & further reading (vendor / OSS / community) -->
+                              <section id="expert-perspectives" style="margin-top:18px;padding:12px;border-radius:8px;background:#fff;border:1px solid #eef2ff">
+                                <h4 style="margin:0 0 8px">Expert perspectives & further reading</h4>
+                                <p class="small" style="margin:0 0 12px;color:#475569">Curated vendor docs, OSS signals, and practitioner commentary to validate the claims above and help you design a pilot.</p>
+
+                                <ul style="margin:0 0 12px;line-height:1.5">
+                                  <li><strong>Vendors:</strong> Vercel documents <a href="https://vercel.com/docs/concepts/functions/edge-functions" target="_blank" rel="noopener">Edge Functions & Fluid Compute</a> (reduces cold starts; improves concurrency for I/O-bound flows).</li>
+                                  <li><strong>Platform guides:</strong> Netlify's <a href="https://docs.netlify.com/edge-handlers/overview/" target="_blank" rel="noopener">Edge Functions</a> and Fastly's <a href="https://www.fastly.com/documentation/guides/compute" target="_blank" rel="noopener">Compute</a> docs list common edge patterns (localization, A/B testing, filtering, KV/config stores).</li>
+                                  <li><strong>OSS / tooling:</strong> Cloudflare's Wrangler repo shows tooling maturity and migration patterns (see <a href="https://github.com/cloudflare/wrangler-legacy" target="_blank" rel="noopener">Wrangler (legacy)</a> and linked SDKs).</li>
+                                  <li><strong>Practitioners:</strong> community discussion on <a href="https://www.reddit.com/r/cloudcomputing/comments/19ebrsu/whats_the_difference_between_edge_computing_and/" target="_blank" rel="noopener">Reddit</a> highlights the pragmatic rule—edge for latency/bandwidth/privacy; cloud for centralized analytics and heavy compute.</li>
+                                </ul>
+
+                                <div class="small" style="color:#475569">Recommended reading (inspect before piloting):
+                                  <ul style="margin:6px 0 0 18px">
+                                    <li><a href="https://vercel.com/docs/concepts/functions/edge-functions" target="_blank" rel="noopener">Vercel — Edge Functions</a></li>
+                                    <li><a href="https://docs.netlify.com/edge-handlers/overview/" target="_blank" rel="noopener">Netlify — Edge Functions overview</a></li>
+                                    <li><a href="https://www.fastly.com/documentation/guides/compute" target="_blank" rel="noopener">Fastly — Compute guides</a></li>
+                                    <li><a href="https://www.cloudflare.com/case-studies/shopify/" target="_blank" rel="noopener">Cloudflare — Shopify case study</a></li>
+                                    <li><a href="https://github.com/cloudflare/wrangler-legacy" target="_blank" rel="noopener">GitHub — Wrangler (legacy)</a></li>
+                                    <li><a href="https://www.reddit.com/r/cloudcomputing/comments/19ebrsu/whats_the_difference_between_edge_computing_and/" target="_blank" rel="noopener">Reddit — practitioner thread</a></li>
+                                  </ul>
+                                </div>
+                              </section>
+
+                            </div>
                         </div>
 
                         <h2 id="clodo-implementation">Implementation with Clodo Framework</h2>
-                        <p>Clodo Framework makes it easy to implement hybrid edge-cloud architectures. You can deploy the same application logic across edge and cloud environments with minimal code changes. <a href="/workers-vs-lambda">Compare with other serverless platforms</a> to understand the full spectrum of options.</p>
+                        <p>Clodo Framework accelerates hybrid edge-cloud deployments — deploy the same application logic across edge and cloud with minimal code changes. Need a tailored migration plan? Request a bespoke playbook from our <a href="/services/consulting">consulting team</a>. <a href="/workers-vs-lambda">Compare with other serverless platforms</a> to understand the full spectrum of options.</p>
 
                         <div class="implementation-benefits">
                             <div class="benefit">
@@ -442,8 +685,11 @@ export default {
 
                         <div class="cta-section">
                             <h3>Ready to Choose the Right Architecture?</h3>
-                            <p>Learn more about edge computing fundamentals and how Clodo Framework can help you build the perfect hybrid solution.</p>
-                            <a href="/edge-computing-guide" class="btn btn--primary">Explore Edge Computing</a>
+                            <p>Learn more about edge computing fundamentals and how Clodo Framework can help you build the perfect hybrid solution. Book a product demo or request a tailored migration playbook — fast pilot paths available.</p>
+                            <a href="/demo" class="btn btn--primary">Request product demo</a>
+                            <a href="/edge-computing-guide" class="btn btn--primary" style="margin-left:8px">Explore Edge Computing</a>
+                            <a href="/services/consulting" class="btn btn--secondary" style="margin-left:8px">Get a bespoke migration playbook</a>
+                            <div class="small" style="margin-top:8px"><a href="/assets/decision-matrix.csv">Download the decision matrix (CSV)</a> • <a href="/demo">Run the live demo</a></div>
                         </div>
 
                         <h2 id="faq">Frequently Asked Questions</h2>
@@ -502,6 +748,9 @@ export default {
                         <div class="sidebar-section">
                             <h3>Resources</h3>
                             <ul>
+                                <li><a href="/blog/enterprise-software-guide">Enterprise software architecture patterns</a></li>
+                                <li><a href="/resources/case-studies">Real-world implementation examples</a></li>
+                                <li><a href="/services/consulting">Consulting & migration playbooks</a></li>
                                 <li><a href="/docs">Clodo Documentation</a></li>
                                 <li><a href="/examples">Edge Examples</a></li>
                                 <li><a href="https://www.cloudflare.com/learning/serverless/what-is-edge-computing/" target="_blank">Cloudflare Learning</a></li>

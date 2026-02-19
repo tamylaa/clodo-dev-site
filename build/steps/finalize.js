@@ -8,15 +8,37 @@ import { resolvePageConfig } from '../utils/page-config.js';
 export function generateBuildInfo() {
     console.log('📊 Generating build info...');
     const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
-    writeFileSync(
-        join('dist', 'build-info.json'),
-        JSON.stringify({
-            buildTime: new Date().toISOString(),
-            version: packageJson.version,
-            commit: process.env.GITHUB_SHA || 'local-build',
-        }, null, 2),
-        'utf8'
-    );
+
+    // count pages in dist that contain JSON-LD / schema (simple heuristic)
+    const distRoot = 'dist';
+    let schemaCount = 0;
+    const traverseAndCount = (dir) => {
+        if (!existsSync(dir)) return;
+        const items = fs.readdirSync(dir);
+        for (const it of items) {
+            const full = join(dir, it);
+            if (fs.statSync(full).isDirectory()) {
+                traverseAndCount(full);
+            } else if (it.endsWith('.html')) {
+                const c = readFileSync(full, 'utf8');
+                if (/type=["']application\/ld\+json["']|"@type"\s*:/i.test(c)) schemaCount++;
+            }
+        }
+    };
+    traverseAndCount(distRoot);
+
+    const info = {
+        // keep backward-compatible key for scripts that read buildTime
+        buildTime: new Date().toISOString(),
+        // prefer `timestamp` for validation checks
+        timestamp: new Date().toISOString(),
+        version: packageJson.version,
+        commit: process.env.GITHUB_SHA || 'local-build',
+        schemaCount
+    };
+
+    writeFileSync(join('dist', 'build-info.json'), JSON.stringify(info, null, 2), 'utf8');
+    console.log(`✅ Wrote dist/build-info.json (schemaCount=${schemaCount})`);
 }
 
 /**
