@@ -1,7 +1,7 @@
 /**
  * Build-info generation and post-build SEO verification.
  */
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 import { resolvePageConfig } from '../utils/page-config.js';
 
@@ -14,10 +14,10 @@ export function generateBuildInfo() {
     let schemaCount = 0;
     const traverseAndCount = (dir) => {
         if (!existsSync(dir)) return;
-        const items = fs.readdirSync(dir);
+        const items = readdirSync(dir);
         for (const it of items) {
             const full = join(dir, it);
-            if (fs.statSync(full).isDirectory()) {
+            if (statSync(full).isDirectory()) {
                 traverseAndCount(full);
             } else if (it.endsWith('.html')) {
                 const c = readFileSync(full, 'utf8');
