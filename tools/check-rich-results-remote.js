@@ -15,7 +15,7 @@ const url = process.argv[2] || 'https://www.clodo.dev/edge-vs-cloud-computing';
     if (!res.ok) { console.error('ERROR: HTTP', res.status); process.exit(2); }
     const html = await res.text();
 
-    const rx = /<script[^>]*type=['\"]application\/ld\+json['\"][^>]*>([\s\S]*?)<\/script>/gi;
+    const rx = /<script[^>]*type=['"]application\/ld\+json['"][^>]*>([\s\S]*?)<\/script>/gi;
     let m; const schemas = [];
     while ((m = rx.exec(html)) !== null) {
       const txt = m[1].trim();
