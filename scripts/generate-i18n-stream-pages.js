@@ -1,0 +1,190 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const pages = {
+  ar: {
+    lang: 'ar', dir: 'rtl',
+    title: 'Cloudflare Stream في 2026: الدليل الكامل للمطورين — حالات استخدام حقيقية وقيود وأنماط إنتاج',
+    desc: 'الدليل الصادق للمطورين حول Cloudflare Stream في 2026. القيود الحقيقية في الإنتاج (لا DRM، H.264 فقط، 1080p كحد أقصى)، مفاجآت التسعير، موثوقية البث المباشر، وكيفية بناء تطبيقات الفيديو باستخدام إطار عمل Clodo.',
+    h1: 'Cloudflare Stream: الدليل الكامل للمطورين لتطبيقات الفيديو الإنتاجية',
+    body: 'الدليل الصادق للمطورين حول Cloudflare Stream في 2026. القيود الحقيقية في الإنتاج (H.264 فقط، لا DRM، 1080p كحد أقصى)، مفاجآت التسعير، وكيفية بناء تطبيقات الفيديو الإنتاجية باستخدام إطار عمل Clodo على Cloudflare Workers. دليل البنية التحتية للفيديو على الحافة.',
+    rtlCss: true
+  },
+  br: {
+    lang: 'pt-BR', dir: 'ltr',
+    title: 'Cloudflare Stream em 2026: O Guia Completo para Desenvolvedores — Casos Reais, Limitações e Padrões de Produção',
+    desc: 'O guia honesto para desenvolvedores sobre o Cloudflare Stream em 2026. Limitações reais de produção (sem DRM, apenas H.264, máximo 1080p), surpresas de preços, confiabilidade de streaming ao vivo e como criar apps de vídeo com o Clodo Framework.',
+    h1: 'Cloudflare Stream: O Guia Completo para Aplicações de Vídeo em Produção',
+    body: 'O guia honesto para desenvolvedores sobre o Cloudflare Stream em 2026. Limitações reais de produção (apenas H.264, sem DRM, máximo 1080p), surpresas nos preços e como construir aplicações profissionais de vídeo com o Clodo Framework no Cloudflare Workers.'
+  },
+  de: {
+    lang: 'de', dir: 'ltr',
+    title: 'Cloudflare Stream 2026: Der vollständige Entwicklerleitfaden — Praxisfälle, Einschränkungen & Produktionsmuster',
+    desc: 'Der ehrliche Entwicklerleitfaden zu Cloudflare Stream in 2026. Echte Produktionseinschränkungen (kein DRM, nur H.264, max. 1080p), Preisüberraschungen, Live-Streaming-Zuverlässigkeit und Video-Apps mit dem Clodo Framework.',
+    h1: 'Cloudflare Stream: Der komplette Entwicklerleitfaden für Produktions-Video-Apps',
+    body: 'Der ehrliche Entwicklerleitfaden zu Cloudflare Stream im Jahr 2026. Echte Produktionseinschränkungen (nur H.264, kein DRM, max. 1080p), Preisüberraschungen und wie Sie Produktions-Video-Apps mit dem Clodo Framework auf Cloudflare Workers erstellen.'
+  },
+  'es-419': {
+    lang: 'es-419', dir: 'ltr',
+    title: 'Cloudflare Stream en 2026: La Guía Completa para Desarrolladores — Casos Reales, Limitaciones y Patrones de Producción',
+    desc: 'La guía honesta para desarrolladores sobre Cloudflare Stream en 2026. Limitaciones reales de producción (sin DRM, solo H.264, máximo 1080p), sorpresas de precios, confiabilidad de streaming en vivo y cómo crear apps de video con Clodo Framework.',
+    h1: 'Cloudflare Stream: La Guía Completa para Aplicaciones de Video en Producción',
+    body: 'La guía honesta para desarrolladores sobre Cloudflare Stream en 2026. Limitaciones reales de producción (solo H.264, sin DRM, máximo 1080p), sorpresas de precios y cómo construir aplicaciones de video de producción con el Clodo Framework en Cloudflare Workers.'
+  },
+  fa: {
+    lang: 'fa', dir: 'rtl',
+    title: 'Cloudflare Stream در سال ۲۰۲۶: راهنمای کامل توسعه‌دهندگان — موارد استفاده واقعی، محدودیت‌ها و الگوهای تولید',
+    desc: 'راهنمای صادقانه توسعه‌دهندگان برای Cloudflare Stream در سال ۲۰۲۶. محدودیت‌های واقعی تولید (بدون DRM، فقط H.264، حداکثر 1080p)، شگفتی‌های قیمت‌گذاری، قابلیت اطمینان پخش زنده و نحوه ساخت اپلیکیشن‌های ویدیویی با فریمورک Clodo.',
+    h1: 'Cloudflare Stream: راهنمای کامل توسعه‌دهندگان برای اپلیکیشن‌های ویدیویی تولیدی',
+    body: 'راهنمای صادقانه توسعه‌دهندگان برای Cloudflare Stream در سال ۲۰۲۶. محدودیت‌های واقعی تولید (فقط H.264، بدون DRM، حداکثر 1080p)، شگفتی‌های قیمت‌گذاری و نحوه ساخت اپلیکیشن‌های ویدیویی تولیدی با فریمورک Clodo روی Cloudflare Workers.',
+    rtlCss: true
+  },
+  he: {
+    lang: 'he', dir: 'rtl',
+    title: 'Cloudflare Stream ב-2026: המדריך המלא למפתחים — מקרי שימוש אמיתיים, מגבלות ודפוסי ייצור',
+    desc: 'המדריך הכנה למפתחים על Cloudflare Stream ב-2026. מגבלות ייצור אמיתיות (ללא DRM, רק H.264, מקסימום 1080p), הפתעות תמחור, אמינות סטרימינג חי ואיך לבנות אפליקציות וידאו עם Clodo Framework.',
+    h1: 'Cloudflare Stream: המדריך המלא למפתחים לאפליקציות וידאו בייצור',
+    body: 'המדריך הכנה למפתחים על Cloudflare Stream ב-2026. מגבלות ייצור אמיתיות (רק H.264, ללא DRM, מקסימום 1080p), הפתעות תמחור ואיך לבנות אפליקציות וידאו בייצור עם Clodo Framework על Cloudflare Workers.',
+    rtlCss: true
+  },
+  in: {
+    lang: 'id', dir: 'ltr',
+    title: 'Cloudflare Stream di 2026: Panduan Lengkap Developer — Kasus Nyata, Batasan & Pola Produksi',
+    desc: 'Panduan jujur developer untuk Cloudflare Stream di 2026. Batasan produksi nyata (tanpa DRM, hanya H.264, maksimal 1080p), kejutan harga, keandalan live streaming, dan cara membangun aplikasi video dengan Clodo Framework.',
+    h1: 'Cloudflare Stream: Panduan Lengkap Developer untuk Aplikasi Video Produksi',
+    body: 'Panduan jujur developer untuk Cloudflare Stream di 2026. Batasan produksi nyata (hanya H.264, tanpa DRM, maksimal 1080p), kejutan harga, dan cara membangun aplikasi video produksi dengan Clodo Framework di Cloudflare Workers.'
+  },
+  it: {
+    lang: 'it', dir: 'ltr',
+    title: 'Cloudflare Stream nel 2026: La Guida Completa per Sviluppatori — Casi Reali, Limitazioni e Pattern di Produzione',
+    desc: "La guida onesta per sviluppatori su Cloudflare Stream nel 2026. Limitazioni reali di produzione (niente DRM, solo H.264, massimo 1080p), sorprese sui prezzi, affidabilità dello streaming live e come costruire app video con il Clodo Framework.",
+    h1: 'Cloudflare Stream: La Guida Completa per Applicazioni Video in Produzione',
+    body: 'La guida onesta per sviluppatori su Cloudflare Stream nel 2026. Limitazioni reali di produzione (solo H.264, niente DRM, massimo 1080p), sorprese sui prezzi e come costruire applicazioni video di produzione con il Clodo Framework su Cloudflare Workers.'
+  }
+};
+
+const slug = 'cloudflare-stream-complete-guide';
+
+// Navbar HTML (same structure as reference i18n pages)
+const navHtml = `<nav class="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="/" class="logo" aria-label="Clodo Framework home">
+            <svg class="logo-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 256 256">
+                <defs>
+                    <linearGradient id="main-logo-g" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1d4ed8"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                </defs>
+                <rect width="256" height="256" rx="48" fill="#0b1220"/>
+                <path d="M144 16l-80 128h56l-8 96 80-128h-56l8-96z" fill="url(#main-logo-g)"/>
+            </svg>
+            <span class="logo-text">Clodo</span>
+        </a>
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle touch-target" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="hamburger">
+                <span class="hamburger__line hamburger__line--top"></span>
+                <span class="hamburger__line hamburger__line--middle"></span>
+                <span class="hamburger__line hamburger__line--bottom"></span>
+            </span>
+        </button>
+        <ul class="nav-menu" id="mobile-menu" data-visible="false" role="menu" aria-label="Main navigation">
+            <li role="none"><a href="/" class="nav-link touch-target" role="menuitem">Home</a></li>
+            <li class="nav-dropdown" role="none">
+                <a href="/product" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Product</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/product" class="nav-dropdown-link touch-target" role="menuitem">Overview</a></li>
+                    <li role="none"><a href="/migrate" class="nav-dropdown-link touch-target" role="menuitem">Migrate</a></li>
+                    <li role="none"><a href="/community/welcome" class="nav-dropdown-link touch-target" role="menuitem">Community</a></li>
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    <li class="nav-dropdown-section"><span class="nav-dropdown-link nav-dropdown-section-title"><strong>⚖️ Comparisons</strong></span></li>
+                    <li role="none"><a href="/edge-vs-cloud-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge vs Cloud Computing</a></li>
+                    <li role="none"><a href="/workers-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers vs Lambda</a></li>
+                    <li role="none"><a href="/clodo-vs-lambda" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Clodo vs AWS Lambda</a></li>
+                    <li role="none"><a href="/what-is-cloudflare-workers" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Cloudflare Workers</a></li>
+                    <li role="none"><a href="/what-is-edge-computing" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">What is Edge Computing</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown" role="none">
+                <a href="#" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">Learn</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li class="nav-dropdown-section"><a href="/docs" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem"><strong>📚 Documentation</strong></a></li>
+                    <li role="none"><a href="/docs" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Getting Started</a></li>
+                    <li role="none"><a href="/components" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Components</a></li>
+                    <li role="none"><a href="/development-deployment-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Development &amp; Deployment</a></li>
+                    <li role="none"><a href="/clodo-framework-api-simplification" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">API Simplification</a></li>
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    <li class="nav-dropdown-section"><span class="nav-dropdown-link nav-dropdown-section-title"><strong>🚀 Guides</strong></span></li>
+                    <li role="none"><a href="/cloudflare-workers-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Workers Guide</a></li>
+                    <li role="none"><a href="/edge-computing-guide" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Edge Computing Guide</a></li>
+                    <li role="none"><a href="/cloudflare-framework" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Cloudflare Framework Guide</a></li>
+                    <li role="none"><a href="/workers-boilerplate" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Workers Boilerplates</a></li>
+                    <li role="none"><a href="/how-to-migrate-from-wrangler" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Migration Guide</a></li>
+                    <li class="nav-dropdown-divider" role="separator"></li>
+                    <li class="nav-dropdown-section"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-section-title touch-target" role="menuitem"><strong>📈 Case Studies</strong></a></li>
+                    <li role="none"><a href="/case-studies" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Real-world Implementations</a></li>
+                    <li role="none"><a href="/saas-product-startups-cloudflare-case-studies" class="nav-dropdown-link nav-dropdown-subitem touch-target" role="menuitem">Companies Using Cloudflare</a></li>
+                </ul>
+            </li>
+            <li role="none"><a href="/blog" class="nav-link touch-target" role="menuitem">Blog</a></li>
+            <li role="none"><a href="/pricing" class="nav-link touch-target" role="menuitem">Pricing</a></li>
+            <li class="nav-dropdown" role="none">
+                <a href="/about" class="nav-link nav-dropdown-toggle touch-target" aria-haspopup="true" aria-expanded="false" role="menuitem">About</a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a href="/about" class="nav-dropdown-link touch-target" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="/privacy" class="nav-dropdown-link touch-target" role="menuitem">Privacy Policy</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle touch-target" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <a href="https://github.com/tamylaa/clodo-framework" class="github-btn touch-target" target="_blank" rel="noopener" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span id="star-count" aria-label="GitHub stars">0</span>
+            </a>
+        </div>
+    </div>
+    <script src="/js/ui/nav-fallback.js"></script>
+</nav>`;
+
+for (const [locale, p] of Object.entries(pages)) {
+  const dir = path.join(__dirname, '..', 'public', 'i18n', locale);
+  fs.mkdirSync(dir, { recursive: true });
+  
+  const rtlLink = p.rtlCss ? '\n  <link rel="stylesheet" href="/css/rtl.css">' : '';
+  const dirAttr = p.dir === 'rtl' ? ' dir="rtl"' : '';
+  
+  const html = `<!doctype html>
+<html lang="${p.lang}"${dirAttr}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>${p.title}</title>
+  <meta name="description" content="${p.desc}">
+  <link rel="canonical" href="https://www.clodo.dev/i18n/${locale}/${slug}">${rtlLink}
+</head>
+<body>
+${navHtml}
+
+  <div style="padding:1rem; background:#f3f4f6; border-left:4px solid #7c3aed;">
+    <strong>Localized page</strong> — ${locale}
+  </div>
+  <main>
+    <h1>${p.h1}</h1>
+    <p>${p.body}</p>
+    <p><a href="/">Home</a></p>
+  </main>
+</body>
+</html>`;
+  
+  fs.writeFileSync(path.join(dir, slug + '.html'), html);
+  console.log(`Created: i18n/${locale}/${slug}.html`);
+}
+
+console.log('\nAll 8 i18n pages created.');

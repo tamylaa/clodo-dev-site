@@ -1,32 +1,48 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "10 Companies Using Cloudflare: Real Case Studies 2026",
+  "headline": "10 Companies Using Cloudflare: Real Case Studies & Performance Data 2026",
   "url": "https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs",
-  "generatedBy": "skeleton-enricher.js",
-  "generated": true,
   "description": "See how Discord (85% edge), Shopify (100% Workers), GitHub (95% CDN) and 7 other companies use Cloudflare. Real metrics, architecture patterns, and enterprise implementation strategies from 2026 research.",
   "author": {
-    "@type": "Person",
-    "name": "Clodo Framework"
+    "@type": "Organization",
+    "name": "Clodo Framework",
+    "url": "https://www.clodo.dev"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clodo Framework",
+    "url": "https://www.clodo.dev",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.clodo.dev/icons/icon-192x192.png"
+    }
   },
   "datePublished": "2026-01-04T00:00:00.000Z",
-  "dateModified": "2026-01-05T00:00:00.000Z",
+  "dateModified": "2026-03-03T00:00:00.000Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs"
+  },
   "image": {
     "@type": "ImageObject",
-    "url": "https://clodo.dev/og-image-saas-research.png"
+    "url": "https://www.clodo.dev/images/seo/optimized/hero-cloudflare-collab-1200x630.png",
+    "width": 1200,
+    "height": 630
   },
-  "wordCount": 2542,
-  "readingTime": "13 min",
-  "enriched": true,
+  "inLanguage": "en",
+  "wordCount": 4500,
   "keywords": [
-    "Cloudflare Workers",
-    "Cloudflare",
-    "Companies",
-    "Real",
-    "Workers",
-    "Case",
-    "Studies",
-    "Clodo Framework"
+    "companies using cloudflare",
+    "cloudflare case studies",
+    "discord cloudflare",
+    "shopify cloudflare workers",
+    "github cloudflare",
+    "cloudflare customers",
+    "cloudflare adoption",
+    "edge computing examples",
+    "cloudflare implementation",
+    "cloudflare enterprise",
+    "cloudflare vs aws"
   ]
 }

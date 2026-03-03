@@ -7,10 +7,10 @@ import { getCapabilityManifest } from '../../src/capabilities/manifest.mjs';
 import { createMockEnv } from '../setup.mjs';
 
 describe('Capability Manifest', () => {
-  it('returns all 14 capabilities', () => {
+  it('returns all 15 capabilities', () => {
     const manifest = getCapabilityManifest(createMockEnv());
 
-    expect(manifest.capabilities).toHaveLength(14);
+    expect(manifest.capabilities).toHaveLength(15);
     expect(manifest.engine).toBe('ai-engine');
     expect(manifest.version).toBe('3.0.0');
   });

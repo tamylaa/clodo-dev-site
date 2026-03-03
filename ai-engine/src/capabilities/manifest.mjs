@@ -190,6 +190,19 @@ export function getCapabilityManifest(env) {
         }
       },
       {
+        id: 'generate-schema',
+        name: 'Schema Markup Generator',
+        description: 'Generates valid JSON-LD schema markup from page data — deterministic generation with optional LLM enhancement to fill placeholder content',
+        endpoint: '/ai/generate-schema',
+        method: 'POST',
+        enabled: env.CAPABILITY_SCHEMA !== 'false',
+        inputSchema: {
+          pages: 'object[] — [{ url, path, title, description, h2s, wordCount, keywords, bodyPreview, siteName, language }]',
+          schemaTypes: 'string[] (optional) — force specific types instead of auto-detect',
+          enhance: 'boolean (default true) — use LLM to fill placeholder text from bodyPreview'
+        }
+      },
+      {
         id: 'batch-analyze',
         name: 'Batch Analysis',
         description: 'Run multiple AI capabilities in a single request for efficiency',

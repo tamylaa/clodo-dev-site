@@ -87,3 +87,9 @@ export {
   ExperimentOutputSchema,
   EXPERIMENT_JSON_SCHEMA
 } from './experiment.schema.mjs';
+
+export {
+  GenerateSchemaInputSchema,
+  GenerateSchemaOutputSchema,
+  GENERATE_SCHEMA_ENHANCE_JSON_SCHEMA
+} from './generate-schema.schema.mjs';

@@ -168,12 +168,12 @@ describe('Workflow: Rate Limiting', () => {
 // ═══════════════════════════════════════════════════════════════════════
 
 describe('Workflow: Discovery Endpoints', () => {
-  it('GET /ai/capabilities returns all 14 capabilities', async () => {
+  it('GET /ai/capabilities returns all 15 capabilities', async () => {
     const { status, data } = await fetchJSON('GET', '/ai/capabilities');
 
     expect(status).toBe(200);
     expect(data.engine).toBe('ai-engine');
-    expect(data.capabilities).toHaveLength(14);
+    expect(data.capabilities).toHaveLength(15);
 
     const ids = data.capabilities.map(c => c.id);
     expect(ids).toContain('intent-classify');

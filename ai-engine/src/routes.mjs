@@ -23,6 +23,7 @@ import { submitFeedback, getFeedbackSummary } from './capabilities/feedback.mjs'
 import { getAllPromptVersions } from './capabilities/prompt-versions.mjs';
 import { assessEAT } from './capabilities/eat-assessment.mjs';
 import { runExperiment } from './capabilities/experiment.mjs';
+import { generateSchema } from './capabilities/generate-schema.mjs';
 import { initiateGoogleOAuth, handleGoogleOAuthCallback, getGoogleData } from './lib/google-integrations.mjs';
 import { parseCSV, generateCSV, validateKeywordCSV, convertCSVToKeywords } from './lib/csv-utils.mjs';
 import { sendWebhook, sendAnomalyAlert, sendCapabilityAlert, validateWebhookUrl } from './lib/webhook-utils.mjs';
@@ -313,6 +314,14 @@ export function registerRoutes(router, env, usageTracker) {
     const body = await req.json();
     const result = await runExperiment(body, env);
     await logUsage(usageTracker, 'experiment', result);
+    return jsonRes(result);
+  });
+
+  router.post('/ai/generate-schema', async (req) => {
+    assertCapability('CAPABILITY_SCHEMA');
+    const body = await req.json();
+    const result = await generateSchema(body, env);
+    await logUsage(usageTracker, 'generate-schema', result);
     return jsonRes(result);
   });
 

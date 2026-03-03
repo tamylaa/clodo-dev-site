@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Cloudflare Stream support DRM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Cloudflare Stream does not support Widevine, FairPlay, or PlayReady DRM as of March 2026. It offers signed URLs with expiry windows for basic access control. For genuine content protection, teams build hybrid architectures using Stream for delivery combined with a DRM provider like BuyDRM, Pallycon, or Axinom."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What video codecs does Cloudflare Stream support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare Stream outputs exclusively in H.264 codec with a maximum resolution of 1080p. There is no support for AV1, VP9, or HEVC output, regardless of input format. This means 2-3x higher bandwidth costs compared to AV1 at equivalent visual quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Cloudflare Stream pricing work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare Stream bills per minute stored ($1 per 1,000 minutes/month) and per minute delivered ($1 per 1,000 minutes). This per-minute model can penalize platforms with large video archives or long-form content. Compare with Bunny.net's per-GB pricing which favors archive-heavy use cases."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Cloudflare Stream good for live streaming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For occasional, non-critical live streaming (internal meetings, low-stakes webinars), Stream Live is adequate. For revenue-generating live events with SLAs, the community reports uneven reliability — particularly silent RTMP ingest failures in certain regions. Teams with critical live requirements typically use Mux Live or Wowza for ingest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Cloudflare Stream compare to Mux?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mux offers more features: AV1 encoding, 4K output, full DRM, WebRTC live streaming, and detailed QoE analytics. Mux uses per-second billing. Cloudflare Stream wins on ecosystem integration (Workers, D1, R2), zero egress fees, and global edge delivery through 330+ PoPs. Choose Stream for Cloudflare-native apps; choose Mux for quality-sensitive or DRM-required products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Cloudflare Stream with Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — this is Stream's strongest advantage. Workers can generate signed URLs at the edge (co-located with delivery), orchestrate TUS uploads, process webhooks, and manage entitlements via D1. The Clodo Framework provides production-ready patterns for all these integrations, deployable in under an hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is MoQ and how will it affect Cloudflare Stream?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MoQ (Media Over QUIC) is an IETF-standardized streaming protocol built on QUIC/HTTP/3 that makes live streaming work natively with CDN architectures, without WebRTC's peer-to-peer complexity. Cloudflare has announced MoQ support and leads the implementation. If it reaches production maturity, it could make Stream the best live streaming platform on the market."
+      }
+    }
+  ]
+}

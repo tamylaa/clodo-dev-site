@@ -58,11 +58,13 @@ CAPABILITY_CONTENT_GAPS = "true"
 CAPABILITY_PAGE_SCORER = "true"
 CAPABILITY_SITE_HEALTH = "true"
 CAPABILITY_EAT = "true"
+CAPABILITY_SCHEMA = "true"
 # ═══════════════════════════════════════════════════════════════════════
 # Staging Environment
 # ═══════════════════════════════════════════════════════════════════════
 [env.staging]
 name = "ai-engine-staging"
+account_id = "470fd65444eca7add856f069d65321a0"
 
 [env.staging.ai]
 binding = "AI"
@@ -86,6 +88,7 @@ CAPABILITY_CANNIBALIZATION = "true"
 CAPABILITY_CONTENT_GAPS = "true"
 CAPABILITY_PAGE_SCORER = "true"
 CAPABILITY_SITE_HEALTH = "true"
+CAPABILITY_SCHEMA = "true"
 
 [[env.staging.kv_namespaces]]
 binding = "KV_AI"
@@ -96,6 +99,7 @@ id = "a73b6e72832740c48bd7698860004378"
 # ═══════════════════════════════════════════════════════════════════════
 [env.production]
 name = "ai-engine"
+account_id = "470fd65444eca7add856f069d65321a0"
 
 [env.production.ai]
 binding = "AI"
@@ -119,6 +123,8 @@ CAPABILITY_CANNIBALIZATION = "true"
 CAPABILITY_CONTENT_GAPS = "true"
 CAPABILITY_PAGE_SCORER = "true"
 CAPABILITY_SITE_HEALTH = "true"
+CAPABILITY_EAT = "true"
+CAPABILITY_SCHEMA = "true"
 
 [[env.production.kv_namespaces]]
 binding = "KV_AI"

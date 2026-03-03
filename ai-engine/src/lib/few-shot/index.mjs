@@ -10,3 +10,4 @@ export { SMART_FORECAST_FEW_SHOT, formatForecastExamples } from './smart-forecas
 export { CANNIBALIZATION_EXAMPLES, formatCannibalizationExamples } from './cannibalization-detect.examples.mjs';
 export { CONTENT_GAPS_EXAMPLES, formatContentGapExamples } from './content-gaps.examples.mjs';
 export { PAGE_SCORER_EXAMPLES, formatPageScorerExamples } from './page-scorer.examples.mjs';
+export { GENERATE_SCHEMA_FEW_SHOT, formatGenerateSchemaExamples } from './generate-schema.examples.mjs';

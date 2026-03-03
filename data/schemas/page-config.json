@@ -577,6 +577,14 @@
         "FAQPage"
       ]
     },
+    "cloudflare-stream-complete-guide": {
+      "type": "TechArticle",
+      "requiredSchemas": [
+        "TechArticle",
+        "BreadcrumbList",
+        "FAQPage"
+      ]
+    },
     "cloudflare-workers-auth": {
       "type": "Article",
       "requiredSchemas": [

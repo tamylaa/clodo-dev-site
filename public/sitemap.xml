@@ -110,7 +110,61 @@
   </url>
   <url>
     <loc>https://clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/br/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/es-419/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/he/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/in/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/cloudflare-stream-complete-guide</loc>
+    <lastmod>2026-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -238,6 +292,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/ar/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://clodo.dev/i18n/ar/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
   </url>
   <url>
     <loc>https://clodo.dev/i18n/ar/cloudflare-workers-cold-start-optimization</loc>
@@ -380,6 +441,13 @@
     <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/cloudflare-framework" />
   </url>
   <url>
+    <loc>https://clodo.dev/i18n/br/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="br" href="https://clodo.dev/i18n/br/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
+  </url>
+  <url>
     <loc>https://clodo.dev/i18n/br/cloudflare-workers-cold-start-optimization</loc>
     <lastmod>2026-01-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -518,6 +586,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/de/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://clodo.dev/i18n/de/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
   </url>
   <url>
     <loc>https://clodo.dev/i18n/de/cloudflare-workers-cold-start-optimization</loc>
@@ -666,6 +741,13 @@
     <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/cloudflare-framework" />
   </url>
   <url>
+    <loc>https://clodo.dev/i18n/es-419/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://clodo.dev/i18n/es-419/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
+  </url>
+  <url>
     <loc>https://clodo.dev/i18n/es-419/cloudflare-workers-cold-start-optimization</loc>
     <lastmod>2026-01-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -804,6 +886,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/fa/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://clodo.dev/i18n/fa/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
   </url>
   <url>
     <loc>https://clodo.dev/i18n/fa/cloudflare-workers-cold-start-optimization</loc>
@@ -946,6 +1035,13 @@
     <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/cloudflare-framework" />
   </url>
   <url>
+    <loc>https://clodo.dev/i18n/he/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://clodo.dev/i18n/he/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
+  </url>
+  <url>
     <loc>https://clodo.dev/i18n/he/cloudflare-workers-cold-start-optimization</loc>
     <lastmod>2026-01-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1086,6 +1182,13 @@
     <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/cloudflare-framework" />
   </url>
   <url>
+    <loc>https://clodo.dev/i18n/in/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="in" href="https://clodo.dev/i18n/in/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
+  </url>
+  <url>
     <loc>https://clodo.dev/i18n/in/cloudflare-workers-cold-start-optimization</loc>
     <lastmod>2026-01-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1224,6 +1327,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/cloudflare-framework" />
+  </url>
+  <url>
+    <loc>https://clodo.dev/i18n/it/cloudflare-top-10-saas-edge-computing-workers-case-study-docs</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://clodo.dev/i18n/it/cloudflare-top-10-saas-edge-computing-workers-case-study-docs" />
   </url>
   <url>
     <loc>https://clodo.dev/i18n/it/cloudflare-workers-cold-start-optimization</loc>

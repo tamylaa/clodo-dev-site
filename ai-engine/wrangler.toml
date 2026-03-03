@@ -62,6 +62,7 @@ CAPABILITY_PAGE_SCORER = "true"
 # ═══════════════════════════════════════════════════════════════════════
 [env.staging]
 name = "ai-engine-staging"
+account_id = "470fd65444eca7add856f069d65321a0"
 vars = { ENVIRONMENT = "staging", AI_PROVIDER = "auto", MAX_REQUESTS_PER_HOUR = "60" }
 
 [[env.staging.kv_namespaces]]
@@ -73,6 +74,7 @@ id = ""  # Run: wrangler kv:namespace create KV_AI --env staging
 # ═══════════════════════════════════════════════════════════════════════
 [env.production]
 name = "ai-engine-production"
+account_id = "470fd65444eca7add856f069d65321a0"
 vars = { ENVIRONMENT = "production", AI_PROVIDER = "auto", AI_PREFERRED_PROVIDER = "claude", MAX_REQUESTS_PER_HOUR = "300" }
 routes = [
   { pattern = "ai.wetechfounders.workers.dev/*", zone_name = "" }

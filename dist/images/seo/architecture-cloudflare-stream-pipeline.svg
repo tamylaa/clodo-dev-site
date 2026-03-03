@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.7"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <!-- Border -->
+  <rect x="2" y="2" width="1196" height="671" rx="16" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="669" width="1200" height="6" fill="url(#accent)"/>
+
+  <!-- Type badge -->
+  <rect x="40" y="40" width="220" height="32" rx="16" fill="#7c3aed" fill-opacity="0.2"/>
+  <text x="150" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#7c3aed" text-anchor="middle" letter-spacing="2">ARCHITECTURE DIAGRAM</text>
+
+  <!-- Icon -->
+  <text x="600" y="307.5" font-size="64" text-anchor="middle" dominant-baseline="central">🏗️</text>
+
+  <!-- Title -->
+  <text x="600" y="377.5" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" fill="#1e293b" text-anchor="middle">Video Pipeline Architecture</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="417.5" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">Upload → Encode → CDN → Player</text>
+
+  <!-- Size label -->
+  <text x="1160" y="651" font-family="monospace" font-size="13" fill="#6b7280" text-anchor="end" opacity="0.6">1200×675 · architecture-cloudflare-stream-pipeline</text>
+
+  <!-- Clodo watermark -->
+  <text x="40" y="651" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#7c3aed" opacity="0.5">clodo.dev</text>
+</svg>
