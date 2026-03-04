@@ -322,10 +322,12 @@
   },
   "validatorAllowList": [
     "404.html",
-    "amp/en/blog/*.html",
+    "amp/en/*",
+    "blog/enterprise-software-guide.html",
     "blog/index.html",
     "case-studies/index.html",
     "community/welcome.html",
+    "i18n/*",
     "index.html",
     "multi-tenant-saas.html",
     "pricing.html",

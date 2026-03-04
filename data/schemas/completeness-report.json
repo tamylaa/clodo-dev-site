@@ -1,6 +1,6 @@
 {
-  "total": 216,
-  "minimal": 130,
+  "total": 228,
+  "minimal": 132,
   "missingImportant": 3,
   "details": [
     {
@@ -1110,16 +1110,7 @@
     },
     {
       "file": "candidates/cloudflare-top-10-saas-edge-computing-workers-case-study-docs-faq-candidate.json",
-      "type": "Unknown",
-      "generated": false,
-      "generatedBy": null,
-      "present": {},
-      "keyCount": 5,
-      "missing": [],
-      "isMinimal": false,
-      "hasArticleBody": false,
-      "hasKeywords": false,
-      "hasAuthor": false
+      "error": "Unexpected token '﻿', \"﻿{\n  \"page\"... is not valid JSON"
     },
     {
       "file": "candidates/cloudflare-workers-auth-faq-candidate.json",
@@ -2413,17 +2404,56 @@
       "hasAuthor": true
     },
     {
+      "file": "pages/cloudflare-stream-complete-guide-article.json",
+      "type": "TechArticle",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 14,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "pages/cloudflare-stream-complete-guide-faqpage.json",
+      "type": "FAQPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
       "file": "pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs-article.json",
       "type": "Article",
-      "generated": true,
-      "generatedBy": "skeleton-enricher.js",
+      "generated": false,
+      "generatedBy": null,
       "present": {},
-      "keyCount": 15,
+      "keyCount": 14,
       "missing": [],
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
       "hasAuthor": true
+    },
+    {
+      "file": "pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs-faqpage.json",
+      "type": "FAQPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
     },
     {
       "file": "pages/cloudflare-workers-auth-article.json",
@@ -2571,6 +2601,32 @@
       "hasAuthor": true
     },
     {
+      "file": "pages/edge-vs-cloud-computing-faq.json",
+      "type": "FAQPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 3,
+      "missing": [],
+      "isMinimal": true,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "pages/edge-vs-cloud-computing-howto.json",
+      "type": "HowTo",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
       "file": "pages/examples-article.json",
       "type": "Article",
       "generated": false,
@@ -2688,6 +2744,45 @@
       "hasAuthor": true
     },
     {
+      "file": "pages/saas-product-startups-cloudflare-case-studies-article.json",
+      "type": "TechArticle",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 18,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": true,
+      "hasKeywords": true,
+      "hasAuthor": true
+    },
+    {
+      "file": "pages/saas-product-startups-cloudflare-case-studies-collection.json",
+      "type": "CollectionPage",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "pages/saas-product-startups-cloudflare-case-studies-dataset.json",
+      "type": "Dataset",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 11,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
       "file": "pages/serverless-architecture-best-practices-article.json",
       "type": "Article",
       "generated": false,
@@ -2727,6 +2822,45 @@
       "hasAuthor": false
     },
     {
+      "file": "pages/what-is-edge-computing.howto.de.json",
+      "type": "HowTo",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "pages/what-is-edge-computing.howto.es.json",
+      "type": "HowTo",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
+      "file": "pages/what-is-edge-computing.howto.json",
+      "type": "HowTo",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
+      "hasAuthor": false
+    },
+    {
       "file": "pages/worker-scaffolding-tools-article.json",
       "type": "WebPage",
       "generated": false,
@@ -2750,6 +2884,19 @@
       "isMinimal": false,
       "hasArticleBody": true,
       "hasKeywords": true,
+      "hasAuthor": false
+    },
+    {
+      "file": "pages/workers-boilerplate-extras.json",
+      "type": "Unknown",
+      "generated": false,
+      "generatedBy": null,
+      "present": {},
+      "keyCount": 6,
+      "missing": [],
+      "isMinimal": false,
+      "hasArticleBody": false,
+      "hasKeywords": false,
       "hasAuthor": false
     },
     {

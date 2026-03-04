@@ -1,6 +1,11 @@
 {
   "checked": [
     {
+      "file": "404.html",
+      "hasManifest": false,
+      "needsManifest": false
+    },
+    {
       "file": "about.html",
       "hasManifest": true,
       "needsManifest": true
@@ -41,12 +46,22 @@
       "needsManifest": true
     },
     {
+      "file": "cloud-vs-edge.html",
+      "hasManifest": false,
+      "needsManifest": false
+    },
+    {
       "file": "cloudflare-d1-errors.html",
       "hasManifest": false,
       "needsManifest": false
     },
     {
       "file": "cloudflare-framework.html",
+      "hasManifest": true,
+      "needsManifest": true
+    },
+    {
+      "file": "cloudflare-stream-complete-guide.html",
       "hasManifest": true,
       "needsManifest": true
     },
@@ -209,6 +224,11 @@
       "file": "subscribe.html",
       "hasManifest": true,
       "needsManifest": true
+    },
+    {
+      "file": "test-has-selector.html",
+      "hasManifest": false,
+      "needsManifest": false
     },
     {
       "file": "what-is-cloudflare-workers.html",
