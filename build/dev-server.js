@@ -200,10 +200,18 @@ let server = createServer((req, res) => {
     }
 
     try {
-        let data = readFileSync(filePath, 'utf8');
+        // Read the raw file bytes. For binary assets (images, fonts, etc.) we must
+        // keep the Buffer intact to avoid accidental UTF-8 re-encoding which corrupts
+        // binary data. For HTML we will decode to string and perform include
+        // replacements.
+        const raw = readFileSync(filePath);
 
-        // Process SSI includes and placeholders for HTML files
+        let outData = raw;
+        let bytes = raw.length;
+
+        // Process SSI includes and placeholders for HTML files (decode as utf8)
         if (ext === 'html') {
+            let data = raw.toString('utf8');
             // Process nav-main.html include
             data = data.replace(/<!--#include file="\.\.\/templates\/nav-main\.html" -->/g, getTemplate('nav-main.html'));
             // Process analytics.html include
@@ -216,13 +224,16 @@ let server = createServer((req, res) => {
             } else {
                 data = data.replace(/<!-- HERO_PLACEHOLDER -->/g, getTemplate('hero.html'));
             }
+            outData = Buffer.from(data, 'utf8');
+            bytes = outData.length;
         }
 
-        const bytes = Buffer.byteLength(data, 'utf8');
         console.log(`[dev-server] Serving ${req.url} -> ${filePath} (${bytes} bytes, type=${contentType})`);
-        res.writeHead(200, { 'Content-Type': contentType });
+        // Set Content-Length to help clients
+        res.writeHead(200, { 'Content-Type': contentType, 'Content-Length': String(bytes) });
         try {
-            res.end(data, () => { console.log(`[dev-server] Finished ${req.url}`); });
+            // Send Buffer or string as appropriate
+            res.end(outData, () => { console.log(`[dev-server] Finished ${req.url}`); });
         } catch (err) {
             console.error(`[dev-server] Error while sending ${req.url}:`, err);
             try { res.end(); } catch (e) { /* ignore */ }

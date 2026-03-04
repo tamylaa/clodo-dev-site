@@ -234,7 +234,7 @@
     .diagram-arrow { font-size: 1.5rem; }
 
     .hero-code-preview { 
-        background: #1f2937; 
+        background: #0d1117; 
         border-radius: 8px; 
         overflow: hidden;
     }
@@ -264,32 +264,6 @@
     .section-header h2 { color: #111827; }
     .section-subtitle { font-size: clamp(1rem, 2vw, 1.125rem); color: #6b7280; margin: 0; line-height: 1.4; }
 
-    /* ============================================= 
-       FILTER CONTROLS 
-       ============================================= */
-    .filter-controls { 
-        display: flex; 
-        gap: 1rem; 
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 2rem;
-    }
-    @media (min-width: 768px) { .filter-controls { margin-bottom: 3rem; } }
-    
-    .filter-btn { 
-        padding: 0.75rem 1.5rem; 
-        border: 2px solid #e5e7eb; 
-        background: white; 
-        border-radius: 4px; 
-        cursor: pointer;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-    }
-    .filter-btn:hover, .filter-btn.active { 
-        background: #111827; 
-        color: white; 
-        border-color: #111827;
-    }
 
     /* ============================================= 
        COMPARISON TABLE 
@@ -623,12 +597,16 @@
     
 
     </style>
+    <style>
+    /* Defensive override: ensure main article stays within the grid track */
+    .content-grid > .main-content { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+    </style>
 
     <!-- CSS: global baseline + page-specific styles matching project pattern -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css"></noscript>
+    <link rel="stylesheet" href="/css/pages/cloudflare-stream-complete-guide.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/pages/cloudflare-stream-complete-guide.css"></noscript>
 
     <script type="application/ld+json">
     {
@@ -877,7 +855,8 @@ const signedUrl = await createStreamToken({
 
         <!-- Comparison Table: Stream vs Alternatives -->
         <section class="comparison-overview">
-            <div class="comparison-container">
+            <div class="container">
+                <div class="comparison-container">
                 <div class="section-header">
                     <h2>📊 Cloudflare Stream vs Alternatives: Feature Comparison</h2>
                     <p class="section-subtitle">Honest comparison of video infrastructure platforms for developers</p>
@@ -1040,7 +1019,8 @@ const signedUrl = await createStreamToken({
         </section>
 
         <section class="content-section">
-            <div class="content-grid">
+            <div class="container">
+                <div class="content-grid">
                 <article class="main-content">
 
                     <h2 id="what-is-stream">What Cloudflare Stream Actually Is (Beyond the Marketing)</h2>
@@ -1776,6 +1756,7 @@ npm run deploy  # Deploy to 330+ edge locations</code></pre>
                         </nav>
                     </div>
                 </aside>
+                </div>
             </div>
         </section>
     </main>
@@ -1791,7 +1772,7 @@ npm run deploy  # Deploy to 330+ edge locations</code></pre>
     <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
 
     <!-- Interactive features for enhanced user experience -->
-    <script src="js/pages/cloudflare-stream-complete-guide.js" defer nonce="N0Nc3Cl0d0"></script>
+    <script src="/js/pages/cloudflare-stream-complete-guide.js" defer nonce="N0Nc3Cl0d0"></script>
 
     <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
     <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script>

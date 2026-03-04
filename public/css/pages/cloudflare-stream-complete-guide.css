@@ -63,7 +63,10 @@
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  /* fallback color in case gradient fails and to provide a non-transparent
+     computed background-color for testing */
+  background-color: #7c3aed;
+  background-image: linear-gradient(135deg, #7c3aed, #a855f7);
   border-color: #7c3aed;
   color: white;
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
@@ -395,6 +398,46 @@
   color: white;
 }
 
+/* Layout fixes: prevent main content and descendants overflowing grid tracks */
+.content-grid .main-content,
+.main-content {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0; /* allow flex/grid children to shrink */
+  overflow-wrap: break-word;
+}
+
+/* Stronger defensive override to ensure the article fits its grid track */
+.content-grid > .main-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Constrain common overflowing descendants */
+.main-content h2,
+.main-content p,
+.main-content .highlight-box,
+.main-content figure,
+.main-content figcaption,
+.main-content .media-figure,
+.main-content img {
+  max-width: 100%;
+  word-break: break-word;
+}
+
+/* Prefer semantic table layout inside article; keep horizontal scroll on wrapper if needed */
+.main-content table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+  overflow-x: auto;
+}
+
+/* Defensive: if a global rule elsewhere forces 'display:block' on table, override it here */
+.main-content table[role="presentation"] { display: table; }
+
+
 .hero-section .btn--primary:hover {
   background: linear-gradient(135deg, #6d28d9, #9333ea);
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
@@ -499,10 +542,13 @@
 }
 
 .code-content {
+  /* remove default <pre> background so parent containers can set the theme */
+  background: none;
   padding: 1.25rem;
   margin: 0;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-size: 0.8rem;
+  /* slightly larger for readability */
+  font-size: 0.9rem;
   line-height: 1.6;
   color: #e2e8f0;
   overflow-x: auto;

@@ -977,8 +977,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: var(--spacing-md);
+    /* Prefer semantic table layout; horizontal scrolling should be handled
+       by a wrapper (.comparison-table-wrapper or similar) when needed. */
     overflow-x: auto;
-    display: block;
+    display: table;
 }
 
 th, td {
