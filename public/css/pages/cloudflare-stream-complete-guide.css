@@ -1052,3 +1052,173 @@
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
 }
 
+/* ==========================================
+   Layout Containers
+   ========================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ==========================================
+   Section Wrappers (colour-coded sections)
+   ========================================== */
+.section {
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 4rem 1rem;
+  }
+}
+
+.section-light  { background: #ffffff; }
+.section-gray   { background: #f9fafb; }
+.section-blue   { background: #f0f9ff; border-top: 4px solid #3b82f6; }
+.section-purple { background: #f9fafb; border-top: 4px solid #7c3aed; }
+
+/* ==========================================
+   Breadcrumbs
+   ========================================== */
+.breadcrumbs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.breadcrumbs li + li::before {
+  content: "/";
+  margin: 0 0.5rem;
+  color: #d1d5db;
+}
+
+.breadcrumbs a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   E-E-A-T Grid (Experience, Expertise, etc.)
+   ========================================== */
+.eeat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .eeat-grid {
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+}
+
+.eeat-card {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.eeat-card h3 {
+  color: #7c3aed;
+  font-size: 0.95rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.eeat-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.eeat-card a {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+/* ==========================================
+   Highlights Grid (use-case / decision cards)
+   ========================================== */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .highlights-grid {
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+}
+
+.highlight-card {
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.highlight-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.highlight-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.8;
+}
+
+.highlight-card li {
+  margin: 0.4rem 0;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.highlight-card--success {
+  background: #f0f9ff;
+  border-color: #0891b2;
+}
+.highlight-card--success h3 { color: #0891b2; }
+
+.highlight-card--warning {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+.highlight-card--warning h3 { color: #dc2626; }
+
+.highlight-card--info {
+  background: #fef3c7;
+  border-color: #d97706;
+}
+.highlight-card--info h3 { color: #d97706; }

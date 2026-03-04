@@ -92,7 +92,8 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/x-icon" href="favicon.svg">
 
-    <!-- Complete CSS System for Consistent Page Styling -->
+    <!-- Inline CSS: Section & component utilities not yet in page CSS file.
+         These supplement css/pages/cloudflare-stream-complete-guide.css. -->
     <style>
     /* ============================================= 
        GLOBAL STYLES & DESIGN SYSTEM 
@@ -163,8 +164,6 @@
     @media (min-width: 768px) { 
         .hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
-
-    .hero-content { }
     .hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .hero-badge { 
         display: inline-flex; 
@@ -482,8 +481,6 @@
     @media (min-width: 1024px) {
         .content-grid { grid-template-columns: 1fr 250px; gap: 3rem; }
     }
-
-    .main-content { }
     .main-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
     .main-content h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; }
 
@@ -625,9 +622,25 @@
     .highlight-card--info h3 { color: #d97706; }
     
 
-    <!-- Defer non-critical CSS -->
-    <link rel="preload" href="css/pages/cloudflare-stream-complete-guide.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    </style>
+
+    <!-- CSS: global baseline + page-specific styles matching project pattern -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css"></noscript>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.clodo.dev" },
+        { "@type": "ListItem", "position": 2, "name": "Developer Guides", "item": "https://www.clodo.dev/cloudflare-workers-development-guide" },
+        { "@type": "ListItem", "position": 3, "name": "Cloudflare Stream Guide", "item": "https://www.clodo.dev/cloudflare-stream-complete-guide" }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!--#include file="../templates/nav-main.html" -->
@@ -1042,6 +1055,7 @@ const signedUrl = await createStreamToken({
 
                     <!-- Architecture Diagram Placeholder -->
                     <figure class="media-figure" data-media-slot="architecture-cloudflare-stream-pipeline" aria-label="Cloudflare Stream pipeline architecture diagram">
+                        <img src="/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420.png" alt="Cloudflare Stream pipeline architecture diagram showing 5-stage flow from ingest to playback" srcset="/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210.png 400w, /images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420.png 800w, /images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630.png 1200w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw" width="800" height="420" loading="lazy" />
                         <figcaption>Cloudflare Stream pipeline: from video ingest through transcoding, storage, and global edge delivery to playback.</figcaption>
                     </figure>
 
@@ -1144,6 +1158,7 @@ const signedUrl = await createStreamToken({
 
                     <!-- Codec Comparison Image -->
                     <figure class="media-figure" data-media-slot="comparison-codec-bandwidth" aria-label="Codec bandwidth comparison chart">
+                        <img src="/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420.png" alt="Video codec bandwidth comparison chart showing H.264, VP9, AV1, and HEVC relative bandwidth usage" srcset="/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210.png 400w, /images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420.png 800w, /images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630.png 1200w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw" width="800" height="420" loading="lazy" />
                         <figcaption>Bandwidth comparison: H.264 vs AV1 vs VP9 at equivalent visual quality — the cost of Stream's codec limitation.</figcaption>
                     </figure>
 
@@ -1158,6 +1173,7 @@ const signedUrl = await createStreamToken({
 
                     <!-- Pricing Comparison Chart -->
                     <figure class="media-figure" data-media-slot="chart-pricing-comparison" aria-label="Video platform pricing comparison chart">
+                        <img src="/images/guides/cloudflare-stream/chart-pricing-comparison-800x420.png" alt="Video platform pricing comparison showing monthly costs for Cloudflare Stream, Bunny CDN, Mux, and AWS" srcset="/images/guides/cloudflare-stream/chart-pricing-comparison-400x210.png 400w, /images/guides/cloudflare-stream/chart-pricing-comparison-800x420.png 800w, /images/guides/cloudflare-stream/chart-pricing-comparison-1200x630.png 1200w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw" width="800" height="420" loading="lazy" />
                         <figcaption>Monthly cost comparison: Cloudflare Stream vs Bunny.net vs Mux at different video archive sizes and traffic levels.</figcaption>
                     </figure>
 
@@ -1234,6 +1250,7 @@ curl -X POST \
 
                     <!-- Integration Architecture Image -->
                     <figure class="media-figure" data-media-slot="architecture-stream-integration" aria-label="Stream integration architecture diagram">
+                        <img src="/images/guides/cloudflare-stream/architecture-stream-integration-800x420.png" alt="Cloudflare Stream ecosystem integration diagram showing Workers, D1, R2, KV, and Images services" srcset="/images/guides/cloudflare-stream/architecture-stream-integration-400x210.png 400w, /images/guides/cloudflare-stream/architecture-stream-integration-800x420.png 800w, /images/guides/cloudflare-stream/architecture-stream-integration-1200x630.png 1200w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw" width="800" height="420" loading="lazy" />
                         <figcaption>Real-world Stream integration architecture: auth gateway, upload orchestrator, webhook processor, and content management — the application layer you still need to build.</figcaption>
                     </figure>
 
@@ -1441,6 +1458,7 @@ export default {
 
                     <!-- Full Architecture Diagram Image -->
                     <figure class="media-figure" data-media-slot="architecture-clodo-stream-fullstack" aria-label="Full-stack Clodo + Stream architecture diagram">
+                        <img src="/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420.png" alt="Full-stack Clodo Framework and Cloudflare Stream architecture showing web, mobile, desktop, and smart TV clients with Workers backend integration" srcset="/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210.png 400w, /images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420.png 800w, /images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630.png 1200w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 85vw" width="800" height="420" loading="lazy" />
                         <figcaption>Full-stack video platform architecture: Cloudflare Pages + Clodo Workers + Stream — zero external services, one bill.</figcaption>
                     </figure>
 

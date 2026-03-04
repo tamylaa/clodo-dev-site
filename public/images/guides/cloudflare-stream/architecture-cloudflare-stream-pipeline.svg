@@ -1,0 +1,89 @@
+<svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="400" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" font-size="24" font-weight="bold" text-anchor="middle" fill="#111827">
+    Cloudflare Stream: Complete Pipeline Architecture
+  </text>
+  
+  <!-- Pipeline stages -->
+  <g id="ingest">
+    <rect x="50" y="80" width="140" height="120" fill="#dbeafe" stroke="#0284c7" stroke-width="2" rx="8"/>
+    <text x="120" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="#0c4a6e">Ingest</text>
+    <text x="120" y="140" font-size="12" text-anchor="middle" fill="#0f766e">TUS Upload</text>
+    <text x="120" y="155" font-size="12" text-anchor="middle" fill="#0f766e">RTMP Stream</text>
+    <text x="120" y="170" font-size="12" text-anchor="middle" fill="#0f766e">URL Pull</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M 190 140 L 230 140" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <g id="transcode">
+    <rect x="230" y="80" width="140" height="120" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="8"/>
+    <text x="300" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="#78350f">Transcode</text>
+    <text x="300" y="140" font-size="12" text-anchor="middle" fill="#b45309">H.264 Codec</text>
+    <text x="300" y="155" font-size="12" text-anchor="middle" fill="#b45309">Adaptive Bitrate</text>
+    <text x="300" y="170" font-size="12" text-anchor="middle" fill="#b45309">1080p Max</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M 370 140 L 410 140" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <g id="store">
+    <rect x="410" y="80" width="140" height="120" fill="#dcfce7" stroke="#16a34a" stroke-width="2" rx="8"/>
+    <text x="480" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="#15803d">Store</text>
+    <text x="480" y="140" font-size="12" text-anchor="middle" fill="#166534">$1/1000 min/mo</text>
+    <text x="480" y="155" font-size="12" text-anchor="middle" fill="#166534">Geographic</text>
+    <text x="480" y="170" font-size="12" text-anchor="middle" fill="#166534">Redundancy</text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <path d="M 550 140 L 590 140" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <g id="deliver">
+    <rect x="590" y="80" width="140" height="120" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="8"/>
+    <text x="660" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="#3730a3">Deliver</text>
+    <text x="660" y="140" font-size="12" text-anchor="middle" fill="#4c1d95">330+ PoPs</text>
+    <text x="660" y="155" font-size="12" text-anchor="middle" fill="#4c1d95">Zero Egress</text>
+    <text x="660" y="170" font-size="12" text-anchor="middle" fill="#4c1d95">Global Edge</text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <path d="M 730 140 L 770 140" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <g id="play">
+    <rect x="770" y="80" width="140" height="120" fill="#fce7f3" stroke="#ec4899" stroke-width="2" rx="8"/>
+    <text x="840" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="#831843">Play</text>
+    <text x="840" y="140" font-size="12" text-anchor="middle" fill="#9f1239">HLS Stream</text>
+    <text x="840" y="155" font-size="12" text-anchor="middle" fill="#9f1239">Embed Player</text>
+    <text x="840" y="170" font-size="12" text-anchor="middle" fill="#9f1239">Analytics</text>
+  </g>
+  
+  <!-- Global Network Visualization -->
+  <g id="network">
+    <circle cx="950" cy="140" r="8" fill="#0284c7"/>
+    <circle cx="1000" cy="100" r="6" fill="#0284c7" opacity="0.7"/>
+    <circle cx="1050" cy="120" r="7" fill="#0284c7" opacity="0.8"/>
+    <circle cx="1030" cy="170" r="6" fill="#0284c7" opacity="0.7"/>
+    <line x1="950" y1="140" x2="1000" y2="100" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+    <line x1="950" y1="140" x2="1050" y2="120" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+    <line x1="950" y1="140" x2="1030" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+    <text x="1000" y="230" font-size="12" text-anchor="middle" fill="#404854" font-weight="bold">Global Distribution Network</text>
+  </g>
+  
+  <!-- Key Features -->
+  <g id="features">
+    <text x="50" y="280" font-size="13" font-weight="bold" fill="#111827">✓ Integrated video management with zero egress fees within Cloudflare ecosystem</text>
+    <text x="50" y="305" font-size="13" font-weight="bold" fill="#111827">✓ Automatic transcoding to H.264 HLS with adaptive bitrate renditions</text>
+    <text x="50" y="330" font-size="13" font-weight="bold" fill="#111827">✓ Ingest via TUS protocol (resumable uploads), RTMP, or direct URL pull</text>
+    <text x="50" y="355" font-size="13" font-weight="bold" fill="#111827">✓ Delivery through 330+ Cloudflare Points of Presence for sub-100ms latency globally</text>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+</svg>
