@@ -183,10 +183,43 @@ observer.unobserve(entry.target);
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 els.forEach(function (el) { observer.observe(el); });
 }
+function _initResponsiveTOC() {
+var toc = document.querySelector('.sticky-toc');
+var toggle = document.querySelector('.toc-toggle');
+if (!toc || !toggle) return;
+toggle.setAttribute('aria-expanded', toc.classList.contains('closed') ? 'false' : 'true');
+toggle.addEventListener('click', function () {
+var isClosed = toc.classList.toggle('closed');
+toggle.setAttribute('aria-expanded', isClosed ? 'false' : 'true');
+});
+var links = toc.querySelectorAll('.toc-link');
+links.forEach(function (link) {
+link.addEventListener('click', function () {
+if (window.innerWidth <= 1024) {
+toc.classList.add('closed');
+toggle.setAttribute('aria-expanded', 'false');
+}
+});
+});
+var resizeTimer;
+window.addEventListener('resize', function () {
+clearTimeout(resizeTimer);
+resizeTimer = setTimeout(function () {
+if (window.innerWidth > 1024) {
+toc.classList.remove('closed');
+toggle.setAttribute('aria-expanded', 'true');
+} else {
+toc.classList.add('closed');
+toggle.setAttribute('aria-expanded', 'false');
+}
+}, 150);
+});
+}
 function init() {
 _initPlatformFilters();
 _initReadingProgress();
 _initTableOfContents();
+_initResponsiveTOC();
 _initStatsAnimation();
 _initCodePreview();
 _initFadeInSections();

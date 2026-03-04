@@ -21,11 +21,11 @@
 window.PerformanceMonitor=window.PerformanceMonitor||{init:function(){},getReport:function(){return{}},getMetrics:function(){return{}},getErrors:function(){return[]},getTimings:function(){return[]},getLongTasks:function(){return[]},getTrends:function(){return[]},getResourceBreakdown:function(){return{}},getOptimizationRecommendations:function(){return[]},enableDebug:function(){},disableDebug:function(){},stop:function(){},sendBeacon:function(){}};window.SEO=window.SEO||{init:function(){},addOrganizationSchema:function(){},addWebSiteSchema:function(){},addSoftwareSchema:function(){},addStructuredData:function(){},setPageMeta:function(){},makeAbsoluteUrl:function(u){return u||''},getCurrentMeta:function(){return{}}};window.a11y=window.a11y||{init:function(){},generateReport:function(){return{}}};
 </script>
 
+<!-- Optimize global CSS loading: Use media query to prevent render blocking -->
+<link rel="stylesheet" href="/styles.617ad8d4.css" media="print" onload="this.media='all'; this.onload=null;">
+
 <!-- Preload Critical Resources ONLY -->
-<link rel="preload" href="/styles.css" as="style"><noscript><link rel="stylesheet" href="/styles.css"></noscript>
-<!-- Note: components-reusable styles are loaded dynamically (deferred). Avoid preloading site-wide to prevent preload-not-used warnings. -->
-<!-- Script swaps preloaded style links to stylesheet using an external script so it works with strict CSP (no inline handlers) -->
-<script src="/js/init-preload.js"></script>
+<!-- Note: Critical CSS is now inlined. Page-specific styles are loaded dynamically (deferred). Avoid preloading site-wide to prevent preload-not-used warnings. -->
 
 <!-- Mobile-Optimized Preloads -->
 <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml">

@@ -1019,3 +1019,36 @@
     flex-direction: column;
   }
 }
+
+/* Additional responsive & interaction polish */
+.sticky-toc.closed {
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.35s ease;
+}
+
+.sticky-toc {
+  transition: max-height 0.35s ease;
+}
+
+.toc-toggle[aria-expanded="true"] {
+  color: #7c3aed;
+}
+
+/* Improve touch targets for important CTAs */
+.hero-actions .btn,
+.cta-actions .btn {
+  min-height: 44px;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+/* Slightly stronger elevation for key cards to unify visual language */
+.metric-card,
+.metrics-dashboard,
+.comparison-table-wrapper,
+.cta-box,
+.hero-diagram {
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+

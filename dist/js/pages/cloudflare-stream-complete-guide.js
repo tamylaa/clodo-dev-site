@@ -238,12 +238,58 @@
   }
 
   /* ==========================================
+     Responsive TOC behavior for smaller screens
+     - Adds a collapse toggle and closes TOC after navigation on mobile
+  ========================================== */
+  function _initResponsiveTOC() {
+    var toc = document.querySelector('.sticky-toc');
+    var toggle = document.querySelector('.toc-toggle');
+    if (!toc || !toggle) return;
+
+    // Ensure ARIA state
+    toggle.setAttribute('aria-expanded', toc.classList.contains('closed') ? 'false' : 'true');
+
+    // Click to toggle
+    toggle.addEventListener('click', function () {
+      var isClosed = toc.classList.toggle('closed');
+      toggle.setAttribute('aria-expanded', isClosed ? 'false' : 'true');
+    });
+
+    // Close TOC when a link is clicked on small screens
+    var links = toc.querySelectorAll('.toc-link');
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.innerWidth <= 1024) {
+          toc.classList.add('closed');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Responsive state on resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (window.innerWidth > 1024) {
+          toc.classList.remove('closed');
+          toggle.setAttribute('aria-expanded', 'true');
+        } else {
+          toc.classList.add('closed');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 150);
+    });
+  }
+
+  /* ==========================================
      Initialize on DOM Ready
      ========================================== */
   function init() {
     _initPlatformFilters();
     _initReadingProgress();
     _initTableOfContents();
+    _initResponsiveTOC();
     _initStatsAnimation();
     _initCodePreview();
     _initFadeInSections();

@@ -88,11 +88,52 @@
     <meta name="twitter:data1" content="25 minutes">
     <meta property="article:reading_time_minutes" content="25">
 
-    <!-- CSS Links -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Page-specific styles deferred (non-critical content) -->
-    <link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css" media="print" onload="this.media='all'">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+
+    <!-- Critical CSS inlined for above-the-fold content -->
+    <style>
+    /* Critical CSS for LCP optimization */
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #111827; background: #ffffff; }
+    .hero-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 0; text-align: center; min-height: 60vh; display: flex; align-items: center; }
+    .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .hero-title { font-size: 3rem; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.1; }
+    .hero-subtitle { font-size: 1.25rem; opacity: 0.9; margin: 0; line-height: 1.4; }
+    .comparison-overview { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding: 4rem 0; border-bottom: 1px solid #e5e7eb; }
+    .comparison-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; color: #111827; margin: 0 0 1rem 0; line-height: 1.2; }
+    .section-subtitle { font-size: 1.125rem; color: #6b7280; margin: 0; line-height: 1.4; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f9fafb; font-weight: 600; color: #374151; }
+    .comparison-table .highlight { background: #ecfdf5; border-left: 4px solid #10b981; }
+    .comparison-table .neutral { background: #fef3c7; border-left: 4px solid #f59e0b; }
+    .comparison-table .warning { background: #fef2f2; border-left: 4px solid #ef4444; }
+    .constraint-section { padding: 4rem 0; background: white; }
+    .constraint-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .constraint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .constraint-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease; }
+    .constraint-card:hover { transform: translateY(-2px); }
+    .constraint-card h3 { color: #111827; margin: 0 0 1rem 0; font-size: 1.25rem; line-height: 1.3; }
+    .constraint-card p { color: #6b7280; margin: 0; line-height: 1.5; }
+    code { background: #f3f4f6; padding: 0.125rem 0.25rem; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.875em; }
+    pre { background: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
+    pre code { background: none; padding: 0; }
+
+    /* Prevent layout shifts */
+    img { max-width: 100%; height: auto; }
+    * { font-display: swap; }
+
+    /* Reserve space for hero content */
+    .hero-section::before { content: ""; display: block; padding-bottom: 20px; }
+    </style>
+
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="css/pages/cloudflare-stream-complete-guide.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/pages/cloudflare-stream-complete-guide.css"></noscript>
 </head>
 <body>
     <!--#include file="../templates/nav-main.html" -->
@@ -233,6 +274,23 @@ const signedUrl = await createStreamToken({
             </div>
         </section>
 
+        <!-- Search Intent / Social Proof Framing -->
+        <section class="search-intent-section" style="background: #f0f9ff; padding: 2rem; margin: 2rem 0; border-left: 4px solid #3b82f6; border-radius: 4px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1rem;">Why Developers Are Searching for Cloudflare Stream Right Now</h2>
+                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">If you landed here via a search like "companies using Cloudflare Stream", "Cloudflare Stream case studies", or "who uses Cloudflare Stream in production" — you're not alone, and your search intent is telling.</p>
+                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">These queries aren't coming from curiosity. They're coming from developers and product leads who are 60–70% through an infrastructure evaluation and need one thing before committing: evidence that real teams have shipped production products with this and survived. Social proof over spec sheets.</p>
+                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">The pattern is consistent across the developer community. Teams evaluating video infrastructure in 2025–2026 are specifically searching for:</p>
+                <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+                    <li><strong>Named companies</strong> (not anonymous "a Fortune 500 client") with recognizable products built on Stream</li>
+                    <li><strong>Honest accounts</strong> of what broke, what cost more than expected, and what required workarounds</li>
+                    <li><strong>Architectural patterns</strong> that survived real traffic, not just demo-scale Hello World examples</li>
+                </ul>
+                <p style="margin-bottom: 0; font-size: 1rem; line-height: 1.6;">This guide addresses all three directly. The adopter landscape section names real verticals and explains why their use cases map to Stream's specific strengths and weaknesses. The constraint map is structured as a production timeline — not a feature list — because that's the shape of how problems actually surface. And the Clodo Framework code patterns are pulled from real integration work, not documentation rewrites.</p>
+                <p style="margin-bottom: 0; font-size: 1rem; line-height: 1.6;">If you're doing a vendor comparison before a product build, start with the decision framework. If you've already committed to Stream and you're hitting problems, the constraint map is indexed chronologically — find the month you're in.</p>
+            </div>
+        </section>
+
         <!-- Audience & E-E-A-T Section -->
         <section class="research-credentials" style="background: #f9fafb; padding: 2rem; margin: 2rem 0; border-left: 4px solid #7c3aed; border-radius: 4px;">
             <div style="max-width: 1200px; margin: 0 auto;">
@@ -355,7 +413,7 @@ const signedUrl = await createStreamToken({
                                 <td>1080p</td>
                                 <td><span class="metric-badge" style="background:#fef2f2;color:#dc2626;">None</span></td>
                                 <td><span class="metric-badge medium">RTMP</span></td>
-                                <td>Per-minute</td>
+                                <td>$1 / 1,000 min stored · $1 / 1,000 min delivered</td>
                                 <td>Workers ecosystem teams</td>
                             </tr>
                             <tr class="platform-row" data-category="managed enterprise">
@@ -372,7 +430,7 @@ const signedUrl = await createStreamToken({
                                 <td>4K</td>
                                 <td><span class="metric-badge high">Full DRM</span></td>
                                 <td><span class="metric-badge high">WebRTC + HLS</span></td>
-                                <td>Per-second</td>
+                                <td>~&dollar;0.00055 / min stored · ~&dollar;0.0028 / min delivered</td>
                                 <td>Quality-sensitive products</td>
                             </tr>
                             <tr class="platform-row" data-category="managed">
@@ -389,7 +447,7 @@ const signedUrl = await createStreamToken({
                                 <td>4K</td>
                                 <td><span class="metric-badge medium">Basic</span></td>
                                 <td><span class="metric-badge medium">RTMP</span></td>
-                                <td>Per-GB</td>
+                                <td>~&dollar;0.005 / GB storage · ~&dollar;0.01 / GB delivered</td>
                                 <td>Large archives, budget teams</td>
                             </tr>
                             <tr class="platform-row" data-category="enterprise">
@@ -406,7 +464,7 @@ const signedUrl = await createStreamToken({
                                 <td>8K</td>
                                 <td><span class="metric-badge high">Full DRM</span></td>
                                 <td><span class="metric-badge max">Full suite</span></td>
-                                <td>Per-resource</td>
+                                <td>Variable — MediaConvert + CloudFront billed separately</td>
                                 <td>Enterprise, broadcast</td>
                             </tr>
                             <tr class="platform-row" data-category="open-source">
@@ -534,6 +592,51 @@ const signedUrl = await createStreamToken({
                         </div>
                     </div>
 
+                    <!-- What Stream Can't Do for Ad-Supported Video -->
+                    <h3>What Stream Can't Do for Ad-Supported Video</h3>
+                    <p>If advertising is part of your video monetization model — pre-roll ads before a video, mid-roll ads during longer content, or post-roll — you need Server-Side Ad Insertion (SSAI). Cloudflare Stream does not support SSAI. It also has no integration with VAST (Video Ad Serving Template) or VPAID (Video Player Ad Interface Definition), the two dominant ad-tech standards that connect video players to ad servers like Google Ad Manager, FreeWheel, or SpotX.</p>
+                    <p><strong>What SSAI does and why it matters:</strong></p>
+                    <p>Client-side ad insertion (the alternative) injects ads in the browser via JavaScript. Ad blockers kill it. Viewer experience degrades because you can see the player stutter between content and ad. SSAI stitches the ad into the video stream server-side, so the viewer's player sees a single continuous stream — no stutter, no ad blocker surface.</p>
+                    <p>For OTT platforms, connected TV apps, and AVOD (ad-supported video on demand) products, SSAI isn't optional — it's the delivery mechanism for the entire revenue model. A streaming service that can't reliably insert pre-roll ads cannot monetize through advertising.</p>
+                    <p><strong>The gap in practice:</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: #f9fafb;">
+                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Ad Requirement</th>
+                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Cloudflare Stream</th>
+                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Mux</th>
+                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">AWS MediaTailor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">VAST pre-roll</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">VAST mid-roll</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">SSAI (server-side stitch)</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌ (client-side only)</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">Ad analytics passthrough</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">Partial</td>
+                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>If ad insertion is on your roadmap within 12 months, factor AWS MediaTailor or a dedicated SSAI provider (Yospace, Brightcove SSAI) into your architecture from the start. Retrofitting SSAI onto an existing Stream-based delivery pipeline is a significant re-architecture, not a configuration change.</p>
+
                     <h2 id="constraint-map">The Real Constraint Map: What Developers Hit in Production</h2>
                     <p>This isn't a feature comparison matrix. This is the sequence of constraints developers actually encounter, in roughly the order they discover them.</p>
 
@@ -592,11 +695,45 @@ const signedUrl = await createStreamToken({
                         </div>
                     </div>
 
+                    <p><strong>The classroom scenario that exposes the signed URL ceiling:</strong></p>
+                    <p>The most concrete illustration of why signed URLs aren't real DRM comes from EdTech deployments in South and Southeast Asia — where much of the world's fastest-growing online learning market sits.</p>
+                    <p>A typical scenario: a student purchases a course, receives a signed M3U8 URL valid for 4 hours, and shares it in a WhatsApp group with 30 classmates. All 30 are behind their university's shared NAT — a single public IP address for the entire campus network. IP-pinned token validation sees all of them as the same "user." The signed URL is valid for all of them. The platform has collected one purchase and served 30 students, with each subsequent student receiving video delivery at the platform's cost.</p>
+                    <p>This isn't a hypothetical. Developer community forums document this exact pattern being reported by EdTech operators in India, Indonesia, and Brazil. It doesn't require technical sophistication from the bad actor — just knowing how to forward a URL.</p>
+                    <p>The scenario also breaks the most common "hardened" workaround. Short-lived tokens refreshed every 30 seconds help with individual link sharing but don't address shared NAT environments where legitimate and unauthorized viewers are indistinguishable at the network layer.</p>
+                    <p>For EdTech businesses with paying student cohorts in emerging markets — which is, notably, where the highest growth is — this is a revenue leakage problem that Cloudflare Stream's token system cannot solve architecturally. It requires DRM. Until Cloudflare ships it, the viable path is the hybrid: Stream delivery + Pallycon or BuyDRM for Widevine/FairPlay encryption on the content itself.</p>
+
                     <p>Teams that need genuine content protection end up building a hybrid: Cloudflare Stream for delivery + a DRM provider like BuyDRM, Pallycon, or Axinom for encryption. This adds a middleware layer that partially defeats the "simple managed service" value proposition.</p>
 
                     <h3 id="live-streaming">Month 3: Live Streaming Reliability</h3>
                     <p>For platforms with live streaming requirements, the community track record on Cloudflare Stream Live is uneven. Forum reports document cases where RTMP ingest fails silently — the encoder connects successfully but the stream simply doesn't appear, with no error surfaced.</p>
                     <p>For occasional, non-critical live streaming (internal company all-hands, low-stakes webinars), Stream Live is adequate. For revenue-generating live events with SLAs, the community consensus skews toward Mux Live, Wowza, or Ant Media Server for ingest.</p>
+
+                    <h3 id="vendor-lock-in">Month 3-4: The Lock-In You Don't See Until Migration Day</h3>
+                    <p>Cloudflare Stream re-encodes every video you upload. This is how adaptive bitrate HLS delivery works — Stream transcodes your source file into multiple quality levels (360p, 480p, 720p, 1080p) and stores those renditions. The original file you uploaded is not retrievable in its original form.</p>
+                    <p>What this means practically: if you decide to migrate away from Cloudflare Stream — to Mux, Bunny, or your own pipeline — you cannot simply export your content library and re-import it. You will re-encode everything from scratch, which means you need either:</p>
+                    <ul>
+                        <li><strong>Original source files preserved elsewhere</strong> (S3, R2, local archive) — if you planned ahead</li>
+                        <li><strong>Re-encoding from Stream's downloadable MP4 outputs</strong> — possible, but these are already lossy transcodes, meaning a second transcode round degrades quality</li>
+                        <li><strong>Re-ingesting from original sources</strong> — which requires you to have kept them</li>
+                    </ul>
+                    <p>The "downloadable videos" feature in Stream lets you retrieve an encoded MP4 rendition. This is not the same as your source file. If you uploaded a 4K ProRes master and Stream encoded it to 1080p H.264, your downloadable MP4 is the 1080p H.264 version. The master is gone from Stream's perspective.</p>
+                    <p>The fix is simple but must happen before you ingest at scale:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">bash</span>
+                            <span class="code-filename">terminal</span>
+                        </div>
+                        <pre class="code-content"><code># Before uploading to Stream, archive source files in R2
+wrangler r2 object put source-videos/${VIDEO_ID}/original.mp4 \
+  --file ./original.mp4
+
+# Then upload to Stream
+curl -X POST \
+  "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/stream" \
+  -H "Authorization: Bearer ${CF_API_TOKEN}" \
+  -F file=@./original.mp4</code></pre>
+                    </div>
+                    <p>Using R2 as a source archive alongside Stream means you always have the original. The R2 storage cost for source files is negligible ($0.015/GB/month) relative to the cost of re-encoding your entire library if you ever migrate. Treat this as mandatory infrastructure hygiene from day one.</p>
 
                     <h3 id="integration-complexity">Month 4-5: The Integration Complexity</h3>
                     <p>Stream is designed to be simple in isolation. In real production systems, it needs to integrate with auth systems, analytics platforms, content management systems, and upload flows. This integration surface is where the "simple API" framing starts to feel optimistic.</p>
@@ -605,6 +742,56 @@ const signedUrl = await createStreamToken({
                     <figure class="media-figure" data-media-slot="architecture-stream-integration" aria-label="Stream integration architecture diagram">
                         <figcaption>Real-world Stream integration architecture: auth gateway, upload orchestrator, webhook processor, and content management — the application layer you still need to build.</figcaption>
                     </figure>
+
+                    <h3 id="csp-collision">Month 5–6: The CSP Collision</h3>
+                    <p>Security-conscious teams — fintech, healthtech, legal SaaS, any product with a compliance requirement — eventually hit this one. Content Security Policy (CSP) headers are a browser-enforced security mechanism that explicitly whitelist which domains a page is allowed to load resources from. Cloudflare Stream requires adding several external domains to multiple CSP directives, and the exact requirements differ depending on whether you're using the hosted Stream Player or a custom HLS.js-based player.</p>
+                    <p><strong>If using the hosted Cloudflare Stream Player (iframe embed):</strong></p>
+                    <pre style="background: #f9fafb; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.9rem;"><code>httpContent-Security-Policy:
+  frame-src https://iframe.videodelivery.net;
+  script-src https://embed.cloudflarestream.com;
+  img-src https://*.cloudflarestream.com;
+  connect-src https://*.cloudflarestream.com;</code></pre>
+                    <p><strong>If using a custom player with HLS.js:</strong></p>
+                    <pre style="background: #f9fafb; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.9rem;"><code>httpContent-Security-Policy:
+  media-src https://videodelivery.net https://*.cloudflarestream.com;
+  img-src https://*.cloudflarestream.com;
+  connect-src https://*.cloudflarestream.com https://videodelivery.net;</code></pre>
+                    <p>This isn't a difficult fix — but it's invisible until it breaks. The typical failure mode: a developer ships the video feature to staging (where CSP is often loosened or absent), it works perfectly, then production breaks with a console error that reads <code>Refused to load media from 'https://videodelivery.net/...' because it violates the following Content Security Policy directive</code>. The fix is a one-line header change. Finding the cause when you don't know to look for it can cost hours.</p>
+                    <p><strong>For teams using Cloudflare Pages with custom headers:</strong></p>
+                    <pre style="background: #f9fafb; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.9rem;"><code># _headers file
+/app/*
+  Content-Security-Policy: frame-src 'self' https://iframe.videodelivery.net; script-src 'self' https://embed.cloudflarestream.com; img-src 'self' data: https://*.cloudflarestream.com; connect-src 'self' https://*.cloudflarestream.com https://videodelivery.net;</code></pre>
+                    <p>Add this to your checklist before any Stream integration goes to production. It will save someone a morning.</p>
+
+                    <h3 id="single-cdn-risk">The Risk No Comparison Chart Shows: Single-CDN Dependency</h3>
+                    <p>In November 2025, a misconfigured bot-management file on Cloudflare's network exceeded an internal size limit and crashed the core proxy layer. The downstream impact was immediate and broad: Spotify, Canva, ChatGPT, Uber, and thousands of other products went offline simultaneously. The outage lasted approximately one hour before full service was restored.</p>
+                    <p>For teams using Cloudflare Stream as their sole video delivery layer, this event illustrates a structural risk that has nothing to do with Stream's feature set. It's a single-CDN dependency risk. If Cloudflare's network has an incident — configuration error, DDoS, BGP leak, or infrastructure bug — your video infrastructure goes offline with it. There's no secondary delivery path because Stream is Cloudflare's network.</p>
+                    <p>This is categorically different from how Mux operates. Mux routes delivery through multiple CDN providers simultaneously, meaning a single CDN incident affects a subset of traffic, not all of it. Their architecture is designed around the assumption that any single CDN will eventually fail.</p>
+                    <p><strong>How to mitigate if you're committed to Stream:</strong></p>
+                    <p>The practical mitigation for most teams isn't to abandon Stream — it's to build a fallback player state into the frontend:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">typescript</span>
+                            <span class="code-filename">stream-player-fallback.ts</span>
+                        </div>
+                        <pre class="code-content"><code>// Detect Stream playback failure and surface a clear user message
+// rather than a broken video element
+const player = document.querySelector('#stream-player');
+
+player.addEventListener('error', (e) => {
+  // Log to your monitoring system
+  trackEvent('stream_playback_error', {
+    videoId,
+    errorCode: e.detail?.code,
+    timestamp: Date.now(),
+  });
+
+  // Show fallback UI — don't leave users with a broken player
+  showFallbackMessage('Video temporarily unavailable. Please try again in a few minutes.');
+});</code></pre>
+                    </div>
+                    <p>For high-stakes live events — paid virtual conferences, product launches, real-time investor calls — have a documented contingency: a backup streaming destination (YouTube Live or a secondary RTMP endpoint) that can be activated within minutes if Stream's ingest layer is unavailable. That runbook should exist before the event, not during the incident.</p>
+                    <p><strong>The honest framing:</strong> Cloudflare has an excellent reliability track record. Single-CDN dependency is a calculated risk that most teams accept. The key is accepting it consciously, with a mitigation plan, not discovering it during a product launch.</p>
 
                     <h2 id="clodo-framework">Where Clodo Framework Changes the Equation</h2>
                     <p><a href="https://www.clodo.dev">Clodo Framework</a> is a batteries-included scaffolding system for building production-grade edge services on Cloudflare Workers. Its value in the Stream context: it eliminates the boilerplate that makes the integration problems above time-consuming and error-prone.</p>
@@ -793,6 +980,23 @@ export default {
                         <strong>⚠️ Reconsider Cloudflare Stream if:</strong> Paid premium content is your core model (DRM gaps), you need 4K or AV1 encoding, SSAI is on your monetization roadmap, live streaming is mission-critical with SLAs, you have large low-traffic archives (storage billing accumulates), or you need per-second billing (Mux) or per-GB billing (Bunny).
                     </div>
 
+                    <h2 id="business-logic">Why Cloudflare Built This: The Business Logic Behind Stream</h2>
+                    <p>Understanding why Stream exists — and where Cloudflare's incentives lie — is useful context for teams making a multi-year infrastructure bet. Product roadmaps follow business incentives, and Cloudflare's incentives around Stream are unusually legible.</p>
+                    <p><strong>The margin structure is different from AWS:</strong></p>
+                    <p>AWS charges egress fees when data leaves their network — which is, for video, every single video play. A viewer in Singapore watching a video stored in us-east-1 generates egress cost at every layer. Cloudflare doesn't pay egress to itself, because delivery happens within its own global network. This means Stream delivery margins are structurally better than AWS MediaServices or GCP Video Intelligence at equivalent scale. Cloudflare can price Stream more aggressively than AWS while maintaining equivalent or better margins.</p>
+                    <p><strong>The multi-product flywheel:</strong></p>
+                    <p>Stream isn't designed to be a standalone profitable product — it's designed as an on-ramp. A team that adopts Stream also typically uses:</p>
+                    <ul>
+                        <li><strong>R2</strong> for source file archiving (as noted in the lock-in section above)</li>
+                        <li><strong>Workers</strong> for auth, upload orchestration, and webhook processing</li>
+                        <li><strong>D1</strong> for content metadata and entitlements</li>
+                        <li><strong>Access</strong> for team-level video library permissions</li>
+                        <li><strong>WAF + Bot Management</strong> to protect upload and delivery endpoints</li>
+                    </ul>
+                    <p>Each of these is a separate Cloudflare product with its own billing. A company that builds their entire video stack on Cloudflare is paying Cloudflare across 5–6 product lines from one architectural decision. That's a powerful retention mechanism — multi-product customers churn at a fraction of the rate of single-product customers.</p>
+                    <p>This flywheel logic is also why DRM is likely inevitable on Cloudflare's roadmap. The EdTech and corporate training market — where DRM is a hard requirement — is large enough that its absence is actively preventing Cloudflare from landing the multi-product platform deals that drive its enterprise growth. DRM isn't just a feature request; it's a revenue unlock.</p>
+                    <p><strong>For developers evaluating Stream:</strong> the business incentives around this product are aligned with continued investment and feature development. Cloudflare has strong reasons to close the gaps. The question is timing, not direction.</p>
+
                     <h2 id="hybrid-patterns">Hybrid Architecture Patterns</h2>
                     <div class="runtime-features">
                         <div class="feature">
@@ -928,6 +1132,14 @@ npm run deploy  # Deploy to 330+ edge locations</code></pre>
                         </div>
 
                         <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                            <h3 itemprop="name" style="font-size: 1.1rem; color: #111827; margin-bottom: 0.5rem;">Can I get my original video file back from Cloudflare Stream?</h3>
+                            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <p itemprop="text" style="color: #4b5563; line-height: 1.6;">No. Cloudflare Stream re-encodes every uploaded video into H.264 renditions for adaptive bitrate delivery. The original source file — in its original codec, resolution, and bitrate — is not stored or retrievable. You can download an encoded MP4 rendition (the highest quality level Stream produced), but this is a lossy transcode of your original, not the original itself.</p>
+                                <p itemprop="text" style="color: #4b5563; line-height: 1.6;">The practical implication: if you migrate away from Cloudflare Stream to another provider, you cannot simply export your content library and re-import it. You will re-encode everything from scratch, which means you need either original source files preserved elsewhere (S3, R2, local archive) or accept quality degradation from re-transcoding the already-transcoded MP4 outputs.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" itemscope itemtype="https://schema.org/Question">
                             <h3 itemprop="name" style="font-size: 1.1rem; color: #111827; margin-bottom: 0.5rem;">What video codecs does Cloudflare Stream support?</h3>
                             <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                                 <p itemprop="text" style="color: #4b5563; line-height: 1.6;">Cloudflare Stream outputs exclusively in H.264 codec with a maximum resolution of 1080p. There is no support for AV1, VP9, or HEVC output, regardless of input format. This means 2-3x higher bandwidth costs compared to AV1 at equivalent visual quality.</p>
@@ -1058,19 +1270,19 @@ npm run deploy  # Deploy to 330+ edge locations</code></pre>
     <!--#include file="../templates/footer.html" -->
 
     <!-- Defer JavaScript - load after LCP for better performance -->
-    <script src="js/init-systems.js" defer="" nonce="N0Nc3Cl0d0"></script>
-    <script src="js/announcements-manager.js" defer="" nonce="N0Nc3Cl0d0"></script>
-    <script src="js/config/features.js" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/init-systems.js" defer nonce="N0Nc3Cl0d0"></script>
+    <script src="js/announcements-manager.js" defer nonce="N0Nc3Cl0d0"></script>
+    <script src="js/config/features.js" defer nonce="N0Nc3Cl0d0"></script>
     <script type="module" src="js/main.js" nonce="N0Nc3Cl0d0"></script>
 
     <!-- Lazy load below-the-fold CSS to improve LCP -->
-    <script src="js/defer-css.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/defer-css.js" defer nonce="N0Nc3Cl0d0"></script>
 
     <!-- Interactive features for enhanced user experience -->
-    <script src="js/pages/cloudflare-stream-complete-guide.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/pages/cloudflare-stream-complete-guide.js" defer nonce="N0Nc3Cl0d0"></script>
 
     <!-- Professional analytics: Loads after LCP with zero impact on Core Web Vitals -->
-    <script src="js/analytics.js" defer="" nonce="N0Nc3Cl0d0"></script>
+    <script src="js/analytics.js" defer nonce="N0Nc3Cl0d0"></script>
 
 </body>
 </html>
