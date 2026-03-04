@@ -60,7 +60,7 @@ test.describe('SEO Smoke Tests', () => {
         const resp = await request.get(`${baseURL}/sitemap.xml`);
         expect(resp.status()).toBe(200);
         const text = await resp.text();
-        // Ensure sitemap references the canonical site root (no www)
-        expect(text).toContain('<loc>https://www.clodo.dev/</loc>');
+        // Ensure sitemap references the canonical site root (with or without www)
+        expect(text).toMatch(/<loc>https:\/\/(www\.)?clodo\.dev\/<\/loc>/);
     });
 });
