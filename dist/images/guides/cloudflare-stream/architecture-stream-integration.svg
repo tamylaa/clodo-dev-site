@@ -1,0 +1,97 @@
+<svg viewBox="0 0 1200 450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="450" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="600" y="35" font-size="24" font-weight="bold" text-anchor="middle" fill="#111827">
+    Cloudflare Stream Integration Architecture
+  </text>
+  <text x="600" y="60" font-size="13" text-anchor="middle" fill="#6b7280">
+    How Stream fits into the Cloudflare ecosystem
+  </text>
+  
+  <!-- Left Side: Client Applications -->
+  <g id="client">
+    <rect x="30" y="100" width="150" height="100" fill="#dbeafe" stroke="#0284c7" stroke-width="2" rx="8"/>
+    <text x="105" y="130" font-size="13" font-weight="bold" text-anchor="middle" fill="#0c4a6e">Client Apps</text>
+    <text x="105" y="155" font-size="11" text-anchor="middle" fill="#404854">Web Browser</text>
+    <text x="105" y="175" font-size="11" text-anchor="middle" fill="#404854">Mobile Native</text>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 180 150 L 220 150" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Cloudflare Edge Network -->
+  <g id="edge">
+    <rect x="220" y="80" width="180" height="140" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="8"/>
+    <text x="310" y="110" font-size="13" font-weight="bold" text-anchor="middle" fill="#78350f">Cloudflare Edge</text>
+    <text x="310" y="135" font-size="11" text-anchor="middle" fill="#404854">Workers</text>
+    <text x="310" y="155" font-size="11" text-anchor="middle" fill="#404854">Auth &amp; Token Signing</text>
+    <text x="310" y="175" font-size="11" text-anchor="middle" fill="#404854">Custom Logic</text>
+    <text x="310" y="195" font-size="11" text-anchor="middle" fill="#404854">Cache Layer</text>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 400 150 L 440 150" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Stream Service -->
+  <g id="stream">
+    <rect x="440" y="80" width="180" height="140" fill="#dcfce7" stroke="#16a34a" stroke-width="2" rx="8"/>
+    <text x="530" y="110" font-size="13" font-weight="bold" text-anchor="middle" fill="#15803d">Cloudflare Stream</text>
+    <text x="530" y="135" font-size="11" text-anchor="middle" fill="#404854">Video Upload</text>
+    <text x="530" y="155" font-size="11" text-anchor="middle" fill="#404854">Transcode</text>
+    <text x="530" y="175" font-size="11" text-anchor="middle" fill="#404854">HLS Manifest</text>
+    <text x="530" y="195" font-size="11" text-anchor="middle" fill="#404854">Access Control</text>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 620 150 L 660 150" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Storage & Analytics -->
+  <g id="storage">
+    <rect x="660" y="100" width="140" height="100" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="8"/>
+    <text x="730" y="130" font-size="12" font-weight="bold" text-anchor="middle" fill="#3730a3">Storage</text>
+    <text x="730" y="155" font-size="11" text-anchor="middle" fill="#404854">R2 Backup</text>
+    <text x="730" y="175" font-size="11" text-anchor="middle" fill="#404854">D1 Metadata</text>
+  </g>
+  
+  <!-- Arrow pointing down to Analytics -->
+  <path d="M 530 220 L 530 280" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Analytics & Webhooks -->
+  <g id="analytics">
+    <rect x="380" y="280" width="300" height="90" fill="#fce7f3" stroke="#ec4899" stroke-width="2" rx="8"/>
+    <text x="530" y="310" font-size="12" font-weight="bold" text-anchor="middle" fill="#831843">Stream Webhooks &amp; Analytics</text>
+    <text x="530" y="335" font-size="11" text-anchor="middle" fill="#404854">Transcode complete, Play events, Download URLs</text>
+    <text x="530" y="360" font-size="11" text-anchor="middle" fill="#404854">Feed back to Workers for custom workflows</text>
+  </g>
+  
+  <!-- Ecosystem Overview -->
+  <g id="ecosystem">
+    <text x="900" y="120" font-size="12" font-weight="bold" fill="#111827">🔗 Ecosystem Integration</text>
+    <rect x="800" y="135" width="350" height="240" fill="#f0f9ff" stroke="#0284c7" stroke-width="1" rx="6"/>
+    
+    <text x="820" y="165" font-size="11" fill="#0c4a6e" font-weight="bold">• D1 Database:</text>
+    <text x="835" y="183" font-size="10" fill="#404854">Store video metadata,</text>
+    <text x="835" y="198" font-size="10" fill="#404854">user watch history</text>
+    
+    <text x="820" y="225" font-size="11" fill="#0c4a6e" font-weight="bold">• R2 Storage:</text>
+    <text x="835" y="243" font-size="10" fill="#404854">Backup original uploads,</text>
+    <text x="835" y="258" font-size="10" fill="#404854">store backup HLS segments</text>
+    
+    <text x="820" y="285" font-size="11" fill="#0c4a6e" font-weight="bold">• KV Cache:</text>
+    <text x="835" y="303" font-size="10" fill="#404854">Token generation,</text>
+    <text x="835" y="318" font-size="10" fill="#404854">playlist manifests (edge)</text>
+    
+    <text x="820" y="345" font-size="11" fill="#0c4a6e" font-weight="bold">• Durable Objects:</text>
+    <text x="835" y="363" font-size="10" fill="#404854">Real-time transcode status,</text>
+    <text x="835" y="378" font-size="10" fill="#404854">live streaming coordination</text>
+  </g>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+</svg>

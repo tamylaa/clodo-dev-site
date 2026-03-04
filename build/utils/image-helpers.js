@@ -64,6 +64,8 @@ export function buildPictureMarkup(entry, pathPrefix, opts = {}) {
     const cssClass = opts.cssClass || 'hero-image';
     const loading  = opts.loading  || 'eager';
 
+    const avif1 = opt.avif_1x || null;
+    const avif2 = opt.avif_2x || null;
     const webp1 = opt.webp_1x || null;
     const webp2 = opt.webp_2x || null;
     const png1  = opt.png_1x || entry.file || null;
@@ -72,11 +74,13 @@ export function buildPictureMarkup(entry, pathPrefix, opts = {}) {
     const width  = entry.width || '';
     const height = entry.height || '';
 
+    const avifSrcset = [avif1 && `${pathPrefix}${strip(avif1)} 1x`, avif2 && `${pathPrefix}${strip(avif2)} 2x`].filter(Boolean).join(', ');
     const webpSrcset = [webp1 && `${pathPrefix}${strip(webp1)} 1x`, webp2 && `${pathPrefix}${strip(webp2)} 2x`].filter(Boolean).join(', ');
     const pngSrcset  = [png1  && `${pathPrefix}${strip(png1)} 1x`,  png2  && `${pathPrefix}${strip(png2)} 2x`].filter(Boolean).join(', ');
     const imgSrc     = png1 ? `${pathPrefix}${strip(png1)}` : '';
 
     const picture = [`<picture class="${cssClass}" aria-hidden="false">`];
+    if (avifSrcset) picture.push(`    <source type="image/avif" srcset="${avifSrcset}">`);
     if (webpSrcset) picture.push(`    <source type="image/webp" srcset="${webpSrcset}">`);
     if (pngSrcset)  picture.push(`    <source type="image/png" srcset="${pngSrcset}">`);
     picture.push(`    <img src="${imgSrc}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="${loading}" decoding="async">`);

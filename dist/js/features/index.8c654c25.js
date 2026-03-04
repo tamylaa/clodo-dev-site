@@ -1,0 +1,2 @@
+"undefined"!=typeof window&&(window.Features={Newsletter:void 0!==window.NewsletterAPI?window.NewsletterAPI:null,Forms:void 0!==window.FormsAPI?window.FormsAPI:null});
+//# sourceMappingURL=index.8c654c25.js.map

@@ -1,0 +1,405 @@
+/* ===========================================
+   PRICING PAGE - PRINT STYLES
+   ===========================================
+   
+   Print-friendly styling for pricing page
+   Optimized for paper, removes interactive elements
+   =========================================== */
+
+@media print {
+    /* ===== GENERAL PRINT STYLES ===== */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    html,
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #333;
+        background-color: white;
+    }
+
+    /* ===== PAGE MARGINS AND BREAKS ===== */
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+
+    /* ===== AVOID PAGE BREAKS ===== */
+    .pricing-card,
+    .testimonial-card,
+    .value-card {
+        page-break-inside: avoid;
+    }
+
+    .pricing-section,
+    .hero-section,
+    .social-proof-section {
+        page-break-inside: avoid;
+    }
+
+    /* ===== HIDE INTERACTIVE ELEMENTS ===== */
+    .floating-contact-button,
+    .floating-chat-widget,
+    .floating-widget-menu,
+    nav,
+    header,
+    footer,
+    .nav-toggle,
+    .chat-widget,
+    .contact-popup,
+    .modal {
+        display: none !important;
+    }
+
+    /* ===== HEADING STYLES ===== */
+    h1 {
+        font-size: 24pt;
+        margin: 0 0 0.5cm 0;
+        page-break-after: avoid;
+        font-weight: bold;
+        color: #000;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin: 0.5cm 0 0.3cm 0;
+        page-break-after: avoid;
+        font-weight: bold;
+        color: #000;
+    }
+
+    h3 {
+        font-size: 14pt;
+        margin: 0.3cm 0 0.2cm 0;
+        page-break-after: avoid;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* ===== TEXT STYLES ===== */
+    p {
+        margin: 0.3cm 0;
+        line-height: 1.6;
+        orphans: 3;
+        widows: 3;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #000;
+    }
+
+    a[href]::after {
+        content: ' (' attr(href) ')';
+        font-size: 0.8em;
+        word-break: break-all;
+    }
+
+    /* ===== PRICING CARDS ===== */
+    .pricing-grid {
+        display: block;
+    }
+
+    .pricing-card {
+        margin-bottom: 1.5cm;
+        padding: 0.75cm;
+        border: 1px solid #333;
+        page-break-inside: avoid;
+        display: block;
+        width: 100%;
+    }
+
+    .pricing-card h2 {
+        font-size: 16pt;
+        margin: 0 0 0.2cm 0;
+    }
+
+    .pricing-price {
+        font-size: 14pt;
+        font-weight: bold;
+        margin: 0.2cm 0;
+    }
+
+    .feature-list {
+        margin: 0.3cm 0;
+        padding-left: 1.5cm;
+        list-style: disc;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.15cm;
+    }
+
+    .cta-button {
+        background: none !important;
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        text-decoration: underline;
+        padding: 0.2cm 0.5cm;
+        display: inline-block;
+    }
+
+    /* ===== VALUE PROPOSITION ===== */
+    .value-grid {
+        display: block;
+    }
+
+    .value-card {
+        margin-bottom: 1cm;
+        padding: 0.75cm;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+
+    .value-card h3 {
+        margin: 0 0 0.2cm 0;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+        display: block;
+    }
+
+    .testimonial-card {
+        margin-bottom: 1cm;
+        padding: 0.75cm;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+
+    .testimonial-quote {
+        font-style: italic;
+        margin: 0.2cm 0;
+    }
+
+    .author-avatar {
+        display: none;
+    }
+
+    .author-info h4 {
+        margin: 0.2cm 0 0 0;
+        font-weight: bold;
+    }
+
+    .author-title {
+        font-style: italic;
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .social-proof-section {
+        margin: 1cm 0;
+        page-break-inside: avoid;
+    }
+
+    .social-proof-grid {
+        display: block;
+    }
+
+    .stat {
+        margin-bottom: 0.5cm;
+        padding: 0.3cm 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .stat-value {
+        font-size: 14pt;
+        font-weight: bold;
+        display: inline;
+    }
+
+    .stat-label {
+        display: inline;
+        margin-left: 0.3cm;
+    }
+
+    .trust-badges {
+        display: block;
+    }
+
+    .badge {
+        margin-bottom: 0.3cm;
+        padding: 0.3cm 0;
+        page-break-inside: avoid;
+    }
+
+    /* ===== CALCULATOR ===== */
+    .savings-calculator {
+        margin: 1cm 0;
+        padding: 0.75cm;
+        border: 1px solid #333;
+        page-break-inside: avoid;
+    }
+
+    .calculator-header {
+        margin-bottom: 0.5cm;
+    }
+
+    .calculator-header h3 {
+        margin: 0 0 0.2cm 0;
+    }
+
+    .input-group {
+        margin-bottom: 0.3cm;
+    }
+
+    .input-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.1cm;
+    }
+
+    .input-group input {
+        display: none;
+    }
+
+    .savings-result {
+        margin: 0.5cm 0;
+        padding: 0.5cm;
+        border: 1px solid #333;
+        text-align: center;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.5cm 0;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+    }
+
+    th,
+    td {
+        padding: 0.2cm;
+        border: 1px solid #999;
+        text-align: left;
+        font-size: 11pt;
+    }
+
+    th {
+        font-weight: bold;
+        background-color: #f0f0f0;
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+    .feature-matrix table {
+        margin: 0.5cm 0;
+    }
+
+    .feature-matrix th,
+    .feature-matrix td {
+        padding: 0.2cm;
+        font-size: 10pt;
+    }
+
+    .feature-matrix .check::before {
+        content: '✓';
+    }
+
+    .feature-matrix .cross::before {
+        content: '✗';
+    }
+
+    /* ===== LISTS ===== */
+    ul,
+    ol {
+        margin: 0.3cm 0;
+        padding-left: 1.5cm;
+    }
+
+    li {
+        margin-bottom: 0.15cm;
+    }
+
+    /* ===== IMAGES ===== */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+
+    /* Remove background images */
+    .hero-visual,
+    .hero-code-preview {
+        display: none;
+    }
+
+    /* ===== SPACING ===== */
+    section {
+        margin: 1cm 0;
+        page-break-inside: avoid;
+    }
+
+    /* ===== REMOVE DECORATIVE ELEMENTS ===== */
+    .hero-badge,
+    .badge-icon,
+    .logo-placeholder,
+    .trust-icon,
+    .icon,
+    [class*="icon"],
+    .pulse-dot,
+    .status-dot {
+        display: none;
+    }
+
+    /* ===== REMOVE ANIMATIONS ===== */
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* ===== FORMS ===== */
+    form,
+    input,
+    textarea,
+    select {
+        display: none;
+    }
+
+    /* ===== CONTAINER DEFAULTS ===== */
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ===== PRINT HEADER/FOOTER MESSAGE ===== */
+    .print-header::after {
+        content: 'Generated on: ' attr(data-date);
+        display: block;
+        text-align: center;
+        font-size: 10pt;
+        margin: 0 0 0.5cm 0;
+        color: #666;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.3cm;
+    }
+
+    /* ===== HIDE UNTIL PRINT ===== */
+    .print-only {
+        display: block !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}

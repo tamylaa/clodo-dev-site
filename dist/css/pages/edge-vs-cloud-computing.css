@@ -1,0 +1,33 @@
+/* ===== EDGE VS CLOUD COMPUTING PAGE STYLES ===== */
+
+/* Table of Contents Section - Using canonical styles from components-reusable.css */
+
+/* FAQ Section - Using canonical styles from components-reusable.css */
+
+/* Code Examples - Using canonical styles from components.css */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toc-section {
+        padding: 1rem 0;
+        margin: 1rem 0;
+    }
+
+    .table-of-contents ul {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+
+    .table-of-contents h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .faq-item {
+        padding: 1rem;
+    }
+
+    .faq-item h3 {
+        font-size: 1rem;
+    }
+}

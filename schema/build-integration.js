@@ -68,7 +68,7 @@ function loadSchemaFromFile(schemaName) {
   for (const schemaPath of candidates) {
     if (existsSync(schemaPath)) {
       try {
-        const schemaContent = readFileSync(schemaPath, 'utf8');
+        const schemaContent = readFileSync(schemaPath, 'utf8').replace(/^\uFEFF/, '');
         return JSON.parse(schemaContent);
       } catch (e) {
         console.warn(`Failed to load schema file ${schemaPath}:`, e.message);

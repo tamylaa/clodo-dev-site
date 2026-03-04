@@ -1,0 +1,140 @@
+<svg viewBox="0 0 1200 550" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="550" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="600" y="35" font-size="24" font-weight="bold" text-anchor="middle" fill="#111827">
+    Full-Stack Clodo Framework + Cloudflare Stream Architecture
+  </text>
+  <text x="600" y="60" font-size="13" text-anchor="middle" fill="#6b7280">
+    Production-ready video platform deployed on Cloudflare Workers
+  </text>
+  
+  <!-- Layer 1: Client -->
+  <g id="client-layer">
+    <text x="50" y="100" font-size="11" font-weight="bold" fill="#6b7280">Client Layer</text>
+    <rect x="50" y="110" width="1120" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="6"/>
+    
+    <rect x="70" y="125" width="160" height="55" fill="#d1fae5" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="150" y="145" font-size="11" font-weight="bold" text-anchor="middle" fill="#065f46">Web App</text>
+    <text x="150" y="165" font-size="9" text-anchor="middle" fill="#404854">React/Vue</text>
+    
+    <rect x="250" y="125" width="160" height="55" fill="#d1fae5" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="330" y="145" font-size="11" font-weight="bold" text-anchor="middle" fill="#065f46">Mobile App</text>
+    <text x="330" y="165" font-size="9" text-anchor="middle" fill="#404854">iOS/Android</text>
+    
+    <rect x="430" y="125" width="160" height="55" fill="#d1fae5" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="510" y="145" font-size="11" font-weight="bold" text-anchor="middle" fill="#065f46">Desktop</text>
+    <text x="510" y="165" font-size="9" text-anchor="middle" fill="#404854">Electron</text>
+    
+    <rect x="610" y="125" width="160" height="55" fill="#d1fae5" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="690" y="145" font-size="11" font-weight="bold" text-anchor="middle" fill="#065f46">Smart TV</text>
+    <text x="690" y="165" font-size="9" text-anchor="middle" fill="#404854">Native SDK</text>
+    
+    <rect x="790" y="125" width="160" height="55" fill="#d1fae5" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="870" y="145" font-size="11" font-weight="bold" text-anchor="middle" fill="#065f46">API Clients</text>
+    <text x="870" y="165" font-size="9" text-anchor="middle" fill="#404854">REST/GraphQL</text>
+  </g>
+  
+  <!-- Layer 2: Edge (Cloudflare Workers + Clodo) -->
+  <g id="edge-layer">
+    <text x="50" y="220" font-size="11" font-weight="bold" fill="#6b7280">Cloudflare Edge / Workers (Clodo Framework)</text>
+    <rect x="50" y="230" width="1120" height="100" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="6"/>
+    
+    <!-- Auth -->
+    <rect x="70" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="135" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Authentication</text>
+    <text x="135" y="283" font-size="8" text-anchor="middle" fill="#404854">JWT, OAuth2,</text>
+    <text x="135" y="293" font-size="8" text-anchor="middle" fill="#404854">Custom Auth</text>
+    
+    <!-- API Gateway -->
+    <rect x="210" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="275" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">API Gateway</text>
+    <text x="275" y="283" font-size="8" text-anchor="middle" fill="#404854">Request routing,</text>
+    <text x="275" y="293" font-size="8" text-anchor="middle" fill="#404854">Rate limiting</text>
+    
+    <!-- Token Generation -->
+    <rect x="350" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="415" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Token Gen</text>
+    <text x="415" y="283" font-size="8" text-anchor="middle" fill="#404854">Signed URLs,</text>
+    <text x="415" y="293" font-size="8" text-anchor="middle" fill="#404854">Expiry windows</text>
+    
+    <!-- Upload Orchestration -->
+    <rect x="490" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="555" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Upload Orch.</text>
+    <text x="555" y="283" font-size="8" text-anchor="middle" fill="#404854">TUS protocol,</text>
+    <text x="555" y="293" font-size="8" text-anchor="middle" fill="#404854">Resumable</text>
+    
+    <!-- Webhook Handler -->
+    <rect x="630" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="695" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Webhooks</text>
+    <text x="695" y="283" font-size="8" text-anchor="middle" fill="#404854">Transcoding done,</text>
+    <text x="695" y="293" font-size="8" text-anchor="middle" fill="#404854">Play events</text>
+    
+    <!-- Caching -->
+    <rect x="770" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="835" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Cache Layer</text>
+    <text x="835" y="283" font-size="8" text-anchor="middle" fill="#404854">HLS manifests,</text>
+    <text x="835" y="293" font-size="8" text-anchor="middle" fill="#404854">KV store</text>
+    
+    <!-- Analytics -->
+    <rect x="910" y="245" width="130" height="75" fill="#fed7aa" stroke="#d97706" stroke-width="1" rx="4"/>
+    <text x="975" y="265" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Analytics</text>
+    <text x="975" y="283" font-size="8" text-anchor="middle" fill="#404854">Real-time metrics,</text>
+    <text x="975" y="293" font-size="8" text-anchor="middle" fill="#404854">QoE tracking</text>
+  </g>
+  
+  <!-- Layer 3: Cloudflare Services -->
+  <g id="cf-services">
+    <text x="50" y="360" font-size="11" font-weight="bold" fill="#6b7280">Cloudflare Services</text>
+    <rect x="50" y="370" width="1120" height="95" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="6"/>
+    
+    <rect x="70" y="385" width="150" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="145" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">Stream</text>
+    <text x="145" y="430" font-size="9" text-anchor="middle" fill="#404854">Transcode,</text>
+    <text x="145" y="443" font-size="9" text-anchor="middle" fill="#404854">Storage, Delivery</text>
+    
+    <rect x="230" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="290" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">D1 Database</text>
+    <text x="290" y="430" font-size="9" text-anchor="middle" fill="#404854">Metadata,</text>
+    <text x="290" y="443" font-size="9" text-anchor="middle" fill="#404854">Playlists</text>
+    
+    <rect x="360" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="420" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">R2 Storage</text>
+    <text x="420" y="430" font-size="9" text-anchor="middle" fill="#404854">Source backup,</text>
+    <text x="420" y="443" font-size="9" text-anchor="middle" fill="#404854">Archive</text>
+    
+    <rect x="490" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="550" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">KV Store</text>
+    <text x="550" y="430" font-size="9" text-anchor="middle" fill="#404854">Cache,</text>
+    <text x="550" y="443" font-size="9" text-anchor="middle" fill="#404854">Sessions</text>
+    
+    <rect x="620" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="680" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">Durable Obj.</text>
+    <text x="680" y="430" font-size="9" text-anchor="middle" fill="#404854">State sync,</text>
+    <text x="680" y="443" font-size="9" text-anchor="middle" fill="#404854">Coordination</text>
+    
+    <rect x="750" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="810" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">Images</text>
+    <text x="810" y="430" font-size="9" text-anchor="middle" fill="#404854">Thumbnails,</text>
+    <text x="810" y="443" font-size="9" text-anchor="middle" fill="#404854">Posters</text>
+    
+    <rect x="880" y="385" width="120" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="940" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">Pages</text>
+    <text x="940" y="430" font-size="9" text-anchor="middle" fill="#404854">Static site,</text>
+    <text x="940" y="443" font-size="9" text-anchor="middle" fill="#404854">Hosting</text>
+    
+    <rect x="1010" y="385" width="150" height="70" fill="#c7d2fe" stroke="#4f46e5" stroke-width="1" rx="4"/>
+    <text x="1085" y="410" font-size="11" font-weight="bold" text-anchor="middle" fill="#3730a3">Analytics</text>
+    <text x="1085" y="430" font-size="9" text-anchor="middle" fill="#404854">Real-time,</text>
+    <text x="1085" y="443" font-size="9" text-anchor="middle" fill="#404854">Web Analytics</text>
+  </g>
+  
+  <!-- Key Benefit -->
+  <g id="benefit">
+    <rect x="50" y="485" width="1120" height="50" fill="#dcfce7" stroke="#16a34a" stroke-width="2" rx="6"/>
+    <text x="600" y="515" font-size="12" font-weight="bold" text-anchor="middle" fill="#15803d">
+      ✓ Unified platform: All video infrastructure, auth, caching, and analytics in one Workers + Stream deployment. Zero cold starts, global scale, zero egress within ecosystem.
+    </text>
+  </g>
+</svg>

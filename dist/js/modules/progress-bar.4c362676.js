@@ -1,0 +1,2 @@
+export function initReadingProgress(){const e=document.getElementById("progressBar")||document.querySelector(".progress-bar");if(!e)return void console.warn("Progress bar element not found");function n(){const n=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight,o=t>0?n/t*100:0;e.style.width=Math.min(o,100)+"%"}let t;window.addEventListener("scroll",function(){t||(t=setTimeout(function(){n(),t=null},16))}),n()}
+//# sourceMappingURL=progress-bar.4c362676.js.map

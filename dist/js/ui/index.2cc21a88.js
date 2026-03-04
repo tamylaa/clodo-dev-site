@@ -1,0 +1,2 @@
+"undefined"!=typeof window&&(window.UI={NavigationComponent:void 0!==window.NavigationComponent?window.NavigationComponent:null,Modal:void 0!==window.Modal?window.Modal:null,Tabs:void 0!==window.Tabs?window.Tabs:null,TooltipAPI:void 0!==window.TooltipAPI?window.TooltipAPI:null});
+//# sourceMappingURL=index.2cc21a88.js.map

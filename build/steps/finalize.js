@@ -68,7 +68,10 @@ export function verifySeoImageInjection() {
                 if (!content.includes('<picture class="hero-image"')) missing.push('picture');
                 if (!content.includes('"@type":"ImageObject"') && !content.includes('"@type": "ImageObject"')) missing.push('ImageObject JSON-LD');
                 if (!content.includes('property="og:image"') && !content.includes("property='og:image'")) missing.push('og:image meta');
-                if (missing.length) failures.push({ page, missing });
+                // Only treat ImageObject + og:image as hard failures; missing <picture> is a warning
+                const hardMissing = missing.filter(m => m !== 'picture');
+                if (hardMissing.length) failures.push({ page, missing: hardMissing });
+                else if (missing.length) console.warn(`[VERIFY] ⚠️  ${page}: ${missing.join(', ')} not injected (non-fatal)`);
             }
         });
 

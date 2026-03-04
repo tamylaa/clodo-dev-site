@@ -1,0 +1,452 @@
+/* ===========================================
+   PRICING PAGE - ACCESSIBILITY
+   ===========================================
+   
+   Accessibility features and reduced-motion support
+   High contrast, focus states, motion preferences
+   =========================================== */
+
+/* ===== FOCUS VISIBLE STATES ===== */
+:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+}
+
+/* ===== KEYBOARD NAVIGATION ===== */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* ===== REDUCED MOTION PREFERENCES ===== */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all animations globally */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Remove animations from specific elements */
+    .pricing-card,
+    .value-card,
+    .testimonial-card,
+    .hero-badge,
+    .hero-section [class*="animation"],
+    .pricing-highlights,
+    .scroll-animation,
+    .path-card,
+    .highlight-item {
+        animation: none !important;
+    }
+
+    /* Remove transforms on hover */
+    button:hover,
+    a:hover,
+    .cta-button:hover,
+    .pricing-card:hover,
+    .value-card:hover,
+    .path-card:hover,
+    .highlight-item:hover,
+    .testimonial-card:hover {
+        transform: none !important;
+    }
+
+    /* Remove all transitions */
+    * {
+        transition: none !important;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: more) {
+    :root {
+        --border-color: #000;
+        --text-secondary: #333;
+    }
+
+    body {
+        color: #000;
+    }
+
+    .pricing-card,
+    .value-card,
+    .testimonial-card {
+        border-width: 2px;
+        border-color: #000;
+    }
+
+    button,
+    .cta-button {
+        border: 2px solid #000;
+        color: #000;
+    }
+
+    .cta-button {
+        border-color: white;
+        color: white;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 3px solid #000;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #0000EE;
+    }
+
+    a:visited {
+        color: #551A8B;
+    }
+}
+
+/* ===== DARK MODE ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --text-primary: #ffffff;
+        --text-secondary: #b8b8b8;
+        --border-color: #404040;
+    }
+
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+    }
+
+    a {
+        color: #64b5f6;
+    }
+
+    a:visited {
+        color: #c084fc;
+    }
+
+    .pricing-card,
+    .value-card,
+    .testimonial-card,
+    input,
+    textarea {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+
+    button,
+    .cta-button {
+        color: white;
+    }
+}
+
+/* ===== SCREEN READER ONLY TEXT ===== */
+.sr-only,
+.screen-reader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ===== FOCUS MANAGEMENT ===== */
+[tabindex]:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* Modal/Dialog focus trap */
+.modal:focus,
+.dialog:focus {
+    outline: 3px solid var(--primary-color);
+}
+
+/* ===== VISUAL INDICATORS ===== */
+.interactive-element {
+    cursor: pointer;
+    position: relative;
+}
+
+.interactive-element::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.interactive-element:focus-within::after {
+    border-color: var(--primary-color);
+}
+
+/* ===== BUTTON ACCESSIBILITY ===== */
+button,
+[role="button"],
+.cta-button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+button:disabled,
+button[aria-disabled="true"],
+.cta-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ===== FORM FIELD ACCESSIBILITY ===== */
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[required]::after,
+textarea[required]::after,
+select[required]::after {
+    content: ' *';
+    color: var(--error-color);
+    font-weight: 700;
+}
+
+.form-error {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-weight: 600;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+select[aria-invalid="true"] {
+    border-color: var(--error-color);
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== LINK ACCESSIBILITY ===== */
+a {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+}
+
+a:visited {
+    color: #7c3aed;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    outline: 2px solid var(--primary-color);
+}
+
+/* ===== SENSORY-FREE INSTRUCTIONS ===== */
+.instruction-text {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* ===== COLOR NOT ONLY INDICATOR ===== */
+.required-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.required-indicator::before {
+    content: '*';
+    color: var(--error-color);
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+/* ===== CONTENT STRUCTURE ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child {
+    margin-top: 0;
+}
+
+/* Proper heading hierarchy */
+h1 {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3.5vw, 1.875rem);
+}
+
+h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+/* ===== LIST ACCESSIBILITY ===== */
+ul,
+ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* ===== LOADING STATES ===== */
+[aria-busy="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+        animation: none;
+        border-top-color: var(--border-color);
+    }
+}
+
+/* ===== NOTIFICATION/ALERT ACCESSIBILITY ===== */
+[role="alert"],
+[role="status"] {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+[role="alert"] {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left-color: var(--error-color);
+}
+
+[role="status"] {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-left-color: var(--success-color);
+}
+
+/* ===== TOOLTIP ACCESSIBILITY ===== */
+[role="tooltip"] {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+/* ===== MOBILE TOUCH TARGET SIZE ===== */
+@media (max-width: 768px) {
+    button,
+    a,
+    [role="button"],
+    input[type="checkbox"],
+    input[type="radio"],
+    .cta-button {
+        min-height: 48px;
+        min-width: 48px;
+    }
+}
+
+/* ===== VISIBILITY ON FOCUS ===== */
+.visually-hidden:focus,
+.sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}

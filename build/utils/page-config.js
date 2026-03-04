@@ -58,6 +58,7 @@ export function resolvePageCssBundle(file) {
         'cloudflare-workers-development-guide': 'cloudflare-workers-development-guide',
         'cloudflare-top-10-saas-edge-computing-workers-case-study-docs': 'cloudflare-top-10-saas-edge-computing-workers-case-study-docs',
         'saas-product-startups-cloudflare-case-studies': 'saas-product-startups-cloudflare-case-studies',
+    'cloudflare-stream-complete-guide': 'cloudflare-stream-complete-guide',
     };
     if (exactMap[fileName]) return exactMap[fileName];
 
@@ -90,4 +91,5 @@ export const PAGE_CSS_REPLACEMENTS = [
     { href: 'css/pages/workers-boilerplate.css', manifestKey: 'styles-workers-boilerplate.css' },
     { href: 'css/pages/saas-product-startups-cloudflare-case-studies.css', manifestKey: 'styles-saas-product-startups-cloudflare-case-studies.css' },
     { href: 'css/pages/cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css', manifestKey: 'styles-cloudflare-top-10-saas-edge-computing-workers-case-study-docs.css' },
+    { href: 'css/pages/cloudflare-stream-complete-guide.css', manifestKey: 'styles-cloudflare-stream-complete-guide.css' },
 ];

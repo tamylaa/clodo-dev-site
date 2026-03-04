@@ -1,0 +1,258 @@
+/* =========================================
+   FEATURES SECTION - Mobile First
+   ========================================= */
+
+/* ===== BASE STYLES (Mobile: 0-767px) ===== */
+
+#features {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+}
+
+#technical-foundation {
+    padding: 80px 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Content Header */
+.features-content {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 100%;
+}
+
+.features-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.features-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Mobile: Single column */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Feature Cards */
+.feature-card {
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Code Blocks in Features */
+.feature-card pre {
+    text-align: left;
+    font-size: 0.8rem;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    hyphens: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 10%);
+}
+
+.feature-card code {
+    font-size: 0.75rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    color: inherit;
+}
+
+/* Featured Cards - Enhanced Prominence */
+.feature-card.featured {
+    position: relative;
+    border: 3px solid var(--primary-500);
+    background: linear-gradient(135deg, rgb(239 246 255), var(--bg-primary));
+    z-index: 2;
+    box-shadow: 0 8px 32px rgb(59 130 246 / 20%);
+}
+
+.feature-card.featured::before {
+    content: '⭐ Featured';
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+    color: var(--color-white);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    box-shadow: 0 4px 12px rgb(59 130 246 / 30%);
+    z-index: 3;
+}
+
+.feature-card.featured:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgb(59 130 246 / 25%);
+    border-color: var(--primary-600);
+}
+
+.feature-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+    color: var(--color-white);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgb(59 130 246 / 30%);
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card.featured .feature-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-600);
+}
+
+.feature-card.featured h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.feature-card.featured p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Regular Feature Cards - More Subdued */
+.feature-card:not(.featured) {
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    min-height: 350px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.feature-card:not(.featured):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-card:not(.featured) .feature-icon {
+    font-size: 2.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.feature-card:not(.featured) h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card:not(.featured) p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* Default Icon Styles */
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ===== FEATURES GRID - CONSOLIDATED ===== */
+
+/* Base responsive grid - single source of truth */
+.features-grid {
+    display: grid;
+    gap: 2rem;
+    margin: var(--spacing-xl) 0;
+}
+
+/* Mobile: single column (default) */
+.features-grid {
+    grid-template-columns: 1fr;
+}
+
+/* Tablet: 2 columns */
+@media (width >= 768px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Desktop: auto-fit with centering for #features section */
+@media (width >= 1024px) {
+    #features .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto; /* Center the grid */
+    }
+
+    /* Other sections keep 3-column layout */
+    .features-grid:not(#features .features-grid) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+}

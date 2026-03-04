@@ -200,6 +200,36 @@ let server = createServer((req, res) => {
     }
 
     try {
+        // Serve precompressed files for text assets when available and requested.
+        const acceptEncoding = (req.headers['accept-encoding'] || '').toLowerCase();
+        const prefersBrotli = acceptEncoding.includes('br');
+        const prefersGzip = acceptEncoding.includes('gzip');
+
+        // For non-HTML text assets we prefer serving precompressed files if present
+        const textExtensions = new Set(['css', 'js', 'json', 'map', 'svg', 'txt', 'xml', 'wasm', 'html']);
+
+        // If a precompressed variant exists, serve it directly (skip HTML include injection for .br/.gz)
+        if (textExtensions.has(ext)) {
+            const brPath = `${filePath}.br`;
+            const gzPath = `${filePath}.gz`;
+
+            if (prefersBrotli && existsSync(brPath) && ext !== 'html') {
+                const buf = readFileSync(brPath);
+                res.writeHead(200, { 'Content-Type': contentType, 'Content-Encoding': 'br', 'Content-Length': String(buf.length), 'Vary': 'Accept-Encoding' });
+                res.end(buf);
+                console.log(`[dev-server] Served precompressed (br) ${req.url} -> ${brPath} (${buf.length} bytes)`);
+                return;
+            }
+
+            if (prefersGzip && existsSync(gzPath) && ext !== 'html') {
+                const buf = readFileSync(gzPath);
+                res.writeHead(200, { 'Content-Type': contentType, 'Content-Encoding': 'gzip', 'Content-Length': String(buf.length), 'Vary': 'Accept-Encoding' });
+                res.end(buf);
+                console.log(`[dev-server] Served precompressed (gzip) ${req.url} -> ${gzPath} (${buf.length} bytes)`);
+                return;
+            }
+        }
+
         // Read the raw file bytes. For binary assets (images, fonts, etc.) we must
         // keep the Buffer intact to avoid accidental UTF-8 re-encoding which corrupts
         // binary data. For HTML we will decode to string and perform include
@@ -230,7 +260,9 @@ let server = createServer((req, res) => {
 
         console.log(`[dev-server] Serving ${req.url} -> ${filePath} (${bytes} bytes, type=${contentType})`);
         // Set Content-Length to help clients
-        res.writeHead(200, { 'Content-Type': contentType, 'Content-Length': String(bytes) });
+        const headers = { 'Content-Type': contentType, 'Content-Length': String(bytes) };
+        if (textExtensions.has(ext)) headers['Vary'] = 'Accept-Encoding';
+        res.writeHead(200, headers);
         try {
             // Send Buffer or string as appropriate
             res.end(outData, () => { console.log(`[dev-server] Finished ${req.url}`); });

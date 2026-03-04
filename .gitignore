@@ -58,6 +58,17 @@ playwright/.cache/
 # Lighthouse CI
 .lighthouseci/
 
+# Visual tests & screenshots (local dev only)
+visual-tests/
+playwright-screenshots/
+screenshots/
+
+# Temporary diagnostic/debug scripts
+test-style.js
+test-style.mjs
+test-style2.mjs
+served-page.html
+
 # Temporary diagnostic files
 tmp_*.html
 

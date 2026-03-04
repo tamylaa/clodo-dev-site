@@ -122,7 +122,9 @@ function injectHeroImage(content, file, fileName, pathPrefix, pageConfig, images
             const locale = detectLocaleFromPath(join('public', file));
             const entries = [];
             for (const imgId of config.images) {
-                const found = imagesManifest.find(i => i.id === imgId);
+                // Exact match first, then fuzzy (id contains the short alias)
+                const found = imagesManifest.find(i => i.id === imgId)
+                    || imagesManifest.find(i => i.id.includes(imgId) && !i.id.endsWith('.svg'));
                 if (found) entries.push(found);
             }
             const chosen = entries.length ? entries : findImageEntriesForPage(imagesManifest, file, locale);

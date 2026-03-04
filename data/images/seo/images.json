@@ -1,72 +1,942 @@
 [
   {
-    "id": "hero-collab",
-    "file": "/images/seo/hero-cloudflare-collab-1200x630.png",
-    "alt": "Cloudflare collaboration overview with logos of Discord, Shopify and GitHub.",
-    "caption": "Evaluating Cloudflare for team collaboration and performance.",
-    "width": 1200,
-    "height": 630,
-    "format": "image/png",
+    "id": "guides_cloudflare-stream_architecture-clodo-stream-fullstack-1200x630.png",
+    "file": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630.png",
     "optimized": {
-      "png_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630.png",
-      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630.webp",
-      "png_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.png",
-      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.webp"
-    },
-    "role": "hero",
-    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
-    "locales": ["en"]
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1200x630-1600w.webp"
+    }
   },
   {
-    "id": "architecture-cloudflare-collab",
+    "id": "guides_cloudflare-stream_architecture-clodo-stream-fullstack-400x210.png",
+    "file": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-400x210-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-clodo-stream-fullstack-800x420.png",
+    "file": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800x420-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-clodo-stream-fullstack.svg",
+    "file": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack.svg",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-clodo-stream-fullstack-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-cloudflare-stream-pipeline-1200x630.png",
+    "file": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-cloudflare-stream-pipeline-400x210.png",
+    "file": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-400x210-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-cloudflare-stream-pipeline-800x420.png",
+    "file": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800x420-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-cloudflare-stream-pipeline.svg",
+    "file": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline.svg",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-cloudflare-stream-pipeline-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-stream-integration-1200x630.png",
+    "file": "/images/guides/cloudflare-stream/architecture-stream-integration-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-1200x630-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-1200x630-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-1200x630-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-stream-integration-400x210.png",
+    "file": "/images/guides/cloudflare-stream/architecture-stream-integration-400x210.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-400x210-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-400x210-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-400x210-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-400x210-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-stream-integration-800x420.png",
+    "file": "/images/guides/cloudflare-stream/architecture-stream-integration-800x420.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-800x420-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-800x420-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-800x420-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-800x420-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_architecture-stream-integration.svg",
+    "file": "/images/guides/cloudflare-stream/architecture-stream-integration.svg",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/architecture-stream-integration-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/architecture-stream-integration-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_chart-pricing-comparison-1200x630.png",
+    "file": "/images/guides/cloudflare-stream/chart-pricing-comparison-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1200x630-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1200x630-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1200x630-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_chart-pricing-comparison-400x210.png",
+    "file": "/images/guides/cloudflare-stream/chart-pricing-comparison-400x210.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-400x210-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-400x210-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-400x210-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-400x210-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_chart-pricing-comparison-800x420.png",
+    "file": "/images/guides/cloudflare-stream/chart-pricing-comparison-800x420.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800x420-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800x420-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800x420-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800x420-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_chart-pricing-comparison.svg",
+    "file": "/images/guides/cloudflare-stream/chart-pricing-comparison.svg",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/chart-pricing-comparison-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/chart-pricing-comparison-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_comparison-codec-bandwidth-1200x630.png",
+    "file": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_comparison-codec-bandwidth-400x210.png",
+    "file": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-400x210-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_comparison-codec-bandwidth-800x420.png",
+    "file": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420.png",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800x420-1600w.webp"
+    }
+  },
+  {
+    "id": "guides_cloudflare-stream_comparison-codec-bandwidth.svg",
+    "file": "/images/guides/cloudflare-stream/comparison-codec-bandwidth.svg",
+    "optimized": {
+      "avif_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800w.avif",
+      "avif_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1600w.avif",
+      "webp_1x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-800w.webp",
+      "webp_2x": "/images/guides/cloudflare-stream/comparison-codec-bandwidth-1600w.webp"
+    }
+  },
+  {
+    "id": "manifest.json",
+    "file": "/images/manifest.json",
+    "optimized": {}
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-1200.png",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200.png",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-1200.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-1600.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1600.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1600-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1600-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1600-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-1600-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-200.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-200-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-200-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-200-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-2400.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-2400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-2400-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-2400-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-2400-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-2400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-400.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-400-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-400-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-400-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-480.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-480.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-480-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-480-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-480-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-480-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_benchmark-discord-shopify-github-1200x675_benchmark-discord-shopify-github-1200x675-800.webp",
+    "file": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-800.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-800-800w.avif",
+      "avif_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-800-1600w.avif",
+      "webp_1x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-800-800w.webp",
+      "webp_2x": "/images/optimized/benchmark-discord-shopify-github-1200x675/benchmark-discord-shopify-github-1200x675-800-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-1200.png",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.png",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-1200.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-1600.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-1600-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-200.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-200-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-200-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-200-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-2400.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-2400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-400.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-400-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-400-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-400-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-480.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-480.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-480-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-480-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-480-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-480-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_hero-cloudflare-collab-1200x630_hero-cloudflare-collab-1200x630-800.webp",
+    "file": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-800.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-800-800w.avif",
+      "avif_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-800-1600w.avif",
+      "webp_1x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-800-800w.webp",
+      "webp_2x": "/images/optimized/hero-cloudflare-collab-1200x630/hero-cloudflare-collab-1200x630-800-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-1200.png",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200.png",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-1200.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-1600.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1600.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1600-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1600-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1600-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-1600-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-200.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-200.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-200-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-200-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-200-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-200-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-2400.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-2400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-2400-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-2400-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-2400-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-2400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-400.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-400.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-400-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-400-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-400-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-400-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-480.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-480.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-480-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-480-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-480-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-480-1600w.webp"
+    }
+  },
+  {
+    "id": "optimized_screenshot-collab-features-1280x720_screenshot-collab-features-1280x720-800.webp",
+    "file": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-800.webp",
+    "optimized": {
+      "avif_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-800-800w.avif",
+      "avif_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-800-1600w.avif",
+      "webp_1x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-800-800w.webp",
+      "webp_2x": "/images/optimized/screenshot-collab-features-1280x720/screenshot-collab-features-1280x720-800-1600w.webp"
+    }
+  },
+  {
+    "id": "product-demo-captions.vtt",
+    "file": "/images/product-demo-captions.vtt",
+    "optimized": {}
+  },
+  {
+    "id": "product-demo-poster.svg",
+    "file": "/images/product-demo-poster.svg",
+    "optimized": {
+      "avif_1x": "/images/product-demo-poster-800w.avif",
+      "avif_2x": "/images/product-demo-poster-1600w.avif",
+      "webp_1x": "/images/product-demo-poster-800w.webp",
+      "webp_2x": "/images/product-demo-poster-1600w.webp"
+    }
+  },
+  {
+    "id": "product-demo.mp4",
+    "file": "/images/product-demo.mp4",
+    "optimized": {}
+  },
+  {
+    "id": "product-demo.svg",
+    "file": "/images/product-demo.svg",
+    "optimized": {}
+  },
+  {
+    "id": "seo_architecture-clodo-stream-fullstack-1200x675.png",
+    "file": "/images/seo/architecture-clodo-stream-fullstack-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/architecture-clodo-stream-fullstack-1200x675-800w.avif",
+      "avif_2x": "/images/seo/architecture-clodo-stream-fullstack-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/architecture-clodo-stream-fullstack-1200x675-800w.webp",
+      "webp_2x": "/images/seo/architecture-clodo-stream-fullstack-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_architecture-cloudflare-collab.svg",
     "file": "/images/seo/architecture-cloudflare-collab.svg",
-    "alt": "Diagram of Git-based collaboration workflow deploying to Cloudflare Workers at the edge.",
-    "caption": "How a collaborative workflow deploys to Cloudflare’s edge.",
-    "width": 1200,
-    "height": 800,
-    "format": "image/svg+xml",
     "optimized": {
-      "svg": "/images/seo/architecture-cloudflare-collab.svg",
-      "png_1x": "/images/seo/optimized/architecture-cloudflare-collab-1200x800.png"
-    },
-    "role": "diagram",
-    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
-    "locales": ["en"]
+      "avif_1x": "/images/seo/architecture-cloudflare-collab-800w.avif",
+      "avif_2x": "/images/seo/architecture-cloudflare-collab-1600w.avif",
+      "webp_1x": "/images/seo/architecture-cloudflare-collab-800w.webp",
+      "webp_2x": "/images/seo/architecture-cloudflare-collab-1600w.webp"
+    }
   },
   {
-    "id": "benchmark-discord-shopify-github",
+    "id": "seo_architecture-cloudflare-stream-pipeline-1200x675.png",
+    "file": "/images/seo/architecture-cloudflare-stream-pipeline-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/architecture-cloudflare-stream-pipeline-1200x675-800w.avif",
+      "avif_2x": "/images/seo/architecture-cloudflare-stream-pipeline-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/architecture-cloudflare-stream-pipeline-1200x675-800w.webp",
+      "webp_2x": "/images/seo/architecture-cloudflare-stream-pipeline-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_architecture-cloudflare-stream-pipeline.svg",
+    "file": "/images/seo/architecture-cloudflare-stream-pipeline.svg",
+    "optimized": {
+      "avif_1x": "/images/seo/architecture-cloudflare-stream-pipeline-800w.avif",
+      "avif_2x": "/images/seo/architecture-cloudflare-stream-pipeline-1600w.avif",
+      "webp_1x": "/images/seo/architecture-cloudflare-stream-pipeline-800w.webp",
+      "webp_2x": "/images/seo/architecture-cloudflare-stream-pipeline-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_architecture-stream-integration-1200x675.png",
+    "file": "/images/seo/architecture-stream-integration-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/architecture-stream-integration-1200x675-800w.avif",
+      "avif_2x": "/images/seo/architecture-stream-integration-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/architecture-stream-integration-1200x675-800w.webp",
+      "webp_2x": "/images/seo/architecture-stream-integration-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_benchmark-discord-shopify-github-1200x675.png",
     "file": "/images/seo/benchmark-discord-shopify-github-1200x675.png",
-    "alt": "Benchmark chart showing page load time improvements after using Cloudflare.",
-    "caption": "Real-world median speed improvement after adopting Cloudflare.",
-    "width": 1200,
-    "height": 675,
-    "format": "image/png",
     "optimized": {
-      "png_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.png",
-      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.webp",
-      "png_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.png",
-      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.webp"
-    },
-    "role": "benchmark",
-    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
-    "locales": ["en"]
+      "avif_1x": "/images/seo/benchmark-discord-shopify-github-1200x675-800w.avif",
+      "avif_2x": "/images/seo/benchmark-discord-shopify-github-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/benchmark-discord-shopify-github-1200x675-800w.webp",
+      "webp_2x": "/images/seo/benchmark-discord-shopify-github-1200x675-1600w.webp"
+    }
   },
   {
-    "id": "screenshot-collab-features",
-    "file": "/images/seo/screenshot-collab-features-1280x720.png",
-    "alt": "Cloudflare dashboard showing preview environments and team controls.",
-    "caption": "Preview environments and team controls in Cloudflare.",
-    "width": 1280,
-    "height": 720,
-    "format": "image/png",
+    "id": "seo_chart-pricing-comparison-1200x675.png",
+    "file": "/images/seo/chart-pricing-comparison-1200x675.png",
     "optimized": {
-      "png_1x": "/images/seo/optimized/screenshot-collab-features-1280x720.png",
-      "webp_1x": "/images/seo/optimized/screenshot-collab-features-1280x720.webp",
-      "png_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440.png",
-      "webp_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440.webp"
-    },
-    "role": "screenshot",
-    "pages": ["saas-product-startups-cloudflare-case-studies.html"],
-    "locales": ["en"]
+      "avif_1x": "/images/seo/chart-pricing-comparison-1200x675-800w.avif",
+      "avif_2x": "/images/seo/chart-pricing-comparison-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/chart-pricing-comparison-1200x675-800w.webp",
+      "webp_2x": "/images/seo/chart-pricing-comparison-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_comparison-codec-bandwidth-1200x675.png",
+    "file": "/images/seo/comparison-codec-bandwidth-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/comparison-codec-bandwidth-1200x675-800w.avif",
+      "avif_2x": "/images/seo/comparison-codec-bandwidth-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/comparison-codec-bandwidth-1200x675-800w.webp",
+      "webp_2x": "/images/seo/comparison-codec-bandwidth-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_hero-cloudflare-collab-1200x630.png",
+    "file": "/images/seo/hero-cloudflare-collab-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/seo/hero-cloudflare-collab-1200x630-800w.avif",
+      "avif_2x": "/images/seo/hero-cloudflare-collab-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/hero-cloudflare-collab-1200x630-800w.webp",
+      "webp_2x": "/images/seo/hero-cloudflare-collab-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_hero-cloudflare-stream-guide-1200x630.png",
+    "file": "/images/seo/hero-cloudflare-stream-guide-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/seo/hero-cloudflare-stream-guide-1200x630-800w.avif",
+      "avif_2x": "/images/seo/hero-cloudflare-stream-guide-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/hero-cloudflare-stream-guide-1200x630-800w.webp",
+      "webp_2x": "/images/seo/hero-cloudflare-stream-guide-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-clodo-stream-fullstack-1200x675.png",
+    "file": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-clodo-stream-fullstack-1200x675.webp",
+    "file": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-clodo-stream-fullstack-2400x1350.png",
+    "file": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-clodo-stream-fullstack-2400x1350.webp",
+    "file": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-clodo-stream-fullstack-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-cloudflare-stream-pipeline-1200x675.png",
+    "file": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-cloudflare-stream-pipeline-1200x675.webp",
+    "file": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-cloudflare-stream-pipeline-2400x1350.png",
+    "file": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-cloudflare-stream-pipeline-2400x1350.webp",
+    "file": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-cloudflare-stream-pipeline-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-stream-integration-1200x675.png",
+    "file": "/images/seo/optimized/architecture-stream-integration-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-stream-integration-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-stream-integration-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-stream-integration-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-stream-integration-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-stream-integration-1200x675.webp",
+    "file": "/images/seo/optimized/architecture-stream-integration-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-stream-integration-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-stream-integration-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-stream-integration-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-stream-integration-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-stream-integration-2400x1350.png",
+    "file": "/images/seo/optimized/architecture-stream-integration-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-stream-integration-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-stream-integration-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-stream-integration-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-stream-integration-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_architecture-stream-integration-2400x1350.webp",
+    "file": "/images/seo/optimized/architecture-stream-integration-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/architecture-stream-integration-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/architecture-stream-integration-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/architecture-stream-integration-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/architecture-stream-integration-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_benchmark-discord-shopify-github-1200x675.png",
+    "file": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_benchmark-discord-shopify-github-1200x675.webp",
+    "file": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_benchmark-discord-shopify-github-2400x1350.png",
+    "file": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_benchmark-discord-shopify-github-2400x1350.webp",
+    "file": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/benchmark-discord-shopify-github-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_chart-pricing-comparison-1200x675.png",
+    "file": "/images/seo/optimized/chart-pricing-comparison-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/chart-pricing-comparison-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/chart-pricing-comparison-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/chart-pricing-comparison-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/chart-pricing-comparison-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_chart-pricing-comparison-1200x675.webp",
+    "file": "/images/seo/optimized/chart-pricing-comparison-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/chart-pricing-comparison-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/chart-pricing-comparison-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/chart-pricing-comparison-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/chart-pricing-comparison-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_chart-pricing-comparison-2400x1350.png",
+    "file": "/images/seo/optimized/chart-pricing-comparison-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_chart-pricing-comparison-2400x1350.webp",
+    "file": "/images/seo/optimized/chart-pricing-comparison-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/chart-pricing-comparison-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_comparison-codec-bandwidth-1200x675.png",
+    "file": "/images/seo/optimized/comparison-codec-bandwidth-1200x675.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_comparison-codec-bandwidth-1200x675.webp",
+    "file": "/images/seo/optimized/comparison-codec-bandwidth-1200x675.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-800w.avif",
+      "avif_2x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-1600w.avif",
+      "webp_1x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-800w.webp",
+      "webp_2x": "/images/seo/optimized/comparison-codec-bandwidth-1200x675-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_comparison-codec-bandwidth-2400x1350.png",
+    "file": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_comparison-codec-bandwidth-2400x1350.webp",
+    "file": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-800w.avif",
+      "avif_2x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-1600w.avif",
+      "webp_1x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-800w.webp",
+      "webp_2x": "/images/seo/optimized/comparison-codec-bandwidth-2400x1350-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-collab-1200x630.png",
+    "file": "/images/seo/optimized/hero-cloudflare-collab-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-collab-1200x630.webp",
+    "file": "/images/seo/optimized/hero-cloudflare-collab-1200x630.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-collab-2400x1260.png",
+    "file": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-collab-2400x1260.webp",
+    "file": "/images/seo/optimized/hero-cloudflare-collab-2400x1260.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-collab-2400x1260-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-stream-guide-1200x630.png",
+    "file": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-stream-guide-1200x630.webp",
+    "file": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-1200x630-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-stream-guide-2400x1260.png",
+    "file": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_hero-cloudflare-stream-guide-2400x1260.webp",
+    "file": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-800w.avif",
+      "avif_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-1600w.avif",
+      "webp_1x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-800w.webp",
+      "webp_2x": "/images/seo/optimized/hero-cloudflare-stream-guide-2400x1260-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_screenshot-collab-features-1280x720.png",
+    "file": "/images/seo/optimized/screenshot-collab-features-1280x720.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/screenshot-collab-features-1280x720-800w.avif",
+      "avif_2x": "/images/seo/optimized/screenshot-collab-features-1280x720-1600w.avif",
+      "webp_1x": "/images/seo/optimized/screenshot-collab-features-1280x720-800w.webp",
+      "webp_2x": "/images/seo/optimized/screenshot-collab-features-1280x720-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_screenshot-collab-features-1280x720.webp",
+    "file": "/images/seo/optimized/screenshot-collab-features-1280x720.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/screenshot-collab-features-1280x720-800w.avif",
+      "avif_2x": "/images/seo/optimized/screenshot-collab-features-1280x720-1600w.avif",
+      "webp_1x": "/images/seo/optimized/screenshot-collab-features-1280x720-800w.webp",
+      "webp_2x": "/images/seo/optimized/screenshot-collab-features-1280x720-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_screenshot-collab-features-2560x1440.png",
+    "file": "/images/seo/optimized/screenshot-collab-features-2560x1440.png",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/screenshot-collab-features-2560x1440-800w.avif",
+      "avif_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440-1600w.avif",
+      "webp_1x": "/images/seo/optimized/screenshot-collab-features-2560x1440-800w.webp",
+      "webp_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_optimized_screenshot-collab-features-2560x1440.webp",
+    "file": "/images/seo/optimized/screenshot-collab-features-2560x1440.webp",
+    "optimized": {
+      "avif_1x": "/images/seo/optimized/screenshot-collab-features-2560x1440-800w.avif",
+      "avif_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440-1600w.avif",
+      "webp_1x": "/images/seo/optimized/screenshot-collab-features-2560x1440-800w.webp",
+      "webp_2x": "/images/seo/optimized/screenshot-collab-features-2560x1440-1600w.webp"
+    }
+  },
+  {
+    "id": "seo_screenshot-collab-features-1280x720.png",
+    "file": "/images/seo/screenshot-collab-features-1280x720.png",
+    "optimized": {
+      "avif_1x": "/images/seo/screenshot-collab-features-1280x720-800w.avif",
+      "avif_2x": "/images/seo/screenshot-collab-features-1280x720-1600w.avif",
+      "webp_1x": "/images/seo/screenshot-collab-features-1280x720-800w.webp",
+      "webp_2x": "/images/seo/screenshot-collab-features-1280x720-1600w.webp"
+    }
   }
 ]

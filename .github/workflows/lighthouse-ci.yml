@@ -1,42 +1,29 @@
-name: Lighthouse Audit
+name: Lighthouse CI
 
 on:
   push:
     branches: [ main, master ]
   pull_request:
+    branches: [ main, master ]
     paths: [ "**/*.html", "public/**", "build/**", "src/**", "public/js/**", "public/css/**" ]
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      - uses: actions/checkout@v4
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build site
-        run: npm run build --if-present
-
-      - name: Start http-server (background)
-        run: npx http-server ./dist -p 3000 & sleep 2
-
-      - name: Run Lighthouse audit (local)
-        env:
-          LH_BLOCKED_URLS: 'https://www.google-analytics.com/*,https://cdn.segment.com/*,https://www.googletagservices.com/*'
-        run: node ./tools/run-lighthouse-audit-ci.mjs --url http://localhost:3000/ --outputPath ./lighthouse-results/ci-local.json
-
-      - name: Fail on Best Practices or Console Errors
-        run: node ./tools/check-lighthouse-ci.mjs ./lighthouse-results/ci-local.json
-
-      - name: Upload Lighthouse report
+        run: npm run build
+      - name: Run LHCI autorun
+        run: npx -y @lhci/cli autorun --config=.lighthouserc.json
+      - name: Upload Lighthouse artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse-report-local
-          path: ./lighthouse-results/ci-local.json
+          name: lighthouse-reports
+          path: visual-tests/lighthouse-ci

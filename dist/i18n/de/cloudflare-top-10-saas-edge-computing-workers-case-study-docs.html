@@ -206,6 +206,54 @@
 <script type="application/ld+json" nonce="N0Nc3Cl0d0">
 {
   "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should my SaaS startup use Cloudflare or Vercel for edge computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your architecture. Choose Cloudflare if you need: API-first edge computing, bundled DDoS/WAF security, multi-tenant support via Durable Objects, or predictable pricing at scale. Choose Vercel if you're building a Next.js frontend-heavy application with minimal backend logic. Many SaaS teams use both — Vercel for the marketing site, Cloudflare Workers for the API layer and product backend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to migrate a SaaS product to Cloudflare Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical SaaS migration takes 60-90 days for production readiness. Phase 1 (setup + POC): 2-4 weeks. Phase 2 (DNS + canary migration): 3-4 weeks. Phase 3 (full rollout + optimization): 2-3 weeks. Using Clodo Framework can reduce this by 40-60% thanks to automated route generation, built-in canary deployment, and pre-configured monitoring. Small teams with a single API service have completed migrations in as little as 2 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the biggest risks of migrating to Cloudflare Workers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The top 3 risks are: (1) CPU time limits — Workers have a 10ms free / 30s paid CPU limit per request, which means compute-heavy operations must stay on origin. (2) Vendor lock-in — Durable Objects, KV, and R2 are Cloudflare-proprietary with no direct equivalents on other platforms. (3) Debugging complexity — distributed edge logs are harder to trace than centralized servers. Mitigation: use Clodo Framework's abstraction layer for portability, start with stateless endpoints, and set up Logpush from day 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Cloudflare Workers cost for a SaaS startup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloudflare Workers is one of the most cost-effective edge platforms: the free tier includes 100,000 requests/day. The paid plan starts at $5/month and includes 10 million requests. At 100M monthly requests, expect $50-100/month — compared to $500-800/month for equivalent AWS Lambda@Edge usage. The biggest hidden savings come from zero egress fees, bundled security, and no per-region pricing multipliers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Cloudflare Workers for a multi-tenant SaaS application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Cloudflare's Durable Objects are specifically designed for multi-tenant workloads. Each tenant gets an isolated Durable Object instance with its own storage, eliminating noisy-neighbor problems. Combined with Workers for request routing and KV for tenant configuration, you can build a fully isolated multi-tenant architecture at the edge."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" nonce="N0Nc3Cl0d0">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -231,15 +279,6 @@
   "url": "https://www.clodo.dev/cloudflare-top-10-saas-edge-computing-workers-case-study-docs"
 }
 </script>
-
-  <!-- Hreflang tags for alternate language versions -->
-  <link rel="alternate" hreflang="ar" href="https://www.clodo.dev/i18n/ar/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="br" href="https://www.clodo.dev/i18n/br/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="es-419" href="https://www.clodo.dev/i18n/es-419/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="fa" href="https://www.clodo.dev/i18n/fa/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="he" href="https://www.clodo.dev/i18n/he/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="in" href="https://www.clodo.dev/i18n/in/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
-  <link rel="alternate" hreflang="it" href="https://www.clodo.dev/i18n/it/cloudflare-top-10-saas-edge-computing-workers-case-study-docs">
 </head>
 <body>
     <nav class="navbar" aria-label="Main navigation">

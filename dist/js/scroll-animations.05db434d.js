@@ -1,0 +1,2 @@
+function setupScrollAnimations(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const e=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add("animate-in")})},{threshold:.1,rootMargin:"0px 0px -50px 0px"});document.querySelectorAll(".animate-on-scroll").forEach(o=>{e.observe(o)})}setupScrollAnimations(),"object"==typeof module&&module&&"object"==typeof module.exports&&(module.exports={setupScrollAnimations:setupScrollAnimations});
+//# sourceMappingURL=scroll-animations.05db434d.js.map

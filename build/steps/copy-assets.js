@@ -28,6 +28,17 @@ export function copyAssets() {
         if (existsSync(src)) copyRecursive(src, join('dist', dir));
     });
 
+    // Page-specific and global CSS must be available in dist for deferred loading
+    // (the build previously only handled images/js but not css/pages)
+    ['css/pages', 'css/global'].forEach(dir => {
+        const src = join('public', dir);
+        const dest = join('dist', dir);
+        if (existsSync(src)) {
+            copyRecursive(src, dest);
+            console.log(`[ASSETS] Copied ${dir}/ to dist/${dir}/`);
+        }
+    });
+
     // Images directory
     if (existsSync(join('public', 'images'))) {
         copyRecursive(join('public', 'images'), join('dist', 'images'));
