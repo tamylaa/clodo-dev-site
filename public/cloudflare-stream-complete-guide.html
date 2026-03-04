@@ -92,44 +92,538 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/x-icon" href="favicon.svg">
 
-    <!-- Critical CSS inlined for above-the-fold content -->
+    <!-- Complete CSS System for Consistent Page Styling -->
     <style>
-    /* Critical CSS for LCP optimization */
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #111827; background: #ffffff; }
-    .hero-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 0; text-align: center; min-height: 60vh; display: flex; align-items: center; }
-    .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .hero-title { font-size: 3rem; font-weight: 800; margin: 0 0 1rem 0; line-height: 1.1; }
-    .hero-subtitle { font-size: 1.25rem; opacity: 0.9; margin: 0; line-height: 1.4; }
-    .comparison-overview { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding: 4rem 0; border-bottom: 1px solid #e5e7eb; }
-    .comparison-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 { font-size: 2.5rem; font-weight: 800; color: #111827; margin: 0 0 1rem 0; line-height: 1.2; }
-    .section-subtitle { font-size: 1.125rem; color: #6b7280; margin: 0; line-height: 1.4; }
-    .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-    .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
-    .comparison-table th { background: #f9fafb; font-weight: 600; color: #374151; }
-    .comparison-table .highlight { background: #ecfdf5; border-left: 4px solid #10b981; }
-    .comparison-table .neutral { background: #fef3c7; border-left: 4px solid #f59e0b; }
-    .comparison-table .warning { background: #fef2f2; border-left: 4px solid #ef4444; }
-    .constraint-section { padding: 4rem 0; background: white; }
-    .constraint-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .constraint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .constraint-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease; }
-    .constraint-card:hover { transform: translateY(-2px); }
-    .constraint-card h3 { color: #111827; margin: 0 0 1rem 0; font-size: 1.25rem; line-height: 1.3; }
-    .constraint-card p { color: #6b7280; margin: 0; line-height: 1.5; }
+    /* ============================================= 
+       GLOBAL STYLES & DESIGN SYSTEM 
+       ============================================= */
+    * { box-sizing: border-box; font-display: swap; }
+    
+    html { scroll-behavior: smooth; }
+    body { 
+        margin: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        line-height: 1.6; 
+        color: #111827; 
+        background: #ffffff; 
+    }
+
+    /* ============================================= 
+       TYPOGRAPHY 
+       ============================================= */
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(1.75rem, 5vw, 3rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); margin-bottom: 0.75rem; }
+    h4 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+    p { margin: 1rem 0; }
     code { background: #f3f4f6; padding: 0.125rem 0.25rem; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.875em; }
-    pre { background: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
+    pre { background: #1f2937; color: #f9fafb; padding: 1.5rem; border-radius: 6px; overflow-x: auto; margin: 1.5rem 0; }
     pre code { background: none; padding: 0; }
 
-    /* Prevent layout shifts */
-    img { max-width: 100%; height: auto; }
-    * { font-display: swap; }
+    /* ============================================= 
+       LAYOUT UTILITIES 
+       ============================================= */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* Reserve space for hero content */
-    .hero-section::before { content: ""; display: block; padding-bottom: 20px; }
-    </style>
+    /* ============================================= 
+       RESPONSIVE SECTION WRAPPER 
+       ============================================= */
+    .section { padding: 3rem 1rem; }
+    @media (min-width: 768px) { .section { padding: 4rem 1rem; } }
+    
+    .section-light { background: #ffffff; }
+    .section-gray { background: #f9fafb; }
+    .section-blue { background: #f0f9ff; border-top: 4px solid #3b82f6; }
+    .section-purple { background: #f9fafb; border-top: 4px solid #7c3aed; }
+
+    /* ============================================= 
+       HERO SECTION 
+       ============================================= */
+    .hero-section { 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        color: white; 
+        padding: 3rem 1rem; 
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+    }
+    @media (min-width: 768px) { .hero-section { padding: 4rem 1rem; min-height: 60vh; } }
+
+    .hero-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+    }
+    @media (min-width: 768px) { 
+        .hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+
+    .hero-content { }
+    .hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .hero-badge { 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 0.5rem; 
+        background: rgba(255, 255, 255, 0.2); 
+        color: white; 
+        padding: 0.5rem 1rem; 
+        border-radius: 4px;
+        font-size: 0.875rem;
+    }
+
+    #hero-title { font-size: clamp(1.5rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(1rem, 3vw, 1.25rem); opacity: 0.9; margin: 0 0 1.5rem 0; line-height: 1.4; }
+
+    .hero-features { 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    .hero-feature { 
+        display: flex; 
+        gap: 0.75rem; 
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+    .feature-icon { flex-shrink: 0; font-size: 1.5rem; }
+    .hero-feature strong { display: block; margin-bottom: 0.25rem; }
+    .hero-feature div { font-size: 0.875rem; opacity: 0.9; }
+
+    .hero-actions { 
+        display: flex; 
+        gap: 1rem; 
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .hero-stats { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        gap: 1.5rem; 
+    }
+    .stat { text-align: center; }
+    .stat-number { font-size: 1.75rem; font-weight: 800; display: block; margin-bottom: 0.25rem; }
+    .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+    .hero-visual { 
+        display: none;
+    }
+    @media (min-width: 768px) { 
+        .hero-visual { display: block; }
+    }
+
+    .hero-diagram { 
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+    .diagram-node { text-align: center; }
+    .node-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .node-label { font-size: 0.875rem; }
+    .diagram-arrow { font-size: 1.5rem; }
+
+    .hero-code-preview { 
+        background: #1f2937; 
+        border-radius: 8px; 
+        overflow: hidden;
+    }
+    .code-header { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .code-language, .code-filename { font-size: 0.875rem; }
+    .code-content { 
+        color: #f9fafb; 
+        padding: 1rem; 
+        margin: 0; 
+        overflow-x: auto;
+        font-size: 0.875rem;
+    }
+
+    /* ============================================= 
+       SECTION HEADER 
+       ============================================= */
+    .section-header { text-align: center; margin-bottom: 2rem; }
+    @media (min-width: 768px) { .section-header { margin-bottom: 3rem; } }
+    
+    .section-header h2 { color: #111827; }
+    .section-subtitle { font-size: clamp(1rem, 2vw, 1.125rem); color: #6b7280; margin: 0; line-height: 1.4; }
+
+    /* ============================================= 
+       FILTER CONTROLS 
+       ============================================= */
+    .filter-controls { 
+        display: flex; 
+        gap: 1rem; 
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) { .filter-controls { margin-bottom: 3rem; } }
+    
+    .filter-btn { 
+        padding: 0.75rem 1.5rem; 
+        border: 2px solid #e5e7eb; 
+        background: white; 
+        border-radius: 4px; 
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+    }
+    .filter-btn:hover, .filter-btn.active { 
+        background: #111827; 
+        color: white; 
+        border-color: #111827;
+    }
+
+    /* ============================================= 
+       COMPARISON TABLE 
+       ============================================= */
+    .comparison-table-wrapper { overflow-x: auto; }
+    
+    .comparison-table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin: 2rem 0; 
+        background: white; 
+        border-radius: 8px; 
+        overflow: hidden; 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    }
+    @media (min-width: 768px) { .comparison-table { margin: 3rem 0; } }
+
+    .comparison-table th, 
+    .comparison-table td { 
+        padding: 1rem; 
+        text-align: left; 
+        border-bottom: 1px solid #e5e7eb;
+        font-size: clamp(0.875rem, 2vw, 1rem);
+    }
+    
+    .comparison-table th { 
+        background: #f9fafb; 
+        font-weight: 600; 
+        color: #374151; 
+        white-space: nowrap;
+    }
+
+    .comparison-table td { vertical-align: middle; }
+
+    .company-cell {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .company-info { display: flex; align-items: center; gap: 1rem; }
+    .company-logo { font-size: 1.5rem; }
+    .company-info small { display: block; font-weight: 400; color: #6b7280; font-size: 0.75rem; }
+
+    .metric-badge { 
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        background: #ecfdf5;
+        color: #059669;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+    .metric-badge.medium { background: #fef3c7; color: #d97706; }
+    .metric-badge.high { background: #ecfdf5; color: #059669; }
+    .metric-badge.max { background: #dbeafe; color: #0284c7; }
+
+    /* ============================================= 
+       METRICS GRID 
+       ============================================= */
+    .metrics-grid { 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    @media (min-width: 768px) { .metrics-grid { gap: 2rem; margin: 2.5rem 0; } }
+
+    .metric-card { 
+        background: white; 
+        border: 1px solid #e5e7eb; 
+        border-radius: 8px; 
+        padding: 1.5rem; 
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+    .metric-card:hover { 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .metric-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .metric-value { font-weight: 600; margin-bottom: 0.5rem; }
+    .metric-label { font-size: 0.875rem; color: #6b7280; }
+
+    /* ============================================= 
+       BUTTONS 
+       ============================================= */
+    .btn { 
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .btn--primary { 
+        background: #3b82f6; 
+        color: white; 
+    }
+    .btn--primary:hover { background: #2563eb; }
+
+    .btn--secondary { 
+        background: white; 
+        color: #111827; 
+        border: 2px solid #e5e7eb;
+    }
+    .btn--secondary:hover { border-color: #111827; }
+
+    /* ============================================= 
+       CTA BOX 
+       ============================================= */
+    .cta-box { 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        color: white; 
+        padding: 2rem; 
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+    @media (min-width: 768px) { .cta-box { padding: 3rem; margin: 3rem 0; } }
+
+    .cta-box h3 { margin-bottom: 1rem; }
+    .cta-box p { margin-bottom: 1.5rem; }
+    .cta-actions { 
+        display: flex; 
+        gap: 1rem; 
+        flex-wrap: wrap;
+    }
+
+    /* ============================================= 
+       HIGHLIGHT BOX 
+       ============================================= */
+    .highlight-box { 
+        background: #f0f9ff; 
+        border-left: 4px solid #3b82f6; 
+        padding: 1.5rem; 
+        border-radius: 0 6px 6px 0;
+        margin: 1.5rem 0;
+    }
+    @media (min-width: 768px) { .highlight-box { padding: 2rem; margin: 2rem 0; } }
+
+    /* ============================================= 
+       FEATURE LIST 
+       ============================================= */
+    .runtime-features { 
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    @media (min-width: 768px) { 
+        .runtime-features { gap: 2rem; margin: 2.5rem 0; }
+    }
+
+    .feature { 
+        display: flex; 
+        gap: 1rem; 
+        padding: 1.5rem;
+        background: #f9fafb;
+        border-radius: 8px;
+        border-left: 4px solid #3b82f6;
+    }
+    .feature-icon-inline { 
+        font-size: 2rem; 
+        flex-shrink: 0;
+    }
+    .feature strong { display: block; margin-bottom: 0.5rem; }
+    .feature p { margin: 0; font-size: 0.95rem; color: #6b7280; }
+
+    /* ============================================= 
+       CONTENT GRID 
+       ============================================= */
+    .content-section { padding: 3rem 1rem; }
+    @media (min-width: 768px) { .content-section { padding: 4rem 1rem; } }
+
+    .content-grid { 
+        max-width: 1200px; 
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+        .content-grid { grid-template-columns: 1fr 250px; gap: 3rem; }
+    }
+
+    .main-content { }
+    .main-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
+    .main-content h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; }
+
+    /* ============================================= 
+       TABLES WITH INLINE STYLE CONVERSION 
+       ============================================= */
+    table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin: 1.5rem 0;
+    }
+    @media (min-width: 768px) { table { margin: 2rem 0; } }
+
+    thead tr { background: #f9fafb; }
+    th { 
+        border: 1px solid #e5e7eb; 
+        padding: 0.75rem; 
+        text-align: left;
+        font-weight: 600;
+        background: #f9fafb;
+    }
+    td { 
+        border: 1px solid #e5e7eb; 
+        padding: 0.75rem;
+    }
+
+    tbody tr:nth-child(even) { background: #fafafa; }
+
+    /* ============================================= 
+       BREADCRUMBS 
+       ============================================= */
+    .breadcrumbs { 
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .breadcrumbs ol { 
+        margin: 0; 
+        padding: 0 1rem;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .breadcrumbs li::after { content: " / "; margin: 0 0.5rem; color: #d1d5db; }
+    .breadcrumbs li:last-child::after { content: ""; }
+    .breadcrumbs a { color: #3b82f6; text-decoration: none; }
+    .breadcrumbs a:hover { text-decoration: underline; }
+
+    /* ============================================= 
+       READING PROGRESS 
+       ============================================= */
+    .reading-progress { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #e5e7eb;
+        z-index: 1000;
+    }
+    .progress-bar { 
+        height: 100%;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        width: 0%;
+    }
+
+    /* ============================================= 
+       MEDIA FIGURES 
+       ============================================= */
+    .media-figure { 
+        margin: 2rem 0;
+        text-align: center;
+    }
+    @media (min-width: 768px) { .media-figure { margin: 3rem 0; } }
+
+    .media-figure img { margin: 1rem auto; }
+    .media-figure figcaption { 
+        font-style: italic; 
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
+
+    /* ============================================= 
+       RESPONSIVE ADJUSTMENTS 
+       ============================================= */
+    @media (max-width: 640px) {
+        .hero-stats { grid-template-columns: repeat(3, 1fr); }
+        .comparison-table { font-size: 0.8rem; }
+        .comparison-table th, .comparison-table td { padding: 0.5rem; }
+        .btn { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+    }
+
+    /* ============================================= 
+       EEAT GRID 
+       ============================================= */
+    .eeat-grid { 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    @media (min-width: 768px) { .eeat-grid { gap: 2rem; margin: 2.5rem 0; } }
+
+    .eeat-card { padding: 1.5rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .eeat-card h3 { color: #7c3aed; font-size: 0.95rem; margin-top: 0; }
+    .eeat-card p { margin: 0; font-size: 0.95rem; color: #404854; }
+    .eeat-card a { color: #7c3aed; text-decoration: underline; }
+
+    /* ============================================= 
+       HIGHLIGHTS GRID 
+       ============================================= */
+    .highlights-grid { 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    @media (min-width: 768px) { .highlights-grid { gap: 2.5rem; margin: 2.5rem 0; } }
+
+    .highlight-card { 
+        padding: 1.5rem; 
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+    }
+    @media (min-width: 768px) { .highlight-card { padding: 2rem; } }
+
+    .highlight-card h3 { margin-top: 0; font-size: 1.1rem; }
+    .highlight-card ul { margin: 0; padding-left: 1.2rem; line-height: 1.8; }
+    .highlight-card li { margin: 0.5rem 0; }
+
+    .highlight-card--success { background: #f0f9ff; border-color: #0891b2; }
+    .highlight-card--success h3 { color: #0891b2; }
+
+    .highlight-card--warning { background: #fef2f2; border-color: #dc2626; }
+    .highlight-card--warning h3 { color: #dc2626; }
+
+    .highlight-card--info { background: #fef3c7; border-color: #d97706; }
+    .highlight-card--info h3 { color: #d97706; }
+    
 
     <!-- Defer non-critical CSS -->
     <link rel="preload" href="css/pages/cloudflare-stream-complete-guide.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -275,64 +769,64 @@ const signedUrl = await createStreamToken({
         </section>
 
         <!-- Search Intent / Social Proof Framing -->
-        <section class="search-intent-section" style="background: #f0f9ff; padding: 2rem; margin: 2rem 0; border-left: 4px solid #3b82f6; border-radius: 4px;">
-            <div style="max-width: 1200px; margin: 0 auto;">
-                <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1rem;">Why Developers Are Searching for Cloudflare Stream Right Now</h2>
-                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">If you landed here via a search like "companies using Cloudflare Stream", "Cloudflare Stream case studies", or "who uses Cloudflare Stream in production" — you're not alone, and your search intent is telling.</p>
-                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">These queries aren't coming from curiosity. They're coming from developers and product leads who are 60–70% through an infrastructure evaluation and need one thing before committing: evidence that real teams have shipped production products with this and survived. Social proof over spec sheets.</p>
-                <p style="margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">The pattern is consistent across the developer community. Teams evaluating video infrastructure in 2025–2026 are specifically searching for:</p>
-                <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+        <section class="section section-blue">
+            <div class="container">
+                <h2>Why Developers Are Searching for Cloudflare Stream Right Now</h2>
+                <p>If you landed here via a search like "companies using Cloudflare Stream", "Cloudflare Stream case studies", or "who uses Cloudflare Stream in production" — you're not alone, and your search intent is telling.</p>
+                <p>These queries aren't coming from curiosity. They're coming from developers and product leads who are 60–70% through an infrastructure evaluation and need one thing before committing: evidence that real teams have shipped production products with this and survived. Social proof over spec sheets.</p>
+                <p>The pattern is consistent across the developer community. Teams evaluating video infrastructure in 2025–2026 are specifically searching for:</p>
+                <ul>
                     <li><strong>Named companies</strong> (not anonymous "a Fortune 500 client") with recognizable products built on Stream</li>
                     <li><strong>Honest accounts</strong> of what broke, what cost more than expected, and what required workarounds</li>
                     <li><strong>Architectural patterns</strong> that survived real traffic, not just demo-scale Hello World examples</li>
                 </ul>
-                <p style="margin-bottom: 0; font-size: 1rem; line-height: 1.6;">This guide addresses all three directly. The adopter landscape section names real verticals and explains why their use cases map to Stream's specific strengths and weaknesses. The constraint map is structured as a production timeline — not a feature list — because that's the shape of how problems actually surface. And the Clodo Framework code patterns are pulled from real integration work, not documentation rewrites.</p>
-                <p style="margin-bottom: 0; font-size: 1rem; line-height: 1.6;">If you're doing a vendor comparison before a product build, start with the decision framework. If you've already committed to Stream and you're hitting problems, the constraint map is indexed chronologically — find the month you're in.</p>
+                <p>This guide addresses all three directly. The adopter landscape section names real verticals and explains why their use cases map to Stream's specific strengths and weaknesses. The constraint map is structured as a production timeline — not a feature list — because that's the shape of how problems actually surface. And the Clodo Framework code patterns are pulled from real integration work, not documentation rewrites.</p>
+                <p>If you're doing a vendor comparison before a product build, start with the decision framework. If you've already committed to Stream and you're hitting problems, the constraint map is indexed chronologically — find the month you're in.</p>
             </div>
         </section>
 
         <!-- Audience & E-E-A-T Section -->
-        <section class="research-credentials" style="background: #f9fafb; padding: 2rem; margin: 2rem 0; border-left: 4px solid #7c3aed; border-radius: 4px;">
-            <div style="max-width: 1200px; margin: 0 auto;">
-                <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1rem;">🎯 Who This Guide Is For &amp; How It Was Built</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">Target Audience</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">Developers, SaaS founders, and engineering leads evaluating Cloudflare Stream for production use — who want a no-hype, ground-level picture of what it actually takes to ship video features.</p>
+        <section class="section section-purple">
+            <div class="container">
+                <h2>🎯 Who This Guide Is For &amp; How It Was Built</h2>
+                <div class="eeat-grid">
+                    <div class="eeat-card">
+                        <h3>Target Audience</h3>
+                        <p>Developers, SaaS founders, and engineering leads evaluating Cloudflare Stream for production use — who want a no-hype, ground-level picture of what it actually takes to ship video features.</p>
                     </div>
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">Research Sources</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">Based on Cloudflare official documentation, developer community reports, production deployment experiences, and comparative analysis against Mux, Bunny.net, and AWS MediaServices.</p>
+                    <div class="eeat-card">
+                        <h3>Research Sources</h3>
+                        <p>Based on Cloudflare official documentation, developer community reports, production deployment experiences, and comparative analysis against Mux, Bunny.net, and AWS MediaServices.</p>
                     </div>
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">Expertise</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">Written by the Clodo Framework team with hands-on experience building production video services on Cloudflare Workers. All code patterns are production-tested.</p>
+                    <div class="eeat-card">
+                        <h3>Expertise</h3>
+                        <p>Written by the Clodo Framework team with hands-on experience building production video services on Cloudflare Workers. All code patterns are production-tested.</p>
                     </div>
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">Last Updated</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">March 2026. Constraints and capabilities verified against the current Cloudflare Stream product. Pricing reflects current published rates.</p>
+                    <div class="eeat-card">
+                        <h3>Last Updated</h3>
+                        <p>March 2026. Constraints and capabilities verified against the current Cloudflare Stream product. Pricing reflects current published rates.</p>
                     </div>
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">Citation</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">Clodo Framework (2026). "Cloudflare Stream: The Complete Developer Guide." <a href="https://www.clodo.dev/cloudflare-stream-complete-guide" style="color: #7c3aed; text-decoration: underline;">clodo.dev/cloudflare-stream-complete-guide</a></p>
+                    <div class="eeat-card">
+                        <h3>Citation</h3>
+                        <p>Clodo Framework (2026). "Cloudflare Stream: The Complete Developer Guide." <a href="https://www.clodo.dev/cloudflare-stream-complete-guide">clodo.dev/cloudflare-stream-complete-guide</a></p>
                     </div>
-                    <div>
-                        <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #7c3aed;">What You'll Build</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: #404854;">A globally distributed video API on Cloudflare Workers with signed URL auth, upload orchestration, and webhook processing — deployable in under an hour.</p>
+                    <div class="eeat-card">
+                        <h3>What You'll Build</h3>
+                        <p>A globally distributed video API on Cloudflare Workers with signed URL auth, upload orchestration, and webhook processing — deployable in under an hour.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Key Findings - Stream Specific -->
-        <section class="key-metrics-section" style="padding: 2rem 0; margin: 2rem 0;">
-            <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-                <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">⚡ Stream at a Glance: What You Need to Know</h2>
+        <section class="section section-light">
+            <div class="container">
+                <h2>⚡ Stream at a Glance: What You Need to Know</h2>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-                    <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2;">
-                        <h3 style="margin-top: 0; color: #0891b2; font-size: 1.1rem;">✅ What Stream Does Well</h3>
-                        <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8;">
+                <div class="highlights-grid">
+                    <div class="highlight-card highlight-card--success">
+                        <h3>✅ What Stream Does Well</h3>
+                        <ul>
                             <li>Global HLS delivery via 330+ PoPs</li>
                             <li>Simple API — upload and get embed URL</li>
                             <li>Zero egress fees within Cloudflare</li>
@@ -342,9 +836,9 @@ const signedUrl = await createStreamToken({
                         </ul>
                     </div>
 
-                    <div style="background: #fef2f2; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626;">
-                        <h3 style="margin-top: 0; color: #dc2626; font-size: 1.1rem;">⚠️ Real Production Constraints</h3>
-                        <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8;">
+                    <div class="highlight-card highlight-card--warning">
+                        <h3>⚠️ Real Production Constraints</h3>
+                        <ul>
                             <li><strong>H.264 only</strong> — no AV1, VP9, HEVC</li>
                             <li><strong>1080p max</strong> — no 4K output</li>
                             <li><strong>No DRM</strong> — Widevine, FairPlay, PlayReady absent</li>
@@ -354,9 +848,9 @@ const signedUrl = await createStreamToken({
                         </ul>
                     </div>
 
-                    <div style="background: #fef3c7; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706;">
-                        <h3 style="margin-top: 0; color: #d97706; font-size: 1.1rem;">🔮 Roadmap Signals</h3>
-                        <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8;">
+                    <div class="highlight-card highlight-card--info">
+                        <h3>🔮 Roadmap Signals</h3>
+                        <ul>
                             <li><strong>MoQ (Media Over QUIC)</strong> — next-gen live protocol</li>
                             <li><strong>Workers AI</strong> — auto-transcription, search, clips</li>
                             <li><strong>DRM</strong> — community-requested, likely eventual</li>
@@ -599,39 +1093,39 @@ const signedUrl = await createStreamToken({
                     <p>Client-side ad insertion (the alternative) injects ads in the browser via JavaScript. Ad blockers kill it. Viewer experience degrades because you can see the player stutter between content and ad. SSAI stitches the ad into the video stream server-side, so the viewer's player sees a single continuous stream — no stutter, no ad blocker surface.</p>
                     <p>For OTT platforms, connected TV apps, and AVOD (ad-supported video on demand) products, SSAI isn't optional — it's the delivery mechanism for the entire revenue model. A streaming service that can't reliably insert pre-roll ads cannot monetize through advertising.</p>
                     <p><strong>The gap in practice:</strong></p>
-                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <table>
                         <thead>
-                            <tr style="background: #f9fafb;">
-                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Ad Requirement</th>
-                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Cloudflare Stream</th>
-                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">Mux</th>
-                                <th style="border: 1px solid #e5e7eb; padding: 0.5rem; text-align: left;">AWS MediaTailor</th>
+                            <tr>
+                                <th>Ad Requirement</th>
+                                <th>Cloudflare Stream</th>
+                                <th>Mux</th>
+                                <th>AWS MediaTailor</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">VAST pre-roll</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td>VAST pre-roll</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>✅</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">VAST mid-roll</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td>VAST mid-roll</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>✅</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">SSAI (server-side stitch)</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌ (client-side only)</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td>SSAI (server-side stitch)</td>
+                                <td>❌</td>
+                                <td>❌ (client-side only)</td>
+                                <td>✅</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">Ad analytics passthrough</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">❌</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">Partial</td>
-                                <td style="border: 1px solid #e5e7eb; padding: 0.5rem;">✅</td>
+                                <td>Ad analytics passthrough</td>
+                                <td>❌</td>
+                                <td>Partial</td>
+                                <td>✅</td>
                             </tr>
                         </tbody>
                     </table>
